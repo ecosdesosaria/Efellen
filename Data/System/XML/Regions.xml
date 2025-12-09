@@ -1353,6 +1353,10 @@
 					<object id="5008" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="75" />
 				</spawning>
 		</region>
+		<region type="OutDoorRegion" priority="65" name="Castle Griffin Roost">
+			<rect x="3896" y="2852" width="165" height="165" />
+			<music name="City" />
+		</region>
 	</Facet>
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	<Facet name="Underworld">
