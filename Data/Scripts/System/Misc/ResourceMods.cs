@@ -1362,22 +1362,6 @@ namespace Server
 				case 14: item = new MithrilIngot(); break;
 				case 15: item = new DwarvenIngot(); break;
 				case 16: item = new XormiteIngot(); break;
-				case 17: item = new AgriniumIngot(); break;
-				case 18: item = new BeskarIngot(); break;
-				case 19: item = new CarboniteIngot(); break;
-				case 20: item = new CortosisIngot(); break;
-				case 21: item = new DurasteelIngot(); break;
-				case 22: item = new DuriteIngot(); break;
-				case 23: item = new FariumIngot(); break;
-				case 24: item = new LaminasteelIngot(); break;
-				case 25: item = new NeuraniumIngot(); break;
-				case 26: item = new PhrikIngot(); break;
-				case 27: item = new PromethiumIngot(); break;
-				case 28: item = new QuadraniumIngot(); break;
-				case 29: item = new SongsteelIngot(); break;
-				case 30: item = new TitaniumIngot(); break;
-				case 31: item = new TrimantiumIngot(); break;
-				case 32: item = new XonoliteIngot(); break;
 
 				case 33: item = new RedScales(); break;
 				case 34: item = new YellowScales(); break;
@@ -1391,11 +1375,6 @@ namespace Server
 				case 42: item = new UmberScales(); break;
 				case 43: item = new VioletScales(); break;
 				case 44: item = new PlatinumScales(); break;
-				case 45: item = new CadalyteScales(); break;
-				case 225: item = new GornScales(); break;
-				case 226: item = new TrandoshanScales(); break;
-				case 227: item = new SilurianScales(); break;
-				case 228: item = new KraytScales(); break;
 
 				case 46: item = new Leather(); break;
 				case 47: item = new HornedLeather(); break;
@@ -1408,19 +1387,7 @@ namespace Server
 				case 54: item = new HellishLeather(); break;
 				case 55: item = new SpinedLeather(); break;
 				case 56: item = new DinosaurLeather(); break;
-				case 57: item = new AlienLeather(); break;
-				case 58: item = new AdesoteLeather(); break;
-				case 59: item = new BiomeshLeather(); break;
-				case 60: item = new CerlinLeather(); break;
-				case 61: item = new DurafiberLeather(); break;
-				case 62: item = new FlexicrisLeather(); break;
-				case 63: item = new HyperclothLeather(); break;
-				case 64: item = new NylarLeather(); break;
-				case 65: item = new NyloniteLeather(); break;
-				case 66: item = new PolyfiberLeather(); break;
-				case 67: item = new SynclothLeather(); break;
-				case 68: item = new ThermoweaveLeather(); break;
-
+				
 				case 69: item = new Log(); break;
 				case 70: item = new AshLog(); break;
 				case 71: item = new CherryLog(); break;
@@ -1494,15 +1461,6 @@ namespace Server
 				case 135: item = new SphinxSkeletal(); break;
 				case 136: item = new DevilSkeletal(); break;
 				case 137: item = new DracoSkeletal(); break;
-				case 138: item = new XenoSkeletal(); break;
-				case 139: item = new AndorianSkeletal(); break;
-				case 140: item = new CardassianSkeletal(); break;
-				case 141: item = new MartianSkeletal(); break;
-				case 142: item = new RodianSkeletal(); break;
-				case 143: item = new TuskenSkeletal(); break;
-				case 144: item = new TwilekSkeletal(); break;
-				case 145: item = new XindiSkeletal(); break;
-				case 146: item = new ZabrakSkeletal(); break;
 
 				case 147: item = new Hides(); break;
 				case 148: item = new HornedHides(); break;
@@ -1515,7 +1473,6 @@ namespace Server
 				case 155: item = new HellishHides(); break;
 				case 156: item = new SpinedHides(); break;
 				case 157: item = new DinosaurHides(); break;
-				case 158: item = new AlienHides(); break;
 
 				case 159: item = new Board(); break;
 				case 160: item = new AshBoard(); break;
@@ -1532,14 +1489,6 @@ namespace Server
 				case 171: item = new GhostBoard(); break;
 				case 172: item = new PetrifiedBoard(); break;
 				case 173: item = new DriftwoodBoard(); break;
-				case 174: item = new BorlBoard(); break;
-				case 175: item = new CosianBoard(); break;
-				case 176: item = new GreelBoard(); break;
-				case 177: item = new JaporBoard(); break;
-				case 178: item = new KyshyyykBoard(); break;
-				case 179: item = new LaroonBoard(); break;
-				case 180: item = new TeejBoard(); break;
-				case 181: item = new VeshokBoard(); break;
 
 				case 182: item = new IronOre(); break;
 				case 183: item = new DullCopperOre(); break;

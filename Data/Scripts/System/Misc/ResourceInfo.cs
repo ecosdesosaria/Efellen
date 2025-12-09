@@ -104,195 +104,148 @@ namespace Server.Items
 		}
 
 		public static readonly CraftAttributeInfo Blank;
-		public static readonly CraftAttributeInfo DullCopper, ShadowIron, Copper, Bronze, Golden, Agapite, Verite, Valorite, Nepturite, Obsidian, Steel, Brass, Mithril, Xormite, Dwarven, Agrinium, Beskar, Carbonite, Cortosis, Durasteel, Durite, Farium, Laminasteel, Neuranium, Phrik, Promethium, Quadranium, Songsteel, Titanium, Trimantium, Xonolite;
-		public static readonly CraftAttributeInfo Horned, Barbed, Necrotic, Volcanic, Frozen, Spined, Goliath, Draconic, Hellish, Dinosaur, Alien, Adesote, Biomesh, Cerlin, Durafiber, Flexicris, Hypercloth, Nylar, Nylonite, Polyfiber, Syncloth, Thermoweave;
-		public static readonly CraftAttributeInfo RedScales, YellowScales, BlackScales, GreenScales, WhiteScales, BlueScales, DinosaurScales, MetallicScales, BrazenScales, UmberScales, VioletScales, PlatinumScales, CadalyteScales, GornScales, TrandoshanScales, SilurianScales, KraytScales;
-		public static readonly CraftAttributeInfo AshTree, CherryTree, EbonyTree, GoldenOakTree, HickoryTree, MahoganyTree, OakTree, PineTree, GhostTree, RosewoodTree, WalnutTree, PetrifiedTree, DriftwoodTree, ElvenTree, BorlTree, CosianTree, GreelTree, JaporTree, KyshyyykTree, LaroonTree, TeejTree, VeshokTree;
+		public static readonly CraftAttributeInfo DullCopper, ShadowIron, Copper, Bronze, Golden, Agapite, Verite, Valorite, Nepturite, Obsidian, Steel, Brass, Mithril, Xormite, Dwarven;
+		public static readonly CraftAttributeInfo Horned, Barbed, Necrotic, Volcanic, Frozen, Spined, Goliath, Draconic, Hellish, Dinosaur;
+		public static readonly CraftAttributeInfo RedScales, YellowScales, BlackScales, GreenScales, WhiteScales, BlueScales, DinosaurScales, MetallicScales, BrazenScales, UmberScales, VioletScales, PlatinumScales, CadalyteScales;
+		public static readonly CraftAttributeInfo AshTree, CherryTree, EbonyTree, GoldenOakTree, HickoryTree, MahoganyTree, OakTree, PineTree, GhostTree, RosewoodTree, WalnutTree, PetrifiedTree, DriftwoodTree, ElvenTree;
 		public static readonly CraftAttributeInfo AmethystBlock, EmeraldBlock, GarnetBlock, IceBlock, JadeBlock, MarbleBlock, OnyxBlock, QuartzBlock, RubyBlock, SapphireBlock, SilverBlock, SpinelBlock, StarRubyBlock, TopazBlock, CaddelliteBlock;
 		public static readonly CraftAttributeInfo DemonSkin, DragonSkin, NightmareSkin, SnakeSkin, TrollSkin, UnicornSkin, IcySkin, Seaweed, LavaSkin, DeadSkin;
 		public static readonly CraftAttributeInfo SpectralSpec, DreadSpec, GhoulishSpec, WyrmSpec, HolySpec, BloodlessSpec, GildedSpec, DemilichSpec, WintrySpec, FireSpec, ColdSpec, PoisSpec, EngySpec, ExodusSpec, TurtleSpec;
-		public static readonly CraftAttributeInfo DrowSkeletal, OrcSkeletal, ReptileSkeletal, OgreSkeletal, TrollSkeletal, GargoyleSkeletal, MinotaurSkeletal, LycanSkeletal, SharkSkeletal, ColossalSkeletal, MysticalSkeletal, VampireSkeletal, LichSkeletal, SphinxSkeletal, DevilSkeletal, DracoSkeletal, XenoSkeletal, AndorianSkeletal, CardassianSkeletal, MartianSkeletal, RodianSkeletal, TuskenSkeletal, TwilekSkeletal, XindiSkeletal, ZabrakSkeletal;
+		public static readonly CraftAttributeInfo DrowSkeletal, OrcSkeletal, ReptileSkeletal, OgreSkeletal, TrollSkeletal, GargoyleSkeletal, MinotaurSkeletal, LycanSkeletal, SharkSkeletal, ColossalSkeletal, MysticalSkeletal, VampireSkeletal, LichSkeletal, SphinxSkeletal, DevilSkeletal, DracoSkeletal;
 		public static readonly CraftAttributeInfo FurryFabric, WoolyFabric, SilkFabric, HauntedFabric, ArcticFabric, PyreFabric, VenomousFabric, MysteriousFabric, VileFabric, DivineFabric, FiendishFabric;
 
 		static CraftAttributeInfo()
 		{
 			Blank = new CraftAttributeInfo();
-			DullCopper	 = CraftAttInfo( 	3	,	0	,	0	,	0	,	0	,	1	,	2	,	40	,	100	,	0	,	0	,	0	,	0	,	75	,	0	,	0	 );
-			ShadowIron	 = CraftAttInfo( 	1	,	0	,	1	,	3	,	0	,	2	,	2	,	45	,	100	,	0	,	0	,	0	,	0	,	75	,	0	,	0	 );
-			Copper	 = CraftAttInfo( 	1	,	0	,	1	,	1	,	3	,	2	,	3	,	50	,	100	,	0	,	0	,	20	,	10	,	25	,	0	,	0	 );
-			Bronze	 = CraftAttInfo( 	2	,	3	,	0	,	1	,	1	,	3	,	3	,	55	,	100	,	0	,	40	,	0	,	0	,	30	,	0	,	0	 );
-			Golden	 = CraftAttInfo( 	1	,	1	,	1	,	1	,	0	,	3	,	4	,	60	,	100	,	0	,	0	,	0	,	0	,	30	,	20	,	20	 );
-			Agapite	 = CraftAttInfo( 	1	,	1	,	2	,	1	,	1	,	4	,	4	,	65	,	100	,	30	,	0	,	20	,	0	,	25	,	0	,	0	 );
-			Verite	 = CraftAttInfo( 	2	,	1	,	2	,	1	,	2	,	4	,	5	,	70	,	100	,	0	,	0	,	20	,	40	,	25	,	0	,	0	 );
-			Valorite	 = CraftAttInfo( 	2	,	2	,	0	,	2	,	2	,	5	,	5	,	85	,	100	,	20	,	10	,	20	,	10	,	40	,	0	,	0	 );
-			Nepturite	 = CraftAttInfo( 	4	,	3	,	0	,	0	,	3	,	5	,	5	,	85	,	100	,	25	,	0	,	0	,	25	,	40	,	0	,	0	 );
-			Obsidian	 = CraftAttInfo( 	3	,	1	,	3	,	1	,	1	,	5	,	5	,	85	,	100	,	0	,	20	,	10	,	0	,	40	,	0	,	0	 );
-			Steel	 = CraftAttInfo( 	3	,	3	,	0	,	3	,	3	,	6	,	7	,	85	,	100	,	0	,	0	,	0	,	0	,	50	,	0	,	0	 );
-			Brass	 = CraftAttInfo( 	4	,	4	,	0	,	4	,	4	,	8	,	9	,	85	,	100	,	0	,	20	,	20	,	0	,	55	,	0	,	0	 );
-			Mithril	 = CraftAttInfo( 	5	,	5	,	0	,	5	,	5	,	10	,	11	,	85	,	100	,	0	,	0	,	30	,	0	,	100	,	0	,	75	 );
-			Xormite	 = CraftAttInfo( 	5	,	5	,	5	,	6	,	5	,	10	,	11	,	85	,	100	,	0	,	0	,	30	,	0	,	100	,	0	,	0	 );
-			Dwarven	 = CraftAttInfo( 	7	,	5	,	5	,	0	,	0	,	20	,	22	,	170	,	200	,	0	,	0	,	0	,	0	,	100	,	0	,	0	 );
-			Agrinium	 = CraftAttInfo( 	5	,	3	,	3	,	5	,	0	,	15	,	16	,	170	,	200	,	0	,	0	,	0	,	0	,	80	,	25	,	0	 );
-			Beskar	 = CraftAttInfo( 	6	,	2	,	2	,	3	,	2	,	15	,	16	,	170	,	200	,	0	,	10	,	0	,	0	,	80	,	25	,	0	 );
-			Carbonite	 = CraftAttInfo( 	4	,	5	,	1	,	4	,	1	,	15	,	16	,	170	,	200	,	0	,	0	,	0	,	0	,	80	,	25	,	0	 );
-			Cortosis	 = CraftAttInfo( 	4	,	3	,	3	,	6	,	0	,	15	,	16	,	170	,	200	,	0	,	0	,	25	,	0	,	80	,	25	,	0	 );
-			Durasteel	 = CraftAttInfo( 	3	,	3	,	3	,	3	,	3	,	15	,	16	,	170	,	200	,	0	,	0	,	0	,	0	,	80	,	25	,	0	 );
-			Durite	 = CraftAttInfo( 	4	,	4	,	4	,	2	,	1	,	15	,	16	,	170	,	200	,	0	,	0	,	0	,	0	,	80	,	25	,	0	 );
-			Farium	 = CraftAttInfo( 	4	,	0	,	7	,	4	,	0	,	15	,	16	,	170	,	200	,	0	,	35	,	0	,	0	,	80	,	25	,	0	 );
-			Laminasteel	 = CraftAttInfo( 	4	,	0	,	0	,	4	,	7	,	15	,	16	,	170	,	200	,	0	,	0	,	0	,	25	,	80	,	25	,	0	 );
-			Neuranium	 = CraftAttInfo( 	5	,	0	,	5	,	5	,	0	,	15	,	16	,	170	,	200	,	0	,	25	,	0	,	0	,	80	,	25	,	0	 );
-			Phrik	 = CraftAttInfo( 	4	,	1	,	2	,	6	,	2	,	15	,	16	,	170	,	200	,	0	,	0	,	35	,	0	,	80	,	25	,	0	 );
-			Promethium	 = CraftAttInfo( 	5	,	0	,	0	,	5	,	5	,	15	,	16	,	170	,	200	,	0	,	0	,	0	,	35	,	80	,	25	,	0	 );
-			Quadranium	 = CraftAttInfo( 	4	,	3	,	3	,	4	,	2	,	15	,	16	,	170	,	200	,	10	,	10	,	10	,	10	,	80	,	25	,	0	 );
-			Songsteel	 = CraftAttInfo( 	6	,	2	,	2	,	4	,	2	,	15	,	16	,	170	,	200	,	0	,	0	,	0	,	0	,	80	,	25	,	0	 );
-			Titanium	 = CraftAttInfo( 	7	,	2	,	2	,	4	,	1	,	15	,	16	,	170	,	200	,	0	,	0	,	0	,	0	,	80	,	25	,	0	 );
-			Trimantium	 = CraftAttInfo( 	4	,	7	,	2	,	2	,	1	,	15	,	16	,	170	,	200	,	50	,	0	,	0	,	0	,	80	,	25	,	0	 );
-			Xonolite	 = CraftAttInfo( 	4	,	2	,	7	,	2	,	1	,	15	,	16	,	170	,	200	,	0	,	50	,	0	,	0	,	80	,	25	,	0	 );
+			//																											weapon damage                     armor  weapon		
+			//                            phys     fire    cold    engy   poison                                   cold   fire    eng     psn             luck   luck        
+			DullCopper	 =  CraftAttInfo( 	2	,	0	,	0	,	0	,	0	,	1	,	2	,	40	,	100	,	0	,	0	,	0	,	0	,	75	,	0	,	0	 );
+			ShadowIron	 =  CraftAttInfo( 	1	,	0	,	1	,	1	,	0	,	2	,	2	,	45	,	100	,	0	,	0	,	0	,	0	,	75	,	0	,	0	 );
+			Copper	 =      CraftAttInfo( 	1	,	0	,	1	,	1	,	1	,	2	,	3	,	50	,	100	,	0	,	0	,	20	,	10	,	25	,	0	,	0	 );
+			Bronze	 =      CraftAttInfo( 	1	,	2	,	0	,	1	,	1	,	3	,	3	,	55	,	100	,	0	,	40	,	0	,	0	,	30	,	0	,	0	 );
+			Golden	 =      CraftAttInfo( 	0	,	1	,	1	,	3	,	1	,	3	,	4	,	60	,	100	,	0	,	0	,	0	,	0	,	30	,	30	,	30	 );
+			Agapite	 =      CraftAttInfo( 	1	,	1	,	2	,	1	,	2	,	4	,	4	,	65	,	100	,	30	,	0	,	20	,	0	,	25	,	0	,	0	 );
+			Verite	 =      CraftAttInfo( 	2	,	1	,	2	,	1	,	2	,	4	,	5	,	70	,	100	,	0	,	0	,	20	,	40	,	25	,	0	,	0	 );
+			Valorite	 =  CraftAttInfo( 	2	,	2	,	1	,	2	,	2	,	5	,	5	,	85	,	100	,	20	,	10	,	20	,	10	,	40	,	0	,	0	 );
+			Nepturite	 =  CraftAttInfo( 	4	,	3	,	0	,	0	,	3	,	5	,	5	,	85	,	100	,	25	,	0	,	0	,	25	,	40	,	0	,	0	 );
+			Obsidian	 =  CraftAttInfo( 	4	,	1	,	3	,	1	,	2	,	5	,	5	,	85	,	100	,	0	,	20	,	10	,	0	,	40	,	0	,	0	 );
+			Steel	 =      CraftAttInfo( 	3	,	3	,	0	,	3	,	3	,	6	,	7	,	85	,	100	,	0	,	0	,	0	,	0	,	50	,	0	,	0	 );
+			Brass	 =      CraftAttInfo( 	2	,	3	,	0	,	4	,	4	,	8	,	9	,	85	,	100	,	0	,	20	,	20	,	0	,	55	,	0	,	0	 );
+			Mithril	 =      CraftAttInfo( 	5	,	5	,	0	,	2	,	2	,	10	,	11	,	85	,	100	,	0	,	0	,	30	,	0	,	100	,	75	,	75	 );
+			Xormite	 =      CraftAttInfo( 	4	,	4	,	4	,	4	,	0	,	10	,	11	,	85	,	100	,	0	,	0	,	30	,	0	,	100	,	0	,	0	 );
+			Dwarven	 =      CraftAttInfo( 	8	,	5	,	5	,	0	,	0	,	20	,	22	,	170	,	200	,	0	,	0	,	0	,	0	,	100	,	0	,	0	 );
+							 																													
+			RedScales	 =  CraftAttInfo( 	3	,	0	,	3	,	0	,	0	,	6	,	11	,	75	,	100	,	0	,	25	,	0	,	0	,	30	,	0	,	0	 );
+			YellowScales =  CraftAttInfo( 	1	,	2	,	1	,	1	,	1	,	6	,	11	,	75	,	100	,	10	,	10	,	10	,	10	,	30	,	0	,	0	);
+			BlackScales	 =  CraftAttInfo( 	2	,	0	,	0	,	2	,	2	,	6	,	11	,	75	,	100	,	0	,	0	,	0	,	0	,	30	,	0	,	0	 );
+			GreenScales	 =  CraftAttInfo( 	2	,	0	,	0	,	0	,	4	,	6	,	11	,	75	,	100	,	0	,	0	,	0	,	25	,	30	,	0	,	0	 );
+			WhiteScales	 =  CraftAttInfo( 	2	,	2	,	0	,	2	,	0	,	6	,	11	,	75	,	100	,	25	,	0	,	0	,	0	,	30	,	0	,	0	 );
+			BlueScales	 =  CraftAttInfo( 	2	,	2	,	0	,	1	,	1	,	6	,	11	,	75	,	100	,	15	,	0	,	0	,	15	,	30	,	0	,	0	 );
+			DinosaurScales= CraftAttInfo( 	2	,	1	,	2	,	2	,	1	,	6	,	11	,	75	,	100	,	0	,	0	,	0	,	0	,	30	,	0	,	0	 );
+			MetallicScales= CraftAttInfo( 	2	,	2	,	2	,	2	,	0	,	6	,	11	,	75	,	100	,	0	,	0	,	0	,	0	,	30	,	0	,	0	 );
+			BrazenScales  = CraftAttInfo( 	2	,	0	,	2	,	3	,	1	,	6	,	11	,	75	,	100	,	0	,	15	,	15	,	0	,	30	,	0	,	0	 );
+			UmberScales	  = CraftAttInfo( 	3	,	0	,	0	,	3	,	2	,	6	,	11	,	75	,	100	,	0	,	0	,	35	,	0	,	30	,	0	,	0	 );
+			VioletScales  = CraftAttInfo( 	3	,	2	,	0	,	3	,	0	,	6	,	11	,	75	,	100	,	0	,	0	,	25	,	0	,	30	,	0	,	0	 );
+			PlatinumScales= CraftAttInfo( 	2	,	2	,	2	,	2	,	2	,	6	,	11	,	75	,	100	,	15	,	15	,	15	,	15	,	30	,	50	,	50	 );
+			CadalyteScales= CraftAttInfo( 	4	,	4	,	4	,	4	,	4	,	20	,	22	,	170	,	200	,	0	,	0	,	50	,	0	,	200	,	0	,	0	 );
 																																				
-			RedScales	 = CraftAttInfo( 	3	,	0	,	3	,	0	,	0	,	6	,	11	,	75	,	100	,	0	,	25	,	0	,	0	,	30	,	0	,	0	 );
-			YellowScales	 = CraftAttInfo( 	1	,	1	,	1	,	1	,	1	,	6	,	11	,	75	,	100	,	10	,	10	,	10	,	10	,	30	,	0	,	0	);
-			BlackScales	 = CraftAttInfo( 	2	,	0	,	0	,	2	,	2	,	6	,	11	,	75	,	100	,	0	,	0	,	0	,	0	,	30	,	0	,	0	 );
-			GreenScales	 = CraftAttInfo( 	2	,	0	,	0	,	0	,	3	,	6	,	11	,	75	,	100	,	0	,	0	,	0	,	25	,	30	,	0	,	0	 );
-			WhiteScales	 = CraftAttInfo( 	2	,	3	,	0	,	0	,	0	,	6	,	11	,	75	,	100	,	25	,	0	,	0	,	0	,	30	,	0	,	0	 );
-			BlueScales	 = CraftAttInfo( 	2	,	2	,	0	,	0	,	1	,	6	,	11	,	75	,	100	,	15	,	0	,	0	,	15	,	30	,	0	,	0	 );
-			DinosaurScales	 = CraftAttInfo( 	1	,	1	,	1	,	1	,	1	,	6	,	11	,	75	,	100	,	0	,	0	,	0	,	0	,	30	,	0	,	0	 );
-			MetallicScales	 = CraftAttInfo( 	2	,	0	,	2	,	2	,	0	,	6	,	11	,	75	,	100	,	0	,	0	,	0	,	0	,	30	,	0	,	0	 );
-			BrazenScales	 = CraftAttInfo( 	2	,	0	,	2	,	1	,	0	,	6	,	11	,	75	,	100	,	0	,	15	,	15	,	0	,	30	,	0	,	0	 );
-			UmberScales	 = CraftAttInfo( 	3	,	0	,	0	,	3	,	0	,	6	,	11	,	75	,	100	,	0	,	0	,	35	,	0	,	30	,	0	,	0	 );
-			VioletScales	 = CraftAttInfo( 	3	,	0	,	0	,	3	,	0	,	6	,	11	,	75	,	100	,	0	,	0	,	25	,	0	,	30	,	0	,	0	 );
-			PlatinumScales	 = CraftAttInfo( 	1	,	1	,	1	,	1	,	1	,	6	,	11	,	75	,	100	,	15	,	15	,	15	,	15	,	30	,	0	,	75	 );
-			CadalyteScales	 = CraftAttInfo( 	7	,	4	,	4	,	7	,	4	,	20	,	22	,	170	,	200	,	0	,	0	,	50	,	0	,	200	,	30	,	0	 );
-			GornScales	 = CraftAttInfo( 	5	,	2	,	4	,	2	,	2	,	12	,	20	,	125	,	175	,	0	,	25	,	0	,	0	,	100	,	10	,	0	 );
-			TrandoshanScales	 = CraftAttInfo( 	5	,	4	,	2	,	2	,	2	,	12	,	20	,	125	,	175	,	25	,	0	,	0	,	0	,	100	,	10	,	0	 );
-			SilurianScales	 = CraftAttInfo( 	5	,	2	,	2	,	4	,	2	,	12	,	20	,	125	,	175	,	0	,	0	,	25	,	0	,	100	,	10	,	0	 );
-			KraytScales	 = CraftAttInfo( 	5	,	2	,	2	,	2	,	4	,	12	,	20	,	125	,	175	,	0	,	0	,	0	,	25	,	100	,	0	,	0	 );
+			SpectralSpec  = CraftAttInfo( 	3	,	3	,	0	,	0	,	0	,	10	,	11	,	85	,	100	,	50	,	0	,	0	,	0	,	20	,	20	,	75 );
+			DreadSpec     = CraftAttInfo( 	2	,	1	,	1	,	2	,	0	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	90	,	20	,	75	 );
+			GhoulishSpec  = CraftAttInfo( 	3	,	2	,	2	,	3	,	2	,	10	,	11	,	85	,	100	,	10	,	10	,	10	,	10	,	200	,	20	,	75	 );
+			WyrmSpec	  = CraftAttInfo( 	4	,	2	,	6	,	2	,	2	,	10	,	11	,	85	,	100	,	10	,	10	,	10	,	10	,	200	,	20	,	75	 );
+			HolySpec	  = CraftAttInfo( 	4	,	5	,	4	,	5	,	4	,	10	,	11	,	85	,	100	,	35	,	10	,	35	,	10	,	100	,	20	,	75	 );
+			BloodlessSpec = CraftAttInfo( 	3	,	0	,	0	,	0	,	5	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	70	,	20	,	75	 );
+			GildedSpec	  = CraftAttInfo( 	3	,	3	,	3	,	3	,	3	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	120	,	75	,	75	 );
+			DemilichSpec  = CraftAttInfo( 	3	,	3	,	3	,	3	,	5	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	30	,	200	,	20	,	75	 );
+			WintrySpec	  = CraftAttInfo( 	2	,	5	,	2	,	2	,	2	,	10	,	11	,	85	,	100	,	50	,	0	,	0	,	0	,	70	,	20	,	75	 );
+			FireSpec	  = CraftAttInfo( 	1	,	1	,	4	,	1	,	1	,	3	,	3	,	55	,	100	,	0	,	100	,	0	,	0	,	25	,	20	,	75	 );
+			ColdSpec	  = CraftAttInfo( 	1	,	4	,	1	,	1	,	1	,	3	,	3	,	55	,	100	,	100	,	0	,	0	,	0	,	25	,	20	,	75	 );
+			PoisSpec	  = CraftAttInfo( 	1	,	1	,	1	,	1	,	4	,	3	,	3	,	55	,	100	,	0	,	0	,	0	,	100	,	25	,	20	,	75	 );
+			EngySpec	  = CraftAttInfo( 	1	,	1	,	1	,	4	,	1	,	3	,	3	,	55	,	100	,	0	,	0	,	100	,	0	,	25	,	20	,	75	 );
+			ExodusSpec	  = CraftAttInfo( 	0	,	0	,	0	,	0	,	0	,	20	,	22	,	170	,	200	,	0	,	0	,	0	,	0	,	0	,	20	,	100	 );
+			TurtleSpec	  = CraftAttInfo( 	4	,	2	,	2	,	2	,	2	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	120	,	20	,	75	 );
 																																				
-			SpectralSpec	 = CraftAttInfo( 	3	,	3	,	0	,	0	,	0	,	10	,	11	,	85	,	100	,	50	,	0	,	0	,	0	,	20	,	0	,	75 );
-			DreadSpec	 = CraftAttInfo( 	2	,	1	,	1	,	2	,	0	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	90	,	0	,	75	 );
-			GhoulishSpec	 = CraftAttInfo( 	3	,	2	,	2	,	3	,	2	,	10	,	11	,	85	,	100	,	10	,	10	,	10	,	10	,	200	,	0	,	75	 );
-			WyrmSpec	 = CraftAttInfo( 	4	,	2	,	6	,	2	,	2	,	10	,	11	,	85	,	100	,	10	,	10	,	10	,	10	,	200	,	0	,	75	 );
-			HolySpec	 = CraftAttInfo( 	4	,	5	,	4	,	5	,	4	,	10	,	11	,	85	,	100	,	35	,	10	,	35	,	10	,	100	,	0	,	75	 );
-			BloodlessSpec	 = CraftAttInfo( 	3	,	0	,	0	,	0	,	5	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	70	,	20	,	75	 );
-			GildedSpec	 = CraftAttInfo( 	3	,	3	,	3	,	3	,	3	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	120	,	0	,	75	 );
-			DemilichSpec	 = CraftAttInfo( 	3	,	3	,	3	,	3	,	5	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	30	,	200	,	0	,	75	 );
-			WintrySpec	 = CraftAttInfo( 	2	,	5	,	2	,	2	,	2	,	10	,	11	,	85	,	100	,	50	,	0	,	0	,	0	,	70	,	0	,	75	 );
-			FireSpec	 = CraftAttInfo( 	1	,	1	,	4	,	1	,	1	,	3	,	3	,	55	,	100	,	0	,	100	,	0	,	0	,	25	,	10	,	75	 );
-			ColdSpec	 = CraftAttInfo( 	1	,	4	,	1	,	1	,	1	,	3	,	3	,	55	,	100	,	100	,	0	,	0	,	0	,	25	,	10	,	75	 );
-			PoisSpec	 = CraftAttInfo( 	1	,	1	,	1	,	1	,	4	,	3	,	3	,	55	,	100	,	0	,	0	,	0	,	100	,	25	,	10	,	75	 );
-			EngySpec	 = CraftAttInfo( 	1	,	1	,	1	,	4	,	1	,	3	,	3	,	55	,	100	,	0	,	0	,	100	,	0	,	25	,	10	,	75	 );
-			ExodusSpec	 = CraftAttInfo( 	0	,	0	,	0	,	0	,	0	,	20	,	22	,	170	,	200	,	0	,	0	,	0	,	0	,	0	,	0	,	100	 );
-			TurtleSpec	 = CraftAttInfo( 	4	,	2	,	2	,	2	,	2	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	120	,	30	,	75	 );
+			Horned	      = CraftAttInfo( 	2	,	1	,	0	,	0	,	0	,	3	,	4	,	45	,	100	,	0	,	0	,	0	,	0	,	10	,	0	,	0	 );
+			Barbed	      = CraftAttInfo( 	2	,	1	,	1	,	0	,	0	,	4	,	5	,	50	,	100	,	0	,	0	,	0	,	70	,	20	,	0	,	0	 );
+			Necrotic	  = CraftAttInfo( 	2	,	0	,	0	,	0	,	3	,	5	,	6	,	50	,	100	,	0	,	0	,	0	,	50	,	30	,	0	,	0	 );
+			Volcanic	  = CraftAttInfo( 	3	,	0	,	3	,	0	,	0	,	6	,	7	,	50	,	100	,	0	,	50	,	0	,	0	,	40	,	0	,	0	 );
+			Frozen	      = CraftAttInfo( 	3	,	3	,	0	,	0	,	0	,	6	,	7	,	50	,	100	,	50	,	0	,	0	,	0	,	50	,	0	,	0	 );
+			Spined	      = CraftAttInfo( 	2	,	2	,	1	,	2	,	1	,	5	,	7	,	50	,	100	,	0	,	0	,	0	,	20	,	50	,	40	,	40	 );
+			Goliath	      = CraftAttInfo( 	3	,	2	,	2	,	0	,	2	,	7	,	8	,	50	,	100	,	0	,	0	,	25	,	0	,	60	,	0	,	0	 );
+			Draconic	  = CraftAttInfo( 	3	,	0	,	3	,	2	,	2	,	8	,	9	,	50	,	100	,	0	,	25	,	0	,	0	,	70	,	0	,	0	 );
+			Hellish	      = CraftAttInfo( 	3	,	5	,	4	,	0	,	0	,	10	,	11	,	50	,	100	,	0	,	50	,	0	,	0	,	80	,	0	,	0	 );
+			Dinosaur	  = CraftAttInfo( 	4	,	2	,	4	,	4	,	4	,	11	,	12	,	50	,	100	,	0	,	0	,	0	,	0	,	100	,	0	,	0	 );
 																																				
-			Horned	 = CraftAttInfo( 	2	,	1	,	1	,	1	,	1	,	3	,	4	,	45	,	100	,	0	,	0	,	0	,	0	,	10	,	0	,	0	 );
-			Barbed	 = CraftAttInfo( 	2	,	1	,	1	,	2	,	3	,	4	,	5	,	50	,	100	,	0	,	0	,	0	,	70	,	20	,	0	,	0	 );
-			Necrotic	 = CraftAttInfo( 	2	,	2	,	1	,	1	,	3	,	5	,	6	,	50	,	100	,	0	,	0	,	0	,	50	,	30	,	0	,	0	 );
-			Volcanic	 = CraftAttInfo( 	3	,	1	,	3	,	2	,	2	,	6	,	7	,	50	,	100	,	0	,	50	,	0	,	0	,	40	,	0	,	0	 );
-			Frozen	 = CraftAttInfo( 	3	,	3	,	1	,	2	,	2	,	6	,	7	,	50	,	100	,	50	,	0	,	0	,	0	,	50	,	0	,	0	 );
-			Spined	 = CraftAttInfo( 	2	,	3	,	1	,	2	,	3	,	5	,	7	,	50	,	100	,	0	,	0	,	0	,	20	,	50	,	0	,	40	 );
-			Goliath	 = CraftAttInfo( 	3	,	2	,	2	,	4	,	2	,	7	,	8	,	50	,	100	,	0	,	0	,	25	,	0	,	60	,	0	,	0	 );
-			Draconic	 = CraftAttInfo( 	4	,	3	,	3	,	3	,	3	,	8	,	9	,	50	,	100	,	0	,	25	,	0	,	0	,	70	,	0	,	0	 );
-			Hellish	 = CraftAttInfo( 	4	,	4	,	4	,	4	,	4	,	10	,	11	,	50	,	100	,	0	,	50	,	0	,	0	,	80	,	0	,	0	 );
-			Dinosaur	 = CraftAttInfo( 	5	,	4	,	4	,	4	,	4	,	11	,	12	,	50	,	100	,	0	,	0	,	0	,	0	,	100	,	0	,	0	 );
-			Alien	 = CraftAttInfo( 	5	,	4	,	4	,	4	,	4	,	15	,	18	,	85	,	200	,	0	,	0	,	50	,	0	,	100	,	0	,	0	 );
-			Adesote	 = CraftAttInfo( 	5	,	3	,	3	,	5	,	3	,	14	,	17	,	75	,	180	,	0	,	0	,	25	,	0	,	80	,	50	,	0	 );
-			Biomesh	 = CraftAttInfo( 	5	,	3	,	3	,	3	,	5	,	14	,	17	,	75	,	180	,	0	,	0	,	0	,	0	,	80	,	40	,	0	 );
-			Cerlin	 = CraftAttInfo( 	5	,	5	,	3	,	3	,	3	,	14	,	17	,	75	,	180	,	25	,	0	,	0	,	0	,	80	,	60	,	0	 );
-			Durafiber	 = CraftAttInfo( 	6	,	3	,	3	,	4	,	3	,	14	,	17	,	75	,	180	,	0	,	0	,	0	,	0	,	80	,	40	,	0	 );
-			Flexicris	 = CraftAttInfo( 	4	,	4	,	4	,	4	,	4	,	14	,	17	,	75	,	180	,	0	,	25	,	25	,	0	,	80	,	50	,	0	 );
-			Hypercloth	 = CraftAttInfo( 	4	,	3	,	3	,	3	,	6	,	14	,	17	,	75	,	180	,	0	,	0	,	0	,	25	,	80	,	60	,	0	 );
-			Nylar	 = CraftAttInfo( 	4	,	3	,	6	,	3	,	3	,	14	,	17	,	75	,	180	,	0	,	50	,	0	,	0	,	80	,	60	,	0	 );
-			Nylonite	 = CraftAttInfo( 	4	,	3	,	3	,	6	,	3	,	14	,	17	,	75	,	180	,	0	,	0	,	50	,	0	,	80	,	50	,	0	 );
-			Polyfiber	 = CraftAttInfo( 	5	,	3	,	3	,	3	,	5	,	14	,	17	,	75	,	180	,	0	,	0	,	0	,	50	,	80	,	50	,	0	 );
-			Syncloth	 = CraftAttInfo( 	4	,	4	,	4	,	4	,	2	,	14	,	17	,	75	,	180	,	0	,	0	,	0	,	0	,	80	,	40	,	0	 );
-			Thermoweave	 = CraftAttInfo( 	5	,	3	,	5	,	5	,	0	,	14	,	17	,	75	,	180	,	0	,	20	,	20	,	0	,	80	,	50	,	0	 );
+			AshTree	      = CraftAttInfo( 	1	,	0	,	0	,	1	,	1	,	1	,	2	,	40	,	100	,	5	,	5	,	5	,	5	,	10	,	0	,	0	 );
+			CherryTree	  = CraftAttInfo( 	1	,	0	,	0	,	2	,	1	,	2	,	2	,	45	,	100	,	0	,	0	,	20	,	10	,	25	,	0	,	0	 );
+			EbonyTree	  = CraftAttInfo( 	1	,	0	,	0	,	3	,	1	,	2	,	3	,	50	,	100	,	20	,	0	,	0	,	0	,	40	,	0	,	0	 );
+			GoldenOakTree = CraftAttInfo( 	2	,	1	,	0	,	1	,	2	,	3	,	3	,	55	,	100	,	0	,	0	,	0	,	0	,	20	,	0	,	0	 );
+			HickoryTree	  = CraftAttInfo( 	3	,	2	,	0	,	1	,	1	,	3	,	4	,	60	,	100	,	0	,	0	,	0	,	0	,	50	,	30	,	30	 );
+			MahoganyTree  = CraftAttInfo( 	1	,	0	,	1	,	3	,	3	,	4	,	4	,	65	,	100	,	0	,	0	,	20	,	10	,	55	,	0	,	0	 );
+			OakTree	      = CraftAttInfo( 	3	,	0	,	1	,	1	,	4	,	4	,	5	,	70	,	100	,	0	,	40	,	0	,	0	,	55	,	0	,	0	 );
+			PineTree	  = CraftAttInfo( 	3	,	1	,	1	,	2	,	3	,	5	,	5	,	85	,	100	,	30	,	0	,	20	,	0	,	60	,	0	,	0	 );
+			GhostTree	  = CraftAttInfo( 	1	,	4	,	0	,	2	,	3	,	5	,	5	,	85	,	100	,	25	,	0	,	25	,	0	,	60	,	0	,	0	 );
+			RosewoodTree  = CraftAttInfo( 	2	,	3	,	0	,	3	,	3	,	5	,	5	,	85	,	100	,	0	,	0	,	20	,	40	,	60	,	0	,	0	 );
+			WalnutTree	  = CraftAttInfo( 	3	,	2	,	0	,	3	,	4	,	6	,	7	,	85	,	100	,	20	,	10	,	20	,	10	,	65	,	0	,	0	 );
+			PetrifiedTree = CraftAttInfo( 	5	,	0	,	0	,	3	,	5	,	8	,	9	,	85	,	100	,	0	,	25	,	0	,	0	,	70	,	0	,	0	 );
+			DriftwoodTree = CraftAttInfo( 	2	,	5	,	5	,	1	,	2	,	10	,	11	,	85	,	100	,	10	,	10	,	10	,	20	,	80	,	0	,	0	 );
+			ElvenTree	  = CraftAttInfo( 	4	,	4	,	4	,	3	,	3	,	20	,	22	,	170	,	200	,	0	,	0	,	0	,	0	,	100	,	50	,	50	 );
 																																				
-			AshTree	 = CraftAttInfo( 	1	,	1	,	1	,	1	,	1	,	1	,	2	,	40	,	100	,	5	,	5	,	5	,	5	,	10	,	0	,	0	 );
-			CherryTree	 = CraftAttInfo( 	1	,	1	,	1	,	2	,	1	,	2	,	2	,	45	,	100	,	0	,	0	,	20	,	10	,	25	,	0	,	0	 );
-			EbonyTree	 = CraftAttInfo( 	1	,	0	,	1	,	3	,	0	,	2	,	3	,	50	,	100	,	20	,	0	,	0	,	0	,	40	,	0	,	0	 );
-			GoldenOakTree	 = CraftAttInfo( 	2	,	1	,	1	,	1	,	0	,	3	,	3	,	55	,	100	,	0	,	0	,	0	,	0	,	20	,	0	,	0	 );
-			HickoryTree	 = CraftAttInfo( 	3	,	1	,	1	,	1	,	1	,	3	,	4	,	60	,	100	,	0	,	0	,	0	,	0	,	50	,	30	,	0	 );
-			MahoganyTree	 = CraftAttInfo( 	1	,	0	,	1	,	1	,	3	,	4	,	4	,	65	,	100	,	0	,	0	,	20	,	10	,	55	,	0	,	0	 );
-			OakTree	 = CraftAttInfo( 	2	,	3	,	0	,	1	,	1	,	4	,	5	,	70	,	100	,	0	,	40	,	0	,	0	,	55	,	0	,	0	 );
-			PineTree	 = CraftAttInfo( 	2	,	1	,	2	,	1	,	1	,	5	,	5	,	85	,	100	,	30	,	0	,	20	,	0	,	60	,	0	,	0	 );
-			GhostTree	 = CraftAttInfo( 	1	,	2	,	1	,	2	,	2	,	5	,	5	,	85	,	100	,	25	,	0	,	25	,	0	,	60	,	0	,	0	 );
-			RosewoodTree	 = CraftAttInfo( 	2	,	1	,	2	,	1	,	2	,	5	,	5	,	85	,	100	,	0	,	0	,	20	,	40	,	60	,	0	,	0	 );
-			WalnutTree	 = CraftAttInfo( 	2	,	2	,	1	,	2	,	1	,	6	,	7	,	85	,	100	,	20	,	10	,	20	,	10	,	65	,	0	,	0	 );
-			PetrifiedTree	 = CraftAttInfo( 	4	,	1	,	1	,	1	,	1	,	8	,	9	,	85	,	100	,	0	,	25	,	0	,	0	,	70	,	0	,	0	 );
-			DriftwoodTree	 = CraftAttInfo( 	2	,	1	,	3	,	1	,	0	,	10	,	11	,	85	,	100	,	10	,	10	,	10	,	20	,	80	,	0	,	0	 );
-			ElvenTree	 = CraftAttInfo( 	4	,	3	,	0	,	3	,	3	,	20	,	22	,	170	,	200	,	0	,	0	,	0	,	0	,	100	,	0	,	50	 );
-			BorlTree	 = CraftAttInfo( 	4	,	0	,	5	,	3	,	0	,	15	,	16	,	125	,	150	,	0	,	0	,	0	,	0	,	80	,	0	,	0	 );
-			CosianTree	 = CraftAttInfo( 	4	,	0	,	0	,	4	,	4	,	15	,	16	,	125	,	150	,	0	,	0	,	0	,	0	,	80	,	0	,	50	 );
-			GreelTree	 = CraftAttInfo( 	4	,	0	,	5	,	3	,	0	,	15	,	16	,	125	,	150	,	0	,	0	,	0	,	0	,	80	,	0	,	0	 );
-			JaporTree	 = CraftAttInfo( 	4	,	5	,	0	,	3	,	0	,	15	,	16	,	125	,	150	,	0	,	0	,	0	,	0	,	80	,	0	,	0	 );
-			KyshyyykTree	 = CraftAttInfo( 	5	,	3	,	1	,	3	,	1	,	15	,	16	,	125	,	150	,	0	,	0	,	0	,	0	,	100	,	0	,	0	 );
-			LaroonTree	 = CraftAttInfo( 	5	,	1	,	1	,	4	,	2	,	15	,	16	,	125	,	150	,	0	,	0	,	0	,	0	,	80	,	0	,	0	 );
-			TeejTree	 = CraftAttInfo( 	4	,	0	,	0	,	3	,	5	,	15	,	16	,	125	,	150	,	0	,	0	,	0	,	0	,	80	,	0	,	0	 );
-			VeshokTree	 = CraftAttInfo( 	3	,	3	,	3	,	3	,	3	,	15	,	16	,	125	,	150	,	0	,	0	,	0	,	0	,	80	,	0	,	0	 );
+			FurryFabric	  = CraftAttInfo( 	0	,	1	,	0	,	0	,	0	,	1	,	3	,	40	,	80	,	0	,	0	,	0	,	0	,	5	,	0	,	0	 );
+			WoolyFabric	  = CraftAttInfo( 	0	,	2	,	0	,	0	,	0	,	1	,	3	,	40	,	80	,	25	,	0	,	0	,	0	,	5	,	0	,	0	 );
+			SilkFabric	  = CraftAttInfo( 	0	,	0	,	0	,	2	,	1	,	2	,	4	,	45	,	85	,	0	,	0	,	0	,	25	,	10	,	20	,	20	 );
+			HauntedFabric = CraftAttInfo( 	0	,	2	,	0	,	2	,	0	,	3	,	5	,	50	,	90	,	0	,	0	,	25	,	0	,	15	,	0	,	0	 );
+			ArcticFabric  = CraftAttInfo( 	0	,	4	,	0	,	1	,	0	,	4	,	6	,	55	,	95	,	50	,	0	,	0	,	0	,	20	,	0	,	0	 );
+			PyreFabric	  = CraftAttInfo( 	0	,	0	,	4	,	1	,	0	,	4	,	6	,	55	,	95	,	0	,	50	,	0	,	0	,	20	,	0	,	0	 );
+			VenomousFabric= CraftAttInfo( 	0	,	0	,	0	,	0	,	5	,	5	,	7	,	60	,	100	,	0	,	0	,	0	,	50	,	25	,	0	,	0	 );
+    	MysteriousFabric  = CraftAttInfo( 	0	,	0	,	1	,	1	,	3	,	6	,	8	,	65	,	105	,	0	,	0	,	50	,	0	,	30	,	0	,	0	 );
+			VileFabric	  = CraftAttInfo( 	0	,	0	,	1	,	4	,	1	,	7	,	9	,	70	,	110	,	0	,	0	,	25	,	25	,	35	,	0	,	0	 );
+			DivineFabric  = CraftAttInfo( 	1	,	0	,	0	,	5	,	0	,	7	,	9	,	70	,	110	,	10	,	10	,	25	,	0	,	35	,	25	,	25	 );
+			FiendishFabric= CraftAttInfo( 	0	,	0	,	4	,	4	,	0	,	8	,	10	,	80	,	120	,	10	,	25	,	10	,	0	,	40	,	25	,	25	 );
 																																				
-			FurryFabric	 = CraftAttInfo( 	1	,	1	,	0	,	0	,	0	,	1	,	3	,	40	,	80	,	0	,	0	,	0	,	0	,	5	,	0	,	0	 );
-			WoolyFabric	 = CraftAttInfo( 	1	,	1	,	0	,	0	,	0	,	1	,	3	,	40	,	80	,	25	,	0	,	0	,	0	,	5	,	0	,	0	 );
-			SilkFabric	 = CraftAttInfo( 	1	,	0	,	0	,	0	,	2	,	2	,	4	,	45	,	85	,	0	,	0	,	0	,	25	,	10	,	0	,	20	 );
-			HauntedFabric	 = CraftAttInfo( 	2	,	1	,	0	,	1	,	0	,	3	,	5	,	50	,	90	,	0	,	0	,	25	,	0	,	15	,	0	,	0	 );
-			ArcticFabric	 = CraftAttInfo( 	2	,	2	,	0	,	0	,	0	,	4	,	6	,	55	,	95	,	50	,	0	,	0	,	0	,	20	,	0	,	0	 );
-			PyreFabric	 = CraftAttInfo( 	2	,	0	,	2	,	0	,	0	,	4	,	6	,	55	,	95	,	0	,	50	,	0	,	0	,	20	,	0	,	0	 );
-			VenomousFabric	 = CraftAttInfo( 	3	,	0	,	0	,	0	,	3	,	5	,	7	,	60	,	100	,	0	,	0	,	0	,	50	,	25	,	0	,	0	 );
-			MysteriousFabric	 = CraftAttInfo( 	3	,	0	,	0	,	3	,	0	,	6	,	8	,	65	,	105	,	0	,	0	,	50	,	0	,	30	,	0	,	0	 );
-			VileFabric	 = CraftAttInfo( 	4	,	0	,	0	,	0	,	4	,	7	,	9	,	70	,	110	,	0	,	0	,	25	,	25	,	35	,	0	,	0	 );
-			DivineFabric	 = CraftAttInfo( 	4	,	0	,	0	,	4	,	0	,	7	,	9	,	70	,	110	,	10	,	10	,	25	,	0	,	35	,	0	,	25	 );
-			FiendishFabric	 = CraftAttInfo( 	4	,	0	,	3	,	3	,	0	,	8	,	10	,	80	,	120	,	10	,	25	,	10	,	0	,	40	,	0	,	25	 );
+			AmethystBlock = CraftAttInfo( 	3	,	0	,	0	,	2	,	0	,	10	,	11	,	85	,	100	,	0	,	0	,	25	,	0	,	100	,	0	,	0	 );
+			EmeraldBlock  = CraftAttInfo( 	3	,	0	,	0	,	0	,	2	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	25	,	100	,	0	,	0	 );
+			GarnetBlock	  = CraftAttInfo( 	3	,	1	,	0	,	0	,	2	,	10	,	11	,	85	,	100	,	0	,	0	,	10	,	10	,	100	,	0	,	0	 );
+			IceBlock	  = CraftAttInfo( 	3	,	3	,	0	,	0	,	0	,	10	,	11	,	85	,	100	,	50	,	0	,	0	,	0	,	100	,	0	,	0	 );
+			JadeBlock	  = CraftAttInfo( 	4	,	0	,	0	,	0	,	2	,	10	,	11	,	85	,	100	,	0	,	10	,	0	,	20	,	100	,	40	,	40	 );
+			MarbleBlock	  = CraftAttInfo( 	6	,	0	,	0	,	0	,	0	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	150	,	0	,	0	 );
+			OnyxBlock	  = CraftAttInfo( 	4	,	0	,	0	,	3	,	0	,	10	,	11	,	85	,	100	,	20	,	20	,	20	,	20	,	100	,	40	,	40	 );
+			QuartzBlock	  = CraftAttInfo( 	5	,	2	,	0	,	0	,	0	,	10	,	11	,	85	,	100	,	0	,	25	,	25	,	0	,	100	,	20	,	20	 );
+			RubyBlock	  = CraftAttInfo( 	4	,	0	,	4	,	0	,	0	,	10	,	11	,	85	,	100	,	0	,	60	,	0	,	0	,	100	,	0	,	0	 );
+			SapphireBlock = CraftAttInfo( 	4	,	4	,	0	,	0	,	0	,	10	,	11	,	85	,	100	,	0	,	30	,	0	,	0	,	100	,	0	,	0	 );
+			SilverBlock	  = CraftAttInfo( 	4	,	0	,	0	,	5	,	0	,	10	,	11	,	85	,	100	,	20	,	20	,	20	,	20	,	100	,	0	,	0	 );
+			SpinelBlock	  = CraftAttInfo( 	4	,	3	,	3	,	0	,	0	,	10	,	11	,	85	,	100	,	0	,	0	,	30	,	0	,	100	,	0	,	0	 );
+			StarRubyBlock = CraftAttInfo( 	4	,	0	,	5	,	0	,	0	,	10	,	11	,	85	,	100	,	0	,	15	,	15	,	0	,	100	,	0	,	0	 );
+			TopazBlock	  = CraftAttInfo( 	4	,	0	,	0	,	5	,	0	,	10	,	11	,	85	,	100	,	0	,	0	,	20	,	20	,	100	,	0	,	0	 );
+		CaddelliteBlock	  = CraftAttInfo( 	6	,	6	,	6	,	6	,	4	,	20	,	22	,	170	,	200	,	0	,	0	,	50	,	0	,	200	,	0	,	0	 );
 																																				
-			AmethystBlock	 = CraftAttInfo( 	3	,	3	,	3	,	3	,	3	,	10	,	11	,	85	,	100	,	0	,	0	,	25	,	0	,	100	,	0	,	0	 );
-			EmeraldBlock	 = CraftAttInfo( 	4	,	2	,	2	,	2	,	2	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	25	,	100	,	0	,	0	 );
-			GarnetBlock	 = CraftAttInfo( 	3	,	2	,	2	,	2	,	2	,	10	,	11	,	85	,	100	,	0	,	0	,	10	,	10	,	100	,	0	,	0	 );
-			IceBlock	 = CraftAttInfo( 	3	,	4	,	0	,	0	,	0	,	10	,	11	,	85	,	100	,	50	,	0	,	0	,	0	,	100	,	0	,	0	 );
-			JadeBlock	 = CraftAttInfo( 	4	,	1	,	1	,	1	,	1	,	10	,	11	,	85	,	100	,	0	,	10	,	0	,	20	,	100	,	40	,	0	 );
-			MarbleBlock	 = CraftAttInfo( 	4	,	1	,	1	,	1	,	1	,	10	,	11	,	85	,	100	,	0	,	0	,	0	,	0	,	150	,	0	,	0	 );
-			OnyxBlock	 = CraftAttInfo( 	2	,	1	,	1	,	1	,	1	,	10	,	11	,	85	,	100	,	20	,	20	,	20	,	20	,	100	,	40	,	0	 );
-			QuartzBlock	 = CraftAttInfo( 	4	,	3	,	2	,	2	,	2	,	10	,	11	,	85	,	100	,	0	,	25	,	25	,	0	,	100	,	20	,	0	 );
-			RubyBlock	 = CraftAttInfo( 	2	,	0	,	4	,	0	,	0	,	10	,	11	,	85	,	100	,	0	,	60	,	0	,	0	,	100	,	0	,	0	 );
-			SapphireBlock	 = CraftAttInfo( 	5	,	3	,	3	,	3	,	3	,	10	,	11	,	85	,	100	,	0	,	30	,	0	,	0	,	100	,	0	,	0	 );
-			SilverBlock	 = CraftAttInfo( 	3	,	1	,	2	,	2	,	1	,	10	,	11	,	85	,	100	,	20	,	20	,	20	,	20	,	100	,	0	,	0	 );
-			SpinelBlock	 = CraftAttInfo( 	2	,	2	,	2	,	2	,	2	,	10	,	11	,	85	,	100	,	0	,	0	,	30	,	0	,	100	,	0	,	0	 );
-			StarRubyBlock	 = CraftAttInfo( 	3	,	0	,	3	,	0	,	0	,	10	,	11	,	85	,	100	,	0	,	15	,	15	,	0	,	100	,	0	,	0	 );
-			TopazBlock	 = CraftAttInfo( 	0	,	2	,	2	,	2	,	2	,	10	,	11	,	85	,	100	,	0	,	0	,	20	,	20	,	100	,	0	,	0	 );
-			CaddelliteBlock	 = CraftAttInfo( 	7	,	4	,	4	,	7	,	4	,	20	,	22	,	170	,	200	,	0	,	0	,	50	,	0	,	200	,	0	,	0	 );
+			DemonSkin	  = CraftAttInfo( 	3	,	0	,	2	,	2	,	0	,	10	,	11	,	50	,	100	,	0	,	50	,	0	,	0	,	50	,	0	,	0	 );
+			DragonSkin	  = CraftAttInfo( 	3	,	0	,	2	,	2	,	0	,	10	,	11	,	50	,	100	,	20	,	20	,	20	,	20	,	50	,	0	,	0	 );
+			NightmareSkin = CraftAttInfo( 	3	,	0	,	0	,	2	,	2	,	10	,	11	,	50	,	100	,	0	,	30	,	0	,	0	,	40	,	0	,	0	 );
+			SnakeSkin	  = CraftAttInfo( 	3	,	0	,	0	,	0	,	2	,	10	,	11	,	50	,	100	,	0	,	0	,	0	,	50	,	60	,	0	,	0	 );
+			TrollSkin	  = CraftAttInfo( 	4	,	0	,	0	,	0	,	0	,	10	,	11	,	50	,	100	,	0	,	0	,	0	,	0	,	60	,	0	,	0	 );
+			UnicornSkin	  = CraftAttInfo( 	3	,	0	,	0	,	2	,	1	,	10	,	11	,	50	,	100	,	0	,	0	,	50	,	0	,	30	,	50	,	50	 );
+			IcySkin	      = CraftAttInfo( 	3	,	3	,	0	,	0	,	0	,	10	,	11	,	50	,	100	,	50	,	0	,	0	,	0	,	30	,	0	,	0	 );
+			Seaweed	      = CraftAttInfo( 	3	,	2	,	0	,	2	,	0	,	10	,	11	,	50	,	100	,	0	,	0	,	0	,	25	,	20	,	50	,	50	 );
+			LavaSkin	  = CraftAttInfo( 	3	,	0	,	3	,	0	,	0	,	10	,	11	,	50	,	100	,	0	,	80	,	0	,	0	,	40	,	0	,	0	 );
+			DeadSkin	  = CraftAttInfo( 	3	,	0	,	0	,	0	,	3	,	10	,	11	,	50	,	100	,	0	,	0	,	0	,	60	,	40	,	0	,	0	 );
 																																				
-			DemonSkin	 = CraftAttInfo( 	2	,	0	,	3	,	2	,	2	,	10	,	11	,	50	,	100	,	0	,	50	,	0	,	0	,	50	,	0	,	0	 );
-			DragonSkin	 = CraftAttInfo( 	2	,	2	,	2	,	2	,	2	,	10	,	11	,	50	,	100	,	20	,	20	,	20	,	20	,	50	,	0	,	0	 );
-			NightmareSkin	 = CraftAttInfo( 	2	,	0	,	3	,	3	,	0	,	10	,	11	,	50	,	100	,	0	,	30	,	0	,	0	,	40	,	0	,	0	 );
-			SnakeSkin	 = CraftAttInfo( 	4	,	0	,	0	,	0	,	4	,	10	,	11	,	50	,	100	,	0	,	0	,	0	,	50	,	60	,	0	,	0	 );
-			TrollSkin	 = CraftAttInfo( 	4	,	1	,	0	,	0	,	3	,	10	,	11	,	50	,	100	,	0	,	0	,	0	,	0	,	60	,	0	,	0	 );
-			UnicornSkin	 = CraftAttInfo( 	2	,	0	,	0	,	4	,	2	,	10	,	11	,	50	,	100	,	0	,	0	,	50	,	0	,	30	,	0	,	50	 );
-			IcySkin	 = CraftAttInfo( 	4	,	5	,	0	,	2	,	2	,	10	,	11	,	50	,	100	,	50	,	0	,	0	,	0	,	30	,	0	,	0	 );
-			Seaweed	 = CraftAttInfo( 	4	,	2	,	1	,	2	,	4	,	10	,	11	,	50	,	100	,	0	,	0	,	0	,	25	,	20	,	50	,	0	 );
-			LavaSkin	 = CraftAttInfo( 	4	,	0	,	5	,	2	,	2	,	10	,	11	,	50	,	100	,	0	,	80	,	0	,	0	,	40	,	0	,	0	 );
-			DeadSkin	 = CraftAttInfo( 	2	,	4	,	1	,	2	,	4	,	10	,	11	,	50	,	100	,	0	,	0	,	0	,	60	,	40	,	0	,	0	 );
-																																				
-			DrowSkeletal	 = CraftAttInfo( 	1	,	0	,	0	,	1	,	0	,	1	,	2	,	40	,	100	,	0	,	0	,	25	,	0	,	5	,	0	,	0	 );
-			OrcSkeletal	 = CraftAttInfo( 	2	,	1	,	1	,	0	,	0	,	2	,	2	,	45	,	100	,	0	,	0	,	0	,	0	,	10	,	0	,	0	 );
-			ReptileSkeletal	 = CraftAttInfo( 	2	,	0	,	0	,	0	,	2	,	2	,	3	,	50	,	100	,	0	,	0	,	0	,	25	,	10	,	0	,	0	 );
-			OgreSkeletal	 = CraftAttInfo( 	2	,	1	,	1	,	0	,	0	,	3	,	3	,	55	,	100	,	0	,	0	,	0	,	0	,	20	,	0	,	0	 );
-			TrollSkeletal	 = CraftAttInfo( 	2	,	0	,	0	,	0	,	2	,	3	,	4	,	60	,	100	,	0	,	0	,	0	,	0	,	20	,	0	,	0	 );
-			GargoyleSkeletal	 = CraftAttInfo( 	3	,	0	,	2	,	1	,	0	,	4	,	4	,	65	,	100	,	0	,	50	,	0	,	0	,	30	,	0	,	0	 );
-			MinotaurSkeletal	 = CraftAttInfo( 	3	,	1	,	1	,	0	,	0	,	4	,	5	,	70	,	100	,	0	,	0	,	0	,	0	,	30	,	0	,	0	 );
-			LycanSkeletal	 = CraftAttInfo( 	3	,	1	,	0	,	1	,	2	,	5	,	5	,	85	,	100	,	0	,	0	,	0	,	0	,	40	,	0	,	0	 );
-			SharkSkeletal	 = CraftAttInfo( 	3	,	3	,	0	,	1	,	0	,	5	,	5	,	85	,	100	,	25	,	0	,	0	,	0	,	40	,	0	,	0	 );
-			ColossalSkeletal	 = CraftAttInfo( 	4	,	1	,	1	,	1	,	0	,	5	,	5	,	85	,	100	,	0	,	0	,	0	,	0	,	40	,	0	,	0	 );
-			MysticalSkeletal	 = CraftAttInfo( 	3	,	1	,	1	,	3	,	0	,	6	,	7	,	85	,	100	,	0	,	0	,	50	,	0	,	50	,	0	,	20	 );
-			VampireSkeletal	 = CraftAttInfo( 	3	,	3	,	0	,	3	,	3	,	8	,	9	,	85	,	100	,	0	,	0	,	25	,	25	,	60	,	0	,	0	 );
-			LichSkeletal	 = CraftAttInfo( 	2	,	3	,	0	,	4	,	3	,	8	,	9	,	85	,	100	,	25	,	0	,	0	,	25	,	60	,	0	,	0	 );
-			SphinxSkeletal	 = CraftAttInfo( 	3	,	3	,	3	,	3	,	0	,	10	,	11	,	85	,	100	,	15	,	15	,	15	,	15	,	70	,	0	,	0	 );
-			DevilSkeletal	 = CraftAttInfo( 	2	,	4	,	0	,	4	,	2	,	10	,	11	,	85	,	100	,	0	,	35	,	15	,	0	,	70	,	0	,	0	 );
-			DracoSkeletal	 = CraftAttInfo( 	4	,	3	,	3	,	3	,	3	,	20	,	22	,	170	,	200	,	20	,	20	,	20	,	20	,	100	,	0	,	0	 );
-			XenoSkeletal	 = CraftAttInfo( 	4	,	2	,	2	,	2	,	2	,	14	,	16	,	120	,	150	,	10	,	10	,	30	,	10	,	80	,	0	,	0	 );
-			AndorianSkeletal	 = CraftAttInfo( 	3	,	5	,	1	,	3	,	1	,	14	,	16	,	120	,	150	,	0	,	50	,	0	,	0	,	80	,	35	,	0	 );
-			CardassianSkeletal	 = CraftAttInfo( 	4	,	0	,	4	,	4	,	0	,	14	,	16	,	120	,	150	,	10	,	10	,	10	,	10	,	80	,	30	,	50	 );
-			MartianSkeletal	 = CraftAttInfo( 	4	,	0	,	0	,	3	,	5	,	14	,	16	,	120	,	150	,	0	,	0	,	0	,	50	,	80	,	40	,	0	 );
-			RodianSkeletal	 = CraftAttInfo( 	4	,	0	,	0	,	4	,	4	,	14	,	16	,	120	,	150	,	0	,	0	,	25	,	25	,	80	,	45	,	0	 );
-			TuskenSkeletal	 = CraftAttInfo( 	4	,	0	,	4	,	4	,	0	,	14	,	16	,	120	,	150	,	0	,	25	,	25	,	0	,	80	,	30	,	0	 );
-			TwilekSkeletal	 = CraftAttInfo( 	4	,	2	,	2	,	2	,	2	,	14	,	16	,	120	,	150	,	15	,	15	,	15	,	0	,	80	,	35	,	0	 );
-			XindiSkeletal	 = CraftAttInfo( 	4	,	4	,	0	,	4	,	0	,	14	,	16	,	120	,	150	,	10	,	10	,	10	,	10	,	80	,	30	,	0	 );
-			ZabrakSkeletal	 = CraftAttInfo( 	4	,	0	,	4	,	4	,	0	,	14	,	16	,	120	,	150	,	0	,	30	,	30	,	0	,	80	,	40	,	0	 );
+			DrowSkeletal  = CraftAttInfo( 	1	,	0	,	0	,	1	,	0	,	1	,	2	,	40	,	100	,	0	,	0	,	25	,	0	,	5	,	0	,	0	 );
+			OrcSkeletal	  = CraftAttInfo( 	2	,	1	,	0	,	0	,	0	,	2	,	2	,	45	,	100	,	0	,	0	,	0	,	0	,	10	,	0	,	0	 );
+		 ReptileSkeletal  = CraftAttInfo( 	2	,	0	,	0	,	0	,	2	,	2	,	3	,	50	,	100	,	0	,	0	,	0	,	25	,	10	,	0	,	0	 );
+			OgreSkeletal  = CraftAttInfo( 	3	,	1	,	1	,	0	,	0	,	3	,	3	,	55	,	100	,	0	,	0	,	0	,	0	,	20	,	0	,	0	 );
+			TrollSkeletal = CraftAttInfo( 	2	,	0	,	0	,	0	,	3	,	3	,	4	,	60	,	100	,	0	,	0	,	0	,	0	,	20	,	0	,	0	 );
+		GargoyleSkeletal  = CraftAttInfo( 	3	,	0	,	2	,	1	,	0	,	4	,	4	,	65	,	100	,	0	,	50	,	0	,	0	,	30	,	0	,	0	 );
+		MinotaurSkeletal  = CraftAttInfo( 	3	,	2	,	2	,	0	,	0	,	4	,	5	,	70	,	100	,	0	,	0	,	0	,	0	,	30	,	0	,	0	 );
+			LycanSkeletal = CraftAttInfo( 	3	,	1	,	0	,	1	,	3	,	5	,	5	,	85	,	100	,	0	,	0	,	0	,	0	,	40	,	0	,	0	 );
+			SharkSkeletal = CraftAttInfo( 	3	,	3	,	0	,	3	,	0	,	5	,	5	,	85	,	100	,	25	,	0	,	0	,	0	,	40	,	0	,	0	 );
+		ColossalSkeletal  = CraftAttInfo( 	4	,	2	,	2	,	1	,	0	,	5	,	5	,	85	,	100	,	0	,	0	,	0	,	0	,	40	,	0	,	0	 );
+		MysticalSkeletal  = CraftAttInfo( 	4	,	1	,	1	,	4	,	0	,	6	,	7	,	85	,	100	,	0	,	0	,	50	,	0	,	50	,	20	,	20	 );
+		VampireSkeletal	  = CraftAttInfo( 	3	,	3	,	0	,	3	,	3	,	8	,	9	,	85	,	100	,	0	,	0	,	25	,	25	,	60	,	0	,	0	 );
+			LichSkeletal  = CraftAttInfo( 	2	,	3	,	1	,	4	,	3	,	8	,	9	,	85	,	100	,	25	,	0	,	0	,	25	,	60	,	0	,	0	 );
+			SphinxSkeletal= CraftAttInfo( 	3	,	3	,	3	,	3	,	2	,	10	,	11	,	85	,	100	,	15	,	15	,	15	,	15	,	70	,	0	,	0	 );
+			DevilSkeletal = CraftAttInfo( 	3	,	4	,	0	,	4	,	3	,	10	,	11	,	85	,	100	,	0	,	35	,	15	,	0	,	70	,	0	,	0	 );
+			DracoSkeletal = CraftAttInfo( 	4	,	3	,	3	,	3	,	3	,	20	,	22	,	170	,	200	,	20	,	20	,	20	,	20	,	100	,	0	,	0	 );
 		}
 	}
 
@@ -364,12 +317,12 @@ namespace Server.Items
 
 	public class CraftResources
 	{
-			//					   Item		NPC					Gold			Skill						Cliloc		Cliloc		Cliloc
-			//					   Hue		Clr		Dmg		Arm	Xtra			Need	Use	Wgt	Bon	Xtr	WAr	CRFT 0		Mateial		LowCase		Name	Attribute	Resource	Begin Resource Types
+			//					   Item		NPC					Gold			Skill						     Cliloc		      Cliloc		Cliloc
+			//					   Hue		Clr		Dmg		Arm	Xtra			Need	   Use	  Wgt	 Bon	   Xtr  	WAr	  CRFT 0		Mateial		LowCase		 Name	       Attribute	Resource	Begin Resource Types
 
 			private static CraftResourceInfo[] m_MetalInfo = new CraftResourceInfo[]																														
 			{																														
-			new CraftResourceInfo( 0x000,	0x000,	0	,	0	,	1.00	,	0.0	,	0	,	0	,	0	,	0	,	0	,	1044022	,	1044036	,	1053109,	 "Iron",	CraftAttributeInfo.Blank,	CraftResource.Iron,typeof( IronIngot ),	typeof( IronOre ),	typeof( Granite ) ),	
+			new CraftResourceInfo( 0x000,	0x000,	0	,	0	,	1.00	,	0.0	,	    0	,	0	,	0	,	0	,	0	,	1044022	,	1044036	,	1053109,	 "Iron",	CraftAttributeInfo.Blank,	CraftResource.Iron,typeof( IronIngot ),	typeof( IronOre ),	typeof( Granite ) ),	
 			new CraftResourceInfo( 0x436, 	0x973,	1	,	1	,	1.25	,	65.0	,	10	,	2	,	3	,	1	,	0	,	1044023	,	1074916	,	1053108,	 "Dull Copper",	CraftAttributeInfo.DullCopper,	CraftResource.DullCopper,	typeof( DullCopperIngot ),	typeof( DullCopperOre ),	typeof( DullCopperGranite ) ),
 			new CraftResourceInfo( 0x445, 	0x966,	1	,	2	,	1.50	,	70.0	,	20	,	4	,	6	,	2	,	0	,	1044024	,	1074917	,	1053107,	 "Shadow Iron",	CraftAttributeInfo.ShadowIron,	CraftResource.ShadowIron,	typeof( ShadowIronIngot ),	typeof( ShadowIronOre ),	typeof( ShadowIronGranite ) ),
 			new CraftResourceInfo( 0x435, 	0x54E,	2	,	3	,	1.75	,	75.0	,	30	,	6	,	9	,	3	,	0	,	1044025	,	1074918	,	1053106,	 "Copper",	CraftAttributeInfo.Copper,	CraftResource.Copper,	typeof( CopperIngot ),	typeof( CopperOre ),	typeof( CopperGranite ) ),
@@ -385,22 +338,6 @@ namespace Server.Items
 			new CraftResourceInfo( 0x43E, 	0x482,	4	,	12	,	3.75	,	110.0	,	130	,	26	,	39	,	13	,	0	,	1036137	,	1036138	,	1036139,	 "Mithril",	CraftAttributeInfo.Mithril,	CraftResource.Mithril,	typeof( MithrilIngot ),	typeof( MithrilOre ),	typeof( MithrilGranite ) ),
 			new CraftResourceInfo( 0x44D, 	0x4F6,	4	,	12	,	3.75	,	115.0	,	140	,	27	,	41	,	14	,	1	,	1034437	,	1034438	,	1034439,	 "Xormite",	CraftAttributeInfo.Xormite,	CraftResource.Xormite,	typeof( XormiteIngot ),	typeof( XormiteOre ),	typeof( XormiteGranite ) ),
 			new CraftResourceInfo( 0x437, 	0x437,	6	,	14	,	4.50	,	120.0	,	160	,	28	,	42	,	15	,	1	,	1036181	,	1036182	,	1036183,	 "Dwarven",	CraftAttributeInfo.Dwarven,	CraftResource.Dwarven,	typeof( DwarvenIngot ),	typeof( DwarvenOre ),	typeof( DwarvenGranite ) ),
-			new CraftResourceInfo( 0x8C1,	0x8C1,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1063982	,	1063983	,	1063981,	 "Agrinium",	CraftAttributeInfo.Agrinium,	CraftResource.Agrinium,	typeof( AgriniumIngot ) ),		
-			new CraftResourceInfo( 0x6F8,	0x6F8,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1063986	,	1063987	,	1063985,	 "Beskar",	CraftAttributeInfo.Beskar,	CraftResource.Beskar,	typeof( BeskarIngot ) ),		
-			new CraftResourceInfo( 0x829,	0x829,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1063990	,	1063991	,	1063989,	 "Carbonite",	CraftAttributeInfo.Carbonite,	CraftResource.Carbonite,	typeof( CarboniteIngot ) ),		
-			new CraftResourceInfo( 0x82C,	0x82C,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1063994	,	1063995	,	1063993,	 "Cortosis",	CraftAttributeInfo.Cortosis,	CraftResource.Cortosis,	typeof( CortosisIngot ) ),		
-			new CraftResourceInfo( 0x7A9,	0x7A9,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1063998	,	1063999	,	1063997,	 "Durasteel",	CraftAttributeInfo.Durasteel,	CraftResource.Durasteel,	typeof( DurasteelIngot ) ),		
-			new CraftResourceInfo( 0x877,	0x877,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064002	,	1064003	,	1064001,	 "Durite",	CraftAttributeInfo.Durite,	CraftResource.Durite,	typeof( DuriteIngot ) ),		
-			new CraftResourceInfo( 0x775,	0x775,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064006	,	1064007	,	1064005,	 "Farium",	CraftAttributeInfo.Farium,	CraftResource.Farium,	typeof( FariumIngot ) ),		
-			new CraftResourceInfo( 0x77F,	0x77F,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064010	,	1064011	,	1064009,	 "Laminasteel",	CraftAttributeInfo.Laminasteel,	CraftResource.Laminasteel,	typeof( LaminasteelIngot ) ),		
-			new CraftResourceInfo( 0x870,	0x870,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064014	,	1064015	,	1064013,	 "Neuranium",	CraftAttributeInfo.Neuranium,	CraftResource.Neuranium,	typeof( NeuraniumIngot ) ),		
-			new CraftResourceInfo( 0xAF8,	0xAF8,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064018	,	1064019	,	1064017,	 "Phrik",	CraftAttributeInfo.Phrik,	CraftResource.Phrik,	typeof( PhrikIngot ) ),		
-			new CraftResourceInfo( 0x6F6,	0x6F6,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064022	,	1064023	,	1064021,	 "Promethium",	CraftAttributeInfo.Promethium,	CraftResource.Promethium,	typeof( PromethiumIngot ) ),		
-			new CraftResourceInfo( 0x705,	0x705,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064026	,	1064027	,	1064025,	 "Quadranium",	CraftAttributeInfo.Quadranium,	CraftResource.Quadranium,	typeof( QuadraniumIngot ) ),		
-			new CraftResourceInfo( 0xB42,	0xB42,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064030	,	1064031	,	1064029,	 "Songsteel",	CraftAttributeInfo.Songsteel,	CraftResource.Songsteel,	typeof( SongsteelIngot ) ),		
-			new CraftResourceInfo( 0xB70,	0xB70,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064034	,	1064035	,	1064033,	 "Titanium",	CraftAttributeInfo.Titanium,	CraftResource.Titanium,	typeof( TitaniumIngot ) ),		
-			new CraftResourceInfo( 0x8C3,	0x8C3,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064038	,	1064039	,	1064037,	 "Trimantium",	CraftAttributeInfo.Trimantium,	CraftResource.Trimantium,	typeof( TrimantiumIngot ) ),		
-			new CraftResourceInfo( 0x701,	0x701,	5	,	13	,	4.25	,	117.0	,	150	,	27	,	41	,	14	,	1	,	1064042	,	1064043	,	1064041,	 "Xonolite",	CraftAttributeInfo.Xonolite,	CraftResource.Xonolite,	typeof( XonoliteIngot ) )		
 			};																														
 			private static CraftResourceInfo[] m_ScaleInfo = new CraftResourceInfo[]																														
 			{																														
@@ -417,10 +354,6 @@ namespace Server.Items
 			new CraftResourceInfo( 0x424, 	0x979,	2	,	5	,	2.40	,	45.0	,	90	,	20	,	32	,	10	,	1	,	1054156	,	1054028	,	1063826,	 "Violet",	CraftAttributeInfo.VioletScales,	CraftResource.VioletScales,	typeof( VioletScales ) ),		
 			new CraftResourceInfo( 0x449, 	0x42A,	2	,	5	,	2.40	,	45.0	,	90	,	20	,	32	,	10	,	1	,	1054157	,	1054029	,	1063828,	 "Platinum",	CraftAttributeInfo.PlatinumScales,	CraftResource.PlatinumScales,	typeof( PlatinumScales ) ),		
 			new CraftResourceInfo( 0x99D,	0x99D,	3	,	9	,	3.40	,	115.0	,	90	,	26	,	32	,	10	,	1	,	1054158	,	1060096	,	1063830,	 "Cadalyte",	CraftAttributeInfo.CadalyteScales,	CraftResource.CadalyteScales,	typeof( CadalyteScales ) ),		
-			new CraftResourceInfo( 0x5D6,	0x5D6,	3	,	7	,	3.00	,	110.0	,	90	,	22	,	32	,	10	,	1	,	1064170	,	1064171	,	1064172,	 "Gorn",	CraftAttributeInfo.GornScales,	CraftResource.CadalyteScales,	typeof( GornScales ) ),		
-			new CraftResourceInfo( 0x5D8,	0x5D8,	3	,	7	,	3.00	,	110.0	,	90	,	22	,	32	,	10	,	1	,	1064174	,	1064175	,	1064176,	 "Trandoshan",	CraftAttributeInfo.TrandoshanScales,	CraftResource.CadalyteScales,	typeof( TrandoshanScales ) ),		
-			new CraftResourceInfo( 0x5D5,	0x5D5,	3	,	7	,	3.00	,	110.0	,	90	,	22	,	32	,	10	,	1	,	1064178	,	1064179	,	1064180,	 "Silurian",	CraftAttributeInfo.SilurianScales,	CraftResource.CadalyteScales,	typeof( SilurianScales ) ),		
-			new CraftResourceInfo( 0x692,	0x692,	3	,	7	,	3.00	,	110.0	,	90	,	22	,	32	,	10	,	1	,	1064182	,	1064183	,	1064184,	 "Krayt",	CraftAttributeInfo.KraytScales,	CraftResource.CadalyteScales,	typeof( KraytScales ) )		
 			};																														
 			private static CraftResourceInfo[] m_SpecialInfo = new CraftResourceInfo[]																														
 			{																														
@@ -453,18 +386,6 @@ namespace Server.Items
 			new CraftResourceInfo( 0x698, 	0x698,	3	,	8	,	3.00	,	90.0	,	80	,	16	,	24	,	8	,	0	,	1034381	,	1034463	,	1034391,	 "Draconic",	CraftAttributeInfo.Draconic,	CraftResource.DraconicLeather,	typeof( DraconicLeather ),	typeof( DraconicHides ) ),	
 			new CraftResourceInfo( 0x69B, 	0x69B,	4	,	9	,	3.25	,	85.0	,	90	,	18	,	27	,	9	,	0	,	1034392	,	1034464	,	1034402,	 "Hellish",	CraftAttributeInfo.Hellish,	CraftResource.HellishLeather,	typeof( HellishLeather ),	typeof( HellishHides ) ),	
 			new CraftResourceInfo( 0x697, 	0x697,	4	,	10	,	3.50	,	99.0	,	100	,	20	,	30	,	10	,	1	,	1036104	,	1034465	,	1036161,	 "Dinosaur",	CraftAttributeInfo.Dinosaur,	CraftResource.DinosaurLeather,	typeof( DinosaurLeather ),	typeof( DinosaurHides ) ),	
-			new CraftResourceInfo( 0x695, 	0x695,	5	,	11	,	3.75	,	99.0	,	110	,	22	,	33	,	11	,	1	,	1034444	,	1034466	,	1034454,	 "Alien",	CraftAttributeInfo.Alien,	CraftResource.AlienLeather,	typeof( AlienLeather ),	typeof( AlienHides ) ),	
-			new CraftResourceInfo( 0xAF8,	0xAF8,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063938	,	1063939	,	1063937,	 "Adesote",	CraftAttributeInfo.Adesote,	CraftResource.Adesote,	typeof( AdesoteLeather ) ),		
-			new CraftResourceInfo( 0x829,	0x829,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063942	,	1063943	,	1063941,	 "Biomesh",	CraftAttributeInfo.Biomesh,	CraftResource.Biomesh,	typeof( BiomeshLeather ) ),		
-			new CraftResourceInfo( 0xB57,	0xB57,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063946	,	1063947	,	1063945,	 "Cerlin",	CraftAttributeInfo.Cerlin,	CraftResource.Cerlin,	typeof( CerlinLeather ) ),		
-			new CraftResourceInfo( 0x8C1,	0x8C1,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063950	,	1063951	,	1063949,	 "Durafiber",	CraftAttributeInfo.Durafiber,	CraftResource.Durafiber,	typeof( DurafiberLeather ) ),		
-			new CraftResourceInfo( 0x705,	0x705,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063954	,	1063955	,	1063953,	 "Flexicris",	CraftAttributeInfo.Flexicris,	CraftResource.Flexicris,	typeof( FlexicrisLeather ) ),		
-			new CraftResourceInfo( 0x77F,	0x77F,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063958	,	1063959	,	1063957,	 "Hypercloth",	CraftAttributeInfo.Hypercloth,	CraftResource.Hypercloth,	typeof( HyperclothLeather ) ),		
-			new CraftResourceInfo( 0x701,	0x701,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063962	,	1063963	,	1063961,	 "Nylar",	CraftAttributeInfo.Nylar,	CraftResource.Nylar,	typeof( NylarLeather ) ),		
-			new CraftResourceInfo( 0x6F8,	0x6F8,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063966	,	1063967	,	1063965,	 "Nylonite",	CraftAttributeInfo.Nylonite,	CraftResource.Nylonite,	typeof( NyloniteLeather ) ),		
-			new CraftResourceInfo( 0x6F6,	0x6F6,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063970	,	1063971	,	1063969,	 "Polyfiber",	CraftAttributeInfo.Polyfiber,	CraftResource.Polyfiber,	typeof( PolyfiberLeather ) ),		
-			new CraftResourceInfo( 0x7A9,	0x7A9,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063974	,	1063975	,	1063973,	 "Syncloth",	CraftAttributeInfo.Syncloth,	CraftResource.Syncloth,	typeof( SynclothLeather ) ),		
-			new CraftResourceInfo( 0x775,	0x775,	5	,	12	,	3.75	,	110.0	,	120	,	24	,	36	,	12	,	1	,	1063978	,	1063979	,	1063977,	 "Thermoweave",	CraftAttributeInfo.Thermoweave,	CraftResource.Thermoweave,	typeof( ThermoweaveLeather ) )		
 			};																														
 			private static CraftResourceInfo[] m_WoodInfo = new CraftResourceInfo[]																														
 			{																														
@@ -483,14 +404,6 @@ namespace Server.Items
 			new CraftResourceInfo( 0x511,	0x511,	3	,	12	,	3.25	,	100.0	,	120	,	24	,	36	,	12	,	0	,	1095532	,	1095533	,	1095534,	 "Petrified",	CraftAttributeInfo.PetrifiedTree,	CraftResource.PetrifiedTree,	typeof( PetrifiedBoard ),	typeof( PetrifiedLog ) ),	
 			new CraftResourceInfo( 0x507,	0x507,	3	,	13	,	2.40	,	105.0	,	130	,	26	,	39	,	13	,	0	,	1095409	,	1095410	,	1095510,	 "Driftwood",	CraftAttributeInfo.DriftwoodTree,	CraftResource.DriftwoodTree,	typeof( DriftwoodBoard ),	typeof( DriftwoodLog ) ),	
 			new CraftResourceInfo( 0x50C,	0x50C,	4	,	14	,	3.40	,	110.0	,	140	,	27	,	41	,	14	,	1	,	1095535	,	1095536	,	1095537,	 "Elven",	CraftAttributeInfo.ElvenTree,	CraftResource.ElvenTree,	typeof( ElvenBoard ),	typeof( ElvenLog ) ),	
-			new CraftResourceInfo( 0x775,	0x775,	4	,	15	,	3.50	,	115.0	,	150	,	28	,	42	,	15	,	1	,	1064046	,	1064047	,	1064045,	 "Borl",	CraftAttributeInfo.BorlTree,	CraftResource.BorlTree,	typeof( BorlBoard ) ),		
-			new CraftResourceInfo( 0x77F,	0x77F,	4	,	15	,	3.50	,	115.0	,	150	,	28	,	42	,	15	,	1	,	1064050	,	1064051	,	1064049,	 "Cosian",	CraftAttributeInfo.CosianTree,	CraftResource.CosianTree,	typeof( CosianBoard ) ),		
-			new CraftResourceInfo( 0x870,	0x870,	4	,	15	,	3.50	,	115.0	,	150	,	28	,	42	,	15	,	1	,	1064054	,	1064055	,	1064053,	 "Greel",	CraftAttributeInfo.GreelTree,	CraftResource.GreelTree,	typeof( GreelBoard ) ),		
-			new CraftResourceInfo( 0x948,	0x948,	4	,	15	,	3.50	,	115.0	,	150	,	28	,	42	,	15	,	1	,	1064058	,	1064059	,	1064057,	 "Japor",	CraftAttributeInfo.JaporTree,	CraftResource.JaporTree,	typeof( JaporBoard ) ),		
-			new CraftResourceInfo( 0x705,	0x705,	4	,	15	,	3.50	,	115.0	,	150	,	28	,	42	,	15	,	1	,	1064062	,	1064063	,	1064061,	 "Kyshyyyk",	CraftAttributeInfo.KyshyyykTree,	CraftResource.KyshyyykTree,	typeof( KyshyyykBoard ) ),		
-			new CraftResourceInfo( 0x877,	0x877,	4	,	15	,	3.50	,	115.0	,	150	,	28	,	42	,	15	,	1	,	1064066	,	1064067	,	1064065,	 "Laroon",	CraftAttributeInfo.LaroonTree,	CraftResource.LaroonTree,	typeof( LaroonBoard ) ),		
-			new CraftResourceInfo( 0x6F6,	0x6F6,	4	,	15	,	3.50	,	115.0	,	150	,	28	,	42	,	15	,	1	,	1064070	,	1064071	,	1064069,	 "Teej",	CraftAttributeInfo.TeejTree,	CraftResource.TeejTree,	typeof( TeejBoard ) ),		
-			new CraftResourceInfo( 0x6F8,	0x6F8,	4	,	15	,	3.50	,	115.0	,	150	,	28	,	42	,	15	,	1	,	1064074	,	1064075	,	1064073,	 "Veshok",	CraftAttributeInfo.VeshokTree,	CraftResource.VeshokTree,	typeof( VeshokBoard ) )		
 			};																														
 			private static CraftResourceInfo[] m_FabricInfo = new CraftResourceInfo[]																														
 			{																														
@@ -557,15 +470,6 @@ namespace Server.Items
 			new CraftResourceInfo( 0x804,	0x804,	3	,	13	,	2.20	,	99.0	,	130	,	23	,	33	,	13	,	1	,	1063892	,	1063893	,	1063895,	 "Sphinx",	CraftAttributeInfo.SphinxSkeletal,	CraftResource.SphinxSkeletal,	typeof( SphinxSkeletal ) ),		
 			new CraftResourceInfo( 0x648,	0x648,	4	,	15	,	2.40	,	102.0	,	150	,	24	,	34	,	14	,	1	,	1063896	,	1063897	,	1063899,	 "Devil",	CraftAttributeInfo.DevilSkeletal,	CraftResource.DevilSkeletal,	typeof( DevilSkeletal ) ),		
 			new CraftResourceInfo( 0x437,	0x698,	4	,	17	,	2.40	,	105.0	,	170	,	25	,	35	,	15	,	1	,	1063836	,	1063837	,	1063839,	 "Draco",	CraftAttributeInfo.DracoSkeletal,	CraftResource.DracoSkeletal,	typeof( DracoSkeletal ) ),		
-			new CraftResourceInfo( 0x44D,	0x44D,	5	,	18	,	3.00	,	110.0	,	180	,	28	,	38	,	16	,	1	,	1063900	,	1063901	,	1063903,	 "Xeno",	CraftAttributeInfo.XenoSkeletal,	CraftResource.XenoSkeletal,	typeof( XenoSkeletal ) ),		
-			new CraftResourceInfo( 0xB3D,	0xB3D,	3	,	14	,	3.10	,	100.1	,	140	,	26	,	37	,	16	,	1	,	1063906	,	1063907	,	1063905,	 "Andorian",	CraftAttributeInfo.AndorianSkeletal,	CraftResource.AndorianSkeletal,	typeof( AndorianSkeletal ) ),		
-			new CraftResourceInfo( 0x986,	0x986,	3	,	14	,	3.10	,	100.1	,	140	,	26	,	37	,	16	,	1	,	1063910	,	1063911	,	1063909,	 "Cardassian",	CraftAttributeInfo.CardassianSkeletal,	CraftResource.CardassianSkeletal,	typeof( CardassianSkeletal ) ),		
-			new CraftResourceInfo( 0x6F6,	0x6F6,	3	,	14	,	3.10	,	100.1	,	140	,	26	,	37	,	16	,	1	,	1063914	,	1063915	,	1063913,	 "Martian",	CraftAttributeInfo.MartianSkeletal,	CraftResource.MartianSkeletal,	typeof( MartianSkeletal ) ),		
-			new CraftResourceInfo( 0x77F,	0x77F,	3	,	14	,	3.10	,	100.1	,	140	,	26	,	37	,	16	,	1	,	1063918	,	1063919	,	1063917,	 "Rodian",	CraftAttributeInfo.RodianSkeletal,	CraftResource.RodianSkeletal,	typeof( RodianSkeletal ) ),		
-			new CraftResourceInfo( 0x775,	0x775,	3	,	14	,	3.10	,	100.1	,	140	,	26	,	37	,	16	,	1	,	1063922	,	1063923	,	1063921,	 "Tusken",	CraftAttributeInfo.TuskenSkeletal,	CraftResource.TuskenSkeletal,	typeof( TuskenSkeletal ) ),		
-			new CraftResourceInfo( 0xAF8,	0xAF8,	3	,	14	,	3.10	,	100.1	,	140	,	26	,	37	,	16	,	1	,	1063926	,	1063927	,	1063925,	 "Twi'lek",	CraftAttributeInfo.TwilekSkeletal,	CraftResource.TwilekSkeletal,	typeof( TwilekSkeletal ) ),		
-			new CraftResourceInfo( 0x877,	0x877,	3	,	14	,	3.10	,	100.1	,	140	,	26	,	37	,	16	,	1	,	1063930	,	1063931	,	1063929,	 "Xindi",	CraftAttributeInfo.XindiSkeletal,	CraftResource.XindiSkeletal,	typeof( XindiSkeletal ) ),		
-			new CraftResourceInfo( 0xB01,	0xB01,	3	,	14	,	3.10	,	100.1	,	140	,	26	,	37	,	16	,	1	,	1063934	,	1063935	,	1063933,	 "Zabrak",	CraftAttributeInfo.ZabrakSkeletal,	CraftResource.ZabrakSkeletal,	typeof( ZabrakSkeletal ) )		
 			};																														
 
 		private static Hashtable m_TypeTable;
@@ -621,19 +525,19 @@ namespace Server.Items
 
 		public static CraftResourceType GetType( CraftResource resource )
 		{
-			if ( resource >= CraftResource.Iron && resource <= CraftResource.Xonolite )
+			if ( resource >= CraftResource.Iron && resource <= CraftResource.Dwarven )
 				return CraftResourceType.Metal;
 
-			if ( resource >= CraftResource.RegularLeather && resource <= CraftResource.Thermoweave )
+			if ( resource >= CraftResource.RegularLeather && resource <= CraftResource.DinosaurLeather )
 				return CraftResourceType.Leather;
 
 			if ( resource >= CraftResource.SpectralSpec && resource <= CraftResource.TurtleSpec )
 				return CraftResourceType.Special;
 
-			if ( resource >= CraftResource.RedScales && resource <= CraftResource.KraytScales )
+			if ( resource >= CraftResource.RedScales && resource <= CraftResource.CadalyteScales )
 				return CraftResourceType.Scales;
 
-			if ( resource >= CraftResource.RegularWood && resource <= CraftResource.VeshokTree )
+			if ( resource >= CraftResource.RegularWood && resource <= CraftResource.ElvenTree )
 				return CraftResourceType.Wood;
 
 			if ( resource >= CraftResource.AmethystBlock && resource <= CraftResource.CaddelliteBlock )
@@ -642,7 +546,7 @@ namespace Server.Items
 			if ( resource >= CraftResource.DemonSkin && resource <= CraftResource.DeadSkin )
 				return CraftResourceType.Skin;
 
-			if ( resource >= CraftResource.BrittleSkeletal && resource <= CraftResource.ZabrakSkeletal )
+			if ( resource >= CraftResource.BrittleSkeletal && resource <= CraftResource.DracoSkeletal )
 				return CraftResourceType.Skeletal;
 
 			if ( resource >= CraftResource.Fabric && resource <= CraftResource.FiendishFabric )
@@ -754,31 +658,25 @@ namespace Server.Items
 				return "ore";
 			else if ( resource >= CraftResource.Iron && resource <= CraftResource.Dwarven )
 				return "ingot";
-			else if ( resource >= CraftResource.Agrinium && resource <= CraftResource.Xonolite )
-				return "metal";
 			else if ( resource >= CraftResource.AmethystBlock && resource <= CraftResource.CaddelliteBlock && sub )
 				return "stone";
 			else if ( resource >= CraftResource.AmethystBlock && resource <= CraftResource.CaddelliteBlock )
 				return "block";
-			else if ( resource >= CraftResource.RegularLeather && resource <= CraftResource.AlienLeather && sub )
+			else if ( resource >= CraftResource.RegularLeather && resource <= CraftResource.DinosaurLeather && sub )
 				return "hide";
-			else if ( resource >= CraftResource.RegularLeather && resource <= CraftResource.AlienLeather )
+			else if ( resource >= CraftResource.RegularLeather && resource <= CraftResource.DinosaurLeather )
 				return "leather";
 			else if ( resource >= CraftResource.DemonSkin && resource <= CraftResource.DeadSkin )
 				return "skin";
-			else if ( resource >= CraftResource.Adesote && resource <= CraftResource.Thermoweave )
-				return "material";
-			else if ( resource >= CraftResource.RedScales && resource <= CraftResource.KraytScales )
+			else if ( resource >= CraftResource.RedScales && resource <= CraftResource.CadalyteScales )
 				return "scale";
 			else if ( resource >= CraftResource.RegularWood && resource <= CraftResource.ElvenTree && sub )
 				return "log";
 			else if ( resource >= CraftResource.RegularWood && resource <= CraftResource.ElvenTree )
 				return "board";
-			else if ( resource >= CraftResource.BorlTree && resource <= CraftResource.VeshokTree )
-				return "timber";
 			else if ( resource >= CraftResource.SpectralSpec && resource <= CraftResource.TurtleSpec )
 				return "rune";
-			else if ( resource >= CraftResource.BrittleSkeletal && resource <= CraftResource.ZabrakSkeletal )
+			else if ( resource >= CraftResource.BrittleSkeletal && resource <= CraftResource.DracoSkeletal )
 				return "bone";
 			else if ( resource >= CraftResource.Fabric && resource <= CraftResource.FiendishFabric )
 				return "cloth";
@@ -965,56 +863,36 @@ namespace Server.Items
 
 		public static void GetAosMods( CraftResource resource, Item item, bool reduce )
 		{
-			if (resource == CraftResource.Iron) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.DullCopper) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.ShadowIron) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Copper) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Bronze) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Gold) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Agapite) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Verite) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Valorite) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Nepturite) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Obsidian) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Steel) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Brass) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Mithril) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Xormite) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0); }
-			else if (resource == CraftResource.Dwarven) { ResourceMods.ModifyItem(item, resource, reduce, 2, 4, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 5, 0); }
-			else if (resource == CraftResource.Agrinium) { ResourceMods.ModifyItem(item, resource, reduce, 23, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 1, 0); }
-			else if (resource == CraftResource.Beskar) { ResourceMods.ModifyItem(item, resource, reduce, 4, 0, 45, 1, 43, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 10, 10, 0, 5, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Carbonite) { ResourceMods.ModifyItem(item, resource, reduce, 3, 0, 2, 1, 23, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 10, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Cortosis) { ResourceMods.ModifyItem(item, resource, reduce, 27, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Durasteel) { ResourceMods.ModifyItem(item, resource, reduce, 32, 0, 99, 1, 48, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 1, 0); }
-			else if (resource == CraftResource.Durite) { ResourceMods.ModifyItem(item, resource, reduce, 31, 0, 6, 1, 8, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 1, 0); }
-			else if (resource == CraftResource.Farium) { ResourceMods.ModifyItem(item, resource, reduce, 20, 0, 15, 1, 42, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 10, 10, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Laminasteel) { ResourceMods.ModifyItem(item, resource, reduce, 33, 0, 3, 1, 4, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Neuranium) { ResourceMods.ModifyItem(item, resource, reduce, 6, 0, 31, 1, 33, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Phrik) { ResourceMods.ModifyItem(item, resource, reduce, 35, 0, 55, 1, 21, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 2, 0, 0, 3, 1, 1, 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Promethium) { ResourceMods.ModifyItem(item, resource, reduce, 9, 0, 40, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Quadranium) { ResourceMods.ModifyItem(item, resource, reduce, 28, 0, 28, 1, 27, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Songsteel) { ResourceMods.ModifyItem(item, resource, reduce, 21, 0, 35, 1, 39, 1, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Titanium) { ResourceMods.ModifyItem(item, resource, reduce, 18, 0, 99, 1, 48, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 1, 0); }
-			else if (resource == CraftResource.Trimantium) { ResourceMods.ModifyItem(item, resource, reduce, 34, 0, 19, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Xonolite) { ResourceMods.ModifyItem(item, resource, reduce, 29, 0, 36, 1, 44, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 1); }
+			if (resource == CraftResource.Iron) { ResourceMods.ModifyItem(item, resource,            reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.DullCopper) { ResourceMods.ModifyItem(item, resource, reduce, 0,  0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.ShadowIron) { ResourceMods.ModifyItem(item, resource, reduce, 0,  0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Copper) { ResourceMods.ModifyItem(item, resource,     reduce, 0,  0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Bronze) { ResourceMods.ModifyItem(item, resource,     reduce, 0,  0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Gold) { ResourceMods.ModifyItem(item, resource,       reduce, 0,  0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Agapite) { ResourceMods.ModifyItem(item, resource,    reduce, 0,  0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Verite) { ResourceMods.ModifyItem(item, resource,     reduce, 0,  0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Valorite) { ResourceMods.ModifyItem(item, resource,   reduce, 0,  0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Nepturite) { ResourceMods.ModifyItem(item, resource,  reduce, 34, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Obsidian) { ResourceMods.ModifyItem(item, resource,   reduce, 27, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Steel) { ResourceMods.ModifyItem(item, resource,      reduce, 5,  0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Brass) { ResourceMods.ModifyItem(item, resource,      reduce, 19, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Mithril) { ResourceMods.ModifyItem(item, resource,    reduce, 4,  0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 1, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Xormite) { ResourceMods.ModifyItem(item, resource,    reduce, 12, 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.Dwarven) { ResourceMods.ModifyItem(item, resource,    reduce, 2,  0, 99, 5, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
 
-			else if (resource == CraftResource.RedScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.YellowScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.BlackScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0); }
-			else if (resource == CraftResource.GreenScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 5, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.WhiteScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.BlueScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 9, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.DinosaurScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0); }
-			else if (resource == CraftResource.MetallicScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 2, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.BrazenScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.UmberScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.VioletScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.PlatinumScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.CadalyteScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 4, 4, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 0, 0, 5, 0); }
-			else if (resource == CraftResource.GornScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 3, 48, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 0, 0, 6, 5, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 1, 0); }
-			else if (resource == CraftResource.TrandoshanScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 3, 19, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 0, 6, 5, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1, 0); }
-			else if (resource == CraftResource.SilurianScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 3, 17, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 5, 0, 2, 2, 2, 0, 0, 3, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 1, 1, 1); }
-			else if (resource == CraftResource.KraytScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 25, 3, 46, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 0, 5, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 1, 0); }
+			else if (resource == CraftResource.RedScales) { ResourceMods.ModifyItem(item, resource,      reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.YellowScales) { ResourceMods.ModifyItem(item, resource,   reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.BlackScales) { ResourceMods.ModifyItem(item, resource,    reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0); }
+			else if (resource == CraftResource.GreenScales) { ResourceMods.ModifyItem(item, resource,    reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 5, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.WhiteScales) { ResourceMods.ModifyItem(item, resource,    reduce, 0, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.BlueScales) { ResourceMods.ModifyItem(item, resource,     reduce, 0, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 9, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.DinosaurScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0); }
+			else if (resource == CraftResource.MetallicScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 2, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.BrazenScales) { ResourceMods.ModifyItem(item, resource,   reduce, 0, 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.UmberScales) { ResourceMods.ModifyItem(item, resource,    reduce, 0, 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.VioletScales) { ResourceMods.ModifyItem(item, resource,   reduce, 0, 0, 99, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.PlatinumScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 5, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.CadalyteScales) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 4, 4, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 0, 0, 5, 0); }
 
 			else if (resource == CraftResource.SpectralSpec) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 5, 36, 5, 19, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 5, 0); }
 			else if (resource == CraftResource.DreadSpec) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 5, 48, 5, 24, 5, 0, 0, 0, 0, 3, 3, 0, 5, 5, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
@@ -1032,135 +910,108 @@ namespace Server.Items
 			else if (resource == CraftResource.ExodusSpec) { ResourceMods.ModifyItem(item, resource, reduce, 32, 13, 99, 15, 32, 10, 0, 0, 0, 0, 0, 0, 3, 3, 3, 5, 5, 0, 0, 0, 0, 0, 0, 10, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 33, 0, 0, 0, 5, 1); }
 			else if (resource == CraftResource.TurtleSpec) { ResourceMods.ModifyItem(item, resource, reduce, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 33, 0, 0, 0, 0, 0, 10, 0); }
 
-			else if (resource == CraftResource.RegularLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.HornedLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.BarbedLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.NecroticLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.VolcanicLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.FrozenLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.SpinedLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.GoliathLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.DraconicLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.HellishLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.DinosaurLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.AlienLeather) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Adesote) { ResourceMods.ModifyItem(item, resource, reduce, 35, 0, 99, 2, 17, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Biomesh) { ResourceMods.ModifyItem(item, resource, reduce, 16, 0, 99, 2, 21, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Cerlin) { ResourceMods.ModifyItem(item, resource, reduce, 21, 0, 99, 2, 13, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Durafiber) { ResourceMods.ModifyItem(item, resource, reduce, 2, 0, 99, 2, 23, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Flexicris) { ResourceMods.ModifyItem(item, resource, reduce, 27, 0, 99, 2, 27, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 3, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Hypercloth) { ResourceMods.ModifyItem(item, resource, reduce, 29, 0, 99, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Nylar) { ResourceMods.ModifyItem(item, resource, reduce, 11, 0, 99, 2, 50, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Nylonite) { ResourceMods.ModifyItem(item, resource, reduce, 4, 0, 25, 2, 46, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Polyfiber) { ResourceMods.ModifyItem(item, resource, reduce, 3, 0, 99, 2, 52, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Syncloth) { ResourceMods.ModifyItem(item, resource, reduce, 23, 0, 99, 2, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 1, 1, 0, 0, 0, 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.Thermoweave) { ResourceMods.ModifyItem(item, resource, reduce, 32, 0, 99, 2, 15, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.RegularLeather) { ResourceMods.ModifyItem(item, resource,   reduce, 0,  0, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.HornedLeather) { ResourceMods.ModifyItem(item, resource,    reduce, 33, 0, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.BarbedLeather) { ResourceMods.ModifyItem(item, resource,    reduce, 30, 0, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0,  5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.NecroticLeather) { ResourceMods.ModifyItem(item, resource,  reduce, 35, 0, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0,  5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.VolcanicLeather) { ResourceMods.ModifyItem(item, resource,  reduce, 20, 0, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0,  9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.FrozenLeather) { ResourceMods.ModifyItem(item, resource,    reduce, 19, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0,  9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.SpinedLeather) { ResourceMods.ModifyItem(item, resource,    reduce, 5,  0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.GoliathLeather) { ResourceMods.ModifyItem(item, resource,   reduce, 31, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.DraconicLeather) { ResourceMods.ModifyItem(item, resource,  reduce, 10, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 2, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.HellishLeather) { ResourceMods.ModifyItem(item, resource,   reduce, 11, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 3, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.DinosaurLeather) { ResourceMods.ModifyItem(item, resource,  reduce, 10, 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 3, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+		
+			else if (resource == CraftResource.RegularWood) { ResourceMods.ModifyItem(item, resource,      reduce, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.AshTree) { ResourceMods.ModifyItem(item, resource,          reduce, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.CherryTree) { ResourceMods.ModifyItem(item, resource,       reduce, 0,  0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.EbonyTree) { ResourceMods.ModifyItem(item, resource,        reduce, 0,  0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.GoldenOakTree) { ResourceMods.ModifyItem(item, resource,    reduce, 0,  0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.HickoryTree) { ResourceMods.ModifyItem(item, resource,      reduce, 0,  0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.MahoganyTree) { ResourceMods.ModifyItem(item, resource,     reduce, 0,  0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.OakTree) { ResourceMods.ModifyItem(item, resource,          reduce, 0,  0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.PineTree) { ResourceMods.ModifyItem(item, resource,         reduce, 23, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.GhostTree) { ResourceMods.ModifyItem(item, resource,        reduce, 14, 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.RosewoodTree) { ResourceMods.ModifyItem(item, resource,     reduce, 15, 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.WalnutTree) { ResourceMods.ModifyItem(item, resource,       reduce, 2 , 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 1, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.PetrifiedTree) { ResourceMods.ModifyItem(item, resource,    reduce, 32, 0, 99, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.DriftwoodTree) { ResourceMods.ModifyItem(item, resource,    reduce, 20, 0, 99, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 1, 1, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.ElvenTree) { ResourceMods.ModifyItem(item, resource,        reduce, 18, 0, 99, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 1); }
 
-			else if (resource == CraftResource.RegularWood) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.AshTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.CherryTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.EbonyTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.GoldenOakTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.HickoryTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.MahoganyTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.OakTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.PineTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.GhostTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.RosewoodTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.WalnutTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.PetrifiedTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.DriftwoodTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 19, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.ElvenTree) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 3, 52, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 2, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 1); }
-			else if (resource == CraftResource.BorlTree) { ResourceMods.ModifyItem(item, resource, reduce, 23, 0, 15, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.CosianTree) { ResourceMods.ModifyItem(item, resource, reduce, 33, 0, 23, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.GreelTree) { ResourceMods.ModifyItem(item, resource, reduce, 12, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.JaporTree) { ResourceMods.ModifyItem(item, resource, reduce, 15, 0, 19, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.KyshyyykTree) { ResourceMods.ModifyItem(item, resource, reduce, 17, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 7, 8, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0); }
-			else if (resource == CraftResource.LaroonTree) { ResourceMods.ModifyItem(item, resource, reduce, 7, 0, 44, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 8, 11, 2, 1, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0); }
-			else if (resource == CraftResource.TeejTree) { ResourceMods.ModifyItem(item, resource, reduce, 8, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 9, 12, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0); }
-			else if (resource == CraftResource.VeshokTree) { ResourceMods.ModifyItem(item, resource, reduce, 25, 0, 22, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 10, 13, 0, 0, 0, 0, 0, 0, 12, 0, 1, 0, 0, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0); }
+			else if (resource == CraftResource.Fabric) { ResourceMods.ModifyItem(item, resource,           reduce, 0,  0,  0,  0, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.FurryFabric) { ResourceMods.ModifyItem(item, resource,      reduce, 0,  0,  3,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.WoolyFabric) { ResourceMods.ModifyItem(item, resource,      reduce, 0,  0, 24,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.SilkFabric) { ResourceMods.ModifyItem(item, resource,       reduce, 0,  0, 27,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.HauntedFabric) { ResourceMods.ModifyItem(item, resource,    reduce, 0,  0, 44,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.ArcticFabric) { ResourceMods.ModifyItem(item, resource,     reduce, 0,  0, 10,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.PyreFabric) { ResourceMods.ModifyItem(item, resource,       reduce, 0,  0, 6 ,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.VenomousFabric) { ResourceMods.ModifyItem(item, resource,   reduce, 0,  0, 40,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.MysteriousFabric) { ResourceMods.ModifyItem(item, resource, reduce, 0,  0, 25,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.VileFabric) { ResourceMods.ModifyItem(item, resource,       reduce, 0,  0, 17,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.DivineFabric) { ResourceMods.ModifyItem(item, resource,     reduce, 0,  0, 23,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.FiendishFabric) { ResourceMods.ModifyItem(item, resource,   reduce, 0,  0, 32,  3, 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
 
-			else if (resource == CraftResource.Fabric) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.FurryFabric) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.WoolyFabric) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.SilkFabric) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.HauntedFabric) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 44, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.ArcticFabric) { ResourceMods.ModifyItem(item, resource, reduce, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.PyreFabric) { ResourceMods.ModifyItem(item, resource, reduce, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.VenomousFabric) { ResourceMods.ModifyItem(item, resource, reduce, 22, 0, 40, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.MysteriousFabric) { ResourceMods.ModifyItem(item, resource, reduce, 27, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 10, 1, 0, 0, 0, 0, 15, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.VileFabric) { ResourceMods.ModifyItem(item, resource, reduce, 5, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 6, 0, 2, 0, 0, 6, 0, 5, 0, 0, 0, 0, 0, 0, 0, 10, 1, 0, 0, 15, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.DivineFabric) { ResourceMods.ModifyItem(item, resource, reduce, 1, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 4, 4, 2, 0, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.FiendishFabric) { ResourceMods.ModifyItem(item, resource, reduce, 14, 0, 99, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 5, 3, 0, 3, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 11, 1, 0, 0, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.AmethystBlock) { ResourceMods.ModifyItem(item, resource,   reduce, 32, 0, 11, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 1); }
+			else if (resource == CraftResource.EmeraldBlock) { ResourceMods.ModifyItem(item, resource,    reduce, 33, 0, 12, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 2,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.GarnetBlock) { ResourceMods.ModifyItem(item, resource,     reduce, 22, 0,  8, 4, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2,  0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.IceBlock) { ResourceMods.ModifyItem(item, resource,        reduce, 19, 0,  7, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 4,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.JadeBlock) { ResourceMods.ModifyItem(item, resource,       reduce, 22, 0,  9, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 0, 4,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.MarbleBlock) { ResourceMods.ModifyItem(item, resource,     reduce, 32, 0,  6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 4,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.OnyxBlock) { ResourceMods.ModifyItem(item, resource,       reduce, 5,  0, 22, 4, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 0, 0, 0, 1, 2, 0, 0, 0, 4,  0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.QuartzBlock) { ResourceMods.ModifyItem(item, resource,     reduce, 20, 0, 50, 4, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 2, 1, 0, 0, 0, 6,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.RubyBlock) { ResourceMods.ModifyItem(item, resource,       reduce, 24, 0, 49, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 3, 0, 0, 0, 6,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.SapphireBlock) { ResourceMods.ModifyItem(item, resource,   reduce, 28, 0, 13, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 0, 0, 2, 1, 0, 0, 0, 6,  0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.SilverBlock) { ResourceMods.ModifyItem(item, resource,     reduce, 1,  0,  1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 1, 2, 0, 0, 0, 6,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.SpinelBlock) { ResourceMods.ModifyItem(item, resource,     reduce, 35, 0, 51, 4, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 0, 0, 0, 0, 1, 2, 0, 0, 8,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.StarRubyBlock) { ResourceMods.ModifyItem(item, resource,   reduce, 12, 0, 26, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 3, 0, 0, 8,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.TopazBlock) { ResourceMods.ModifyItem(item, resource,      reduce, 10, 0, 28, 4, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 2, 1, 0, 0, 8,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.CaddelliteBlock) { ResourceMods.ModifyItem(item, resource, reduce, 27, 0, 32, 4, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 2, 0, 0, 0, 2, 0, 1, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 5, 1); }
 
-			else if (resource == CraftResource.AmethystBlock) { ResourceMods.ModifyItem(item, resource, reduce, 32, 0, 38, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 0); }
-			else if (resource == CraftResource.EmeraldBlock) { ResourceMods.ModifyItem(item, resource, reduce, 33, 0, 40, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.GarnetBlock) { ResourceMods.ModifyItem(item, resource, reduce, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.IceBlock) { ResourceMods.ModifyItem(item, resource, reduce, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.JadeBlock) { ResourceMods.ModifyItem(item, resource, reduce, 22, 0, 0, 0, 9, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.MarbleBlock) { ResourceMods.ModifyItem(item, resource, reduce, 0, 32, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.OnyxBlock) { ResourceMods.ModifyItem(item, resource, reduce, 0, 5, 36, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, 0, 0, 0, 0, 3, 0, 0, 5, 1, 1, 5, 5, 0, 0, 1, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.QuartzBlock) { ResourceMods.ModifyItem(item, resource, reduce, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 3, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.RubyBlock) { ResourceMods.ModifyItem(item, resource, reduce, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.SapphireBlock) { ResourceMods.ModifyItem(item, resource, reduce, 28, 0, 0, 0, 31, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.SilverBlock) { ResourceMods.ModifyItem(item, resource, reduce, 1, 0, 13, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 8, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.SpinelBlock) { ResourceMods.ModifyItem(item, resource, reduce, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.StarRubyBlock) { ResourceMods.ModifyItem(item, resource, reduce, 12, 0, 55, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 7, 7, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.TopazBlock) { ResourceMods.ModifyItem(item, resource, reduce, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.CaddelliteBlock) { ResourceMods.ModifyItem(item, resource, reduce, 27, 0, 99, 3, 32, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 5, 0); }
+			else if (resource == CraftResource.DemonSkin) { ResourceMods.ModifyItem(item, resource,       reduce, 11, 0, 17, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.DragonSkin) { ResourceMods.ModifyItem(item, resource,      reduce, 6,  0, 32, 4, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.NightmareSkin) { ResourceMods.ModifyItem(item, resource,   reduce, 0,  0, 44, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 25, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.SnakeSkin) { ResourceMods.ModifyItem(item, resource,       reduce, 8,  0, 40, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.TrollSkin) { ResourceMods.ModifyItem(item, resource,       reduce, 3,  0, 23, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 1); }
+			else if (resource == CraftResource.UnicornSkin) { ResourceMods.ModifyItem(item, resource,     reduce, 0,  0, 13, 4, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.IcySkin) { ResourceMods.ModifyItem(item, resource,         reduce, 19, 0, 42, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.LavaSkin) { ResourceMods.ModifyItem(item, resource,        reduce, 20, 0,  6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.Seaweed) { ResourceMods.ModifyItem(item, resource,         reduce, 34, 0, 19, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.DeadSkin) { ResourceMods.ModifyItem(item, resource,        reduce, 1,  0, 36, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 1); }
 
-			else if (resource == CraftResource.DemonSkin) { ResourceMods.ModifyItem(item, resource, reduce, 11, 0, 32, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.DragonSkin) { ResourceMods.ModifyItem(item, resource, reduce, 6, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.NightmareSkin) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0, 25, 25, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.SnakeSkin) { ResourceMods.ModifyItem(item, resource, reduce, 8, 0, 40, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.TrollSkin) { ResourceMods.ModifyItem(item, resource, reduce, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0); }
-			else if (resource == CraftResource.UnicornSkin) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 2, 0, 0, 3, 0, 0, 4, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 25, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.IcySkin) { ResourceMods.ModifyItem(item, resource, reduce, 19, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.LavaSkin) { ResourceMods.ModifyItem(item, resource, reduce, 20, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.Seaweed) { ResourceMods.ModifyItem(item, resource, reduce, 34, 0, 19, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.DeadSkin) { ResourceMods.ModifyItem(item, resource, reduce, 1, 0, 36, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0); }
-
-			else if (resource == CraftResource.BrittleSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.DrowSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.OrcSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.ReptileSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.OgreSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.TrollSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.GargoyleSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.MinotaurSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0, 0, 99, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.LycanSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 30, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.SharkSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 34, 0, 99, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.ColossalSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 31, 0, 99, 2, 22, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.MysticalSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 27, 0, 99, 2, 22, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 2, 1, 1, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.VampireSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 5, 0, 99, 2, 22, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 0, 2, 0, 0, 1, 0, 10, 0, 0, 0, 0, 0, 10, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.LichSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 1, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.SphinxSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 12, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.DevilSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 11, 0, 99, 3, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.DracoSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 6, 0, 99, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.XenoSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 2, 0, 99, 3, 22, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 1, 0); }
-			else if (resource == CraftResource.AndorianSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 3, 0, 99, 3, 22, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.CardassianSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 4, 0, 99, 3, 22, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0, 1, 0); }
-			else if (resource == CraftResource.MartianSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 7, 0, 99, 3, 22, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.RodianSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 8, 0, 99, 3, 22, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 0, 0, 0, 0, 1); }
-			else if (resource == CraftResource.TuskenSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 9, 0, 99, 3, 22, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 25, 0, 0, 0, 0); }
-			else if (resource == CraftResource.TwilekSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 16, 0, 35, 3, 39, 3, 16, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.XindiSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 17, 0, 99, 4, 48, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 10, 10, 0, 0, 0, 0, 0); }
-			else if (resource == CraftResource.ZabrakSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 29, 0, 99, 3, 48, 3, 38, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 10, 0, 0, 0, 2, 0); }
+			else if (resource == CraftResource.BrittleSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0 , 0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.DrowSkeletal) { ResourceMods.ModifyItem(item, resource,    reduce, 0 , 0, 33, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.OrcSkeletal) { ResourceMods.ModifyItem(item, resource,     reduce, 0 , 0, 28, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.ReptileSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 0 , 0, 45, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.OgreSkeletal) { ResourceMods.ModifyItem(item, resource,    reduce, 0 , 0, 14, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.TrollSkeletal) { ResourceMods.ModifyItem(item, resource,   reduce, 0 , 0,  3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.GargoyleSkeletal) { ResourceMods.ModifyItem(item, resource,reduce, 0 , 0, 34, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.MinotaurSkeletal) { ResourceMods.ModifyItem(item, resource,reduce, 0 , 0, 29, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.LycanSkeletal) { ResourceMods.ModifyItem(item, resource,   reduce, 30, 0,  1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.SharkSkeletal) { ResourceMods.ModifyItem(item, resource,   reduce, 34, 0, 19, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.ColossalSkeletal) { ResourceMods.ModifyItem(item, resource,reduce, 31, 0, 54, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); }
+			else if (resource == CraftResource.MysticalSkeletal) { ResourceMods.ModifyItem(item, resource,reduce, 27, 0, 33, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.VampireSkeletal) { ResourceMods.ModifyItem(item, resource, reduce, 5 , 0, 50, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, 0, 2, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 10, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.LichSkeletal) { ResourceMods.ModifyItem(item, resource,    reduce, 1 , 0, 36, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.SphinxSkeletal) { ResourceMods.ModifyItem(item, resource,  reduce, 12, 0, 31, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.DevilSkeletal) { ResourceMods.ModifyItem(item, resource,   reduce, 11, 0, 17, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 1); }
+			else if (resource == CraftResource.DracoSkeletal) { ResourceMods.ModifyItem(item, resource,   reduce, 6 , 0, 32, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1); }
 		}
 
 		public static void GetGemMods( GemType resource, Item item, bool reduce )
 		{
-			if ( resource == 	GemType.None	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
-			else if ( resource == 	GemType.Amber	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
-			else if ( resource == 	GemType.Citrine	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
-			else if ( resource == 	GemType.Ruby	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	5	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
-			else if ( resource == 	GemType.Tourmaline	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	3	,	0	,	0	,	4	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
-			else if ( resource == 	GemType.Amethyst	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	3	,	0	,	0	,	5	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
-			else if ( resource == 	GemType.Emerald	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	1	,	0	,	0	,	0	,	0	,	2	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	5	,	0	,	0	,	0	,	0	 ); }
-			else if ( resource == 	GemType.Sapphire	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	5	,	0	,	0	,	0	,	0	,	0	,	0	,	5	,	0	,	0	,	0	,	0	 ); }
-			else if ( resource == 	GemType.StarSapphire	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	0	,	0	,	0	,	5	,	0	,	0	,	6	,	0	,	0	,	8	,	0	,	1	 ); }
-			else if ( resource == 	GemType.Diamond	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	1	,	0	,	0	,	5	,	0	,	0	,	0	,	0	,	5	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
-			else if ( resource == 	GemType.Pearl	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	3	,	3	,	3	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	1	,	1	,	0	,	10	,	0	,	0	,	0	,	0	 ); }
+//																															regen	      defend   hit 		                      bonus                   weapon   weapon  spell   cast    cast                   reflect  enhance spell   night
+//                                                                                                                 hits    stam   mana    chance  chance   str      dex     int    hits   stam    mana    damage   speed   damage  reco    speed  LMC      LRC    phys     potions chan    sight
+			if ( resource == 	GemType.None	 )        { ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
+			else if ( resource == 	GemType.Amber	 )    { ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	0	,	0	,	0	,	1	,	1	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	5	,	0	,	0	,	0	 ); }
+			else if ( resource == 	GemType.Citrine	 )    { ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	3	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
+			else if ( resource == 	GemType.Ruby	 )    { ResourceMods.ModifyJewelry( item, resource, reduce, 	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	3	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
+			else if ( resource == 	GemType.Tourmaline	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	1	,	0	,	0	,	0	,	0	,	1	,	0	,	0	,	3	,	0	,	4	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
+			else if ( resource == 	GemType.Amethyst	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	0	,	0	,	0	,	0	,	0	,	3	,	0	,	0	,	0	,	0	,	0	,	5	,	0	,	0	,	4	,	0	,	0	,	0	,	0	,	0	 ); }
+			else if ( resource == 	GemType.Emerald	 )    { ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	0	,	0	,	0	,	3	,	0	,	0	,	0	,	0	,	0	,	5	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
+			else if ( resource == 	GemType.Sapphire	 ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	0	,	0	,	0	,	0	,	3	,	0	,	0	,	0	,	0	,	0	,	5	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	 ); }
+			else if ( resource == 	GemType.StarSapphire ){ ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	0	,	0	,	0	,	0	,	2	,	2	,	0	,	0	,	0	,	0	,	3	,	3	,	0	,	0	,	4	,	0	,	0	,	0	,	0	,	0	 ); }
+			else if ( resource == 	GemType.Diamond	 )    { ResourceMods.ModifyJewelry( item, resource, reduce, 	0	,	0	,	0	,	5	,	0	,	0	,	0	,	0	,	5	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	1	 ); }
+			else if ( resource == 	GemType.Pearl	 )    { ResourceMods.ModifyJewelry( item, resource, reduce, 	5	,	5	,	5	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	10	,	0	,	0	,	0	,	0	 ); }
 		}
 	}
 }
