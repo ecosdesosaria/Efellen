@@ -38,6 +38,7 @@ namespace Server.Mobiles
 		private Mobile m_LastTarget;
 		private DateTime m_NextSummonTime = DateTime.MinValue;
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
+		private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
 		[Constructable]
 		public PrinceOfDarkness () : base( AIType.AI_Mage, FightMode.Closest, 20, 1, 0.4, 0.8 )
@@ -151,9 +152,6 @@ namespace Server.Mobiles
 								int damage = Utility.RandomMinMax( 33, 44 );
 								AOS.Damage( m, this, damage, 0, 0, 100, 0, 0 );
 								m.PlaySound( 0x1FB );
-								int resist = (int)(m.Skills.MagicResist.Value);
-								// 2s at 125, 8s at 0 magic resist
-								double duration = 8.0 - (resist * (6.0 / 125.0));
 								m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) ) );
 							}
 						}
@@ -415,6 +413,20 @@ namespace Server.Mobiles
 			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 6.0 - (m_Rage * 0.5) );
 		}
 
+		public void RegisterSummon(BaseCreature bc)
+        {
+            if (bc == null)
+                return;
+
+            m_Summons.Add(bc);
+
+            Timer.DelayCall(TimeSpan.FromMinutes(1), delegate()
+            {
+                if (bc != null && !bc.Deleted && bc.Alive)
+                    bc.Delete();
+            });
+        }
+
 		private BaseCreature CreateMonster()
 		{
 			int rand = Utility.Random( 100 );
@@ -557,6 +569,24 @@ namespace Server.Mobiles
 			
 			return base.OnBeforeDeath();
 		}
+
+		public override void OnDelete()
+        {
+            CleanupSummons();
+            base.OnDelete();
+        }
+
+        private void CleanupSummons()
+        {
+            for (int i = 0; i < m_Summons.Count; i++)
+            {
+                BaseCreature bc = m_Summons[i];
+
+                if (bc != null && !bc.Deleted)
+                    bc.Delete();
+            }
+            m_Summons.Clear();
+        }
 
 		public override void OnDeath( Container c )
 		{
