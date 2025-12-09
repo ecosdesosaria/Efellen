@@ -1,7 +1,14 @@
 using System;
+using Server;
 using System.Collections;
-using Server.Items;
+using System.Collections.Generic;
 using Server.Targeting;
+using Server.Items;
+using Server.Network;
+using Server.ContextMenus;
+using Server.Gumps;
+using Server.Misc;
+using Server.Mobiles;
 
 namespace Server.Mobiles
 {
@@ -49,6 +56,21 @@ namespace Server.Mobiles
 
 			VirtualArmor = 52;
 		}
+
+		public override bool IsEnemy( Mobile m )
+	    {
+	    	if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
+	    		return false;   
+	    	if ( m.Region != this.Region )
+	    		return false;   
+	    	if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
+	    	{
+	    		this.Location = m.Location;
+	    		this.Combatant = m;
+	    		this.Warmode = true;
+	    	}   
+	    	return true;
+	    }
 
 		public override void GenerateLoot()
 		{

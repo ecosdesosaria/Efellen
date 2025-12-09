@@ -20,7 +20,7 @@ namespace Server.Mobiles
 		public static ArrayList ActiveKnights = new ArrayList();
 
 		[Constructable] 
-		public SkyKnight() : base(AIType.AI_Melee, FightMode.Evil, 10, 1, 0.2, 0.4 ) 
+		public SkyKnight() : base(AIType.AI_Melee, FightMode.Aggressor, 10, 1, 0.2, 0.4 ) 
 		{
 			Title = "the Sky Knight";
 			NameHue = 1154;
@@ -161,7 +161,11 @@ namespace Server.Mobiles
 		    {
 		        BaseMount mount = new EvilMount();
 		        mount.Body = 0x31F;
-		        mount.ItemID = 0x3EBE;		
+		        mount.ItemID = 0x3EBE;	
+				if(Utility.RandomDouble() < 0.35)
+				{
+					mount.Hue = 0x0672;
+				}	
 
 		        BaseMount.Ride(mount, this);
 		    }
@@ -290,6 +294,20 @@ namespace Server.Mobiles
 		    );
 		}
 
+		public override bool IsEnemy( Mobile m )
+	    {
+	    	if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
+	    		return false;   
+	    	if ( m.Region != this.Region )
+	    		return false;   
+	    	if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
+	    	{
+	    		this.Location = m.Location;
+	    		this.Combatant = m;
+	    		this.Warmode = true;
+	    	}   
+	    	return true;
+	    }
 
 
 		public SkyKnight( Serial serial ) : base( serial ) 
