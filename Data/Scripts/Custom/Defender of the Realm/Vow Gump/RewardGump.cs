@@ -29,8 +29,7 @@ namespace Server.Custom.DefenderOfTheRealm
             m_From = from;
             m_Page = page;
             m_Type = type;
-            int hue = 0;
-
+        
             List<RewardInfo> list = new List<RewardInfo>();
             list.AddRange(RewardTables.CommonRewards);
             

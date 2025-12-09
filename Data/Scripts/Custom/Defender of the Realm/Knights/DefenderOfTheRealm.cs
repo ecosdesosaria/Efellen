@@ -8,7 +8,6 @@ using Server.Misc;
 using Server.Gumps; 
 using Server.Network; 
 using Server.Targeting; 
-using Server.ContextMenus;
 using Server.Custom.DefenderOfTheRealm.Vow;
 
 namespace Server.Custom.DefenderOfTheRealm.Knight

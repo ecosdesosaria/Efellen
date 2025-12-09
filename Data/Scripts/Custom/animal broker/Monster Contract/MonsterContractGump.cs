@@ -74,14 +74,7 @@ namespace Server.Gumps
 		}
 		
 		protected override void OnTarget( Mobile from, object o )
-		{
-            if ( MCparent == null || from == null || o == null || MCparent.Monster == null)
-            {
-                Console.WriteLine( "MonsterContract: Sa bug !! Mais o�, on sait pas :p" );
-                return;
-            }
-			
-			
+		{		
 			if ( o is BaseCreature )
 			{
 				BaseCreature pet = (BaseCreature)o;
