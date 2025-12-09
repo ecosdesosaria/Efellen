@@ -99,16 +99,13 @@ namespace Server.Items
         {
             base.Serialize(writer);
             writer.Write((int)0); // version
-            writer.Write(m_NextHeadshot);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             ArtifactLevel = 2;
-
-            int version = reader.ReadInt();
-            m_NextHeadshot = reader.ReadDateTime();
+        int version = reader.ReadInt();
         }
     }
 }

@@ -65,15 +65,13 @@ namespace Server.Items
 		{
 			base.Serialize( writer );
 			writer.Write( (int) 1 );
-            writer.Write( TimeUsed );
-		}
+        }
 		
 		public override void Deserialize(GenericReader reader)
 		{
 			base.Deserialize( reader );
 			ArtifactLevel = 2;
 			int version = reader.ReadInt();
-			TimeUsed = reader.ReadDateTime();
 		}
 	}
 }

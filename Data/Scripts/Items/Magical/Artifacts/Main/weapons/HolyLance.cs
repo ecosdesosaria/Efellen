@@ -61,7 +61,6 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-
 			writer.Write( (int) 0 );
 		}
 		
@@ -69,7 +68,6 @@ namespace Server.Items
 		{
 			base.Deserialize( reader );
 			ArtifactLevel = 2;
-
 			int version = reader.ReadInt();
 		}
 	}

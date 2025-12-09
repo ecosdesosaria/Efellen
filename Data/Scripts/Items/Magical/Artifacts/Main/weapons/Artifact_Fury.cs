@@ -107,36 +107,13 @@ namespace Server.Items
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-
             writer.Write((int)1); // version
-
-            // Save cooldowns
-            writer.Write(m_Cooldowns.Count);
-            foreach (DictionaryEntry entry in m_Cooldowns)
-            {
-                writer.Write((Mobile)entry.Key);
-                writer.Write((DateTime)entry.Value);
-            }
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
-            m_Cooldowns = new Hashtable();
-
-            if (version >= 1)
-            {
-                int count = reader.ReadInt();
-                for (int i = 0; i < count; i++)
-                {
-                    Mobile m = reader.ReadMobile();
-                    DateTime next = reader.ReadDateTime();
-
-                    if (m != null)
-                        m_Cooldowns[m] = next;
-                }
-            }
             ArtifactLevel = 2;
         }
     }

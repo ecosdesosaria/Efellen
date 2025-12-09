@@ -151,16 +151,12 @@ namespace Server.Items
         {
             base.Serialize(writer);
             writer.Write((int)2); 
-            writer.Write(m_LastHeal);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
-            if (version >= 2)
-                m_LastHeal = reader.ReadDateTime();
-
             ArtifactLevel = 2;
         }
     }

@@ -58,17 +58,12 @@ namespace Server.Items
 			base.Serialize( writer );
 
 			writer.Write( (int) 0 );
-			writer.Write(m_NextArtifactAttackAllowed);
 		}
 		
 		public override void Deserialize(GenericReader reader)
 		{
 			base.Deserialize(reader);
 			int version = reader.ReadInt();
-
-			if (version >= 0)
-				m_NextArtifactAttackAllowed = reader.ReadDateTime();
-
 			ArtifactLevel = 2;
 		}
 	}

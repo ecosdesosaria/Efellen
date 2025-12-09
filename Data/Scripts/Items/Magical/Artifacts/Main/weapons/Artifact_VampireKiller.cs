@@ -60,16 +60,13 @@ namespace Server.Items
 		{
 			base.Serialize( writer );
 			writer.Write( (int) 1 ); // version
-            writer.Write(m_NextParalyze);
-		}
+        }
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			ArtifactLevel = 2;
 			int version = reader.ReadInt();
-            if (version >= 1)
-                m_NextParalyze = reader.ReadDateTime();
-		}
+        }
 	}
 }

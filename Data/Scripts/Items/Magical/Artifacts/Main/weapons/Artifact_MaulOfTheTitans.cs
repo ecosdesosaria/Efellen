@@ -108,7 +108,6 @@ namespace Server.Items
 		{
 			base.Deserialize( reader );
 			ArtifactLevel = 2;
-
 			int version = reader.ReadInt();
 		}
 	}

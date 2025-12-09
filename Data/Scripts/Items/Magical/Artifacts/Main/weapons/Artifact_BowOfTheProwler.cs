@@ -64,7 +64,6 @@ namespace Server.Items
             dmg += (int)(attacker.Str / 10.0);
             dmg = (int)(dmg * (0.5 + (tactics * 0.005)));
             dmg = (int)(dmg * (1.0 + (anatomy * 0.005)));
-            // Apply damageScalar
             dmg = (int)(dmg * (1.0 + damageBonus));
             // Velocity
             int dist = (int)attacker.GetDistanceToSqrt(defender);
@@ -89,7 +88,6 @@ namespace Server.Items
         {
             base.Serialize(writer);
             writer.Write((int)0); // version
-            writer.Write(m_NextHeadshot);
         }
 
         public override void Deserialize(GenericReader reader)
@@ -98,7 +96,6 @@ namespace Server.Items
             ArtifactLevel = 2;
 
             int version = reader.ReadInt();
-            m_NextHeadshot = reader.ReadDateTime();
         }
 	}
 }

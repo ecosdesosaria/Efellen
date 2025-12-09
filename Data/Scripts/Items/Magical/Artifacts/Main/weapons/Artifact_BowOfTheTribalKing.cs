@@ -107,21 +107,13 @@ namespace Server.Items
 		{
 			base.Serialize(writer);
 			writer.Write((int)0);
-
-			writer.Write(m_NextArtifactBuff);
-			writer.Write(m_BuffActive);
 		}
 
 		public override void Deserialize(GenericReader reader)
 		{
 			base.Deserialize(reader);
 			ArtifactLevel = 2;
-
 			int version = reader.ReadInt();
-
-			m_NextArtifactBuff = reader.ReadDateTime();
-			m_BuffActive = reader.ReadBool();
-
 			if (Slayer == SlayerName.None)
 				Slayer = SlayerName.ReptilianDeath;
 		}
