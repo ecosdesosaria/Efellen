@@ -2,23 +2,16 @@ using System;
 using Server;
 using Server.Gumps;
 using Server.Mobiles;
+using Server.Custom.DefenderOfTheRealm.Vow;
 
 namespace Server.Items
 {
 	[Flipable( 0x14EF, 0x14F0 )]
 	public class TamingBOD : Item
 	{
-		//private int m_monster;
 		private int reward;
 		private int m_amount;
 		private int m_tamed;
-		
-		/*[CommandProperty( AccessLevel.GameMaster )]
-		public int Monster
-		{
-			get{ return m_monster; }
-			set{ m_monster = value; }
-		}*/
 		
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int Reward
@@ -56,7 +49,7 @@ namespace Server.Items
 			else 
 				AmountToTame = Utility.RandomMinMax( 1, 5 );
 
-			Reward = 0;//GetValue( price ) * AmountToTame ;
+			Reward = 0;
 			Name = "Contract: " + AmountToTame + " creatures";
 			AmountTamed = 0;
 		}
@@ -66,7 +59,6 @@ namespace Server.Items
 		{
 			Weight = 1;
 			Movable = true;
-			//Monster = monster;
 			AmountToTame = atk;
 			Reward = 0;
 			Name = "Contract: " + AmountToTame + " creatures";
@@ -105,107 +97,133 @@ namespace Server.Items
 		{
 			int reward = 0;
 			if (goldAmount < 1000)
-				reward = Utility.RandomMinMax(0, 60); // 100% nothing
+			{
+				reward = Utility.RandomMinMax(0, 60);
+			}
 			else if (goldAmount < 5000)
-				reward = Utility.RandomMinMax(50, 250); // 20% nothing, 80% easy
+			{
+				reward = Utility.RandomMinMax(50, 250);
+			}
 			else if (goldAmount < 10000)
-				reward = Utility.RandomMinMax(100, 350); // 60% easy // 40% medium
+			{
+				reward = Utility.RandomMinMax(100, 350);
+			}
 			else if (goldAmount < 30000)
-				reward = Utility.RandomMinMax(200, 400); // 25% easy // 62% medium // 13% rare
+			{
+				reward = Utility.RandomMinMax(200, 400);
+			}
 			else if (goldAmount < 60000)
-				reward = Utility.RandomMinMax(300, 500); // 37% medium // 48% rare // 15% impossible
+			{
+				reward = Utility.RandomMinMax(300, 500);
+			}
 			else if (goldAmount < 100000)
-				reward = Utility.RandomMinMax(400, 510); // 70% rare // 30% impossible
+			{
+				reward = Utility.RandomMinMax(400, 510);
+			}
 			else if (goldAmount < 120000)
-				reward = Utility.RandomMinMax(450, 525); // 40% rare // 60% impossible
+			{
+				reward = Utility.RandomMinMax(450, 525);
+			}
 			else if (goldAmount >= 160000)
-				reward = Utility.RandomMinMax(490, 600); // 40% rare // 60% impossible
-				
+			{
+				reward = Utility.RandomMinMax(475, 600);
+			}
+
 			if (500 < reward)  // impossible finds
 			{
-				switch ( Utility.Random( 62 ) ) // 8%
+				if(Utility.RandomDouble() < 0.05)
 				{
-					case 0: return new ParagonPetDeed();
-					case 1: return new PowerScroll( SkillName.Druidism, 125);
-					case 2: return new PowerScroll( SkillName.Taming, 125);
-					case 3: return Construct( m_MegaRareMorph ) as Item;
+					return new ParagonPetDeed();
+				} 
+				else if (Utility.RandomDouble() < 0.15)
+				{
+					return Construct( m_MegaRareMorph ) as Item;
 				}
 			}
 
 			if (470 < reward)  // impossible finds
 			{
-				switch ( Utility.Random( 140 ) ) // 5%
+				if(Utility.RandomDouble() < 0.01)
 				{
-					case 0: return new ParagonPetDeed();
-					case 1: return new PetDyeTub();
-					case 2: return new PowerScroll( SkillName.Druidism, 120);
-					case 3: return new PowerScroll( SkillName.Taming, 120);
-					case 4: return new PetGrowthDeedStrong( );
-					case 5: return Construct( m_RareMorph ) as Item;
-					case 6: return new PetEasingDeed();
+					return new ParagonPetDeed();
+				} 
+				else if (Utility.RandomDouble() < 0.05)
+				{
+					return new PetEasingDeed();
+				}
+				else if (Utility.RandomDouble() < 0.15)
+				{
+					return new PetDyeTub();
+				}
+				else if (Utility.RandomDouble() < 0.20)
+				{
+					return new PetGrowthDeedStrong();
+				}
+				else if (Utility.RandomDouble() < 0.25)
+				{
+					return Construct( m_RareMorph ) as Item;
 				}
 			}
 
 			if (375 < reward) // rare finds
 			{
-				switch ( Utility.Random( 150 ) ) // 10%
-				{						
-					case 0: return new PetEasingDeed();
-					case 1: return new PetBondDeed();
-					case 2: return new BallOfSummoning();
-					case 3: return new BraceletOfBinding();
-					case 4: return new PowerScroll( SkillName.Druidism, 115);
-					case 5: return new PowerScroll( SkillName.Taming, 115);
-					case 6: return new AlienEgg( );
-					case 7: return new DragonEgg( );
-					case 8: return new PetGrowthDeedMid( );
-					case 9: return Construct( m_MidMorph ) as Item;
-					case 10: return Construct( m_RareMorph ) as Item;
+				if(Utility.RandomDouble() < 0.05)
+				{
+					return new PetEasingDeed();
+				} 
+				else if (Utility.RandomDouble() < 0.10)
+				{
+					return new BallOfSummoning();
+				}
+				else if (Utility.RandomDouble() < 0.20)
+				{
+					return new BraceletOfBinding();
+				}
+				else if (Utility.RandomDouble() < 0.30)
+				{
+					return new PetGrowthDeedMid();
+				}
+				else if (Utility.RandomDouble() < 0.35)
+				{
+					return Construct( m_MidMorph ) as Item;
 				}
 			}
 
 			if (250 < reward) // medium finds
 			{
-				switch ( Utility.Random( 140 ) ) // 10%
+				if(Utility.RandomDouble() < 0.05)
 				{
-					case 0: return new PetTrainer();
-					case 1: return new MossGreenPetDye();
-					case 2: return new FrostBluePetDye();
-					case 3: return new BlazePetDye();
-					case 4: return new IceWhitePetDye();
-					case 5: return new IceBluePetDye();
-					case 6: return new IceGreenPetDye();
-					case 7: return new PetControlDeed();
-					case 8: return new PowerScroll( SkillName.Druidism, 110);
-					case 9: return new PowerScroll( SkillName.Taming, 110);
-					case 10: return new PetGrowthDeedWeak( );
-					case 11: return Construct( m_LowMorph ) as Item;
-					case 12: return Construct( m_MidMorph ) as Item;
+					return new PetControlDeed();
+				} 
+				else if (Utility.RandomDouble() < 0.10)
+				{
+					return new PetTrainer();
+				}
+				else if (Utility.RandomDouble() < 0.30)
+				{
+					return new PetGrowthDeedWeak();
+				}
+				else if (Utility.RandomDouble() < 0.35)
+				{
+					return Construct( m_LowMorph ) as Item;
 				}
 			}
 			
 			if (100 < reward)// easy finds
 			{
-				switch ( Utility.Random( 150 ) ) // 10% chance
+				if(Utility.RandomDouble() < 0.05)
 				{
-					case 0: return new BluePetDye();
-					case 1: return new GreenPetDye();
-					case 2: return new OrangePetDye();
-					case 3: return new PurplePetDye();
-					case 4: return new RedPetDye();
-					case 5: return new YellowPetDye();
-					case 6: return new BlackPetDye();
-					case 7: return new WhitePetDye();
-					case 8: return new BloodPetDye();
-					case 9: return new GoldPetDye();
-					case 10: return new PinkPetDye();
-					case 11: return new PowderOfTranslocation(10);
-					case 12: return new PetGrowthDeedWeak( );
-					case 13: return Construct( m_LowMorph ) as Item;
-					case 14: return Construct( m_LowMorph ) as Item;
-				}									
+					return new PowderOfTranslocation(10);
+				} 
+				else if (Utility.RandomDouble() < 0.30)
+				{
+					return new PetGrowthDeedWeak();
+				}
+				else if (Utility.RandomDouble() < 0.35)
+				{
+					return Construct( m_LowMorph ) as Item;
+				}
 			}
-
 			return null;
 		}
 
@@ -213,16 +231,60 @@ namespace Server.Items
 		{
 			if ( MCparent.AmountTamed >= MCparent.AmountToTame)
 			{
-				Item shelf = TryGetItem(MCparent.Reward);
 				Container backpack = m_from.Backpack;
-				if (shelf != null)
+				
+				Container rewardBag = new Bag();
+				rewardBag.Name = "Druidic satchel";
+				rewardBag.Hue = 669;
+				
+				Item specialItem = TryGetItem(MCparent.Reward);
+				if (specialItem != null)
 				{
-					backpack.DropItem( shelf );	
-					m_from.SendMessage("You got a special drop!");		
-				}			
-						
-				backpack.DropItem( new BankCheck( MCparent.Reward ) );	
-				m_from.SendMessage("Your reward was placed in your bag.");	
+					rewardBag.DropItem(specialItem);
+					m_from.SendMessage("You got a special drop!");
+				}
+				
+				int goldAmount = MCparent.Reward;
+				PlayerMobile druid = m_from as PlayerMobile;
+				
+				if(druid.NpcGuild == NpcGuild.DruidsGuild)
+				{
+					if (goldAmount < 1000)
+					{
+						VowRewardHelper.GenerateRewards(m_from, 5, rewardBag, VowType.Wilds);
+						rewardBag.DropItem(new MarksOfTheWilds(Utility.RandomMinMax(10, 25)));
+					}
+					else if (goldAmount < 10000)
+					{
+						VowRewardHelper.GenerateRewards(m_from, 10, rewardBag, VowType.Wilds);
+						rewardBag.DropItem(new MarksOfTheWilds(Utility.RandomMinMax(35, 75)));
+					}
+					else if (goldAmount < 30000)
+					{
+						VowRewardHelper.GenerateRewards(m_from, 20, rewardBag, VowType.Wilds);
+						rewardBag.DropItem(new MarksOfTheWilds(Utility.RandomMinMax(105, 145)));
+					}
+					else if (goldAmount < 60000)
+					{
+						VowRewardHelper.GenerateRewards(m_from, 30, rewardBag, VowType.Wilds);
+						rewardBag.DropItem(new MarksOfTheWilds(Utility.RandomMinMax(185, 225)));
+					}
+					else if (goldAmount < 100000)
+					{
+						VowRewardHelper.GenerateRewards(m_from, 40, rewardBag, VowType.Wilds);
+						rewardBag.DropItem(new MarksOfTheWilds(Utility.RandomMinMax(285, 345)));
+					}
+					else if (goldAmount >= 160000)
+					{
+						VowRewardHelper.GenerateRewards(m_from, 50, rewardBag, VowType.Wilds);
+						rewardBag.DropItem(new MarksOfTheWilds(Utility.RandomMinMax(425, 500)));
+					}
+				}
+				rewardBag.DropItem(new BankCheck(MCparent.Reward));
+				
+				backpack.DropItem(rewardBag);
+				m_from.SendMessage("Your reward was placed in your bag.");
+			
 				return true;
 			}
 			else
@@ -231,7 +293,7 @@ namespace Server.Items
 			}	
 
 			return false;				
-		}
+		}		
 
 		private static Type[] m_LowMorph = new Type[]
 			{

@@ -34,6 +34,10 @@ namespace Server.Custom.DefenderOfTheRealm
                     m_CurrencyType = "Marks of the Shadowbroker";
                     m_Hue = 1109;
                     break;
+                case 4:
+                    m_CurrencyType = "Marks of the Wilds";
+                    m_Hue = 669;
+                    break;
                 default:
                     m_CurrencyType = "Marks";
                     m_Hue = 0;
@@ -74,6 +78,9 @@ namespace Server.Custom.DefenderOfTheRealm
                     break;
                 case 3:
                     markType = typeof(MarksOfTheShadowbroker);
+                    break;
+                case 4:
+                    markType = typeof(MarksOfTheWilds);
                     break;
             }
 

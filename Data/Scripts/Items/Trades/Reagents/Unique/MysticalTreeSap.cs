@@ -6,7 +6,7 @@ namespace Server.Items
 {
 	public class MysticalTreeSap : Item
 	{
-		public override string DefaultDescription{ get{ return "This is a rare sap that comes from living trees. Carpenters use it to hold pieces of wood together when creating wearable armor."; } }
+		public override string DefaultDescription{ get{ return "This is a rare sap that comes from living trees. Carpenters use it to hold pieces of wood together when creating wearable armor. It's also highly valuable to powerful druids."; } }
 
 		[Constructable]
 		public MysticalTreeSap() : this( 1 )

@@ -67,7 +67,7 @@ namespace Server.Items
 				m_Book = wikipedia;
 				string color = "#d6c382";
 
-				int NumberOfArtifacts = 354; // SEE LISTING BELOW AND MAKE SURE IT MATCHES THE AMOUNT
+				int NumberOfArtifacts = 349; // SEE LISTING BELOW AND MAKE SURE IT MATCHES THE AMOUNT
 				decimal PageCount = NumberOfArtifacts / 16;
 				int TotalBookPages = ( 100000 ) + ( (int)Math.Ceiling( PageCount ) );
 
@@ -492,11 +492,6 @@ namespace Server.Items
 			if ( artifact == arty) { name="Artifact_NatureVengeanceLeggings"; item="Leggings of Natural Vengeance";} arty++;
 			if ( artifact == arty) { name="Artifact_NatureVengeanceArms"; item="Arms of Natural Vengeance";} arty++;
 			if ( artifact == arty) { name="Artifact_NatureVengeanceGloves"; item="Gloves of Natural Vengeance";} arty++;
-			if ( artifact == arty) { name="Artifact_NatureMasterHeaddress"; item="Headdress of the Nature's Master";} arty++;
-			if ( artifact == arty) { name="Artifact_NatureMasterCoat"; item="Coat of the Nature's Master";} arty++;
-			if ( artifact == arty) { name="Artifact_NatureMasterLeggings"; item="Leggings of the Nature's Master";} arty++;
-			if ( artifact == arty) { name="Artifact_NatureMasterArms"; item="Arms of the Nature's Master";} arty++;
-			if ( artifact == arty) { name="Artifact_NatureMasterGloves"; item="Gloves of the Nature's Master";} arty++;
 			if ( artifact == arty) { name="Artifact_ANecromancerShroud"; item="Necromancer Shroud"; } arty++;
 			if ( artifact == arty) { name="Artifact_TheNightReaper"; item="Night Reaper"; } arty++;
 			if ( artifact == arty) { name="Artifact_VampiresRobe"; item="Nosferatu's Robe"; } arty++;
