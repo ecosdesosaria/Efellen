@@ -6651,12 +6651,7 @@ namespace Server.Mobiles
 			if ( ourSkill == null || theirSkill == null )
 				return TeachResult.Failure;
 
-			int baseToSet = ourSkill.BaseFixedPoint / 3;
-
-			if ( baseToSet > 420 )
-				baseToSet = 420;
-			else if ( baseToSet < 200 )
-				return TeachResult.Failure;
+			int baseToSet = 500;
 
 			if ( baseToSet > theirSkill.CapFixedPoint )
 				baseToSet = theirSkill.CapFixedPoint;

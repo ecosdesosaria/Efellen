@@ -56,6 +56,7 @@ namespace Server.Misc
 		+ "<br>"
         + "* NPCS:<br>"
 		+"	- NPCS have a lot more to say now. About 400 new things to say. Go fight them!<br>"
+		+"  - NPCS that offer training can now train skills up to 50 instead of up to 42.<br>"
 		+ "<br>"
 		+ "* Tamers:<br>"
 		+"	- adds marks of the wilds to the game."
