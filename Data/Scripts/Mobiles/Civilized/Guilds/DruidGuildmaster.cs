@@ -242,6 +242,34 @@ namespace Server.Mobiles
 		private DateTime m_NextResurrect;
 		private static TimeSpan ResurrectDelay = TimeSpan.FromSeconds( 2.0 );
 
+		public override void OnSpeech(SpeechEventArgs e)
+        {
+            Mobile from = e.Mobile;
+			
+            if (from == null || !(from is PlayerMobile))
+                return;
+          
+            if( e.Mobile.InRange( this, 4 ))
+			{
+			    if (e.Speech.IndexOf("reward") >= 0)
+                {
+					if (from is PlayerMobile && ((PlayerMobile)from).NpcGuild == NpcGuild.DruidsGuild)
+                    {
+                        from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(from, 4, 0));
+                        Say("These are the gifts I can bestow thee, " + (from.Female ? "sister." : "brother."));
+                    }
+                    else
+                    {
+                        Say("I only trust those that are in good standing with our order, friend.");
+                    }
+                }
+			    else 
+			    { 
+			        base.OnSpeech( e ); 
+			    }
+			}
+        }
+
 		public override void OnMovement( Mobile m, Point3D oldLocation )
 		{
 			if ( !m.Frozen && DateTime.Now >= m_NextResurrect && InRange( m, 4 ) && !InRange( oldLocation, 4 ) && InLOS( m ) )

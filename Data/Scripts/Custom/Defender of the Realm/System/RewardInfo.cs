@@ -43,6 +43,10 @@ namespace Server.Custom.DefenderOfTheRealm
                 {
                     item.Hue = 1109;
                 }
+                else if (type == 4)
+                {
+                    item.Hue = 669;
+                }
             }
             return item;
         }

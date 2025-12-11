@@ -371,8 +371,6 @@ namespace Server.Mobiles
 			
 			private bool CanGetContract(PlayerMobile asker)
 			{
-				//if(asker.AccessLevel > AccessLevel.Player)return true;
-				
 				if(!LastUsers.ContainsKey(asker))
 				{
 					LastUsers.Add(asker,DateTime.UtcNow);

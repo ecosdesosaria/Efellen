@@ -57,6 +57,12 @@ namespace Server.Custom.DefenderOfTheRealm
                     m_Hue = 1109;
                     list.AddRange(RewardTables.ShadowbrokerRewards);
                     break;
+                 case 4:
+                    AddLabel(160, 20, 1152, "Druidic Rewards");
+                    m_CurrencyType = "Marks of the Wilds";
+                    m_Hue = 669;
+                    list.AddRange(RewardTables.NatureMasterRewards);
+                    break;
 
                 default:
                     AddLabel(160, 20, 1152, "Rewards");
@@ -82,7 +88,6 @@ namespace Server.Custom.DefenderOfTheRealm
 
                 y += 50;
             }
-
 
             if (page > 0)
                 AddButton(100, 380, 4014, 4016, 1, GumpButtonType.Reply, 0); // prev

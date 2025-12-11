@@ -9,7 +9,8 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
     {
         Honor,
         Scourge,
-        Shadowbroker
+        Shadowbroker,
+        Wilds
     }
 
     public static class VowRewardHelper
@@ -84,7 +85,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 rewardBag.DropItem(Loot.RandomPotion(8, false));
                 if (Utility.RandomDouble() < 0.20)
                 {
-                    rewardBag.DropItem(PowerScroll.CreateRandom(5, 10));
+                    rewardBag.DropItem(new EtherealPowerScroll());
                 }
                 if (Utility.RandomDouble() < 0.40)
                 {
@@ -99,7 +100,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 rewardBag.DropItem(Loot.RandomPotion(12, false));
                 if (Utility.RandomDouble() < 0.40)
                 {
-                    rewardBag.DropItem(PowerScroll.CreateRandom(5, 10));
+                    rewardBag.DropItem(new EtherealPowerScroll());
                 }
                 if (Utility.RandomDouble() < 0.60)
                 {
@@ -115,7 +116,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 }
                 if (Utility.RandomDouble() < 0.60)
                 {
-                    rewardBag.DropItem(PowerScroll.CreateRandom(5, 10));
+                    rewardBag.DropItem(new EtherealPowerScroll());
                 }
                 if (Utility.RandomDouble() < 0.80)
                 {
@@ -132,11 +133,11 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 }
                 if (Utility.RandomDouble() < 0.80)
                 {
-                    rewardBag.DropItem(PowerScroll.CreateRandom(5, 10));
+                    rewardBag.DropItem(new EtherealPowerScroll());
                 }
                 if (Utility.RandomDouble() < 0.20)
                 {
-                    rewardBag.DropItem(PowerScroll.CreateRandom(10, 15));
+                    rewardBag.DropItem(new EtherealPowerScroll());
                 }
                 rewardBag.DropItem(ScrollofTranscendence.CreateRandom(5, 15));
                 if (Utility.RandomDouble() < 0.20)
@@ -152,10 +153,10 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 {
                     rewardBag.DropItem(Loot.RandomSArty(Server.LootPackEntry.playOrient(from), from));
                 }
-                rewardBag.DropItem(PowerScroll.CreateRandom(5, 10));
+                rewardBag.DropItem(new EtherealPowerScroll());
                 if (Utility.RandomDouble() < 0.40)
                 {
-                    rewardBag.DropItem(PowerScroll.CreateRandom(10, 15));
+                    rewardBag.DropItem(new EtherealPowerScroll());
                 }
                 if (Utility.RandomDouble() < 0.40)
                 {
@@ -174,8 +175,8 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 {
                     rewardBag.DropItem(Loot.RandomRare(Utility.RandomMinMax(6, 12), from));
                 }
-                rewardBag.DropItem(PowerScroll.CreateRandom(5, 10));
-                rewardBag.DropItem(PowerScroll.CreateRandom(10, 15));
+                rewardBag.DropItem(new EtherealPowerScroll());
+                rewardBag.DropItem(new EtherealPowerScroll());
                 if (Utility.RandomDouble() < 0.60)
                 {
                     rewardBag.DropItem(ScrollofTranscendence.CreateRandom(5, 25));
@@ -183,7 +184,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 }
                 if (Utility.RandomDouble() < 0.40)
                 {
-                    rewardBag.DropItem(PowerScroll.CreateRandom(15, 25));
+                    rewardBag.DropItem(new EtherealPowerScroll());
                 }
                 if(Utility.RandomDouble() < 0.05 )
                 {
@@ -197,9 +198,9 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 rewardBag.DropItem(Loot.RandomSArty(Server.LootPackEntry.playOrient(from), from));
                 rewardBag.DropItem(Loot.RandomRelic(from));
                 rewardBag.DropItem(Loot.RandomRare(Utility.RandomMinMax(6, 12), from));
-                rewardBag.DropItem(PowerScroll.CreateRandom(5, 10));
-                rewardBag.DropItem(PowerScroll.CreateRandom(10, 15));
-                rewardBag.DropItem(PowerScroll.CreateRandom(15, 25));
+                rewardBag.DropItem(new EtherealPowerScroll());
+                rewardBag.DropItem(new EtherealPowerScroll());
+                rewardBag.DropItem(new EtherealPowerScroll());
                 rewardBag.DropItem(ScrollofTranscendence.CreateRandom(5, 25));
                 rewardBag.DropItem(ScrollofTranscendence.CreateRandom(5, 25));
                 GenerateEnchantedItem(from, 500, rewardBag);
@@ -333,6 +334,26 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                         return new Artifact_ShadowBrokerLeggings();
                     default: //hacky, need to think of a better implementation
                         return new Artifact_ShadowBrokerArms();
+                }
+            }
+            else if (type == VowType.Wilds)
+            {
+                switch (Utility.Random(5))
+                {
+                    case 0: 
+                        return new Artifact_NatureMasterArms();
+                    case 1: 
+                        return new Artifact_NatureMasterCoat();
+                    case 2: 
+                        return new Artifact_NatureMasterGloves();
+                    case 3: 
+                        return new Artifact_NatureMasterHeaddress();
+                    case 4: 
+                        return new Artifact_ShadowBrokerCap();
+                    case 5: 
+                        return new Artifact_NatureMasterLeggings();
+                    default: //hacky, need to think of a better implementation
+                        return new Artifact_NatureMasterArms();
                 }
             }
 

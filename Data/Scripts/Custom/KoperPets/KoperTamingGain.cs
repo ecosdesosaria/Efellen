@@ -10,9 +10,11 @@ namespace Server.Custom.KoperPets
     public static class PetTamingSkillGain
     {
         private static Dictionary<PlayerMobile, DateTime> _tamingCooldowns = new Dictionary<PlayerMobile, DateTime>();
+        private static Dictionary<PlayerMobile, DateTime> _markGainCooldowns = new Dictionary<PlayerMobile, DateTime>();
 
-        private static readonly TimeSpan TamingCooldown = TimeSpan.FromSeconds(MyServerSettings.KoperCooldown()); //  Set cooldown time (20 Seconds default)
-
+        private static readonly TimeSpan TamingCooldown = TimeSpan.FromSeconds(MyServerSettings.KoperCooldown());
+        private static readonly TimeSpan MarkGainCooldown = TimeSpan.FromSeconds(120);
+        
         private static readonly string[] TamingMessages = new string[]
         {
             "*{0} seems to trust their master more.*",
@@ -98,7 +100,6 @@ namespace Server.Custom.KoperPets
             {
                 if (DateTime.UtcNow < lastGainTime + TamingCooldown)
                 {
-                    //owner.SendMessage("You must wait before gaining more taming experience."); // debug line
                     return; // Player is still on cooldown, exit without gaining skill
                 }
             }
@@ -106,7 +107,32 @@ namespace Server.Custom.KoperPets
             double tamingSkill = owner.Skills[SkillName.Taming].Base;
             double gainChance = 0.0;
             double tamingMultiplier = MyServerSettings.KoperTamingChance();  // Determine gain chance and amount based on skill level
-          
+
+            DateTime lastMarkGainTime;
+            bool canGainMarks = true;
+            
+            if (_markGainCooldowns.TryGetValue(owner, out lastMarkGainTime))
+            {
+                if (DateTime.UtcNow < lastMarkGainTime + MarkGainCooldown)
+                {
+                    canGainMarks = false;
+                }
+            }
+
+            if (canGainMarks && owner.Skills[SkillName.Druidism].Base > Utility.RandomMinMax(20, 146) && owner.NpcGuild == NpcGuild.DruidsGuild)
+            {
+                double amount = (owner.Skills[SkillName.Druidism].Base + owner.Skills[SkillName.Taming].Base + owner.Skills[SkillName.Herding].Base + owner.Skills[SkillName.Veterinary].Base) / 45;
+                int marks = amount > 2 ? Utility.RandomMinMax((int)amount / 2, (int)amount) : 0;
+                
+                if (marks > 0)
+                {
+                    owner.AddToBackpack(new MarksOfTheWilds(marks));
+                    owner.SendMessage(string.Format("You gained {0} Marks of the wilds.", marks));
+                    
+                    _markGainCooldowns[owner] = DateTime.UtcNow;
+                }
+            }
+		
             // Determine gain chance and amount based on skill level
             if (tamingMultiplier <= 0) tamingMultiplier = 1.0; // Ensure valid value
             if (tamingMultiplier >= 10) tamingMultiplier = 10.0; // Ensure valid value
