@@ -26,7 +26,7 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public WarGriffon( string name ) : base( name, 0x31F, 0x3EBE, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
+		public WarGriffon( string name ) : base( name, 0x31F, 0x3EBE, AIType.AI_Animal, FightMode.Evil, 10, 1, 0.2, 0.4 )
 		{
 			BaseSoundID = 0x2EE;
 			Hue = 0x0672;
@@ -35,9 +35,9 @@ namespace Server.Mobiles
 			SetDex( 286, 310 );
 			SetInt( 151, 175 );
 
-			SetHits( 458, 572 );
+			SetHits( 358, 422 );
 
-			SetDamage( 29, 35 );
+			SetDamage( 16, 21 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
 
@@ -53,29 +53,44 @@ namespace Server.Mobiles
 
 			Fame = 9500;
 			Karma = 8500;
-
+			Team = 777;
 			VirtualArmor = 52;
+		}
+
+		public override void OnDamage(int amount, Mobile from, bool willKill)
+		{
+		    base.OnDamage(amount, from, willKill);
+
+		    if (from.Player && from.Kills < 5 && !from.Criminal) 
+				from.Criminal = true;
 		}
 
 		public override bool IsEnemy( Mobile m )
 	    {
-	    	if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
-	    		return false;   
-	    	if ( m.Region != this.Region )
-	    		return false;   
-	    	if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
-	    	{
-	    		this.Location = m.Location;
-	    		this.Combatant = m;
-	    		this.Warmode = true;
-	    	}   
-	    	return true;
+			if (m == null || m.Deleted)
+	        	return false;
+			
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		    	return false;
+
+			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
+				return false;
+
+			if ( m.Region != this.Region )
+				return false;
+
+			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
+			{
+				this.Location = m.Location;
+				this.Combatant = m;
+				this.Warmode = true;
+			}
+	  		return true;
 	    }
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich, 2 );
-			AddLoot( LootPack.Rich, 2 );
+			AddLoot( LootPack.Rich );
 		}
 
 		public override int Meat{ get{ return 12; } }
@@ -83,6 +98,32 @@ namespace Server.Mobiles
 		public override int Feathers{ get{ return 50; } }
 		public override int Skeletal{ get{ return Utility.Random(4); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Mystical; } }
+		public override bool AlwaysMurderer { get { return false; } }
+
+		public override void AggressiveAction(Mobile m, bool criminal)
+		{
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+				return;
+
+		    base.AggressiveAction(m, true);
+		}
+
+		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
+		{
+		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		        return false;
+
+		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
+		}
+
+		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
+		{
+		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		        return true;
+
+		    return base.CanBeBeneficial(m, message, allowDead);
+		}
+
 
 		public WarGriffon( Serial serial ) : base( serial )
 		{

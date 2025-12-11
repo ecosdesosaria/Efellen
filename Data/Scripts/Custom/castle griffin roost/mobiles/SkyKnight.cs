@@ -16,22 +16,22 @@ namespace Server.Mobiles
 	{
 		private DateTime m_NextShieldBash;
 		private DateTime m_NextArmorIgnore;
-
 		public static ArrayList ActiveKnights = new ArrayList();
 
 		[Constructable] 
-		public SkyKnight() : base(AIType.AI_Melee, FightMode.Aggressor, 10, 1, 0.2, 0.4 ) 
+		public SkyKnight() : base(AIType.AI_Melee, FightMode.Evil, 10, 1, 0.2, 0.4 ) 
 		{
 			Title = "the Sky Knight";
-			NameHue = 1154;
-			SetStr( 600 );
+			NameHue = 0x92E;
+			SetStr( 388 );
 			SetDex( 200 );
 			SetInt( 200 );
-			SetHits( 1200 );
-			SetDamage( 40, 70 );
-			VirtualArmor = 90;
-			Fame = 7000;
+			SetHits( 800 );
+			SetDamage( 20, 30 );
+			VirtualArmor = 60;
+			Fame = 10000;
 			Karma = 10000;
+			Team = 777;
 			if ( Female = Utility.RandomBool() ) 
 			{ 
 				Body = 401; 
@@ -52,7 +52,6 @@ namespace Server.Mobiles
             SetResistance(ResistanceType.Poison, 25, 35);
             SetResistance(ResistanceType.Energy, 50, 60);
 
-
 			SetSkill( SkillName.Anatomy, 100.0 );
 			SetSkill( SkillName.MagicResist, 100.0 );
 			SetSkill( SkillName.Swords, 100.0 );
@@ -60,19 +59,16 @@ namespace Server.Mobiles
 
 			AddItem( new LightCitizen( true ) );
 			PackItem( new Gold( Utility.RandomMinMax( 105, 385 ) ) );
-
 		}
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich );
-			AddLoot( LootPack.Rich );
+			AddLoot( LootPack.Rich, 2 );
 		}
 
 		public override void OnBeforeSpawn(Point3D location, Map map)
 		{
 		    base.OnBeforeSpawn(location, map);
-
 		    if (!ActiveKnights.Contains(this))
 		        ActiveKnights.Add(this);
 		}
@@ -80,7 +76,6 @@ namespace Server.Mobiles
 		public override void OnAfterDelete()
 		{
 		    base.OnAfterDelete();
-
 		    ActiveKnights.Remove(this);
 		}
 
@@ -88,10 +83,12 @@ namespace Server.Mobiles
 		{
 		    base.OnDamage(amount, from, willKill);
 
-		    if (from != null && from != this && from.Alive)
-		        AlertAllKnights(from);
+		    if (from != null && from.Alive && !from.Deleted && from != this)
+        		AlertAllKnights(from);
+			
+			if (from.Player && from.Kills < 5 && !from.Criminal) 
+				from.Criminal = true;
 		}
-
 
 		private void AlertAllKnights(Mobile target)
 		{
@@ -99,31 +96,23 @@ namespace Server.Mobiles
 		    {
 		        if (knight == null || knight.Deleted)
 		            continue;
-
-		        if (knight.GetDistanceToSqrt(this) <= 12)
+		        if (knight.GetDistanceToSqrt(this) <= 9)
 		        {
 		            knight.Combatant = target;
-
 		            if (target is PlayerMobile && Utility.RandomDouble() < 0.15)
-		                knight.Say(true, String.Format("To arms! {0} attacks one of our own!", target.Name));
+						knight.Say(true, String.Format("To arms! {0} attacks one of our order!", target.Name));
 		        }
 		    }
 		}
 
-
-		public override bool BardImmune{ get{ return true; } }
-		public override Poison PoisonImmune{ get{ return Poison.Deadly; } }
+		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
 		public override bool Unprovokable { get { return true; } }
-		public override bool Uncalmable{ get{ return true; } }
-
 		public override bool CanRummageCorpses{ get{ return false; } }
 		public override bool ClickTitle{ get{ return false; } }
 		public override bool ShowFameTitle{ get{ return false; } }
 		public override bool AlwaysAttackable{ get{ return true; } }
-		public override int Meat{ get{ return 1; } }
 		public override int TreasureMapLevel{ get{ return 4; } }
-		public override int Skeletal{ get{ return Utility.Random(3); } }
-		public override SkeletalType SkeletalType{ get{ return SkeletalType.Brittle; } }
+		public override bool AlwaysMurderer { get { return false; } }
 
 		public override void OnAfterSpawn()
 		{
@@ -217,7 +206,7 @@ namespace Server.Mobiles
 		public override void OnGaveMeleeAttack(Mobile defender)
         {
             base.OnGaveMeleeAttack(defender);
-			if(Utility.RandomDouble() < 0.35)
+			if(Utility.RandomDouble() < 0.25)
             {
 				int i = Utility.Random(AttackLines.Length);
 			    Say(string.Format(AttackLines[i], defender.Name));                
@@ -226,7 +215,7 @@ namespace Server.Mobiles
            	if (DateTime.UtcNow >= m_NextShieldBash && Utility.RandomDouble() < 0.15)
         		DoShieldBash(defender);
 			
-			if (this.Mount != null && DateTime.UtcNow >= m_NextArmorIgnore && Utility.RandomDouble() < 0.95)
+			if (this.Mount != null && DateTime.UtcNow >= m_NextArmorIgnore && Utility.RandomDouble() < 0.15)
 			{
 			   DoMountedArmorIgnore(defender);
 			}
@@ -274,15 +263,13 @@ namespace Server.Mobiles
 		        return;
 
 		    m_NextArmorIgnore = DateTime.UtcNow + TimeSpan.FromMinutes(1.5);
-
 		    this.PublicOverheadMessage(MessageType.Regular, 0x22, false,
-		        "The griffin gores you with its sharp talons!");
-		    defender.SendMessage("The griffin gores you with its sharp talons!");
-
+		        "The griffin gores " + defender.Name + " with its sharp talons!");
+		
 		    defender.FixedEffect(0x37B9, 10, 16, 0x44E, 0);
 		    defender.PlaySound(0x142);
 
-		    int dmg = Utility.RandomMinMax(25, 55);
+		    int dmg = Utility.RandomMinMax(15, 35);
 
 		    AOS.Damage(
 		        defender,
@@ -296,18 +283,50 @@ namespace Server.Mobiles
 
 		public override bool IsEnemy( Mobile m )
 	    {
-	    	if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
-	    		return false;   
-	    	if ( m.Region != this.Region )
-	    		return false;   
-	    	if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
-	    	{
-	    		this.Location = m.Location;
-	    		this.Combatant = m;
-	    		this.Warmode = true;
-	    	}   
-	    	return true;
+			if (m == null || m.Deleted)
+	        	return false;
+			
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		    	return false;
+		
+			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
+				return false;
+		
+			if ( m.Region != this.Region )
+				return false;
+		
+			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
+			{
+				this.Location = m.Location;
+				this.Combatant = m;
+				this.Warmode = true;
+			}
+			return true;
 	    }
+
+		public override void AggressiveAction(Mobile m, bool criminal)
+		{
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+				return;
+
+		    base.AggressiveAction(m, true);
+		}
+
+		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
+		{
+		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		        return false;
+
+		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
+		}
+
+		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
+		{
+		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		        return true;
+
+		    return base.CanBeBeneficial(m, message, allowDead);
+		}
 
 
 		public SkyKnight( Serial serial ) : base( serial ) 

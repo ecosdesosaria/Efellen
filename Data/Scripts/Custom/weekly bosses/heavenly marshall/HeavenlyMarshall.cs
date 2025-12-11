@@ -21,7 +21,7 @@ namespace Server.Mobiles
 		private const int MAX_SUMMONS_RAGE_0 = 16;
 		private const int MAX_SUMMONS_RAGE_1 = 14;
 		private const int MAX_SUMMONS_RAGE_2 = 12;
-		private const int MAX_SUMMONS_RAGE_3 = 10;
+		private const int MAX_SUMMONS_RAGE_3 = 8;
 		
 		private const int SUMMON_RANGE = 12;
 		
@@ -41,13 +41,13 @@ namespace Server.Mobiles
         private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
 		[Constructable]
-		public HeavenlyMarshall () : base( AIType.AI_Mage, FightMode.Aggressor, 20, 1, 0.4, 0.8 )
+		public HeavenlyMarshall () : base( AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4 )
 		{
 			Name = "Heavenly Marshall";
 
 			Body = 346;
 			BaseSoundID = 466;
-			NameHue = 0x0672;
+			NameHue = 0x92E;
 			Hue = 0x0672;
 
 			SetStr( 796, 885 );
@@ -55,7 +55,7 @@ namespace Server.Mobiles
 			SetInt( 586, 675 );
 
 			SetHits( 25000 );
-			SetDamage( 33, 44 );
+			SetDamage( 23, 34 );
 
 			SetDamageType( ResistanceType.Energy, 100 );
 			SetResistance( ResistanceType.Fire, 70 );
@@ -85,43 +85,66 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 8 );
 		}
 
-		public override bool AutoDispel{ get{ return !Controlled; } }
 		public override int TreasureMapLevel{ get{ return 5; } }
-		public override int Skeletal{ get{ return Utility.Random(9); } }
+		public override int Skeletal{ get{ return 50; } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Mystical; } }
-		public override int Cloths{ get{ return Utility.Random(14); } }
+		public override int Cloths{ get{ return Utility.Random(50); } }
 		public override ClothType ClothType{ get{ return ClothType.Divine; } }
 		public override bool CanRummageCorpses{ get{ return false; } }
-		public override int BreathPhysicalDamage{ get{ return 0; } }
-		public override int BreathFireDamage{ get{ return 0; } }
-		public override int BreathColdDamage{ get{ return 0; } }
-		public override int BreathPoisonDamage{ get{ return 0; } }
-		public override int BreathEnergyDamage{ get{ return 100; } }
-		public override int BreathEffectHue{ get{ return 0x481; } }
-		public override int BreathEffectSound{ get{ return 0x64F; } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
-		public override bool HasBreath{ get{ return true; } }
-		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 66 ); }
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
-		public override Poison PoisonImmune{ get{ return Poison.Deadly; } }
+		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
+		public override bool AlwaysAttackable{ get{ return true; } }
+		public override bool AlwaysMurderer { get { return false; } }
 
         public override bool IsEnemy( Mobile m )
 	    {
-	    	if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
-	    		return false;   
-	    	if ( m.Region != this.Region )
-	    		return false;   
-	    	if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
-	    	{
-	    		this.Location = m.Location;
-	    		this.Combatant = m;
-	    		this.Warmode = true;
-	    	}   
-	    	return true;
+			if (m == null || m.Deleted)
+	        	return false;
+			
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		    	return false;
+			
+			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
+				return false;
+			
+			if ( m.Region != this.Region )
+				return false;
+			
+			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
+			{
+				this.Location = m.Location;
+				this.Combatant = m;
+				this.Warmode = true;
+			}
+			return true;
 	    }
+
+		public override void AggressiveAction(Mobile m, bool criminal)
+		{
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+				return;
+
+		    base.AggressiveAction(m, true);
+		}
+
+		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
+		{
+		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		        return false;
+
+		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
+		}
+
+		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
+		{
+		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		        return true;
+
+		    return base.CanBeBeneficial(m, message, allowDead);
+		}
 
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
@@ -132,8 +155,12 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 12.6 - (m_Rage * 1.5) );
-			}			
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
+			}
+		
+			if (from.Player && from.Kills < 5 && !from.Criminal) 
+				from.Criminal = true;		
+		
 			base.OnDamage( amount, from, willKill );
 		}
 
@@ -160,7 +187,7 @@ namespace Server.Mobiles
 						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
 						{
 							DoHarmful( m );
-							int damage = Utility.RandomMinMax( 45, 59 );
+							int damage = Utility.RandomMinMax( 35, 49 );
 							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
 							m.PlaySound( 0x1FB );
 						}
@@ -214,7 +241,6 @@ namespace Server.Mobiles
 							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
 							m.FixedParticles( 0x374A, 10, 15, 5013, 0x497, 0, EffectLayer.Waist );
 							m.PlaySound( 0x1FB );
-							// Restore some mana to boss
 							this.Mana = Math.Min( this.ManaMax, this.Mana + manaDrain / 3 );
 						}
 					}
@@ -262,15 +288,6 @@ namespace Server.Mobiles
                     break;
             }
         }
-		
-
-		private int getParalyzeDuration(Mobile m)
-		{
-			int resist = (int)(m.Skills.MagicResist.Value);
-			// 2s at 125, 8s at 0 magic resist
-			int duration = 8 - (int)(resist * (6.0 / 125.0));
-			return duration;
-		}
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
@@ -471,9 +488,8 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 100 );
-				SetDex( Dex + 25 );
-				SetDamage( 38, 49 );
+				SetStr( Str + 40 );
+				SetDamage( 28, 34 );
 				
 				m_Rage = 1;
 				return false;
@@ -485,9 +501,9 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 150 );
-				SetDex( Dex + 35 );
-				SetDamage( 43, 54 );
+				SetStr( Str + 80 );
+				SetDex( Dex + 15 );
+				SetDamage( 33, 44 );
 				VirtualArmor += 10;
 				
 				m_Rage = 2;
@@ -500,9 +516,9 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 225 );
-				SetDex( Dex + 70 );
-				SetDamage( 60, 85 );
+				SetStr( Str + 125 );
+				SetDex( Dex + 50 );
+				SetDamage( 40, 55 );
 				VirtualArmor += 15;	
 				m_Rage = 3;
 				return false;

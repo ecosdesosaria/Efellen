@@ -21,7 +21,7 @@ namespace Server.Mobiles
 		private const int MAX_SUMMONS_RAGE_0 = 16;
 		private const int MAX_SUMMONS_RAGE_1 = 14;
 		private const int MAX_SUMMONS_RAGE_2 = 12;
-		private const int MAX_SUMMONS_RAGE_3 = 10;
+		private const int MAX_SUMMONS_RAGE_3 = 8;
 		
 		private const int SUMMON_RANGE = 12;
 		
@@ -41,7 +41,7 @@ namespace Server.Mobiles
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
 		[Constructable]
-		public PrinceOfDarkness () : base( AIType.AI_Mage, FightMode.Closest, 20, 1, 0.4, 0.8 )
+		public PrinceOfDarkness () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = "Prince of Darkness";
 
@@ -49,13 +49,14 @@ namespace Server.Mobiles
 			BaseSoundID = 838;
 			NameHue = 0x22;
 			Hue = 0x497;
+			Team = 777;
 
 			SetStr( 896, 985 );
 			SetDex( 125, 175 );
 			SetInt( 586, 675 );
 
 			SetHits( 25000 );
-			SetDamage( 33, 44 );
+			SetDamage( 23, 34 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
 			SetResistance( ResistanceType.Fire, 75 );
@@ -87,26 +88,15 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 8 );
 		}
 
-		public override bool AutoDispel{ get{ return !Controlled; } }
 		public override int TreasureMapLevel{ get{ return 5; } }
 		public override int Hides{ get{ return 38; } }
 		public override HideType HideType{ get{ return HideType.Hellish; } }
-		public override int Skin{ get{ return Utility.Random(9); } }
+		public override int Skin{ get{ return 50; } }
 		public override SkinType SkinType{ get{ return SkinType.Demon; } }
-		public override int Skeletal{ get{ return Utility.Random(9); } }
+		public override int Skeletal{ get{ return 50; } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Devil; } }
 		public override bool CanRummageCorpses{ get{ return false; } }
-		public override int BreathPhysicalDamage{ get{ return 0; } }
-		public override int BreathFireDamage{ get{ return 0; } }
-		public override int BreathColdDamage{ get{ return 50; } }
-		public override int BreathPoisonDamage{ get{ return 50; } }
-		public override int BreathEnergyDamage{ get{ return 0; } }
-		public override int BreathEffectHue{ get{ return 0x481; } }
-		public override int BreathEffectSound{ get{ return 0x64F; } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
-		public override bool HasBreath{ get{ return true; } }
-		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 66 ); }
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
@@ -120,7 +110,7 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 12.6 - (m_Rage * 1.5) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
 			}
 			
 			base.OnDamage( amount, from, willKill );
@@ -149,7 +139,7 @@ namespace Server.Mobiles
 							{
 								DoHarmful( m );
 
-								int damage = Utility.RandomMinMax( 33, 44 );
+								int damage = Utility.RandomMinMax( 35, 49 );
 								AOS.Damage( m, this, damage, 0, 0, 100, 0, 0 );
 								m.PlaySound( 0x1FB );
 								m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) ) );
@@ -211,15 +201,13 @@ namespace Server.Mobiles
 							if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
 							{
 								DoHarmful( m );
-								int manaDrain = Utility.RandomMinMax( 40, 60 );
+								int manaDrain = Utility.RandomMinMax( 35, 45 );
 								m.Mana -= manaDrain;
 								int damage = Utility.RandomMinMax( manaDrain/2, manaDrain*2 );
 								AOS.Damage( m, this, damage, 0, 0, 100, 0, 0 );
 								m.FixedParticles( 0x374A, 10, 15, 5013, 0x496, 0, EffectLayer.Waist );
 								m.PlaySound( 0x1FB );
-								// Restore some mana to boss
 								this.Mana = Math.Min( this.ManaMax, this.Mana + manaDrain / 3 );
-								// Freeze
 								m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) + Utility.RandomMinMax(1,3 ) ) );
 							}
 						}
@@ -514,9 +502,8 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 100 );
-				SetDex( Dex + 25 );
-				SetDamage( 38, 49 );
+				SetStr( Str + 40 );
+				SetDamage( 28, 34 );
 				
 				m_Rage = 1;
 				return false;
@@ -528,9 +515,9 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 150 );
-				SetDex( Dex + 35 );
-				SetDamage( 43, 54 );
+				SetStr( Str + 80 );
+				SetDex( Dex + 15 );
+				SetDamage( 33, 44 );
 				VirtualArmor += 10;
 				
 				m_Rage = 2;
@@ -543,9 +530,9 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 200 );
+				SetStr( Str + 125 );
 				SetDex( Dex + 50 );
-				SetDamage( 50, 65 );
+				SetDamage( 40, 55 );
 				VirtualArmor += 15;
 				
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "SHAAAAROOON!" );

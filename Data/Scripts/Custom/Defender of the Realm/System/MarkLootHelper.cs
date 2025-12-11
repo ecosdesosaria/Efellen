@@ -38,7 +38,7 @@ namespace Server.Custom.DefenderOfTheRealm
             {
                 c.DropItem(new MarksOfTheScourge(amount));
             }
-            else if ( killer.Karma > 0)
+            else if ( killer.Karma >= 0)
             {
                 c.DropItem(new MarksOfHonor(amount));
             }
