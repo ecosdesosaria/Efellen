@@ -653,7 +653,7 @@
 			<rect x="5588" y="2863" width="65" height="65" />
 			<music name="Dojo" />
 		</region>
-		<region type="CrashRegion" priority="100" name="the Crash Site">
+		<region type="DungeonRegion" priority="100" name="The Howling Grove">
 			<rect x="4086" y="3745" width="60" height="60" />
 			<music name="CrashSite" />
 		</region>

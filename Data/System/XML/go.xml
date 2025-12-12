@@ -1408,7 +1408,7 @@
 
 			<child name="Chasm Floor" x="2578" y="3688" z="0" map="Sosaria" />
 
-			<child name="Crash Site" x="4135" y="3771" z="1" map="Sosaria" />
+			<child name="The Howling Grove" x="4133" y="3771" z="0" map="Sosaria" />
 
 			<child name="Dojo" x="4607" y="3427" z="20" map="Sosaria" />
 

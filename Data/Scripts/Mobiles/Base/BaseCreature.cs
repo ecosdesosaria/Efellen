@@ -2239,6 +2239,16 @@ namespace Server.Mobiles
 				}
 			}
 
+			if ( reg.IsPartOf( "The Howling Grove" ) && this is BlackWolf )
+			{
+				FightMode = FightMode.Evil;
+			}
+
+			if ( reg.IsPartOf( "Castle Griffin Roost" ) && this is GriffonRiding )
+			{
+				FightMode = FightMode.Evil;
+			}
+
 			if ( reg.IsPartOf( "the Pixie Cave" ) && this is ElderBrownBearRiding )
 			{
 				FightMode = FightMode.Evil;

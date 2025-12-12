@@ -46,8 +46,6 @@ namespace Server.Misc
 
 					if ( m.Region is PublicRegion )
 						InsideInn = true;
-					else if ( m.Region is CrashRegion )
-						InsideInn = true;
 					else if ( m.Region is PrisonArea )
 						InsideInn = true;
 					else if ( m.Region is SafeRegion )
@@ -105,8 +103,6 @@ namespace Server.Misc
 					bool InsideInn = false;
 
 					if ( m.Region is PublicRegion )
-						InsideInn = true;
-					else if ( m.Region is CrashRegion )
 						InsideInn = true;
 					else if ( m.Region is PrisonArea )
 						InsideInn = true;
