@@ -144,14 +144,6 @@ namespace Server.Mobiles
 
 				attacker.SendAsciiMessage( "Your weapon is less effective with the creature's magical barrier up!" );
 
-				if ( attacker is BaseCreature ) // KILL ANY PETS PLAYERS FOOLISHLY BROUGHT WITH THEM
-				{
-					BaseCreature pet = (BaseCreature)attacker;
-					if ( BaseCreature.IsPet( attacker ) )
-					{
-						SendEBoltOnPet( attacker );
-					}
-				}
 			}
 
 			if( attacker != null && attacker.Alive && attacker.Weapon is BaseRanged && 0.4 > Utility.RandomDouble() )
@@ -229,13 +221,6 @@ namespace Server.Mobiles
 			AOS.Damage( to, this, 50, 0, 0, 0, 0, 100 );
 		}
 
-		public void SendEBoltOnPet( Mobile to )
-		{
-			this.MovingParticles( to, 0x3818, 7, 0, false, true, 0xBE3, 0xFCB, 0x211 );
-			to.PlaySound( 0x229 );
-			this.DoHarmful( to );
-			AOS.Damage( to, this, 10000, 0, 0, 0, 0, 100 );
-		}
 
 		public Exodus( Serial serial ) : base( serial )
 		{
