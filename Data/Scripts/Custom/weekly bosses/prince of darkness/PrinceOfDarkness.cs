@@ -552,6 +552,12 @@ namespace Server.Mobiles
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Mama...I'm coming home..." );
+				Mobile killer = this.LastKiller;
+				if (killer != null && killer.Player && killer.Karma > 0)
+            	{
+            	    int marks = Utility.RandomMinMax(31, 47);
+            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
+            	}
 			}
 			
 			return base.OnBeforeDeath();

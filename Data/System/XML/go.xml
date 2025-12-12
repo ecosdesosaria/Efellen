@@ -1030,6 +1030,8 @@
 
 				</parent>
 
+				<child name="House of Holy Mercy" x="1018" y="2017" z="19" map="Sosaria" />
+
 			</parent>
 
 			<parent name="Dungeons (Easy)">

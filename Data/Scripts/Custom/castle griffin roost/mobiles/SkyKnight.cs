@@ -73,6 +73,19 @@ namespace Server.Mobiles
 		        ActiveKnights.Add(this);
 		}
 
+		public override bool OnBeforeDeath()
+        {
+            Mobile killer = this.LastKiller;
+
+            if (killer != null && killer.Player && killer.Karma < 0)
+            {
+                int marks = Utility.RandomMinMax(8, 17);
+                Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 0, marks);
+            }
+
+            return base.OnBeforeDeath();
+        }
+
 		public override void OnAfterDelete()
 		{
 		    base.OnAfterDelete();

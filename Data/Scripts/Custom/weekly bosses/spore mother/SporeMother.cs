@@ -60,6 +60,8 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 70 );
 			SetResistance( ResistanceType.Energy, 50 );
 
+			SetSkill( SkillName.Magery, 82.5, 125.0 );
+			SetSkill( SkillName.Psychology, 52.5, 85.0 );
 			SetSkill( SkillName.Meditation, 82.5, 95.0 );
 			SetSkill( SkillName.MagicResist, 75.5, 125.0 );
 			SetSkill( SkillName.Tactics, 81.0, 95.0 );
@@ -500,6 +502,12 @@ namespace Server.Mobiles
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*withers into nothingness...*" );
+				Mobile killer = this.LastKiller;
+				if (killer != null && killer.Player && killer.Karma > 0)
+            	{
+            	    int marks = Utility.RandomMinMax(11, 31);
+            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
+            	}
 			}
 			
 			return base.OnBeforeDeath();

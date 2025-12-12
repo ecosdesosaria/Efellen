@@ -132,6 +132,15 @@ namespace Server.Items
 				if ( m_Bandage.Deleted )
 					return;
 
+				if (targeted is Server.Mobiles.Patient)
+    			{
+    			    Server.Mobiles.Patient patient = (Server.Mobiles.Patient)targeted;
+
+    			    if (patient.HandleBandage(from, m_Bandage))
+    			        return;
+    			}
+
+
 				if ( targeted is Mobile )
 				{
 					if ( from.InRange( m_Bandage.GetWorldLocation(), Bandage.Range ) )

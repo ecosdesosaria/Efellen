@@ -90,6 +90,8 @@ namespace Server
 			else if ( map == Map.Sosaria )
 			{
 				if ( reg.IsPartOf( "the Ancient Pyramid" ) ){ Heat = 0; }
+				else if ( reg.IsPartOf( "House of Holy Mercy" ) ){ Heat = 0; }
+				else if ( reg.IsPartOf( "The Howling Grove" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "the Mausoleum" ) ){ Heat = 1; }
 				else if ( reg.IsPartOf( "Dungeon Clues" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "Dardin's Pit" ) ){ Heat = 0; }
