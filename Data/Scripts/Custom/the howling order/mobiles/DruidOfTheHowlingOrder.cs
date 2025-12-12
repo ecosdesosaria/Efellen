@@ -19,12 +19,10 @@ namespace Server.Mobiles
 				Body = 0x191; 
 				Utility.AssignRandomHair( this );
 				HairHue = Utility.RandomHairHue();
-                Name = NameList.RandomName( "female" );
-			} 
+            } 
 			else 
 			{ 
 				Body = 0x190; 
-				Name = NameList.RandomName( "male" );
 				Utility.AssignRandomHair( this );
 				int HairColor = Utility.RandomHairHue();
 				FacialHairItemID = Utility.RandomList( 0, 8254, 8255, 8256, 8257, 8267, 8268, 8269 );
@@ -32,6 +30,7 @@ namespace Server.Mobiles
 				FacialHairHue = HairColor;
 			}
 
+			Name = NameList.RandomName( "druid" );
 			Hue = Utility.RandomSkinColor();
 			NameHue = 0x92E;
             Title = "the Druid of the Howling Order";

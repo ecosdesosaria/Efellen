@@ -20,11 +20,11 @@ namespace Server.Mobiles
 			
 			Hue = Utility.RandomSkinColor();
             Title = "the Deepwood Sniper";
+			Name = NameList.RandomName( "druid" );
 
 			if ( this.Female = Utility.RandomBool() )
 			{
 				Body = 0x191;
-				Name = NameList.RandomName( "female" );
 				AddItem( new Skirt( Utility.RandomColor(0) ) );
 				Utility.AssignRandomHair( this );
 				HairHue = Utility.RandomHairHue();
@@ -32,7 +32,6 @@ namespace Server.Mobiles
 			else
 			{
 				Body = 0x190;
-				Name = NameList.RandomName( "male" );
 				AddItem( new ShortPants( Utility.RandomColor(0) ) );
 				Utility.AssignRandomHair( this );
 				int HairColor = Utility.RandomHairHue();
