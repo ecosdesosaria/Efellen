@@ -31,6 +31,18 @@ namespace Server.SkillHandlers
 		{
 			m.RevealingAction();
 
+			// howling grove meditation check
+			foreach (Item item in m.GetItemsInRange(2))
+			{
+				Server.Custom.Grove.GroveMeditationTile tile = item as Server.Custom.Grove.GroveMeditationTile;
+
+				if (tile != null)
+				{
+					tile.TryMeditate(m);
+					break;
+				}
+			}
+
 			if ( m.Target != null )
 			{
 				m.SendLocalizedMessage( 501845 ); // You are busy doing something else and cannot focus.

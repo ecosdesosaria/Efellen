@@ -68,7 +68,7 @@ namespace Server.Misc
 		+ "<br>"
 		+"* Locations:<br>"
 		+"	• Added a new mini Point of interest called the Myconid caves close to the eastern coast of Sosaria.<br>"
-		+"  • Added a new point of interest called The howling grove close to the western coast of Sosaria. Visit the druids when you have the chance."
+		+"  • Added a new point of interest called The howling grove close to the western coast of Sosaria. Go meditate with the druids when you have the chance."
 		+"  • Added a new Point of interest called The House of Holy Mercy. Its a hospital and a convent where the sick are treated and the hungry are fed. Visit it if you intend on helping the less fortunate.<br>"
 		+"	• All easy dungeons now have one extra room with more challenging monsters. They also had their spawn pool rebuilt to be more consize.<br>"
 		+"		• Mages are now slightly more common in newbie dungeons to help new characters get their spellbooks started (and also to teach them humility).<br>"
