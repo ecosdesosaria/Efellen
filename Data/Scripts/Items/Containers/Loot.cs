@@ -59,6 +59,21 @@ namespace Server
 		public static Type[] SciFiWeaponTypes{ get{ return m_SciFiWeaponTypes; } }
 
 		// ------------------------------------------------------------------------------------------------------------------------------------------
+		private static Type[] m_RobeTypes = new Type[]
+		{
+			typeof(JokerRobe),				typeof(AssassinRobe),			typeof(VampireRobe),		typeof(DragonRobe),
+			typeof(ChaosRobe),				typeof(FancyRobe),				typeof(GildedRobe),			typeof(OrnateRobe),
+			typeof(MagistrateRobe),			typeof(RoyalRobe),				typeof(SorcererRobe),		typeof(ScholarRobe),
+			typeof(NecromancerRobe),		typeof(SpiderRobe),				typeof(VagabondRobe),		typeof(PirateCoat),
+			typeof(JesterGarb),				typeof(FoolsCoat),				typeof(ExquisiteRobe),		typeof(ProphetRobe),	
+			typeof(ElegantRobe),			typeof(FormalRobe),				typeof(ArchmageRobe),		typeof(PriestRobe),
+			typeof(CultistRobe),			typeof(NunRobe),				typeof(GildedDarkRobe),		typeof(GildedLightRobe),
+			typeof(SageRobe)
+		};
+
+		public static Type[] RobeTypes{ get{ return m_RobeTypes; } }
+
+		// ------------------------------------------------------------------------------------------------------------------------------------------
 
 		private static Type[] m_OrientRangedWeaponTypes = new Type[]
 			{
@@ -1058,6 +1073,20 @@ namespace Server
 
 			return Construct( m_ClothingTypes ) as BaseClothing;
 		}
+
+		public static BaseClothing RandomRobe()
+		{
+			return RandomRobe( false );
+		}
+
+		public static BaseClothing RandomRobe( bool playOrient )
+		{
+			if ( playOrient )
+				return Construct( m_OrientClothingTypes, m_RobeTypes ) as BaseClothing;
+
+			return Construct( m_RobeTypes ) as BaseClothing;
+		}
+
 
 		public static BaseHat RandomHats()
 		{
