@@ -128,37 +128,6 @@ namespace Server.Items
 							m.PlaySound( 0x1F2 );
 						}
 					}
-					else if ( m.Karma > 0 && m.Skills[SkillName.Psychology].Base > 0 && Server.Misc.GetPlayerInfo.isJedi(m,false) )
-					{
-						string jedi = "";
-						string yoda = "";
-
-						if ( this.X == 3082 ){ yoda = "Jacen Sollo"; jedi = "JediDatacron01"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron01 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-						else if ( this.X == 805 ){ yoda = "Kiadi Mundia"; jedi = "JediDatacron02"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron02 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-						else if ( this.X == 981 ){ yoda = "Kip Fisto"; jedi = "JediDatacron03"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron03 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-						else if ( this.X == 3249 ){ yoda = "Marra Jade"; jedi = "JediDatacron04"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron04 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-						else if ( this.X == 1398 ){ yoda = "Numi Sunrider"; jedi = "JediDatacron05"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron05 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-						else if ( this.X == 2983 ){ yoda = "Plo Kune"; jedi = "JediDatacron06"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron06 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-						else if ( this.X == 4378 ){ yoda = "Kyle Katran"; jedi = "JediDatacron07"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron07 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-						else if ( this.X == 2697 ){ yoda = "Kyp Duron"; jedi = "JediDatacron08"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron08 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-						else if ( this.X == 4167 ){ yoda = "Ganer Rhysode"; jedi = "JediDatacron09"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron09 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-						else if ( this.X == 6642 ){ yoda = "Coran Horn"; jedi = "JediDatacron10"; ArrayList targets = new ArrayList(); foreach ( Item item in World.Items.Values ) { if ( item is JediDatacron10 ) { targets.Add( item ); } } for ( int i = 0; i < targets.Count; ++i ) { Item item = ( Item )targets[ i ]; item.Delete(); } }
-
-						if ( jedi != "" )
-						{
-							Item cron = null;
-							Type itemType = ScriptCompiler.FindTypeByName( jedi );
-
-							if ( itemType != null )
-							{
-								cron = (Item)Activator.CreateInstance( itemType );
-								m.AddToBackpack ( cron );
-								m.SendMessage( "You have the holocron of " + yoda + "!" );
-								m.FixedParticles( 0x376A, 9, 32, 5005, EffectLayer.Waist );
-								m.PlaySound( 0x1F2 );
-							}
-						}
-					}
 				}
 				else if ( this.Name != "Magic Forge Trigger" ) // DEATH KNIGHT SHRINES
 				{

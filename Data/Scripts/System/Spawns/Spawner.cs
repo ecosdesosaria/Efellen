@@ -835,7 +835,7 @@ namespace Server.Mobiles
 		{
 			Point3D startLoc = m.Location;
 
-			if ( m is BaseVendor || m is Adventurers || m is Jedi || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
+			if ( m is BaseVendor || m is Adventurers || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
 			{
 				bool cleanUp = false;
 
@@ -1310,15 +1310,11 @@ namespace Server.Mobiles
 				if ( m == null )
 					return;
 
-				if ( m is WanderingHealer || m is Adventurers || m is Jedi || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
+				if ( m is WanderingHealer || m is Adventurers || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
 				{
 					loc = GetSpawnPosition();
 				}
-				else if ( m is Syth && SpawnID == 9999 )
-				{
-					loc = GetSpawnSpotLandDungeon();
-				}
-
+				
 				m.OnBeforeSpawn( loc, map );
 				InvalidateProperties();
 
@@ -1419,15 +1415,11 @@ namespace Server.Mobiles
 				if ( m == null )
 					return;
 
-				if ( m is WanderingHealer || m is Adventurers || m is Jedi || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
+				if ( m is WanderingHealer || m is Adventurers || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
 				{
 					loc = GetSpawnPosition();
 				}
-				else if ( m is Syth && SpawnID == 9999 )
-				{
-					loc = GetSpawnSpotLandDungeon();
-				}
-
+				
 				m.OnBeforeSpawn( loc, map );
 				InvalidateProperties();
 
@@ -1522,15 +1514,11 @@ namespace Server.Mobiles
 				if ( m == null )
 					return;
 
-				if ( m is WanderingHealer || m is Adventurers || m is Jedi || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
+				if ( m is WanderingHealer || m is Adventurers || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
 				{
 					loc = GetSpawnPosition();
 				}
-				else if ( m is Syth && SpawnID == 9999 )
-				{
-					loc = GetSpawnSpotLandDungeon();
-				}
-
+				
 				m.OnBeforeSpawn( loc, map );
 				InvalidateProperties();
 
@@ -1625,15 +1613,11 @@ namespace Server.Mobiles
 				if ( m == null )
 					return;
 
-				if ( m is WanderingHealer || m is Adventurers || m is Jedi || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
+				if ( m is WanderingHealer || m is Adventurers || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
 				{
 					loc = GetSpawnPosition();
 				}
-				else if ( m is Syth && SpawnID == 9999 )
-				{
-					loc = GetSpawnSpotLandDungeon();
-				}
-
+				
 				m.OnBeforeSpawn( loc, map );
 				InvalidateProperties();
 
@@ -1728,15 +1712,11 @@ namespace Server.Mobiles
 				if ( m == null )
 					return;
 
-				if ( m is WanderingHealer || m is Adventurers || m is Jedi || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
+				if ( m is WanderingHealer || m is Adventurers || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
 				{
 					loc = GetSpawnPosition();
 				}
-				else if ( m is Syth && SpawnID == 9999 )
-				{
-					loc = GetSpawnSpotLandDungeon();
-				}
-
+				
 				m.OnBeforeSpawn( loc, map );
 				InvalidateProperties();
 
@@ -1831,15 +1811,11 @@ namespace Server.Mobiles
 				if ( m == null )
 					return;
 
-				if ( m is WanderingHealer || m is Adventurers || m is Jedi || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
+				if ( m is WanderingHealer || m is Adventurers || ( m is YoungDragon && Utility.RandomMinMax(1,10)>3 ) )
 				{
 					loc = GetSpawnPosition();
 				}
-				else if ( m is Syth && SpawnID == 9999 )
-				{
-					loc = GetSpawnSpotLandDungeon();
-				}
-
+				
 				m.OnBeforeSpawn( loc, map );
 				InvalidateProperties();
 
