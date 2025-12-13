@@ -27,7 +27,7 @@ namespace Server.Mobiles
             {
                 Body = 401;
                 AddItem(new Server.Items.LeatherBoots());
-                AddItem(new FancyDress(Utility.RandomNeutralHue()));
+                AddItem(new FancyDress(GetRandomHue()));
             }
             else
             {
@@ -35,7 +35,7 @@ namespace Server.Mobiles
                 FacialHairItemID = Utility.RandomList(0, 0, 8254, 8255, 8256, 8257, 8267, 8268, 8269);
                 AddItem(new Server.Items.Shoes());
                 AddItem(new Server.Items.LongPants());
-                AddItem(new Server.Items.PirateCoat(Utility.RandomNeutralHue()));
+                AddItem(new Server.Items.PirateCoat(GetRandomHue()));
             }
             
             Utility.AssignRandomHair(this);
@@ -77,17 +77,32 @@ namespace Server.Mobiles
             int playerLevel = Server.Misc.GetPlayerInfo.GetPlayerLevel(from);
             int transPower = Utility.RandomMinMax(playerLevel * 2, playerLevel * 5);
             Item reward = Loot.RandomRobe(false);
-            reward.Hue = Utility.RandomMetalHue();
+            reward.Hue = GetRandomHue();
             reward = Server.LootPackEntry.Enchant(from, transPower, reward);
             from.AddToBackpack(reward);
             int karmaAmount = Utility.RandomMinMax(playerLevel, playerLevel * 2);
             from.Karma += karmaAmount;
             PublicOverheadMessage(Network.MessageType.Regular, 0x3B2, false, 
-                "Thank you so much! I know someone that will really appreciate this! Here, have this for your trouble!");
+                "Thank you so much! I know someone that will really appreciate this! Here, have this for your trouble, I think it suits you!");
             
             m_LastPotionHandin[from] = DateTime.UtcNow;
             return true;
         }
+
+        public virtual int GetRandomHue()
+		{
+			switch ( Utility.Random( 7 ) )
+			{
+				default:
+				case 0: return Utility.RandomBlueHue();
+				case 1: return Utility.RandomGreenHue();
+				case 2: return Utility.RandomRedHue();
+				case 3: return Utility.RandomYellowHue();
+				case 4: return Utility.RandomNeutralHue();
+                case 5: return Utility.RandomPinkHue();
+                case 6: return Utility.RandomRedHue();
+			}
+		}
         
         private string FormatTimeSpan(TimeSpan ts)
         {
