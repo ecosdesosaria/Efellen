@@ -37,10 +37,11 @@ namespace Server.Mobiles
 			SetDex( 95, 125 );
 			SetInt( 186, 225 );
 
-			SetHits( 5555 );
+			SetHits( 1455 );
 			SetDamage( 14, 24 );
 
-			SetDamageType( ResistanceType.Physical, 70 );
+			SetDamageType( ResistanceType.Physical, 100 );
+			SetResistance( ResistanceType.Physical, 40 );
 			SetResistance( ResistanceType.Fire, 45 );
 			SetResistance( ResistanceType.Cold, 45 );
 			SetResistance( ResistanceType.Poison, 70 );
@@ -236,7 +237,7 @@ namespace Server.Mobiles
 			if ( m_Rage == 0 )
 			{
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Please stop this madness!" );
-				this.Hits = this.HitsMax / 2;
+				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
@@ -249,7 +250,7 @@ namespace Server.Mobiles
 			else if ( m_Rage == 1 )
 			{
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "You forced my hand!" );
-				this.Hits = this.HitsMax / 4;
+				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
