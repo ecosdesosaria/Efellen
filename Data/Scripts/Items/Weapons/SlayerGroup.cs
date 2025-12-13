@@ -76,6 +76,7 @@ namespace Server.Items
 			humanoid.Opposition = new SlayerGroup[]{ };
 			humanoid.FoundOn = new Type[]{ };
 			humanoid.Super = new SlayerEntry( SlayerName.Repond, 
+				typeof( MotherSuperior),
 				typeof( PirateCaptain ), 
 				typeof( PirateCrew ), 
 				typeof( PirateCrewBow ), 
@@ -1016,6 +1017,7 @@ namespace Server.Items
 						typeof( PoisonElemental ),
 						typeof( SewageElemental ) ),
 					new SlayerEntry( SlayerName.FlameDousing, 
+						typeof( DaughterOfFire),
 						typeof( Vulcrum ), 
 						typeof( FireElemental ), 
 						typeof( ElementalCalledFire ),
@@ -1109,6 +1111,7 @@ namespace Server.Items
 			abyss.Opposition = new SlayerGroup[]{ };
 			abyss.FoundOn = new Type[]{ };
 			abyss.Super = new SlayerEntry( SlayerName.Exorcism, 
+				typeof( PrinceOfDarkness),
 				typeof( Tarjan ), 
 				typeof( BloodDemigod ), 
 				typeof( DemonOfTheSea ), 
@@ -1521,6 +1524,7 @@ namespace Server.Items
 						typeof( YoungRoc ), 
 						typeof( ShadowWyrm ), 
 						typeof( SkeletalDragon ), 
+						typeof( HeraldOfCinders),
 				typeof( SkeletonDragon ), 
 						typeof( Dracolich ), 
 						typeof( SwampDragon ), 

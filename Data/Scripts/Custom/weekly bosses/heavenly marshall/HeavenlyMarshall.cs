@@ -54,10 +54,11 @@ namespace Server.Mobiles
 			SetDex( 125, 175 );
 			SetInt( 586, 675 );
 
-			SetHits( 25000 );
+			SetHits( 19000 );
 			SetDamage( 23, 34 );
 
 			SetDamageType( ResistanceType.Energy, 100 );
+			SetResistance( ResistanceType.Physical, 60 );
 			SetResistance( ResistanceType.Fire, 70 );
 			SetResistance( ResistanceType.Cold, 70 );
 			SetResistance( ResistanceType.Poison, 70 );
@@ -389,7 +390,7 @@ namespace Server.Mobiles
                 RegisterSummon(monster);
 			}
 
-			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 6.0 - (m_Rage * 0.5) );
+			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 18.0 - (m_Rage * 0.5) );
 		}
 
         public void RegisterSummon(BaseCreature bc)
@@ -443,10 +444,10 @@ namespace Server.Mobiles
 
 		private Point3D GetSpawnLocation( Map map )
 		{
-			for ( int j = 0; j < 10; ++j )
+			for ( int j = 0; j < 20; ++j )
 			{
-				int x = X + Utility.Random( 3 ) - 1;
-				int y = Y + Utility.Random( 3 ) - 1;
+				int x = X + Utility.Random( 13 ) - 6;
+				int y = Y + Utility.Random( 13 ) - 6;
 				int z = map.GetAverageZ( x, y );
 
 				if ( map.CanFit( x, y, this.Z, 16, false, false ) )
@@ -484,7 +485,7 @@ namespace Server.Mobiles
         	if ( m_Rage == 0 )
 			{
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Justice shall not falther today!" );
-				this.Hits = this.HitsMax / 2;
+				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
@@ -497,7 +498,7 @@ namespace Server.Mobiles
 			else if ( m_Rage == 1 )
 			{
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "By the heavens above I command thee to stand down!" );
-				this.Hits = this.HitsMax / 4;
+				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
@@ -512,7 +513,7 @@ namespace Server.Mobiles
 			else if ( m_Rage == 2 )
 			{
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "For the Skywatch!" );
-				this.Hits = this.HitsMax / 7;
+				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				

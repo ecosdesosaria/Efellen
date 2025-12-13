@@ -51,10 +51,11 @@ namespace Server.Mobiles
 			SetDex( 155, 185 );
 			SetInt( 286, 375 );
 
-			SetHits( 10000 );
+			SetHits( 3000 );
 			SetDamage( 13, 24 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
+			SetResistance( ResistanceType.Physical, 40 );
 			SetResistance( ResistanceType.Fire, 45 );
 			SetResistance( ResistanceType.Cold, 40 );
 			SetResistance( ResistanceType.Poison, 70 );
@@ -420,10 +421,10 @@ namespace Server.Mobiles
 
 		private Point3D GetSpawnLocation( Map map )
 		{
-			for ( int j = 0; j < 10; ++j )
+			for ( int j = 0; j < 20; ++j )
 			{
-				int x = X + Utility.Random( 3 ) - 1;
-				int y = Y + Utility.Random( 3 ) - 1;
+				int x = X + Utility.Random( 13 ) - 6;
+				int y = Y + Utility.Random( 13 ) - 6;
 				int z = map.GetAverageZ( x, y );
 
 				if ( map.CanFit( x, y, this.Z, 16, false, false ) )
@@ -472,7 +473,7 @@ namespace Server.Mobiles
 			if ( m_Rage == 0 )
 			{
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*releases a psychic shriek!*" );
-				this.Hits = this.HitsMax / 2;
+				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
@@ -486,7 +487,7 @@ namespace Server.Mobiles
 			else if ( m_Rage == 1 )
 			{
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*releases a crushing psychic scream!*" );
-				this.Hits = this.HitsMax / 4;
+				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				

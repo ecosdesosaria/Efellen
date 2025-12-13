@@ -3865,94 +3865,87 @@ namespace Server.Misc
 
 		public static void DropReagent( Mobile player, BaseCreature monster )
 		{
-			if ( player == null )
+			if ( player == null || monster == null || monster.Deleted )
 				return;
+			
+			if ( monster.Backpack == null )
+				monster.AddItem( new Backpack() );
 
-			if ( monster == null )
-				return;
-
-			SlayerEntry undead = SlayerGroup.GetEntryByName( SlayerName.Silver );
-			SlayerEntry exorcism = SlayerGroup.GetEntryByName( SlayerName.Exorcism );
-			SlayerEntry plants = SlayerGroup.GetEntryByName( SlayerName.WeedRuin );
-			SlayerEntry gargoyle = SlayerGroup.GetEntryByName( SlayerName.GargoylesFoe );
-			SlayerEntry poisoner = SlayerGroup.GetEntryByName( SlayerName.ElementalHealth );
-			SlayerEntry rocks = SlayerGroup.GetEntryByName( SlayerName.EarthShatter );
-			SlayerEntry flame = SlayerGroup.GetEntryByName( SlayerName.FlameDousing );
-			SlayerEntry water = SlayerGroup.GetEntryByName( SlayerName.NeptunesBane );
+			SlayerEntry undead     = SlayerGroup.GetEntryByName( SlayerName.Silver );
+			SlayerEntry exorcism   = SlayerGroup.GetEntryByName( SlayerName.Exorcism );
+			SlayerEntry plants     = SlayerGroup.GetEntryByName( SlayerName.WeedRuin );
+			SlayerEntry gargoyle   = SlayerGroup.GetEntryByName( SlayerName.GargoylesFoe );
+			SlayerEntry poisoner  = SlayerGroup.GetEntryByName( SlayerName.ElementalHealth );
+			SlayerEntry rocks      = SlayerGroup.GetEntryByName( SlayerName.EarthShatter );
+			SlayerEntry flame      = SlayerGroup.GetEntryByName( SlayerName.FlameDousing );
+			SlayerEntry water      = SlayerGroup.GetEntryByName( SlayerName.NeptunesBane );
 
 			int DropThisMuch = Server.Misc.IntelligentAction.FameBasedLevel( monster );
 
 			int amount = Utility.RandomMinMax( DropThisMuch, ( DropThisMuch * 3 ) );
 
-			if ( undead.Slays(monster) )
-			{
+			if ( undead != null && undead.Slays(monster) )
 				monster.PackItem( new GraveDust( amount ) );
-			}
-			if ( gargoyle.Slays(monster) )
-			{
+
+			if ( gargoyle != null && gargoyle.Slays(monster) )
 				monster.PackItem( new GargoyleEar( Utility.RandomMinMax( 1, 2 ) ) );
-			}
+
 			if ( monster is PoisonElemental )
-			{
 				monster.PackItem( new NoxCrystal( amount ) );
-			}
-			if ( rocks.Slays(monster) )
-			{
+
+			if ( rocks != null && rocks.Slays(monster) )
 				monster.PackItem( new PigIron( amount ) );
-			}
-			if ( flame.Slays(monster) )
+
+			if ( flame != null && flame.Slays(monster) )
 			{
-				switch ( Utility.RandomMinMax(0,1) ) 
-				{
-					case 0: monster.PackItem( new Brimstone( amount ) ); break;
-					case 1: monster.PackItem( new SulfurousAsh( amount ) ); break;
-				}
+				if ( Utility.RandomBool() )
+					monster.PackItem( new Brimstone( amount ) );
+				else
+					monster.PackItem( new SulfurousAsh( amount ) );
 			}
-			if ( water.Slays(monster) )
-			{
+
+			if ( water != null && water.Slays(monster) )
 				monster.PackItem( new SeaSalt( amount ) );
-			}
-			if ( (monster.Name).Contains("beetle") )
+
+			string name = monster.Name;
+			if ( !String.IsNullOrEmpty( name ) )
 			{
-				monster.PackItem( new BeetleShell( 1 ) );
-			}
-			if ( (monster.Name).Contains("werewolf") || (monster.Name).Contains("wolf man") )
-			{
-				monster.PackItem( new WerewolfClaw( Utility.RandomMinMax(1,2) ) );
-			}
-			if ( (monster.Name).Contains("frog") || (monster.Name).Contains("toad") )
-			{
-				switch ( Utility.RandomMinMax( 0, 1 ) ) 
+				name = name.ToLower();
+		
+				if ( name.Contains( "beetle" ) )
+					monster.PackItem( new BeetleShell( 1 ) );
+		
+				if ( name.Contains( "werewolf" ) || name.Contains( "wolf man" ) )
+					monster.PackItem( new WerewolfClaw( Utility.RandomMinMax( 1, 2 ) ) );
+		
+				if ( name.Contains( "frog" ) || name.Contains( "toad" ) )
 				{
-					case 0: monster.PackItem( new EyeOfToad( Utility.RandomMinMax( 1, 2 ) ) ); break;
-					case 1: monster.PackItem( new DriedToad( 1 ) ); break;
+					if ( Utility.RandomBool() )
+						monster.PackItem( new EyeOfToad( Utility.RandomMinMax( 1, 2 ) ) );
+					else
+						monster.PackItem( new DriedToad( 1 ) );
 				}
+		
+				if ( name.Contains( "spider" ) )
+					monster.PackItem( new SilverWidow( 1 ) );
 			}
+		
 			if ( monster is Pixie || monster is Sprite || monster is Faerie )
 			{
-				switch ( Utility.RandomMinMax( 0, 2 ) ) 
+				switch ( Utility.Random( 3 ) )
 				{
 					case 0: monster.PackItem( new FairyEgg( Utility.RandomMinMax( 1, 2 ) ) ); break;
 					case 1: monster.PackItem( new PixieSkull( 1 ) ); break;
 					case 2: monster.PackItem( new ButterflyWings( Utility.RandomMinMax( 1, 2 ) ) ); break;
 				}
 			}
-			if ( (monster.Name).Contains("spider") )
-			{
-				monster.PackItem( new SilverWidow( 1 ) );
-			}
-			if ( rocks.Slays(monster) )
-			{
-				monster.PackItem( new PigIron( amount ) );
-			}
-			if ( monster is BloodElemental || exorcism.Slays(monster) )
-			{
+		
+			if ( monster is BloodElemental || ( exorcism != null && exorcism.Slays(monster) ) )
 				monster.PackItem( new DaemonBlood( amount ) );
-			}
-			if ( plants.Slays(monster) )
+		
+			if ( plants != null && plants.Slays(monster) )
 			{
-				int pick = Utility.RandomMinMax( 0, 9 );
-				switch ( pick ) 
+				switch ( Utility.Random( 10 ) )
 				{
 					case 0: monster.PackItem( new MandrakeRoot( amount ) ); break;
 					case 1: monster.PackItem( new Nightshade( amount ) ); break;
