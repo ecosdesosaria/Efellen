@@ -655,7 +655,6 @@
 		</region>
 		<region type="DungeonRegion" priority="100" name="The Howling Grove">
 			<rect x="4086" y="3745" width="60" height="60" />
-			<music name="CrashSite" />
 		</region>
 
 		// PIRATE SEAS
@@ -1355,6 +1354,13 @@
 		</region>
 		<region type="OutDoorRegion" priority="65" name="Castle Griffin Roost">
 			<rect x="3896" y="2852" width="165" height="165" />
+			<music name="City" />
+		</region>
+		<region type="OutDoorRegion" priority="65" name="House of Holy Mercy">
+			<rect x="994" y="1982" width="40" height="36" />
+			<spawning>
+					<object id="4321" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="1" />
+				</spawning>
 			<music name="City" />
 		</region>
 	</Facet>

@@ -63,14 +63,13 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 70 );
 			SetResistance( ResistanceType.Energy, 70 );
 
+			SetSkill( SkillName.Magery, 102.5, 115.0 );
 			SetSkill( SkillName.Meditation, 112.5, 125.0 );
 			SetSkill( SkillName.MagicResist, 125.5, 150.0 );
 			SetSkill( SkillName.Tactics, 101.0, 125.0 );
 			SetSkill( SkillName.FistFighting, 101.0, 125.0 );
-			SetSkill( SkillName.Musicianship, 125.0, 125.0);
-			SetSkill( SkillName.Discordance, 125.0, 125.0);
 			SetSkill( SkillName.Spiritualism, 125.0, 125.0);
-			SetSkill( SkillName.Necromancy, 125.0, 125.0);
+			SetSkill( SkillName.Necromancy, 110.0, 124.0);
 
 			Fame = 25000;
 			Karma = -25000;
@@ -479,6 +478,12 @@ namespace Server.Mobiles
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "You win...this time..." );
+				Mobile killer = this.LastKiller;
+				if (killer != null && killer.Player && killer.Karma > 0)
+            	{
+            	    int marks = Utility.RandomMinMax(11, 37);
+            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
+            	}
 			}
 			
 			return base.OnBeforeDeath();

@@ -247,9 +247,17 @@ namespace Server.Mobiles
 		}
 
 		public override bool OnBeforeDeath()
-		{
-			return base.OnBeforeDeath();
-		}
+        {
+            Mobile killer = this.LastKiller;
+
+            if (killer != null && killer.Player && killer.Karma < 0)
+            {
+                int marks = Utility.RandomMinMax(4, 8);
+                Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 0, marks);
+            }
+
+            return base.OnBeforeDeath();
+        }
 
 		public DeepWoodSniper( Serial serial ) : base( serial )
 		{
