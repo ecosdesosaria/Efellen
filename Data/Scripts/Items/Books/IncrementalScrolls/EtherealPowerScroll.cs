@@ -9,6 +9,65 @@ namespace Server.Items
 {
     public class EtherealPowerScroll : Item
     {
+         private static SkillName[] m_Skills = new SkillName[]
+            {
+                SkillName.Alchemy,
+                SkillName.Anatomy,
+                SkillName.Druidism,
+                SkillName.Mercantile,
+                SkillName.ArmsLore,
+                SkillName.Parry,
+                SkillName.Begging,
+                SkillName.Blacksmith,
+                SkillName.Bowcraft,
+                SkillName.Peacemaking,
+                SkillName.Camping,
+                SkillName.Carpentry,
+                SkillName.Cartography,
+                SkillName.Cooking,
+                SkillName.Searching,
+                SkillName.Discordance,
+                SkillName.Psychology,
+                SkillName.Healing,
+                SkillName.Seafaring,
+                SkillName.Forensics,
+                SkillName.Herding,
+                SkillName.Hiding,
+                SkillName.Provocation,
+                SkillName.Inscribe,
+                SkillName.Lockpicking,
+                SkillName.Magery,
+                SkillName.MagicResist,
+                SkillName.Tactics,
+                SkillName.Snooping,
+                SkillName.Musicianship,
+                SkillName.Poisoning,
+                SkillName.Marksmanship,
+                SkillName.Spiritualism,
+                SkillName.Stealing,
+                SkillName.Tailoring,
+                SkillName.Taming,
+                SkillName.Tasting,
+                SkillName.Tinkering,
+                SkillName.Tracking,
+                SkillName.Veterinary,
+                SkillName.Swords,
+                SkillName.Bludgeoning,
+                SkillName.Fencing,
+                SkillName.FistFighting,
+                SkillName.Lumberjacking,
+                SkillName.Mining,
+                SkillName.Meditation,
+                SkillName.Stealth,
+                SkillName.RemoveTrap,
+                SkillName.Necromancy,
+                SkillName.Focus,
+                SkillName.Knightship,
+                SkillName.Bushido,
+                SkillName.Ninjitsu,
+                SkillName.Elementalism,
+		};
+        public static SkillName[] Skills { get { return m_Skills; } }
         private SkillName m_Skill;
 
         [Constructable]
@@ -54,11 +113,9 @@ namespace Server.Items
             from.SendGump(new EtherealPowerScrollConfirmGump(from, this, m_Skill));
         }
 
-
         public static SkillName GetRandomSkill()
         {
-            Array values = Enum.GetValues(typeof(SkillName));
-            return (SkillName)values.GetValue(Utility.Random(values.Length));
+            return Skills[Utility.Random(Skills.Length)];
         }
 
         public override void Serialize(GenericWriter writer)
