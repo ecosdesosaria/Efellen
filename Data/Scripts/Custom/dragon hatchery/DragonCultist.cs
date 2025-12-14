@@ -105,7 +105,7 @@ namespace Server.Mobiles
         {
             Mobile killer = this.LastKiller;
             
-            if (killer != null && Utility.RandomDouble() < 0.05)
+            if (killer != null && Utility.RandomDouble() < 0.15)
             {
                 bool hasKey = false;
                 

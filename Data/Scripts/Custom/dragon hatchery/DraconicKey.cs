@@ -75,6 +75,12 @@ namespace Server.Items
             }
             eable.Free();
 
+            if (portcullis == null)
+            {
+                from.SendMessage("The gate is already open!");
+                return;
+            }
+
             Point3D originalLocation = portcullis.Location;
             Map originalMap = portcullis.Map;
             

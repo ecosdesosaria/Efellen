@@ -561,54 +561,71 @@ namespace Server.Misc
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		public static string LogBattles( Mobile m, Mobile mob )
+	public static string LogBattles( Mobile m, Mobile mob )
 		{
-			string sDateString = GetPlayerInfo.GetTodaysDate();
+		    if ( m == null || mob == null )
+		        return null;
 
-			if ( m is PlayerMobile && mob != null )
-			{
-				string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
-				if ( m.Title != null ){ sTitle = m.Title; }
+		    if ( !(m is PlayerMobile) )
+		        return null;
 
-				PlayerMobile pm = (PlayerMobile)m;
+		    string sDateString = GetPlayerInfo.GetTodaysDate();
 
-				string sKiller = mob.Name;
-				string[] eachWord = sKiller.Split('[');
-				int nLine = 1;
-				foreach (string eachWords in eachWord)
-				{
-					if ( nLine == 1 ){ nLine = 2; sKiller = eachWords; }
-				}
-				sKiller = sKiller.TrimEnd();
+		    string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
+		    if ( m.Title != null ){ sTitle = m.Title; }
 
-				if ( mob is BaseCreature && ( mob.Fame > -1000 && mob.Fame < 1000 ) )
-				{
-					// NOT WORTH RECORDING OTHERWISE YOU GET A BATTLE LOG FULL OF GOAT OR RABBIT SLAYINGS...OR BASICALLY EASY MONSTERS
-				}
-				else if ( pm.PublicInfo == true )
-				{
-					string Killed = sKiller;
-						if ( mob.Title != "" && mob.Title != null ){ Killed = Killed + " " + mob.Title; }
-					string sEvent = m.Name + " " + sTitle + " had slain " + Killed + "#" + sDateString;
-					LoggingFunctions.LogEvent( sEvent, "Logging Battles" );
-				}
-				else
-				{
-					string privateEnemy = "an opponent";
-					switch ( Utility.Random( 6 ) )
-					{
-						case 0: privateEnemy = "an opponent"; break;
-						case 1: privateEnemy = "an enemy"; break;
-						case 2: privateEnemy = "another"; break;
-						case 3: privateEnemy = "an adversary"; break;
-						case 4: privateEnemy = "a foe"; break;
-						case 5: privateEnemy = "a rival"; break;
-					}
-					string sEvent = m.Name + " " + sTitle + " had slain " + privateEnemy + "#" + sDateString;
-					LoggingFunctions.LogEvent( sEvent, "Logging Battles" );
-				}
-			}
-			return null;
+		    PlayerMobile pm = (PlayerMobile)m;
+
+		    if ( mob.Name == null )
+		        return null;
+
+		    string sKiller = mob.Name;
+		    string[] eachWord = sKiller.Split('[');
+		    int nLine = 1;
+		    foreach (string eachWords in eachWord)
+		    {
+		        if ( nLine == 1 ){ nLine = 2; sKiller = eachWords; }
+		    }
+		    sKiller = sKiller.TrimEnd();
+
+		    if ( mob is BaseCreature && ( mob.Fame > -2000 && mob.Fame < 2000 ) )
+		    {
+		        // NOT WORTH RECORDING OTHERWISE YOU GET A BATTLE LOG FULL OF GOAT OR RABBIT SLAYINGS...OR BASICALLY EASY MONSTERS
+		        return null;
+		    }
+		    else if ( pm.PublicInfo == true )
+		    {
+		        string Killed = sKiller;
+		        // Check for null BEFORE checking for empty string
+		        if ( mob.Title != null && mob.Title != "" ){ Killed = Killed + " " + mob.Title; }
+
+		        if ( m.Name == null )
+		            return null;
+
+		        string sEvent = m.Name + " " + sTitle + " had slain " + Killed + "#" + sDateString;
+		        LoggingFunctions.LogEvent( sEvent, "Logging Battles" );
+		    }
+		    else
+		    {
+		        string privateEnemy = "an opponent";
+		        switch ( Utility.Random( 6 ) )
+		        {
+		            case 0: privateEnemy = "an opponent"; break;
+		            case 1: privateEnemy = "an enemy"; break;
+		            case 2: privateEnemy = "another"; break;
+		            case 3: privateEnemy = "an adversary"; break;
+		            case 4: privateEnemy = "a foe"; break;
+		            case 5: privateEnemy = "a rival"; break;
+		        }
+
+		        if ( m.Name == null )
+		            return null;
+
+		        string sEvent = m.Name + " " + sTitle + " had slain " + privateEnemy + "#" + sDateString;
+		        LoggingFunctions.LogEvent( sEvent, "Logging Battles" );
+		    }
+
+		    return null;
 		}
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
