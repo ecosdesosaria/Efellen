@@ -348,18 +348,12 @@ namespace Server.Mobiles
 			switch ( m_Rage )
 			{
 				case 0:
-					if ( rand < 45 )
-						return new Penitent();
-					else
-						return new Bat();
+					return new Penitent();
 				case 1:
-					if ( rand < 15 )
+					if ( rand < 35 )
 						return new FireGargoyle();
 					else if ( rand < 65 )
 						return new Penitent();
-					else
-						return new Bat();
-
 				case 2:
 					if ( rand < 10 )
 						return new FireElemental();
