@@ -54,8 +54,8 @@ namespace Server.Mobiles
 			SetDex( 225, 275 );
 			SetInt( 486, 475 );
 
-			SetHits( 9000 );
-			SetDamage( 23, 34 );
+			SetHits( 7000 );
+			SetDamage( 23, 28 );
 
 			SetDamageType( ResistanceType.Fire, 100 );
 			SetResistance( ResistanceType.Physical, 50 );
@@ -66,7 +66,7 @@ namespace Server.Mobiles
 
 			SetSkill( SkillName.Magery, 102.5, 115.0 );
 			SetSkill( SkillName.Meditation, 112.5, 125.0 );
-			SetSkill( SkillName.MagicResist, 125.5, 150.0 );
+			SetSkill( SkillName.MagicResist, 105.5, 125.0 );
 			SetSkill( SkillName.Tactics, 101.0, 125.0 );
 			SetSkill( SkillName.FistFighting, 101.0, 125.0 );
 			SetSkill( SkillName.Spiritualism, 125.0, 125.0);
@@ -349,19 +349,17 @@ namespace Server.Mobiles
 			{
 				case 0:
 					return new Penitent();
+					
 				case 1:
-					if ( rand < 35 )
+					if ( rand < 55 )
 						return new FireGargoyle();
-					else if ( rand < 65 )
+					else
 						return new Penitent();
 				case 2:
-					if ( rand < 10 )
+					if ( rand < 55 )
 						return new FireElemental();
-					else if ( rand < 25 )
-						return new Efreet();
 					else
-						return new FireGargoyle();
-
+						return new Efreet();
 				case 3:
 					if ( rand < 20 )
 						return new Succubus();
@@ -369,7 +367,6 @@ namespace Server.Mobiles
 						return new FireElemental();
 					else
 						return new Efreet();
-
 				default:
 					return new Penitent();
 			}
