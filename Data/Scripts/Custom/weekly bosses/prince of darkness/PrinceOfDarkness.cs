@@ -12,6 +12,7 @@ using Server.Commands.Generic;
 using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -33,6 +34,15 @@ namespace Server.Mobiles
 			typeof(Daemon), 
 			typeof(Demon) 
 		};
+
+		private static readonly List<Type> BossDrops = new List<Type>
+    	{
+    	    typeof(Artifact_ArmsOfTheBlackSabbath),
+    	    typeof(Artifact_HelmOfTheBlackSabbath),
+    	    typeof(Artifact_LeggingsOfTheBlackSabbath),
+    	    typeof(Artifact_GlovesOfTheBlackSabbath),
+			typeof(Artifact_CoatOfTheBlackSabbath),
+    	};
 
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
@@ -585,6 +595,8 @@ namespace Server.Mobiles
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
+
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
 
 			if ( Utility.RandomDouble() < 0.15 )
 			{

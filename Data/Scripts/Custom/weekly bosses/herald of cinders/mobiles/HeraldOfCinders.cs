@@ -11,6 +11,7 @@ using Server.Commands;
 using Server.Commands.Generic;
 using Server.Spells;
 using Server.EffectsUtil;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -44,6 +45,15 @@ namespace Server.Mobiles
 			typeof(Drake),
 			typeof(HeraldOfCinders)
 		};
+
+		private static readonly List<Type> BossDrops = new List<Type>
+    	{
+    	    typeof(Artifact_CinderForgedArms),
+    	    typeof(Artifact_CinderForgedGloves),
+    	    typeof(Artifact_CinderForgedHelm),
+    	    typeof(Artifact_CinderForgedLeggings),
+			typeof(Artifact_CinderForgedBreastplate),
+    	};
 
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
@@ -97,53 +107,6 @@ namespace Server.Mobiles
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.UltraRich, 8 );
-		}
-
-		public override bool IsEnemy( Mobile m )
-	    {
-			if (m == null || m.Deleted)
-	        	return false;
-			
-			 if (m is YoungDragon || m is AncientDrake || m is Wyrm || m is Drake || m is DraconicCultist)
-		    	return false;
-			
-			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
-				return false;
-			
-			if ( m.Region != this.Region )
-				return false;
-			
-			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
-			{
-				this.Location = m.Location;
-				this.Combatant = m;
-				this.Warmode = true;
-			}
-			return true;
-	    }
-
-		public override void AggressiveAction(Mobile m, bool criminal)
-		{
-		    if (m is YoungDragon || m is AncientDrake || m is Wyrm || m is Drake || m is DraconicCultist)
-				return;
-
-		    base.AggressiveAction(m, true);
-		}
-
-		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
-		{
-		    if (m is YoungDragon || m is AncientDrake || m is Wyrm || m is Drake || m is DraconicCultist)
-		        return false;
-
-		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
-		}
-
-		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
-		{
-		     if (m is YoungDragon || m is AncientDrake || m is Wyrm || m is Drake || m is DraconicCultist)
-		        return true;
-
-		    return base.CanBeBeneficial(m, message, allowDead);
 		}
 
 		public override int TreasureMapLevel{ get{ return 5; } }
@@ -662,6 +625,8 @@ namespace Server.Mobiles
 				return;
 				
 			base.OnDeath( c );
+
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
 
 			if ( Utility.RandomDouble() < 0.15 )
 			{

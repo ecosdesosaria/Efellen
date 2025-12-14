@@ -12,6 +12,7 @@ using Server.Commands.Generic;
 using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -31,6 +32,15 @@ namespace Server.Mobiles
 			typeof(FungalMage), 
 			typeof(UmberHulk)
 		};
+
+		private static readonly List<Type> BossDrops = new List<Type>
+    	{
+    	    typeof(Artifact_MyconidChestplate),
+    	    typeof(Artifact_MyconidHelmet),
+    	    typeof(Artifact_MyconidGloves),
+    	    typeof(Artifact_MyconidLeggings),
+			typeof(Artifact_MyconidArms),
+    	};
 
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
@@ -536,12 +546,9 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			if ( Utility.RandomDouble() < 0.03 )
-			{
-				c.DropItem( new EternalPowerScroll() );
-			}
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
 
-			int amt = Utility.RandomMinMax( 1, 3 );
+			int amt = Utility.RandomMinMax( 1, 2 );
 			for ( int i = 0; i < amt; i++ )
 			{
 				c.DropItem( new EtherealPowerScroll() );

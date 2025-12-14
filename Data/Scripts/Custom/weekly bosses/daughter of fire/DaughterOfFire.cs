@@ -12,6 +12,7 @@ using Server.Commands.Generic;
 using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -33,6 +34,15 @@ namespace Server.Mobiles
 			typeof(FireElemental), 
 			typeof(Efreet) 
 		};
+		
+		private static readonly List<Type> BossDrops = new List<Type>
+    	{
+    	    typeof(Artifact_GlovesOfThePainSlave),
+    	    typeof(Artifact_LegsOfThePainSlave),
+    	    typeof(Artifact_ArmsOfThePainSlave),
+    	    typeof(Artifact_BootsOfThePainSlave),
+			typeof(Artifact_ChestOfThePainSlave),
+    	};
 
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
@@ -503,12 +513,9 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			if ( Utility.RandomDouble() < 0.05 )
-			{
-				c.DropItem( new EternalPowerScroll() );
-			}
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
 
-			int amt = Utility.RandomMinMax( 2, 7 );
+			int amt = Utility.RandomMinMax( 3, 6 );
 			for ( int i = 0; i < amt; i++ )
 			{
 				c.DropItem( new EtherealPowerScroll() );

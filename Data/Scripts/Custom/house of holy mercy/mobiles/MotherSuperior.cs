@@ -12,6 +12,7 @@ using Server.Commands.Generic;
 using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -21,6 +22,15 @@ namespace Server.Mobiles
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
+
+		private static readonly List<Type> BossDrops = new List<Type>
+    	{
+    	    typeof(Artifact_GauntletsOfDevotion),
+    	    typeof(Artifact_LeggingsOfDevotion),
+    	    typeof(Artifact_TunicOfDevotion),
+    	    typeof(Artifact_ArmsOfDevotion),
+			typeof(Artifact_CoifOfDevotion),
+    	};
         
 		[Constructable]
 		public MotherSuperior () : base( AIType.AI_Mage, FightMode.Evil, 20, 1, 0.4, 0.8 )
@@ -216,7 +226,7 @@ namespace Server.Mobiles
 							DoHarmful( m );
 							int damage = Utility.RandomMinMax( 11, 22 );
 							AOS.Damage( m, this, damage, 0, 100, 0, 0, 0 );
-							SlamVisuals.SlamVisual(this, 6, 0x36B0, 0xb73);
+							SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x9C2);
 							m.PlaySound( 0x1FB );
                     	}
 					}
@@ -285,6 +295,8 @@ namespace Server.Mobiles
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
+
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
 
 			int amt = Utility.RandomMinMax( 1, 2 );
 			for ( int i = 0; i < amt; i++ )
