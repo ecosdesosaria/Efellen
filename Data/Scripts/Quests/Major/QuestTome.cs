@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Server.Regions; 
 using System.Globalization;
+using Server.Custom;
 
 namespace Server.Items
 {
@@ -597,7 +598,8 @@ namespace Server.Items
 			}
 			else if ( chest != null && book.VillainName == chest.VillainName && book.VillainTitle == chest.VillainTitle && book.QuestTomeOwner == player && book.QuestTomeGoals >= 3 )
 			{
-				ApproachObsidian.TitanRiches( player );
+				// gold explosion
+				RichesSystem.SpawnRiches( player, 5 );
 				player.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found " + book.GoalItem4 + ".");
 				book.QuestTomeGoals++;
 				return true;
