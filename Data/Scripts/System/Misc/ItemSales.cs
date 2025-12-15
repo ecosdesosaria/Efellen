@@ -4116,7 +4116,40 @@ namespace Server
 			new ItemSalesInfo( typeof(	StarSapphire	),	120	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Jeweler	),
 			new ItemSalesInfo( typeof(	Tourmaline	),	80	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Jeweler	),
 			new ItemSalesInfo( typeof(	LesserWandOfDisenchanting	),	1000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Mage	),
-			new ItemSalesInfo( typeof(	ArcaneDust	),	150	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Mage	)
+			new ItemSalesInfo( typeof(	ArcaneDust	),	150	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Mage	),
+			// boss drops - tier 1, spore mother and mother superior
+			new ItemSalesInfo( typeof(	Artifact_GauntletsOfDevotion	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_LeggingsOfDevotion	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_TunicOfDevotion	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_ArmsOfDevotion	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_CoifOfDevotion	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_MyconidChestplate	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_MyconidLeggings	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_MyconidGloves	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_MyconidArms	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_MyconidHelmet	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			// boss drops - tier 2 - daughter of fire
+			new ItemSalesInfo( typeof(	Artifact_GlovesOfThePainSlave	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_LegsOfThePainSlave	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_ArmsOfThePainSlave	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_BootsOfThePainSlave	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_ChestOfThePainSlave	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			// boss drops - tier 3 - prince of darkness, heavenly marshall, herald of cinders
+			new ItemSalesInfo( typeof(	Artifact_ArmsOfTheBlackSabbath	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_HelmOfTheBlackSabbath	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_LeggingsOfTheBlackSabbath	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_GlovesOfTheBlackSabbath	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_CoatOfTheBlackSabbath	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_CinderForgedArms	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_CinderForgedGloves	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_CinderForgedHelm	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_CinderForgedLeggings	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_CinderForgedBreastplate	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_AnnointedLegging	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_AnnointedGloves	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_AnnointedBreastplate	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_AnnointedArms	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_AnnointedPlateHelm	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	)
 		};
 	}
 }

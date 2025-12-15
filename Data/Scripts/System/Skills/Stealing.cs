@@ -434,6 +434,8 @@ namespace Server.SkillHandlers
 				        {
 				            Gold stolenGold = new Gold(gold);
 							int marks = gold/35 >= 1 ? gold/35 : 0;
+							if( marks > 10 )
+								marks = 10;
 				            from.AddToBackpack(stolenGold);
 							from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, string.Format("You successfully stole {0} gold.", gold));
 							from.SendMessage(string.Format("You successfully stole {0} gold.", gold));

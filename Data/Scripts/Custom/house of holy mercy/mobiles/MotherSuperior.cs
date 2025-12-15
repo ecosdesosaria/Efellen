@@ -12,6 +12,7 @@ using Server.Commands.Generic;
 using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -21,6 +22,15 @@ namespace Server.Mobiles
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
+
+		private static readonly List<Type> BossDrops = new List<Type>
+    	{
+    	    typeof(Artifact_GauntletsOfDevotion),
+    	    typeof(Artifact_LeggingsOfDevotion),
+    	    typeof(Artifact_TunicOfDevotion),
+    	    typeof(Artifact_ArmsOfDevotion),
+			typeof(Artifact_CoifOfDevotion),
+    	};
         
 		[Constructable]
 		public MotherSuperior () : base( AIType.AI_Mage, FightMode.Evil, 20, 1, 0.4, 0.8 )
@@ -216,7 +226,7 @@ namespace Server.Mobiles
 							DoHarmful( m );
 							int damage = Utility.RandomMinMax( 11, 22 );
 							AOS.Damage( m, this, damage, 0, 100, 0, 0, 0 );
-							SlamVisuals.SlamVisual(this, 6, 0x36B0, 0xb73);
+							SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x9C2);
 							m.PlaySound( 0x1FB );
                     	}
 					}
@@ -286,117 +296,15 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
+
 			int amt = Utility.RandomMinMax( 1, 2 );
 			for ( int i = 0; i < amt; i++ )
 			{
 				c.DropItem( new EtherealPowerScroll() );
 			}
-			TitanRiches( m_LastTarget );
-		}
-
-		public static void TitanRiches( Mobile m )
-		{
-			if ( m == null || m.Map == null )
-				return;
-
-			Map map = m.Map;
-
-			for ( int x = -12; x <= 12; ++x )
-			{
-				for ( int y = -12; y <= 12; ++y )
-				{
-					double dist = Math.Sqrt( x * x + y * y );
-
-					if ( dist <= 12 )
-						new GoodiesTimer( map, m.X + x, m.Y + y ).Start();
-				}
-			}
-		}
-
-		public class GoodiesTimer : Timer
-		{
-			private Map m_Map;
-			private int m_X, m_Y;
-
-			public GoodiesTimer( Map map, int x, int y ) : base( TimeSpan.FromSeconds( Utility.RandomDouble() * 5.0 ) )
-			{
-				m_Map = map;
-				m_X = x;
-				m_Y = y;
-			}
-
-			protected override void OnTick()
-			{
-				int z = m_Map.GetAverageZ( m_X, m_Y );
-				bool canFit = m_Map.CanFit( m_X, m_Y, z, 6, false, false );
-
-				for ( int i = -3; !canFit && i <= 3; ++i )
-				{
-					canFit = m_Map.CanFit( m_X, m_Y, z + i, 6, false, false );
-
-					if ( canFit )
-						z += i;
-				}
-
-				if ( !canFit )
-					return;
-
-				Item g = null;
-
-				int r1 = (int)( Utility.RandomMinMax( 10, 20 ) * ( MyServerSettings.GetGoldCutRate() * .01 ) );
-				int r2 = (int)( Utility.RandomMinMax( 25, 50 ) * ( MyServerSettings.GetGoldCutRate() * .01 ) );
-				int r3 = (int)( Utility.RandomMinMax( 50, 100 ) * ( MyServerSettings.GetGoldCutRate() * .01 ) );
-				int r4 = (int)( Utility.RandomMinMax( 100, 150 ) * ( MyServerSettings.GetGoldCutRate() * .01 ) );
-				int r5 = (int)( Utility.RandomMinMax( 150, 200 ) * ( MyServerSettings.GetGoldCutRate() * .01 ) );
-
-				switch ( Utility.Random( 21 ) )
-				{
-					case 0: g = new Crystals( r1 ); break;
-					case 1: g = new DDGemstones( r2 ); break;
-					case 2: g = new DDJewels( r2 ); break;
-					case 3: g = new DDGoldNuggets( r3 ); break;
-					case 4: g = new Gold( r3 ); break;
-					case 5: g = new Gold( r3 ); break;
-					case 6: g = new Gold( r3 ); break;
-					case 7: g = new DDSilver( r4 ); break;
-					case 8: g = new DDSilver( r4 ); break;
-					case 9: g = new DDSilver( r4 ); break;
-					case 10: g = new DDSilver( r4 ); break;
-					case 11: g = new DDSilver( r4 ); break;
-					case 12: g = new DDSilver( r4 ); break;
-					case 13: g = new DDCopper( r5 ); break;
-					case 14: g = new DDCopper( r5 ); break;
-					case 15: g = new DDCopper( r5 ); break;
-					case 16: g = new DDCopper( r5 ); break;
-					case 17: g = new DDCopper( r5 ); break;
-					case 18: g = new DDCopper( r5 ); break;
-					case 19: g = new DDCopper( r5 ); break;
-					case 20: g = new DDCopper( r5 ); break;
-				}
-
-				if ( g != null )
-				{
-					g.MoveToWorld( new Point3D( m_X, m_Y, z ), m_Map );
-
-					if ( 0.5 >= Utility.RandomDouble() )
-					{
-						switch ( Utility.Random( 3 ) )
-						{
-							case 0: // Fire column
-								Effects.SendLocationParticles( EffectItem.Create( g.Location, g.Map, EffectItem.DefaultDuration ), 0x3709, 10, 30, 5052 );
-								Effects.PlaySound( g, g.Map, 0x208 );
-								break;
-							case 1: // Explosion
-								Effects.SendLocationParticles( EffectItem.Create( g.Location, g.Map, EffectItem.DefaultDuration ), 0x36BD, 20, 10, 5044 );
-								Effects.PlaySound( g, g.Map, 0x307 );
-								break;
-							case 2: // Ball of fire
-								Effects.SendLocationParticles( EffectItem.Create( g.Location, g.Map, EffectItem.DefaultDuration ), 0x36FE, 10, 10, 5052 );
-								break;
-						}
-					}
-				}
-			}
+			// gold explosion
+		    RichesSystem.SpawnRiches( m_LastTarget, 1 );
 		}
 
 		public override void OnAfterSpawn()
