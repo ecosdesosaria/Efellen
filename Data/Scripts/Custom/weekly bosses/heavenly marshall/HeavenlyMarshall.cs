@@ -12,6 +12,7 @@ using Server.Commands.Generic;
 using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -33,6 +34,15 @@ namespace Server.Mobiles
 			typeof(Angel), 
 			typeof(EtherealWarriorGeneral) 
 		};
+
+		private static readonly List<Type> BossDrops = new List<Type>
+    	{
+    	    typeof(Artifact_GauntletsOfDevotion),
+    	    typeof(Artifact_LeggingsOfDevotion),
+    	    typeof(Artifact_TunicOfDevotion),
+    	    typeof(Artifact_ArmsOfDevotion),
+			typeof(Artifact_CoifOfDevotion),
+    	};
 
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
@@ -563,6 +573,8 @@ namespace Server.Mobiles
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
+
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
 
 			if ( Utility.RandomDouble() < 0.15 )
 			{
