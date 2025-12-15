@@ -21,7 +21,7 @@ namespace Server.Items
 			Hue = 0x497;
 			ArtifactLevel = 2;
 			SkillBonuses.SetValues( 0, SkillName.Poisoning, 15);
-			SkillBonuses.SetValues( 1, SkillName.Herding, 15);
+			SkillBonuses.SetValues( 1, SkillName.Alchemy, 15);
 			ArmorAttributes.MageArmor = 1;
 			Attributes.DefendChance = 8;
 			Attributes.WeaponDamage = 5;

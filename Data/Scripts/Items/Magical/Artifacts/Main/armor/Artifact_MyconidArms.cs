@@ -21,7 +21,7 @@ namespace Server.Items
 			Hue = 0x497;
 			ArtifactLevel = 2;
 			SkillBonuses.SetValues( 0, SkillName.Poisoning, 10);
-			SkillBonuses.SetValues( 1, SkillName.Druidism, 10);
+			SkillBonuses.SetValues( 1, SkillName.Alchemy, 10);
 			Attributes.DefendChance = 5;
 			Attributes.CastRecovery = 2;
 			Attributes.CastRecovery = 2;
