@@ -381,7 +381,7 @@ namespace Server.Items
 			if ( artifact == arty) { name="Artifact_FurCapeOfTheSorceress"; item="Fur Cape Of The Sorceress"; } arty++;
 			if ( artifact == arty) { name="Artifact_Fury"; item="Fury"; } arty++;
 			if ( artifact == arty) { name="Artifact_MarbleShield"; item="Gargoyle Shield"; } arty++;
-			if ( artifact == arty) { name="Artifact_GuantletsOfAnger"; item="Gauntlets of Anger"; } arty++;
+			if ( artifact == arty) { name="Artifact_GuantletsOfOgreStrength"; item="Gauntlets of Anger"; } arty++;
 			if ( artifact == arty) { name="Artifact_GauntletsOfNobility"; item="Gauntlets of Nobility"; } arty++;
 			if ( artifact == arty) { name="Artifact_GeishasObi"; item="Geishas Obi"; } arty++;
 			if ( artifact == arty) { name="Artifact_GiantBlackjack"; item="Giant Blackjack"; } arty++;

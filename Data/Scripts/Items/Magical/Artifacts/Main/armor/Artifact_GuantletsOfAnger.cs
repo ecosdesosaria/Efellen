@@ -3,7 +3,7 @@ using Server;
 
 namespace Server.Items
 {
-	public class Artifact_GuantletsOfAnger : GiftPlateGloves
+	public class Artifact_GuantletsOfOgreStrength : GiftPlateGloves
 	{
 		public override int BasePhysicalResistance{ get{ return 14; } }
 		public override int BaseFireResistance{ get{ return 9; } }
@@ -17,9 +17,9 @@ namespace Server.Items
 		public override bool CanFortify{ get{ return false; } }
 
 		[Constructable]
-		public Artifact_GuantletsOfAnger()
+		public Artifact_GuantletsOfOgreStrength()
 		{
-			Name = "Gauntlets of Anger";
+			Name = "Gauntlets of Ogre Strength";
 			Hue = 0x29b;
 			ItemID = 0x1414;
 			Attributes.BonusStr = 10;
@@ -30,7 +30,7 @@ namespace Server.Items
 			Server.Misc.Arty.ArtySetup( this, "" );
 		}
 
-		public Artifact_GuantletsOfAnger( Serial serial ) : base( serial )
+		public Artifact_GuantletsOfOgreStrength( Serial serial ) : base( serial )
 		{
 		}
 		
