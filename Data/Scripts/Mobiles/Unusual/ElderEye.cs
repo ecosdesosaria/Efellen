@@ -6,22 +6,22 @@ using Server.Custom.BeholderSpecials;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a beholder corpse" )]
-	public class Beholder : BaseCreature
+	[CorpseName( "a Elder Eye corpse" )]
+	public class ElderEye : BaseCreature
 	{
 		private DateTime m_NextSpecialAttack;
 		public override int BreathPhysicalDamage{ get{ return 0; } }
-		public override int BreathFireDamage{ get{ return BeholderEye( this.VirtualArmor, 1 ); } }
-		public override int BreathColdDamage{ get{ return BeholderEye( this.VirtualArmor, 2 ); } }
-		public override int BreathPoisonDamage{ get{ return BeholderEye( this.VirtualArmor, 3 ); } }
-		public override int BreathEnergyDamage{ get{ return BeholderEye( this.VirtualArmor, 4 ); } }
-		public override int BreathEffectHue{ get{ return BeholderEye( this.VirtualArmor, 5 ); } }
+		public override int BreathFireDamage{ get{ return ElderEyeEye( this.VirtualArmor, 1 ); } }
+		public override int BreathColdDamage{ get{ return ElderEyeEye( this.VirtualArmor, 2 ); } }
+		public override int BreathPoisonDamage{ get{ return ElderEyeEye( this.VirtualArmor, 3 ); } }
+		public override int BreathEnergyDamage{ get{ return ElderEyeEye( this.VirtualArmor, 4 ); } }
+		public override int BreathEffectHue{ get{ return ElderEyeEye( this.VirtualArmor, 5 ); } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
-		public override int BreathEffectSound{ get{ return BeholderEye( this.VirtualArmor, 7 ); } }
-		public override int BreathEffectItemID{ get{ return BeholderEye( this.VirtualArmor, 6 ); } }
+		public override int BreathEffectSound{ get{ return ElderEyeEye( this.VirtualArmor, 7 ); } }
+		public override int BreathEffectItemID{ get{ return ElderEyeEye( this.VirtualArmor, 6 ); } }
 
-		public static int BeholderEye ( int cyclops, int value )
+		public static int ElderEyeEye ( int cyclops, int value )
 		{
 			if ( value == 1 && cyclops == 48 ){ return 100; } // RETURN THE FIRE DAMAGE
 			if ( value == 2 && cyclops == 49 ){ return 100; } // RETURN THE COLD DAMAGE
@@ -59,39 +59,40 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public Beholder () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
+		public ElderEye () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = NameList.RandomName( "drakkul" );
-			Title = "the beholder";
+			Title = "the Elder Eye";
 			Body = 674;
 			BaseSoundID = 377;
+			Hue = 0xb73;
 
-			SetStr( 336, 365 );
-			SetDex( 86, 105 );
-			SetInt( 321, 425 );
+			SetStr( 396, 425 );
+			SetDex( 186, 205 );
+			SetInt( 391, 485 );
 
-			SetHits( 208, 295 );
+			SetHits( 378, 595 );
 
-			SetDamage( 15, 25 );
+			SetDamage( 16, 25 );
 
 			SetDamageType( ResistanceType.Physical, 50 );
 			SetDamageType( ResistanceType.Energy, 50 );
 
-			SetResistance( ResistanceType.Physical, 45, 55 );
+			SetResistance( ResistanceType.Physical, 45, 65 );
 			SetResistance( ResistanceType.Fire, 60, 70 );
-			SetResistance( ResistanceType.Cold, 40, 50 );
-			SetResistance( ResistanceType.Poison, 40, 50 );
-			SetResistance( ResistanceType.Energy, 75 );
+			SetResistance( ResistanceType.Cold, 40, 65 );
+			SetResistance( ResistanceType.Poison, 40, 65 );
+			SetResistance( ResistanceType.Energy, 40, 70 );
 
-			SetSkill( SkillName.Anatomy, 82.0, 105.0 );
-			SetSkill( SkillName.Psychology, 100.1, 110.0 );
-			SetSkill( SkillName.Magery, 100.1, 115.0 );
-			SetSkill( SkillName.MagicResist, 125.0, 140.0 );
-			SetSkill( SkillName.Tactics, 100.1, 110.0 );
-			SetSkill( SkillName.FistFighting, 100.1, 110.0 );
+			SetSkill( SkillName.Anatomy, 100.0, 120.0 );
+			SetSkill( SkillName.Psychology, 105.1, 122.0 );
+			SetSkill( SkillName.Magery, 110.1, 122.0 );
+			SetSkill( SkillName.MagicResist, 125.1, 150.0 );
+			SetSkill( SkillName.Tactics, 100.1, 115.0 );
+			SetSkill( SkillName.FistFighting, 100.1, 115.0 );
 
-			Fame = 15500;
-			Karma = -15500;
+			Fame = 21500;
+			Karma = -21500;
 
 			VirtualArmor = Utility.RandomMinMax( 48, 51 );
 			m_NextSpecialAttack = DateTime.Now;
@@ -106,7 +107,7 @@ namespace Server.Mobiles
 				if ( Utility.RandomDouble() < 0.50 )
 				{
 					TriggerSpecialAttack( from );
-					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 5 );
+					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 30 );
 				}
 			}
 		}
@@ -120,7 +121,7 @@ namespace Server.Mobiles
 				if ( Utility.RandomDouble() < 0.30 )
 				{
 					TriggerSpecialAttack( from );
-					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 5 );
+					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 30 );
 				}
 			}
 		}
@@ -133,7 +134,7 @@ namespace Server.Mobiles
 			{
 				case 0:
 				{
-					if ( BeholderSpecials.AntiMagicEye( this, 60, 45, target ) )
+					if ( BeholderSpecials.AntiMagicEye( this, 75, 35, target ) )
 					{
 						this.Say( "*Focuses its anti-magic eye on {0}*", target.Name );
 					}
@@ -141,7 +142,7 @@ namespace Server.Mobiles
 				}
 				case 1:
 				{
-					if ( BeholderSpecials.Disintegration( this, 90, 90, target ) )
+					if ( BeholderSpecials.Disintegration( this, 115, 60, target ) )
 					{
 						this.Say( "*Fires a disintegration ray at {0}*", target.Name );
 					}
@@ -157,7 +158,7 @@ namespace Server.Mobiles
 				}
 				case 3:
 				{
-					if ( BeholderSpecials.Fear( this, 60, target ) )
+					if ( BeholderSpecials.Fear( this, 45, target ) )
 					{
 						this.Say( "*Strikes fear into {0}*", target.Name );
 					}
@@ -165,7 +166,7 @@ namespace Server.Mobiles
 				}
 				case 4:
 				{
-					if ( BeholderSpecials.TelekineticRay( this, 6, 40 ) )
+					if ( BeholderSpecials.TelekineticRay( this, 9, 40 ) )
 					{
 						this.Say( "*A wave of Telekinetic energy oozes from an eyestalk!*", target.Name );
 					}
@@ -173,7 +174,7 @@ namespace Server.Mobiles
 				}
 				case 5:
 				{
-					if ( BeholderSpecials.DeathRay( this, target, 21, 9, 90 ) )
+					if ( BeholderSpecials.DeathRay( this, target, 27, 11, 90 ) )
 					{
 						this.Say( "*Fires a necrotic ray at {0}*", target.Name );
 					}
@@ -215,9 +216,10 @@ namespace Server.Mobiles
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.FilthyRich );
+			AddLoot( LootPack.FilthyRich );
 		}
 
-		public Beholder( Serial serial ) : base( serial )
+		public ElderEye( Serial serial ) : base( serial )
 		{
 		}
 
