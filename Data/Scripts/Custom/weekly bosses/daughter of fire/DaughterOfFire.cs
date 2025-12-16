@@ -42,6 +42,7 @@ namespace Server.Mobiles
     	    typeof(Artifact_ArmsOfThePainSlave),
     	    typeof(Artifact_BootsOfThePainSlave),
 			typeof(Artifact_ChestOfThePainSlave),
+			typeof(Artifact_ExquisiteAgony)
     	};
 
 		private int m_Rage = 0;

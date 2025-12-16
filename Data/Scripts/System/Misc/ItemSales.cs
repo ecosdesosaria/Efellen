@@ -4132,6 +4132,8 @@ namespace Server
 			new ItemSalesInfo( typeof(	Artifact_ArmsOfThePainSlave	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_BootsOfThePainSlave	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_ChestOfThePainSlave	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_ExquisiteAgony	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			
 			// boss drops - tier 4 - dreamweaver
 			new ItemSalesInfo( typeof(	Artifact_TalonOfNightmares	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_BootsofTheDreamweaver	),	10500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
@@ -4146,6 +4148,7 @@ namespace Server
 			new ItemSalesInfo( typeof(	Artifact_LeggingsOfTheBlackSabbath	),	12500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_GlovesOfTheBlackSabbath	),	12500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_CoatOfTheBlackSabbath	),	12500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_CinderForgedMaul	),	12500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_CinderForgedArms	),	12500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_CinderForgedGloves	),	12500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_CinderForgedHelm	),	12500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
