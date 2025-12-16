@@ -54,7 +54,7 @@ namespace Server.Mobiles
 		public PrinceOfDarkness () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = "Prince of Darkness";
-
+			Title = "The Lord of This World";
 			Body = 0x58;
 			BaseSoundID = 838;
 			NameHue = 0x22;
@@ -89,6 +89,8 @@ namespace Server.Mobiles
 
 			VirtualArmor = 60;
 
+			PackItem( Loot.RandomArty() );
+			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
@@ -407,6 +409,7 @@ namespace Server.Mobiles
 				monster.IsTempEnemy = true;
 				monster.MoveToWorld( loc, map );
 				monster.Combatant = target;
+				RegisterSummon(monster);
 			}
 
 			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 18.0 - (m_Rage * 0.5) );
@@ -433,34 +436,22 @@ namespace Server.Mobiles
 			switch ( m_Rage )
 			{
 				case 0:
-					if ( rand < 45 )
-						return new MetalHead();
-					else
-						return new Bat();
+					return new MetalHead();
 				case 1:
-					if ( rand < 15 )
+					if ( rand < 35 )
 						return new Ozzy_WereWolf();
-					else if ( rand < 65 )
-						return new MetalHead();
 					else
-						return new Bat();
-
+						return new MetalHead();
 				case 2:
-					if ( rand < 10 )
-						return new Daemon();
-					else if ( rand < 25 )
+					if ( rand < 35 )
 						return new Demon();
 					else
 						return new Ozzy_WereWolf();
-
 				case 3:
 					if ( rand < 20 )
 						return new Balron();
-					else if ( rand < 45 )
-						return new Daemon();
 					else
 						return new Demon();
-
 				default:
 					return new MetalHead();
 			}
