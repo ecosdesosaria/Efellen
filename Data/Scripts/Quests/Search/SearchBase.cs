@@ -539,6 +539,7 @@ namespace Server.Items
 							}
 							else if ( page.LegendPercent >= Utility.RandomMinMax( 1, 200 ) )
 							{
+								LoggingFunctions.LogScammedBySage( from, page.SearchItem );
 								int nGold = page.LegendPercent * 100;
 								string sGold = nGold.ToString();
 								from.LocalOverheadMessage(MessageType.Emote, 1150, true, "The legend was false, but there was " + sGold + " gold in here.");
@@ -547,10 +548,11 @@ namespace Server.Items
 							}
 							else if ( 1 == Utility.RandomMinMax( 1, 2 ) )
 							{
+								
 								Item item = null;
 								string itemName = page.SearchType;
 								Type itemType = ScriptCompiler.FindTypeByName( itemName );
-
+								LoggingFunctions.LogScammedBySage( from, page.SearchItem );
 								if ( itemType != null )
 								{
 									item = (Item)Activator.CreateInstance(itemType);
@@ -567,6 +569,7 @@ namespace Server.Items
 							}
 							else
 							{
+								LoggingFunctions.LogScammedBySage( from, page.SearchItem );
 								from.SendMessage( "" );
 								from.LocalOverheadMessage(MessageType.Emote, 0x916, true, "The legends of the " + page.SearchItem + " seemed to be false.");
 								from.PlaySound( 0x249 );

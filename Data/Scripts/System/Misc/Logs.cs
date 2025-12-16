@@ -904,6 +904,24 @@ namespace Server.Misc
 			return null;
 		}
 		// --------------------------------------------------------------------------------------------
+		public static string LogScammedBySage( Mobile m, string sBox )
+		{
+			string sDateString = GetPlayerInfo.GetTodaysDate();
+			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
+			if ( m.Title != null ){ sTitle = m.Title; }
+
+			string sLoot = "has filed a complaint against the sages order due to missleading information regarding the";
+
+			PlayerMobile pm = (PlayerMobile)m;
+			if (pm.PublicInfo == true)
+			{
+				string sEvent = m.Name + " " + sTitle + " " + sLoot + " !"+"#" + sDateString;
+				LoggingFunctions.LogEvent( sEvent, "Logging Quests" );
+			}
+
+			return null;
+		}
+		// --------------------------------------------------------------------------------------------
 		public static string LogQuestItem( Mobile m, string sBox )
 		{
 			string sDateString = GetPlayerInfo.GetTodaysDate();
