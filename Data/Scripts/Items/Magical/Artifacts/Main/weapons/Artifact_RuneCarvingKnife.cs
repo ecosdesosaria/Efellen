@@ -9,7 +9,7 @@ namespace Server.Items
 {
 	public class Artifact_RuneCarvingKnife : GiftAssassinSpike
 	{
-		private DateTime m_NextAoE;
+		private DateTime m_NextArtifactAttackAllowed;
 		[Constructable]
 		public Artifact_RuneCarvingKnife()
 		{
@@ -33,14 +33,14 @@ namespace Server.Items
 			//only works for people serious about the fencer business
 			if (attacker.Skills[SkillName.Fencing].Value > 105.0  && attacker.Dex > 111)
 			{
-				if (DateTime.UtcNow < m_NextAoE)
+				if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
     	        return;
     	    	double skill = attacker.Skills[SkillName.Fencing].Value; 
     	    	double chance = 0.05 + (skill / 125.0) * 0.20; // 5% chant at 0 skill, 25% chance at 125 skill
     	    	if (Utility.RandomDouble() > chance)
     	    	    return;
     	    	double seconds = 120.0 - (skill * (90.0 / 125.0)); // 120secs cooldown at 0 skill, 30 secs cooldown at 125 skill
-    	    	m_NextAoE = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
+    	    	m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
 				int minDmg = attacker.Dex / 13; // 13 base min damage at 150 dex
 		    	int maxDmg = attacker.Dex / 6; // 25 base max damage at 150 dex
 		    	if (minDmg < 0) minDmg = 0;
@@ -100,15 +100,19 @@ namespace Server.Items
 		{
 			base.Serialize( writer );
 
-			writer.WriteEncodedInt( 0 ); // version
+			writer.WriteEncodedInt( 1 ); // version
+			writer.Write(m_NextArtifactAttackAllowed);
 		}
 
-		public override void Deserialize( GenericReader reader )
+		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
-			ArtifactLevel = 2;
-
+			base.Deserialize(reader);
 			int version = reader.ReadEncodedInt();
+			if (version >= 1)
+		        m_NextArtifactAttackAllowed = reader.ReadDateTime();
+		    else
+		        m_NextArtifactAttackAllowed = DateTime.MinValue;
+			ArtifactLevel = 2;
 		}
 	}
 }

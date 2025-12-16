@@ -67,7 +67,7 @@ namespace Server.Items
 		{
 			base.Deserialize(reader);
 			int version = reader.ReadEncodedInt();
-			 if (version >= 1)
+			if (version >= 1)
 		        m_NextArtifactAttackAllowed = reader.ReadDateTime();
 		    else
 		        m_NextArtifactAttackAllowed = DateTime.MinValue;

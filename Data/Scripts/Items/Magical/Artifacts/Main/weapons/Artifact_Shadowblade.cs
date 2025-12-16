@@ -10,7 +10,7 @@ namespace Server.Items
 {
     public class Artifact_ShadowBlade : GiftLongsword
     {
-        private DateTime m_NextAoE;
+        private DateTime m_NextArtifactAttackAllowed;
 
         [Constructable]
         public Artifact_ShadowBlade()
@@ -21,10 +21,11 @@ namespace Server.Items
             Attributes.AttackChance = 10;
             Attributes.SpellChanneling = 1;
             Attributes.SpellDamage = 20;
-            WeaponAttributes.HitFireball = 40;
+            WeaponAttributes.HitHarm = 40;
             WeaponAttributes.HitLeechMana = 40;
             ArtifactLevel = 2;
             Server.Misc.Arty.ArtySetup(this, "Reaps the Light");
+            m_NextArtifactAttackAllowed = DateTime.MinValue;
         }
 
         public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
@@ -37,7 +38,7 @@ namespace Server.Items
             //only works for people serious about the dark knight business
             if (attacker.Skills[SkillName.Knightship].Value > 75.0 && attacker.Karma < -7777)
             {
-                if (DateTime.UtcNow < m_NextAoE)
+                if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
                     return;
 
                 double skill = attacker.Skills[SkillName.Knightship].Value;
@@ -49,7 +50,7 @@ namespace Server.Items
 
                 double seconds = 120.0 - (skill * (90.0 / 125.0)); // 120secs cooldown at 0 skill, 30 secs cooldown at 125 skill
 
-                m_NextAoE = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
+                m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
                 int minDmg = (-attacker.Karma) / 777; // 19 at -15k
                 int maxDmg = (-attacker.Karma) / 555; // 27 at -15k
 
@@ -120,17 +121,23 @@ namespace Server.Items
         {
         }
 
-        public override void Serialize(GenericWriter writer)
-        {
-            base.Serialize(writer);
-            writer.Write(0);
-        }
+        public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
 
-        public override void Deserialize(GenericReader reader)
-        {
-            base.Deserialize(reader);
-            ArtifactLevel = 2;
-            reader.ReadInt();
-        }
+			writer.WriteEncodedInt( 1 ); // version
+			writer.Write(m_NextArtifactAttackAllowed);
+		}
+
+		public override void Deserialize(GenericReader reader)
+		{
+			base.Deserialize(reader);
+			int version = reader.ReadEncodedInt();
+			if (version >= 1)
+		        m_NextArtifactAttackAllowed = reader.ReadDateTime();
+		    else
+		        m_NextArtifactAttackAllowed = DateTime.MinValue;
+			ArtifactLevel = 2;
+		}
     }
 }
