@@ -59,14 +59,18 @@ namespace Server.Items
 		{
 			base.Serialize( writer );
 
-			writer.Write( (int) 0 );
+			writer.WriteEncodedInt( 1 ); // version
+			writer.Write(m_NextArtifactAttackAllowed);
 		}
-		
+
 		public override void Deserialize(GenericReader reader)
 		{
 			base.Deserialize(reader);
-			int version = reader.ReadInt();
-
+			int version = reader.ReadEncodedInt();
+			 if (version >= 1)
+		        m_NextArtifactAttackAllowed = reader.ReadDateTime();
+		    else
+		        m_NextArtifactAttackAllowed = DateTime.MinValue;
 			ArtifactLevel = 2;
 		}
 	}
