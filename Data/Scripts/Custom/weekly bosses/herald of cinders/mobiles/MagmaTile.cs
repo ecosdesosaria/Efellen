@@ -3,6 +3,7 @@ using Server;
 using Server.Mobiles;
 using Server.Network;
 using System.Collections;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -68,9 +69,10 @@ namespace Server.Mobiles
 		{
 			if ( Deleted )
 				return;
-
-			// Lava bubble/eruption effect
-			Effects.SendLocationEffect( Location, Map, 0x3709, 20, 10, 1161, 0 );
+				Effects.SendLocationParticles(
+                            EffectItem.Create(Location, Map, EffectItem.DefaultDuration), 
+                            0x3709, 20, 10, 0x208,0
+                        );
 
 			// Occasional smoke
 			if ( Utility.RandomBool() )
