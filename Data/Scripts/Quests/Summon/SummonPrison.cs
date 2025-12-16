@@ -1022,6 +1022,7 @@ namespace Server.Items
 				case 58: sWhere = "the Glacial Scar"; sWho = "Murgor the frost giant chief"; sWhat = "bone of the frost giant"; break;
 				case 59: sWhere = "the Temple of Osirus"; sWho = "a silver drake"; sWhat = "mind of silver"; break;
 				case 60: sWhere = "the Sanctum of Saltmarsh"; sWho = "a silver drake"; sWhat = "scale of Scarthis"; break;
+				case 61: sWhere = "the Hive of the Eye Tyrant"; sWho = "an elder eye"; sWhat = "Lidless Eye"; break;
 			}
 
 			if ( part == 1 ){ return sWhere; }
