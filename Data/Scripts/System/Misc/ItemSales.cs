@@ -1704,7 +1704,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	Artifact_HolyKnightsGorget	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_HolyKnightsLegging	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_HolyKnightsPlateHelm	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
-			new ItemSalesInfo( typeof(	Artifact_HolySword	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_HoodedShroudOfShadows	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	HornOfKingTriton	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_HuntersArms	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),

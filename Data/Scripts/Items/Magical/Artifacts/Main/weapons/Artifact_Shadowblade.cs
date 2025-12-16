@@ -18,12 +18,11 @@ namespace Server.Items
             Name = "Blade of the Shadows";
             ItemID = 0xF61;
             Hue = 1899;
-
             Attributes.AttackChance = 10;
             Attributes.SpellChanneling = 1;
             Attributes.SpellDamage = 20;
-            WeaponAttributes.HitFireball = 25;
-            WeaponAttributes.HitLeechMana = 25;
+            WeaponAttributes.HitFireball = 40;
+            WeaponAttributes.HitLeechMana = 40;
             ArtifactLevel = 2;
             Server.Misc.Arty.ArtySetup(this, "Reaps the Light");
         }
@@ -81,10 +80,6 @@ namespace Server.Items
 
                     // don't smite guildmates
                     if (attacker.Guild != null && mob.Guild != null && attacker.Guild == mob.Guild)
-                        continue;
-
-                    // only smites good targets
-                    if (mob.Karma < 0)
                         continue;
 
                     // smites gooder people harder

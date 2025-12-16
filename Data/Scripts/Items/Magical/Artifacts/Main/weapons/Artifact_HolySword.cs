@@ -19,9 +19,11 @@ namespace Server.Items
 			Hue = 0x482;
 			ItemID = 0xF61;
 			Slayer = SlayerName.Silver;
-			Attributes.WeaponDamage = 45;
+			Attributes.WeaponDamage = 50;
 			WeaponAttributes.SelfRepair = 10;
 			WeaponAttributes.UseBestSkill = 1;
+			WeaponAttributes.HitDispel = 50;
+			Attributes.RegenStam = 10;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Smites Evil" );
 		}

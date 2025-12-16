@@ -42,6 +42,7 @@ namespace Server.Mobiles
     	    typeof(Artifact_TunicOfDevotion),
     	    typeof(Artifact_ArmsOfDevotion),
 			typeof(Artifact_CoifOfDevotion),
+			typeof(Artifact_HolySword)
     	};
 
 		private int m_Rage = 0;

@@ -67,7 +67,7 @@ namespace Server.Items
 				m_Book = wikipedia;
 				string color = "#d6c382";
 
-				int NumberOfArtifacts = 349; // SEE LISTING BELOW AND MAKE SURE IT MATCHES THE AMOUNT
+				int NumberOfArtifacts = 347; // SEE LISTING BELOW AND MAKE SURE IT MATCHES THE AMOUNT
 				decimal PageCount = NumberOfArtifacts / 16;
 				int TotalBookPages = ( 100000 ) + ( (int)Math.Ceiling( PageCount ) );
 
@@ -304,7 +304,6 @@ namespace Server.Items
 			if ( artifact == arty) { name="Artifact_BladeOfInsanity"; item="Blade of Insanity"; } arty++;
 			if ( artifact == arty) { name="Artifact_ConansSword"; item="Blade of the Cimmerian"; } arty++;
 			if ( artifact == arty) { name="Artifact_BladeOfTheWilds"; item="Blade of the Wilds";} arty++;
-			if ( artifact == arty) { name="Artifact_ShadowBlade"; item="Blade of the Shadows"; } arty++;
 			if ( artifact == arty) { name="Artifact_BlazeOfDeath"; item="Blaze of Death"; } arty++;
 			if ( artifact == arty) { name="Artifact_BloodwoodSpirit"; item="Bloodwood Spirit"; } arty++;
 			if ( artifact == arty) { name="Artifact_BoneCrusher"; item="Bone Crusher"; } arty++;
@@ -336,7 +335,6 @@ namespace Server.Items
 			if ( artifact == arty) { name="Artifact_CapOfTheFallenKing"; item="Cap of the Fallen King"; } arty++;
 			if ( artifact == arty) { name="Artifact_CaptainJohnsHat"; item="Captain John's Hat"; } arty++;
 			if ( artifact == arty) { name="Artifact_CaptainQuacklebushsCutlass"; item="Captain Quacklebush's Cutlass"; } arty++;
-			if ( artifact == arty) { name="Artifact_HolySword"; item="Carsomyr"; } arty++;
 			if ( artifact == arty) { name="Artifact_CircletOfTheSorceress"; item="Circlet Of The Sorceress"; } arty++;
 			if ( artifact == arty) { name="Artifact_CloakOfTheRogue"; item="Cloak of the Rogue"; } arty++;
 			if ( artifact == arty) { name="Artifact_CoatOfTheDreadPirate";item="Coat of the Dread Pirate";} arty++;
