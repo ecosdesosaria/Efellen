@@ -66,6 +66,7 @@ namespace Server.Mobiles
 		public HeraldOfCinders () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = "The Herald of Cinders";
+			Title = "The Everlasting Flame";
 			Body = 713;
 			BaseSoundID = 362;
 			NameHue = 0x22;
@@ -99,6 +100,8 @@ namespace Server.Mobiles
 			if ( Backpack == null )
 				AddItem( new Backpack() );
 
+			PackItem( Loot.RandomArty() );
+			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );

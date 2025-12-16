@@ -54,7 +54,7 @@ namespace Server.Mobiles
 		public HeavenlyMarshall () : base( AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4 )
 		{
 			Name = "Heavenly Marshall";
-
+			Title = "The Envoy from Above";
 			Body = 346;
 			BaseSoundID = 466;
 			NameHue = 0x92E;
@@ -86,6 +86,8 @@ namespace Server.Mobiles
 
 			VirtualArmor = 60;
 
+			PackItem( Loot.RandomArty() );
+			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
