@@ -326,6 +326,7 @@ namespace Server.Items
 				case 57: Part1 = "the Glacial Scar"; Part2 = "bone of the frost giant"; break;
 				case 58: Part1 = "the Temple of Osirus"; Part2 = "mind of silver"; break;
 				case 59: Part1 = "the Sanctum of Saltmarsh"; Part2 = "scale of Scarthis"; break;
+				case 60: Part1 = "the Hive of the Eye Tyrant"; Part2 = "Lidless Eye";break;
 			}
 
 			if ( part > 0 ){ return Part2; }

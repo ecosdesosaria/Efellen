@@ -4469,7 +4469,21 @@ ChestLevel = 3; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.Move
 ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7101,2829,52), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
 ChestLevel = 4; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7113,2847,52), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
 ChestLevel = 3; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7113,2850,52), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
-
+ChestLevel = 3; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6353,2849,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 3; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6385,2836,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 3; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6434,2816,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 3; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6475,2814,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 3; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6485,2855,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 3; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6425,2892,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 3; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6445,2906,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 4; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6453,2896,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 4; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6466,2901,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 4; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6485,2880,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 4; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6466,2787,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 4; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6436,2758,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6410,2750,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6421,2729,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6410,2753,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
 		}
 	}
 }
@@ -6178,6 +6192,7 @@ namespace Server.Misc
 				case 77 : specialPed.MoveToWorld (new Point3D(5187, 2225, 10), Map.Lodor); break; // the Depths of Carthax Lake
 				case 78 : specialPed.MoveToWorld (new Point3D(6109, 698, 0), Map.Lodor); break; // Argentrock Castle
 				case 79 : specialPed.MoveToWorld (new Point3D(6216, 1343, 0), Map.Lodor); break; // the Sanctum of Saltmarsh
+				case 80 : specialPed.MoveToWorld (new Point3D(6458, 2921, 0), Map.Lodor); break; // Hive of the Eye Tyrant
 			}
 		}
 	}
@@ -15623,7 +15638,7 @@ namespace Server.Misc
 				item.Delete();
 			}
 
-			int dungeons = 90;
+			int dungeons = 91;
 			int area = 0;
 
 			while ( dungeons > 0 )
@@ -15719,6 +15734,7 @@ namespace Server.Misc
 				else if ( area == 86 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Stygian Abyss
 				else if ( area == 87 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Sanctum of Saltmarsh
 				else if ( area == 88 ){ pedestal = new SearchBase(1); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Ancient Sky Ship
+				else if ( area == 89 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Hive of the Eye Tyrant
 			}
 		}
 
@@ -16363,9 +16379,20 @@ namespace Server.Misc
 				case 4:	loc = new Point3D(1196, 4009, 0); map = Map.SavagedEmpire; break;
 				case 5:	loc = new Point3D(1015, 3909, 0); map = Map.SavagedEmpire; break;
 				case 6:	loc = new Point3D(1150, 3764, 0); map = Map.SavagedEmpire; break;
+			} 
 			}
+			else if ( area == 89 )
+			{ 
+				switch ( Utility.RandomMinMax( 1, 5 ) ) // Hive of the Eye Tyrant
+				{
+					case 1:	loc = new Point3D(6445, 2906, 0); map = Map.Lodor; break;
+					case 2:	loc = new Point3D(6484, 2879, 0); map = Map.Lodor; break;
+					case 3:	loc = new Point3D(6445, 2842, 0); map = Map.Lodor; break;
+					case 4:	loc = new Point3D(6407, 2786, 0); map = Map.Lodor; break;
+					case 5:	loc = new Point3D(6438, 2779, 0); map = Map.Lodor; break;
+				}
 			}
-
+			
 			int AlwaysAllow = 1;
 				if ( item is Prisoner ){ AlwaysAllow = 0; }
 

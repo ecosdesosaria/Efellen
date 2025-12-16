@@ -2,12 +2,14 @@ using System;
 using Server;
 using Server.Items;
 using Server.Misc;
+using Server.Custom.BeholderSpecials;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a beholder corpse" )]
 	public class Beholder : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack;
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ return BeholderEye( this.VirtualArmor, 1 ); } }
 		public override int BreathColdDamage{ get{ return BeholderEye( this.VirtualArmor, 2 ); } }
@@ -64,19 +66,13 @@ namespace Server.Mobiles
 			Body = 674;
 			BaseSoundID = 377;
 
-			if ( Utility.RandomBool() )
-			{
-				Title = "the ancient gazer";
-				Body = 423;
-			}
-
-			SetStr( 296, 325 );
+			SetStr( 336, 365 );
 			SetDex( 86, 105 );
-			SetInt( 291, 385 );
+			SetInt( 321, 425 );
 
-			SetHits( 178, 195 );
+			SetHits( 208, 295 );
 
-			SetDamage( 8, 19 );
+			SetDamage( 15, 25 );
 
 			SetDamageType( ResistanceType.Physical, 50 );
 			SetDamageType( ResistanceType.Energy, 50 );
@@ -85,19 +81,105 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Fire, 60, 70 );
 			SetResistance( ResistanceType.Cold, 40, 50 );
 			SetResistance( ResistanceType.Poison, 40, 50 );
-			SetResistance( ResistanceType.Energy, 40, 50 );
+			SetResistance( ResistanceType.Energy, 75 );
 
-			SetSkill( SkillName.Anatomy, 62.0, 100.0 );
-			SetSkill( SkillName.Psychology, 90.1, 100.0 );
-			SetSkill( SkillName.Magery, 90.1, 100.0 );
-			SetSkill( SkillName.MagicResist, 115.1, 130.0 );
-			SetSkill( SkillName.Tactics, 80.1, 100.0 );
-			SetSkill( SkillName.FistFighting, 80.1, 100.0 );
+			SetSkill( SkillName.Anatomy, 82.0, 105.0 );
+			SetSkill( SkillName.Psychology, 100.1, 110.0 );
+			SetSkill( SkillName.Magery, 100.1, 115.0 );
+			SetSkill( SkillName.MagicResist, 125.0, 140.0 );
+			SetSkill( SkillName.Tactics, 100.1, 110.0 );
+			SetSkill( SkillName.FistFighting, 100.1, 110.0 );
 
-			Fame = 12500;
-			Karma = -12500;
+			Fame = 15500;
+			Karma = -15500;
 
 			VirtualArmor = Utility.RandomMinMax( 48, 51 );
+			m_NextSpecialAttack = DateTime.Now;
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			base.OnDamage( amount, from, willKill );
+
+			if ( DateTime.Now >= m_NextSpecialAttack && from != null && from.Alive && !willKill )
+			{
+				if ( Utility.RandomDouble() < 0.50 )
+				{
+					TriggerSpecialAttack( from );
+					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 5 );
+				}
+			}
+		}
+
+		public override void OnGaveMeleeAttack( Mobile from)
+		{
+			base.OnGaveMeleeAttack(from);
+
+			if ( DateTime.Now >= m_NextSpecialAttack && from != null && from.Alive )
+			{
+				if ( Utility.RandomDouble() < 0.30 )
+				{
+					TriggerSpecialAttack( from );
+					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 5 );
+				}
+			}
+		}
+
+		private void TriggerSpecialAttack( Mobile target )
+		{
+			int choice = Utility.Random( 6 );
+
+			switch ( choice )
+			{
+				case 0:
+				{
+					if ( BeholderSpecials.AntiMagicEye( this, 60, 45, target ) )
+					{
+						this.Say( "*Focuses its anti-magic eye on {0}*", target.Name );
+					}
+					break;
+				}
+				case 1:
+				{
+					if ( BeholderSpecials.Disintegration( this, 90, 90, target ) )
+					{
+						this.Say( "*Fires a disintegration ray at {0}*", target.Name );
+					}
+					break;
+				}
+				case 2:
+				{
+					if ( BeholderSpecials.Petrification( this, 30, target ) )
+					{
+						this.Say( "*Petrifies {0} with its gaze*", target.Name );
+					}
+					break;
+				}
+				case 3:
+				{
+					if ( BeholderSpecials.Fear( this, 60, target ) )
+					{
+						this.Say( "*Strikes fear into {0}*", target.Name );
+					}
+					break;
+				}
+				case 4:
+				{
+					if ( BeholderSpecials.TelekineticRay( this, 6, 40 ) )
+					{
+						this.Say( "*A wave of Telekinetic energy oozes from an eyestalk!*", target.Name );
+					}
+					break;
+				}
+				case 5:
+				{
+					if ( BeholderSpecials.DeathRay( this, target, 21, 9, 90 ) )
+					{
+						this.Say( "*Fires a necrotic ray at {0}*", target.Name );
+					}
+					break;
+				}
+			}
 		}
 
 		public override int TreasureMapLevel{ get{ return Core.AOS ? 4 : 0; } }

@@ -531,7 +531,7 @@ namespace Server.Misc
 			string relics = QuestCharacters.QuestItems( false );
 				if ( Utility.RandomBool() ){ relics = QuestCharacters.ArtyItems( false ); }
 
-			int max = 172; if ( !useAll ){ max = max + 40; }
+			int max = 174; if ( !useAll ){ max = max + 40; }
 			switch( Utility.RandomMinMax( 0, max ) )
 			{
 				case 0: sWords = "a bright white shrine in Sosaria that leads to the moon"; break;	
@@ -847,6 +847,9 @@ namespace Server.Misc
 						case 4: misc = "was lost"; break;	
 					}
 					sWords = "a " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " that " + misc + " in " + dungeon + ""; break;
+				case 173: sWords = "Some Myconids have been wandering far from the underground lately"; break;
+				case 174: sWords = "Strange are the dreams I'm having as of late, the priest said I should consider my sins, and yet I wonder if there's nothing else at play here"; break;
+
 			}
 			return sWords;	
 		}

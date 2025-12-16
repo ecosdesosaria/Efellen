@@ -56,6 +56,7 @@ namespace Server.Mobiles
 			SetSkill( SkillName.MagicResist, 100.0 );
 			SetSkill( SkillName.Swords, 100.0 );
 			SetSkill( SkillName.Tactics, 100.0 );
+			SetSkill( SkillName.Parry, 100.0 );
 
 			AddItem( new LightCitizen( true ) );
 			PackItem( new Gold( Utility.RandomMinMax( 105, 385 ) ) );

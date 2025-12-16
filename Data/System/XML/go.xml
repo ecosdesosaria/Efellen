@@ -388,6 +388,8 @@
 
 				</parent>
 
+				<child name="the Hive of the Eye Tyrant" x="6360" y="2860" z="0" map="Lodor" />
+
 			</parent>
 
 			<parent name="Other Areas">

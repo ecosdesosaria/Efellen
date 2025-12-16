@@ -23,10 +23,19 @@ namespace Server.Misc
 			{
 				m.EmoteHue = 123;
 				Item ashheart = new SummonItems();
-					ashheart.Name = "heart of ash";
-					ashheart.ItemID = 0xF91;
-					ashheart.Hue = 0x76C;
-					b.PackItem( ashheart );
+				ashheart.Name = "heart of ash";
+				ashheart.ItemID = 0xF91;
+				ashheart.Hue = 0x76C;
+				b.PackItem( ashheart );
+			}
+			if ( reg.IsPartOf( "the Hive of the Eye Tyrant" ) && m is ElderEye )
+			{
+				m.EmoteHue = 123;
+				Item eye = new SummonItems();
+				eye.Name = "Lidless Eye";
+				eye.ItemID = 12250;
+				eye.Hue = 0x76C;
+				b.PackItem( eye );
 			}
 			else if ( reg.IsPartOf( "the Vault of the Black Knight" ) && m is WaxSculpture && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 6421, 237, Map.Lodor ) )
 			{

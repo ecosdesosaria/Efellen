@@ -109,8 +109,8 @@ namespace Server.Misc
 		public static string SomePlace( string FromWho )
 		{
 			string sPlace = "the Ancient Prison";
-			int section = Utility.RandomMinMax( 1, 101 );
-			if ( FromWho != "tavern" ){ section = Utility.RandomMinMax( 17, 101 ); }
+			int section = Utility.RandomMinMax( 1, 103 );
+			if ( FromWho != "tavern" ){ section = Utility.RandomMinMax( 17, 103 ); }
 			switch( section )
 			{
 				case 1: sPlace = "the cave"; break;
@@ -220,6 +220,8 @@ namespace Server.Misc
 				case 99: sPlace = "the Hall of the Mountain King"; break;
 				case 100: sPlace = "the Depths of Carthax Lake"; break;
 				case 101: sPlace = "the Ancient Sky Ship"; break;
+				case 102: sPlace = "the Hive of the Eye Tyrant"; break;
+				case 103: sPlace = "Cave of the Myconid"; break;
 			}
 
 			return sPlace;

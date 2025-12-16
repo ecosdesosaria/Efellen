@@ -39,6 +39,14 @@ namespace Server
 
 			Region reg = Region.Find( loc, map );
 
+			/* 
+			   -1 - easy
+				0 - normal
+				1 - difficult 
+				2 - challenging
+				3 - hard
+				4 - deadly
+			 */
 			if ( map == Map.Lodor )
 			{
 				if ( reg.IsPartOf( "the Lodoria Sewers" ) ){ Heat = 0; }
@@ -54,7 +62,7 @@ namespace Server
 				else if ( reg.IsPartOf( "Dungeon Hythloth" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "the Mind Flayer City" ) ){ Heat = 2; }
 				else if ( reg.IsPartOf( "the City of Embers" ) ){ Heat = 0; }
-				else if ( reg.IsPartOf( "Dungeon Destard" ) ){ Heat = 1; }
+				else if ( reg.IsPartOf( "Dungeon Destard" ) ){ Heat = 3; }
 				else if ( reg.IsPartOf( "Dungeon Despise" ) ){ Heat = 2; }
 				else if ( reg.IsPartOf( "Dungeon Deceit" ) ){ Heat = 2; }
 				else if ( reg.IsPartOf( "Dungeon Covetous" ) ){ Heat = 2; }
@@ -84,8 +92,8 @@ namespace Server
 				else if ( reg.IsPartOf( "the Lower Catacombs" ) ){ Heat = 1; }
 				else if ( reg.IsPartOf( "the Sewers" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "the Cellar" ) ){ Heat = 0; }
-
 				else if ( reg.IsPartOf( "the Sanctum of Saltmarsh" ) ){ Heat = 3; }
+				else if ( reg.IsPartOf( "the Hive of the Eye Tyrant" ) ){ Heat = 3; }
 			}
 			else if ( map == Map.Sosaria )
 			{

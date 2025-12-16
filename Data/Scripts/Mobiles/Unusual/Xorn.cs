@@ -6,13 +6,13 @@ using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a xorn's corpse" )]
+	[CorpseName( "an Otyugh's corpse" )]
 	public class Xorn : BaseCreature
 	{
 		[Constructable]
 		public Xorn( ) : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a xorn";
+			Name = "an Otyugh";
 			Body = 789;
 			Hue = 0xB25;
 			BaseSoundID = 268;

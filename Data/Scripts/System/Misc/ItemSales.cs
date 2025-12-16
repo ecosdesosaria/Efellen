@@ -1688,7 +1688,7 @@ namespace Server
 			new ItemSalesInfo( typeof(	Artifact_GrimReapersMask	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_GrimReapersRobe	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_GrimReapersScythe	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
-			new ItemSalesInfo( typeof(	Artifact_GuantletsOfAnger	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_GuantletsOfOgreStrength	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	GwennosHarp	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_HammerofThor	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_HatOfTheMagi	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
