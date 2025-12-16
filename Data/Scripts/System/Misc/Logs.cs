@@ -1264,7 +1264,7 @@ namespace Server.Misc
 						}
 						else if ( ( mob != null ) && ( mob is PlayerMobile ) )
 						{
-							string kTitle = "the " + GetPlayerInfo.GetSkillTitle( mob );
+							string kTitle = " the " + GetPlayerInfo.GetSkillTitle( mob );
 							if ( mob.Title != null ){ kTitle = mob.Title; }
 							sEvent = m.Name + " " + sTitle + " had been killed by " + sKiller + " " + kTitle + "#" + sDateString;
 						}
