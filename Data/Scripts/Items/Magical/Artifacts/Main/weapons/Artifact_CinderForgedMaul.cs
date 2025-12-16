@@ -5,24 +5,29 @@ using Server.Targeting;
 using Server.Mobiles;
 using Server.Engines.PartySystem;
 using Server.EffectsUtil;
+
 namespace Server.Items
 {
-	public class Artifact_RuneCarvingKnife : GiftAssassinSpike
+	public class Artifact_CinderForgedMaul : GiftWarMace
 	{
 		private DateTime m_NextArtifactAttackAllowed;
-		[Constructable]
-		public Artifact_RuneCarvingKnife()
+		public override int InitMinHits{ get{ return 80; } }
+		public override int InitMaxHits{ get{ return 160; } }
+
+      [Constructable]
+		public Artifact_CinderForgedMaul()
 		{
-			Hue = 0x48D;
-			Name = "Rune Carving Knife";
-			ItemID = 0x2677;
-			Attributes.SpellChanneling = 1;
-			WeaponAttributes.HitLeechMana = 40;
-			Attributes.LowerManaCost = 10;
-			Attributes.WeaponSpeed = 10;
-			Attributes.WeaponDamage = 10;
+			Name = "Cinder Forged Maul";
+			ItemID = 0x2682;
+            Hue = 0x81b;
+            WeaponAttributes.HitFireball = 40;
+            WeaponAttributes.HitFireArea = 40;
+            Attributes.SpellChanneling = 1;
+			Attributes.BonusStr = 10;
+            Attributes.AttackChance = 10;
 			ArtifactLevel = 2;
-			Server.Misc.Arty.ArtySetup( this, "Herald of thunder" );
+			Server.Misc.Arty.ArtySetup( this, "Sets the ground ablaze" );
+            m_NextArtifactAttackAllowed = DateTime.MinValue;
 		}
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
@@ -30,19 +35,19 @@ namespace Server.Items
 			base.OnHit(attacker, defender, damageBonus);
 			if (attacker == null || defender == null)
 				return;
-			//only works for people serious about the fencer business
-			if (attacker.Skills[SkillName.Fencing].Value > 105.0  && attacker.Dex > 111)
+			//requires you to be mighty to attempt to groundslam
+			if (attacker.Skills[SkillName.Bludgeoning].Value > 105.0 && attacker.Str > 111)
 			{
 				if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
     	        return;
-    	    	double skill = attacker.Skills[SkillName.Fencing].Value; 
+    	    	double skill = attacker.Skills[SkillName.Bludgeoning].Value; 
     	    	double chance = 0.05 + (skill / 125.0) * 0.20; // 5% chant at 0 skill, 25% chance at 125 skill
     	    	if (Utility.RandomDouble() > chance)
     	    	    return;
     	    	double seconds = 120.0 - (skill * (90.0 / 125.0)); // 120secs cooldown at 0 skill, 30 secs cooldown at 125 skill
     	    	m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
-				int minDmg = attacker.Dex / 13; // 13 base min damage at 150 dex
-		    	int maxDmg = attacker.Dex / 6; // 25 base max damage at 150 dex
+				int minDmg = attacker.Str / 12; // 12 base min damage at 150 str
+		    	int maxDmg = attacker.Str / 5; // 30 base max damage at 150 str
 		    	if (minDmg < 0) minDmg = 0;
 		    	if (maxDmg < 0) maxDmg = 0;
 		    	if (maxDmg < minDmg) maxDmg = minDmg;
@@ -50,22 +55,23 @@ namespace Server.Items
     	    	{
     	    	    if (mob == null || mob == attacker || mob == defender)
     	    	        continue;
-					// dont shock pets/owned summoned creatures
+					// dont burst pets/owned summoned creatures
     	    	    if (mob is BaseCreature)
     	    	    {
     	    	        BaseCreature bc = (BaseCreature)mob;
     	    	        if ((bc.Controlled && bc.ControlMaster == attacker) || (bc.Summoned && bc.SummonMaster == attacker))
     	    	            continue;
     	    	    }
-    	    	    // don't shock party members
+    	    	    // don't burst party members
     	    	    Party attackerParty = Party.Get(attacker);
     	    	    Party mobParty = Party.Get(mob);
 					if (attackerParty != null && mobParty != null && attackerParty == mobParty)
 						continue;
-    	    	    // dont shock guild mates
+    	    	    // dont burst guild mates
     	    	    if (attacker.Guild != null && mob.Guild != null && attacker.Guild == mob.Guild)
     	    	        continue;
-    	    	   // shock targets that are closer harder
+
+					// burst targets that are closer harder
 					int distance = (int)(attacker.GetDistanceToSqrt(mob));
 					int bonus = 0;
 					if (distance <= 1)
@@ -79,20 +85,21 @@ namespace Server.Items
 					else
 					    bonus = 0;
     	    	   
-					// shock!
+					// fire burst!
 					int dmg = Utility.RandomMinMax(minDmg + bonus, maxDmg + bonus);
 					if (dmg > 0)
 					{
-						AOS.Damage(mob, attacker, dmg, 0, 0, 0, 0, 100);
+						AOS.Damage(mob, attacker, dmg, 0, 100, 0, 0, 0);
 						mob.PlaySound(0x208);
        				}
     	    	}
-    			attacker.SendMessage("Your Rune Carving Knife unleashes a shockwave!");
-				SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 92);
+				attacker.SendMessage("Your Maul of the titans shatters the ground!");
+				SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 1160);
 			}
     	}
 
-		public Artifact_RuneCarvingKnife( Serial serial ) : base( serial )
+
+		public Artifact_CinderForgedMaul( Serial serial ) : base( serial )
 		{
 		}
 

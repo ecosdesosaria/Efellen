@@ -53,6 +53,7 @@ namespace Server.Mobiles
     	    typeof(Artifact_CinderForgedHelm),
     	    typeof(Artifact_CinderForgedLeggings),
 			typeof(Artifact_CinderForgedBreastplate),
+			typeof(Artifact_CinderForgedMaul)
     	};
 
 		private int m_Rage = 0;
@@ -66,10 +67,11 @@ namespace Server.Mobiles
 		public HeraldOfCinders () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = "The Herald of Cinders";
+			Title = "The Everlasting Flame";
 			Body = 713;
 			BaseSoundID = 362;
 			NameHue = 0x22;
-			Hue = 1111;
+			Hue = 0x81b;
 			
 			SetStr( 896, 985 );
 			SetDex( 125, 175 );
@@ -99,6 +101,8 @@ namespace Server.Mobiles
 			if ( Backpack == null )
 				AddItem( new Backpack() );
 
+			PackItem( Loot.RandomArty() );
+			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
@@ -178,7 +182,7 @@ namespace Server.Mobiles
 								m.PlaySound( 0x1FB );
 							}
 						}
-						SlamVisuals.SlamVisual(this, 6, 0x36B0, 1161);
+						SlamVisuals.SlamVisual(this, 6, 0x36B0, 1160);
 						eable.Free();
 						break;
 					}
@@ -255,7 +259,7 @@ namespace Server.Mobiles
 					AOS.Damage( m, this, damage, physDamage, fireDamage, 0, 0, 0 );
 
 					m.PlaySound( 0x1FB );
-					m.FixedParticles( 0x3709, 10, 30, 5052, EffectLayer.Waist );
+					m.FixedParticles( 0x3709, 10, 30, 1160, EffectLayer.Waist );
 
 					Direction knockDir = GetDirectionTo( m );
 					int knockX = 0, knockY = 0;
@@ -322,7 +326,7 @@ namespace Server.Mobiles
 					if ( Deleted || !Alive )
 						return;
 
-					Effects.SendLocationEffect( loc, Map, 0x36B0, 20, 10, 1161, 0 );
+					Effects.SendLocationEffect( loc, Map, 0x36B0, 20, 10, 1160, 0 );
 					Effects.PlaySound( loc, Map, 0x11D );
 
 					Timer.DelayCall( TimeSpan.FromSeconds( 0.5 ), delegate()

@@ -1,28 +1,32 @@
 using System;
-using Server.Network;
+using Server;
 using Server.Items;
-using Server.Targeting;
 using Server.Mobiles;
+using Server.Network;
 using Server.Engines.PartySystem;
 using Server.EffectsUtil;
+
 namespace Server.Items
 {
-	public class Artifact_RuneCarvingKnife : GiftAssassinSpike
+	public class Artifact_TalonOfNightmares : GiftWarFork
 	{
 		private DateTime m_NextArtifactAttackAllowed;
+
 		[Constructable]
-		public Artifact_RuneCarvingKnife()
+		public Artifact_TalonOfNightmares()
 		{
-			Hue = 0x48D;
-			Name = "Rune Carving Knife";
-			ItemID = 0x2677;
-			Attributes.SpellChanneling = 1;
-			WeaponAttributes.HitLeechMana = 40;
-			Attributes.LowerManaCost = 10;
-			Attributes.WeaponSpeed = 10;
-			Attributes.WeaponDamage = 10;
+			Name = "Talon Of Nightmares";
+			Hue = 0x96;
+			ItemID = 0x1405;
+			Slayer = SlayerName.WizardSlayer;
+			WeaponAttributes.HitLowerDefend = 30;
+            Attributes.SpellChanneling = 1;
+			Attributes.WeaponDamage = 30;
+			WeaponAttributes.SelfRepair = 10;
+			WeaponAttributes.HitLeechMana = 30;
+            Attributes.BonusInt = 10;
 			ArtifactLevel = 2;
-			Server.Misc.Arty.ArtySetup( this, "Herald of thunder" );
+			Server.Misc.Arty.ArtySetup( this, "Spreads Insanity" );
 		}
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
@@ -30,19 +34,19 @@ namespace Server.Items
 			base.OnHit(attacker, defender, damageBonus);
 			if (attacker == null || defender == null)
 				return;
-			//only works for people serious about the fencer business
-			if (attacker.Skills[SkillName.Fencing].Value > 105.0  && attacker.Dex > 111)
+			//only works for people serious about the mad genius business
+			if (attacker.Skills[SkillName.Psychology].Value > 75.0 && attacker.Int > 75)
 			{
 				if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
     	        return;
-    	    	double skill = attacker.Skills[SkillName.Fencing].Value; 
+    	    	double skill = attacker.Skills[SkillName.Psychology].Value; 
     	    	double chance = 0.05 + (skill / 125.0) * 0.20; // 5% chant at 0 skill, 25% chance at 125 skill
     	    	if (Utility.RandomDouble() > chance)
     	    	    return;
     	    	double seconds = 120.0 - (skill * (90.0 / 125.0)); // 120secs cooldown at 0 skill, 30 secs cooldown at 125 skill
     	    	m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
-				int minDmg = attacker.Dex / 13; // 13 base min damage at 150 dex
-		    	int maxDmg = attacker.Dex / 6; // 25 base max damage at 150 dex
+				int minDmg = attacker.Int / 9; // 16 base min damage at 150 int
+		    	int maxDmg = attacker.Int / 5; // 30 base max damage at 150 int
 		    	if (minDmg < 0) minDmg = 0;
 		    	if (maxDmg < 0) maxDmg = 0;
 		    	if (maxDmg < minDmg) maxDmg = minDmg;
@@ -50,49 +54,61 @@ namespace Server.Items
     	    	{
     	    	    if (mob == null || mob == attacker || mob == defender)
     	    	        continue;
-					// dont shock pets/owned summoned creatures
+					// dont zap pets/owned summoned creatures
     	    	    if (mob is BaseCreature)
     	    	    {
     	    	        BaseCreature bc = (BaseCreature)mob;
     	    	        if ((bc.Controlled && bc.ControlMaster == attacker) || (bc.Summoned && bc.SummonMaster == attacker))
     	    	            continue;
     	    	    }
-    	    	    // don't shock party members
+    	    	    // don't zap party members
     	    	    Party attackerParty = Party.Get(attacker);
     	    	    Party mobParty = Party.Get(mob);
 					if (attackerParty != null && mobParty != null && attackerParty == mobParty)
 						continue;
-    	    	    // dont shock guild mates
+    	    	    // dont zap guild mates
     	    	    if (attacker.Guild != null && mob.Guild != null && attacker.Guild == mob.Guild)
     	    	        continue;
-    	    	   // shock targets that are closer harder
-					int distance = (int)(attacker.GetDistanceToSqrt(mob));
+    	    	    // Only smite intellingent things
+    	    	    if (mob.Karma > 0 && mob.Int >= 30)
+    	    	        continue;
+					// adds damage based on how smart the target is
+					// adds up to 18 damage when hitting something with 300+ int
 					int bonus = 0;
-					if (distance <= 1)
-					    bonus = 5;
-					else if (distance <= 3)
-					    bonus = 4;
-					else if (distance <= 5)
-					    bonus = 3;
-					else if (distance <= 7)
-					    bonus = 1;
-					else
-					    bonus = 0;
-    	    	   
-					// shock!
-					int dmg = Utility.RandomMinMax(minDmg + bonus, maxDmg + bonus);
+					if (mob.Int >= 300)
+						bonus = 18;
+					if (mob.Int >= 30 && mob.Int < 300)
+					{
+					    int scaled = (int)(mob.Int * 0.06);
+						if (scaled < 1) scaled = 0;
+					    if (scaled > 18) scaled = 18;
+					    bonus = scaled;
+					}
+					// zapping!
+					int dmg = Utility.RandomMinMax(minDmg, maxDmg) + bonus;
 					if (dmg > 0)
 					{
 						AOS.Damage(mob, attacker, dmg, 0, 0, 0, 0, 100);
 						mob.PlaySound(0x208);
        				}
     	    	}
-    			attacker.SendMessage("Your Rune Carving Knife unleashes a shockwave!");
-				SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 92);
+    			attacker.SendMessage("Your Nightmarish weapon unleashes a burst of psychic energy!");
+				SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 0x81b);
 			}
     	}
 
-		public Artifact_RuneCarvingKnife( Serial serial ) : base( serial )
+		public override bool OnEquip(Mobile from)
+        {
+            if (from.Int < 75)
+            {
+                from.SendMessage("This strange implement refuses to be wielded by you!");
+                return false;
+            }
+
+            return base.OnEquip(from);
+        }
+
+		public Artifact_TalonOfNightmares(Serial serial) : base(serial)
 		{
 		}
 

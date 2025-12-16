@@ -42,6 +42,7 @@ namespace Server.Mobiles
     	    typeof(Artifact_ArmsOfThePainSlave),
     	    typeof(Artifact_BootsOfThePainSlave),
 			typeof(Artifact_ChestOfThePainSlave),
+			typeof(Artifact_ExquisiteAgony)
     	};
 
 		private int m_Rage = 0;
@@ -54,14 +55,14 @@ namespace Server.Mobiles
 		public DaughterOfFire () : base( AIType.AI_Mage, FightMode.Closest, 20, 1, 0.4, 0.8 )
 		{
 			Name = "Daughter of Fire";
-
+            Title = "The Emissary of Pain";
 			Body = 149;
 			BaseSoundID = 0x4B0;
 			NameHue = 0x22;
 			Hue = 0xb73;
 
 			SetStr( 696, 685 );
-			SetDex( 225, 275 );
+			SetDex( 185, 205 );
 			SetInt( 486, 475 );
 
 			SetHits( 7000 );
@@ -87,6 +88,7 @@ namespace Server.Mobiles
 
 			VirtualArmor = 50;
 
+			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 		}

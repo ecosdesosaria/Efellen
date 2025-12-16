@@ -10,7 +10,7 @@ namespace Server.Items
 {
 	public class Artifact_HolySword : GiftLongsword
 	{
-		private DateTime m_NextAoE;
+		private DateTime m_NextArtifactAttackAllowed;
 
 		[Constructable]
 		public Artifact_HolySword()
@@ -19,11 +19,14 @@ namespace Server.Items
 			Hue = 0x482;
 			ItemID = 0xF61;
 			Slayer = SlayerName.Silver;
-			Attributes.WeaponDamage = 45;
+			Attributes.WeaponDamage = 50;
 			WeaponAttributes.SelfRepair = 10;
 			WeaponAttributes.UseBestSkill = 1;
+			WeaponAttributes.HitDispel = 50;
+			Attributes.RegenStam = 10;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Smites Evil" );
+    	    m_NextArtifactAttackAllowed = DateTime.MinValue;
 		}
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
@@ -34,14 +37,14 @@ namespace Server.Items
 			//only works for people serious about the knight business
 			if (attacker.Skills[SkillName.Knightship].Value > 75.0 && attacker.Karma > 7777)
 			{
-				if (DateTime.UtcNow < m_NextAoE)
+				if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
     	        return;
     	    	double skill = attacker.Skills[SkillName.Knightship].Value; 
     	    	double chance = 0.05 + (skill / 125.0) * 0.20; // 5% chant at 0 skill, 25% chance at 125 skill
     	    	if (Utility.RandomDouble() > chance)
     	    	    return;
     	    	double seconds = 120.0 - (skill * (90.0 / 125.0)); // 120secs cooldown at 0 skill, 30 secs cooldown at 125 skill
-    	    	m_NextAoE = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
+    	    	m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
 				int minDmg = attacker.Karma / 777; // 19 base min damage at 15k karma
 		    	int maxDmg = attacker.Karma / 555; // 27 base max damage at 15k karma
 		    	if (minDmg < 0) minDmg = 0;
@@ -107,17 +110,23 @@ namespace Server.Items
 		{
 		}
 
-		public override void Serialize( GenericWriter writer )
+		 public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.WriteEncodedInt( (int) 0 ); // version
+
+			writer.WriteEncodedInt( 1 ); // version
+			writer.Write(m_NextArtifactAttackAllowed);
 		}
 
 		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
-			ArtifactLevel = 2;
+			base.Deserialize(reader);
 			int version = reader.ReadEncodedInt();
+			if (version >= 1)
+		        m_NextArtifactAttackAllowed = reader.ReadDateTime();
+		    else
+		        m_NextArtifactAttackAllowed = DateTime.MinValue;
+			ArtifactLevel = 2;
 		}
 	}
 }

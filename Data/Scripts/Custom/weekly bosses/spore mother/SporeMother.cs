@@ -52,7 +52,7 @@ namespace Server.Mobiles
 		public SporeMother () : base( AIType.AI_Mage, FightMode.Closest, 20, 1, 0.4, 0.8 )
 		{
 			Name = "Spore Mother";
-
+			Title = "The Living Infestation";
 			Body = 341;
 			NameHue = 0x22;
 			Hue = 0x497;
