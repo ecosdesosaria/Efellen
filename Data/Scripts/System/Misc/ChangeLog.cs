@@ -75,7 +75,7 @@ namespace Server.Misc
 		+"	• Added a new Point of interest called the Myconid caves close to the eastern coast of Sosaria. It's a small cave that irradiates psychic energy.<br>"
 		+"  • Added a new point of interest called The howling grove close to the western coast of Sosaria. The druids that guard it commune with powerful wolf spirits.<br>"
 		+"  • Added a new Point of interest called The House of Holy Mercy. Its a hospital and a convent where the sick are treated and the hungry are fed. Helping the nuns heal their patients can be a great way of raising your healing skill.<br>"
-		+"  • Added a new Arena to Destard. It can be accessed by collecting a key from a Draconic Cultist. Enemy spawns in Destard have also been rebalanced, and<br>"+
+		+"  • Added a new Arena to Destard. It can be accessed by collecting a key from a Draconic Cultist. Enemy spawns in Destard have also been rebalanced, and<br>"
 		+"        Destard has been promoved from 'challenging' to 'hard'.<BR>"
 		+"	• All easy dungeons now have one extra room with more challenging monsters. They also had their spawn pool rebuilt to be more consize.<br>"
 		+"	• Mages are now slightly more common in newbie dungeons to help new characters get their spellbooks started.<br>"
