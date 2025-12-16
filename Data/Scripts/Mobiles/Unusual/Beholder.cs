@@ -106,7 +106,7 @@ namespace Server.Mobiles
 				if ( Utility.RandomDouble() < 0.50 )
 				{
 					TriggerSpecialAttack( from );
-					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 5 );
+					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 30 );
 				}
 			}
 		}
@@ -120,7 +120,7 @@ namespace Server.Mobiles
 				if ( Utility.RandomDouble() < 0.30 )
 				{
 					TriggerSpecialAttack( from );
-					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 5 );
+					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 30 );
 				}
 			}
 		}
