@@ -8,5 +8,5 @@ All artifact weapons have unique and interesting abilities, many enemies have be
 
 It was build for experienced rnr/aoa/sos players, or to those brave enough to face it. Virtually every aspect of the game has been touched in some way, some systems have been retired, some have been altered for a more streamlined experience. It's a constant work in progress that aims to create a less bloated and more dnd-focused and internaly consistent experience. 
 
-To play, you will need the regular Secrets of Sosaria Client [found here](https://secretsofsosaria.neocities.org/).
+To play, you will need the regular Secrets of Sosaria Client [found here](https://secretsofsosaria.neocities.org/). You will also need to download the server files found here. Once you have them, open your server folder, go into /data/files/, select all files found there, copy them and paste them on your client's /files/ folder, overwriting as needed.  
 
