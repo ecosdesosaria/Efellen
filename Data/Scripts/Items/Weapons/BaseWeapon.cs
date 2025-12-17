@@ -1383,6 +1383,9 @@ namespace Server.Items
 
 		public virtual void OnHit( Mobile attacker, Mobile defender, double damageBonus )
 		{
+			// druid shapeshifting specials
+			SpectralFormCombat.OnHit(attacker, defender);
+
             double sneakBonus = 0.0;
 
 			if( attacker is PlayerMobile && ((PlayerMobile)attacker).SneakDamage )

@@ -556,6 +556,11 @@ namespace Server.Spells
 			{
 				m_Caster.SendLocalizedMessage( 1061091 ); // You cannot cast that spell in this form.
 			}
+			else if (!CheckWildShapeCasting())
+			{
+				m_Caster.SendMessage( "You cannot cast that spell while in wild shape." );
+				return false;
+			}
 			else if ( ( m_Caster.Paralyzed || m_Caster.Frozen ) && !( this is FerretFlee ) )
 			{
 				m_Caster.SendLocalizedMessage( 502643 ); // You can not cast a spell while frozen.
@@ -688,6 +693,26 @@ namespace Server.Spells
 
 			return canCast;
 		}
+
+		protected virtual bool CheckWildShapeCasting()
+		{
+		    Mobile m = Caster;
+
+		    if (m == null)
+		        return false;
+
+		    if (this is ElementalSpell)
+		        return true;
+				
+			if (!WildShapeHelper.IsWildShaped(m))
+		        return true;
+
+		    
+
+		    m.SendMessage("You cannot cast that spell while in wild shape.");
+		    return false;
+		}
+
 
 		public virtual void GetCastSkills( out double min, out double max )
 		{

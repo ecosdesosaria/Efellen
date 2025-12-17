@@ -1,6 +1,7 @@
 using System;
 using Server.Mobiles;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -58,6 +59,22 @@ namespace Server.Mobiles
 		public override ClothType ClothType{ get{ return ClothType.Furry; } }
 		public override FoodType FavoriteFood{ get{ return FoodType.Fish | FoodType.FruitsAndVegies | FoodType.Meat; } }
 		public override PackInstinct PackInstinct{ get{ return PackInstinct.Bear; } }
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Direbear",
+		        85.0,
+		        0.25
+		    );
+		}
+
 
 		public ElderBrownBearRiding( Serial serial ) : base( serial )
 		{

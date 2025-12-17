@@ -9,6 +9,7 @@ using Server.ContextMenus;
 using Server.Gumps;
 using Server.Misc;
 using Server.Mobiles;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -87,6 +88,21 @@ namespace Server.Mobiles
 			}
 	  		return true;
 	    }
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Griffon",
+		        110.0,
+		        0.35
+		    );
+		}
 
 		public override void GenerateLoot()
 		{

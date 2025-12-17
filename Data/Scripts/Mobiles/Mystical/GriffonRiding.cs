@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Server.Items;
 using Server.Targeting;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -51,6 +52,21 @@ namespace Server.Mobiles
 			Tamable = true;
 			ControlSlots = 1;
 			MinTameSkill = 59.1;
+		}
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Griffon",
+		        110.0,
+		        0.15
+		    );
 		}
 
 		public override void GenerateLoot()

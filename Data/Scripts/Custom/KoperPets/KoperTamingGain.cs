@@ -139,7 +139,7 @@ namespace Server.Custom.KoperPets
             if (tamingSkill <= 30.0) { gainChance = 0.20 * tamingMultiplier;}
             else if (tamingSkill <= 50.0) { gainChance = 0.15 * tamingMultiplier;}
             else if (tamingSkill <= 70.0) { gainChance = 0.10 * tamingMultiplier;}
-            else if (tamingSkill < 125.0) { gainChance = 0.05 * tamingMultiplier;}
+            else if (tamingSkill <= 125.0) { gainChance = 0.05 * tamingMultiplier;}
             else return; // No gain if at max skill
 
             // Attempt taming skill gain
@@ -155,6 +155,9 @@ namespace Server.Custom.KoperPets
 
                 // Set cooldown time for this player
                 _tamingCooldowns[owner] = DateTime.UtcNow;
+
+                // award totens for druids
+                TryGrantFormTotemFromPets(owner);
             }
             else
             {
@@ -176,5 +179,55 @@ namespace Server.Custom.KoperPets
                 pet.PublicOverheadMessage(MessageType.Emote, 0x83A, false, battleCry);
             }
         }
+
+        private static void TryGrantFormTotemFromPets(PlayerMobile owner)
+        {
+            if (owner == null || owner.Backpack == null)
+                return;
+
+            HeartOfTheWilds heart = owner.FindItemOnLayer(Layer.Neck) as HeartOfTheWilds;
+            if (heart == null)
+                return;
+
+            foreach (Mobile m in owner.AllFollowers)
+            {
+                BaseCreature pet = m as BaseCreature;
+                if (pet == null || !pet.Controlled || pet.ControlMaster != owner)
+                    continue;
+
+                DruidismFormMapping mapping = DruidismFormMapping.GetMapping(pet);
+                if (mapping == null)
+                    continue;
+
+                if (owner.Skills[SkillName.Druidism].Base < mapping.RequiredDruidism)
+                    continue;
+
+                if (heart.IsFormUnlocked(mapping.FormId))
+                    continue;
+
+                double baseChance = 0.05;
+                double bonus = owner.Skills[SkillName.Druidism].Value / 2500.0; // 5% at 125
+                double totalChance = baseChance + bonus;
+
+                if (totalChance > 0.10)
+                    totalChance = 0.10;
+
+                if (Utility.RandomDouble() > totalChance)
+                    continue;
+
+                if (!owner.Backpack.TryDropItem(owner, new TotemOfTheWilds(mapping.FormId), false))
+                    return;
+
+                owner.SendMessage(
+                    0x59,
+                    "Your bond with your companion reveals the primal spirit of the {0}.",mapping.FormId
+                );
+
+                owner.PlaySound(0x1F7);
+                owner.FixedParticles(0x373A, 10, 15, 5018, EffectLayer.Waist);
+                return;
+            }
+        }
+
     }
 }

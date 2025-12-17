@@ -1,6 +1,7 @@
 using System;
 using Server.Mobiles;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -50,6 +51,21 @@ namespace Server.Mobiles
 			Tamable = true;
 			ControlSlots = 1;
 			MinTameSkill = 69.1;
+		}
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Direbear",
+		        85.0,
+		        0.25
+		    );
 		}
 
 		public override int Meat{ get{ return 3; } }

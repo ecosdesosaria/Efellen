@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Server.Items;
 using Server.Targeting;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -61,6 +62,21 @@ namespace Server.Mobiles
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
 		public override Poison HitPoison{ get{ return (0.8 >= Utility.RandomDouble() ? Poison.Greater : Poison.Deadly); } }
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Giant Scorpion",
+		        90.0,
+		        0.25
+		    );
+		}
 
 		public Scorpion( Serial serial ) : base( serial )
 		{

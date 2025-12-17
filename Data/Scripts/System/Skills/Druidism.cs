@@ -27,6 +27,12 @@ namespace Server.SkillHandlers
 			return TimeSpan.FromSeconds( 1.0 );
 		}
 
+		private static HeartOfTheWilds GetHeart(Mobile from)
+		{
+		    return from.FindItemOnLayer(Layer.Neck) as HeartOfTheWilds;
+		}
+
+
 		private class InternalTarget : Target
 		{
 			public InternalTarget() : base( 8, false, TargetFlags.None )
@@ -46,6 +52,22 @@ namespace Server.SkillHandlers
 				else if ( targeted is BaseCreature )
 				{
 					BaseCreature c = (BaseCreature)targeted;
+					HeartOfTheWilds heart = GetHeart(from);
+					if (heart != null)
+					{
+					    DruidismFormMapping mapping = DruidismFormMapping.GetMapping(c);
+
+					    if (mapping != null)
+					    {
+					        DruidismTotemHelper.TryGainTotemFromStudy(
+					            from,
+					            c,
+					            mapping.FormId,
+					            mapping.RequiredDruidism,
+					            mapping.BaseChance
+					        );
+					    }
+					}
 
 					SlayerEntry skipTypeA = SlayerGroup.GetEntryByName( SlayerName.SlimyScourge );
 					SlayerEntry skipTypeB = SlayerGroup.GetEntryByName( SlayerName.ElementalBan );

@@ -2,6 +2,7 @@ using System;
 using Server.Items;
 using Server.Targeting;
 using System.Collections;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -61,6 +62,21 @@ namespace Server.Mobiles
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.Rich );
+		}
+		
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Monstrous Spider",
+		        120.0,
+		        0.25
+		    );
 		}
 
 		public override PackInstinct PackInstinct{ get{ return PackInstinct.Arachnid; } }

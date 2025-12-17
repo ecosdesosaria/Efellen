@@ -2,6 +2,7 @@ using System;
 using Server;
 using Server.Items;
 using Server.Misc;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -82,6 +83,21 @@ namespace Server.Mobiles
 		{
 			AddLoot( LootPack.Average );
 			AddLoot( LootPack.Gems, m_Treasure );
+		}
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Anaconda",
+		        80.0,
+		        0.25
+		    );
 		}
 
 		public override bool DeathAdderCharmable{ get{ return true; } }
