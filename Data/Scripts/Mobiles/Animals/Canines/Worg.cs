@@ -1,5 +1,8 @@
 using System;
+using Server;
 using Server.Mobiles;
+using Server.Custom;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -50,6 +53,21 @@ namespace Server.Mobiles
 		public override ClothType ClothType{ get{ return ClothType.Furry; } }
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
 		public override PackInstinct PackInstinct{ get{ return PackInstinct.Canine; } }
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Worg",
+		        105.0,
+		        0.25
+		    );
+		}
 
 		public Worg(Serial serial) : base(serial)
 		{

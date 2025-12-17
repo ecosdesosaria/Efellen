@@ -1,6 +1,7 @@
 using System;
 using Server;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -56,6 +57,21 @@ namespace Server.Mobiles
 		public override int Hides{ get{ return 22; } }
 		public override int Cloths{ get{ return 10; } }
 		public override ClothType ClothType{ get{ return ClothType.Furry; } }
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Gorakong",
+		        100.0,
+		        0.25
+		    );
+		}
 
 		public Gorakong( Serial serial ) : base( serial )
 		{

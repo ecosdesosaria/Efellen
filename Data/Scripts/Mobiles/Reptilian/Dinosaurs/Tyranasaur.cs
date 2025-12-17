@@ -1,6 +1,7 @@
 using System;
 using Server;
 using Server.Items;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -64,6 +65,21 @@ namespace Server.Mobiles
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.Meager );
+		}
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Tyrannosaurus",
+		        120.0,
+		        0.25
+		    );
 		}
 
 		public override int Meat{ get{ return 19; } }

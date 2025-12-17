@@ -34,7 +34,7 @@ namespace Server.Items
             Hue = 1157;
             Weight = 1.0;
             LootType = LootType.Blessed;
-
+            // the key lasts for 24 hours
             m_ExpirationTime = DateTime.UtcNow + TimeSpan.FromHours(24);
             StartExpirationTimer();
         }
@@ -97,28 +97,19 @@ namespace Server.Items
 
             from.SendMessage("The gate has been opened!");
 
-            Timer.DelayCall(TimeSpan.FromHours(2), delegate()
+            Teleporter[] teleporters = new Teleporter[]
             {
-                if (portcullis != null && !portcullis.Deleted)
-                {
-                    portcullis.MoveToWorld(originalLocation, originalMap);
-                }
+                teleporter1,
+                teleporter2,
+                teleporter3
+            };
 
-                if (teleporter1 != null && !teleporter1.Deleted)
-                {
-                    teleporter1.Delete();
-                }
+            new DraconicGateController(
+                portcullis,
+                teleporters,
+                DateTime.UtcNow + TimeSpan.FromHours(2)
+            ).MoveToWorld(portcullis.Location, portcullis.Map);
 
-                if (teleporter2 != null && !teleporter2.Deleted)
-                {
-                    teleporter2.Delete();
-                }
-
-                if (teleporter3 != null && !teleporter3.Deleted)
-                {
-                    teleporter3.Delete();
-                }
-            });
 
             this.Delete();
         }

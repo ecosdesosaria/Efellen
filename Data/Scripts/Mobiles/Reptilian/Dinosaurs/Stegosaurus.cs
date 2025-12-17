@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Server.Mobiles;
 using Server.Items;
 using Server.ContextMenus;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -87,6 +88,21 @@ namespace Server.Mobiles
 			PackAnimal.CombineBackpacks( this );
 
 			return true;
+		}
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Stegosaurus",
+		        115.0,
+		        0.25
+		    );
 		}
 
 		public override DeathMoveResult GetInventoryMoveResultFor( Item item )

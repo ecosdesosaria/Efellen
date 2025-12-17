@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Server.Items;
 using Server.Targeting;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -62,6 +63,21 @@ namespace Server.Mobiles
 		public override PackInstinct PackInstinct{ get{ return PackInstinct.Arachnid; } }
 		public override Poison PoisonImmune{ get{ return Poison.Deadly; } }
 		public override Poison HitPoison{ get{ return Poison.Lethal; } }
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Giant Scorpion",
+		        90.0,
+		        0.25
+		    );
+		}
 
 		public DeadlyScorpion( Serial serial ) : base( serial )
 		{
