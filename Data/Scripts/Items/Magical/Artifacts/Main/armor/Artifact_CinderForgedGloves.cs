@@ -16,7 +16,7 @@ namespace Server.Items
 		public Artifact_CinderForgedGloves()
 		{
 			Name = "Cinder Forged Gloves";
-			Hue = 0x845;
+			Hue = 0x81b;
 			SkillBonuses.SetValues( 0, SkillName.MagicResist, 15 );
 			SkillBonuses.SetValues( 1, SkillName.Inscribe, 15 );
             SkillBonuses.SetValues( 2, SkillName.Blacksmith, 15 );
