@@ -226,13 +226,19 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+
+			writer.WriteEncodedInt( 1 ); // version
+			writer.Write(m_NextSpecialAttack);
 		}
 
-		public override void Deserialize( GenericReader reader )
+		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
-			int version = reader.ReadInt();
+			base.Deserialize(reader);
+			int version = reader.ReadEncodedInt();
+			if (version >= 1)
+		        m_NextSpecialAttack = reader.ReadDateTime();
+		    else
+		        m_NextSpecialAttack = DateTime.MinValue;
 		}
 	}
 }

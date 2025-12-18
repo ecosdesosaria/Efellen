@@ -71,7 +71,7 @@ namespace Server.Misc
 		+"    • A shapeshifted character cannot use non-elementalist magic and cannot wear metal armor.<BR>"
 		+"    • Different forms have different special attacks and effects.<BR>"
 		+"    • Different forms require differnet levels of both Spiritualism and Druidism, and occasionally a third skill (like poisoning for turning into a giant spider).<BR>"
-		"+<BR>"
+		+"<BR>"
 		+"	• Adds marks of the wilds to the game.<BR>"
 		+"	• Marks of the wild can be aqquired by members of the druid's guild when adventuring with their pets. These can be traded for rewards with the druid's guildmaster.<br>"
 		+" 		• They can also be aqquired from completing taming contracts from the animal appraiser if the character belongs to the druid's guild and by meditating in the Howling Grove.<br>"
