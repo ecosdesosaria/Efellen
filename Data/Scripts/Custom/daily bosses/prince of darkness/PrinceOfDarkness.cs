@@ -16,8 +16,8 @@ using Server.Custom;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Heavenly Marshall's Corpse" )]
-	public class HeavenlyMarshall : BaseCreature
+	[CorpseName( "Prince of Darkness Corpse" )]
+	public class PrinceOfDarkness : BaseCreature
 	{
 		private const int MAX_SUMMONS_RAGE_0 = 16;
 		private const int MAX_SUMMONS_RAGE_1 = 14;
@@ -28,60 +28,62 @@ namespace Server.Mobiles
 		
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
-			typeof(GriffonRiding), 
-			typeof(WarGriffon), 
-			typeof(Archangel), 
-			typeof(Angel), 
-			typeof(EtherealWarriorGeneral) 
+			typeof(MetalHead), 
+			typeof(Ozzy_WereWolf), 
+			typeof(Balron), 
+			typeof(Daemon), 
+			typeof(Demon) 
 		};
 
 		private static readonly List<Type> BossDrops = new List<Type>
     	{
-    	    typeof(Artifact_GauntletsOfDevotion),
-    	    typeof(Artifact_LeggingsOfDevotion),
-    	    typeof(Artifact_TunicOfDevotion),
-    	    typeof(Artifact_ArmsOfDevotion),
-			typeof(Artifact_CoifOfDevotion),
-			typeof(Artifact_HolySword)
+    	    typeof(Artifact_ArmsOfTheBlackSabbath),
+    	    typeof(Artifact_HelmOfTheBlackSabbath),
+    	    typeof(Artifact_LeggingsOfTheBlackSabbath),
+    	    typeof(Artifact_GlovesOfTheBlackSabbath),
+			typeof(Artifact_CoatOfTheBlackSabbath),
     	};
 
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
 		private DateTime m_NextSummonTime = DateTime.MinValue;
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
-        private List<BaseCreature> m_Summons = new List<BaseCreature>();
+		private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
 		[Constructable]
-		public HeavenlyMarshall () : base( AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4 )
+		public PrinceOfDarkness () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "Heavenly Marshall";
-			Title = "The Envoy from Above";
-			Body = 346;
-			BaseSoundID = 466;
-			NameHue = 0x92E;
-			Hue = 0x0672;
-
-			SetStr( 796, 885 );
+			Name = "Prince of Darkness";
+			Title = "The Lord of This World";
+			Body = 0x58;
+			BaseSoundID = 838;
+			NameHue = 0x22;
+			Hue = 0x497;
+			
+			SetStr( 896, 985 );
 			SetDex( 125, 175 );
 			SetInt( 586, 675 );
 
 			SetHits( 19000 );
 			SetDamage( 23, 34 );
 
-			SetDamageType( ResistanceType.Energy, 100 );
+			SetDamageType( ResistanceType.Physical, 100 );
 			SetResistance( ResistanceType.Physical, 60 );
-			SetResistance( ResistanceType.Fire, 70 );
+			SetResistance( ResistanceType.Fire, 75 );
 			SetResistance( ResistanceType.Cold, 70 );
 			SetResistance( ResistanceType.Poison, 70 );
-			SetResistance( ResistanceType.Energy, 75 );
+			SetResistance( ResistanceType.Energy, 70 );
 
-			SetSkill( SkillName.Anatomy, 55.1, 75.0 );
-			SetSkill( SkillName.Psychology, 90.1, 125.0 );
 			SetSkill( SkillName.Meditation, 112.5, 125.0 );
 			SetSkill( SkillName.MagicResist, 125.5, 150.0 );
 			SetSkill( SkillName.Tactics, 101.0, 125.0 );
 			SetSkill( SkillName.FistFighting, 101.0, 125.0 );
-			
+			SetSkill( SkillName.Musicianship, 125.0, 125.0);
+			SetSkill( SkillName.Discordance, 125.0, 125.0);
+			SetSkill( SkillName.Spiritualism, 125.0, 125.0);
+			SetSkill( SkillName.Necromancy, 125.0, 125.0);
+			SetSkill( SkillName.Magery, 101.0, 120.0 );
+
 			Fame = 35000;
 			Karma = -35000;
 
@@ -100,66 +102,18 @@ namespace Server.Mobiles
 		}
 
 		public override int TreasureMapLevel{ get{ return 5; } }
+		public override int Hides{ get{ return 38; } }
+		public override HideType HideType{ get{ return HideType.Hellish; } }
+		public override int Skin{ get{ return 50; } }
+		public override SkinType SkinType{ get{ return SkinType.Demon; } }
 		public override int Skeletal{ get{ return 50; } }
-		public override SkeletalType SkeletalType{ get{ return SkeletalType.Mystical; } }
-		public override int Cloths{ get{ return Utility.Random(50); } }
-		public override ClothType ClothType{ get{ return ClothType.Divine; } }
+		public override SkeletalType SkeletalType{ get{ return SkeletalType.Devil; } }
 		public override bool CanRummageCorpses{ get{ return false; } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
-		public override bool AlwaysAttackable{ get{ return true; } }
-		public override bool AlwaysMurderer { get { return false; } }
-
-        public override bool IsEnemy( Mobile m )
-	    {
-			if (m == null || m.Deleted)
-	        	return false;
-			
-			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
-		    	return false;
-			
-			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
-				return false;
-			
-			if ( m.Region != this.Region )
-				return false;
-			
-			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
-			{
-				this.Location = m.Location;
-				this.Combatant = m;
-				this.Warmode = true;
-			}
-			return true;
-	    }
-
-		public override void AggressiveAction(Mobile m, bool criminal)
-		{
-			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
-				return;
-
-		    base.AggressiveAction(m, true);
-		}
-
-		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
-		{
-		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
-		        return false;
-
-		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
-		}
-
-		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
-		{
-		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
-		        return true;
-
-		    return base.CanBeBeneficial(m, message, allowDead);
-		}
-
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
@@ -171,13 +125,9 @@ namespace Server.Mobiles
 				PerformRageAttack( from );
 				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
 			}
-		
-			if (from.Player && from.Kills < 5 && !from.Criminal) 
-				from.Criminal = true;		
-		
+			
 			base.OnDamage( amount, from, willKill );
 		}
-
 
 		private void PerformRageAttack( Mobile target )
 		{
@@ -186,122 +136,181 @@ namespace Server.Mobiles
 
 			int availableAttacks = m_Rage;
 			int attackChoice = Utility.RandomMinMax( 1, availableAttacks );
-            Map map = this.Map;
 
 			switch ( attackChoice  )
 			{
-				case 1: // holy nova
-				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "Heavens smite thee!" );
-					PlaySound( 0x64F );
-					FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-					IPooledEnumerable eable = GetMobilesInRange( 6 );
-					foreach ( Mobile m in eable )
+				case 1: // Freezing blast
 					{
-						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-						{
-							DoHarmful( m );
-							int damage = Utility.RandomMinMax( 35, 49 );
-							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
-							m.PlaySound( 0x1FB );
-						}
-					}
-					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x4D5);
-					eable.Free();
-					break;
-				}
+						PublicOverheadMessage( MessageType.Regular, 0x21, false, "Feel the blizzard of Ozz!" );
+						PlaySound( 0x64F );
+						FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 
-				case 2: //holy fire
-				{
-					if (map == null)
-                        return;
-                    int range = 7;
-                    this.PlaySound(0x208);
-                    PublicOverheadMessage(Network.MessageType.Emote, 0x22, false, "Burn in the light!");
-                    Point3D start = this.Location;
-                    int dx = 0, dy = 0;
-                    GetDirectionVector(this.Direction, out dx, out dy);
-                    for (int i = 1; i <= range; i++)
-                    {
-                        Point3D p = new Point3D(start.X + dx * i, start.Y + dy * i, start.Z);
-                        Effects.SendLocationEffect(p, map, 0x36D4, 20, 10, 0xb73, 0);
-                        foreach (Mobile m in map.GetMobilesInRange(p, 0))
-                        {
-                            if (m != null && m != this && !m.Deleted && CanBeHarmful(m))
-                            {
-                                DoHarmful(m);
-                                m.Damage(Utility.RandomMinMax(25, 45), this);
-                                m.PlaySound(0x15E);
-                            }
-                        }
-                    }
-					break;
-				}
-				
-				case 3: // Rage 3: holy blast (Mana drain + damage)
-				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "Light everlasting shall consume you!" );
-					PlaySound( 0x228 );
-					FixedParticles( 0x3789, 10, 25, 5032, EffectLayer.Head );
-					IPooledEnumerable eable = GetMobilesInRange( 8 );
-					foreach ( Mobile m in eable )
-					{
-						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
+						IPooledEnumerable eable = GetMobilesInRange( 6 );
+						foreach ( Mobile m in eable )
 						{
-							DoHarmful( m );
-							int manaDrain = Utility.RandomMinMax( 35, 45 );
-							m.Mana -= manaDrain;
-							int damage = Utility.RandomMinMax( manaDrain/2, manaDrain*2 );
-							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
-							m.FixedParticles( 0x374A, 10, 15, 5013, 0x497, 0, EffectLayer.Waist );
-							m.PlaySound( 0x1FB );
-							this.Mana = Math.Min( this.ManaMax, this.Mana + manaDrain / 3 );
+							if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
+							{
+								DoHarmful( m );
+
+								int damage = Utility.RandomMinMax( 35, 49 );
+								AOS.Damage( m, this, damage, 0, 0, 100, 0, 0 );
+								m.PlaySound( 0x1FB );
+								m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) ) );
+							}
 						}
+						SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x497);
+						eable.Free();
+						break;
 					}
-					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x497);
-					eable.Free();
-					break;
-				}
+
+				case 2: // Rage 2+: Laceration (bleed+poison)
+					{
+						PublicOverheadMessage( MessageType.Regular, 0x21, false, "Bleed for me!" );
+						PlaySound( 0x133 );
+						FixedParticles( 0x3728, 1, 13, 9912, 0x21, 7, EffectLayer.Head );
+
+						IPooledEnumerable eable = GetMobilesInRange( 6 );
+						foreach ( Mobile m in eable )
+						{
+							if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) && Server.Items.BaseRace.IsBleeder( m ) )
+							{
+								TransformContext context = TransformationSpellHelper.GetContext( m );
+								bool isImmune = ( context != null && ( context.Type == typeof( LichFormSpell ) || context.Type == typeof( WraithFormSpell ) ) );
+
+								if ( m is BaseCreature && ((BaseCreature)m).BleedImmune )
+									isImmune = true;
+
+								if ( !isImmune )
+								{
+									DoHarmful( m );
+
+									m.PlaySound( 0x133 );
+									m.FixedParticles( 0x377A, 244, 25, 9950, 31, 0, EffectLayer.Waist );
+
+									if ( m is PlayerMobile )
+									{
+										m.LocalOverheadMessage( MessageType.Regular, 0x982, false, "You are bleeding profusely!" );
+									}
+
+									BeginBossBleed( m, this, 6 );
+									m.ApplyPoison( this, Poison.Deadly );
+								}
+							}
+						}
+						SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x497);
+						eable.Free();
+						break;
+					}
+
+				case 3: // Rage 3: Void blast (Mana drain + damage + freezing)
+					{
+						PublicOverheadMessage( MessageType.Regular, 0x21, false, "The sun, the moon and the stars all bear my seal!" );
+						PlaySound( 0x228 );
+						FixedParticles( 0x3789, 10, 25, 5032, EffectLayer.Head );
+
+						IPooledEnumerable eable = GetMobilesInRange( 8 );
+						foreach ( Mobile m in eable )
+						{
+							if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
+							{
+								DoHarmful( m );
+								int manaDrain = Utility.RandomMinMax( 35, 45 );
+								m.Mana -= manaDrain;
+								int damage = Utility.RandomMinMax( manaDrain/2, manaDrain*2 );
+								AOS.Damage( m, this, damage, 0, 0, 100, 0, 0 );
+								m.FixedParticles( 0x374A, 10, 15, 5013, 0x496, 0, EffectLayer.Waist );
+								m.PlaySound( 0x1FB );
+								this.Mana = Math.Min( this.ManaMax, this.Mana + manaDrain / 3 );
+								m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) + Utility.RandomMinMax(1,3 ) ) );
+							}
+						}
+						SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x25);
+						eable.Free();
+						break;
+					}
 			}
 		}
 
-		private void GetDirectionVector(Direction d, out int dx, out int dy)
-        {
-            dx = 0;
-            dy = 0;
+		private int getParalyzeDuration(Mobile m)
+		{
+			int resist = (int)(m.Skills.MagicResist.Value);
+			// 2s at 125, 8s at 0 magic resist
+			int duration = 8 - (int)(resist * (6.0 / 125.0));
+			return duration;
+		}
 
-            switch (d)
-            {
-                case Direction.North:
-                    dy = -1;
-                    break;
-                case Direction.Right:
-                    dx = 1;
-                    dy = -1;
-                    break;
-                case Direction.East:
-                    dx = 1;
-                    break;
-                case Direction.Down:
-                    dx = 1;
-                    dy = 1;
-                    break;
-                case Direction.South:
-                    dy = 1;
-                    break;
-                case Direction.Left:
-                    dx = -1;
-                    dy = 1;
-                    break;
-                case Direction.West:
-                    dx = -1;
-                    break;
-                case Direction.Up:
-                    dx = -1;
-                    dy = -1;
-                    break;
-            }
-        }
+		private static Hashtable m_BossBleedTable = new Hashtable();
+
+		public static void BeginBossBleed( Mobile m, Mobile from, int totalTicks )
+		{
+			Timer t = (Timer)m_BossBleedTable[m];
+			if ( t != null )
+				t.Stop();
+
+			t = new BossBleedTimer( from, m, totalTicks );
+			m_BossBleedTable[m] = t;
+			t.Start();
+		}
+
+		public static void DoBossBleed( Mobile m, Mobile from, int level )
+		{
+			if ( m.Alive && Server.Items.BaseRace.IsBleeder( m ) )
+			{
+				int damage = Utility.RandomMinMax( level * 2, level * 3 );
+
+				if ( !m.Player )
+					damage *= 2;
+
+				m.PlaySound( 0x133 );
+				AOS.Damage( m, from, damage, 100, 0, 0, 0, 0 );
+
+				Blood blood = new Blood();
+				blood.ItemID = Utility.Random( 0x122A, 5 );
+				blood.MoveToWorld( m.Location, m.Map );
+				m.FixedParticles( 0x377A, 1, 15, 9502, 67, 7, EffectLayer.Waist );
+			}
+			else
+			{
+				EndBossBleed( m, false );
+			}
+		}
+
+		public static void EndBossBleed( Mobile m, bool message )
+		{
+			Timer t = (Timer)m_BossBleedTable[m];
+			if ( t == null )
+				return;
+
+			t.Stop();
+			m_BossBleedTable.Remove( m );
+
+			if ( message && m is PlayerMobile )
+				m.SendMessage( "The bleeding has stopped." );
+		}
+
+		private class BossBleedTimer : Timer
+		{
+			private Mobile m_From;
+			private Mobile m_Mobile;
+			private int m_Count;
+			private int m_MaxTicks;
+
+			public BossBleedTimer( Mobile from, Mobile m, int maxTicks ) : base( TimeSpan.FromSeconds( 2.0 ), TimeSpan.FromSeconds( 2.0 ) )
+			{
+				m_From = from;
+				m_Mobile = m;
+				m_MaxTicks = maxTicks;
+				Priority = TimerPriority.TwoFiftyMS;
+			}
+
+			protected override void OnTick()
+			{
+				DoBossBleed( m_Mobile, m_From, m_MaxTicks - m_Count );
+
+				if ( ++m_Count == m_MaxTicks )
+					EndBossBleed( m_Mobile, true );
+			}
+		}
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
@@ -367,19 +376,19 @@ namespace Server.Mobiles
 			{
 				case 0: 
 					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Come forth, comrades!"; 
+					song = "Sabbath bloody sabbath!"; 
 					break;
 				case 1: 
 					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Lets end this menace right now!"; 
+					song = "All aboard! HahaHAha!"; 
 					break;
 				case 2: 
 					newSummons = Utility.RandomMinMax( 3, 6 ); 
-					song = "We shall stand against injustice!"; 
+					song = "Bark at the moon!"; 
 					break;
 				case 3: 
 					newSummons = Utility.RandomMinMax( 2, 4 );
-					song = "Hosts of heaven, answer my call!"; 
+					song = "Generals gathered in their masses!"; 
 					break;
 				default:
 					newSummons = 2;
@@ -400,13 +409,13 @@ namespace Server.Mobiles
 				monster.IsTempEnemy = true;
 				monster.MoveToWorld( loc, map );
 				monster.Combatant = target;
-                RegisterSummon(monster);
+				RegisterSummon(monster);
 			}
 
 			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 18.0 - (m_Rage * 0.5) );
 		}
 
-        public void RegisterSummon(BaseCreature bc)
+		public void RegisterSummon(BaseCreature bc)
         {
             if (bc == null)
                 return;
@@ -420,7 +429,6 @@ namespace Server.Mobiles
             });
         }
 
-
 		private BaseCreature CreateMonster()
 		{
 			int rand = Utility.Random( 100 );
@@ -428,30 +436,24 @@ namespace Server.Mobiles
 			switch ( m_Rage )
 			{
 				case 0:
-					return new GriffonRiding();
+					return new MetalHead();
 				case 1:
-					if ( rand < 45 )
-						return new GriffonRiding();
+					if ( rand < 35 )
+						return new Ozzy_WereWolf();
 					else
-						return new WarGriffon();
+						return new MetalHead();
 				case 2:
-					if ( rand < 10 )
-						return new Angel();
-					else if ( rand < 25 )
-						return new EtherealWarrior();
+					if ( rand < 35 )
+						return new Demon();
 					else
-						return new WarGriffon();
-
+						return new Ozzy_WereWolf();
 				case 3:
 					if ( rand < 20 )
-						return new Archangel();
-					else if ( rand < 45 )
-						return new Angel();
+						return new Balron();
 					else
-						return new EtherealWarriorGeneral();
-
+						return new Demon();
 				default:
-					return new GriffonRiding();
+					return new MetalHead();
 			}
 		}
 
@@ -495,9 +497,9 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-        	if ( m_Rage == 0 )
+			if ( m_Rage == 0 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Justice shall not falther today!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "No more tears!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -510,7 +512,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 1 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "By the heavens above I command thee to stand down!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "No more tears!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -525,7 +527,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 2 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "For the Skywatch!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "No more tears!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -533,7 +535,17 @@ namespace Server.Mobiles
 				SetStr( Str + 125 );
 				SetDex( Dex + 50 );
 				SetDamage( 40, 55 );
-				VirtualArmor += 15;	
+				VirtualArmor += 15;
+				
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "SHAAAAROOON!" );
+				BaseCreature sharon = new Sharon();
+				sharon.Team = this.Team;
+				Point3D loc = GetSpawnLocation( this.Map );
+				sharon.IsTempEnemy = true;
+				sharon.MoveToWorld( loc, this.Map );
+				if ( Combatant != null )
+					sharon.Combatant = Combatant;
+				
 				m_Rage = 3;
 				return false;
 			}
@@ -541,20 +553,19 @@ namespace Server.Mobiles
 			{
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "I return...to the skies..." );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Mama...I'm coming home..." );
 				Mobile killer = this.LastKiller;
-
-            	if (killer != null && killer.Player && killer.Karma < 0)
+				if (killer != null && killer.Player && killer.Karma > 0)
             	{
-            	    int marks = Utility.RandomMinMax(31, 47);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 0, marks);
+            	    int marks = Utility.RandomMinMax(231, 347);
+            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
             	}
 			}
 			
 			return base.OnBeforeDeath();
 		}
 
-        public override void OnDelete()
+		public override void OnDelete()
         {
             CleanupSummons();
             base.OnDelete();
@@ -572,7 +583,6 @@ namespace Server.Mobiles
             m_Summons.Clear();
         }
 
-
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
@@ -589,8 +599,9 @@ namespace Server.Mobiles
 			{
 				c.DropItem( new EtherealPowerScroll() );
 			}
-		    // gold explosion
-		    RichesSystem.SpawnRiches( m_LastTarget, 5 );
+
+			// gold explosion
+			RichesSystem.SpawnRiches( m_LastTarget, 5 );
 		}
 
 		public override void OnAfterSpawn()
@@ -599,7 +610,7 @@ namespace Server.Mobiles
 			LeechImmune = true;
 		}
 
-		public HeavenlyMarshall( Serial serial ) : base( serial )
+		public PrinceOfDarkness( Serial serial ) : base( serial )
 		{
 		}
 

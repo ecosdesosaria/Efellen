@@ -614,7 +614,7 @@ namespace Server.Mobiles
 				{
 					try
 					{
-						int marks = Utility.RandomMinMax( 31, 47 );
+						int marks = Utility.RandomMinMax( 231, 347 );
 						Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks( killer, 1, marks );
 					}
 					catch { }

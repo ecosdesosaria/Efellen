@@ -16,78 +16,79 @@ using Server.Custom;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Daughter of Fire's Corpse" )]
-	public class DaughterOfFire : BaseCreature
+	[CorpseName( "Heavenly Marshall's Corpse" )]
+	public class HeavenlyMarshall : BaseCreature
 	{
-		private const int MAX_SUMMONS_RAGE_0 = 8;
-		private const int MAX_SUMMONS_RAGE_1 = 4;
-		private const int MAX_SUMMONS_RAGE_2 = 2;
-		private const int MAX_SUMMONS_RAGE_3 = 2;
+		private const int MAX_SUMMONS_RAGE_0 = 16;
+		private const int MAX_SUMMONS_RAGE_1 = 14;
+		private const int MAX_SUMMONS_RAGE_2 = 12;
+		private const int MAX_SUMMONS_RAGE_3 = 8;
 		
 		private const int SUMMON_RANGE = 12;
 		
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
-			typeof(Penitent), 
-			typeof(FireGargoyle), 
-			typeof(Succubus), 
-			typeof(FireElemental), 
-			typeof(Efreet) 
+			typeof(GriffonRiding), 
+			typeof(WarGriffon), 
+			typeof(Archangel), 
+			typeof(Angel), 
+			typeof(EtherealWarriorGeneral) 
 		};
-		
+
 		private static readonly List<Type> BossDrops = new List<Type>
     	{
-    	    typeof(Artifact_GlovesOfThePainSlave),
-    	    typeof(Artifact_LegsOfThePainSlave),
-    	    typeof(Artifact_ArmsOfThePainSlave),
-    	    typeof(Artifact_BootsOfThePainSlave),
-			typeof(Artifact_ChestOfThePainSlave),
-			typeof(Artifact_ExquisiteAgony)
+    	    typeof(Artifact_GauntletsOfDevotion),
+    	    typeof(Artifact_LeggingsOfDevotion),
+    	    typeof(Artifact_TunicOfDevotion),
+    	    typeof(Artifact_ArmsOfDevotion),
+			typeof(Artifact_CoifOfDevotion),
+			typeof(Artifact_HolySword)
     	};
 
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
 		private DateTime m_NextSummonTime = DateTime.MinValue;
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
-		private List<BaseCreature> m_Summons = new List<BaseCreature>();
+        private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
 		[Constructable]
-		public DaughterOfFire () : base( AIType.AI_Mage, FightMode.Closest, 20, 1, 0.4, 0.8 )
+		public HeavenlyMarshall () : base( AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4 )
 		{
-			Name = "Daughter of Fire";
-            Title = "The Emissary of Pain";
-			Body = 149;
-			BaseSoundID = 0x4B0;
-			NameHue = 0x22;
-			Hue = 0xb73;
+			Name = "Heavenly Marshall";
+			Title = "The Envoy from Above";
+			Body = 346;
+			BaseSoundID = 466;
+			NameHue = 0x92E;
+			Hue = 0x0672;
 
-			SetStr( 696, 685 );
-			SetDex( 185, 205 );
-			SetInt( 486, 475 );
+			SetStr( 796, 885 );
+			SetDex( 125, 175 );
+			SetInt( 586, 675 );
 
-			SetHits( 7000 );
-			SetDamage( 23, 28 );
+			SetHits( 19000 );
+			SetDamage( 23, 34 );
 
-			SetDamageType( ResistanceType.Fire, 100 );
-			SetResistance( ResistanceType.Physical, 50 );
-			SetResistance( ResistanceType.Fire, 75 );
+			SetDamageType( ResistanceType.Energy, 100 );
+			SetResistance( ResistanceType.Physical, 60 );
+			SetResistance( ResistanceType.Fire, 70 );
 			SetResistance( ResistanceType.Cold, 70 );
 			SetResistance( ResistanceType.Poison, 70 );
-			SetResistance( ResistanceType.Energy, 70 );
+			SetResistance( ResistanceType.Energy, 75 );
 
-			SetSkill( SkillName.Magery, 102.5, 115.0 );
+			SetSkill( SkillName.Anatomy, 55.1, 75.0 );
+			SetSkill( SkillName.Psychology, 90.1, 125.0 );
 			SetSkill( SkillName.Meditation, 112.5, 125.0 );
-			SetSkill( SkillName.MagicResist, 105.5, 125.0 );
+			SetSkill( SkillName.MagicResist, 125.5, 150.0 );
 			SetSkill( SkillName.Tactics, 101.0, 125.0 );
 			SetSkill( SkillName.FistFighting, 101.0, 125.0 );
-			SetSkill( SkillName.Spiritualism, 125.0, 125.0);
-			SetSkill( SkillName.Necromancy, 110.0, 124.0);
+			
+			Fame = 35000;
+			Karma = -35000;
 
-			Fame = 25000;
-			Karma = -25000;
+			VirtualArmor = 60;
 
-			VirtualArmor = 50;
-
+			PackItem( Loot.RandomArty() );
+			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
@@ -95,23 +96,70 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.UltraRich, 4 );
+			AddLoot( LootPack.UltraRich, 8 );
 		}
 
-		public override bool AutoDispel{ get{ return !Controlled; } }
-		public override int TreasureMapLevel{ get{ return 4; } }
-		public override int Hides{ get{ return 38; } }
-		public override HideType HideType{ get{ return HideType.Hellish; } }
-		public override int Skin{ get{ return Utility.Random(9); } }
-		public override SkinType SkinType{ get{ return SkinType.Lava; } }
-		public override int Skeletal{ get{ return Utility.Random(9); } }
-		public override SkeletalType SkeletalType{ get{ return SkeletalType.Devil; } }
+		public override int TreasureMapLevel{ get{ return 5; } }
+		public override int Skeletal{ get{ return 50; } }
+		public override SkeletalType SkeletalType{ get{ return SkeletalType.Mystical; } }
+		public override int Cloths{ get{ return Utility.Random(50); } }
+		public override ClothType ClothType{ get{ return ClothType.Divine; } }
 		public override bool CanRummageCorpses{ get{ return false; } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
+		public override bool AlwaysAttackable{ get{ return true; } }
+		public override bool AlwaysMurderer { get { return false; } }
+
+        public override bool IsEnemy( Mobile m )
+	    {
+			if (m == null || m.Deleted)
+	        	return false;
+			
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		    	return false;
+			
+			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
+				return false;
+			
+			if ( m.Region != this.Region )
+				return false;
+			
+			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
+			{
+				this.Location = m.Location;
+				this.Combatant = m;
+				this.Warmode = true;
+			}
+			return true;
+	    }
+
+		public override void AggressiveAction(Mobile m, bool criminal)
+		{
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+				return;
+
+		    base.AggressiveAction(m, true);
+		}
+
+		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
+		{
+		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		        return false;
+
+		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
+		}
+
+		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
+		{
+		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		        return true;
+
+		    return base.CanBeBeneficial(m, message, allowDead);
+		}
+
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
@@ -121,11 +169,15 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 12.6 - (m_Rage * 1.5) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
 			}
-			
+		
+			if (from.Player && from.Kills < 5 && !from.Criminal) 
+				from.Criminal = true;		
+		
 			base.OnDamage( amount, from, willKill );
 		}
+
 
 		private void PerformRageAttack( Mobile target )
 		{
@@ -138,44 +190,34 @@ namespace Server.Mobiles
 
 			switch ( attackChoice  )
 			{
-				case 1: // Flaming blast
+				case 1: // holy nova
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "BURN!" );
+					PublicOverheadMessage( MessageType.Regular, 0x21, false, "Heavens smite thee!" );
 					PlaySound( 0x64F );
+					FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 					IPooledEnumerable eable = GetMobilesInRange( 6 );
 					foreach ( Mobile m in eable )
 					{
 						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
 						{
 							DoHarmful( m );
-							int damage = Utility.RandomMinMax( 23, 34 );
-							AOS.Damage( m, this, damage, 0, 100, 0, 0, 0 );
-							SlamVisuals.SlamVisual(this, 6, 0x36B0, 0xb73);
+							int damage = Utility.RandomMinMax( 35, 49 );
+							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
+							m.PlaySound( 0x1FB );
 						}
 					}
+					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x4D5);
 					eable.Free();
 					break;
 				}
-				case 2: // rage 2: summon fire vortex
-				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fire shall consume you!" );
-					PlaySound( 0x133 );
-					FixedParticles( 0x3728, 1, 13, 9912, 0x21, 7, EffectLayer.Head );
-                    BaseCreature monster = new EvilScorchingVortex();
-            		monster.Team = this.Team;
-            		Point3D loc = GetSpawnLocation( map );
-                    monster.IsTempEnemy = true;
-            		monster.MoveToWorld( loc, map );
-            		monster.Combatant = target;
-                    break;
-				}
-				case 3: // Rage 3: fire cone
+
+				case 2: //holy fire
 				{
 					if (map == null)
                         return;
                     int range = 7;
                     this.PlaySound(0x208);
-                    PublicOverheadMessage(Network.MessageType.Emote, 0x22, false, "*lashes a blazing whip of fire!*");
+                    PublicOverheadMessage(Network.MessageType.Emote, 0x22, false, "Burn in the light!");
                     Point3D start = this.Location;
                     int dx = 0, dy = 0;
                     GetDirectionVector(this.Direction, out dx, out dy);
@@ -193,12 +235,37 @@ namespace Server.Mobiles
                             }
                         }
                     }
-                }
-                break;
+					break;
+				}
+				
+				case 3: // Rage 3: holy blast (Mana drain + damage)
+				{
+					PublicOverheadMessage( MessageType.Regular, 0x21, false, "Light everlasting shall consume you!" );
+					PlaySound( 0x228 );
+					FixedParticles( 0x3789, 10, 25, 5032, EffectLayer.Head );
+					IPooledEnumerable eable = GetMobilesInRange( 8 );
+					foreach ( Mobile m in eable )
+					{
+						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
+						{
+							DoHarmful( m );
+							int manaDrain = Utility.RandomMinMax( 35, 45 );
+							m.Mana -= manaDrain;
+							int damage = Utility.RandomMinMax( manaDrain/2, manaDrain*2 );
+							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
+							m.FixedParticles( 0x374A, 10, 15, 5013, 0x497, 0, EffectLayer.Waist );
+							m.PlaySound( 0x1FB );
+							this.Mana = Math.Min( this.ManaMax, this.Mana + manaDrain / 3 );
+						}
+					}
+					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x497);
+					eable.Free();
+					break;
+				}
 			}
 		}
 
-        private void GetDirectionVector(Direction d, out int dx, out int dy)
+		private void GetDirectionVector(Direction d, out int dx, out int dy)
         {
             dx = 0;
             dy = 0;
@@ -235,10 +302,10 @@ namespace Server.Mobiles
                     break;
             }
         }
-	
+
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
-			int chance = m_Rage * 11;
+			int chance = m_Rage * 22;
 			reflect = ( Utility.Random(100) < chance );
 		}
 
@@ -300,19 +367,19 @@ namespace Server.Mobiles
 			{
 				case 0: 
 					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Fire walks with me!"; 
+					song = "Come forth, comrades!"; 
 					break;
 				case 1: 
 					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Soon you shall be ash and memory!"; 
+					song = "Lets end this menace right now!"; 
 					break;
 				case 2: 
 					newSummons = Utility.RandomMinMax( 3, 6 ); 
-					song = "We will turn your hopes and dreams into cinder!"; 
+					song = "We shall stand against injustice!"; 
 					break;
 				case 3: 
 					newSummons = Utility.RandomMinMax( 2, 4 );
-					song = "Hell is unleashed!"; 
+					song = "Hosts of heaven, answer my call!"; 
 					break;
 				default:
 					newSummons = 2;
@@ -333,13 +400,13 @@ namespace Server.Mobiles
 				monster.IsTempEnemy = true;
 				monster.MoveToWorld( loc, map );
 				monster.Combatant = target;
-				RegisterSummon(monster);
+                RegisterSummon(monster);
 			}
 
 			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 18.0 - (m_Rage * 0.5) );
 		}
 
-		public void RegisterSummon(BaseCreature bc)
+        public void RegisterSummon(BaseCreature bc)
         {
             if (bc == null)
                 return;
@@ -353,6 +420,7 @@ namespace Server.Mobiles
             });
         }
 
+
 		private BaseCreature CreateMonster()
 		{
 			int rand = Utility.Random( 100 );
@@ -360,27 +428,30 @@ namespace Server.Mobiles
 			switch ( m_Rage )
 			{
 				case 0:
-					return new Penitent();
-					
+					return new GriffonRiding();
 				case 1:
-					if ( rand < 55 )
-						return new FireGargoyle();
+					if ( rand < 45 )
+						return new GriffonRiding();
 					else
-						return new Penitent();
+						return new WarGriffon();
 				case 2:
-					if ( rand < 55 )
-						return new FireElemental();
+					if ( rand < 10 )
+						return new Angel();
+					else if ( rand < 25 )
+						return new EtherealWarrior();
 					else
-						return new Efreet();
+						return new WarGriffon();
+
 				case 3:
 					if ( rand < 20 )
-						return new Succubus();
+						return new Archangel();
 					else if ( rand < 45 )
-						return new FireElemental();
+						return new Angel();
 					else
-						return new Efreet();
+						return new EtherealWarriorGeneral();
+
 				default:
-					return new Penitent();
+					return new GriffonRiding();
 			}
 		}
 
@@ -424,30 +495,29 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
+        	if ( m_Rage == 0 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "We are just getting started, honey!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Justice shall not falther today!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 100 );
-				SetDex( Dex + 25 );
-				SetDamage( 38, 49 );
+				SetStr( Str + 40 );
+				SetDamage( 28, 34 );
 				
 				m_Rage = 1;
 				return false;
 			}
 			else if ( m_Rage == 1 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Feeling the heat yet?" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "By the heavens above I command thee to stand down!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 150 );
-				SetDex( Dex + 35 );
-				SetDamage( 43, 54 );
+				SetStr( Str + 80 );
+				SetDex( Dex + 15 );
+				SetDamage( 33, 44 );
 				VirtualArmor += 10;
 				
 				m_Rage = 2;
@@ -455,25 +525,15 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 2 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "You are starting to burn me down!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "For the Skywatch!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 200 );
+				SetStr( Str + 125 );
 				SetDex( Dex + 50 );
-				SetDamage( 50, 65 );
-				VirtualArmor += 15;
-				
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fool! I'm fire everlasting" );
-				BaseCreature balron = new Balron();
-				balron.Team = this.Team;
-				Point3D loc = GetSpawnLocation( this.Map );
-				balron.IsTempEnemy = true;
-				balron.MoveToWorld( loc, this.Map );
-				if ( Combatant != null )
-					balron.Combatant = Combatant;
-				
+				SetDamage( 40, 55 );
+				VirtualArmor += 15;	
 				m_Rage = 3;
 				return false;
 			}
@@ -481,19 +541,20 @@ namespace Server.Mobiles
 			{
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "You win...this time..." );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "I return...to the skies..." );
 				Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma > 0)
+
+            	if (killer != null && killer.Player && killer.Karma < 0)
             	{
-            	    int marks = Utility.RandomMinMax(11, 37);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
+            	    int marks = Utility.RandomMinMax(231, 347);
+            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 0, marks);
             	}
 			}
 			
 			return base.OnBeforeDeath();
 		}
 
-		public override void OnDelete()
+        public override void OnDelete()
         {
             CleanupSummons();
             base.OnDelete();
@@ -511,20 +572,25 @@ namespace Server.Mobiles
             m_Summons.Clear();
         }
 
+
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
 
 			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
 
-			int amt = Utility.RandomMinMax( 3, 6 );
+			if ( Utility.RandomDouble() < 0.15 )
+			{
+				c.DropItem( new EternalPowerScroll() );
+			}
+
+			int amt = Utility.RandomMinMax( 3, 9 );
 			for ( int i = 0; i < amt; i++ )
 			{
 				c.DropItem( new EtherealPowerScroll() );
 			}
-
-			// gold explosion
-		    RichesSystem.SpawnRiches( m_LastTarget, 3 );
+		    // gold explosion
+		    RichesSystem.SpawnRiches( m_LastTarget, 5 );
 		}
 
 		public override void OnAfterSpawn()
@@ -533,7 +599,7 @@ namespace Server.Mobiles
 			LeechImmune = true;
 		}
 
-		public DaughterOfFire( Serial serial ) : base( serial )
+		public HeavenlyMarshall( Serial serial ) : base( serial )
 		{
 		}
 
