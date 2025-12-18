@@ -160,8 +160,11 @@ namespace Server.Items
 			{
 				m_Table.Remove(m);
 
-				if (context.SpeedBoost)
+				if (context.SpeedBoost && context.SpeedBoostActive)
+				{
 					m.Send(SpeedControl.Disable);
+					context.SpeedBoostActive = false;
+				}
 
 				if (context.StrMod != null)
 					m.RemoveStatMod(context.StrMod.Name);
@@ -303,9 +306,6 @@ namespace Server.Items
 				m.AddSkillMod(skillMod);
 			}
 
-			if (entry.SpeedBoost)
-				m.Send(SpeedControl.MountSpeed);
-
 			Timer timer = new SpectralFormTimer(m, entry);
 			timer.Start();
 
@@ -314,6 +314,19 @@ namespace Server.Items
 
 			context.ApplyResistMods(m);
 			context.ApplyRegenAttributes(m, druidism, spiritualism);
+
+			if (entry.SpeedBoost)
+			{
+				Timer.DelayCall(TimeSpan.FromSeconds(0.25), delegate()
+				{
+					SpectralFormContext ctx = GetContext(m);
+					if (ctx != null && ctx.SpeedBoost && !ctx.SpeedBoostActive)
+					{
+						m.Send(SpeedControl.MountSpeed);
+						ctx.SpeedBoostActive = true;
+					}
+				});
+			}
 
 			m.FixedEffect(0x37C4, 10, 14, 1153, 4);
 			m.PlaySound(0x1F7);
@@ -506,6 +519,8 @@ namespace Server.Items
 		private ResistanceMod[] m_ResistMods;
 		private int m_RegenAmount;
 		private SkillMod m_SkillMod;
+		private bool m_SpeedBoostActive;
+		private DateTime m_LastSpeedCheck;
 
 		public Timer Timer { get { return m_Timer; } }
 		public StatMod StrMod { get { return m_StrMod; } }
@@ -516,6 +531,7 @@ namespace Server.Items
 		public bool SpeedBoost { get { return m_Entry.SpeedBoost; } }
 		public int RegenAmount { get { return m_RegenAmount; } set { m_RegenAmount = value; } }
 		public SkillMod SkillMod { get { return m_SkillMod; } }
+		public bool SpeedBoostActive { get { return m_SpeedBoostActive; } set { m_SpeedBoostActive = value; } }
 
 		public SpectralFormContext(Timer timer, StatMod strMod, StatMod dexMod, StatMod intMod,
 			SpectralFormEntry entry, HeartOfTheWilds amulet, SkillMod skillMod)
@@ -528,8 +544,24 @@ namespace Server.Items
 			m_Amulet = amulet;
 			m_RegenAmount = 0;
 			m_SkillMod = skillMod;
+			m_SpeedBoostActive = false;
+			m_LastSpeedCheck = DateTime.MinValue;
 
 			m_ResistMods = new ResistanceMod[5];
+		}
+		// hacky as all hell but will do for now
+		public void CheckSpeedBoost(Mobile m)
+		{
+			if ((DateTime.UtcNow - m_LastSpeedCheck).TotalSeconds < 3.5)
+				return;
+
+			m_LastSpeedCheck = DateTime.UtcNow;
+
+			if (m_Entry.SpeedBoost && !m_SpeedBoostActive)
+			{
+				m.Send(SpeedControl.MountSpeed);
+				m_SpeedBoostActive = true;
+			}
 		}
 
 		public void ApplyResistMods(Mobile m)
@@ -619,6 +651,8 @@ namespace Server.Items
 				Stop();
 				return;
 			}
+
+			context.CheckSpeedBoost(m_Mobile);
 
 			double druidism = m_Mobile.Skills[SkillName.Druidism].Value;
 			double spiritualism = m_Mobile.Skills[SkillName.Spiritualism].Value;
