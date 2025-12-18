@@ -64,7 +64,7 @@ namespace Server.Mobiles
 			SetHits( 3000 );
 			SetDamage( 13, 24 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
+			SetDamageType( ResistanceType.Poison, 100 );
 			SetResistance( ResistanceType.Physical, 40 );
 			SetResistance( ResistanceType.Fire, 45 );
 			SetResistance( ResistanceType.Cold, 40 );
@@ -91,7 +91,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 2 );
 		}
 
-		public override bool AutoDispel{ get{ return !Controlled; } }
 		public override int TreasureMapLevel{ get{ return 3; } }
 		public override bool CanRummageCorpses{ get{ return false; } }
 		public override int BreathPhysicalDamage{ get{ return 0; } }
