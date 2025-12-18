@@ -3,6 +3,26 @@ using System.Collections;
 using Server.Items;
 using Server.Mobiles;
 using Server.Spells;
+using Server.Network;
+using Server.Misc;
+/* 
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Server;
+using Server.Mobiles;
+using Server.Targeting;
+using Server.Items;
+using Server.Network;
+using Server.Spells.Seventh;
+using Server.Spells.Fifth;
+using Server.Spells.Necromancy;
+using Server.Spells;
+using Server.Spells.Ninjitsu;
+using Server.Misc;
+using Server.Systems;
+
+ */
 
 namespace Server.Items
 {
@@ -32,6 +52,22 @@ namespace Server.Items
 			double druidism = attacker.Skills[SkillName.Druidism].Value;
 			double spiritualism = attacker.Skills[SkillName.Spiritualism].Value;
 			double totalSkill = druidism + spiritualism;
+
+			// checks druidism on hit, checks guild membership
+			if (attacker.CheckSkill(SkillName.Druidism, 0, 125) && IsInGuild(attacker))
+			{
+				int marks = Utility.RandomMinMax(2, 12) + (int)(druidism)/10;
+				if (marks < 0)
+					marks = 0;
+				if( marks > 10 )
+					marks = 10;
+				// spiritualism gating
+			    if(attacker.Skills[SkillName.Spiritualism].Value > Utility.RandomMinMax(20, 126) && marks > 0)			
+				{
+					attacker.AddToBackpack(new MarksOfTheWilds(marks));
+					attacker.SendMessage(string.Format("You gained {0} Marks of the Wilds.", marks));
+				}
+			}
 
 			// Calculate hit chance: (Druidism + Spiritualism) / 10, capped at 25%
 			double hitChance = Math.Min((totalSkill / 10.0) / 100.0, 0.25);
@@ -67,6 +103,11 @@ namespace Server.Items
 				ApplyCleave(attacker, defender, druidism, spiritualism);
 			    StartSpecialCooldown(attacker);
 			}
+		}
+
+		public static bool IsInGuild( Mobile m )
+		{
+			return ( m is PlayerMobile && ((PlayerMobile)m).NpcGuild == NpcGuild.DruidsGuild );
 		}
 
 		private static bool ApplyCleave(Mobile attacker,Mobile defender,double druidism,double spiritualism)
