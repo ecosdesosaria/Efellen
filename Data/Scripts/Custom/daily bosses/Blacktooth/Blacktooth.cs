@@ -33,7 +33,7 @@ namespace Server.Mobiles
     	};
         
 		[Constructable]
-		public Blacktooth () : base( AIType.AI_Melee, FightMode.Evil, 20, 1, 0.4, 0.8 )
+		public Blacktooth () : base( AIType.AI_Melee, FightMode.Closest, 20, 1, 0.4, 0.8 )
 		{
 			Title = " the Vicious";
 			NameHue = 0x92E;
