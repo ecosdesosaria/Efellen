@@ -1655,9 +1655,20 @@ namespace Server.Items
 				manaLeech += wraithLeech;
 			}
 
-			if ( lifeLeech != 0 && !((BaseCreature)defender).LeechImmune )
-				attacker.Hits += AOS.Scale( damageGiven, lifeLeech );
+			if ( lifeLeech != 0 )
+			{
+			    bool isImmune = false;
 
+			    if (defender is BaseCreature)
+			    {
+			        BaseCreature defenderCreature = (BaseCreature)defender;
+			        isImmune = defenderCreature.LeechImmune;
+			    }
+			    
+			    if (!isImmune)
+			        attacker.Hits += AOS.Scale( damageGiven, lifeLeech );
+			}
+			
 			if ( stamLeech != 0 )
 				attacker.Stam += AOS.Scale( damageGiven, stamLeech );
 
