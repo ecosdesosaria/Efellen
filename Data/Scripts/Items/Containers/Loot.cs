@@ -722,15 +722,14 @@ namespace Server
 				typeof( RoughEnhancementStone ),typeof( DenseEnhancementStone ),		typeof( ElementalEnhancementStone ),
 				typeof( ArtifactManual ),		typeof( Runebook ),						typeof( FrankenJournalInBox ),
 				typeof( CrystallineJar ),		typeof( DockingLantern ),				typeof( RunicFletching ),
-				typeof( BoatBuild ),			typeof( MalletStake ), 					typeof( PetBondDeed ),
+				typeof( BoatBuild ),			typeof( MalletStake ), 					typeof( RunicSewingKit ),		
 				typeof( HairDyeBottle ),		typeof( MagicalWand ),					typeof( MagicalWand ),
 				typeof( RareAnvil ),			typeof( MasterSkeletonsKey ),			typeof( InvulnerabilityPotion ),
 				typeof( AlternateRealityMap ),	typeof( UnusualDyes ),					typeof( RunicLeatherKit ),
 				typeof( CarpetBuild ),			typeof( RunicScales ),					typeof( GolemManual ),
 				typeof( SmallHollowBook ),		typeof( LargeHollowBook ),				typeof( RecallRune),
 				typeof( SlaversNet ),			typeof( TelescopeAddonDeed ),			typeof( RunicUndertaker ),
-				typeof( RunicTinker ),			typeof( RunicSewingKit ), 				typeof( LesserWandOfDisenchanting),
-				typeof( WandOfDisenchanting )				
+				typeof( RunicTinker ),			typeof( WandOfDisenchanting )				
 			};
 
 		public static Type[] AdventurerRareItemTypes{ get{ return m_RareItemTypes; } }
