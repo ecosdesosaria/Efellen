@@ -21,7 +21,10 @@ namespace Server.Mobiles
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 42 ); }
+		public override int GetBreathForm()
+		{
+		    return 42;
+		}
 
 		[Constructable]
 		public TitanPyros () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )

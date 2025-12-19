@@ -81,7 +81,10 @@ namespace Server.Mobiles
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 23 ); }
+		public override int GetBreathForm()
+		{
+		    return 23;
+		}
 		public override Poison PoisonImmune{ get{ return Poison.Deadly; } }
 	}
 }

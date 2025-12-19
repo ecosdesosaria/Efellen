@@ -751,833 +751,897 @@ namespace Server.Mobiles
 		public virtual double DispelFocus{ get{ return 20.0; } } // at difficulty - focus we have 0%, at difficulty + focus we have 100%
 		public virtual bool DisplayWeight{ get{ return Backpack is StrongBackpack; } }
 
-		#region Breath ability, like dragon fire breath
-		private DateTime m_NextBreathTime;
-
-		// Must be overriden in subclass to enable
-		public virtual bool HasBreath{ get{ return false; } }
-
-		// Base damage given is: CurrentHitPoints * BreathDamageScalar
-		public virtual double BreathDamageScalar{ get{ return 0.20; } }
-
-		// Min/max seconds until next breath
-		public virtual double BreathMinDelay{ get{ return 10.0; } }
-		public virtual double BreathMaxDelay{ get{ return 15.0; } }
-
-		// Creature stops moving for 1.0 seconds while breathing
-		public virtual double BreathStallTime{ get{ return 1.0; } }
-
-		// Effect is sent 1.3 seconds after BreathAngerSound and BreathAngerAnimation is played
-		public virtual double BreathEffectDelay{ get{ return 1.3; } }
-
-		// Damage is given 1.0 seconds after effect is sent
-		public virtual double BreathDamageDelay{ get{ return 1.0; } }
-
-		public virtual int BreathRange{ get{ return RangePerception; } }
-
-		// Damage types
-		public virtual int BreathPhysicalDamage{ get{ return 0; } }
-		public virtual int BreathFireDamage{ get{ return 100; } }
-		public virtual int BreathColdDamage{ get{ return 0; } }
-		public virtual int BreathPoisonDamage{ get{ return 0; } }
-		public virtual int BreathEnergyDamage{ get{ return 0; } }
-
-		// Is immune to breath damages
-		public virtual bool BreathImmune{ get{ return false; } }
-
-		// Effect details and sound
-		public virtual int BreathEffectItemID{ get{ return 0x36D4; } }
-		public virtual int BreathEffectSpeed{ get{ return 5; } }
-		public virtual int BreathEffectDuration{ get{ return 0; } }
-		public virtual bool BreathEffectExplodes{ get{ return false; } }
-		public virtual bool BreathEffectFixedDir{ get{ return false; } }
-		public virtual int BreathEffectHue{ get{ return 0; } }
-		public virtual int BreathEffectRenderMode{ get{ return 0; } }
-
-		public virtual int BreathEffectSound{ get{ return 0x227; } }
-
-		// Anger sound/animations
-		public virtual int BreathAngerSound{ get{ return GetAngerSound(); } }
-		public virtual int BreathAngerAnimation{ get{ return 12; } }
-
-		public virtual void BreathStart( Mobile target )
-		{
-			BreathStallMovement();
-			BreathPlayAngerSound();
-			BreathPlayAngerAnimation();
-
-			this.Direction = this.GetDirectionTo( target );
-
-			Timer.DelayCall( TimeSpan.FromSeconds( BreathEffectDelay ), new TimerStateCallback( BreathEffect_Callback ), target );
-		}
-
-		public virtual void BreathStallMovement()
-		{
-			if ( m_AI != null )
-				m_AI.NextMove = DateTime.Now + TimeSpan.FromSeconds( BreathStallTime );
-		}
-
-		public virtual void BreathPlayAngerSound()
-		{
-			PlaySound( BreathAngerSound );
-		}
-
-		public virtual void BreathPlayAngerAnimation()
-		{
-			Animate( BreathAngerAnimation, 5, 1, true, false, 0 );
-		}
-
-		public virtual void BreathEffect_Callback( object state )
-		{
-			Mobile target = (Mobile)state;
-
-			if ( !target.Alive || !CanBeHarmful( target ) )
-				return;
-
-			BreathPlayEffectSound();
-			if ( BreathEffectItemID > 0 ){ BreathPlayEffect( target ); }
-
-			Timer.DelayCall( TimeSpan.FromSeconds( BreathDamageDelay ), new TimerStateCallback( BreathDamage_Callback ), target );
-		}
-
-		public virtual void BreathPlayEffectSound()
-		{
-			PlaySound( BreathEffectSound );
-		}
-
-		public virtual void BreathPlayEffect( Mobile target )
-		{
-			Effects.SendMovingEffect( this, target, BreathEffectItemID,
-				BreathEffectSpeed, BreathEffectDuration, BreathEffectFixedDir,
-				BreathEffectExplodes, BreathEffectHue, BreathEffectRenderMode );
-		}
-
-		public virtual void BreathDamage_Callback( object state )
-		{
-			Mobile target = (Mobile)state;
-
-			if ( target is BaseCreature && ((BaseCreature)target).BreathImmune )
-				return;
-
-			if ( CanBeHarmful( target ) )
-			{
-				DoHarmful( target );
-				BreathDealDamage( target, 0 );
-			}
-		}
-
-		public virtual void BreathDealDamage( Mobile target, int form )
-		{
-			if( Evasion.CheckSpellEvasion( target ) )
-				return;
-
-			DoFinalBreathAttack( target, form, true );
-		}
-
-		public void DoFinalBreathAttack( Mobile target, int form, bool cycle )
-		{
-			int physDamage = BreathPhysicalDamage;
-			int fireDamage = BreathFireDamage;
-			int coldDamage = BreathColdDamage;
-			int poisDamage = BreathPoisonDamage;
-			int nrgyDamage = BreathEnergyDamage;
-			int BreathDistance = 0;
-
-			Point3D blast1 = new Point3D( ( target.X ), ( target.Y ), target.Z );
-			Point3D blast2 = new Point3D( ( target.X-1 ), ( target.Y ), target.Z );
-			Point3D blast3 = new Point3D( ( target.X+1 ), ( target.Y ), target.Z );
-			Point3D blast4 = new Point3D( ( target.X ), ( target.Y-1 ), target.Z );
-			Point3D blast5 = new Point3D( ( target.X ), ( target.Y+1 ), target.Z );
-
-			Point3D blast1z = new Point3D( ( target.X ), ( target.Y ), target.Z+10 );
-			Point3D blast2z = new Point3D( ( target.X-1 ), ( target.Y ), target.Z+10 );
-			Point3D blast3z = new Point3D( ( target.X+1 ), ( target.Y ), target.Z+10 );
-			Point3D blast4z = new Point3D( ( target.X ), ( target.Y-1 ), target.Z+10 );
-			Point3D blast5z = new Point3D( ( target.X ), ( target.Y+1 ), target.Z+10 );
-
-			Point3D blast1w = new Point3D( ( target.X ), ( target.Y ), target.Z );
-			Point3D blast2w = new Point3D( ( target.X-2 ), ( target.Y ), target.Z );
-			Point3D blast3w = new Point3D( ( target.X+2 ), ( target.Y ), target.Z );
-			Point3D blast4w = new Point3D( ( target.X ), ( target.Y-2 ), target.Z );
-			Point3D blast5w = new Point3D( ( target.X ), ( target.Y+2 ), target.Z );
-
-			AOS.Damage( target, this, BreathComputeDamage(), physDamage, fireDamage, coldDamage, poisDamage, nrgyDamage );
-
-			if ( form == 1 ) // CRYSTAL DRAGONS -----------------------------------------------------------------------------------------------------
-			{
-				int bColor = Utility.RandomList( 0x48D, 0x48E, 0x48F, 0x490, 0x491 );
-				Effects.SendLocationEffect( blast1, target.Map, 0x3709, 30, 10, bColor, 0 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x3709, 30, 10, bColor, 0 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x3709, 30, 10, bColor, 0 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x3709, 30, 10, bColor, 0 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x3709, 30, 10, bColor, 0 );
-				target.PlaySound( 0x208 );
-				BreathDistance = 3;
-			}
-			else if ( form == 2 ) // POTIONS THROWN -------------------------------------------------------------------------------------------------
-			{
-				if ( BreathEffectHue == 0x488 )
-				{
-					Effects.SendLocationEffect( blast1, target.Map, 0x3709, 30, 10 );
-					target.PlaySound( 0x208 );
-					target.PlaySound( 0x38D );
-				}
-				else if ( BreathEffectHue == 0xB92 )
-				{
-					Effects.SendLocationParticles( EffectItem.Create( blast1, target.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
-					Effects.PlaySound( target.Location, target.Map, 0x229 );
-
-					if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
-					{
-						switch( Utility.RandomMinMax( 1, 2 ) )
-						{
-							case 1: target.ApplyPoison( target, Poison.Lesser );	break;
-							case 2: target.ApplyPoison( target, Poison.Regular );	break;
-						}
-					}
-					target.PlaySound( 0x38D );
-				}
-				else if ( form == 0x5B5 )
-				{
-					Point3D vortex = new Point3D( ( target.X+1 ), ( target.Y+1 ), target.Z );
-					Effects.SendLocationEffect( vortex, target.Map, 0x37CC, 30, 10, 0x481, 0 );
-					target.PlaySound( 0x10B );
-					target.PlaySound( 0x38D );
-				}
-				else
-				{
-					target.FixedParticles( 0x36BD, 20, 10, 5044, EffectLayer.Head );
-					target.PlaySound( 0x307 );
-				}
-
-				this.YellHue = Utility.RandomMinMax( 0, 3 ); // THIS IS USED TO RANDOMIZE POTION TYPES
-			}
-			else if ( form == 3 ) // DAGGERS OR STARS THROWN ----------------------------------------------------------------------------------------
-			{
-				if ( target is PlayerMobile && Server.Items.BaseRace.IsBleeder( target ) )
-				{
-					Server.Misc.IntelligentAction.CryOut( target );
-
-					Blood blood = new Blood(); blood.MoveToWorld( blast2, this.Map );
-						  blood = new Blood(); blood.MoveToWorld( blast3, this.Map );
-						  blood = new Blood(); blood.MoveToWorld( blast4, this.Map );
-						  blood = new Blood(); blood.MoveToWorld( blast5, this.Map );
-				}
-
-				if ( BreathEffectItemID == 0x406C ) // ASSASSIN STAR
-				{
-					if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
-					{
-						switch( Utility.RandomMinMax( 1, 2 ) )
-						{
-							case 1: target.ApplyPoison( target, Poison.Lesser );	break;
-							case 2: target.ApplyPoison( target, Poison.Regular );	break;
-						}
-					}
-				}
-			}
-			else if ( form == 4 ) // DINOSAUR ROAR --------------------------------------------------------------------------------------------------
-			{
-				target.SendMessage( "You are hit by the force of the mighty roar!" );
-				target.PlaySound( 0x63F );
-				BreathDistance = 5;
-			}
-			else if ( form == 5 ) // MANTICORE ------------------------------------------------------------------------------------------------------
-			{
-				target.SendMessage( "You are hit by a manticore thorn!" );
-				if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
-				{
-					target.ApplyPoison( target, Poison.Lethal );
-				}
-				Server.Misc.IntelligentAction.CryOut( target );
-			}
-			else if ( form == 6 ) // SPIDERS --------------------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x10D3, 30, 10, 0, 0 );
-				target.PlaySound( 0x62D );
-				target.Paralyze( TimeSpan.FromSeconds( GetParalyzeDuration(target,(double)(this.Fame)) ) );
-			}
-			else if ( form == 7 ) // GIANT STONES AND LOGS ------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x36B0, 30, 10, 0x837, 0 );
-				target.PlaySound( 0x664 );
-				BreathDistance = 2;
-			}
-			else if ( form == 8 ) // LARGE SAND BREATH ----------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1w, target.Map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
-				Effects.SendLocationEffect( blast2w, target.Map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
-				Effects.SendLocationEffect( blast3w, target.Map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
-				Effects.SendLocationEffect( blast4w, target.Map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
-				Effects.SendLocationEffect( blast5w, target.Map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
-				target.PlaySound( 0x10B );
-				BreathDistance = 3;
-			}
-			else if ( form == 9 ) // LARGE FIRE BREATH ----------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x3709, 30, 10 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x3709, 30, 10 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x3709, 30, 10 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x3709, 30, 10 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x3709, 30, 10 );
-				target.PlaySound( 0x208 );
-				BreathDistance = 3;
-			}
-			else if ( form == 10 ) // LARGE POISON BREATH -------------------------------------------------------------------------------------------
-			{
-				if ( Utility.RandomBool() )
-				{
-					Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60 );
-					Effects.SendLocationEffect( blast2, target.Map, 0x3400, 60 );
-					Effects.SendLocationEffect( blast3, target.Map, 0x3400, 60 );
-					Effects.SendLocationEffect( blast4, target.Map, 0x3400, 60 );
-					Effects.SendLocationEffect( blast5, target.Map, 0x3400, 60 );
-					Effects.PlaySound( target.Location, target.Map, 0x108 );
-				}
-				else
-				{
-					Effects.SendLocationParticles( EffectItem.Create( blast1, target.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
-					Effects.SendLocationParticles( EffectItem.Create( blast2, target.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
-					Effects.SendLocationParticles( EffectItem.Create( blast3, target.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
-					Effects.SendLocationParticles( EffectItem.Create( blast4, target.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
-					Effects.SendLocationParticles( EffectItem.Create( blast5, target.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
-					Effects.PlaySound( target.Location, target.Map, 0x229 );
-				}
-				BreathDistance = 3;
-
-				if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
-				{
-					switch( Utility.RandomMinMax( 1, 2 ) )
-					{
-						case 1: target.ApplyPoison( target, Poison.Greater );	break;
-						case 2: target.ApplyPoison( target, Poison.Deadly );	break;
-					}
-				}
-			}
-			else if ( form == 11 ) // LARGE RADIATION -----------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60, 0xB96, 0 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x3400, 60, 0xB96, 0 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x3400, 60, 0xB96, 0 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x3400, 60, 0xB96, 0 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x3400, 60, 0xB96, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x108 );
-				BreathDistance = 3;
-			}
-			else if ( form == 12 ) // LARGE COLD BREATH ---------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x1A84, 30, 10, 0x9C1, 0 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x1A84, 30, 10, 0x9C1, 0 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x1A84, 30, 10, 0x9C1, 0 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x1A84, 30, 10, 0x9C1, 0 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x1A84, 30, 10, 0x9C1, 0 );
-				target.PlaySound( 0x10B );
-				BreathDistance = 3;
-			}
-			else if ( form == 13 ) // LARGE ELECTRICAL BREATH ---------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				Effects.SendLocationEffect( blast2, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				Effects.SendLocationEffect( blast3, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				Effects.SendLocationEffect( blast4, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				Effects.SendLocationEffect( blast5, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				target.PlaySound( 0x5C3 );
-				BreathDistance = 3;
-			}
-			else if ( form == 14 ) // TITAN LIGHTNING BOLT ------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				Effects.SendLocationEffect( blast2, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				Effects.SendLocationEffect( blast3, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				Effects.SendLocationEffect( blast4, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				Effects.SendLocationEffect( blast5, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				target.PlaySound( 0x5C3 );
-				target.BoltEffect( 0 );
-				BreathDistance = 3;
-			}
-			else if ( form == 15 ) // SPHINX --------------------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
-				target.PlaySound( 0x10B );
-				BreathDistance = 3;
-			}
-			else if ( form == 16 ) // LARGE STEAM BREATH --------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60, 10, 0x9C4, 0 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x3400, 60, 10, 0x9C4, 0 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x3400, 60, 10, 0x9C4, 0 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x3400, 60, 10, 0x9C4, 0 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x3400, 60, 10, 0x9C4, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x108 );
-				BreathDistance = 3;
-			}
-			else if ( form == 17 ) // SMALL FIRE BREATH ---------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x3709, 30, 10 );
-				target.PlaySound( 0x208 );
-			}
-			else if ( form == 18 ) // SMALL POISON BREATH -------------------------------------------------------------------------------------------
-			{
-				if ( Utility.RandomBool() )
-				{
-					Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60 );
-					Effects.PlaySound( target.Location, target.Map, 0x108 );
-				}
-				else
-				{
-					Effects.SendLocationParticles( EffectItem.Create( blast1, target.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
-					Effects.PlaySound( target.Location, target.Map, 0x229 );
-				}
-
-				if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
-				{
-					switch( Utility.RandomMinMax( 1, 2 ) )
-					{
-						case 1: target.ApplyPoison( target, Poison.Lesser );	break;
-						case 2: target.ApplyPoison( target, Poison.Regular );	break;
-					}
-				}
-				BreathDistance = 2;
-			}
-			else if ( form == 19 ) // SMALL COLD BREATH ---------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x1A84, 30, 10, 0x9C1, 0 );
-				target.PlaySound( 0x10B );
-				BreathDistance = 2;
-			}
-			else if ( form == 20 ) // SMALL ENERGY BREATH -------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				target.PlaySound( 0x5C3 );
-				BreathDistance = 2;
-			}
-			else if ( form == 21 ) // SMALL ENERGY WITH BOLT ----------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
-				target.PlaySound( 0x5C3 );
-				target.BoltEffect( 0 );
-				BreathDistance = 2;
-			}
-			else if ( form == 22 ) // MISC ELEMENTAL ------------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x36B0, 30, 10, 0x840, 0 );
-				target.PlaySound( 0x65A );
-			}
-			else if ( form == 23 || form == 24 || form == 25 ) // LARGE VOID BREATH -----------------------------------------------------------------
-			{
-				int color = 0x496;
-					if ( form == 24 ){ color = 0x844; }
-					else if ( form == 25 ){ color = 0x9C1; }
-				Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60, color, 0 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x3400, 60, color, 0 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x3400, 60, color, 0 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x3400, 60, color, 0 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x3400, 60, color, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x108 );
-				BreathDistance = 3;
-
-				int drain = ((int)(this.Fame/500));
-
-				target.Mana = target.Mana - drain;
-					if ( target.Mana < 0 ){ target.Mana = 0; }
-
-				target.Stam = target.Stam - drain;
-					if ( target.Stam < 0 ){ target.Stam = 0; }
-
-				target.SendMessage( "You feel your soul draining!" );
-			}
-			else if ( form == 26 || form == 27 || form == 28 ) // SMALL VOID BREATH -----------------------------------------------------------------
-			{
-				int color = 0x496;
-					if ( form == 27 ){ color = 0x844; }
-					else if ( form == 28 ){ color = 0x9C1; }
-				Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60, color, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x108 );
-				BreathDistance = 2;
-
-				int drain = ((int)(this.Fame/500));
-
-				target.Mana = target.Mana - drain;
-					if ( target.Mana < 0 ){ target.Mana = 0; }
-
-				target.Stam = target.Stam - drain;
-					if ( target.Stam < 0 ){ target.Stam = 0; }
-
-				target.SendMessage( "You feel your soul draining!" );
-			}
-			else if ( form == 29 ) // STONE HANDS FROM THE GROUND -----------------------------------------------------------------------------------
-			{
-				Point3D hands = new Point3D( ( target.X ), ( target.Y ), ( target.Z+5 ) );
-				Effects.SendLocationEffect( hands, target.Map, 0x3837, 23, 10, this.Hue, 0 );
-				target.PlaySound( 0x65A );
-			}
-			else if ( form == 30 ) // WATER SPLASH --------------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x1A84, 30, 10, BreathEffectHue, 0 );
-				target.PlaySound( 0x026 );
-				BreathDistance = 2;
-			}
-			else if ( form == 31 ) // WATER SPLASH --------------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x1A84, 30, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x23B2, 16, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x23B2, 16, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x23B2, 16, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x23B2, 16, BreathEffectHue, 0 );
-				target.PlaySound( 0x026 );
-				BreathDistance = 4;
-			}
-			else if ( form == 32 ) // SMALL FALLING ICE ---------------------------------------------------------------------------------------------
-			{
-				if ( Utility.RandomBool() )
-				{
-					Effects.SendLocationEffect( blast1, target.Map, 0x5571, 85, 10, 0, 0 );
-					Effects.PlaySound( target.Location, target.Map, 0x5C0 );
-				}
-				else
-				{
-					Effects.SendLocationEffect( blast1, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-					Effects.PlaySound( target.Location, target.Map, 0x656 );
-				}
-				BreathDistance = 2;
-			}
-			else if ( form == 33 ) // BIG FALLING ICE -----------------------------------------------------------------------------------------------
-			{
-				int icy = Utility.RandomMinMax(1,3);
-				if ( icy == 1 )
-				{
-					Effects.SendLocationEffect( blast1, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-					Effects.SendLocationEffect( blast2, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-					Effects.SendLocationEffect( blast3, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-					Effects.SendLocationEffect( blast4, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-					Effects.SendLocationEffect( blast5, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-					Effects.PlaySound( target.Location, target.Map, 0x658 );
-				}
-				else if ( icy == 2 )
-				{
-					Effects.SendLocationEffect( blast1, target.Map, 0x5571, 85, 10, 0, 0 );
-					Effects.SendLocationEffect( blast2, target.Map, 0x5571, 85, 10, 0, 0 );
-					Effects.SendLocationEffect( blast3, target.Map, 0x5571, 85, 10, 0, 0 );
-					Effects.SendLocationEffect( blast4, target.Map, 0x5571, 85, 10, 0, 0 );
-					Effects.SendLocationEffect( blast5, target.Map, 0x5571, 85, 10, 0, 0 );
-					Effects.PlaySound( target.Location, target.Map, 0x5C0 );
-				}
-				else
-				{
-					Effects.SendLocationEffect( blast1, target.Map, 0x55BB, 85, 10, 0, 0 );
-					Effects.PlaySound( blast1, target.Map, 0x5CE );
-				}
-				BreathDistance = 3;
-			}
-			else if ( form == 34 ) // LARGE WEED BREATH ---------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60, 0xB97, 0 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x3400, 60, 0xB97, 0 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x3400, 60, 0xB97, 0 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x3400, 60, 0xB97, 0 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x3400, 60, 0xB97, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x64F );
-				BreathDistance = 3;
-				target.Paralyze( TimeSpan.FromSeconds( GetParalyzeDuration(target,(double)(this.Fame)) ) );
-			}
-			else if ( form == 35 ) // SMALL WEED BREATH ---------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60, 0xB97, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x64F );
-				BreathDistance = 2;
-				target.Paralyze( TimeSpan.FromSeconds( GetParalyzeDuration(target,(double)(this.Fame)) ) );
-			}
-			else if ( form == 36 ) // ACID SPLASH ---------------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x1A84, 30, 10, BreathEffectHue, 1167 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x23B2, 16, BreathEffectHue, 1167 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x23B2, 16, BreathEffectHue, 1167 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x23B2, 16, BreathEffectHue, 1167 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x23B2, 16, BreathEffectHue, 1167 );
-				target.PlaySound( 0x026 );
-				BreathDistance = 3;
-			}
-			else if ( form == 37 ) // MUMMY WRAP ----------------------------------------------------------------------------------------------------
-			{
-				Point3D wrapped = new Point3D( ( target.X ), ( target.Y ), (target.Z+2) );
-				Effects.SendLocationEffect( wrapped, target.Map, 0x23AF, 30, 10, 0, 0 );
-				target.PlaySound( 0x5D2 );
-				target.Paralyze( TimeSpan.FromSeconds( GetParalyzeDuration(target,(double)(this.Fame)) ) );
-			}
-			else if ( form == 38 ) // SMALL STEAM BREATH --------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60, 10, 0x9C4, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x108 );
-				BreathDistance = 2;
-			}
-			else if ( form == 39 ) // SMALL RADIATION -----------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x3400, 60, 0xB96, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x108 );
-				BreathDistance = 2;
-			}
-			else if ( form == 40 ) // SMALL SAND BREATH ---------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
-				target.PlaySound( 0x10B );
-				BreathDistance = 2;
-			}
-			else if ( form == 41 ) // TITAN OF EARTH ATTACK -----------------------------------------------------------------------------------------
-			{
-				Point3D hands = new Point3D( ( target.X ), ( target.Y ), ( target.Z+5 ) );
-				Effects.SendLocationEffect( hands, target.Map, 0x3837, 23, 10, BreathEffectHue, 0 );
-
-				Effects.SendLocationEffect( blast1z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast2z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast3z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast4z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast5z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x658 );
-
-				BreathDistance = 6;
-			}
-			else if ( form == 42 ) // TITAN OF FIRE ATTACK ------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x3709, 30, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x3709, 30, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x3709, 30, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x3709, 30, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x3709, 30, 10, BreathEffectHue, 0 );
-				target.PlaySound( 0x208 );
-
-				Effects.SendLocationEffect( blast1z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast2z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast3z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast4z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast5z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x15F );
-
-				BreathDistance = 6;
-			}
-			else if ( form == 43 ) // TITAN OF WATER ATTACK -----------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1, target.Map, 0x23B2, 16 );
-				Effects.SendLocationEffect( blast2, target.Map, 0x23B2, 16 );
-				Effects.SendLocationEffect( blast3, target.Map, 0x23B2, 16 );
-				Effects.SendLocationEffect( blast4, target.Map, 0x23B2, 16 );
-				Effects.SendLocationEffect( blast5, target.Map, 0x23B2, 16 );
-				target.PlaySound( 0x026 );
-
-				Effects.SendLocationEffect( blast1z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast2z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast3z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast4z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-				Effects.SendLocationEffect( blast5z, target.Map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
-
-				BreathDistance = 6;
-			}
-			else if ( form == 44 ) // TITAN OF AIR ATTACK -----------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast2w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast3w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast4w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast5w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				target.PlaySound( 0x10B );
-
-				if ( target is PlayerMobile && Utility.RandomBool() )
-				{
-					IMount mount = target.Mount;
-
-					if ( mount != null )
-					{
-						target.SendLocalizedMessage( 1062315 ); // You fall off your mount!
-						Server.Mobiles.EtherealMount.EthyDismount( target );
-						mount.Rider = null;
-					}
-					target.Animate( 22, 5, 1, true, false, 0 );
-				}
-				BreathDistance = 6;
-			}
-			else if ( form == 45 ) // STAR CREATURE ATTACK ------------------------------------------------------------------------------------------
-			{
-				if ( Utility.RandomBool() )
-				{
-					Effects.SendLocationEffect( blast1, target.Map, 0x3709, 30, 10 );
-					Effects.SendLocationEffect( blast2, target.Map, 0x3709, 30, 10 );
-					Effects.SendLocationEffect( blast3, target.Map, 0x3709, 30, 10 );
-					Effects.SendLocationEffect( blast4, target.Map, 0x3709, 30, 10 );
-					Effects.SendLocationEffect( blast5, target.Map, 0x3709, 30, 10 );
-					target.PlaySound( 0x208 );
-				}
-				else
-				{
-					Effects.SendLocationEffect( blast1z, target.Map, 0x2A4E, 30, 10 );
-					Effects.SendLocationEffect( blast2z, target.Map, 0x2A4E, 30, 10 );
-					Effects.SendLocationEffect( blast3z, target.Map, 0x2A4E, 30, 10 );
-					Effects.SendLocationEffect( blast4z, target.Map, 0x2A4E, 30, 10 );
-					Effects.SendLocationEffect( blast5z, target.Map, 0x2A4E, 30, 10 );
-					target.PlaySound( 0x5C3 );
-				}
-				BreathDistance = 3;
-			}
-			else if ( form == 46 ) // LARGE STORM ATTACK --------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast2w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast3w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast4w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast5w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				target.PlaySound( 0x10B );
-
-				Effects.SendLocationEffect( blast1z, target.Map, 0x2A4E, 30, 10 );
-				Effects.SendLocationEffect( blast2z, target.Map, 0x2A4E, 30, 10 );
-				Effects.SendLocationEffect( blast3z, target.Map, 0x2A4E, 30, 10 );
-				Effects.SendLocationEffect( blast4z, target.Map, 0x2A4E, 30, 10 );
-				Effects.SendLocationEffect( blast5z, target.Map, 0x2A4E, 30, 10 );
-				target.PlaySound( 0x5C3 );
-
-				if ( target is PlayerMobile && Utility.RandomMinMax( 1, 5 ) == 1 )
-				{
-					IMount mount = target.Mount;
-
-					if ( mount != null )
-					{
-						target.SendLocalizedMessage( 1062315 ); // You fall off your mount!
-						Server.Mobiles.EtherealMount.EthyDismount( target );
-						mount.Rider = null;
-					}
-					target.Animate( 22, 5, 1, true, false, 0 );
-				}
-
-				BreathDistance = 3;
-			}
-			else if ( form == 47 ) // AIR BLOWING BREATH --------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast2w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast3w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast4w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				Effects.SendLocationEffect( blast5w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				target.PlaySound( 0x10B );
-
-				if ( target is PlayerMobile && Utility.RandomBool() )
-				{
-					IMount mount = target.Mount;
-
-					if ( mount != null )
-					{
-						target.SendLocalizedMessage( 1062315 ); // You fall off your mount!
-						Server.Mobiles.EtherealMount.EthyDismount( target );
-						mount.Rider = null;
-					}
-					target.Animate( 22, 5, 1, true, false, 0 );
-				}
-				BreathDistance = 3;
-			}
-			else if ( form == 48 ) // SMALL AIR BLOWING BREATH --------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				target.PlaySound( 0x10B );
-
-				if ( target is PlayerMobile && Utility.RandomBool() )
-				{
-					IMount mount = target.Mount;
-
-					if ( mount != null )
-					{
-						target.SendLocalizedMessage( 1062315 ); // You fall off your mount!
-						Server.Mobiles.EtherealMount.EthyDismount( target );
-						mount.Rider = null;
-					}
-					target.Animate( 22, 5, 1, true, false, 0 );
-				}
-				BreathDistance = 2;
-			}
-			else if ( form == 49 ) // SMALL STAR CREATURE ATTACK ------------------------------------------------------------------------------------
-			{
-				if ( Utility.RandomBool() )
-				{
-					Effects.SendLocationEffect( blast1, target.Map, 0x3709, 30, 10 );
-					target.PlaySound( 0x208 );
-				}
-				else
-				{
-					Effects.SendLocationEffect( blast1w, target.Map, 0x2A4E, 30, 10 );
-					target.PlaySound( 0x5C3 );
-				}
-				BreathDistance = 2;
-			}
-			else if ( form == 50 ) // SMALL STORM ATTACK --------------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( blast1w, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				target.PlaySound( 0x10B );
-
-				Effects.SendLocationEffect( blast1w, target.Map, 0x2A4E, 30, 10 );
-				target.PlaySound( 0x5C3 );
-
-				if ( target is PlayerMobile && Utility.RandomMinMax( 1, 5 ) == 1 )
-				{
-					IMount mount = target.Mount;
-
-					if ( mount != null )
-					{
-						target.SendLocalizedMessage( 1062315 ); // You fall off your mount!
-						Server.Mobiles.EtherealMount.EthyDismount( target );
-						mount.Rider = null;
-					}
-					target.Animate( 22, 5, 1, true, false, 0 );
-				}
-
-				BreathDistance = 3;
-			}
-			else if ( form == 51 ) // SMALL AIR ATTACK -----------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( target.Location, target.Map, 0x5590, 30, 10, 0xB24, 0 );
-				target.PlaySound( 0x10B );
-
-				if ( target is PlayerMobile && Utility.RandomMinMax( 1, 5 ) == 1 )
-				{
-					IMount mount = target.Mount;
-
-					if ( mount != null )
-					{
-						target.SendLocalizedMessage( 1062315 ); // You fall off your mount!
-						Server.Mobiles.EtherealMount.EthyDismount( target );
-						mount.Rider = null;
-					}
-					target.Animate( 22, 5, 1, true, false, 0 );
-				}
-				BreathDistance = 2;
-			}
-			else if ( form == 52 ) // SMALL UNICORN ATTACK -------------------------------------------------------------------------------------
-			{
-				Effects.SendLocationEffect( target.Location, target.Map, 0x3039, 30, 10, 0xB71, 0 );
-				target.PlaySound( 0x20B );
-				BreathDistance = 2;
-			}
-
-			if ( BreathDistance > 0 && cycle )
-			{
-				List<Mobile> targets = new List<Mobile>();
-
-				Map map = this.Map;
-
-				if ( map != null && target != null )
-				{
-					foreach ( Mobile m in target.GetMobilesInRange( BreathDistance ) )
-					{
-						if ( m != this && m != target && this.InLOS( m ) && m is PlayerMobile && m.Alive && CanBeHarmful( m ) && !m.Blessed )
-							targets.Add( m );
-						if ( m != this && m != target && this.InLOS( m ) && m is BaseCreature && m.Alive && CanBeHarmful( m ) && !m.Blessed )
-						{
-							if ( ((BaseCreature)m).Summoned || ((BaseCreature)m).Controlled )
-								targets.Add( m );
-						}
-					}
-					for ( int i = 0; i < targets.Count; ++i )
-					{
-						Mobile m = targets[i];
-						DoFinalBreathAttack( m, form, false );
-					}
-				}
-			}
-		}
+#region Breath ability, like dragon fire breath - REFACTORED
+private DateTime m_NextBreathTime;
+
+// Must be overriden in subclass to enable
+public virtual bool HasBreath{ get{ return false; } }
+
+// Base damage given is: CurrentHitPoints * BreathDamageScalar
+public virtual double BreathDamageScalar{ get{ return 0.20; } }
+
+// Min/max seconds until next breath
+public virtual double BreathMinDelay{ get{ return 1.0; } }
+public virtual double BreathMaxDelay{ get{ return 2.0; } }
+
+// Creature stops moving for 1.0 seconds while breathing
+public virtual double BreathStallTime{ get{ return 1.0; } }
+
+// Effect is sent 1.3 seconds after BreathAngerSound and BreathAngerAnimation is played
+public virtual double BreathEffectDelay{ get{ return 1.3; } }
+
+// Damage is given 1.0 seconds after effect is sent
+public virtual double BreathDamageDelay{ get{ return 1.0; } }
+
+public virtual int BreathRange{ get{ return RangePerception; } }
+
+// Damage types
+public virtual int BreathPhysicalDamage{ get{ return 0; } }
+public virtual int BreathFireDamage{ get{ return 100; } }
+public virtual int BreathColdDamage{ get{ return 0; } }
+public virtual int BreathPoisonDamage{ get{ return 0; } }
+public virtual int BreathEnergyDamage{ get{ return 0; } }
+
+// Is immune to breath damages
+public virtual bool BreathImmune{ get{ return false; } }
+
+// Effect details and sound
+public virtual int BreathEffectItemID{ get{ return 0x36D4; } }
+public virtual int BreathEffectSpeed{ get{ return 5; } }
+public virtual int BreathEffectDuration{ get{ return 0; } }
+public virtual bool BreathEffectExplodes{ get{ return false; } }
+public virtual bool BreathEffectFixedDir{ get{ return false; } }
+public virtual int BreathEffectHue{ get{ return 0; } }
+public virtual int BreathEffectRenderMode{ get{ return 0; } }
+
+public virtual int BreathEffectSound{ get{ return 0x227; } }
+
+// Anger sound/animations
+public virtual int BreathAngerSound{ get{ return GetAngerSound(); } }
+public virtual int BreathAngerAnimation{ get{ return 12; } }
+
+// Helper class to carry breath context
+private class BreathContext
+{
+    public Point3D TargetLocation { get; set; }
+    public Map TargetMap { get; set; }
+    public Mobile OriginalTarget { get; set; }
+    public int Form { get; set; }
+    
+    public BreathContext(Mobile target, int form)
+    {
+        OriginalTarget = target;
+        TargetLocation = target.Location;
+        TargetMap = target.Map;
+        Form = form;
+    }
+}
+
+public virtual void BreathStart( Mobile target )
+{
+    BreathStallMovement();
+    BreathPlayAngerSound();
+    BreathPlayAngerAnimation();
+
+    this.Direction = this.GetDirectionTo( target );
+
+    // Store context with location snapshot
+    int form = GetBreathForm(); // Get the form from creature's breath type
+    BreathContext context = new BreathContext(target, form);
+    Timer.DelayCall( TimeSpan.FromSeconds( BreathEffectDelay ), new TimerStateCallback( BreathEffect_Callback ), context );
+}
+
+// Override this in creature classes to specify which breath form to use
+// This replaces the form parameter that was previously in BreathDealDamage
+public virtual int GetBreathForm()
+{
+    // Default breath form - determine from damage types
+    if ( BreathFireDamage > 0 && BreathColdDamage == 0 && BreathPoisonDamage == 0 && BreathEnergyDamage == 0 )
+        return 9; // LARGE FIRE BREATH
+    else if ( BreathColdDamage > 0 && BreathFireDamage == 0 )
+        return 12; // LARGE COLD BREATH
+    else if ( BreathPoisonDamage > 0 )
+        return 10; // LARGE POISON BREATH
+    else if ( BreathEnergyDamage > 0 )
+        return 13; // LARGE ELECTRICAL BREATH
+    
+    return 9; // Default to fire
+}
+
+public virtual void BreathStallMovement()
+{
+    if ( m_AI != null )
+        m_AI.NextMove = DateTime.Now + TimeSpan.FromSeconds( BreathStallTime );
+}
+
+public virtual void BreathPlayAngerSound()
+{
+    PlaySound( BreathAngerSound );
+}
+
+public virtual void BreathPlayAngerAnimation()
+{
+    Animate( BreathAngerAnimation, 5, 1, true, false, 0 );
+}
+
+public virtual void BreathEffect_Callback( object state )
+{
+    BreathContext context = (BreathContext)state;
+    
+    // we always want sounds
+    BreathPlayEffectSound();
+    
+    // Play projectile if this breath type uses one
+    if ( BreathEffectItemID > 0 && ShouldPlayProjectile( context.Form ) )
+    {
+        BreathPlayEffect( context.TargetLocation, context.TargetMap );
+    }
+    
+    // Play effects
+    PlayBreathVisuals( context.TargetLocation, context.TargetMap, context.Form );
+    
+    // blast them
+    Mobile target = context.OriginalTarget;
+    if ( target != null && target.Alive && CanBeHarmful( target ) )
+    {
+        Timer.DelayCall( TimeSpan.FromSeconds( BreathDamageDelay ), new TimerStateCallback( BreathDamage_Callback ), context );
+    }
+}
+
+public virtual bool ShouldPlayProjectile( int form )
+{
+    // Only certain forms use projectiles (daggers, stars, potions, manticore thorns, etc.)
+    switch( form )
+    {
+        case 2: // POTIONS THROWN
+        case 3: // DAGGERS OR STARS THROWN
+        case 5: // MANTICORE
+            return true;
+        default:
+            return false; // Most breath weapons don't use projectiles
+    }
+}
+
+public virtual void BreathPlayEffectSound()
+{
+    PlaySound( BreathEffectSound );
+}
+
+public virtual void BreathPlayEffect( Point3D targetLocation, Map targetMap )
+{
+    if ( targetMap == null )
+        return;
+        
+    Effects.SendMovingEffect( this, new Entity(Serial.Zero, targetLocation, targetMap), 
+        BreathEffectItemID, BreathEffectSpeed, BreathEffectDuration, 
+        BreathEffectFixedDir, BreathEffectExplodes, BreathEffectHue, BreathEffectRenderMode );
+}
+
+public virtual void BreathDamage_Callback( object state )
+{
+    BreathContext context = (BreathContext)state;
+    Mobile target = context.OriginalTarget;
+    
+    if ( target == null || !target.Alive )
+        return;
+        
+    if ( target is BaseCreature && ((BaseCreature)target).BreathImmune )
+        return;
+
+    if ( CanBeHarmful( target ) )
+    {
+        DoHarmful( target );
+        BreathDealDamage( target, context.Form );
+    }
+}
+
+public virtual void BreathDealDamage( Mobile target, int form )
+{
+    if( Evasion.CheckSpellEvasion( target ) )
+        return;
+
+    DoFinalBreathDamage( target, form, true );
+}
+
+public virtual void PlayBreathVisuals( Point3D targetLoc, Map map, int form )
+{
+    if ( map == null )
+        return;
+
+    Point3D blast1 = new Point3D( targetLoc.X, targetLoc.Y, targetLoc.Z );
+    Point3D blast2 = new Point3D( targetLoc.X-1, targetLoc.Y, targetLoc.Z );
+    Point3D blast3 = new Point3D( targetLoc.X+1, targetLoc.Y, targetLoc.Z );
+    Point3D blast4 = new Point3D( targetLoc.X, targetLoc.Y-1, targetLoc.Z );
+    Point3D blast5 = new Point3D( targetLoc.X, targetLoc.Y+1, targetLoc.Z );
+
+    Point3D blast1z = new Point3D( targetLoc.X, targetLoc.Y, targetLoc.Z+10 );
+    Point3D blast2z = new Point3D( targetLoc.X-1, targetLoc.Y, targetLoc.Z+10 );
+    Point3D blast3z = new Point3D( targetLoc.X+1, targetLoc.Y, targetLoc.Z+10 );
+    Point3D blast4z = new Point3D( targetLoc.X, targetLoc.Y-1, targetLoc.Z+10 );
+    Point3D blast5z = new Point3D( targetLoc.X, targetLoc.Y+1, targetLoc.Z+10 );
+
+    Point3D blast1w = new Point3D( targetLoc.X, targetLoc.Y, targetLoc.Z );
+    Point3D blast2w = new Point3D( targetLoc.X-2, targetLoc.Y, targetLoc.Z );
+    Point3D blast3w = new Point3D( targetLoc.X+2, targetLoc.Y, targetLoc.Z );
+    Point3D blast4w = new Point3D( targetLoc.X, targetLoc.Y-2, targetLoc.Z );
+    Point3D blast5w = new Point3D( targetLoc.X, targetLoc.Y+2, targetLoc.Z );
+
+    // All the visual form logic extracted from DoFinalBreathAttack
+    if ( form == 1 ) // CRYSTAL DRAGONS
+    {
+        int bColor = Utility.RandomList( 0x48D, 0x48E, 0x48F, 0x490, 0x491 );
+        Effects.SendLocationEffect( blast1, map, 0x3709, 30, 10, bColor, 0 );
+        Effects.SendLocationEffect( blast2, map, 0x3709, 30, 10, bColor, 0 );
+        Effects.SendLocationEffect( blast3, map, 0x3709, 30, 10, bColor, 0 );
+        Effects.SendLocationEffect( blast4, map, 0x3709, 30, 10, bColor, 0 );
+        Effects.SendLocationEffect( blast5, map, 0x3709, 30, 10, bColor, 0 );
+        Effects.PlaySound( targetLoc, map, 0x208 );
+    }
+    else if ( form == 2 ) // POTIONS THROWN
+    {
+        if ( BreathEffectHue == 0x488 )
+        {
+            Effects.SendLocationEffect( blast1, map, 0x3709, 30, 10 );
+            Effects.PlaySound( targetLoc, map, 0x208 );
+            Effects.PlaySound( targetLoc, map, 0x38D );
+        }
+        else if ( BreathEffectHue == 0xB92 )
+        {
+            Effects.SendLocationParticles( EffectItem.Create( blast1, map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
+            Effects.PlaySound( targetLoc, map, 0x229 );
+            Effects.PlaySound( targetLoc, map, 0x38D );
+        }
+        else if ( form == 0x5B5 )
+        {
+            Point3D vortex = new Point3D( targetLoc.X+1, targetLoc.Y+1, targetLoc.Z );
+            Effects.SendLocationEffect( vortex, map, 0x37CC, 30, 10, 0x481, 0 );
+            Effects.PlaySound( targetLoc, map, 0x10B );
+            Effects.PlaySound( targetLoc, map, 0x38D );
+        }
+        else
+        {
+            Effects.SendLocationParticles( EffectItem.Create( blast1, map, EffectItem.DefaultDuration ), 0x36BD, 20, 10, 5044, 0, 0, 0 );
+            Effects.PlaySound( targetLoc, map, 0x307 );
+        }
+    }
+    else if ( form == 3 ) // DAGGERS OR STARS THROWN
+    {
+        // Visual effects only - no blood or mobile-specific logic here
+        // Blood and crying out handled in ApplyBreathSecondaryEffects
+    }
+    else if ( form == 4 ) // DINOSAUR ROAR
+    {
+        Effects.PlaySound( targetLoc, map, 0x63F );
+    }
+    else if ( form == 5 ) // MANTICORE
+    {
+        // Visual projectile already handled by BreathPlayEffect
+        // Sound and poison handled in ApplyBreathSecondaryEffects
+    }
+    else if ( form == 6 ) // SPIDERS
+    {
+        Effects.SendLocationEffect( blast1, map, 0x10D3, 30, 10, 0, 0 );
+        Effects.PlaySound( targetLoc, map, 0x62D );
+    }
+    else if ( form == 7 ) // GIANT STONES AND LOGS
+    {
+        Effects.SendLocationEffect( blast1, map, 0x36B0, 30, 10, 0x837, 0 );
+        Effects.PlaySound( targetLoc, map, 0x664 );
+    }
+    else if ( form == 8 ) // LARGE SAND BREATH
+    {
+        Effects.SendLocationEffect( blast1w, map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
+        Effects.SendLocationEffect( blast2w, map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
+        Effects.SendLocationEffect( blast3w, map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
+        Effects.SendLocationEffect( blast4w, map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
+        Effects.SendLocationEffect( blast5w, map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+    }
+    else if ( form == 9 ) // LARGE FIRE BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x3709, 30, 10 );
+        Effects.SendLocationEffect( blast2, map, 0x3709, 30, 10 );
+        Effects.SendLocationEffect( blast3, map, 0x3709, 30, 10 );
+        Effects.SendLocationEffect( blast4, map, 0x3709, 30, 10 );
+        Effects.SendLocationEffect( blast5, map, 0x3709, 30, 10 );
+        Effects.PlaySound( targetLoc, map, 0x208 );
+    }
+    else if ( form == 10 ) // LARGE POISON BREATH
+    {
+        if ( Utility.RandomBool() )
+        {
+            Effects.SendLocationEffect( blast1, map, 0x3400, 60 );
+            Effects.SendLocationEffect( blast2, map, 0x3400, 60 );
+            Effects.SendLocationEffect( blast3, map, 0x3400, 60 );
+            Effects.SendLocationEffect( blast4, map, 0x3400, 60 );
+            Effects.SendLocationEffect( blast5, map, 0x3400, 60 );
+            Effects.PlaySound( targetLoc, map, 0x108 );
+        }
+        else
+        {
+            Effects.SendLocationParticles( EffectItem.Create( blast1, map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
+            Effects.SendLocationParticles( EffectItem.Create( blast2, map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
+            Effects.SendLocationParticles( EffectItem.Create( blast3, map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
+            Effects.SendLocationParticles( EffectItem.Create( blast4, map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
+            Effects.SendLocationParticles( EffectItem.Create( blast5, map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
+            Effects.PlaySound( targetLoc, map, 0x229 );
+        }
+    }
+    else if ( form == 11 ) // LARGE RADIATION
+    {
+        Effects.SendLocationEffect( blast1, map, 0x3400, 60, 0xB96, 0 );
+        Effects.SendLocationEffect( blast2, map, 0x3400, 60, 0xB96, 0 );
+        Effects.SendLocationEffect( blast3, map, 0x3400, 60, 0xB96, 0 );
+        Effects.SendLocationEffect( blast4, map, 0x3400, 60, 0xB96, 0 );
+        Effects.SendLocationEffect( blast5, map, 0x3400, 60, 0xB96, 0 );
+        Effects.PlaySound( targetLoc, map, 0x108 );
+    }
+    else if ( form == 12 ) // LARGE COLD BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x1A84, 30, 10, 0x9C1, 0 );
+        Effects.SendLocationEffect( blast2, map, 0x1A84, 30, 10, 0x9C1, 0 );
+        Effects.SendLocationEffect( blast3, map, 0x1A84, 30, 10, 0x9C1, 0 );
+        Effects.SendLocationEffect( blast4, map, 0x1A84, 30, 10, 0x9C1, 0 );
+        Effects.SendLocationEffect( blast5, map, 0x1A84, 30, 10, 0x9C1, 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+    }
+    else if ( form == 13 ) // LARGE ELECTRICAL BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.SendLocationEffect( blast2, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.SendLocationEffect( blast3, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.SendLocationEffect( blast4, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.SendLocationEffect( blast5, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.PlaySound( targetLoc, map, 0x5C3 );
+    }
+    else if ( form == 14 ) // TITAN LIGHTNING BOLT
+    {
+        Effects.SendLocationEffect( blast1, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.SendLocationEffect( blast2, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.SendLocationEffect( blast3, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.SendLocationEffect( blast4, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.SendLocationEffect( blast5, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.PlaySound( targetLoc, map, 0x5C3 );
+    }
+    else if ( form == 15 ) // SPHINX
+    {
+        Effects.SendLocationEffect( blast1, map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+    }
+    else if ( form == 16 ) // LARGE STEAM BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x3400, 60, 10, 0x9C4, 0 );
+        Effects.SendLocationEffect( blast2, map, 0x3400, 60, 10, 0x9C4, 0 );
+        Effects.SendLocationEffect( blast3, map, 0x3400, 60, 10, 0x9C4, 0 );
+        Effects.SendLocationEffect( blast4, map, 0x3400, 60, 10, 0x9C4, 0 );
+        Effects.SendLocationEffect( blast5, map, 0x3400, 60, 10, 0x9C4, 0 );
+        Effects.PlaySound( targetLoc, map, 0x108 );
+    }
+    else if ( form == 17 ) // SMALL FIRE BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x3709, 30, 10 );
+        Effects.PlaySound( targetLoc, map, 0x208 );
+    }
+    else if ( form == 18 ) // SMALL POISON BREATH
+    {
+        if ( Utility.RandomBool() )
+        {
+            Effects.SendLocationEffect( blast1, map, 0x3400, 60 );
+            Effects.PlaySound( targetLoc, map, 0x108 );
+        }
+        else
+        {
+            Effects.SendLocationParticles( EffectItem.Create( blast1, map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
+            Effects.PlaySound( targetLoc, map, 0x229 );
+        }
+    }
+    else if ( form == 19 ) // SMALL COLD BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x1A84, 30, 10, 0x9C1, 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+    }
+    else if ( form == 20 ) // SMALL ENERGY BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.PlaySound( targetLoc, map, 0x5C3 );
+    }
+    else if ( form == 21 ) // SMALL ENERGY WITH BOLT
+    {
+        Effects.SendLocationEffect( blast1, map, Utility.RandomList( 0x3967, 0x3979 ), 30, 10 );
+        Effects.PlaySound( targetLoc, map, 0x5C3 );
+    }
+    else if ( form == 22 ) // MISC ELEMENTAL
+    {
+        Effects.SendLocationEffect( blast1, map, 0x36B0, 30, 10, 0x840, 0 );
+        Effects.PlaySound( targetLoc, map, 0x65A );
+    }
+    else if ( form == 23 || form == 24 || form == 25 ) // LARGE VOID BREATH
+    {
+        int color = 0x496;
+        if ( form == 24 ) { color = 0x844; }
+        else if ( form == 25 ) { color = 0x9C1; }
+        Effects.SendLocationEffect( blast1, map, 0x3400, 60, color, 0 );
+        Effects.SendLocationEffect( blast2, map, 0x3400, 60, color, 0 );
+        Effects.SendLocationEffect( blast3, map, 0x3400, 60, color, 0 );
+        Effects.SendLocationEffect( blast4, map, 0x3400, 60, color, 0 );
+        Effects.SendLocationEffect( blast5, map, 0x3400, 60, color, 0 );
+        Effects.PlaySound( targetLoc, map, 0x108 );
+    }
+    else if ( form == 26 || form == 27 || form == 28 ) // SMALL VOID BREATH
+    {
+        int color = 0x496;
+        if ( form == 27 ) { color = 0x844; }
+        else if ( form == 28 ) { color = 0x9C1; }
+        Effects.SendLocationEffect( blast1, map, 0x3400, 60, color, 0 );
+        Effects.PlaySound( targetLoc, map, 0x108 );
+    }
+    else if ( form == 29 ) // STONE HANDS FROM THE GROUND
+    {
+        Point3D hands = new Point3D( targetLoc.X, targetLoc.Y, targetLoc.Z+5 );
+        Effects.SendLocationEffect( hands, map, 0x3837, 23, 10, this.Hue, 0 );
+        Effects.PlaySound( targetLoc, map, 0x65A );
+    }
+    else if ( form == 30 ) // WATER SPLASH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x1A84, 30, 10, BreathEffectHue, 0 );
+        Effects.PlaySound( targetLoc, map, 0x026 );
+    }
+    else if ( form == 31 ) // WATER SPLASH (LARGE)
+    {
+        Effects.SendLocationEffect( blast1, map, 0x1A84, 30, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast2, map, 0x23B2, 16, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast3, map, 0x23B2, 16, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast4, map, 0x23B2, 16, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast5, map, 0x23B2, 16, BreathEffectHue, 0 );
+        Effects.PlaySound( targetLoc, map, 0x026 );
+    }
+    else if ( form == 32 ) // SMALL FALLING ICE
+    {
+        if ( Utility.RandomBool() )
+        {
+            Effects.SendLocationEffect( blast1, map, 0x5571, 85, 10, 0, 0 );
+            Effects.PlaySound( targetLoc, map, 0x5C0 );
+        }
+        else
+        {
+            Effects.SendLocationEffect( blast1, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+            Effects.PlaySound( targetLoc, map, 0x656 );
+        }
+    }
+    else if ( form == 33 ) // BIG FALLING ICE
+    {
+        int icy = Utility.RandomMinMax(1,3);
+        if ( icy == 1 )
+        {
+            Effects.SendLocationEffect( blast1, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+            Effects.SendLocationEffect( blast2, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+            Effects.SendLocationEffect( blast3, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+            Effects.SendLocationEffect( blast4, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+            Effects.SendLocationEffect( blast5, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+            Effects.PlaySound( targetLoc, map, 0x658 );
+        }
+        else if ( icy == 2 )
+        {
+            Effects.SendLocationEffect( blast1, map, 0x5571, 85, 10, 0, 0 );
+            Effects.SendLocationEffect( blast2, map, 0x5571, 85, 10, 0, 0 );
+            Effects.SendLocationEffect( blast3, map, 0x5571, 85, 10, 0, 0 );
+            Effects.SendLocationEffect( blast4, map, 0x5571, 85, 10, 0, 0 );
+            Effects.SendLocationEffect( blast5, map, 0x5571, 85, 10, 0, 0 );
+            Effects.PlaySound( targetLoc, map, 0x5C0 );
+        }
+        else
+        {
+            Effects.SendLocationEffect( blast1, map, 0x55BB, 85, 10, 0, 0 );
+            Effects.PlaySound( blast1, map, 0x5CE );
+        }
+    }
+    else if ( form == 34 ) // LARGE WEED BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x3400, 60, 0xB97, 0 );
+        Effects.SendLocationEffect( blast2, map, 0x3400, 60, 0xB97, 0 );
+        Effects.SendLocationEffect( blast3, map, 0x3400, 60, 0xB97, 0 );
+        Effects.SendLocationEffect( blast4, map, 0x3400, 60, 0xB97, 0 );
+        Effects.SendLocationEffect( blast5, map, 0x3400, 60, 0xB97, 0 );
+        Effects.PlaySound( targetLoc, map, 0x64F );
+    }
+    else if ( form == 35 ) // SMALL WEED BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x3400, 60, 0xB97, 0 );
+        Effects.PlaySound( targetLoc, map, 0x64F );
+    }
+    else if ( form == 36 ) // ACID SPLASH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x1A84, 30, 10, BreathEffectHue, 1167 );
+        Effects.SendLocationEffect( blast2, map, 0x23B2, 16, BreathEffectHue, 1167 );
+        Effects.SendLocationEffect( blast3, map, 0x23B2, 16, BreathEffectHue, 1167 );
+        Effects.SendLocationEffect( blast4, map, 0x23B2, 16, BreathEffectHue, 1167 );
+        Effects.SendLocationEffect( blast5, map, 0x23B2, 16, BreathEffectHue, 1167 );
+        Effects.PlaySound( targetLoc, map, 0x026 );
+    }
+    else if ( form == 37 ) // MUMMY WRAP
+    {
+        Point3D wrapped = new Point3D( targetLoc.X, targetLoc.Y, targetLoc.Z+2 );
+        Effects.SendLocationEffect( wrapped, map, 0x23AF, 30, 10, 0, 0 );
+        Effects.PlaySound( targetLoc, map, 0x5D2 );
+    }
+    else if ( form == 38 ) // SMALL STEAM BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x3400, 60, 10, 0x9C4, 0 );
+        Effects.PlaySound( targetLoc, map, 0x108 );
+    }
+    else if ( form == 39 ) // SMALL RADIATION
+    {
+        Effects.SendLocationEffect( blast1, map, 0x3400, 60, 0xB96, 0 );
+        Effects.PlaySound( targetLoc, map, 0x108 );
+    }
+    else if ( form == 40 ) // SMALL SAND BREATH
+    {
+        Effects.SendLocationEffect( blast1, map, 0x5590, 30, 10, Utility.RandomList( 0xB4D, 0xB4E ), 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+    }
+    else if ( form == 41 ) // TITAN OF EARTH ATTACK
+    {
+        Point3D hands = new Point3D( targetLoc.X, targetLoc.Y, targetLoc.Z+5 );
+        Effects.SendLocationEffect( hands, map, 0x3837, 23, 10, BreathEffectHue, 0 );
+
+        Effects.SendLocationEffect( blast1z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast2z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast3z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast4z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast5z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.PlaySound( targetLoc, map, 0x658 );
+    }
+    else if ( form == 42 ) // TITAN OF FIRE ATTACK
+    {
+        Effects.SendLocationEffect( blast1, map, 0x3709, 30, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast2, map, 0x3709, 30, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast3, map, 0x3709, 30, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast4, map, 0x3709, 30, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast5, map, 0x3709, 30, 10, BreathEffectHue, 0 );
+        Effects.PlaySound( targetLoc, map, 0x208 );
+
+        Effects.SendLocationEffect( blast1z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast2z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast3z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast4z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast5z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.PlaySound( targetLoc, map, 0x15F );
+    }
+    else if ( form == 43 ) // TITAN OF WATER ATTACK
+    {
+        Effects.SendLocationEffect( blast1, map, 0x23B2, 16 );
+        Effects.SendLocationEffect( blast2, map, 0x23B2, 16 );
+        Effects.SendLocationEffect( blast3, map, 0x23B2, 16 );
+        Effects.SendLocationEffect( blast4, map, 0x23B2, 16 );
+        Effects.SendLocationEffect( blast5, map, 0x23B2, 16 );
+        Effects.PlaySound( targetLoc, map, 0x026 );
+
+        Effects.SendLocationEffect( blast1z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast2z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast3z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast4z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+        Effects.SendLocationEffect( blast5z, map, Utility.RandomList( 0x384E, 0x3859 ), 85, 10, BreathEffectHue, 0 );
+    }
+    else if ( form == 44 ) // TITAN OF AIR ATTACK
+    {
+        Effects.SendLocationEffect( blast1w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast2w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast3w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast4w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast5w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+    }
+    else if ( form == 45 ) // STAR CREATURE ATTACK
+    {
+        if ( Utility.RandomBool() )
+        {
+            Effects.SendLocationEffect( blast1, map, 0x3709, 30, 10 );
+            Effects.SendLocationEffect( blast2, map, 0x3709, 30, 10 );
+            Effects.SendLocationEffect( blast3, map, 0x3709, 30, 10 );
+            Effects.SendLocationEffect( blast4, map, 0x3709, 30, 10 );
+            Effects.SendLocationEffect( blast5, map, 0x3709, 30, 10 );
+            Effects.PlaySound( targetLoc, map, 0x208 );
+        }
+        else
+        {
+            Effects.SendLocationEffect( blast1z, map, 0x2A4E, 30, 10 );
+            Effects.SendLocationEffect( blast2z, map, 0x2A4E, 30, 10 );
+            Effects.SendLocationEffect( blast3z, map, 0x2A4E, 30, 10 );
+            Effects.SendLocationEffect( blast4z, map, 0x2A4E, 30, 10 );
+            Effects.SendLocationEffect( blast5z, map, 0x2A4E, 30, 10 );
+            Effects.PlaySound( targetLoc, map, 0x5C3 );
+        }
+    }
+    else if ( form == 46 ) // LARGE STORM ATTACK
+    {
+        Effects.SendLocationEffect( blast1w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast2w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast3w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast4w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast5w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+
+        Effects.SendLocationEffect( blast1z, map, 0x2A4E, 30, 10 );
+        Effects.SendLocationEffect( blast2z, map, 0x2A4E, 30, 10 );
+        Effects.SendLocationEffect( blast3z, map, 0x2A4E, 30, 10 );
+        Effects.SendLocationEffect( blast4z, map, 0x2A4E, 30, 10 );
+        Effects.SendLocationEffect( blast5z, map, 0x2A4E, 30, 10 );
+        Effects.PlaySound( targetLoc, map, 0x5C3 );
+    }
+    else if ( form == 47 ) // AIR BLOWING BREATH
+    {
+        Effects.SendLocationEffect( blast1w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast2w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast3w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast4w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.SendLocationEffect( blast5w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+    }
+    else if ( form == 48 ) // SMALL AIR BLOWING BREATH
+    {
+        Effects.SendLocationEffect( blast1w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+    }
+    else if ( form == 49 ) // SMALL STAR CREATURE ATTACK
+    {
+        if ( Utility.RandomBool() )
+        {
+            Effects.SendLocationEffect( blast1, map, 0x3709, 30, 10 );
+            Effects.PlaySound( targetLoc, map, 0x208 );
+        }
+        else
+        {
+            Effects.SendLocationEffect( blast1w, map, 0x2A4E, 30, 10 );
+            Effects.PlaySound( targetLoc, map, 0x5C3 );
+        }
+    }
+    else if ( form == 50 ) // SMALL STORM ATTACK
+    {
+        Effects.SendLocationEffect( blast1w, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+
+        Effects.SendLocationEffect( blast1w, map, 0x2A4E, 30, 10 );
+        Effects.PlaySound( targetLoc, map, 0x5C3 );
+    }
+    else if ( form == 51 ) // SMALL AIR ATTACK
+    {
+        Effects.SendLocationEffect( targetLoc, map, 0x5590, 30, 10, 0xB24, 0 );
+        Effects.PlaySound( targetLoc, map, 0x10B );
+    }
+    else if ( form == 52 ) // SMALL UNICORN ATTACK
+    {
+        Effects.SendLocationEffect( targetLoc, map, 0x3039, 30, 10, 0xB71, 0 );
+        Effects.PlaySound( targetLoc, map, 0x20B );
+    }
+    // ... Add all other form cases here from your original code
+    // Just remove any target.* references and use targetLoc/map instead
+}
+
+// RENAMED: This now ONLY handles damage, not visuals
+public void DoFinalBreathDamage( Mobile target, int form, bool cycle )
+{
+    if ( target == null || !target.Alive )
+        return;
+
+    int physDamage = BreathPhysicalDamage;
+    int fireDamage = BreathFireDamage;
+    int coldDamage = BreathColdDamage;
+    int poisDamage = BreathPoisonDamage;
+    int nrgyDamage = BreathEnergyDamage;
+
+    // Apply damage
+    AOS.Damage( target, this, BreathComputeDamage(), physDamage, fireDamage, coldDamage, poisDamage, nrgyDamage );
+
+    // Apply secondary effects that require a valid mobile
+    ApplyBreathSecondaryEffects( target, form );
+
+    // Chain damage to nearby targets
+    if ( cycle )
+    {
+        int breathDistance = GetBreathDistance( form );
+        if ( breathDistance > 0 )
+        {
+            ChainBreathDamage( target, form, breathDistance );
+        }
+    }
+}
+
+// NEW: Secondary effects that require a valid mobile (poison, paralysis, etc.)
+public virtual void ApplyBreathSecondaryEffects( Mobile target, int form )
+{
+    if ( target == null || !target.Alive )
+        return;
+
+    if ( form == 2 ) // POTIONS THROWN
+    {
+        if ( BreathEffectHue == 0xB92 )
+        {
+            if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
+            {
+                switch( Utility.RandomMinMax( 1, 2 ) )
+                {
+                    case 1: target.ApplyPoison( target, Poison.Lesser ); break;
+                    case 2: target.ApplyPoison( target, Poison.Regular ); break;
+                }
+            }
+        }
+        this.YellHue = Utility.RandomMinMax( 0, 3 );
+    }
+    else if ( form == 3 ) // DAGGERS OR STARS THROWN
+    {
+        if ( target is PlayerMobile && Server.Items.BaseRace.IsBleeder( target ) )
+        {
+            Server.Misc.IntelligentAction.CryOut( target );
+            Blood blood = new Blood(); blood.MoveToWorld( new Point3D(target.X-1, target.Y, target.Z), target.Map );
+            blood = new Blood(); blood.MoveToWorld( new Point3D(target.X+1, target.Y, target.Z), target.Map );
+            blood = new Blood(); blood.MoveToWorld( new Point3D(target.X, target.Y-1, target.Z), target.Map );
+            blood = new Blood(); blood.MoveToWorld( new Point3D(target.X, target.Y+1, target.Z), target.Map );
+        }
+
+        if ( BreathEffectItemID == 0x406C )
+        {
+            if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
+            {
+                switch( Utility.RandomMinMax( 1, 2 ) )
+                {
+                    case 1: target.ApplyPoison( target, Poison.Lesser ); break;
+                    case 2: target.ApplyPoison( target, Poison.Regular ); break;
+                }
+            }
+        }
+    }
+    else if ( form == 5 ) // MANTICORE
+    {
+        target.SendMessage( "You are hit by a manticore thorn!" );
+        if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
+        {
+            target.ApplyPoison( target, Poison.Lethal );
+        }
+        Server.Misc.IntelligentAction.CryOut( target );
+    }
+    else if ( form == 6 ) // SPIDERS
+    {
+        target.Paralyze( TimeSpan.FromSeconds( GetParalyzeDuration(target,(double)(this.Fame)) ) );
+    }
+    else if ( form == 10 ) // LARGE POISON BREATH
+    {
+        if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
+        {
+            switch( Utility.RandomMinMax( 1, 2 ) )
+            {
+                case 1: target.ApplyPoison( target, Poison.Greater ); break;
+                case 2: target.ApplyPoison( target, Poison.Deadly ); break;
+            }
+        }
+    }
+    else if ( form == 18 ) // SMALL POISON BREATH
+    {
+        if ( !(Server.Items.HiddenTrap.SavingThrow( target, "Poison", false, null )) )
+        {
+            switch( Utility.RandomMinMax( 1, 2 ) )
+            {
+                case 1: target.ApplyPoison( target, Poison.Lesser ); break;
+                case 2: target.ApplyPoison( target, Poison.Regular ); break;
+            }
+        }
+    }
+    else if ( form >= 23 && form <= 28 ) // VOID BREATH (all sizes)
+    {
+        int drain = ((int)(this.Fame/500));
+        target.Mana = Math.Max(0, target.Mana - drain);
+        target.Stam = Math.Max(0, target.Stam - drain);
+        target.SendMessage( "You feel your soul draining!" );
+    }
+    else if ( form == 34 || form == 35 ) // WEED BREATH
+    {
+        target.Paralyze( TimeSpan.FromSeconds( GetParalyzeDuration(target,(double)(this.Fame)) ) );
+    }
+    else if ( form == 37 ) // MUMMY WRAP
+    {
+        target.Paralyze( TimeSpan.FromSeconds( GetParalyzeDuration(target,(double)(this.Fame)) ) );
+    }
+    else if ( form == 44 || form == 47 || form == 48 || form == 51 ) // AIR ATTACKS (dismount)
+    {
+        if ( target is PlayerMobile && Utility.RandomBool() )
+        {
+            IMount mount = target.Mount;
+            if ( mount != null )
+            {
+                target.SendLocalizedMessage( 1062315 ); // You fall off your mount!
+                Server.Mobiles.EtherealMount.EthyDismount( target );
+                mount.Rider = null;
+            }
+            target.Animate( 22, 5, 1, true, false, 0 );
+        }
+    }
+    else if ( form == 46 || form == 50 ) // STORM ATTACKS (dismount with lower chance)
+    {
+        if ( target is PlayerMobile && Utility.RandomMinMax( 1, 5 ) == 1 )
+        {
+            IMount mount = target.Mount;
+            if ( mount != null )
+            {
+                target.SendLocalizedMessage( 1062315 ); // You fall off your mount!
+                Server.Mobiles.EtherealMount.EthyDismount( target );
+                mount.Rider = null;
+            }
+            target.Animate( 22, 5, 1, true, false, 0 );
+        }
+    }
+    
+    // Add other secondary effects as needed
+}
+
+// NEW: Get breath distance for area effect
+public virtual int GetBreathDistance( int form )
+{
+    switch( form )
+    {
+        case 1: case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: 
+        case 16: case 23: case 24: case 25: case 34: case 36: case 45: case 46: case 47: case 50:
+            return 3;
+        case 4: return 5;
+        case 7: case 18: case 19: case 20: case 21: case 26: case 27: case 28: case 30: 
+        case 32: case 38: case 39: case 40: case 48: case 49: case 51: case 52:
+            return 2;
+        case 31: return 4;
+        case 41: case 42: case 43: case 44:
+            return 6;
+        default:
+            return 0;
+    }
+}
+
+// NEW: Chain damage to nearby targets
+public virtual void ChainBreathDamage( Mobile originalTarget, int form, int range )
+{
+    List<Mobile> targets = new List<Mobile>();
+    Map map = this.Map;
+
+    if ( map != null && originalTarget != null )
+    {
+        foreach ( Mobile m in originalTarget.GetMobilesInRange( range ) )
+        {
+            if ( m != this && m != originalTarget && this.InLOS( m ) && m.Alive && CanBeHarmful( m ) && !m.Blessed )
+            {
+                if ( m is PlayerMobile )
+                {
+                    targets.Add( m );
+                }
+                else if ( m is BaseCreature )
+                {
+                    BaseCreature bc = (BaseCreature)m;
+                    if ( bc.Summoned || bc.Controlled )
+                        targets.Add( m );
+                }
+            }
+        }
+        
+        for ( int i = 0; i < targets.Count; ++i )
+        {
+            Mobile m = targets[i];
+            DoFinalBreathDamage( m, form, false ); // Don't cycle again
+        }
+    }
+}
+
+public virtual int BreathComputeDamage()
+{
+    int damage = (int)(Hits * BreathDamageScalar);
+
+    if ( IsParagon )
+        damage = (int)(damage / Paragon.HitsBuff);
+
+    if ( damage > 100 )
+        damage = 100;
+
+    if ( damage < DamageMax )
+        damage = DamageMax;
+
+    return damage;
+}
+
+#endregion
 		// mummies, spiders, plants and some breath weapons have normalized paralyze duration based on a players Magic Resistance or their fame, capped at 8 seconds.
 		private double GetParalyzeDuration(Mobile target, double fame)
 		{
@@ -1589,23 +1653,6 @@ namespace Server.Mobiles
 			return fameDuration > resistCappedDuration ? resistCappedDuration : fameDuration;
 		}
 
-
-		public virtual int BreathComputeDamage()
-		{
-			int damage = (int)(Hits * BreathDamageScalar);
-
-			if ( IsParagon )
-				damage = (int)(damage / Paragon.HitsBuff);
-
-			if ( damage > 100 ){ damage = 100; }
-
-			if ( damage < DamageMax )
-					damage = DamageMax;
-
-			return damage;
-		}
-
-		#endregion
 
 		#region Spill Acid
 

@@ -46,18 +46,33 @@ namespace Server.Mobiles
 			return 0;
 		}
 
-		public override void BreathDealDamage( Mobile target, int form )
+				public override int GetBreathForm()
 		{
-			if ( this.VirtualArmor == 48 ){ form = 17; } // RETURN THE FIRE DAMAGE
-			if ( this.VirtualArmor == 49 ){ form = 19; } // RETURN THE COLD DAMAGE
-			if ( this.VirtualArmor == 50 ){ form = 18; } // RETURN THE POISON DAMAGE
-			if ( this.VirtualArmor == 51 ){ form = 20; } // RETURN THE ENERGY DAMAGE
+		    // Define the mapping between VirtualArmor values and damage types
+		    Dictionary<int, int> armorToDamage = new Dictionary<int, int>();
+		    armorToDamage.Add(48, 17); // Fire damage
+		    armorToDamage.Add(49, 19); // Cold damage
+		    armorToDamage.Add(50, 18); // Poison damage
+		    armorToDamage.Add(51, 20); // Energy damage
 
-			base.BreathDealDamage( target, form );
+		    // Check if the current VirtualArmor has a specific damage type
+		    if (armorToDamage.ContainsKey(this.VirtualArmor))
+		    {
+		        return armorToDamage[this.VirtualArmor];
+		    }
 
-			this.VirtualArmor = Utility.RandomMinMax( 48, 51 ); // THIS IS USED TO RANDOMIZE ATTACK TYPES
-		}
+		    // If not found, return a random damage type from the possible values
+		    int[] possibleDamageTypes = new int[armorToDamage.Count];
+		    int index = 0;
+		    foreach (int damageType in armorToDamage.Values)
+		    {
+		        possibleDamageTypes[index] = damageType;
+		        index++;
+		    }
 
+		    Random random = new Random();
+		    return possibleDamageTypes[random.Next(possibleDamageTypes.Length)];
+		}	}
 		[Constructable]
 		public ElderEye () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{

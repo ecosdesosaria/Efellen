@@ -20,7 +20,10 @@ namespace Server.Mobiles
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 52 ); }
+		public override int GetBreathForm()
+		{
+		    return 52;
+		}
 
 		[Constructable]
 		public Pixie() : base( AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4 )

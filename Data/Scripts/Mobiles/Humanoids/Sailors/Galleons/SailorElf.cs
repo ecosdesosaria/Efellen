@@ -108,7 +108,10 @@ namespace Server.Mobiles
 		public override int BreathEffectItemID{ get{ return 0x1005; } } // EXPLOSION POTION
 		public override bool HasBreath{ get{ return true; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 2 ); }
+		public override int GetBreathForm()
+		{
+		    return 3;
+		}
 		public override double BreathDamageScalar{ get{ return 0.4; } }
 	}
 }

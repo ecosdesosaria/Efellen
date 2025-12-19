@@ -158,7 +158,10 @@ namespace Server.Mobiles
 
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 9 ); }
+		public override int GetBreathForm()
+		{
+		    return 9;
+		}
 
 		public override void GenerateLoot()
 		{

@@ -18,7 +18,10 @@ namespace Server.Mobiles
 		public override int BreathPoisonDamage{ get{ return 0; } }
 		public override int BreathEnergyDamage{ get{ return 0; } }
 		public override int BreathEffectItemID{ get{ return 0; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 19 ); }
+		public override int GetBreathForm()
+		{
+		    return 19;
+		}
 
 		[Constructable]
 		public SerpentOfOrder() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )

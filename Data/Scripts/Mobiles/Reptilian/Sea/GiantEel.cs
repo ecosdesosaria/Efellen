@@ -18,7 +18,10 @@ namespace Server.Mobiles
 		public override int BreathEffectItemID{ get{ return 0x3818; } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 14 ); }
+		public override int GetBreathForm()
+		{
+		    return 14; 
+		}
 
 		[Constructable]
 		public GiantEel() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )

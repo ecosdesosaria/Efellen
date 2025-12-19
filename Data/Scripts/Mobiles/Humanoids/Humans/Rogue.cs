@@ -19,7 +19,10 @@ namespace Server.Mobiles
 		public override int BreathEffectItemID{ get{ if ( YellHue == 1 ){ return 0x27AC; } else if ( YellHue == 2 ){ return 0x406C; } else { return 0xF51; } } }
 		public override bool HasBreath{ get{ return true; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 3 ); }
+		public override int GetBreathForm()
+		{
+		    return 3;
+		}
 		public override double BreathDamageScalar{ get{ return 0.4; } }
 
 		[Constructable]

@@ -17,7 +17,10 @@ namespace Server.Mobiles
 		public override bool HasBreath{ get{ return true; } }
 		public override int BreathEffectSound{ get{ return 0x20A; } }
 		public override int BreathEffectItemID{ get{ return 0x3818; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 0 ); }
+		public override int GetBreathForm()
+		{
+		    return 0;
+		}
 
 		[Constructable] 
 		public Psionicist() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 

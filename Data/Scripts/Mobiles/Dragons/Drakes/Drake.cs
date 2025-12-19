@@ -9,7 +9,10 @@ namespace Server.Mobiles
 	{
 		public override bool HasBreath{ get{ return true; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 17 ); }
+		public override int GetBreathForm()
+		{
+		    return 17;
+		}
 
 		[Constructable]
 		public Drake () : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )

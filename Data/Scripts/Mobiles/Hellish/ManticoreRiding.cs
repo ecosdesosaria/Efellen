@@ -23,7 +23,10 @@ namespace Server.Mobiles
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 5 ); }
+		public override int GetBreathForm()
+		{
+		    return 5;
+		}
 
 		[Constructable]
 		public ManticoreRiding() : this( "a manticore" )

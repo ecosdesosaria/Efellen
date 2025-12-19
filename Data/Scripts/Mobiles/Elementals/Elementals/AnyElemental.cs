@@ -21,7 +21,10 @@ namespace Server.Mobiles
 		public override bool HasBreath{ get{ return true; } }
 		public override int BreathEffectSound{ get{ return 0x664; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 22 ); }
+		public override int GetBreathForm()
+		{
+		    return 22;
+		}
 
 		public string RealName;
 		[CommandProperty( AccessLevel.GameMaster )]

@@ -16,7 +16,10 @@ namespace Server.Mobiles
 		public override int BreathEffectHue{ get{ return 0x1ED; } }
 		public override double BreathMinDelay{ get{ return 5.0; } }
 		public override double BreathMaxDelay{ get{ return 7.5; } }
-		public override void BreathDealDamage( Mobile target, int form ){ target.SendMessage( "You are hit by the force of the beast!" ); base.BreathDealDamage( target, 0 ); }
+		public override int GetBreathForm()
+		{
+		    return 0;
+		}
 
 		private Mobile m_Fisher;
 

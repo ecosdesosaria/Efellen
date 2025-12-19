@@ -452,7 +452,10 @@ namespace Server.Mobiles
 			}
 		}
 
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, rBreath ); }
+		public override int GetBreathForm()
+		{
+		    return rBreath;
+		}
 
 		public override int BreathPhysicalDamage{ get{ return rBreathPhysDmg; } }
 		public override int BreathFireDamage{ get{ return rBreathFireDmg; } }

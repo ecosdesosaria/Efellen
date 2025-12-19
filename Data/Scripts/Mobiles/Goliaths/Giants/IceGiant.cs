@@ -24,7 +24,10 @@ namespace Server.Mobiles
 		public override int BreathEffectSound{ get{ return 0x64F; } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 12 ); }
+		public override int GetBreathForm()
+		{
+		    return 12;
+		}
 
 		[Constructable]
 		public IceGiant() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )

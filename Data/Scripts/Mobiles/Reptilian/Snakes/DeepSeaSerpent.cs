@@ -15,7 +15,10 @@ namespace Server.Mobiles
 		public override int BreathEffectHue{ get{ return 0x3F; } }
 		public override int BreathEffectSound{ get{ return 0x658; } }
 		public override bool HasBreath{ get{ return true; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 18 ); }
+		public override int GetBreathForm()
+		{
+		    return 18;
+		}
 
 		[Constructable]
 		public DeepSeaSerpent() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )

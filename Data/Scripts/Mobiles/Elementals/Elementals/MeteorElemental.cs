@@ -15,7 +15,10 @@ namespace Server.Mobiles
 
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
-		public override void BreathDealDamage( Mobile target, int form ){ base.BreathDealDamage( target, 17 ); }
+		public override int GetBreathForm()
+		{
+		    return 17;
+		}
 
 		[Constructable]
 		public MeteorElemental () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
