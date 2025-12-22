@@ -45,6 +45,7 @@ namespace Server.Misc
 		+ "        • The Daughter of Fire now has a permanent residence in the fires of hell. Only visit with a group of veteran friends.<br>"
 		+ "     • Tier 4 bosses (meant to be faced by powerful groups of very powerful adventurers): <br>"
 		+ "         • The Dreamweaver now threathens all of Lodoria from the depths of its lair!<br>"
+		+"          • The Old One Eye now stalks for prey across the wastes of the Savage Empire!<br>"
 		+ "     • Tier 5 bosses (meant to be faced by large groups of very optimized adventurers): <br>"
 		+ "        • The Prince of Darkness now holds court in Ravendark. RIP Ozzy.<br>"
 		+ "        • The Heavenly Marshall is leading the conquest of southern Sosaria at castle griffin roost. Evildoers beware!<br>"
