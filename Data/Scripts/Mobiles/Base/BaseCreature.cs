@@ -890,7 +890,7 @@ public virtual void BreathEffect_Callback( object state )
 
 public virtual bool ShouldPlayProjectile( int form )
 {
-    // Only certain forms use projectiles (daggers, stars, potions, manticore thorns, etc.)
+    // Only certain forms use projectiles (daggers, stars, potions, manticore thorns.)
     switch( form )
     {
         case 2: // POTIONS THROWN
@@ -1006,7 +1006,7 @@ public virtual void PlayBreathVisuals( Point3D targetLoc, Map map, int form )
     }
     else if ( form == 3 ) // DAGGERS OR STARS THROWN
     {
-        // Visual effects only - no blood or mobile-specific logic here
+        // Visual effects only
         // Blood and crying out handled in ApplyBreathSecondaryEffects
     }
     else if ( form == 4 ) // DINOSAUR ROAR
@@ -1413,11 +1413,8 @@ public virtual void PlayBreathVisuals( Point3D targetLoc, Map map, int form )
         Effects.SendLocationEffect( targetLoc, map, 0x3039, 30, 10, 0xB71, 0 );
         Effects.PlaySound( targetLoc, map, 0x20B );
     }
-    // ... Add all other form cases here from your original code
-    // Just remove any target.* references and use targetLoc/map instead
 }
 
-// RENAMED: This now ONLY handles damage, not visuals
 public void DoFinalBreathDamage( Mobile target, int form, bool cycle )
 {
     if ( target == null || !target.Alive )
@@ -1429,13 +1426,10 @@ public void DoFinalBreathDamage( Mobile target, int form, bool cycle )
     int poisDamage = BreathPoisonDamage;
     int nrgyDamage = BreathEnergyDamage;
 
-    // Apply damage
     AOS.Damage( target, this, BreathComputeDamage(), physDamage, fireDamage, coldDamage, poisDamage, nrgyDamage );
 
-    // Apply secondary effects that require a valid mobile
     ApplyBreathSecondaryEffects( target, form );
 
-    // Chain damage to nearby targets
     if ( cycle )
     {
         int breathDistance = GetBreathDistance( form );
@@ -1446,7 +1440,6 @@ public void DoFinalBreathDamage( Mobile target, int form, bool cycle )
     }
 }
 
-// NEW: Secondary effects that require a valid mobile (poison, paralysis, etc.)
 public virtual void ApplyBreathSecondaryEffects( Mobile target, int form )
 {
     if ( target == null || !target.Alive )
@@ -1525,7 +1518,7 @@ public virtual void ApplyBreathSecondaryEffects( Mobile target, int form )
             }
         }
     }
-    else if ( form >= 23 && form <= 28 ) // VOID BREATH (all sizes)
+    else if ( form >= 23 && form <= 28 ) // VOID BREATH 
     {
         int drain = ((int)(this.Fame/500));
         target.Mana = Math.Max(0, target.Mana - drain);
@@ -1569,7 +1562,6 @@ public virtual void ApplyBreathSecondaryEffects( Mobile target, int form )
         }
     }
     
-    // Add other secondary effects as needed
 }
 
 // NEW: Get breath distance for area effect
@@ -1592,7 +1584,6 @@ public virtual int GetBreathDistance( int form )
     }
 }
 
-// NEW: Chain damage to nearby targets
 public virtual void ChainBreathDamage( Mobile originalTarget, int form, int range )
 {
     List<Mobile> targets = new List<Mobile>();
