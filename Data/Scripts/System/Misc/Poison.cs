@@ -91,7 +91,7 @@ namespace Server
 			{
 				if ( (Core.AOS && m_Poison.Level < 4 && TransformationSpellHelper.UnderTransformation( m_Mobile, typeof( VampiricEmbraceSpell ) )) ||
 					(m_Poison.Level < 3 && OrangePetals.UnderEffect( m_Mobile )) ||
-					AnimalForm.UnderTransformation( m_Mobile, typeof( Unicorn ) ) )
+					AnimalForm.UnderTransformation( m_Mobile, typeof( Unicorn ) ) || m_Mobile.Skills[SkillName.Druidism].Value > 90 )
 				{
 					if ( m_Mobile.CurePoison( m_Mobile ) )
 					{
