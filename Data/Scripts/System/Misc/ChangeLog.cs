@@ -71,6 +71,7 @@ namespace Server.Misc
 		+"  • Beholder-type enemies are now much rarer and much stronger. Watch out for their eyestalks!"
 		+ "<br>"
 		+ "* Progression & archetypes:<br>"
+		+"  • Highly skilled Druids are now have venom immunity. "
 		+ " • Added wildshapes into the game.<br>"
 		+"    • Shapeshifting is a new archetype for druids that require both druidism and spiritualism. Upon meditating at the Howling grove, a character can<BR>"
 		+"  	receive a new talisman item called 'Heart of the Wilds', which will immediately allow the character to shapeshift into a wolf."
