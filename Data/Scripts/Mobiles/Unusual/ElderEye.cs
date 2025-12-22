@@ -2,6 +2,7 @@ using System;
 using Server;
 using Server.Items;
 using Server.Misc;
+using System.Collections.Generic;
 using Server.Custom.BeholderSpecials;
 
 namespace Server.Mobiles
@@ -46,7 +47,7 @@ namespace Server.Mobiles
 			return 0;
 		}
 
-				public override int GetBreathForm()
+		public override int GetBreathForm()
 		{
 		    // Define the mapping between VirtualArmor values and damage types
 		    Dictionary<int, int> armorToDamage = new Dictionary<int, int>();
@@ -72,7 +73,7 @@ namespace Server.Mobiles
 
 		    Random random = new Random();
 		    return possibleDamageTypes[random.Next(possibleDamageTypes.Length)];
-		}	}
+		}
 		[Constructable]
 		public ElderEye () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{

@@ -1,6 +1,7 @@
 using System;
 using Server;
 using Server.Items;
+using System.Collections.Generic;
 using Server.Custom.BeholderSpecials;
 
 namespace Server.Mobiles
@@ -71,7 +72,7 @@ namespace Server.Mobiles
 
 		    Random random = new Random();
 		    return possibleDamageTypes[random.Next(possibleDamageTypes.Length)];
-		}	}
+		}
 
 		[Constructable]
 		public Seeker () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
