@@ -146,6 +146,7 @@ namespace Server.Items
 				typeof( SeaTroll ), 
 				typeof( SwampTroll ), 
  				typeof( Trollbear ), 
+				typeof( Blacktooth ),
 				typeof( ArcticEttin ), 
 				typeof( TundraOgre ), 
 				typeof( Ogre ), 
@@ -177,6 +178,7 @@ namespace Server.Items
 				typeof( UrcShaman ), 
 				typeof( Orc ), 
 				typeof( OrcBomber ), 
+				typeof ( FirefangTheWarchief ),
 				typeof( OrkRogue ), 
 				typeof( OrkWarrior ), 
 				typeof( SailorOrkGuards ), 
@@ -199,7 +201,8 @@ namespace Server.Items
 				typeof( Titan ), 
 				typeof( PirateTitan ), 
 				typeof( ElderTitan ), 
-				typeof( PirateTroll ), 
+				typeof( PirateTroll ),
+				typeof( MotherSuperior), 
 				typeof( Troll ) );
 			humanoid.Entries = new SlayerEntry[]
 				{
@@ -1417,6 +1420,7 @@ namespace Server.Items
 				typeof( Stegosaurus ), 
 				typeof( Styguana ), 
 				typeof( Tyranasaur ), 
+				typeof( OldOneEye) ,
 				typeof( Lochasaur ), 
 				typeof( Titanoboa ), 
 				typeof( Basilosaurus ), 
@@ -1465,6 +1469,7 @@ namespace Server.Items
 			reptilian.Entries = new SlayerEntry[]
 				{
 					new SlayerEntry( SlayerName.DragonSlaying, 
+						typeof( HeraldOfCinders),
 						typeof( Drakkul ), 
 						typeof( DrakkulMage ), 
 						typeof( DrakkulChief ), 

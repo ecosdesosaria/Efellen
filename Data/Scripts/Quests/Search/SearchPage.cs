@@ -257,22 +257,25 @@ namespace Server.Items
 
 		public static int ArtifactQuestTimeNew( Mobile m )
 		{
-			int QuestTime = 90000;
+		    int QuestTime = 90000;
 
-			string sTime = ((PlayerMobile)m).ArtifactQuestTime;
+		    string sTime = ((PlayerMobile)m).ArtifactQuestTime;
 
-			if ( sTime != null )
-			{
-				DateTime TimeThen = Convert.ToDateTime(sTime);
-				DateTime TimeNow = DateTime.Now;
-				long ticksThen = TimeThen.Ticks;
-				long ticksNow = TimeNow.Ticks;
-				int minsThen = (int)TimeSpan.FromTicks(ticksThen).TotalMinutes;
-				int minsNow = (int)TimeSpan.FromTicks(ticksNow).TotalMinutes;
-				QuestTime = minsNow - minsThen;
-			}
+		    if ( !string.IsNullOrEmpty(sTime) )
+		    {
+		        DateTime TimeThen;
+		        if (DateTime.TryParse(sTime, out TimeThen))
+		        {
+		            DateTime TimeNow = DateTime.Now;
+		            long ticksThen = TimeThen.Ticks;
+		            long ticksNow = TimeNow.Ticks;
+		            int minsThen = (int)TimeSpan.FromTicks(ticksThen).TotalMinutes;
+		            int minsNow = (int)TimeSpan.FromTicks(ticksNow).TotalMinutes;
+		            QuestTime = minsNow - minsThen;
+		        }
+		    }
 
-			return QuestTime;
+		    return QuestTime;
 		}
 
 		public SearchPage(Serial serial) : base(serial)

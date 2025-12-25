@@ -761,8 +761,8 @@ public virtual bool HasBreath{ get{ return false; } }
 public virtual double BreathDamageScalar{ get{ return 0.20; } }
 
 // Min/max seconds until next breath
-public virtual double BreathMinDelay{ get{ return 1.0; } }
-public virtual double BreathMaxDelay{ get{ return 2.0; } }
+public virtual double BreathMinDelay{ get{ return 10.0; } }
+public virtual double BreathMaxDelay{ get{ return 13.0; } }
 
 // Creature stops moving for 1.0 seconds while breathing
 public virtual double BreathStallTime{ get{ return 1.0; } }
