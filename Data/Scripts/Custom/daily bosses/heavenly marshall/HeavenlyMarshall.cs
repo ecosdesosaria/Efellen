@@ -192,23 +192,15 @@ namespace Server.Mobiles
 			{
 				case 1: // holy nova
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "Heavens smite thee!" );
-					PlaySound( 0x64F );
-					FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-					IPooledEnumerable eable = GetMobilesInRange( 6 );
-					foreach ( Mobile m in eable )
-					{
-						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-						{
-							DoHarmful( m );
-							int damage = Utility.RandomMinMax( 35, 49 );
-							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
-							m.PlaySound( 0x1FB );
-						}
-					}
-					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x4D5);
-					eable.Free();
-					break;
+					BossSpecialAttack.PerformSlam(
+                       boss: this,
+                       warcry: "Heavens smite thee!",
+                       hue: 0x4D5,
+                       rage: m_Rage,
+                       range: 6,
+                       energyDmg: 100
+                   );
+                   break;
 				}
 
 				case 2: //holy fire

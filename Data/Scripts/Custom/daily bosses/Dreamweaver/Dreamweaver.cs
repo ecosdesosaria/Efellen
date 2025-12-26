@@ -14,6 +14,7 @@ using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
 using Server.Custom.BeholderSpecials;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
@@ -150,24 +151,15 @@ namespace Server.Mobiles
 			{
 				case 1: // energy blast
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Stares fiercely in all directions*" );
-					PlaySound( 0x64F );
-					FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-					IPooledEnumerable eable = GetMobilesInRange( 6 );
-					foreach ( Mobile m in eable )
-					{
-						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-						{
-							DoHarmful( m );
-							int damage = Utility.RandomMinMax( 31, 42 );
-							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
-							m.PlaySound( 0x1FB );
-							m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) ) );
-						}
-					}
-					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x96);
-					eable.Free();
-					break;
+					BossSpecialAttack.PerformSlam(
+                       boss: this,
+                       warcry: "*Stares fiercely in all directions*",
+                       hue: 5030,
+                       rage: m_Rage,
+                       range: 6,
+                       energyDmg: 100
+                   );
+                   break;
 				}
 				case 2: // Rage 2: psychic blast (stamina drain + damage)
 				{

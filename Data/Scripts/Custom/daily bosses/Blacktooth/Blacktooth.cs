@@ -9,10 +9,9 @@ using Server.Network;
 using Server.Mobiles;
 using Server.Commands;
 using Server.Commands.Generic;
-using Server.Spells.Necromancy;
-using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
@@ -121,209 +120,48 @@ namespace Server.Mobiles
             switch (roll)
             {
                 case 0:
-                    PerformCharge(target);
-                    break;
+                     BossSpecialAttack.PerformRampage(
+                       boss: this,
+                       warcry: "*Screeches and charges forward!*",
+                       hue: 660,
+                       rage: m_Rage,
+                       stunDuration: 6.0
+                   );
+                   break;
 
                 case 1:
-                    TerrorizingScream();
-                    break;
+                   BossSpecialAttack.PerformFear(
+				      boss: this,
+				      warcry: "*Unleashes a bestial roar!*",
+				      range: 6,
+				      rage: m_Rage,
+				      terror: 70  // Knightship 70+ saves from fear
+				  );
+				  break;
 
                 case 2:
-                    SummonSpiritBear(target);
+                    BossSpecialAttack.SummonHonorGuard(
+                        boss: this,
+                        target: target,
+                        warcry: "Ancestors! Aid me!",
+                        amount: 1,
+                        creatureType: typeof(SummonDireBear),
+                        hue: 660
+                    );
                     break;
 
                 case 3:
-                    Earthshatter();
-                    break;
+                    BossSpecialAttack.PerformSlam(
+                       boss: this,
+                       warcry: "The ground shakes!",
+                       hue: 660,
+                       rage: m_Rage,
+                       range: 6,
+                       physicalDmg: 100
+                   );
+                   break;
             }
         }
-
-        private void PerformCharge(Mobile target)
-        {
-            if (target == null || Map == null)
-                return;     
-
-            PublicOverheadMessage(MessageType.Regular, 0x21, false, "*Screeches and charges forward*");
-            PlaySound(0x15F);       
-
-            Timer.DelayCall(TimeSpan.FromSeconds(2.0), delegate()
-            {
-                if (Deleted || !Alive || target.Deleted)
-                    return;     
-
-                Direction chargeDir = GetDirectionTo(target);
-                Point3D startLoc = Location;
-                Point3D endLoc = startLoc;
-                List<Mobile> hitMobiles = new List<Mobile>();       
-
-                for (int i = 1; i <= 8 + m_Rage; i++)
-                {
-                    int offsetX, offsetY;
-                    GetOffset(chargeDir, out offsetX, out offsetY);     
-
-                    Point3D checkLoc = new Point3D(
-                        startLoc.X + offsetX * i,
-                        startLoc.Y + offsetY * i,
-                        startLoc.Z
-                    );      
-
-                    if (!Map.CanFit(checkLoc, 16, false, false))
-                        break;      
-
-                    endLoc = checkLoc;      
-
-                    IPooledEnumerable eable = Map.GetMobilesInRange(checkLoc, 0);
-                    foreach (Mobile m in eable)
-                    {
-                        if (m != this && m.Alive && CanBeHarmful(m) && !hitMobiles.Contains(m))
-                            hitMobiles.Add(m);
-                    }
-                    eable.Free();       
-
-                    Effects.SendLocationEffect(checkLoc, Map, 0x3728, 10, 10, 660, 0);
-                }       
-
-                Location = endLoc;
-                ProcessDelta();     
-
-                PlaySound(0x665);
-                FixedParticles(0x3709, 10, 30, 5052, EffectLayer.Waist);        
-
-                foreach (Mobile m in hitMobiles)
-                {
-                    if (!m.Alive)
-                        continue;       
-
-                    DoHarmful(m);       
-
-                    int damage = Utility.RandomMinMax(25, 39);
-                    AOS.Damage(m, this, damage, 100, 0, 0, 0, 0);       
-
-                    m.PlaySound(0x1FB);
-                    m.FixedParticles(0x3709, 10, 30, 1160, EffectLayer.Waist);
-                }
-            });
-        }
-
-        private void TerrorizingScream()
-        {
-            PublicOverheadMessage(
-                MessageType.Regular,
-                0x21,
-                false,
-                "*Blacktooth unleashes a soul-freezing roar!*"
-            );
-
-            PlaySound(0x64D);
-
-            IPooledEnumerable eable = GetMobilesInRange(6);
-            foreach (Mobile m in eable)
-            {
-                if (m == this || !m.Alive || !m.Player || !CanBeHarmful(m))
-                    continue;
-
-                if (m.Combatant != this || m.Skills.Knightship.Value > 70.0)
-                    continue;
-
-                DoHarmful(m);
-
-                double resist = m.Skills[SkillName.MagicResist].Value;
-                int duration = 8 - (int)(resist * (6.0 / 125.0));
-
-                if (duration < 2)
-                    duration = 2;
-
-                m.Paralyze(TimeSpan.FromSeconds(duration));
-                m.SendMessage("You are frozen in terror!");
-                m.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Head);
-            }
-            eable.Free();
-        }
-
-        private void SummonSpiritBear(Mobile target)
-        {
-            PublicOverheadMessage(MessageType.Regular, 0x21, false, "Ancestors! Aid me!");
-            PlaySound(0x133);
-
-            FixedParticles(0x3728, 1, 13, 9912, 0x21, 7, EffectLayer.Head);
-
-            BaseCreature bear = new SummonDireBear();
-            bear.Team = Team;
-            bear.IsTempEnemy = true;
-            bear.MoveToWorld(GetSpawnLocation(Map), Map);
-            bear.Combatant = target;
-        }
-        
-        private void Earthshatter()
-        {
-            PublicOverheadMessage(
-                MessageType.Regular,
-                0x21,
-                false,
-                "*The ground trembles and shakes!*"
-            );
-
-            PlaySound(0x64F);
-
-            IPooledEnumerable eable = GetMobilesInRange(6);
-            foreach (Mobile m in eable)
-            {
-                if (m != this && m.Player && m.Alive && CanBeHarmful(m))
-                {
-                    DoHarmful(m);
-
-                    int damage = Utility.RandomMinMax(23, 34);
-                    AOS.Damage(m, this, damage, 100, 0, 0, 0, 0);
-
-                    SlamVisuals.SlamVisual(
-                        this,
-                        6,
-                        0x36B0,
-                        0x59B
-                    );
-                }
-            }
-            eable.Free();
-        }
-
-
-
-
-
-        private Point3D GetSpawnLocation( Map map )
-		{
-			for ( int j = 0; j < 20; ++j )
-			{
-				int x = X + Utility.Random( 13 ) - 6;
-				int y = Y + Utility.Random( 13 ) - 6;
-				int z = map.GetAverageZ( x, y );
-
-				if ( map.CanFit( x, y, this.Z, 16, false, false ) )
-					return new Point3D( x, y, Z );
-				else if ( map.CanFit( x, y, z, 16, false, false ) )
-					return new Point3D( x, y, z );
-			}
-
-			return this.Location;
-		}
-
-		private void GetOffset( Direction d, out int xOffset, out int yOffset )
-		{
-			xOffset = 0;
-			yOffset = 0;
-
-			switch ( d & Direction.Mask )
-			{
-				case Direction.North: yOffset = -1; break;
-				case Direction.South: yOffset = 1; break;
-				case Direction.West: xOffset = -1; break;
-				case Direction.East: xOffset = 1; break;
-				case Direction.Right: xOffset = 1; yOffset = -1; break;
-				case Direction.Left: xOffset = -1; yOffset = 1; break;
-				case Direction.Down: xOffset = 1; yOffset = 1; break;
-				case Direction.Up: xOffset = -1; yOffset = -1; break;
-			}
-		}
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{

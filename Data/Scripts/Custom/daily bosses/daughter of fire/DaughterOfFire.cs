@@ -13,6 +13,7 @@ using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
@@ -75,13 +76,13 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 70 );
 			SetResistance( ResistanceType.Energy, 70 );
 
-			SetSkill( SkillName.Magery, 102.5, 115.0 );
-			SetSkill( SkillName.Meditation, 112.5, 125.0 );
-			SetSkill( SkillName.MagicResist, 105.5, 125.0 );
-			SetSkill( SkillName.Tactics, 101.0, 125.0 );
-			SetSkill( SkillName.FistFighting, 101.0, 125.0 );
-			SetSkill( SkillName.Spiritualism, 125.0, 125.0);
-			SetSkill( SkillName.Necromancy, 110.0, 124.0);
+			SetSkill( SkillName.Magery, 100.0 );
+			SetSkill( SkillName.Meditation, 115.0 );
+			SetSkill( SkillName.MagicResist, 115.5, 135.0 );
+			SetSkill( SkillName.Tactics, 111.0 );
+			SetSkill( SkillName.FistFighting, 111.0 );
+			SetSkill( SkillName.Spiritualism, 116.0);
+			SetSkill( SkillName.Necromancy, 116.0);
 
 			Fame = 25000;
 			Karma = -25000;
@@ -140,33 +141,26 @@ namespace Server.Mobiles
 			{
 				case 1: // Flaming blast
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "BURN!" );
-					PlaySound( 0x64F );
-					IPooledEnumerable eable = GetMobilesInRange( 6 );
-					foreach ( Mobile m in eable )
-					{
-						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-						{
-							DoHarmful( m );
-							int damage = Utility.RandomMinMax( 23, 34 );
-							AOS.Damage( m, this, damage, 0, 100, 0, 0, 0 );
-							SlamVisuals.SlamVisual(this, 6, 0x36B0, 0xb73);
-						}
-					}
-					eable.Free();
-					break;
+					BossSpecialAttack.PerformSlam(
+                       boss: this,
+                       warcry: "BURN!",
+                       hue: 0xb73,
+                       rage: m_Rage,
+                       range: 6,
+                       fireDmg: 100
+                   );
+                   break;
 				}
 				case 2: // rage 2: summon fire vortex
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fire shall consume you!" );
-					PlaySound( 0x133 );
-					FixedParticles( 0x3728, 1, 13, 9912, 0x21, 7, EffectLayer.Head );
-                    BaseCreature monster = new EvilScorchingVortex();
-            		monster.Team = this.Team;
-            		Point3D loc = GetSpawnLocation( map );
-                    monster.IsTempEnemy = true;
-            		monster.MoveToWorld( loc, map );
-            		monster.Combatant = target;
+					BossSpecialAttack.SummonHonorGuard(
+                        boss: this,
+                        target: target,
+                        warcry: "Hellfire shall consume you!",
+                        amount: 2,
+                        creatureType: typeof(EvilScorchingVortex),
+                        hue: 0xb73
+                    );
                     break;
 				}
 				case 3: // Rage 3: fire cone
@@ -193,8 +187,8 @@ namespace Server.Mobiles
                             }
                         }
                     }
-                }
                 break;
+			    }
 			}
 		}
 
@@ -433,7 +427,7 @@ namespace Server.Mobiles
 				
 				SetStr( Str + 100 );
 				SetDex( Dex + 25 );
-				SetDamage( 38, 49 );
+				SetDamage( 28, 33 );
 				
 				m_Rage = 1;
 				return false;
@@ -447,7 +441,7 @@ namespace Server.Mobiles
 				
 				SetStr( Str + 150 );
 				SetDex( Dex + 35 );
-				SetDamage( 43, 54 );
+				SetDamage( 33, 38 );
 				VirtualArmor += 10;
 				
 				m_Rage = 2;
@@ -462,7 +456,7 @@ namespace Server.Mobiles
 				
 				SetStr( Str + 200 );
 				SetDex( Dex + 50 );
-				SetDamage( 50, 65 );
+				SetDamage( 38, 43 );
 				VirtualArmor += 15;
 				
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fool! I'm fire everlasting" );
