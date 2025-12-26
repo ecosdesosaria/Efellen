@@ -13,6 +13,7 @@ using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
@@ -140,175 +141,47 @@ namespace Server.Mobiles
 			switch ( attackChoice  )
 			{
 				case 1: // Freezing blast
-					{
-						PublicOverheadMessage( MessageType.Regular, 0x21, false, "Feel the blizzard of Ozz!" );
-						PlaySound( 0x64F );
-						FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+				{
+					BossSpecialAttack.PerformSlam(
+                    boss: this,
+                    warcry: "Feel the blizzard of Ozz!",
+                    hue: 0x25,
+                    rage: m_Rage,
+                    range: 6,
+                    coldDmg: 100
+                );
+                break;
+				}
 
-						IPooledEnumerable eable = GetMobilesInRange( 6 );
-						foreach ( Mobile m in eable )
-						{
-							if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-							{
-								DoHarmful( m );
+				case 2: // Rage 2+: Laceration (bleed+paralyze)
+				{
+					BossSpecialAttack.PerformEntangle(
+    			    boss: this,
+    			    warcry: "Bleed for me!",
+    			    hue: 0x25,
+    			    rage: m_Rage,
+    			    range: 6,
+    			    bleedLevel: 8  // 16-24 damage per tick
+    			);
+    			break;
+				}
 
-								int damage = Utility.RandomMinMax( 35, 49 );
-								AOS.Damage( m, this, damage, 0, 0, 100, 0, 0 );
-								m.PlaySound( 0x1FB );
-								m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) ) );
-							}
-						}
-						SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x497);
-						eable.Free();
-						break;
-					}
-
-				case 2: // Rage 2+: Laceration (bleed+poison)
-					{
-						PublicOverheadMessage( MessageType.Regular, 0x21, false, "Bleed for me!" );
-						PlaySound( 0x133 );
-						FixedParticles( 0x3728, 1, 13, 9912, 0x21, 7, EffectLayer.Head );
-
-						IPooledEnumerable eable = GetMobilesInRange( 6 );
-						foreach ( Mobile m in eable )
-						{
-							if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) && Server.Items.BaseRace.IsBleeder( m ) )
-							{
-								TransformContext context = TransformationSpellHelper.GetContext( m );
-								bool isImmune = ( context != null && ( context.Type == typeof( LichFormSpell ) || context.Type == typeof( WraithFormSpell ) ) );
-
-								if ( m is BaseCreature && ((BaseCreature)m).BleedImmune )
-									isImmune = true;
-
-								if ( !isImmune )
-								{
-									DoHarmful( m );
-
-									m.PlaySound( 0x133 );
-									m.FixedParticles( 0x377A, 244, 25, 9950, 31, 0, EffectLayer.Waist );
-
-									if ( m is PlayerMobile )
-									{
-										m.LocalOverheadMessage( MessageType.Regular, 0x982, false, "You are bleeding profusely!" );
-									}
-
-									BeginBossBleed( m, this, 6 );
-									m.ApplyPoison( this, Poison.Deadly );
-								}
-							}
-						}
-						SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x497);
-						eable.Free();
-						break;
-					}
-
-				case 3: // Rage 3: Void blast (Mana drain + damage + freezing)
-					{
-						PublicOverheadMessage( MessageType.Regular, 0x21, false, "The sun, the moon and the stars all bear my seal!" );
-						PlaySound( 0x228 );
-						FixedParticles( 0x3789, 10, 25, 5032, EffectLayer.Head );
-
-						IPooledEnumerable eable = GetMobilesInRange( 8 );
-						foreach ( Mobile m in eable )
-						{
-							if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-							{
-								DoHarmful( m );
-								int manaDrain = Utility.RandomMinMax( 35, 45 );
-								m.Mana -= manaDrain;
-								int damage = Utility.RandomMinMax( manaDrain/2, manaDrain*2 );
-								AOS.Damage( m, this, damage, 0, 0, 100, 0, 0 );
-								m.FixedParticles( 0x374A, 10, 15, 5013, 0x496, 0, EffectLayer.Waist );
-								m.PlaySound( 0x1FB );
-								this.Mana = Math.Min( this.ManaMax, this.Mana + manaDrain / 3 );
-								m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) + Utility.RandomMinMax(1,3 ) ) );
-							}
-						}
-						SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x25);
-						eable.Free();
-						break;
-					}
-			}
-		}
-
-		private int getParalyzeDuration(Mobile m)
-		{
-			int resist = (int)(m.Skills.MagicResist.Value);
-			// 2s at 125, 8s at 0 magic resist
-			int duration = 8 - (int)(resist * (6.0 / 125.0));
-			return duration;
-		}
-
-		private static Hashtable m_BossBleedTable = new Hashtable();
-
-		public static void BeginBossBleed( Mobile m, Mobile from, int totalTicks )
-		{
-			Timer t = (Timer)m_BossBleedTable[m];
-			if ( t != null )
-				t.Stop();
-
-			t = new BossBleedTimer( from, m, totalTicks );
-			m_BossBleedTable[m] = t;
-			t.Start();
-		}
-
-		public static void DoBossBleed( Mobile m, Mobile from, int level )
-		{
-			if ( m.Alive && Server.Items.BaseRace.IsBleeder( m ) )
-			{
-				int damage = Utility.RandomMinMax( level * 2, level * 3 );
-
-				if ( !m.Player )
-					damage *= 2;
-
-				m.PlaySound( 0x133 );
-				AOS.Damage( m, from, damage, 100, 0, 0, 0, 0 );
-
-				Blood blood = new Blood();
-				blood.ItemID = Utility.Random( 0x122A, 5 );
-				blood.MoveToWorld( m.Location, m.Map );
-				m.FixedParticles( 0x377A, 1, 15, 9502, 67, 7, EffectLayer.Waist );
-			}
-			else
-			{
-				EndBossBleed( m, false );
-			}
-		}
-
-		public static void EndBossBleed( Mobile m, bool message )
-		{
-			Timer t = (Timer)m_BossBleedTable[m];
-			if ( t == null )
-				return;
-
-			t.Stop();
-			m_BossBleedTable.Remove( m );
-
-			if ( message && m is PlayerMobile )
-				m.SendMessage( "The bleeding has stopped." );
-		}
-
-		private class BossBleedTimer : Timer
-		{
-			private Mobile m_From;
-			private Mobile m_Mobile;
-			private int m_Count;
-			private int m_MaxTicks;
-
-			public BossBleedTimer( Mobile from, Mobile m, int maxTicks ) : base( TimeSpan.FromSeconds( 2.0 ), TimeSpan.FromSeconds( 2.0 ) )
-			{
-				m_From = from;
-				m_Mobile = m;
-				m_MaxTicks = maxTicks;
-				Priority = TimerPriority.TwoFiftyMS;
-			}
-
-			protected override void OnTick()
-			{
-				DoBossBleed( m_Mobile, m_From, m_MaxTicks - m_Count );
-
-				if ( ++m_Count == m_MaxTicks )
-					EndBossBleed( m_Mobile, true );
+				case 3: // Rage 3: Void blast
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+				    boss: this,
+				    target: target,
+				    warcry: "The sun, the moon and the stars all bear my seal!",
+				    hue: 0x25,
+				    rage: m_Rage,
+				    coldDmg: 20,
+				    fireDmg: 20,
+				    energyDmg: 20,
+				    poisonDmg: 20,
+				    physicalDmg: 20
+				);
+				break;
+				}
 			}
 		}
 
