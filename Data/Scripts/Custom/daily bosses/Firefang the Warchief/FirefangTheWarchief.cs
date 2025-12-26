@@ -9,10 +9,10 @@ using Server.Network;
 using Server.Mobiles;
 using Server.Commands;
 using Server.Commands.Generic;
-using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
@@ -100,7 +100,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 2 );
 		}
 
-		public override bool AutoDispel{ get{ return !Controlled; } }
 		public override int TreasureMapLevel{ get{ return 3; } }
 		public override bool CanRummageCorpses{ get{ return false; } }
 		public override int BreathPhysicalDamage{ get{ return 0; } }
@@ -148,61 +147,26 @@ namespace Server.Mobiles
 			{
 				case 1:
 				{
-					PerformBigBombAttack( target );
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						m_Rage,
+						"*BOOM TIME!*",
+						348,  // hue
+						0,     // physical
+						100,   // fire
+						0,     // cold
+						0,     // poison
+						0      // energy
+					);
 					break;
 				}
-
 				case 2:
 				{
 					PerformLightTheFuses();
 					break;
 				}
 			}
-		}
-
-		private void PerformBigBombAttack( Mobile target )
-		{
-			if ( target == null || target.Deleted || target.Map == null )
-				return;
-
-			int radius = 4 + m_Rage;
-			int minDamage = 20;
-			int maxDamage = 35;
-
-			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*BOOM TIME!*" );
-			
-			this.MovingParticles( target, 0x1C19, 1, 0, false, true, 348, 0, 9502, 6014, 0x11D, EffectLayer.Waist, 0 );
-			
-			Timer.DelayCall( TimeSpan.FromSeconds( 1.0 ), delegate()
-			{
-				if ( target == null || target.Deleted || target.Map == null )
-					return;
-
-				Effects.SendLocationParticles( EffectItem.Create( target.Location, target.Map, EffectItem.DefaultDuration ), 0x36BD, 20, 10, 348, 0, 5044, 0 );
-				Effects.PlaySound( target.Location, target.Map, 0x307 );
-
-				IPooledEnumerable eable = target.GetMobilesInRange( radius );
-				foreach ( Mobile m in eable )
-				{
-					if ( m == null || m == this || !m.Alive )
-						continue;
-
-					if ( m is BaseCreature )
-					{
-						BaseCreature bc = m as BaseCreature;
-						if ( bc != null && bc.Team == this.Team )
-							continue;
-					}
-
-					int damage = Utility.RandomMinMax( minDamage, maxDamage );
-					AOS.Damage( m, this, damage, 0, 100, 0, 0, 0 );
-					
-					SetOnFire( m );
-				}
-				eable.Free();
-
-				LightTilesOnFire( target.Location, target.Map, radius );
-			});
 		}
 
 		private void PerformLightTheFuses()
@@ -260,37 +224,6 @@ namespace Server.Mobiles
 
 			ExplosiveTile tile = new ExplosiveTile( this, location, this.Map );
 			m_ExplosiveTiles.Add( tile );
-		}
-
-		private void LightTilesOnFire( Point3D center, Map map, int radius )
-		{
-			if ( map == null )
-				return;
-
-			for ( int x = -radius; x <= radius; x++ )
-			{
-				for ( int y = -radius; y <= radius; y++ )
-				{
-					Point3D loc = new Point3D( center.X + x, center.Y + y, center.Z );
-					
-					int dx = center.X - loc.X;
-					int dy = center.Y - loc.Y;
-					double distance = Math.Sqrt( (dx * dx) + (dy * dy) );
-					
-					if ( distance > radius )
-						continue;
-
-					Effects.SendLocationParticles( EffectItem.Create( loc, map, TimeSpan.FromSeconds( 2.0 ) ), 0x3709, 10, 30, 348, 0, 5052, 0 );
-				}
-			}
-		}
-
-		private void SetOnFire( Mobile m )
-		{
-			if ( m == null || m.Deleted )
-				return;
-
-			m.FixedParticles( 0x3709, 10, 30, 5052, 348, 0, EffectLayer.Waist );
 		}
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )

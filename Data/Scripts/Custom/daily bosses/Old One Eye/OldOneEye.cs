@@ -13,7 +13,7 @@ using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
-using Server.Custom.BeholderSpecials;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
@@ -103,15 +103,7 @@ namespace Server.Mobiles
 			base.OnDamage( amount, from, willKill );
 		}
 
-        private int getParalyzeDuration(Mobile m)
-		{
-			int resist = (int)(m.Skills.MagicResist.Value);
-			// 2s at 125, 8s at 0 magic resist
-			int duration = 8 - (int)(resist * (6.0 / 125.0));
-			return duration;
-		}
-
-		private void PerformRageAttack( Mobile target )
+      	private void PerformRageAttack( Mobile target )
 		{
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
@@ -123,217 +115,39 @@ namespace Server.Mobiles
 			{
 				case 1: // terrifying roar
 				{
-					TerrorizingScream();
-					break;
+					BossSpecialAttack.PerformFear(
+				      boss: this,
+				      warcry: "*The Old One Eye unleashes a soul-freezing roar!*",
+				      range: 6,
+				      rage: m_Rage,
+				      terror: 90  // Knightship 90+ saves from fear
+				  );
+				  break;
 				}
 				case 2: // ground stomp (knockback + stagger)
 				{
-					GroundStomp();
-		            break;
+					BossSpecialAttack.PerformSlam(
+                    	boss: this,
+                    	warcry: "*The ground quakes!*",
+                    	hue: 0x995,
+                    	rage: m_Rage,
+                    	range: 6,
+                    	physicalDmg: 100
+              		);
+                	break;
 				}
                 case 3: // rampage - multi charge
 				{
-                    PerformRampage();
-		            break;
+                    BossSpecialAttack.PerformRampage(
+                       boss: this,
+                       warcry: "*The Old One Eye charges wildly!*",
+                       hue: 0x995,
+                       rage: m_Rage,
+                       stunDuration: 3.0
+                   );
+                   break;
 				}
 			}
-		}
-
-		public void TerrorizingScream() 
-		{
-			PublicOverheadMessage(
-                MessageType.Regular,
-                0x21,
-                false,
-                "*The Old One Eye unleashes a soul-freezing roar!*"
-            );
-
-            PlaySound(0x64D);
-
-            IPooledEnumerable eable = GetMobilesInRange(6);
-            foreach (Mobile m in eable)
-            {
-                if (m == this || !m.Alive || !m.Player || !CanBeHarmful(m))
-                    continue;
-
-                if (m.Combatant != this || m.Skills.Knightship.Value > 90.0)
-                    continue;
-
-                DoHarmful(m);
-
-                double resist = m.Skills[SkillName.MagicResist].Value;
-                int duration = 8 - (int)(resist * (6.0 / 125.0));
-
-                if (duration < 2)
-                    duration = 2;
-
-                m.Paralyze(TimeSpan.FromSeconds(duration));
-                m.SendMessage("You are frozen in terror!");
-                m.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Head);
-            }
-            eable.Free();
-		}
-
-		public void GroundStomp()
-		{
-			 PublicOverheadMessage(
-                MessageType.Regular,
-                0x21,
-                false,
-                "*The ground quakes!*"
-            );
-
-            PlaySound(0x64F);
-
-            IPooledEnumerable eable = GetMobilesInRange(8);
-            foreach (Mobile m in eable)
-            {
-                if (m != this && m.Player && m.Alive && CanBeHarmful(m))
-                {
-                    DoHarmful(m);
-
-                    int damage = Utility.RandomMinMax(33, 44);
-                    AOS.Damage(m, this, damage, 100, 0, 0, 0, 0);
-
-                    // Knockback effect
-                    Direction d = Utility.GetDirection(this, m);
-                    Point3D targetLoc = m.Location;
-                    
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Point3D newLoc = GetPointInDirection(targetLoc, d, 1);
-                        if (m.Map.CanSpawnMobile(newLoc))
-                            targetLoc = newLoc;
-                        else
-                            break;
-                    }
-                    
-                    m.MoveToWorld(targetLoc, m.Map);
-                    m.Paralyze(TimeSpan.FromSeconds(2));
-                    m.SendMessage("You are knocked back by the tremendous force!");
-
-                    SlamVisuals.SlamVisual(
-                        this,
-                        6,
-                        0x36B0,
-                        0x995
-                    );
-                }
-            }
-            eable.Free();
-		}
-
-		public void PerformRampage()
-		{
-			PublicOverheadMessage(
-                MessageType.Regular,
-                0x21,
-                false,
-                "*The Old One Eye charges wildly in all directions!*"
-            );
-
-			PlaySound(0x654);
-
-			List<Point3D> rampagePath = new List<Point3D>();
-			Point3D currentLoc = this.Location;
-			
-			int chargeCount = Utility.RandomMinMax(4, 6);
-			
-			for (int charge = 0; charge < chargeCount; charge++)
-			{
-				Direction chargeDir = (Direction)Utility.Random(8);
-				int chargeDist = Utility.RandomMinMax(6, 8);
-				
-				for (int step = 0; step < chargeDist; step++)
-				{
-					Point3D nextLoc = GetPointInDirection(currentLoc, chargeDir, 1);
-					
-					if (this.Map.CanSpawnMobile(nextLoc))
-					{
-						rampagePath.Add(nextLoc);
-						currentLoc = nextLoc;
-					}
-					else
-					{
-						break;
-					}
-				}
-			}
-			List<Mobile> damagedMobiles = new List<Mobile>();
-			
-			foreach (Point3D loc in rampagePath)
-			{
-				this.MoveToWorld(loc, this.Map);
-				
-				// Visual effect at each location
-				Effects.SendLocationEffect(loc, this.Map, 0x3728, 15, 10, 0x995, 0);
-				
-				IPooledEnumerable eable = this.Map.GetMobilesInRange(loc, 1);
-				foreach (Mobile m in eable)
-				{
-					if (m != this && m.Player && m.Alive && CanBeHarmful(m) && !damagedMobiles.Contains(m))
-					{
-						DoHarmful(m);
-						int damage = Utility.RandomMinMax(43, 54);
-						AOS.Damage(m, this, damage, 100, 0, 0, 0, 0);
-						m.SendMessage("You are trampled by the rampaging beast!");
-						damagedMobiles.Add(m);
-					}
-				}
-				eable.Free();
-			}
-			// self Stun after rampage
-			m_IsStunned = true;
-			m_StunEndTime = DateTime.UtcNow + TimeSpan.FromSeconds(4);
-			this.Frozen = true;
-			
-			Timer.DelayCall(TimeSpan.FromSeconds(4), delegate()
-			{
-				m_IsStunned = false;
-				this.Frozen = false;
-				PublicOverheadMessage(MessageType.Regular, 0x21, false, "*The beast recovers from its rampage*");
-			});
-		}
-
-		// Helper method to get a point in a specific direction
-		private Point3D GetPointInDirection(Point3D from, Direction d, int distance)
-		{
-			int x = from.X;
-			int y = from.Y;
-			
-			switch (d & Direction.Mask)
-			{
-				case Direction.North:
-					y -= distance;
-					break;
-				case Direction.South:
-					y += distance;
-					break;
-				case Direction.West:
-					x -= distance;
-					break;
-				case Direction.East:
-					x += distance;
-					break;
-				case Direction.Right:
-					x += distance;
-					y -= distance;
-					break;
-				case Direction.Left:
-					x -= distance;
-					y += distance;
-					break;
-				case Direction.Down:
-					x += distance;
-					y += distance;
-					break;
-				case Direction.Up:
-					x -= distance;
-					y -= distance;
-					break;
-			}
-			
-			return new Point3D(x, y, from.Z);
 		}
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
@@ -370,7 +184,7 @@ namespace Server.Mobiles
 				if (m != this && m.Player && m.Alive && CanBeHarmful(m))
 				{
 					DoHarmful(m);
-					int damage = Utility.RandomMinMax(29, 40);
+					int damage = Utility.RandomMinMax(33, 40);
 					AOS.Damage(m, this, damage, 100, 0, 0, 0, 0);
 					m.SendMessage("You are struck by a devastating tail swipe!");
 					m.FixedParticles(0x36BD, 20, 10, 5044, EffectLayer.Head);

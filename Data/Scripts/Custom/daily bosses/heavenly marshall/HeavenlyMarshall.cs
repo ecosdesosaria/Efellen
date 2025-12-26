@@ -13,6 +13,7 @@ using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
@@ -205,29 +206,15 @@ namespace Server.Mobiles
 
 				case 2: //holy fire
 				{
-					if (map == null)
-                        return;
-                    int range = 7;
-                    this.PlaySound(0x208);
-                    PublicOverheadMessage(Network.MessageType.Emote, 0x22, false, "Burn in the light!");
-                    Point3D start = this.Location;
-                    int dx = 0, dy = 0;
-                    GetDirectionVector(this.Direction, out dx, out dy);
-                    for (int i = 1; i <= range; i++)
-                    {
-                        Point3D p = new Point3D(start.X + dx * i, start.Y + dy * i, start.Z);
-                        Effects.SendLocationEffect(p, map, 0x36D4, 20, 10, 0xb73, 0);
-                        foreach (Mobile m in map.GetMobilesInRange(p, 0))
-                        {
-                            if (m != null && m != this && !m.Deleted && CanBeHarmful(m))
-                            {
-                                DoHarmful(m);
-                                m.Damage(Utility.RandomMinMax(25, 45), this);
-                                m.PlaySound(0x15E);
-                            }
-                        }
-                    }
-					break;
+					BossSpecialAttack.PerformCrossExplosion(
+				       boss: this,
+				       target: target,
+				       warcry: "*Burn in the light!*",
+				       hue: 0xb73,
+				       rage: m_Rage,
+				       fireDmg: 100
+				   );
+				   break;
 				}
 				
 				case 3: // Rage 3: holy blast (Mana drain + damage)

@@ -9,10 +9,10 @@ using Server.Network;
 using Server.Mobiles;
 using Server.Commands;
 using Server.Commands.Generic;
-using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
@@ -93,20 +93,7 @@ namespace Server.Mobiles
 
 		public override int TreasureMapLevel{ get{ return 3; } }
 		public override bool CanRummageCorpses{ get{ return false; } }
-		public override int BreathPhysicalDamage{ get{ return 0; } }
-		public override int BreathFireDamage{ get{ return 0; } }
-		public override int BreathColdDamage{ get{ return 0; } }
-		public override int BreathPoisonDamage{ get{ return 100; } }
-		public override int BreathEnergyDamage{ get{ return 0; } }
-		public override int BreathEffectHue{ get{ return 0x481; } }
-		public override int BreathEffectSound{ get{ return 0x64F; } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
-		public override bool HasBreath{ get{ return true; } }
-		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override int GetBreathForm()
-		{
-		    return 34;// weed breath 
-		}
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
@@ -163,141 +150,32 @@ namespace Server.Mobiles
 			{
 				case 1: // Poison blast
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Releases a burst of crippling poison!*" );
-					PlaySound( 0x64F );
-					FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-					IPooledEnumerable eable = GetMobilesInRange( 6 );
-					foreach ( Mobile m in eable )
-					{
-						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-						{
-							DoHarmful( m );
-							int damage = Utility.RandomMinMax( 11, 22 );
-							AOS.Damage( m, this, damage, 0, 0, 100, 0, 0 );
-							m.PlaySound( 0x1FB );
-                            m.ApplyPoison( this, Poison.Deadly );
-						}
-					}
-					SlamVisuals.SlamVisual(this, 6, 0x36B0, 267);
-					eable.Free();
-					break;
+					BossSpecialAttack.PerformSlam(
+                       boss: this,
+                       warcry: "*Releases a burst of crippling poison!*",
+                       hue: 267,
+                       rage: m_Rage,
+                       range: 6,
+                       poisonDmg: 100
+                   );
+                   break;
 				}
 
 				case 2: // entangling vines + bleed
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "*calls forth piercing vines*" );
-					PlaySound( 0x133 );
-					FixedParticles( 0x3728, 1, 13, 9912, 0x21, 7, EffectLayer.Head );
-					IPooledEnumerable eable = GetMobilesInRange( 6 );
-					foreach ( Mobile m in eable )
-					{
-						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) && Server.Items.BaseRace.IsBleeder( m ) )
-						{
-							TransformContext context = TransformationSpellHelper.GetContext( m );
-							bool isImmune = ( context != null && ( context.Type == typeof( LichFormSpell ) || context.Type == typeof( WraithFormSpell ) ) );
-							if ( m is BaseCreature && ((BaseCreature)m).BleedImmune )
-								isImmune = true;
-							if ( !isImmune )
-							{
-								DoHarmful( m );
-								m.PlaySound( 0x133 );
-								m.FixedParticles( 0x377A, 244, 25, 9950, 31, 0, EffectLayer.Waist );
-								if ( m is PlayerMobile )
-								{
-									m.LocalOverheadMessage( MessageType.Regular, 0x982, false, "You are bleeding profusely!" );
-								}
-            					BeginBossBleed( m, this, 6 );
-							}
-						}
-                    	m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) ) );
-					}
-					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x4F6);
-					eable.Free();
-					break;
+					BossSpecialAttack.PerformEntangle(
+    				    boss: this,
+    				    warcry: "*calls forth piercing vines*",
+    				    hue: 0x4F6,
+    				    rage: m_Rage,
+    				    range: 6,
+    				    bleedLevel: 5  // 10-15 damage per tick
+    				);
+    				break;
 				}
 			}
 		}
 
-		private int getParalyzeDuration(Mobile m)
-		{
-			int resist = (int)(m.Skills.MagicResist.Value);
-			// 2s at 125, 8s at 0 magic resist
-			int duration = 8 - (int)(resist * (6.0 / 125.0));
-			return duration;
-		}
-
-		private static Hashtable m_BossBleedTable = new Hashtable();
-
-		public static void BeginBossBleed( Mobile m, Mobile from, int totalTicks )
-		{
-			Timer t = (Timer)m_BossBleedTable[m];
-			if ( t != null )
-				t.Stop();
-
-			t = new BossBleedTimer( from, m, totalTicks );
-			m_BossBleedTable[m] = t;
-			t.Start();
-		}
-
-		public static void DoBossBleed( Mobile m, Mobile from, int level )
-		{
-			if ( m.Alive && Server.Items.BaseRace.IsBleeder( m ) )
-			{
-				int damage = Utility.RandomMinMax( level * 2, level * 3 );
-
-				if ( !m.Player )
-					damage *= 2;
-
-				m.PlaySound( 0x133 );
-				AOS.Damage( m, from, damage, 100, 0, 0, 0, 0 );
-
-				Blood blood = new Blood();
-				blood.ItemID = Utility.Random( 0x122A, 5 );
-				blood.MoveToWorld( m.Location, m.Map );
-				m.FixedParticles( 0x377A, 1, 15, 9502, 67, 7, EffectLayer.Waist );
-			}
-			else
-			{
-				EndBossBleed( m, false );
-			}
-		}
-
-		public static void EndBossBleed( Mobile m, bool message )
-		{
-			Timer t = (Timer)m_BossBleedTable[m];
-			if ( t == null )
-				return;
-
-			t.Stop();
-			m_BossBleedTable.Remove( m );
-
-			if ( message && m is PlayerMobile )
-				m.SendMessage( "The bleeding has stopped." );
-		}
-
-		private class BossBleedTimer : Timer
-		{
-			private Mobile m_From;
-			private Mobile m_Mobile;
-			private int m_Count;
-			private int m_MaxTicks;
-
-			public BossBleedTimer( Mobile from, Mobile m, int maxTicks ) : base( TimeSpan.FromSeconds( 2.0 ), TimeSpan.FromSeconds( 2.0 ) )
-			{
-				m_From = from;
-				m_Mobile = m;
-				m_MaxTicks = maxTicks;
-				Priority = TimerPriority.TwoFiftyMS;
-			}
-
-			protected override void OnTick()
-			{
-				DoBossBleed( m_Mobile, m_From, m_MaxTicks - m_Count );
-
-				if ( ++m_Count == m_MaxTicks )
-					EndBossBleed( m_Mobile, true );
-			}
-		}
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
