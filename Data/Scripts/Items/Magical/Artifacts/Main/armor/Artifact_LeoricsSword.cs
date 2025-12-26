@@ -66,7 +66,7 @@ namespace Server.Items
     	    	    }
                     // dont smite undead
                     bool validTarget = false;
-                    if ((silver != null && silver.Slays(mob)) || exocism != null && exorcism.Slays(mob))
+                    if ((silver != null && silver.Slays(mob)) || exorcism != null && exorcism.Slays(mob))
                         continue;
 
     	    	    // don't smite party members
