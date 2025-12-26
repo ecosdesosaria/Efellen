@@ -1,0 +1,485 @@
+using System;
+using Server;
+using System.Collections;
+using System.Collections.Generic;
+using Server.Items;
+using Server.ContextMenus;
+using Server.Misc;
+using Server.Network;
+using Server.Mobiles;
+using Server.Commands;
+using Server.Commands.Generic;
+using Server.EffectsUtil;
+using Server.Custom;
+using Server.Custom.DailyBosses.System;
+
+namespace Server.Mobiles
+{
+	[CorpseName( "Skeleton King's Corpse" )]
+	public class SkeletonKing : BaseCreature
+	{
+		private const int MAX_SUMMONS_RAGE_0 = 8;
+		private const int MAX_SUMMONS_RAGE_1 = 4;
+		private const int MAX_SUMMONS_RAGE_2 = 2;
+		private const int MAX_SUMMONS_RAGE_3 = 2;
+		
+		private const int SUMMON_RANGE = 12;
+		
+		private static readonly Type[] SummonTypes = new Type[] 
+		{ 
+			typeof(SkeletonArcher),
+			typeof(BoneMagi), 
+			typeof(BoneKnight), 
+			typeof(Mummy), 
+			typeof(MummyLord) 
+		};
+		
+		private static readonly List<Type> BossDrops = new List<Type>
+    	{
+    	    typeof(Artifact_LeoricsBreastplate),
+    	    typeof(Artifact_LeoricsCrown),
+    	    typeof(Artifact_LeoricsGloves),
+    	    typeof(Artifact_LeoricsArms),
+			typeof(Artifact_LeoricsLegging),
+			typeof(Artifact_LeoricsSword)
+    	};
+
+		private int m_Rage = 0;
+		private Mobile m_LastTarget;
+		private DateTime m_NextSummonTime = DateTime.MinValue;
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
+		private List<BaseCreature> m_Summons = new List<BaseCreature>();
+
+		[Constructable]
+		public SkeletonKing () : base( AIType.AI_Melee, FightMode.Closest, 20, 1, 0.4, 0.8 )
+		{
+			Name = "Skeleton King";
+            Title = "The thrall of hell";
+			Body = 0x147;
+			BaseSoundID = 451;
+			NameHue = 0x22;
+			Hue = 0x09d3;
+
+			SetStr( 696, 685 );
+			SetDex( 185, 205 );
+			SetInt( 286, 325 );
+
+			SetHits( 7000 );
+			SetDamage( 28, 33 );
+
+			SetDamageType( ResistanceType.Physical, 100 );
+			SetResistance( ResistanceType.Physical, 75 );
+			SetResistance( ResistanceType.Fire, 50 );
+			SetResistance( ResistanceType.Cold, 60 );
+			SetResistance( ResistanceType.Poison, 75 );
+			SetResistance( ResistanceType.Energy, 60 );
+
+			SetSkill( SkillName.MagicResist, 115.0 );
+			SetSkill( SkillName.Tactics, 115.0 );
+			SetSkill( SkillName.FistFighting, 115.0 );
+			SetSkill( SkillName.Anatomy, 115.0);
+
+			Fame = 25000;
+			Karma = -25000;
+
+			VirtualArmor = 50;
+
+			PackItem( Loot.RandomArty() );
+			PackItem( Loot.RandomArty() );
+			PackItem( Loot.RandomArty() );
+		}
+
+		public override void GenerateLoot()
+		{
+			AddLoot( LootPack.UltraRich, 4 );
+		}
+
+		public override int TreasureMapLevel{ get{ return 4; } }
+		public override bool CanRummageCorpses{ get{ return false; } }
+		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
+		public override bool BleedImmune{ get{ return true; } }
+		public override bool BardImmune { get { return true; } }
+		public override bool Unprovokable { get { return true; } }
+		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+			
+			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 12.6 - (m_Rage * 1.5) );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+        private void PerformRageAttack( Mobile target )
+        {
+            if ( target == null || target.Deleted || !target.Alive )
+                return;
+
+            int availableAttacks = m_Rage;
+            int attackChoice = Utility.RandomMinMax( 1, availableAttacks );
+            Map map = this.Map;
+
+            switch ( attackChoice )
+            {
+                case 1: // Bone blast
+                {
+                    BossSpecialAttack.PerformSlam(
+                       boss: this,
+                       warcry: "Share the bounty of my tomb!",
+                       hue: 0x09d3,
+                       rage: m_Rage,
+                       range: 6,
+                       physicalDmg: 100
+                   );
+                   break;
+                }
+                case 2: // Rampage
+                {
+                   BossSpecialAttack.PerformRampage(
+                       boss: this,
+                       warcry: "*The Skeleton King prepares to charge!*",
+                       hue: 0x09d3,
+                       rage: m_Rage,
+                       stunDuration: 4.0
+                   );
+                   break;
+                }
+                case 3: // Honor guard
+                {
+                    BossSpecialAttack.SummonHonorGuard(
+                        boss: this,
+                        target: target,
+                        warcry: "Honor guard! I call thee!",
+                        amount: 3,
+                        creatureType: typeof(HellKnight),
+                        hue: 0x09d3
+                    );
+                    break;
+                }
+            }
+        }
+
+	
+		public override void CheckReflect( Mobile caster, ref bool reflect )
+		{
+			int chance = m_Rage * 11;
+			reflect = ( Utility.Random(100) < chance );
+		}
+
+		private int CountSummons()
+		{
+			int count = 0;
+			IPooledEnumerable eable = GetMobilesInRange( SUMMON_RANGE );
+			
+			foreach ( Mobile m in eable )
+			{
+				Type mobileType = m.GetType();
+				foreach ( Type summonType in SummonTypes )
+				{
+					if ( mobileType == summonType )
+					{
+						count++;
+						break;
+					}
+				}
+			}
+			
+			eable.Free();
+			return count;
+		}
+
+		private int GetMaxSummons()
+		{
+			switch( m_Rage )
+			{
+				case 0: return MAX_SUMMONS_RAGE_0;
+				case 1: return MAX_SUMMONS_RAGE_1;
+				case 2: return MAX_SUMMONS_RAGE_2;
+				case 3: return MAX_SUMMONS_RAGE_3;
+				default: return 8;
+			}
+		}
+
+		private void SpawnCreature( Mobile target )
+		{
+			Map map = this.Map;
+			if ( map == null || target == null || target.Deleted )
+				return;
+
+			if ( DateTime.UtcNow < m_NextSummonTime )
+				return;
+
+			int currentSummons = CountSummons();
+			int maxSummons = GetMaxSummons();
+
+			if ( currentSummons >= maxSummons )
+				return;
+
+			PlaySound( 0x216 );
+
+			int newSummons;
+			string song;
+			
+			switch( m_Rage )
+			{
+				case 0: 
+					newSummons = Utility.RandomMinMax( 4, 8 ); 
+					song = "Your bones shall join my armies!"; 
+					break;
+				case 1: 
+					newSummons = Utility.RandomMinMax( 4, 8 ); 
+					song = "Soon you will be amongst my subjects!"; 
+					break;
+				case 2: 
+					newSummons = Utility.RandomMinMax( 3, 6 ); 
+					song = "We will feast on your flesh!"; 
+					break;
+				case 3: 
+					newSummons = Utility.RandomMinMax( 2, 4 );
+					song = "The royal army shall see to your end!"; 
+					break;
+				default:
+					newSummons = 2;
+					song = "";
+					break;
+			}
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, song );
+		
+			for ( int i = 0; i < newSummons; ++i )
+			{
+				BaseCreature monster = CreateMonster();
+				if ( monster == null )
+					continue;
+
+				monster.Team = this.Team;
+				Point3D loc = GetSpawnLocation( map );
+
+				monster.IsTempEnemy = true;
+				monster.MoveToWorld( loc, map );
+				monster.Combatant = target;
+				RegisterSummon(monster);
+			}
+
+			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 18.0 - (m_Rage * 0.5) );
+		}
+
+		public void RegisterSummon(BaseCreature bc)
+        {
+            if (bc == null)
+                return;
+
+            m_Summons.Add(bc);
+
+            Timer.DelayCall(TimeSpan.FromMinutes(1), delegate()
+            {
+                if (bc != null && !bc.Deleted && bc.Alive)
+                    bc.Delete();
+            });
+        }
+
+		private BaseCreature CreateMonster()
+		{
+			int rand = Utility.Random( 100 );
+
+			switch ( m_Rage )
+			{
+				case 0:
+					return new SkeletonArcher();
+					
+				case 1:
+					if ( rand < 55 )
+						return new BoneMagi();
+					else
+						return new SkeletonArcher();
+				case 2:
+					if ( rand < 55 )
+						return new BoneMagi();
+					else
+						return new BoneKnight();
+				case 3:
+					if ( rand < 20 )
+						return new Mummy();
+					else if ( rand < 45 )
+						return new BoneKnight();
+					else
+						return new MummyLord();
+				default:
+					return new SkeletonArcher();
+			}
+		}
+
+		private Point3D GetSpawnLocation( Map map )
+		{
+			for ( int j = 0; j < 20; ++j )
+			{
+				int x = X + Utility.Random( 13 ) - 6;
+				int y = Y + Utility.Random( 13 ) - 6;
+				int z = map.GetAverageZ( x, y );
+
+				if ( map.CanFit( x, y, this.Z, 16, false, false ) )
+					return new Point3D( x, y, Z );
+				else if ( map.CanFit( x, y, z, 16, false, false ) )
+					return new Point3D( x, y, z );
+			}
+
+			return this.Location;
+		}
+
+		private void TrySummonCreature( Mobile target )
+		{
+			if ( target == null || target.Deleted )
+				return;
+
+			double[] chances = { 0.10, 0.20, 0.33, 0.50 };
+
+			if ( m_Rage >= 0 && m_Rage < chances.Length && chances[m_Rage] >= Utility.RandomDouble() )
+				SpawnCreature( target );
+		}
+
+		public override void OnGotMeleeAttack( Mobile attacker )
+		{
+			TrySummonCreature( attacker );
+		}
+
+		public override void OnGaveMeleeAttack( Mobile defender )
+		{
+			TrySummonCreature( defender );
+		}
+
+		public override bool OnBeforeDeath()
+		{
+			if ( m_Rage == 0 )
+			{
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "The warmth of life has entered my tomb. Prepare yourself, mortal, to serve my master for eternity!" );
+				this.Hits = this.HitsMax;
+				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+				this.PlaySound( 0x202 );
+				
+				SetStr( Str + 100 );
+				SetDex( Dex + 25 );
+				SetDamage( 38, 43 );
+				
+				m_Rage = 1;
+				return false;
+			}
+			else if ( m_Rage == 1 )
+			{
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fear the wrath of Leoric!" );
+				this.Hits = this.HitsMax;
+				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+				this.PlaySound( 0x202 );
+				
+				SetStr( Str + 150 );
+				SetDex( Dex + 35 );
+				SetDamage( 43, 48 );
+				VirtualArmor += 10;
+				
+				m_Rage = 2;
+				return false;
+			}
+			else if ( m_Rage == 2 )
+			{
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "The lord of terror shall feast upon your soul!" );
+				this.Hits = this.HitsMax;
+				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+				this.PlaySound( 0x202 );
+				
+				SetStr( Str + 200 );
+				SetDex( Dex + 50 );
+				SetDamage( 48, 53 );
+				VirtualArmor += 15;				
+				m_Rage = 3;
+				return false;
+			}
+			else 
+			{
+				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
+				this.PlaySound( 0x1FE );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "At last...I'm free..." );
+				Mobile killer = this.LastKiller;
+				if (killer != null && killer.Player && killer.Karma > 0)
+            	{
+            	    int marks = Utility.RandomMinMax(81, 137);
+            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
+            	}
+			}
+			
+			return base.OnBeforeDeath();
+		}
+
+		public override void OnDelete()
+        {
+            CleanupSummons();
+            base.OnDelete();
+        }
+
+        private void CleanupSummons()
+        {
+            for (int i = 0; i < m_Summons.Count; i++)
+            {
+                BaseCreature bc = m_Summons[i];
+
+                if (bc != null && !bc.Deleted)
+                    bc.Delete();
+            }
+            m_Summons.Clear();
+        }
+
+		public override void OnDeath( Container c )
+		{
+			base.OnDeath( c );
+
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
+
+			int amt = Utility.RandomMinMax( 3, 6 );
+			for ( int i = 0; i < amt; i++ )
+			{
+				c.DropItem( new EtherealPowerScroll() );
+			}
+
+			// gold explosion
+		    RichesSystem.SpawnRiches( m_LastTarget, 3 );
+		}
+
+		public override void OnAfterSpawn()
+		{
+			base.OnAfterSpawn();
+			LeechImmune = true;
+		}
+
+		public SkeletonKing( Serial serial ) : base( serial )
+		{
+		}
+
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+			writer.Write( (int) 1 ); // version
+
+			writer.Write( m_Rage );
+			writer.Write( m_NextSummonTime );
+			writer.Write( m_NextSpecialAttack );
+		}
+
+		public override void Deserialize( GenericReader reader )
+		{
+			base.Deserialize( reader );
+			int version = reader.ReadInt();
+
+			if ( version >= 1 )
+			{
+				m_Rage = reader.ReadInt();
+				m_NextSummonTime = reader.ReadDateTime();
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
+
+			LeechImmune = true;
+		}
+	}
+}
