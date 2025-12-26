@@ -355,7 +355,8 @@ namespace Server.Items
 				typeof( SummonedCorpse ), 
 				typeof( SeaZombie ), 
 				typeof( ZombieMage ), 
-				typeof( Zombie ) );
+				typeof( Zombie ) ,
+				typeof( SkeletonKing));
 			undead.Entries = new SlayerEntry[0];
 
 			fey.Opposition = new SlayerGroup[]{ };
