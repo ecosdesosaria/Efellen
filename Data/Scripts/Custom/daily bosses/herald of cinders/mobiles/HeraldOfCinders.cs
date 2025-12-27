@@ -160,31 +160,35 @@ namespace Server.Mobiles
 			{
 				case 1: // flame charge 
 					{
+						BossSpecialAttack.PerformTargettedAoE(
+							this,
+							target,
+							m_Rage,
+							"We are fire eternal!",
+							348,  // hue
+							0,     // physical
+							100,   // fire
+							0,     // cold
+							0,     // poison
+							0      // energy
+						);
+						break;
 						PerformFlameCharge( target );
 						break;
 					}
 
 				case 2: // fire blast
 					{
-						PublicOverheadMessage( MessageType.Regular, 0x21, false, "I shall consume you!" );
-						PlaySound( 0x64F );
-						FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-
-						IPooledEnumerable eable = GetMobilesInRange( 6 );
-						foreach ( Mobile m in eable )
-						{
-							if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-							{
-								DoHarmful( m );
-
-								int damage = Utility.RandomMinMax( 35, 49 );
-								AOS.Damage( m, this, damage, 0, 100, 0, 0, 0 );
-								m.PlaySound( 0x1FB );
-							}
-						}
-						SlamVisuals.SlamVisual(this, 6, 0x36B0, 1160);
-						eable.Free();
-						break;
+						BossSpecialAttack.PerformSlam(
+                   		    boss: this,
+                   		    warcry: "I shall consume you!",
+                   		    hue: 1160,
+                   		    rage: m_Rage,
+                   		    range: 6,
+                   		    physicalDmg: 0,
+							fireDmg: 100
+                   		);
+                   		break;
 					}
 
 				case 3: // magma eruption
@@ -192,105 +196,6 @@ namespace Server.Mobiles
 						PerformMagmaEruption();
 						break;
 					}
-			}
-		}
-
-		private void PerformFlameCharge( Mobile target )
-		{
-			if ( target == null || this.Map == null )
-				return;
-
-			PublicOverheadMessage( MessageType.Regular, 0x21, false, "The dragon prepares to lunge forward!" );
-			PlaySound( 0x15F );
-
-			Timer.DelayCall( TimeSpan.FromSeconds( 2.0 ), delegate()
-			{
-				if ( Deleted || !Alive || target.Deleted )
-					return;
-
-				Direction chargeDir = GetDirectionTo( target );
-				Point3D startLoc = Location;
-				Point3D endLoc = startLoc;
-				List<Mobile> hitMobiles = new List<Mobile>();
-
-				for ( int i = 1; i <= FLAME_CHARGE_DISTANCE; i++ )
-				{
-					int offsetX = 0, offsetY = 0;
-					GetOffset( chargeDir, out offsetX, out offsetY );
-
-					Point3D checkLoc = new Point3D( startLoc.X + (offsetX * i), startLoc.Y + (offsetY * i), startLoc.Z );
-
-					if ( !Map.CanFit( checkLoc, 16, false, false ) )
-						break;
-
-					endLoc = checkLoc;
-
-					IPooledEnumerable eable = Map.GetMobilesInRange( checkLoc, 0 );
-					foreach ( Mobile m in eable )
-					{
-						if ( m != this && m.Alive && CanBeHarmful( m ) && !hitMobiles.Contains( m ) )
-						{
-							hitMobiles.Add( m );
-						}
-					}
-					eable.Free();
-
-					Effects.SendLocationEffect( checkLoc, Map, 0x3728, 10, 10, 2023, 0 );
-				}
-
-				Point3D oldLoc = Location;
-				Location = endLoc;
-				ProcessDelta();
-
-				PlaySound( 0x665 );
-				FixedParticles( 0x3709, 10, 30, 5052, EffectLayer.Waist );
-
-				foreach ( Mobile m in hitMobiles )
-				{
-					if ( m.Deleted || !m.Alive )
-						continue;
-
-					DoHarmful( m );
-
-					int damage = Utility.RandomMinMax( 35, 49 );
-					int physDamage = damage / 2;
-					int fireDamage = damage - physDamage;
-
-					AOS.Damage( m, this, damage, physDamage, fireDamage, 0, 0, 0 );
-
-					m.PlaySound( 0x1FB );
-					m.FixedParticles( 0x3709, 10, 30, 1160, EffectLayer.Waist );
-
-					Direction knockDir = GetDirectionTo( m );
-					int knockX = 0, knockY = 0;
-					GetOffset( knockDir, out knockX, out knockY );
-
-					Point3D knockLoc = new Point3D( m.X + knockX, m.Y + knockY, m.Z );
-
-					if ( Map.CanFit( knockLoc, 16, false, false ) )
-					{
-						m.Location = knockLoc;
-						m.ProcessDelta();
-					}
-				}
-			});
-		}
-
-		private void GetOffset( Direction d, out int xOffset, out int yOffset )
-		{
-			xOffset = 0;
-			yOffset = 0;
-
-			switch ( d & Direction.Mask )
-			{
-				case Direction.North: yOffset = -1; break;
-				case Direction.South: yOffset = 1; break;
-				case Direction.West: xOffset = -1; break;
-				case Direction.East: xOffset = 1; break;
-				case Direction.Right: xOffset = 1; yOffset = -1; break;
-				case Direction.Left: xOffset = -1; yOffset = 1; break;
-				case Direction.Down: xOffset = 1; yOffset = 1; break;
-				case Direction.Up: xOffset = -1; yOffset = -1; break;
 			}
 		}
 
@@ -302,7 +207,7 @@ namespace Server.Mobiles
 			PublicOverheadMessage( MessageType.Regular, 0x21, false, "The ground trembles with fury!" );
 			PlaySound( 0x307 );
 
-			int tileCount = Utility.RandomMinMax( 8, 14 );
+			int tileCount = Utility.RandomMinMax( 12, 22 );
 			List<Point3D> validLocations = new List<Point3D>();
 
 			for ( int attempts = 0; attempts < tileCount * 3 && validLocations.Count < tileCount; attempts++ )

@@ -73,6 +73,8 @@ namespace Server.Mobiles
 			PackReg( Utility.RandomMinMax( 2, 10 ) );
             if ( 0.7 > Utility.RandomDouble() )
 				PackItem( new ArcaneGem() );
+            if ( 0.15 > Utility.RandomDouble() )
+				PackItem( new DraconicKey() );
         }
 
         public virtual int GetRandomHue()
@@ -99,37 +101,6 @@ namespace Server.Mobiles
         {
             AddLoot(LootPack.Rich);
             AddLoot(LootPack.MedScrolls, 2);
-        }
-
-        public override bool OnBeforeDeath()
-        {
-            Mobile killer = this.LastKiller;
-            
-            if (killer != null && Utility.RandomDouble() < 0.15)
-            {
-                bool hasKey = false;
-                
-                if (killer.Backpack != null)
-                {
-                    Item[] items = killer.Backpack.FindItemsByType(typeof(DraconicKey));
-                    if (items != null && items.Length > 0)
-                    {
-                        hasKey = true;
-                    }
-                }
-                
-                if (!hasKey)
-                {
-                    Container pack = this.Backpack;
-                    if (pack != null)
-                    {
-                        DraconicKey key = new DraconicKey();
-                        pack.DropItem(key);
-                    }
-                }
-            }
-
-            return base.OnBeforeDeath();
         }
 
         private static readonly string[] AttackLines = new string[]
