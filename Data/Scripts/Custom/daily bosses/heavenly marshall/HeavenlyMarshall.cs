@@ -14,26 +14,30 @@ using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
 using Server.Custom.DailyBosses.System;
+using Server.Custom.BossSystems;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Heavenly Marshall's Corpse" )]
 	public class HeavenlyMarshall : BaseCreature
 	{
-		private const int MAX_SUMMONS_RAGE_0 = 16;
-		private const int MAX_SUMMONS_RAGE_1 = 14;
-		private const int MAX_SUMMONS_RAGE_2 = 12;
-		private const int MAX_SUMMONS_RAGE_3 = 8;
-		
 		private const int SUMMON_RANGE = 12;
 		
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
 			typeof(GriffonRiding), 
 			typeof(WarGriffon), 
-			typeof(Archangel), 
 			typeof(Angel), 
+			typeof(Archangel), 
 			typeof(EtherealWarriorGeneral) 
+		};
+		
+		private static readonly string[] SummonWarcries = new string[]
+		{
+			"Come forth, comrades!", 
+			"Lets end this menace right now!",
+			"We shall stand against the tyranny of chaos!",
+			"Hosts of heaven, answer my call!"
 		};
 
 		private static readonly List<Type> BossDrops = new List<Type>
@@ -139,7 +143,7 @@ namespace Server.Mobiles
 
 		public override void AggressiveAction(Mobile m, bool criminal)
 		{
-			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
 				return;
 
 		    base.AggressiveAction(m, true);
@@ -147,7 +151,7 @@ namespace Server.Mobiles
 
 		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
 		{
-		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
 		        return false;
 
 		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
@@ -155,7 +159,7 @@ namespace Server.Mobiles
 
 		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
 		{
-		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
 		        return true;
 
 		    return base.CanBeBeneficial(m, message, allowDead);
@@ -170,7 +174,7 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 15 - (m_Rage * 2) );
 			}
 		
 			if (from.Player && from.Kills < 5 && !from.Criminal) 
@@ -199,12 +203,13 @@ namespace Server.Mobiles
                        hue: 0x4D5,
                        rage: m_Rage,
                        range: 6,
+					   physicalDmg:0,
                        energyDmg: 100
                    );
                    break;
 				}
 
-				case 2: //holy fire
+				case 2: //holy cross
 				{
 					BossSpecialAttack.PerformCrossExplosion(
 				       boss: this,
@@ -212,6 +217,7 @@ namespace Server.Mobiles
 				       warcry: "*Burn in the light!*",
 				       hue: 0xb73,
 				       rage: m_Rage,
+					   physicalDmg:0,
 				       fireDmg: 100
 				   );
 				   break;
@@ -288,188 +294,48 @@ namespace Server.Mobiles
 			reflect = ( Utility.Random(100) < chance );
 		}
 
-		private int CountSummons()
-		{
-			int count = 0;
-			IPooledEnumerable eable = GetMobilesInRange( SUMMON_RANGE );
-			
-			foreach ( Mobile m in eable )
-			{
-				Type mobileType = m.GetType();
-				foreach ( Type summonType in SummonTypes )
-				{
-					if ( mobileType == summonType )
-					{
-						count++;
-						break;
-					}
-				}
-			}
-			
-			eable.Free();
-			return count;
-		}
-
 		private int GetMaxSummons()
 		{
 			switch( m_Rage )
 			{
-				case 0: return MAX_SUMMONS_RAGE_0;
-				case 1: return MAX_SUMMONS_RAGE_1;
-				case 2: return MAX_SUMMONS_RAGE_2;
-				case 3: return MAX_SUMMONS_RAGE_3;
-				default: return 8;
+				case 0: return 12;
+				case 1: return 10;
+				case 2: return 8;
+				case 3: return 6;
+				default: return 12;
 			}
-		}
-
-		private void SpawnCreature( Mobile target )
-		{
-			Map map = this.Map;
-			if ( map == null || target == null || target.Deleted )
-				return;
-
-			if ( DateTime.UtcNow < m_NextSummonTime )
-				return;
-
-			int currentSummons = CountSummons();
-			int maxSummons = GetMaxSummons();
-
-			if ( currentSummons >= maxSummons )
-				return;
-
-			PlaySound( 0x216 );
-
-			int newSummons;
-			string song;
-			
-			switch( m_Rage )
-			{
-				case 0: 
-					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Come forth, comrades!"; 
-					break;
-				case 1: 
-					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Lets end this menace right now!"; 
-					break;
-				case 2: 
-					newSummons = Utility.RandomMinMax( 3, 6 ); 
-					song = "We shall stand against injustice!"; 
-					break;
-				case 3: 
-					newSummons = Utility.RandomMinMax( 2, 4 );
-					song = "Hosts of heaven, answer my call!"; 
-					break;
-				default:
-					newSummons = 2;
-					song = "";
-					break;
-			}
-			PublicOverheadMessage( MessageType.Regular, 0x21, false, song );
-		
-			for ( int i = 0; i < newSummons; ++i )
-			{
-				BaseCreature monster = CreateMonster();
-				if ( monster == null )
-					continue;
-
-				monster.Team = this.Team;
-				Point3D loc = GetSpawnLocation( map );
-
-				monster.IsTempEnemy = true;
-				monster.MoveToWorld( loc, map );
-				monster.Combatant = target;
-                RegisterSummon(monster);
-			}
-
-			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 18.0 - (m_Rage * 0.5) );
-		}
-
-        public void RegisterSummon(BaseCreature bc)
-        {
-            if (bc == null)
-                return;
-
-            m_Summons.Add(bc);
-
-            Timer.DelayCall(TimeSpan.FromMinutes(1), delegate()
-            {
-                if (bc != null && !bc.Deleted && bc.Alive)
-                    bc.Delete();
-            });
-        }
-
-
-		private BaseCreature CreateMonster()
-		{
-			int rand = Utility.Random( 100 );
-
-			switch ( m_Rage )
-			{
-				case 0:
-					return new GriffonRiding();
-				case 1:
-					if ( rand < 45 )
-						return new GriffonRiding();
-					else
-						return new WarGriffon();
-				case 2:
-					if ( rand < 10 )
-						return new Angel();
-					else if ( rand < 25 )
-						return new EtherealWarrior();
-					else
-						return new WarGriffon();
-
-				case 3:
-					if ( rand < 20 )
-						return new Archangel();
-					else if ( rand < 45 )
-						return new Angel();
-					else
-						return new EtherealWarriorGeneral();
-
-				default:
-					return new GriffonRiding();
-			}
-		}
-
-		private Point3D GetSpawnLocation( Map map )
-		{
-			for ( int j = 0; j < 20; ++j )
-			{
-				int x = X + Utility.Random( 13 ) - 6;
-				int y = Y + Utility.Random( 13 ) - 6;
-				int z = map.GetAverageZ( x, y );
-
-				if ( map.CanFit( x, y, this.Z, 16, false, false ) )
-					return new Point3D( x, y, Z );
-				else if ( map.CanFit( x, y, z, 16, false, false ) )
-					return new Point3D( x, y, z );
-			}
-
-			return this.Location;
-		}
-
-		private void TrySummonCreature( Mobile target )
-		{
-			if ( target == null || target.Deleted )
-				return;
-
-			double[] chances = { 0.10, 0.20, 0.33, 0.50 };
-
-			if ( m_Rage >= 0 && m_Rage < chances.Length && chances[m_Rage] >= Utility.RandomDouble() )
-				SpawnCreature( target );
 		}
 
 		public override void OnGotMeleeAttack( Mobile attacker )
 		{
-			TrySummonCreature( attacker );
+			BossSummonSystem.TrySummonCreature(
+				this,//boss
+				attacker,//target
+				SummonTypes,//creature list
+				m_Rage,// current rage
+				ref m_NextSummonTime,//next available summon
+				SummonWarcries,//warcries per rage
+				m_Summons,//current active summons
+				0x0672,// effect hue
+				GetMaxSummons(),//summon limit
+				40// cooldown
+			);
 		}
 
 		public override void OnGaveMeleeAttack( Mobile defender )
 		{
-			TrySummonCreature( defender );
+			BossSummonSystem.TrySummonCreature(
+				this,//boss
+				defender,//target
+				SummonTypes,//creature list
+				m_Rage,// current rage
+				ref m_NextSummonTime,//next available summon
+				SummonWarcries,//warcries per rage
+				m_Summons,//current active summons
+				0x0672,// effect hue
+				GetMaxSummons(),//summon limit
+				40// cooldown
+			);
 		}
 
 		public override bool OnBeforeDeath()
@@ -481,9 +347,9 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 40 );
+				SetStr( Str + 30 );
 				SetDamage( 28, 34 );
-				
+				VirtualArmor += 10;	
 				m_Rage = 1;
 				return false;
 			}
@@ -494,9 +360,9 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 80 );
-				SetDex( Dex + 15 );
-				SetDamage( 33, 44 );
+				SetStr( Str + 60 );
+				SetDex( Dex + 25 );
+				SetDamage( 33, 39 );
 				VirtualArmor += 10;
 				
 				m_Rage = 2;
@@ -509,10 +375,10 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 125 );
+				SetStr( Str + 120 );
 				SetDex( Dex + 50 );
-				SetDamage( 40, 55 );
-				VirtualArmor += 15;	
+				SetDamage( 38, 44 );
+				VirtualArmor += 10;	
 				m_Rage = 3;
 				return false;
 			}
@@ -605,6 +471,9 @@ namespace Server.Mobiles
 			}
 
 			LeechImmune = true;
+			// Initialize summons list if null
+			if (m_Summons == null)
+				m_Summons = new List<BaseCreature>();
 		}
 	}
 }

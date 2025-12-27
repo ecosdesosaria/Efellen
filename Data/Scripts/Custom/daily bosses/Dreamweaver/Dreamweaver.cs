@@ -15,24 +15,26 @@ using Server.EffectsUtil;
 using Server.Custom;
 using Server.Custom.BeholderSpecials;
 using Server.Custom.DailyBosses.System;
+using Server.Custom.BossSystems;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Dreamweaver's Corpse" )]
 	public class Dreamweaver : BaseCreature
-	{
-		private const int MAX_SUMMONS_RAGE_0 = 8;
-		private const int MAX_SUMMONS_RAGE_1 = 6;
-		private const int MAX_SUMMONS_RAGE_2 = 4;
-		private const int MAX_SUMMONS_RAGE_3 = 3;
-		
-		private const int SUMMON_RANGE = 12;
-		
+	{		
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
 			typeof(Gazer), 
 			typeof(ElderGazer), 
 			typeof(Beholder) 
+		};
+
+		private static readonly string[] SummonWarcries = new string[]
+		{
+			"*Focuses its alien eyes*",
+			"*Intently focuses its alien eyes*",
+			"*Diabolically focuses its alien eyes*",
+			"*Stares maniacally into the void*"
 		};
 
 		private static readonly List<Type> BossDrops = new List<Type>
@@ -68,7 +70,7 @@ namespace Server.Mobiles
 			SetInt( 506, 605 );
 
 			SetHits( 11000 );
-			SetDamage( 23, 34 );
+			SetDamage( 20, 25 );
 
 			SetDamageType( ResistanceType.Energy, 100 );
 			SetResistance( ResistanceType.Physical, 50 );
@@ -86,7 +88,7 @@ namespace Server.Mobiles
 			Fame = 30000;
 			Karma = 30000;
 
-			VirtualArmor = 60;
+			VirtualArmor = 50;
 
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
@@ -116,7 +118,7 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 18 - (m_Rage * 2) );
 			}
 
             if ( DateTime.UtcNow >= m_NextSpecialBeholderAttack && from != null && from.Alive && !willKill )
@@ -124,7 +126,7 @@ namespace Server.Mobiles
 				if ( Utility.RandomDouble() < 0.50 )
 				{
 					TriggerEyestalkAttack( from );
-					m_NextSpecialBeholderAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );
+					m_NextSpecialBeholderAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 33 );
 				}
 			}
 			
@@ -154,7 +156,7 @@ namespace Server.Mobiles
 					BossSpecialAttack.PerformSlam(
                        boss: this,
                        warcry: "*Stares fiercely in all directions*",
-                       hue: 0x96,
+                       hue: 0x36B0,
                        rage: m_Rage,
                        range: 6,
 					   physicalDmg:0,
@@ -181,9 +183,9 @@ namespace Server.Mobiles
 					foreach ( Mobile m in targets )
 					{
 						DoHarmful( m );
-						int staminaDrain = Utility.RandomMinMax( 45, 65 );
+						int staminaDrain = Utility.RandomMinMax( 35, 55 );
 						m.Stam -= staminaDrain;
-						int damage = Utility.RandomMinMax( staminaDrain/2, staminaDrain*2 );
+						int damage = Utility.RandomMinMax( staminaDrain/2, staminaDrain ) + m_Rage*3;
 						AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
 						m.FixedParticles( 0x374A, 10, 15, 5013, 0x81b, 0, EffectLayer.Waist );
 						m.PlaySound( 0x1FB );
@@ -244,7 +246,7 @@ namespace Server.Mobiles
                             victim.MoveToWorld(newLoc, victim.Map);
         	        		victim.PlaySound(0x204);
                             DoHarmful( victim );
-							int damage = Utility.RandomMinMax( 21, 32 );
+							int damage = Utility.RandomMinMax( 41, 52 ) + m_Rage * 3;
 							AOS.Damage( victim, this, damage, 0, 0, 0, 0, 100 );
 							victim.PlaySound( 0x1FB );
 							victim.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( victim ) * 1.5 ) );
@@ -270,186 +272,48 @@ namespace Server.Mobiles
 			reflect = ( Utility.Random(100) < chance );
 		}
 
-		private int CountSummons()
-		{
-			m_Summons.RemoveAll(s => s == null || s.Deleted || !s.Alive);
-			
-			int count = 0;
-			IPooledEnumerable eable = GetMobilesInRange( SUMMON_RANGE );
-			
-			foreach ( Mobile m in eable )
-			{
-				if (m == null || m.Deleted)
-					continue;
-					
-				Type mobileType = m.GetType();
-				foreach ( Type summonType in SummonTypes )
-				{
-					if ( mobileType == summonType )
-					{
-						count++;
-						break;
-					}
-				}
-			}
-			
-			eable.Free();
-			return count;
-		}
-
 		private int GetMaxSummons()
 		{
 			switch( m_Rage )
 			{
-				case 0: return MAX_SUMMONS_RAGE_0;
-				case 1: return MAX_SUMMONS_RAGE_1;
-				case 2: return MAX_SUMMONS_RAGE_2;
-				case 3: return MAX_SUMMONS_RAGE_3;
-				default: return 8;
+				case 0: return 6;
+				case 1: return 4;
+				case 2: return 3;
+				case 3: return 2;
+				default: return 6;
 			}
-		}
-
-		private void SpawnCreature( Mobile target )
-		{
-			Map map = this.Map;
-			if ( map == null || target == null || target.Deleted )
-				return;
-
-			if ( DateTime.UtcNow < m_NextSummonTime )
-				return;
-
-			int currentSummons = CountSummons();
-			int maxSummons = GetMaxSummons();
-
-			if ( currentSummons >= maxSummons )
-				return;
-
-			PlaySound( 0x216 );
-
-			int newSummons;
-			string song;
-			
-			switch( m_Rage )
-			{
-				case 0: 
-					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "*Focuses its alien eyes*"; 
-					break;
-				case 1: 
-					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "*Intently focuses its alien eyes*"; 
-					break;
-				case 2: 
-					newSummons = Utility.RandomMinMax( 3, 6 ); 
-					song = "*Diabolically focuses its alien eyes*"; 
-					break;
-				case 3: 
-					newSummons = Utility.RandomMinMax( 2, 4 );
-					song = "*Stares maniacally into the void*"; 
-					break;
-				default:
-					newSummons = 2;
-					song = "";
-					break;
-			}
-			PublicOverheadMessage( MessageType.Regular, 0x21, false, song );
-		
-			for ( int i = 0; i < newSummons; ++i )
-			{
-				BaseCreature monster = CreateMonster();
-				if ( monster == null )
-					continue;
-
-				monster.Team = this.Team;
-				Point3D loc = GetSpawnLocation( map );
-
-				monster.IsTempEnemy = true;
-				monster.MoveToWorld( loc, map );
-				monster.Combatant = target;
-                RegisterSummon(monster);
-			}
-			// Dreamweaver's summons take longer because beholders are nasty
-			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 48.0 - (m_Rage * 0.5) );
-		}
-
-		public void RegisterSummon(BaseCreature bc)
-        {
-            if (bc == null)
-                return;
-
-            m_Summons.Add(bc);
-
-            Timer.DelayCall(TimeSpan.FromMinutes(1), delegate()
-            {
-                if (bc != null && !bc.Deleted && bc.Alive)
-                {
-					bc.Delete();
-					m_Summons.Remove(bc);
-				}
-            });
-        }
-
-		private BaseCreature CreateMonster()
-		{
-			int rand = Utility.Random( 100 );
-
-			switch ( m_Rage )
-			{
-				case 0:
-					return new Gazer();
-				case 1:
-					if ( rand < 35 )
-						return new ElderGazer();
-					else
-						return new Gazer();
-				case 2:
-					if ( rand < 35 )
-						return new Beholder();
-					else
-						return new ElderGazer();
-				case 3:
-					return new Beholder();
-				default:
-					return new Gazer();
-			}
-		}
-
-		private Point3D GetSpawnLocation( Map map )
-		{
-			for ( int j = 0; j < 20; ++j )
-			{
-				int x = X + Utility.Random( 13 ) - 6;
-				int y = Y + Utility.Random( 13 ) - 6;
-				int z = map.GetAverageZ( x, y );
-
-				if ( map.CanFit( x, y, this.Z, 16, false, false ) )
-					return new Point3D( x, y, Z );
-				else if ( map.CanFit( x, y, z, 16, false, false ) )
-					return new Point3D( x, y, z );
-			}
-
-			return this.Location;
-		}
-
-		private void TrySummonCreature( Mobile target )
-		{
-			if ( target == null || target.Deleted )
-				return;
-
-			double[] chances = { 0.10, 0.20, 0.33, 0.50 };
-
-			if ( m_Rage >= 0 && m_Rage < chances.Length && chances[m_Rage] >= Utility.RandomDouble() )
-				SpawnCreature( target );
 		}
 
 		public override void OnGotMeleeAttack( Mobile attacker )
 		{
-			TrySummonCreature( attacker );
+			BossSummonSystem.TrySummonCreature(
+				this,//boss
+				attacker,//target
+				SummonTypes,//creature list
+				m_Rage,// current rage
+				ref m_NextSummonTime,//next available summon
+				SummonWarcries,//warcries per rage
+				m_Summons,//current active summons
+				0x96,// effect hue
+				GetMaxSummons(),//summon limit
+				60// cooldown
+			);
 		}
 
 		public override void OnGaveMeleeAttack( Mobile defender )
 		{
-			TrySummonCreature( defender );
+			BossSummonSystem.TrySummonCreature(
+				this,
+				defender,
+				SummonTypes,
+				m_Rage,
+				ref m_NextSummonTime,
+				SummonWarcries,
+				m_Summons,
+				0x96,
+				GetMaxSummons(),
+				60
+			);
 
             if ( DateTime.UtcNow >= m_NextSpecialBeholderAttack && defender != null && defender.Alive )
 			{
@@ -471,7 +335,7 @@ namespace Server.Mobiles
 				this.PlaySound( 0x202 );
 				SetStr( Str + 30 );
 				SetDamage( 25, 30 );
-				
+				VirtualArmor += 5;
 				m_Rage = 1;
 				return false;
 			}
@@ -483,8 +347,8 @@ namespace Server.Mobiles
 				this.PlaySound( 0x202 );
 				
 				SetStr( Str + 60 );
-				SetDex( Dex + 10 );
-				SetDamage( 29, 39 );
+				SetDex( Dex + 20 );
+				SetDamage( 30, 35 );
 				VirtualArmor += 10;
 				m_Rage = 2;
 				return false;
@@ -498,7 +362,7 @@ namespace Server.Mobiles
 				
 				SetStr( Str + 90 );
 				SetDex( Dex + 40 );
-				SetDamage( 36, 49 );
+				SetDamage( 35, 40 );
 				VirtualArmor += 15;
 				m_Rage = 3;
 				return false;
@@ -521,20 +385,8 @@ namespace Server.Mobiles
 
 		public override void OnDelete()
         {
-            CleanupSummons();
+            BossSummonSystem.CleanupSummons(m_Summons);
             base.OnDelete();
-        }
-
-        private void CleanupSummons()
-        {
-            for (int i = m_Summons.Count - 1; i >= 0; i--)
-            {
-                BaseCreature bc = m_Summons[i];
-
-                if (bc != null && !bc.Deleted)
-                    bc.Delete();
-            }
-            m_Summons.Clear();
         }
 
 		public override void OnDeath( Container c )
@@ -679,6 +531,7 @@ namespace Server.Mobiles
 
 			LeechImmune = true;
 			
+			// Initialize summons list if null
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
 		}

@@ -63,7 +63,7 @@ namespace Server.Mobiles
 			Fame = 13000;
 			Karma = 15000;
 
-			VirtualArmor = 25;
+			VirtualArmor = 20;
 		}
 
 		public override void GenerateLoot()
@@ -99,7 +99,7 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 20.6 - (m_Rage * 1.5) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 1.5) );
 			}
 
 			base.OnDamage( amount, from, willKill );

@@ -13,38 +13,30 @@ using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
 using Server.Custom.DailyBosses.System;
+using Server.Custom.BossSystems;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Herald of Fire's Corpse" )]
 	public class HeraldOfCinders : BaseCreature
 	{
-		private const int MAX_SUMMONS_RAGE_0 = 16;
-		private const int MAX_SUMMONS_RAGE_1 = 14;
-		private const int MAX_SUMMONS_RAGE_2 = 12;
-		private const int MAX_SUMMONS_RAGE_3 = 8;
-		
-		private const int SUMMON_RANGE = 12;
-		private const int FLAME_CHARGE_DISTANCE = 8;
 		private const int MAGMA_DURATION = 12;
 		
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
 			typeof(BabyDragon), 
 			typeof(YoungDragon), 
-			typeof(AncientDrake), 
+			typeof(Drake), 
 			typeof(Wyrm), 
-			typeof(Drake) 
+			typeof(AncientDrake) 
 		};
 
-		private static readonly Type[] ImmuneToMagmaTypes = new Type[]
+		private static readonly string[] SummonWarcries = new string[]
 		{
-			typeof(BabyDragon),
-			typeof(YoungDragon),
-			typeof(AncientDrake),
-			typeof(Wyrm),
-			typeof(Drake),
-			typeof(HeraldOfCinders)
+			"Feed the wyrmlings!",
+			"Come, children, it's time to feast!",
+			"Thou shall not leave my lair unscathed! Come forth, my spawn!",
+			"Spawn of Ashardalon, Awaken!"
 		};
 
 		private static readonly List<Type> BossDrops = new List<Type>
@@ -56,6 +48,16 @@ namespace Server.Mobiles
 			typeof(Artifact_CinderForgedBreastplate),
 			typeof(Artifact_CinderForgedMaul)
     	};
+
+		private static readonly Type[] ImmuneToMagmaTypes = new Type[]
+		{
+			typeof(BabyDragon),
+			typeof(YoungDragon),
+			typeof(Drake),
+			typeof(Wyrm),
+			typeof(AncientDrake),
+			typeof(HeraldOfCinders)
+		};
 
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
@@ -143,7 +145,7 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 15 - (m_Rage * 2) );
 			}
 			
 			base.OnDamage( amount, from, willKill );
@@ -285,148 +287,18 @@ namespace Server.Mobiles
 			reflect = ( Utility.Random(100) < chance );
 		}
 
-		private int CountSummons()
-		{
-			int count = 0;
-			IPooledEnumerable eable = GetMobilesInRange( SUMMON_RANGE );
-			
-			foreach ( Mobile m in eable )
-			{
-				Type mobileType = m.GetType();
-				foreach ( Type summonType in SummonTypes )
-				{
-					if ( mobileType == summonType )
-					{
-						count++;
-						break;
-					}
-				}
-			}
-			
-			eable.Free();
-			return count;
-		}
-
 		private int GetMaxSummons()
 		{
 			switch( m_Rage )
 			{
-				case 0: return MAX_SUMMONS_RAGE_0;
-				case 1: return MAX_SUMMONS_RAGE_1;
-				case 2: return MAX_SUMMONS_RAGE_2;
-				case 3: return MAX_SUMMONS_RAGE_3;
-				default: return 8;
+				case 0: return 12;
+				case 1: return 10;
+				case 2: return 8;
+				case 3: return 6;
+				default: return 12;
 			}
 		}
-
-		private void SpawnCreature( Mobile target )
-		{
-			Map map = this.Map;
-			if ( map == null || target == null || target.Deleted )
-				return;
-
-			if ( DateTime.UtcNow < m_NextSummonTime )
-				return;
-
-			int currentSummons = CountSummons();
-			int maxSummons = GetMaxSummons();
-
-			if ( currentSummons >= maxSummons )
-				return;
-
-			PlaySound( 0x216 );
-
-			int newSummons;
-			string song;
-			
-			switch( m_Rage )
-			{
-				case 0: 
-					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Feed the wyrmlings!"; 
-					break;
-				case 1: 
-					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Come, children, it's time to feast!"; 
-					break;
-				case 2: 
-					newSummons = Utility.RandomMinMax( 3, 6 ); 
-					song = "Thou shall not leave my lair unscathed! Come forth, my spawn!"; 
-					break;
-				case 3: 
-					newSummons = Utility.RandomMinMax( 2, 4 );
-					song = "Spawn of Ashardalon, Awaken!"; 
-					break;
-				default:
-					newSummons = 2;
-					song = "";
-					break;
-			}
-			PublicOverheadMessage( MessageType.Regular, 0x21, false, song );
 		
-			for ( int i = 0; i < newSummons; ++i )
-			{
-				BaseCreature monster = CreateMonster();
-				if ( monster == null )
-					continue;
-
-				monster.Team = this.Team;
-				Point3D loc = GetSpawnLocation( map );
-
-				monster.IsTempEnemy = true;
-				monster.MoveToWorld( loc, map );
-				monster.Combatant = target;
-			}
-
-			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 6.0 - (m_Rage * 0.5) );
-		}
-
-		public void RegisterSummon(BaseCreature bc)
-		{
-			if (bc == null)
-				return;
-
-			m_Summons.Add(bc);
-
-			Timer.DelayCall(TimeSpan.FromMinutes(1), delegate()
-			{
-				if (bc != null && !bc.Deleted && bc.Alive)
-					bc.Delete();
-			});
-		}
-
-		private BaseCreature CreateMonster()
-		{
-			int rand = Utility.Random( 100 );
-
-			switch ( m_Rage )
-			{
-				case 0:
-					return new BabyDragon();
-				case 1:
-					if ( rand < 35 )
-						return new YoungDragon();
-					else
-						return new BabyDragon();
-				case 2:
-					if ( rand < 20 )
-						return new Wyrm();
-					else if ( rand < 45 )
-						return new Drake();
-					else
-						return new YoungDragon();
-				case 3:
-					if ( rand < 20 )
-						return new AncientDrake();
-					else if ( rand < 35 )
-						return new Wyrm();
-					else
-						return new Drake();
-				default:
-					return new BabyDragon();
-			}
-		}
-
 		private Point3D GetSpawnLocation( Map map )
 		{
 			for ( int j = 0; j < 20; ++j )
@@ -444,27 +316,36 @@ namespace Server.Mobiles
 			return this.Location;
 		}
 
-		private void TrySummonCreature( Mobile target )
-		{
-			if ( target == null || target.Deleted )
-				return;
-
-			double[] chances = { 0.10, 0.20, 0.33, 0.50 };
-
-			if ( m_Rage >= 0 && m_Rage < chances.Length && chances[m_Rage] >= Utility.RandomDouble() )
-				SpawnCreature( target );
-		}
-
 		public override void OnGotMeleeAttack( Mobile attacker )
 		{
-			TrySummonCreature( attacker );
-			base.OnGotMeleeAttack( attacker );
+			BossSummonSystem.TrySummonCreature(
+				this,//boss
+				attacker,//target
+				SummonTypes,//creature list
+				m_Rage,// current rage
+				ref m_NextSummonTime,//next available summon
+				SummonWarcries,//warcries per rage
+				m_Summons,//current active summons
+				0x81b,// effect hue
+				GetMaxSummons(),//summon limit
+				40// cooldown
+			);
 		}
 
 		public override void OnGaveMeleeAttack( Mobile defender )
 		{
-			TrySummonCreature( defender );
-			base.OnGaveMeleeAttack( defender );
+			BossSummonSystem.TrySummonCreature(
+				this,//boss
+				defender,//target
+				SummonTypes,//creature list
+				m_Rage,// current rage
+				ref m_NextSummonTime,//next available summon
+				SummonWarcries,//warcries per rage
+				m_Summons,//current active summons
+				0x81b,// effect hue
+				GetMaxSummons(),//summon limit
+				40// cooldown
+			);
 		}
 
 		public void IncreaseRage(int rage)
@@ -475,7 +356,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 40 );
+				SetStr( Str + 30 );
 				SetDamage( 28, 34 );
 				m_Rage = 1;
 				return;
@@ -486,9 +367,9 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 80 );
-				SetDex( Dex + 15 );
-				SetDamage( 33, 44 );
+				SetStr( Str + 60 );
+				SetDex( Dex + 25 );
+				SetDamage( 33, 39 );
 				VirtualArmor += 10;
 				m_Rage = 2;
 				return;
@@ -499,10 +380,10 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 125 );
+				SetStr( Str + 120 );
 				SetDex( Dex + 50 );
-				SetDamage( 40, 55 );
-				VirtualArmor += 15;             
+				SetDamage( 38, 44 );
+				VirtualArmor += 10;             
 				m_Rage = 3;
 				return;
 			}
@@ -612,6 +493,9 @@ namespace Server.Mobiles
 			}
 
 			LeechImmune = true;
+			// Initialize summons list if null
+			if (m_Summons == null)
+				m_Summons = new List<BaseCreature>();
 		}
 	}
 }

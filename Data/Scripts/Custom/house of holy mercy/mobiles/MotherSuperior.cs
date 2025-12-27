@@ -13,6 +13,7 @@ using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
@@ -63,14 +64,19 @@ namespace Server.Mobiles
 			SetSkill( SkillName.MagicResist, 75.5, 125.0 );
 			SetSkill( SkillName.Tactics, 81.0, 95.0 );
 			SetSkill( SkillName.FistFighting, 101.0, 115.0 );
+			SetSkill( SkillName.Bludgeoning, 101.0, 115.0 );
 
 			Fame = 13000;
 			Karma = 15000;
 
-			VirtualArmor = 25;
+			VirtualArmor = 20;
             AddItem( new NunRobe( ) );
 			AddItem( new LightCitizen( true ) );
-
+			AddItem(new WarMace { Hue = 0x9C2 });
+		    AddItem(new ChainChest { Hue = 0x9C2 });
+		    AddItem(new ChainSkirt { Hue = 0x9C2 });
+		    AddItem(new ChainCoif { Hue = 0x9C2 });
+		    AddItem(new Cloak { Hue = 0x9C2 });
 		}
 
 		public override void GenerateLoot()
@@ -172,7 +178,7 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 20.6 - (m_Rage * 1.5) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
 			}
 
 			if (from.Player && from.Kills < 5 && !from.Criminal) 
@@ -193,44 +199,34 @@ namespace Server.Mobiles
 			{
 				case 1: // holy smite
 				{
-					
-					if (target == null || target.Deleted || !target.Alive)
-	                	return;
-
-                	if (!CanBeHarmful(target))
-	                	return;
-
-                	PublicOverheadMessage(MessageType.Regular, 0x21, false, "By divine will, be judged!");
-	                PlaySound(0x29);
-	                FixedParticles(0x37C4, 10, 30, 5052, EffectLayer.Head);
-                    DoHarmful(target);
-                    int min = 10 + (m_Rage * 5);
-	                int max = 15 + (m_Rage * 10);
-	                int damage = Utility.RandomMinMax(min, max);
-	                target.BoltEffect(0);
-	                target.PlaySound(0x1FB);
-	                AOS.Damage(target, this, damage, 0, 0, 0, 0, 100);
-                    break;
+					BossSpecialAttack.PerformSmite(
+						this,
+						target,
+						m_Rage,
+						"*I shall smite you down!*",
+						0x9C2,  // hue
+						0,     // physical
+						50,   // fire
+						0,     // cold
+						0,     // poison
+						50      // energy
+					);
+					break;
 				}
-
 				case 2:  // cleansing burst = a nova of fire damage
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "Heavens protect us!" );
-					PlaySound( 0x64F );
-					FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-					IPooledEnumerable eable = GetMobilesInRange( 6 );
-					foreach ( Mobile m in eable )
-					{
-						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-						{
-							DoHarmful( m );
-							int damage = Utility.RandomMinMax( 11, 22 );
-							AOS.Damage( m, this, damage, 0, 100, 0, 0, 0 );
-							SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x9C2);
-							m.PlaySound( 0x1FB );
-                    	}
-					}
-					eable.Free();
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						m_Rage,
+						"*Heavens protect us!*",
+						0x9C2,  // hue
+						0,     // physical
+						50,   // fire
+						0,     // cold
+						0,     // poison
+						50      // energy
+					);
 					break;
 				}
 			}

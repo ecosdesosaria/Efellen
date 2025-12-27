@@ -12,19 +12,13 @@ using Server.Commands.Generic;
 using Server.EffectsUtil;
 using Server.Custom;
 using Server.Custom.DailyBosses.System;
+using Server.Custom.BossSystems;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Skeleton King's Corpse" )]
 	public class SkeletonKing : BaseCreature
 	{
-		private const int MAX_SUMMONS_RAGE_0 = 8;
-		private const int MAX_SUMMONS_RAGE_1 = 4;
-		private const int MAX_SUMMONS_RAGE_2 = 2;
-		private const int MAX_SUMMONS_RAGE_3 = 2;
-		
-		private const int SUMMON_RANGE = 12;
-		
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
 			typeof(SkeletonArcher),
@@ -32,6 +26,14 @@ namespace Server.Mobiles
 			typeof(BoneKnight), 
 			typeof(Mummy), 
 			typeof(MummyLord) 
+		};
+
+		private static readonly string[] SummonWarcries = new string[]
+		{
+			"Your bones shall join my armies!",
+			"Soon you will be amongst my subjects!",
+			"We will feast on your flesh!",
+			"The royal army shall see to your end!"
 		};
 		
 		private static readonly List<Type> BossDrops = new List<Type>
@@ -82,7 +84,7 @@ namespace Server.Mobiles
 			Fame = 25000;
 			Karma = -25000;
 
-			VirtualArmor = 50;
+			VirtualArmor = 40;
 
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
@@ -110,9 +112,8 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 12.6 - (m_Rage * 1.5) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 21 - (m_Rage * 2) );
 			}
-			
 			base.OnDamage( amount, from, willKill );
 		}
 
@@ -172,184 +173,48 @@ namespace Server.Mobiles
 			reflect = ( Utility.Random(100) < chance );
 		}
 
-		private int CountSummons()
-		{
-			int count = 0;
-			IPooledEnumerable eable = GetMobilesInRange( SUMMON_RANGE );
-			
-			foreach ( Mobile m in eable )
-			{
-				Type mobileType = m.GetType();
-				foreach ( Type summonType in SummonTypes )
-				{
-					if ( mobileType == summonType )
-					{
-						count++;
-						break;
-					}
-				}
-			}
-			
-			eable.Free();
-			return count;
-		}
-
 		private int GetMaxSummons()
 		{
 			switch( m_Rage )
 			{
-				case 0: return MAX_SUMMONS_RAGE_0;
-				case 1: return MAX_SUMMONS_RAGE_1;
-				case 2: return MAX_SUMMONS_RAGE_2;
-				case 3: return MAX_SUMMONS_RAGE_3;
+				case 0: return 8;
+				case 1: return 4;
+				case 2: return 3;
+				case 3: return 2;
 				default: return 8;
 			}
 		}
-
-		private void SpawnCreature( Mobile target )
-		{
-			Map map = this.Map;
-			if ( map == null || target == null || target.Deleted )
-				return;
-
-			if ( DateTime.UtcNow < m_NextSummonTime )
-				return;
-
-			int currentSummons = CountSummons();
-			int maxSummons = GetMaxSummons();
-
-			if ( currentSummons >= maxSummons )
-				return;
-
-			PlaySound( 0x216 );
-
-			int newSummons;
-			string song;
-			
-			switch( m_Rage )
-			{
-				case 0: 
-					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Your bones shall join my armies!"; 
-					break;
-				case 1: 
-					newSummons = Utility.RandomMinMax( 4, 8 ); 
-					song = "Soon you will be amongst my subjects!"; 
-					break;
-				case 2: 
-					newSummons = Utility.RandomMinMax( 3, 6 ); 
-					song = "We will feast on your flesh!"; 
-					break;
-				case 3: 
-					newSummons = Utility.RandomMinMax( 2, 4 );
-					song = "The royal army shall see to your end!"; 
-					break;
-				default:
-					newSummons = 2;
-					song = "";
-					break;
-			}
-			PublicOverheadMessage( MessageType.Regular, 0x21, false, song );
 		
-			for ( int i = 0; i < newSummons; ++i )
-			{
-				BaseCreature monster = CreateMonster();
-				if ( monster == null )
-					continue;
-
-				monster.Team = this.Team;
-				Point3D loc = GetSpawnLocation( map );
-
-				monster.IsTempEnemy = true;
-				monster.MoveToWorld( loc, map );
-				monster.Combatant = target;
-				RegisterSummon(monster);
-			}
-
-			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 18.0 - (m_Rage * 0.5) );
-		}
-
-		public void RegisterSummon(BaseCreature bc)
-        {
-            if (bc == null)
-                return;
-
-            m_Summons.Add(bc);
-
-            Timer.DelayCall(TimeSpan.FromMinutes(1), delegate()
-            {
-                if (bc != null && !bc.Deleted && bc.Alive)
-                    bc.Delete();
-            });
-        }
-
-		private BaseCreature CreateMonster()
-		{
-			int rand = Utility.Random( 100 );
-
-			switch ( m_Rage )
-			{
-				case 0:
-					return new SkeletonArcher();
-					
-				case 1:
-					if ( rand < 55 )
-						return new BoneMagi();
-					else
-						return new SkeletonArcher();
-				case 2:
-					if ( rand < 55 )
-						return new BoneMagi();
-					else
-						return new BoneKnight();
-				case 3:
-					if ( rand < 20 )
-						return new Mummy();
-					else if ( rand < 45 )
-						return new BoneKnight();
-					else
-						return new MummyLord();
-				default:
-					return new SkeletonArcher();
-			}
-		}
-
-		private Point3D GetSpawnLocation( Map map )
-		{
-			for ( int j = 0; j < 20; ++j )
-			{
-				int x = X + Utility.Random( 13 ) - 6;
-				int y = Y + Utility.Random( 13 ) - 6;
-				int z = map.GetAverageZ( x, y );
-
-				if ( map.CanFit( x, y, this.Z, 16, false, false ) )
-					return new Point3D( x, y, Z );
-				else if ( map.CanFit( x, y, z, 16, false, false ) )
-					return new Point3D( x, y, z );
-			}
-
-			return this.Location;
-		}
-
-		private void TrySummonCreature( Mobile target )
-		{
-			if ( target == null || target.Deleted )
-				return;
-
-			double[] chances = { 0.10, 0.20, 0.33, 0.50 };
-
-			if ( m_Rage >= 0 && m_Rage < chances.Length && chances[m_Rage] >= Utility.RandomDouble() )
-				SpawnCreature( target );
-		}
-
 		public override void OnGotMeleeAttack( Mobile attacker )
 		{
-			TrySummonCreature( attacker );
+			BossSummonSystem.TrySummonCreature(
+				this,//boss
+				attacker,//target
+				SummonTypes,//creature list
+				m_Rage,// current rage
+				ref m_NextSummonTime,//next available summon
+				SummonWarcries,//warcries per rage
+				m_Summons,//current active summons
+				0x09d3,// effect hue
+				GetMaxSummons(),//summon limit
+				50// cooldown
+			);
 		}
 
 		public override void OnGaveMeleeAttack( Mobile defender )
 		{
-			TrySummonCreature( defender );
+			BossSummonSystem.TrySummonCreature(
+				this,//boss
+				defender,//target
+				SummonTypes,//creature list
+				m_Rage,// current rage
+				ref m_NextSummonTime,//next available summon
+				SummonWarcries,//warcries per rage
+				m_Summons,//current active summons
+				0x09d3,// effect hue
+				GetMaxSummons(),//summon limit
+				50// cooldown
+			);
 		}
 
 		public override bool OnBeforeDeath()
@@ -361,10 +226,9 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 100 );
-				SetDex( Dex + 25 );
+				SetStr( Str + 30 );
 				SetDamage( 38, 43 );
-				
+				VirtualArmor += 5;
 				m_Rage = 1;
 				return false;
 			}
@@ -375,10 +239,10 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 150 );
-				SetDex( Dex + 35 );
+				SetStr( Str + 60 );
+				SetDex( Dex + 25 );
 				SetDamage( 43, 48 );
-				VirtualArmor += 10;
+				VirtualArmor += 5;
 				
 				m_Rage = 2;
 				return false;
@@ -390,10 +254,10 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				
-				SetStr( Str + 200 );
+				SetStr( Str + 120 );
 				SetDex( Dex + 50 );
 				SetDamage( 48, 53 );
-				VirtualArmor += 15;				
+				VirtualArmor += 10;				
 				m_Rage = 3;
 				return false;
 			}
@@ -409,7 +273,6 @@ namespace Server.Mobiles
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
             	}
 			}
-			
 			return base.OnBeforeDeath();
 		}
 
@@ -442,7 +305,6 @@ namespace Server.Mobiles
 			{
 				c.DropItem( new EtherealPowerScroll() );
 			}
-
 			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 3 );
 		}
@@ -480,6 +342,8 @@ namespace Server.Mobiles
 			}
 
 			LeechImmune = true;
+			if (m_Summons == null)
+					m_Summons = new List<BaseCreature>();
 		}
 	}
 }

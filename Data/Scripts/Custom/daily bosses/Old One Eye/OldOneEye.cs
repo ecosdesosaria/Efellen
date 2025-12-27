@@ -69,7 +69,7 @@ namespace Server.Mobiles
 			Fame = 30000;
 			Karma = 30000;
 
-			VirtualArmor = 60;
+			VirtualArmor = 50;
 
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
@@ -98,7 +98,7 @@ namespace Server.Mobiles
 			if ( !m_IsStunned && m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 18 - (m_Rage * 2) );
 			}
 			base.OnDamage( amount, from, willKill );
 		}
@@ -163,34 +163,57 @@ namespace Server.Mobiles
 			if (Utility.Random(100) < 15 && DateTime.UtcNow >= m_NextTailSwipe)
 			{
 				PerformTailSwipe();
-				m_NextTailSwipe = DateTime.UtcNow + TimeSpan.FromSeconds(20);
+				m_NextTailSwipe = DateTime.UtcNow + TimeSpan.FromSeconds(30  - (m_Rage * 2));
 			}
 		}
 
 		private void PerformTailSwipe()
 		{
 			PublicOverheadMessage(
-                MessageType.Regular,
-                0x21,
-                false,
-                "*Swings its massive tail!*"
-            );
-
+				MessageType.Regular,
+				0x21,
+				false,
+				"*Swings its massive tail!*"
+			);
 			PlaySound(0x64E);
-
+			List<Mobile> targets = new List<Mobile>();
 			IPooledEnumerable eable = GetMobilesInRange(1);
 			foreach (Mobile m in eable)
 			{
 				if (m != this && m.Player && m.Alive && CanBeHarmful(m))
-				{
-					DoHarmful(m);
-					int damage = Utility.RandomMinMax(33, 40);
-					AOS.Damage(m, this, damage, 100, 0, 0, 0, 0);
-					m.SendMessage("You are struck by a devastating tail swipe!");
-					m.FixedParticles(0x36BD, 20, 10, 5044, EffectLayer.Head);
-				}
+					targets.Add(m);
 			}
 			eable.Free();
+			foreach (Mobile m in targets)
+			{
+				DoHarmful(m);
+				bool wasMounted = false;
+				IMount mount = m.Mount;
+				if (mount != null)
+				{
+					wasMounted = true;
+					m.SendMessage("The massive tail swipe knocks you off your mount!");
+					m.PlaySound(0x140);
+					m.FixedParticles(0x3728, 10, 15, 9955, EffectLayer.Waist);
+					Server.Mobiles.EtherealMount.EthyDismount(m);
+					mount.Rider = null;
+					// Prevent remounting for 10 seconds
+					BaseMount.SetMountPrevention(m, BlockMountType.Dazed, TimeSpan.FromSeconds(10.0));
+				}
+				int damage;
+				if (wasMounted)
+				{
+					damage = Utility.RandomMinMax(33, 40) + Utility.RandomMinMax(15, 25);
+					m.SendMessage("You are struck by a devastating tail swipe and take additional damage from the fall!");
+				}
+				else
+				{
+					damage = Utility.RandomMinMax(33, 40);
+					m.SendMessage("You are struck by a devastating tail swipe!");
+				}
+				AOS.Damage(m, this, damage, 100, 0, 0, 0, 0);
+				m.FixedParticles(0x36BD, 20, 10, 5044, EffectLayer.Head);
+			}
 		}
 
 		public override bool OnBeforeDeath()
@@ -203,7 +226,7 @@ namespace Server.Mobiles
 				this.PlaySound( 0x63F );
 				SetStr( Str + 30 );
 				SetDamage( 29, 39 );
-				
+				VirtualArmor += 5;
 				m_Rage = 1;
 				return false;
 			}
@@ -215,7 +238,7 @@ namespace Server.Mobiles
 				this.PlaySound( 0x63F );
 				
 				SetStr( Str + 60 );
-				SetDex( Dex + 10 );
+				SetDex( Dex + 20 );
 				SetDamage( 34, 44 );
 				VirtualArmor += 10;
 				m_Rage = 2;
@@ -230,8 +253,8 @@ namespace Server.Mobiles
 				
 				SetStr( Str + 90 );
 				SetDex( Dex + 40 );
-				SetDamage( 39, 51 );
-				VirtualArmor += 15;
+				SetDamage( 39, 49 );
+				VirtualArmor += 10;
 				m_Rage = 3;
 				return false;
 			}
