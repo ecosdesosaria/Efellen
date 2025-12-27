@@ -20,12 +20,12 @@ namespace Server.Mobiles
 	[CorpseName( "Daughter of Fire's Corpse" )]
 	public class DaughterOfFire : BaseCreature
 	{
-		private const int MAX_SUMMONS_RAGE_0 = 8;
+		private const int MAX_SUMMONS_RAGE_0 = 6;
 		private const int MAX_SUMMONS_RAGE_1 = 4;
 		private const int MAX_SUMMONS_RAGE_2 = 2;
 		private const int MAX_SUMMONS_RAGE_3 = 2;
 		
-		private const int SUMMON_RANGE = 12;
+		private const int SUMMON_RANGE = 10;
 		
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
@@ -330,7 +330,7 @@ namespace Server.Mobiles
 				RegisterSummon(monster);
 			}
 
-			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 18.0 - (m_Rage * 0.5) );
+			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 24.0 - (m_Rage * 0.5) );
 		}
 
 		public void RegisterSummon(BaseCreature bc)
