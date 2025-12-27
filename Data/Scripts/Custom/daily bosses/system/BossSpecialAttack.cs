@@ -74,8 +74,8 @@ namespace Server.Custom.DailyBosses.System
                 boss.PlaySound(0x64F);
                 Effects.SendLocationEffect(bossLocation, bossMap, 0x36B0, 30, 10, hue, 0);
 
-                int minDamage = 20 + (int)(rage * 1.5);
-                int maxDamage = 30 + (rage * 3);
+                int minDamage = 30 + (int)(rage * 2);//30-36
+                int maxDamage = 40 + (rage * 3);//40-49
 
                 IPooledEnumerable eable = bossMap.GetMobilesInRange(bossLocation, range);
                 
@@ -144,8 +144,8 @@ namespace Server.Custom.DailyBosses.System
                 boss.PlaySound(0x51D);
 
                 int chargeCount = Utility.RandomMinMax(3, 5) + rage;
-                int minDamage = 20 + (int)(rage * 1.5);
-                int maxDamage = 30 + (rage * 3);
+                int minDamage = 20 + (int)(rage * 2);//20-26
+                int maxDamage = 35 + (rage * 4);//35-47
 
                 List<Point3D> path = BuildRampagePath(boss, chargeCount);
                 List<Mobile> damagedMobiles = new List<Mobile>();
@@ -462,8 +462,8 @@ namespace Server.Custom.DailyBosses.System
                 if (boss.Deleted || !boss.Alive || targetMap == null)
                     return;
 
-                int minDamage = 30 + (rage * 2);
-                int maxDamage = 36 + (rage * 3);
+                int minDamage = 35 + (rage * 2);//35-41
+                int maxDamage = 45 + (rage * 3);//45-54
 
                 Point3D[] points = CrossPoints(target.Location, rage*2);
 
@@ -528,8 +528,8 @@ namespace Server.Custom.DailyBosses.System
 
         	int radius = 4 + rage;
 
-        	int minDamage = (int)(20 + (rage * 1.5));
-        	int maxDamage = 30 + (rage * 3);
+        	int minDamage = (int)(25 + (rage * 2));//25-31
+        	int maxDamage = 35 + (rage * 3);//35-44
 
         	// Telegraph / warning
         	if (!string.IsNullOrEmpty(warcry))
@@ -607,7 +607,71 @@ namespace Server.Custom.DailyBosses.System
         	});
         }
         #endregion
+        #region smite
+        /// <summary>
+        /// Performs a single target attack
+        /// </summary>
+        /// <param name="boss">The boss performing the attack</param>
+        /// <param name="target">Primary target for the attack</param>
+        /// <param name="warcry">Message displayed overhead</param>
+        /// <param name="hue">Color hue for visual effects</param>
+        /// <param name="rage">Boss rage level (affects damage and radius)</param>
+        /// <param name="physicalDmg">Physical damage percentage (0-100)</param>
+        /// <param name="fireDmg">Fire damage percentage (0-100)</param>
+        /// <param name="coldDmg">Cold damage percentage (0-100)</param>
+        /// <param name="poisonDmg">Poison damage percentage (0-100)</param>
+        /// <param name="energyDmg">Energy damage percentage (0-100)</param>
+        public static void PerformSmite(
+            BaseCreature boss,
+        	Mobile target,
+        	int rage,
+        	string warcry,
+        	int hue,
+        	int physicalDmg,
+        	int fireDmg,
+        	int coldDmg,
+        	int poisonDmg,
+        	int energyDmg
+        )
+        {
+           if (boss == null || boss.Deleted || !boss.Alive || target == null || target.Deleted || !target.Alive)
+                return;
 
+            // Validate damage percentages -- must equal to 100
+            int totalDamage = physicalDmg + fireDmg + coldDmg + poisonDmg + energyDmg;
+            if (totalDamage != 100)
+            {
+                Console.WriteLine("Warning: Damage percentages for " + boss.Name + " smite total " + totalDamage + "%, expected 100%");
+            }
+            if (!string.IsNullOrEmpty(warcry))
+            {
+                boss.PublicOverheadMessage(MessageType.Regular, hue, false, warcry);
+            }
+            // Telegraph phase
+            boss.FixedParticles(0x3709, 10, 30, 5052, hue, 0, EffectLayer.Waist);
+            boss.PlaySound(0x208);
+            // Store boss location and map (in case boss moves/dies during delay)
+            Point3D bossLocation = boss.Location;
+            Map bossMap = boss.Map;
+            // Execute attack after telegraph delay
+            Timer.DelayCall(TimeSpan.FromSeconds(TELEGRAPH_DELAY), delegate()
+            {
+                if (boss.Deleted || !boss.Alive || bossMap == null || target == null || target.Deleted || !target.Alive)
+                    return;
+                
+                boss.PlaySound(0x64F);
+                Effects.SendLocationEffect(bossLocation, bossMap, 0x36B0, 30, 10, hue, 0);
+                int minDamage = 25 + (int)(rage * 3);//25-34
+                int maxDamage = 35 + (rage * 4);//35-47
+                boss.DoHarmful(target);
+                int damage = Utility.RandomMinMax(minDamage, maxDamage);
+	            target.BoltEffect(0);
+	            target.PlaySound(0x1FB);
+                AOS.Damage(target, boss, damage, physicalDmg, fireDmg, coldDmg, poisonDmg, energyDmg);
+                target.FixedParticles(0x36B0, 1, 10, 5013, hue, 0, EffectLayer.Waist);
+            });
+        }
+        #endregion
         #region helpers
         /// <summary>
         /// Cross shaped AoE attack
