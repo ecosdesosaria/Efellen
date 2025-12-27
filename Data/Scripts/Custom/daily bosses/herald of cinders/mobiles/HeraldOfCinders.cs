@@ -165,7 +165,7 @@ namespace Server.Mobiles
 							target,
 							m_Rage,
 							"We are fire eternal!",
-							348,  // hue
+							1160,  // hue
 							0,     // physical
 							100,   // fire
 							0,     // cold
@@ -173,10 +173,7 @@ namespace Server.Mobiles
 							0      // energy
 						);
 						break;
-						PerformFlameCharge( target );
-						break;
 					}
-
 				case 2: // fire blast
 					{
 						BossSpecialAttack.PerformSlam(
@@ -190,7 +187,6 @@ namespace Server.Mobiles
                    		);
                    		break;
 					}
-
 				case 3: // magma eruption
 					{
 						PerformMagmaEruption();
