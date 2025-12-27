@@ -154,9 +154,10 @@ namespace Server.Mobiles
 					BossSpecialAttack.PerformSlam(
                        boss: this,
                        warcry: "*Stares fiercely in all directions*",
-                       hue: 5030,
+                       hue: 0x96,
                        rage: m_Rage,
                        range: 6,
+					   physicalDmg:0,
                        energyDmg: 100
                    );
                    break;
@@ -351,7 +352,8 @@ namespace Server.Mobiles
 				monster.Combatant = target;
                 RegisterSummon(monster);
 			}
-			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 18.0 - (m_Rage * 0.5) );
+			// Dreamweaver's summons take longer because beholders are nasty
+			m_NextSummonTime = DateTime.UtcNow + TimeSpan.FromSeconds( 48.0 - (m_Rage * 0.5) );
 		}
 
 		public void RegisterSummon(BaseCreature bc)
