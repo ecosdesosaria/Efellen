@@ -12,6 +12,7 @@ using Server.Commands.Generic;
 using Server.Spells;
 using Server.EffectsUtil;
 using Server.Custom;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
