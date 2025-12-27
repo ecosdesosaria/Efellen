@@ -21,8 +21,8 @@ namespace Server.Mobiles
 	[CorpseName( "Dreamweaver's Corpse" )]
 	public class Dreamweaver : BaseCreature
 	{
-		private const int MAX_SUMMONS_RAGE_0 = 12;
-		private const int MAX_SUMMONS_RAGE_1 = 7;
+		private const int MAX_SUMMONS_RAGE_0 = 8;
+		private const int MAX_SUMMONS_RAGE_1 = 6;
 		private const int MAX_SUMMONS_RAGE_2 = 4;
 		private const int MAX_SUMMONS_RAGE_3 = 3;
 		
@@ -49,8 +49,8 @@ namespace Server.Mobiles
 		private Mobile m_LastTarget;
 		private DateTime m_NextSummonTime = DateTime.MinValue;
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
+		private DateTime m_NextSpecialBeholderAttack = DateTime.MinValue;
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
-        private DateTime m_NextSpecialBeholderAttack;
 
 		[Constructable]
 		public Dreamweaver () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -92,7 +92,7 @@ namespace Server.Mobiles
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
 			PackItem( Loot.RandomArty() );
-            m_NextSpecialBeholderAttack = DateTime.Now;
+            m_NextSpecialBeholderAttack = DateTime.UtcNow;
 		}
 
 		public override void GenerateLoot()
@@ -119,12 +119,12 @@ namespace Server.Mobiles
 				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
 			}
 
-            if ( DateTime.Now >= m_NextSpecialBeholderAttack && from != null && from.Alive && !willKill )
+            if ( DateTime.UtcNow >= m_NextSpecialBeholderAttack && from != null && from.Alive && !willKill )
 			{
 				if ( Utility.RandomDouble() < 0.50 )
 				{
 					TriggerEyestalkAttack( from );
-					m_NextSpecialBeholderAttack = DateTime.Now + TimeSpan.FromSeconds( 25 );
+					m_NextSpecialBeholderAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );
 				}
 			}
 			
@@ -136,7 +136,7 @@ namespace Server.Mobiles
 			int resist = (int)(m.Skills.MagicResist.Value);
 			// 2s at 125, 8s at 0 magic resist
 			int duration = 8 - (int)(resist * (6.0 / 125.0));
-			return duration;
+			return Math.Max(2, Math.Min(8, duration));
 		}
 
 		private void PerformRageAttack( Mobile target )
@@ -167,34 +167,41 @@ namespace Server.Mobiles
 					PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Quivers with power*" );
 					PlaySound( 0x228 );
 					FixedParticles( 0x3789, 10, 25, 5032, EffectLayer.Head );
+					
+					List<Mobile> targets = new List<Mobile>();
 					IPooledEnumerable eable = GetMobilesInRange( 8 );
+					
 					foreach ( Mobile m in eable )
 					{
 						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-						{
-							DoHarmful( m );
-							int staminaDrain = Utility.RandomMinMax( 45, 65 );
-							m.Stam -= staminaDrain;
-							int damage = Utility.RandomMinMax( staminaDrain/2, staminaDrain*2 );
-							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
-							m.FixedParticles( 0x374A, 10, 15, 5013, 0x81b, 0, EffectLayer.Waist );
-							m.PlaySound( 0x1FB );
-							this.Stam = Math.Min( this.StamMax, this.Stam + staminaDrain / 3 );
-							m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) + Utility.RandomMinMax(1,3 ) ) );
-						}
+							targets.Add(m);
 					}
-					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x25);
 					eable.Free();
+					
+					foreach ( Mobile m in targets )
+					{
+						DoHarmful( m );
+						int staminaDrain = Utility.RandomMinMax( 45, 65 );
+						m.Stam -= staminaDrain;
+						int damage = Utility.RandomMinMax( staminaDrain/2, staminaDrain*2 );
+						AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
+						m.FixedParticles( 0x374A, 10, 15, 5013, 0x81b, 0, EffectLayer.Waist );
+						m.PlaySound( 0x1FB );
+						this.Stam = Math.Min( this.StamMax, this.Stam + staminaDrain / 3 );
+						m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) + Utility.RandomMinMax(1,3 ) ) );
+					}
+					
+					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x25);
 					break;
 				}
                 case 3: // telekinetic crush - move away + damage + paralyze
 				{
                     if (this == null || this.Deleted)
         		        return;
-        	        bool affectedAny = false;
         	        PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Quivers with rage*" );
 
-                    foreach (Mobile victim in this.GetMobilesInRange(9))
+					List<Mobile> victims = new List<Mobile>();
+					foreach (Mobile victim in this.GetMobilesInRange(9))
         	        {
         	        	if (victim == null || victim.Deleted || !victim.Alive || victim == this)
         	        		continue;
@@ -202,16 +209,20 @@ namespace Server.Mobiles
         	        		continue;
         	        	if (!this.InLOS(victim))
         	        		continue;
+						victims.Add(victim);
+					}
+
+					foreach (Mobile victim in victims)
+					{
         	        	int resist = (int)victim.Skills.MagicResist.Value;
         	        	int distance = 10 - (int)(resist * (2.0 / 125.0));
-        	        	if (distance < 5)
-        	        		distance = 5;
-        	        	if (distance > 10)
-        	        		distance = 10;
-        	        	Direction d = this.GetDirectionTo(victim);
+        	        	distance = Math.Max(5, Math.Min(10, distance));
+        	        	
+						Direction d = this.GetDirectionTo(victim);
         	        	Point3D newLoc = victim.Location;
         	        	bool moved = false;
-        	        	for (int i = 0; i < distance; i++)
+        	        	
+						for (int i = 0; i < distance; i++)
         	        	{
         	        		int x = newLoc.X;
         	        		int y = newLoc.Y;
@@ -227,7 +238,8 @@ namespace Server.Mobiles
         	        			break;
         	        		}
         	        	}
-        	        	if (moved && newLoc != victim.Location)
+        	        	
+						if (moved && newLoc != victim.Location)
         	        	{
                             victim.MoveToWorld(newLoc, victim.Map);
         	        		victim.PlaySound(0x204);
@@ -235,7 +247,7 @@ namespace Server.Mobiles
 							int damage = Utility.RandomMinMax( 21, 32 );
 							AOS.Damage( victim, this, damage, 0, 0, 0, 0, 100 );
 							victim.PlaySound( 0x1FB );
-							victim.Paralyze( TimeSpan.FromSeconds( (getParalyzeDuration( victim )*1.5) ) );
+							victim.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( victim ) * 1.5 ) );
         	        		victim.FixedParticles(0x3728, 10, 10, 0x1F4, 0, 5029, 0);
                             BeholderSpecials.DoRayEffect(
                             	this,
@@ -252,7 +264,6 @@ namespace Server.Mobiles
 			}
 		}
 
-
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
 			int chance = m_Rage * 16;
@@ -261,11 +272,16 @@ namespace Server.Mobiles
 
 		private int CountSummons()
 		{
+			m_Summons.RemoveAll(s => s == null || s.Deleted || !s.Alive);
+			
 			int count = 0;
 			IPooledEnumerable eable = GetMobilesInRange( SUMMON_RANGE );
 			
 			foreach ( Mobile m in eable )
 			{
+				if (m == null || m.Deleted)
+					continue;
+					
 				Type mobileType = m.GetType();
 				foreach ( Type summonType in SummonTypes )
 				{
@@ -366,7 +382,10 @@ namespace Server.Mobiles
             Timer.DelayCall(TimeSpan.FromMinutes(1), delegate()
             {
                 if (bc != null && !bc.Deleted && bc.Alive)
-                    bc.Delete();
+                {
+					bc.Delete();
+					m_Summons.Remove(bc);
+				}
             });
         }
 
@@ -432,12 +451,12 @@ namespace Server.Mobiles
 		{
 			TrySummonCreature( defender );
 
-            if ( DateTime.Now >= m_NextSpecialAttack && defender != null && defender.Alive )
+            if ( DateTime.UtcNow >= m_NextSpecialBeholderAttack && defender != null && defender.Alive )
 			{
 				if ( Utility.RandomDouble() < 0.30 )
 				{
 					TriggerEyestalkAttack( defender );
-					m_NextSpecialBeholderAttack = DateTime.Now + TimeSpan.FromSeconds( 30 );
+					m_NextSpecialBeholderAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );
 				}
 			}
 		}
@@ -508,7 +527,7 @@ namespace Server.Mobiles
 
         private void CleanupSummons()
         {
-            for (int i = 0; i < m_Summons.Count; i++)
+            for (int i = m_Summons.Count - 1; i >= 0; i--)
             {
                 BaseCreature bc = m_Summons[i];
 
@@ -522,7 +541,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 15);
 
 			if ( Utility.RandomDouble() < 0.15 )
 			{
@@ -580,7 +599,7 @@ namespace Server.Mobiles
 				{
 					if ( BeholderSpecials.TelekineticRay( this, 9, 40 ) )
 					{
-						this.Say( "*A wave of Telekinetic energy oozes from an eyestalk!*", target.Name );
+						this.Say( "*A wave of Telekinetic energy oozes from an eyestalk!*" );
 					}
 					break;
 				}
@@ -633,11 +652,12 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 ); // version
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
+			writer.Write( m_NextSpecialBeholderAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -652,7 +672,15 @@ namespace Server.Mobiles
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 
+			if ( version >= 2 )
+			{
+				m_NextSpecialBeholderAttack = reader.ReadDateTime();
+			}
+
 			LeechImmune = true;
+			
+			if (m_Summons == null)
+				m_Summons = new List<BaseCreature>();
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace Server.Custom.BeholderSpecials
 
 		public static bool AntiMagicEye(Mobile caster, int manaDrain, int cooldown, Mobile target)
 		{
-			if (caster == null || target == null || !target.Alive)
+			if (caster == null || caster.Deleted || target == null || target.Deleted || !target.Alive)
 				return false;
 
 			if (IsOnCooldown(caster, "AntiMagicEye"))
@@ -26,13 +26,7 @@ namespace Server.Custom.BeholderSpecials
 			target.Mana -= actualDrain;
 
 			target.FixedParticles(0x374A, 10, 15, 5038, 0x9C2, 0, EffectLayer.Head);
-            DoRayEffect(
-            	caster,
-            	target,
-            	0x36D4,
-            	1172,
-            	10
-            );
+            DoRayEffect(caster, target, 0x36D4, 1172, 10);
 			target.PlaySound(0x1F8);
 
 			target.SendMessage("Your magical energy is drained by the anti-magic ray!");
@@ -42,7 +36,7 @@ namespace Server.Custom.BeholderSpecials
 
 		public static bool Disintegration(Mobile caster, int damage, int cooldown, Mobile target)
 		{
-			if (caster == null || target == null || !target.Alive)
+			if (caster == null || caster.Deleted || target == null || target.Deleted || !target.Alive)
 				return false;
 
 			if (IsOnCooldown(caster, "Disintegration"))
@@ -64,18 +58,10 @@ namespace Server.Custom.BeholderSpecials
 			}
 
 			target.FixedParticles(0x3709, 10, 30, 5052, 0x96, 0, EffectLayer.LeftFoot);
-            DoRayEffect(
-            	caster,
-            	target,
-            	0x36D4,
-            	1175,
-            	10
-            );
+            DoRayEffect(caster, target, 0x36D4, 1175, 10);
 			target.PlaySound(0x208);
 
-			Effects.SendLocationParticles(
-				target, 0x3728, 8, 20, 0x96, 0, 5042, 0
-			);
+			Effects.SendLocationParticles(target, 0x3728, 8, 20, 0x96, 0, 5042, 0);
 
 			SetCooldown(caster, "Disintegration", cooldown);
 
@@ -84,7 +70,7 @@ namespace Server.Custom.BeholderSpecials
 
         public static bool Petrification(Mobile caster, int cooldown, Mobile target)
 		{
-			if (caster == null || target == null || !target.Alive)
+			if (caster == null || caster.Deleted || target == null || target.Deleted || !target.Alive)
 				return false;
 
 			if (IsOnCooldown(caster, "Petrification"))
@@ -95,22 +81,11 @@ namespace Server.Custom.BeholderSpecials
 
 			int resist = (int)(target.Skills.MagicResist.Value);
 			int duration = 8 - (int)(resist * (6.0 / 125.0));
-			
-			if (duration < 2)
-				duration = 2;
-			if (duration > 8)
-				duration = 8;
+			duration = Math.Max(2, Math.Min(8, duration));
 
 			target.Paralyze(TimeSpan.FromSeconds(duration));
-            DoRayEffect(
-            	caster,
-            	target,
-            	1195,
-            	1153,
-            	10
-            );
+            DoRayEffect(caster, target, 1195, 1153, 10);
 			target.FixedParticles(0x376A, 9, 32, 5030, 0x3F, 0, EffectLayer.Waist);
-            
 			target.PlaySound(0x204);
 
 			target.SendMessage("You are petrified by the energy's ray!");
@@ -121,7 +96,7 @@ namespace Server.Custom.BeholderSpecials
 
 		public static bool Fear(Mobile caster, int cooldown, Mobile target)
 		{
-			if (caster == null || target == null || !target.Alive)
+			if (caster == null || caster.Deleted || target == null || target.Deleted || !target.Alive)
 				return false;
 
 			if (IsOnCooldown(caster, "Fear"))
@@ -139,14 +114,9 @@ namespace Server.Custom.BeholderSpecials
 
 			int resist = (int)(target.Skills.MagicResist.Value);
 			int distance = 8 - (int)(resist * (5.0 / 125.0));
-			
-			if (distance < 3)
-				distance = 3;
-			if (distance > 8)
-				distance = 8;
+			distance = Math.Max(3, Math.Min(8, distance));
 
 			Direction d = caster.GetDirectionTo(target);
-		
 			Point3D newLocation = target.Location;
 			bool moved = false;
 
@@ -171,23 +141,12 @@ namespace Server.Custom.BeholderSpecials
 
 			if (moved && newLocation != target.Location)
 			{
-                DoRayEffect(
-                	caster,
-                	target,
-                	0x36D4,
-                	1153,
-                	10
-                );
-
-				Effects.SendLocationParticles(
-					target, 0x3728, 10, 10, 0x1F4, 0, 5029, 0
-				);
+                DoRayEffect(caster, target, 0x36D4, 1153, 10);
+				Effects.SendLocationParticles(target, 0x3728, 10, 10, 0x1F4, 0, 5029, 0);
 
 				target.MoveToWorld(newLocation, target.Map);
 				target.PlaySound(0x204);
-
 				target.FixedParticles(0x376A, 9, 32, 5030, 0x21, 0, EffectLayer.Waist);
-
 				target.SendMessage("You flee in terror from the unnatural gaze!");
 			}
 			else
@@ -207,30 +166,27 @@ namespace Server.Custom.BeholderSpecials
         	if (IsOnCooldown(caster, "TelekineticRay"))
         		return false;
 
-        	bool affectedAny = false;
-
-        	foreach (Mobile target in caster.GetMobilesInRange(range))
+        	List<Mobile> targets = new List<Mobile>();
+			
+			foreach (Mobile m in caster.GetMobilesInRange(range))
         	{
-        		if (target == null || target.Deleted || !target.Alive || target == caster)
+        		if (m == null || m.Deleted || !m.Alive || m == caster)
         			continue;
-
-        		if (target.Combatant != caster && caster.Combatant != target)
+        		if (m.Combatant != caster && caster.Combatant != m)
         			continue;
-
-        		if (!caster.InLOS(target))
+        		if (!caster.InLOS(m))
         			continue;
+				targets.Add(m);
+			}
 
+			bool affectedAny = false;
+			foreach (Mobile target in targets)
+			{
         		int resist = (int)target.Skills.MagicResist.Value;
-
         		int distance = 5 - (int)(resist * (2.0 / 125.0));
-
-        		if (distance < 3)
-        			distance = 3;
-        		if (distance > 5)
-        			distance = 5;
+        		distance = Math.Max(3, Math.Min(5, distance));
 
         		Direction d = caster.GetDirectionTo(target);
-        		
         		Point3D newLoc = target.Location;
         		bool moved = false;
 
@@ -257,15 +213,8 @@ namespace Server.Custom.BeholderSpecials
         		{
                     target.MoveToWorld(newLoc, target.Map);
         			target.PlaySound(0x204);
-
         			target.FixedParticles(0x3728, 10, 10, 0x1F4, 0, 5029, 0);
-                        DoRayEffect(
-                    	caster,
-                    	target,
-                    	0x36D4,
-                    	1153,
-                    	10
-                    );
+                    DoRayEffect(caster, target, 0x36D4, 1153, 10);
         			target.SendMessage("A telekinetic force hurls you!");
         			affectedAny = true;
         		}
@@ -280,10 +229,9 @@ namespace Server.Custom.BeholderSpecials
         	return affectedAny;
         }
 
-
         public static bool DeathRay(Mobile caster, Mobile target, int damagePerTick, int durationSeconds, int cooldown)
         {
-        	if (caster == null || target == null || !target.Alive)
+        	if (caster == null || caster.Deleted || target == null || target.Deleted || !target.Alive)
         		return false;
 
         	if (IsOnCooldown(caster, "DeathRay"))
@@ -294,30 +242,17 @@ namespace Server.Custom.BeholderSpecials
 
         	target.SendMessage("A deadly ray of necrotic energy begins to consume you!");
         	target.PlaySound(0x208);
-
         	target.FixedParticles(0x3709, 10, 30, 5052, 0x96, 0, EffectLayer.Head);
+            DoRayEffect(caster, target, 0x36D4, 1175, 10);
 
-            DoRayEffect(
-            	caster,
-            	target,
-            	0x36D4,
-            	1175,   
-            	10
-            );
-
-        	DeathRayTimer timer = new DeathRayTimer(
-        		caster,
-        		target,
-        		damagePerTick,
-        		durationSeconds);
-        
+        	DeathRayTimer timer = new DeathRayTimer(caster, target, damagePerTick, durationSeconds);
         	timer.Start();
         
         	SetCooldown(caster, "DeathRay", cooldown);
         	return true;
         }
 
-        private static int GetNecroticRayDamage(Mobile target,int baseDamage)
+        private static int GetNecroticRayDamage(Mobile target, int baseDamage)
         {
         	if (target == null)
         		return baseDamage;
@@ -330,22 +265,12 @@ namespace Server.Custom.BeholderSpecials
         	double resistFactor = Math.Min(resist / 125.0, 1.0);
         	double resistReduction = resistFactor * 0.25;
 
-        	double totalReduction = karmaReduction + resistReduction;
-
-        	if (totalReduction > 0.5)
-        		totalReduction = 0.5;
-
+        	double totalReduction = Math.Min(karmaReduction + resistReduction, 0.5);
         	double finalMultiplier = 1.0 - totalReduction;
 
-        	int finalDamage = (int)Math.Round(baseDamage * finalMultiplier);
-
-        	if (finalDamage < 1)
-        		finalDamage = 1;
-
-        	return finalDamage;
+        	return Math.Max(1, (int)Math.Round(baseDamage * finalMultiplier));
         }
 
-        
         private class DeathRayTimer : Timer
         {
         	private Mobile m_Caster;
@@ -373,7 +298,6 @@ namespace Server.Custom.BeholderSpecials
             	}
 
             	int adjustedDamage = GetNecroticRayDamage(m_Target, m_Damage);
-
             	AOS.Damage(m_Target, m_Caster, adjustedDamage, 0, 0, 0, 0, 100);
 
             	m_Target.FixedParticles(0x376A, 9, 32, 5030, 0x21, 0, EffectLayer.Waist);
@@ -381,52 +305,49 @@ namespace Server.Custom.BeholderSpecials
 
             	m_TicksRemaining--;
             }
-
         }
 
-      public static void DoRayEffect(
-	Mobile from,
-	Mobile to,
-	int effectID,
-	int hue,
-	int speed
-)
-{
-	if (from == null || to == null || from.Map == null)
-		return;
+		public static void DoRayEffect(Mobile from, Mobile to, int effectID, int hue, int speed)
+		{
+			if (from == null || from.Deleted || to == null || to.Deleted || from.Map == null)
+				return;
 
-	Effects.SendMovingEffect(
-		from,          // source mobile
-		to,            // target mobile
-		effectID,      // graphic
-		speed,         // speed (5–10 is good)
-		0,             // duration (0 = auto)
-		false,         // fixed direction
-		false,         // explodes
-		hue,           // hue
-		0              // render mode
-	);
-}
-
-
+			Effects.SendMovingEffect(
+				from,
+				to,
+				effectID,
+				speed,
+				0,
+				false,
+				false,
+				hue,
+				0
+			);
+		}
 
 		private static bool IsOnCooldown(Mobile m, string abilityName)
 		{
+			if (m == null || m.Deleted)
+				return false;
+
 			if (!m_Cooldowns.ContainsKey(m))
 				return false;
 
 			if (!m_Cooldowns[m].ContainsKey(abilityName))
 				return false;
 
-			return DateTime.Now < m_Cooldowns[m][abilityName];
+			return DateTime.UtcNow < m_Cooldowns[m][abilityName];
 		}
 
 		private static void SetCooldown(Mobile m, string abilityName, int seconds)
 		{
+			if (m == null || m.Deleted)
+				return;
+
 			if (!m_Cooldowns.ContainsKey(m))
 				m_Cooldowns[m] = new Dictionary<string, DateTime>();
 
-			m_Cooldowns[m][abilityName] = DateTime.Now + TimeSpan.FromSeconds(seconds);
+			m_Cooldowns[m][abilityName] = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
 		}
 
 		public static void CleanupCooldowns()
@@ -444,7 +365,7 @@ namespace Server.Custom.BeholderSpecials
 				List<string> expiredAbilities = new List<string>();
 				foreach (KeyValuePair<string, DateTime> ability in kvp.Value)
 				{
-					if (DateTime.Now > ability.Value.AddMinutes(5))
+					if (DateTime.UtcNow > ability.Value.AddMinutes(5))
 						expiredAbilities.Add(ability.Key);
 				}
 
