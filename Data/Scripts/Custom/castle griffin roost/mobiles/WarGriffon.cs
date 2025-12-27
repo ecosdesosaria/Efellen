@@ -71,7 +71,7 @@ namespace Server.Mobiles
 			if (m == null || m.Deleted)
 	        	return false;
 			
-			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral  || m is Angel || m is Archangel)
 		    	return false;
 
 			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
@@ -118,7 +118,7 @@ namespace Server.Mobiles
 
 		public override void AggressiveAction(Mobile m, bool criminal)
 		{
-			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
 				return;
 
 		    base.AggressiveAction(m, true);
@@ -126,7 +126,7 @@ namespace Server.Mobiles
 
 		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
 		{
-		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
 		        return false;
 
 		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
@@ -134,7 +134,7 @@ namespace Server.Mobiles
 
 		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
 		{
-		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
 		        return true;
 
 		    return base.CanBeBeneficial(m, message, allowDead);
