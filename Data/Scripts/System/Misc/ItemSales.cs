@@ -4142,6 +4142,13 @@ namespace Server
 			new ItemSalesInfo( typeof(	Artifact_ArmsOfImmolation	),	6500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_CoifOfImmolation	),	6500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			new ItemSalesInfo( typeof(	Artifact_LeggingsOfImmolation	),	6500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			//							- Fiorin
+			new ItemSalesInfo( typeof(	Artifact_GaiasArms	),	6500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_GaiasTunic	),	6500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_GaiasGloves	),	6500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_GaiasLeggings	),	6500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),			
+			new ItemSalesInfo( typeof(	Artifact_GaiasScimitar	),	6500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_GaiasMask	),	6500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
 			// boss drops - tier 3 
 			// 							- daughter of fire
 			new ItemSalesInfo( typeof(	Artifact_GlovesOfThePainSlave	),	7500	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),

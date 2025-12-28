@@ -2,6 +2,7 @@ using System;
 using Server;
 using Server.Misc;
 using Server.Items;
+using Server.Regions;
 
 namespace Server.Mobiles 
 { 
@@ -168,40 +169,48 @@ namespace Server.Mobiles
 		};
 
         
-        public override bool IsEnemy( Mobile m )
+       private bool IsFriendlyCreature(Mobile m)
+		{
+			Region reg = Region.Find( this.Location, this.Map );
+			return (reg.IsPartOf( "The Howling Grove" ) && (
+					m is FiorinTheArchdruid ||
+					m is GuardianPanda || 
+			       	m is GuardianWolf || 
+			       	m is BlackWolf || 
+			       	m is DeepWoodSniper || 
+			       	m is DruidOfTheHowlingOrder || 
+			       	m is WereWolf));
+		}
+
+		public override bool IsEnemy( Mobile m )
 	    {
 			if (m == null || m.Deleted)
 	        	return false;
 			
-			if (m is DeepWoodSniper || m is DruidOfTheHowlingOrder)
+			if (IsFriendlyCreature(m))
 		    	return false;
-		
-			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
-				return false;
-		
-			if ( m.Region != this.Region )
-				return false;
-		
+			
 			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
 			{
 				this.Location = m.Location;
 				this.Combatant = m;
 				this.Warmode = true;
 			}
+			
 			return true;
 	    }
 
 		public override void AggressiveAction(Mobile m, bool criminal)
 		{
-		     if (m is DeepWoodSniper || m is DruidOfTheHowlingOrder)
+		    if (IsFriendlyCreature(m))
 				return;
 
-		    base.AggressiveAction(m, true);
+		    base.AggressiveAction(m, criminal);
 		}
 
 		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
 		{
-		    if (m is DeepWoodSniper || m is DruidOfTheHowlingOrder)
+		    if (IsFriendlyCreature(m))
 		        return false;
 
 		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
@@ -209,7 +218,7 @@ namespace Server.Mobiles
 
 		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
 		{
-		    if (m is DeepWoodSniper || m is DruidOfTheHowlingOrder)
+		    if (IsFriendlyCreature(m))
 		        return true;
 
 		    return base.CanBeBeneficial(m, message, allowDead);
@@ -219,13 +228,13 @@ namespace Server.Mobiles
 		{
 			base.OnGotMeleeAttack( attacker );
 
-			// 15% chance to summon spectral wolf when hit
-			if (DateTime.UtcNow >= m_NextSummon && Utility.RandomDouble() < 0.15)
+			// 5% chance to summon spectral wolf when hit
+			if (DateTime.UtcNow >= m_NextSummon && Utility.RandomDouble() < 0.05)
 			{
 				SpawnSpectralWolf(attacker);
 			}
-            // 25% chance to summon nearby wolves when hit
-			if (DateTime.UtcNow >= m_NextWolfCall && Utility.RandomDouble() < 0.25)
+            // 15% chance to summon nearby wolves when hit
+			if (DateTime.UtcNow >= m_NextWolfCall && Utility.RandomDouble() < 0.15)
 			{
 				CallNearbyWolves(attacker);
 			}
@@ -285,7 +294,7 @@ namespace Server.Mobiles
                 Say(string.Format(CallWolfLines[i], attacker.Name));
             }
 
-            m_NextWolfCall = DateTime.UtcNow + TimeSpan.FromMinutes(1);
+            m_NextWolfCall = DateTime.UtcNow + TimeSpan.FromMinutes(3);
         }
 
 
