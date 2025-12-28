@@ -8,12 +8,14 @@ using Server.Mobiles;
 using System.Collections.Generic;
 using Server.Misc;
 using Server.Regions;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a sea serpents corpse" )]
 	public class Jormungandr : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ return 0; } }
 		public override int BreathColdDamage{ get{ return 0; } }
@@ -38,16 +40,16 @@ namespace Server.Mobiles
 			Hue = 0xBAB;
 			BaseSoundID = 447;
 
-			SetStr( 1096, 1185 );
-			SetDex( 86, 175 );
+			SetStr( 1296, 1585 );
+			SetDex( 186, 275 );
 			SetInt( 686, 775 );
 
-			SetHits( 658, 711 );
+			SetHits( 1658, 1711 );
 
 			SetDamage( 29, 35 );
 
 			SetDamageType( ResistanceType.Physical, 75 );
-			SetDamageType( ResistanceType.Fire, 25 );
+			SetDamageType( ResistanceType.Cold, 25 );
 
 			SetResistance( ResistanceType.Physical, 65, 75 );
 			SetResistance( ResistanceType.Fire, 80, 90 );
@@ -55,12 +57,12 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 60, 70 );
 			SetResistance( ResistanceType.Energy, 60, 70 );
 
-			SetSkill( SkillName.Psychology, 80.1, 100.0 );
-			SetSkill( SkillName.Magery, 80.1, 100.0 );
-			SetSkill( SkillName.Meditation, 52.5, 75.0 );
-			SetSkill( SkillName.MagicResist, 100.5, 150.0 );
-			SetSkill( SkillName.Tactics, 97.6, 100.0 );
-			SetSkill( SkillName.FistFighting, 97.6, 100.0 );
+			SetSkill( SkillName.Psychology, 100.0 );
+			SetSkill( SkillName.Magery, 110.0 );
+			SetSkill( SkillName.Meditation, 95.0 );
+			SetSkill( SkillName.MagicResist, 125.5, 150.0 );
+			SetSkill( SkillName.Tactics, 125.0 );
+			SetSkill( SkillName.FistFighting, 125.0 );
 
 			Fame = 24000;
 			Karma = -24000;
@@ -181,6 +183,75 @@ namespace Server.Mobiles
 		public override Poison HitPoison{ get{ return Utility.RandomBool() ? Poison.Lesser : Poison.Regular; } }
 		public override int TreasureMapLevel{ get{ return 6; } }
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"I shall put an end to you, ruffian!",
+						0xBAB,  // hue
+						0,     // physical
+						0,   // fire
+						100,     // cold
+						0,     // poison
+						0      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "Heavens guard me!",
+					    hue: 0xBAB,
+					    rage: 2,
+					    coldDmg: 100,
+					    fireDmg: 0,
+					    energyDmg:0,
+					    poisonDmg: 0,
+					    physicalDmg: 0
+					);
+                	break;
+			    }
+				case 3: // energy nova
+				{
+					BossSpecialAttack.PerformSlam(
+                	    boss: this,
+                	    warcry: "Heavens shall set you free!",
+                	    hue: 0xBAB,
+                	    rage: 2,
+                	    range: 6,
+                	    physicalDmg: 0,
+						coldDmg: 100
+                	);
+                	break;
+			    }
+			}
+		}
+
 		public Jormungandr( Serial serial ) : base( serial )
 		{
 		}
@@ -188,13 +259,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

@@ -6,27 +6,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Server.Network;
 using Server.Mobiles;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a dragon corpse" )]
 	public class VampiricDragon : BaseCreature
 	{
-		public override int BreathPhysicalDamage{ get{ return 20; } }
-		public override int BreathFireDamage{ get{ return 20; } }
-		public override int BreathColdDamage{ get{ return 20; } }
-		public override int BreathPoisonDamage{ get{ return 20; } }
-		public override int BreathEnergyDamage{ get{ return 20; } }
-		public override int BreathEffectHue{ get{ return 0x844; } }
-		public override int BreathEffectSound{ get{ return 0x658; } }
-		public override int BreathEffectItemID{ get{ return 0x37BC; } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
-		public override bool HasBreath{ get{ return true; } }
-		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override int GetBreathForm()
-		{
-		    return 24;
-		}
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 
 		public override WeaponAbility GetWeaponAbility()
 		{
@@ -175,16 +163,54 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+		
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			Map map = this.Map;
+
+			BossSpecialAttack.PerformConeBreath(
+			    boss: this,
+			    target: target,
+			    warcry: "*exhales devastating flames!*",
+			    hue: 1160,
+			    rage: 1,
+			    range: 4, 
+				physicalDmg:0,
+				coldDmg:0,
+				poisonDmg:0,
+				energyDmg:0,
+			    fireDmg: 100
+			);
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

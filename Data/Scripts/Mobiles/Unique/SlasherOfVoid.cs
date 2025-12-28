@@ -2,12 +2,14 @@ using System;
 using Server;
 using Server.Items;
 using Server.Misc;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a dragon corpse" )]
 	public class SlasherOfVoid : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
@@ -106,16 +108,50 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			Map map = this.Map;
+
+			BossSpecialAttack.PerformConeBreath(
+			    boss: this,
+			    target: target,
+			    warcry: "*exhales devastating flames!*",
+			    hue: 0x9A0,
+			    rage: 3,
+			    range: 5, 
+			    fireDmg: 100
+			);
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

@@ -5,20 +5,16 @@ using Server.Misc;
 using System.Collections; 
 using Server.Network;
 using Server.Mobiles;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a dragon corpse" )]
 	public class DragonKing : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
-		public override bool HasBreath{ get{ return true; } }
-		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override int GetBreathForm()
-		{
-		    return 9;
-		}
-
+	
 		[Constructable]
 		public DragonKing () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -29,10 +25,10 @@ namespace Server.Mobiles
 			Resource = CraftResource.VioletScales;
 
 			SetStr( 1096, 1185 );
-			SetDex( 86, 175 );
+			SetDex( 126, 175 );
 			SetInt( 686, 775 );
 
-			SetHits( 658, 711 );
+			SetHits( 958, 1411 );
 
 			SetDamage( 29, 35 );
 
@@ -45,12 +41,12 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 60, 70 );
 			SetResistance( ResistanceType.Energy, 60, 70 );
 
-			SetSkill( SkillName.Psychology, 80.1, 100.0 );
-			SetSkill( SkillName.Magery, 80.1, 100.0 );
+			SetSkill( SkillName.Psychology, 110.0 );
+			SetSkill( SkillName.Magery, 110.0 );
 			SetSkill( SkillName.Meditation, 52.5, 75.0 );
-			SetSkill( SkillName.MagicResist, 100.5, 150.0 );
-			SetSkill( SkillName.Tactics, 97.6, 100.0 );
-			SetSkill( SkillName.FistFighting, 97.6, 100.0 );
+			SetSkill( SkillName.MagicResist, 120.5, 150.0 );
+			SetSkill( SkillName.Tactics, 110.0 );
+			SetSkill( SkillName.FistFighting, 115.0 );
 
 			Fame = 22500;
 			Karma = -22500;
@@ -160,16 +156,51 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			Map map = this.Map;
+
+			BossSpecialAttack.PerformConeBreath(
+			    boss: this,
+			    target: target,
+			    warcry: "*exhales devastating flames!*",
+			    hue: 1160,
+			    rage: 3,
+			    range: 5, 
+				physicalDmg:0,
+			    fireDmg: 100
+			);
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

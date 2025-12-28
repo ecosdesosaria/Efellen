@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Server.Network;
 using Server.Mobiles;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles 
 { 
@@ -13,6 +14,7 @@ namespace Server.Mobiles
 	public class Dracula : BaseCreature 
 	{ 
 		private bool m_TrueForm;
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 
 		public override WeaponAbility GetWeaponAbility()
 		{
@@ -28,10 +30,10 @@ namespace Server.Mobiles
 			BaseSoundID = 0x47D;
 
 			SetStr( 1096, 1185 );
-			SetDex( 86, 175 );
+			SetDex( 126, 215 );
 			SetInt( 686, 775 );
 
-			SetHits( 350, 400 );
+			SetHits( 550, 750 );
 
 			SetDamage( 29, 35 );
 
@@ -44,12 +46,12 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 60, 70 );
 			SetResistance( ResistanceType.Energy, 60, 70 );
 
-			SetSkill( SkillName.Psychology, 80.1, 100.0 );
-			SetSkill( SkillName.Magery, 80.1, 100.0 );
-			SetSkill( SkillName.Meditation, 52.5, 75.0 );
-			SetSkill( SkillName.MagicResist, 100.5, 150.0 );
-			SetSkill( SkillName.Tactics, 97.6, 100.0 );
-			SetSkill( SkillName.FistFighting, 97.6, 100.0 );
+			SetSkill( SkillName.Psychology, 100.0 );
+			SetSkill( SkillName.Magery, 100.0 );
+			SetSkill( SkillName.Meditation, 75.0 );
+			SetSkill( SkillName.MagicResist, 125.5, 150.0 );
+			SetSkill( SkillName.Tactics, 97.6, 110.0 );
+			SetSkill( SkillName.FistFighting, 107.6, 120.0 );
 
 			Fame = 22500;
 			Karma = -22500;
@@ -185,6 +187,107 @@ namespace Server.Mobiles
 
 			Say("Arrrrrgh!"); 
 		}
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 60 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 2 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // summon blood elemental
+				{
+					BossSpecialAttack.SummonHonorGuard(
+                        boss: this,
+                        target: target,
+                        warcry: "The homeland beckons!",
+                        amount: 2,
+                        creatureType: typeof(BloodElemental),
+                        hue: 0x25
+                    );
+                    break;
+				}
+				case 2: // blood whip
+				{
+					if (map == null)
+                        return;
+                    int range = 7;
+                    this.PlaySound(0x208);
+                    PublicOverheadMessage(Network.MessageType.Emote, 0x22, false, "*lashes a bloody whip!*");
+                    Point3D start = this.Location;
+                    int dx = 0, dy = 0;
+					int minDamage = 30;
+					int maxDamage = 40;
+                    GetDirectionVector(this.Direction, out dx, out dy);
+                    for (int i = 1; i <= range; i++)
+                    {
+                        Point3D p = new Point3D(start.X + dx * i, start.Y + dy * i, start.Z);
+                        Effects.SendLocationEffect(p, map, 0x36D4, 20, 10, 0x25, 0);
+                        foreach (Mobile m in map.GetMobilesInRange(p, 0))
+                        {
+                            if (m != null && m != this && !m.Deleted && CanBeHarmful(m))
+                            {
+                                DoHarmful(m);
+                                m.Damage(Utility.RandomMinMax(minDamage, maxDamage), this);
+                                m.PlaySound(0x15E);
+                            }
+                        }
+                    }
+                break;
+			    }
+			}
+		}
+
+		private void GetDirectionVector(Direction d, out int dx, out int dy)
+        {
+            dx = 0;
+            dy = 0;
+
+            switch (d)
+            {
+                case Direction.North:
+                    dy = -1;
+                    break;
+                case Direction.Right:
+                    dx = 1;
+                    dy = -1;
+                    break;
+                case Direction.East:
+                    dx = 1;
+                    break;
+                case Direction.Down:
+                    dx = 1;
+                    dy = 1;
+                    break;
+                case Direction.South:
+                    dy = 1;
+                    break;
+                case Direction.Left:
+                    dx = -1;
+                    dy = 1;
+                    break;
+                case Direction.West:
+                    dx = -1;
+                    break;
+                case Direction.Up:
+                    dx = -1;
+                    dy = -1;
+                    break;
+            }
+        }
 
 		public override void OnDeath( Container c )
 		{
@@ -244,8 +347,9 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer ) 
 		{ 
 			base.Serialize( writer ); 
-			writer.Write( (int) 0 ); 
+			writer.Write( (int) 1 ); 
 			writer.Write( m_TrueForm );	
+			writer.Write( m_NextSpecialAttack );
 		} 
 
 		public override void Deserialize( GenericReader reader ) 
@@ -255,10 +359,15 @@ namespace Server.Mobiles
 			switch ( version )
 			{
 				case 0:
+				case 1:
 				{
 					m_TrueForm = reader.ReadBool();
 					break;
 				}
+			}
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 		} 
 	} 

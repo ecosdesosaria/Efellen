@@ -8,12 +8,14 @@ using Server.Network;
 using Server.Mobiles;
 using Server.Commands;
 using Server.Commands.Generic;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Mangar's corpse" )]
 	public class Mangar : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		private Point3D m_MoonDest;
 		private int m_MoonTime;
 		private InternalTimer m_MoonTimer;
@@ -166,6 +168,75 @@ namespace Server.Mobiles
 			}
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"I shall destroy you!",
+						0xA2A,  // hue
+						20,     // physical
+						20,   // fire
+						20,     // cold
+						20,     // poison
+						20      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "Taste my power!",
+					    hue: 0xA2A,
+					    rage: 2,
+					    coldDmg: 20,
+					    fireDmg: 20,
+					    energyDmg: 20,
+					    poisonDmg: 20,
+					    physicalDmg: 20
+					);
+                	break;
+			    }
+				case 3: // energy nova
+				{
+					BossSpecialAttack.PerformSlam(
+                	    boss: this,
+                	    warcry: "The Weave is mine to control",
+                	    hue: 0xA2A,
+                	    rage: 2,
+                	    range: 6,
+                	    physicalDmg: 0,
+						energyDmg: 100
+                	);
+                	break;
+			    }
+			}
+		}
+
 		public void DoSpecialAbility( Mobile target )
 		{
 			if ( target == null || target.Deleted ) //sanity
@@ -228,7 +299,8 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 			/*Moongate destination*/
 			writer.Write((int)m_MoonDest.X);
 			writer.Write((int)m_MoonDest.Y);
@@ -240,6 +312,10 @@ namespace Server.Mobiles
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 			/*Moongate destination*/
 			int new_X = reader.ReadInt();
 			int new_Y = reader.ReadInt();

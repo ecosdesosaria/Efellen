@@ -1,12 +1,14 @@
 using System;
 using Server;
 using Server.Items;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a wyvern corpse" )]
 	public class AncientWyvern : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ return 0; } }
 		public override int BreathColdDamage{ get{ return 0; } }
@@ -82,16 +84,50 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			Map map = this.Map;
+
+			BossSpecialAttack.PerformConeBreath(
+			    boss: this,
+			    target: target,
+			    warcry: "*exhales devastating toxins!*",
+			    hue: 0xB96,
+			    rage: 2,
+			    range: 5, 
+			    poisonDmg: 100
+			);
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

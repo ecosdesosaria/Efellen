@@ -672,6 +672,137 @@ namespace Server.Custom.DailyBosses.System
             });
         }
         #endregion
+        #region cone breath
+        /// <summary>
+        /// Performs a cone-shaped breath attack towards the target
+        /// </summary>
+        /// <param name="boss">The boss performing the attack</param>
+        /// <param name="target">Primary target for the cone direction</param>
+        /// <param name="warcry">Message displayed overhead</param>
+        /// <param name="hue">Color hue for visual effects</param>
+        /// <param name="rage">Boss rage level</param>
+        /// <param name="range">Cone range (3-5)</param>
+        /// <param name="physicalDmg">Physical damage percentage (0-100)</param>
+        /// <param name="fireDmg">Fire damage percentage (0-100)</param>
+        /// <param name="coldDmg">Cold damage percentage (0-100)</param>
+        /// <param name="poisonDmg">Poison damage percentage (0-100)</param>
+        /// <param name="energyDmg">Energy damage percentage (0-100)</param>
+        public static void PerformConeBreath(
+            BaseCreature boss,
+            Mobile target,
+            string warcry,
+            int hue,
+            int rage,
+            int range,
+            int physicalDmg = 100,
+            int fireDmg = 0,
+            int coldDmg = 0,
+            int poisonDmg = 0,
+            int energyDmg = 0
+        )
+        {
+            if (boss == null || boss.Deleted || !boss.Alive)
+                return;
+
+            if (target == null || target.Deleted || !target.Alive)
+                return;
+
+            int totalDamage = physicalDmg + fireDmg + coldDmg + poisonDmg + energyDmg;
+            if (totalDamage != 100)
+            {
+                Console.WriteLine("Warning: Damage percentages for " + boss.Name + " cone breath total " + totalDamage + "%, expected 100%");
+            }
+
+            if (range < 3)
+                range = 3;
+            if (range > 5)
+                range = 5;
+
+            boss.PublicOverheadMessage(MessageType.Regular, hue, false, "*" + boss.Name + " is filling its lungs!*");
+            boss.PlaySound(0x227);
+            boss.FixedParticles(0x375A, 10, 15, 5037, hue, 0, EffectLayer.Head);
+
+            boss.Frozen = true;
+
+            Point3D bossLocation = boss.Location;
+            Point3D targetLocation = target.Location;
+            Map map = boss.Map;
+
+            Direction direction = GetDirection(bossLocation, targetLocation);
+
+            Timer.DelayCall(TimeSpan.FromSeconds(2.0), delegate()
+            {
+                if (boss.Deleted || !boss.Alive || map == null)
+                    return;
+                
+                boss.Frozen = false;
+
+                if (!string.IsNullOrEmpty(warcry))
+                {
+                    boss.PublicOverheadMessage(MessageType.Regular, hue, false, warcry);
+                }
+
+                boss.PlaySound(0x227);
+
+                int minDamage = 35 + (rage * 3);
+                int maxDamage = 45 + (rage * 3);
+
+                List<Mobile> damagedMobiles = new List<Mobile>();
+
+                for (int currentRange = 1; currentRange <= range; currentRange++)
+                {
+                    int delay = currentRange - 1;
+                    int capturedRange = currentRange;
+
+                    Timer.DelayCall(TimeSpan.FromMilliseconds(delay * 150), delegate()
+                    {
+                        if (boss.Deleted || !boss.Alive || map == null)
+                            return;
+
+                        List<Point3D> coneTiles = GetConeTiles(bossLocation, direction, capturedRange);
+
+                        foreach (Point3D tile in coneTiles)
+                        {
+                            Effects.SendLocationParticles(
+                                EffectItem.Create(tile, map, TimeSpan.FromSeconds(0.5)),
+                                0x3709,
+                                10,
+                                30,
+                                hue,
+                                0,
+                                5052,
+                                0
+                            );
+
+                            if (capturedRange == range)
+                            {
+                                IPooledEnumerable eable = map.GetMobilesInRange(tile, 0);
+                                foreach (Mobile m in eable)
+                                {
+                                    if (damagedMobiles.Contains(m) || m == boss || !m.Alive || !m.Player)
+                                        continue;
+
+                                    if (!boss.CanBeHarmful(m))
+                                        continue;
+
+                                    boss.DoHarmful(m);
+
+                                    int damage = Utility.RandomMinMax(minDamage, maxDamage);
+                                    AOS.Damage(m, boss, damage, physicalDmg, fireDmg, coldDmg, poisonDmg, energyDmg);
+
+                                    m.FixedParticles(0x36B0, 1, 10, 5013, hue, 0, EffectLayer.Waist);
+                                    damagedMobiles.Add(m);
+                                }
+                                eable.Free();
+                            }
+                        }
+                        Effects.PlaySound(bossLocation, map, 0x208);
+                    });
+                }
+            });
+        }
+
+        #endregion
         #region helpers
         /// <summary>
         /// Cross shaped AoE attack
@@ -937,6 +1068,103 @@ namespace Server.Custom.DailyBosses.System
         		0,
         		EffectLayer.Waist
         	);
+        }
+
+        private static List<Point3D> GetConeTiles(Point3D origin, Direction direction, int range)
+        {
+            List<Point3D> tiles = new List<Point3D>();
+
+            int width = range;
+
+            int dx = 0, dy = 0;
+            GetDirectionOffset(direction, ref dx, ref dy);
+
+            int perpX = 0, perpY = 0;
+            GetPerpendicularOffset(direction, ref perpX, ref perpY);
+
+            for (int offset = -(width - 1); offset <= (width - 1); offset++)
+            {
+                // Skip corners based on range and offset to create cone shape
+                int absOffset = Math.Abs(offset);
+                if (absOffset > range)
+                    continue;
+
+                int x = origin.X + (dx * range) + (perpX * offset);
+                int y = origin.Y + (dy * range) + (perpY * offset);
+
+                tiles.Add(new Point3D(x, y, origin.Z));
+            }
+
+            return tiles;
+        }
+
+        /// <summary>
+        /// Gets the primary direction from origin to target
+        /// </summary>
+        private static Direction GetDirection(Point3D from, Point3D to)
+        {
+            int dx = to.X - from.X;
+            int dy = to.Y - from.Y;
+
+            // Determine primary direction
+            if (Math.Abs(dx) > Math.Abs(dy))
+            {
+                // horizontal
+                if (dx > 0)
+                    return Direction.East;
+                else
+                    return Direction.West;
+            }
+            else
+            {
+                // vertical
+                if (dy > 0)
+                    return Direction.South;
+                else
+                    return Direction.North;
+            }
+        }
+
+        /// <summary>
+        /// Gets the X and Y offset for a direction
+        /// </summary>
+        private static void GetDirectionOffset(Direction direction, ref int dx, ref int dy)
+        {
+            switch (direction & Direction.Mask)
+            {
+                case Direction.North: dx = 0; dy = -1; break;
+                case Direction.South: dx = 0; dy = 1; break;
+                case Direction.East: dx = 1; dy = 0; break;
+                case Direction.West: dx = -1; dy = 0; break;
+                case Direction.Right: dx = 1; dy = -1; break;
+                case Direction.Down: dx = 1; dy = 1; break;
+                case Direction.Left: dx = -1; dy = 1; break;
+                case Direction.Up: dx = -1; dy = -1; break;
+            }
+        }
+
+        /// <summary>
+        /// Gets perpendicular offsets for cone spread
+        /// </summary>
+        private static void GetPerpendicularOffset(Direction direction, ref int px, ref int py)
+        {
+            switch (direction & Direction.Mask)
+            {
+                case Direction.North:
+                case Direction.South:
+                    px = 1; py = 0; // Horizontal spread for vertical breath
+                    break;
+                case Direction.East:
+                case Direction.West:
+                    px = 0; py = 1; // Vertical spread for horizontal breath
+                    break;
+                case Direction.Right:
+                case Direction.Left:
+                case Direction.Down:
+                case Direction.Up:
+                    px = 1; py = 0; // Default for diagonal
+                    break;
+            }
         }
         #endregion
     }

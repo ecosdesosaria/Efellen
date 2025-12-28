@@ -1,12 +1,14 @@
 using System; 
 using Server;
 using Server.Items;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles 
 { 
 	[CorpseName( "an archmage corpse" )] 
 	public class Archmage : BaseCreature 
 	{ 
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ if ( YellHue < 2 ){ return 100; } else { return 0; } } }
 		public override int BreathColdDamage{ get{ if ( YellHue == 3 ){ return 100; } else { return 0; } } }
@@ -83,10 +85,10 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Energy, 40, 50 );
 
 			SetSkill( SkillName.Anatomy, 25.1, 50.0 );
-			SetSkill( SkillName.Psychology, 90.1, 100.0 );
-			SetSkill( SkillName.Magery, 95.5, 100.0 );
-			SetSkill( SkillName.Meditation, 25.1, 50.0 );
-			SetSkill( SkillName.MagicResist, 100.5, 150.0 );
+			SetSkill( SkillName.Psychology, 1110.0 );
+			SetSkill( SkillName.Magery, 111.0 );
+			SetSkill( SkillName.Meditation, 80.0 );
+			SetSkill( SkillName.MagicResist, 110.5, 150.0 );
 			SetSkill( SkillName.Tactics, 90.1, 100.0 );
 			SetSkill( SkillName.FistFighting, 90.1, 100.0 );
 
@@ -96,6 +98,75 @@ namespace Server.Mobiles
 			VirtualArmor = 90;
 
 			PackReg( 30, 275 );
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"I shall unravel you!",
+						0xA2A,  // hue
+						20,     // physical
+						20,   // fire
+						20,     // cold
+						20,     // poison
+						20      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "Taste my power!",
+					    hue: 0xA2A,
+					    rage: 2,
+					    coldDmg: 20,
+					    fireDmg: 20,
+					    energyDmg: 20,
+					    poisonDmg: 20,
+					    physicalDmg: 20
+					);
+                	break;
+			    }
+				case 3: // energy nova
+				{
+					BossSpecialAttack.PerformSlam(
+                	    boss: this,
+                	    warcry: "The Weave is mine to control",
+                	    hue: 0xA2A,
+                	    rage: 2,
+                	    range: 6,
+                	    physicalDmg: 0,
+						energyDmg: 100
+                	);
+                	break;
+			    }
+			}
 		}
 
 		public override void GenerateLoot()
@@ -159,16 +230,21 @@ namespace Server.Mobiles
 		{ 
 		} 
 
-		public override void Serialize( GenericWriter writer ) 
-		{ 
-			base.Serialize( writer ); 
-			writer.Write( (int) 0 ); 
-		} 
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
+		}
 
-		public override void Deserialize( GenericReader reader ) 
-		{ 
-			base.Deserialize( reader ); 
-			int version = reader.ReadInt(); 
-		} 
+		public override void Deserialize( GenericReader reader )
+		{
+			base.Deserialize( reader );
+			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
+		}
 	} 
 }

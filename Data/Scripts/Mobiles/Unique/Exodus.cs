@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using Server.Items;
 using Server.Misc;
 using Server.Network; 
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a pile of metal" )]
 	public class Exodus : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		private bool m_FieldActive;
 		public bool FieldActive{ get{ return m_FieldActive; } }
 		public bool CanUseField{ get{ return Hits >= HitsMax * 9 / 10; } } // TODO: an OSI bug prevents to verify this
@@ -41,11 +43,11 @@ namespace Server.Mobiles
 			BaseSoundID = 0x300;
 			Body = 451;
 
-			SetStr( 500, 700 );
-			SetDex( 177, 255 );
-			SetInt( 151, 250 );
+			SetStr( 700 );
+			SetDex( 255 );
+			SetInt( 250 );
 
-			SetHits( 400, 500 );
+			SetHits( 800, 900 );
 
 			SetDamage( 18, 23 );
 
@@ -198,6 +200,78 @@ namespace Server.Mobiles
 			}
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1:
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						3,
+						"I AM PERFECT",
+						0x211,  // hue
+						20,     // physical
+						20,   // fire
+						20,     // cold
+						20,     // poison
+						20      // energy
+					);
+					break;
+				}
+				case 2:
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry:"YOU ARE NOTHING",
+					    hue: 0x211,
+					    rage: 3,
+					    coldDmg: 20,
+					    fireDmg: 20,
+					    energyDmg:20,
+					    poisonDmg: 20,
+					    physicalDmg: 20
+					);
+                	break;
+			    }
+				case 3:
+				{
+					BossSpecialAttack.PerformSlam(
+                	    boss: this,
+                	    warcry:"I AM THE END",
+                	    hue: 0x211,
+                	    rage: 3,
+                	    range: 6,
+					    coldDmg: 20,
+					    fireDmg: 20,
+					    energyDmg:20,
+					    poisonDmg: 20,
+					    physicalDmg: 20
+                	);
+                	break;
+			    }
+			}
+		}
+
 		public override void OnThink()
 		{
 			base.OnThink();
@@ -232,14 +306,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
-
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 			m_FieldActive = CanUseField;
 		}
 	}

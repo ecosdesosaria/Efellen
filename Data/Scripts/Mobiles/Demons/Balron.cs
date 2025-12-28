@@ -8,12 +8,13 @@ using Server.Mobiles;
 using System.Collections.Generic;
 using Server.Misc;
 using Server.Regions;
-
+using Server.Custom.DailyBosses.System;
 namespace Server.Mobiles
 {
 	[CorpseName( "a balron corpse" )]
 	public class Balron : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override double DispelDifficulty{ get{ return 150.0; } }
 		public override double DispelFocus{ get{ return 25.0; } }
 
@@ -51,6 +52,62 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(8); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Devil; } }
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 2 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"I came for your soul!",
+						rHue,  // hue
+						20,     // physical
+						20,   // fire
+						20,     // cold
+						20,     // poison
+						20      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "I shall be the end of you!",
+					    hue: rHue,
+					    rage: 2,
+					    coldDmg: 20,
+					    fireDmg: 20,
+					    energyDmg: 20,
+					    poisonDmg: 20,
+					    physicalDmg: 20
+					);
+                	break;
+			    }
+			}
+		}
+
 		public Balron( Serial serial ) : base( serial )
 		{
 		}
@@ -58,7 +115,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 			writer.Write( rBody );
 			writer.Write( rHue );
 			writer.Write( rName );
@@ -79,6 +136,7 @@ namespace Server.Mobiles
 			writer.Write( rBreathSound );
 			writer.Write( rBreathItemID );
 			writer.Write( rBreathDelay );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -105,6 +163,10 @@ namespace Server.Mobiles
 			rBreathSound = reader.ReadInt();
 			rBreathItemID = reader.ReadInt();
 			rBreathDelay = reader.ReadDouble();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 
 		public override void OnDeath( Container c )

@@ -4,12 +4,14 @@ using System.Collections;
 using Server.Items;
 using Server.Targeting;
 using Server.Misc;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a devil corpse" )]
 	public class Satan : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override double DispelDifficulty{ get{ return 150.0; } }
 		public override double DispelFocus{ get{ return 25.0; } }
 
@@ -39,13 +41,13 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 100 );
 			SetResistance( ResistanceType.Energy, 40, 50 );
 
-			SetSkill( SkillName.Anatomy, 25.1, 50.0 );
-			SetSkill( SkillName.Psychology, 90.1, 100.0 );
-			SetSkill( SkillName.Magery, 95.5, 100.0 );
-			SetSkill( SkillName.Meditation, 25.1, 50.0 );
-			SetSkill( SkillName.MagicResist, 100.5, 150.0 );
-			SetSkill( SkillName.Tactics, 90.1, 100.0 );
-			SetSkill( SkillName.FistFighting, 90.1, 100.0 );
+			SetSkill( SkillName.Anatomy, 60.0 );
+			SetSkill( SkillName.Psychology, 110.0 );
+			SetSkill( SkillName.Magery, 110.0 );
+			SetSkill( SkillName.Meditation, 70.0 );
+			SetSkill( SkillName.MagicResist, 120.5, 150.0 );
+			SetSkill( SkillName.Tactics, 110.0 );
+			SetSkill( SkillName.FistFighting, 110.0 );
 
 			Fame = 25000;
 			Karma = -25000;
@@ -123,6 +125,75 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(8); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Devil; } }
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"I came for your soul!",
+						0x489,  // hue
+						20,     // physical
+						20,   // fire
+						20,     // cold
+						20,     // poison
+						20      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "I shall be the end of you!",
+					    hue: 0x489,
+					    rage: 2,
+					    coldDmg: 20,
+					    fireDmg: 20,
+					    energyDmg: 20,
+					    poisonDmg: 20,
+					    physicalDmg: 20
+					);
+                	break;
+			    }
+				case 3: // energy nova
+				{
+					BossSpecialAttack.PerformSlam(
+                	    boss: this,
+                	    warcry: "Hell calls thy name!",
+                	    hue: 0x489,
+                	    rage: 2,
+                	    range: 6,
+                	    physicalDmg: 0,
+						energyDmg: 100
+                	);
+                	break;
+			    }
+			}
+		}
+
 		public Satan( Serial serial ) : base( serial )
 		{
 		}
@@ -130,13 +201,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

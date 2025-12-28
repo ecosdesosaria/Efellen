@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using Server.Items;
 using Server.Misc;
 using Server.Engines.PartySystem;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a titan corpse" )]
 	public class TitanPyros : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ return 100; } }
 		public override int BreathColdDamage{ get{ return 0; } }
@@ -246,16 +248,86 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						3,
+						"I shall consume you!",
+						0x779,  // hue
+						0,     // physical
+						100,   // fire
+						0,     // cold
+						0,     // poison
+						0      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "I am the pyre everlasting",
+					    hue: 0x779,
+					    rage: 3,
+					    fireDmg: 100,
+					    physicalDmg: 0
+					);
+                	break;
+			    }
+				case 3: // energy nova
+				{
+					BossSpecialAttack.PerformSlam(
+                	    boss: this,
+                	    warcry: "Fire shall cleanse you!",
+                	    hue: 0x779,
+                	    rage: 3,
+                	    range: 6,
+                	    physicalDmg: 0,
+						fireDmg: 100
+                	);
+                	break;
+			    }
+			}
+		}
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

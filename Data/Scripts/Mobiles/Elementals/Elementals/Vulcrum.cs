@@ -10,12 +10,14 @@ using Server.Commands.Generic;
 using Server.Mobiles;
 using Server.Accounting;
 using Server.Regions;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Vulcrum's corpse" )]
 	public class Vulcrum : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
 		public override int GetBreathForm()
@@ -37,7 +39,7 @@ namespace Server.Mobiles
 			SetDex( 177, 255 );
 			SetInt( 151, 250 );
 
-			SetHits( 592, 711 );
+			SetHits( 792, 911 );
 
 			SetDamage( 22, 29 );
 
@@ -51,13 +53,13 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 100 );
 			SetResistance( ResistanceType.Energy, 40, 50 );
 
-			SetSkill( SkillName.Anatomy, 25.1, 50.0 );
-			SetSkill( SkillName.Psychology, 90.1, 100.0 );
-			SetSkill( SkillName.Magery, 95.5, 100.0 );
-			SetSkill( SkillName.Meditation, 25.1, 50.0 );
-			SetSkill( SkillName.MagicResist, 100.5, 150.0 );
-			SetSkill( SkillName.Tactics, 90.1, 100.0 );
-			SetSkill( SkillName.FistFighting, 90.1, 100.0 );
+			SetSkill( SkillName.Anatomy, 60.0 );
+			SetSkill( SkillName.Psychology, 110.0 );
+			SetSkill( SkillName.Magery, 110.0 );
+			SetSkill( SkillName.Meditation, 55.0 );
+			SetSkill( SkillName.MagicResist, 120.5, 150.0 );
+			SetSkill( SkillName.Tactics, 110.0 );
+			SetSkill( SkillName.FistFighting, 110.0 );
 
 			Fame = 24000;
 			Karma = -24000;
@@ -67,6 +69,62 @@ namespace Server.Mobiles
 			PackItem( new SulfurousAsh( 50 ) );
 
 			AddItem( new LighterSource() );
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 2 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"Fire Everlasting!",
+						Hue,  // hue
+						0,     // physical
+						100,   // fire
+						0,     // cold
+						0,     // poison
+						0      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "BURN!",
+					    hue: Hue,
+					    rage: 2,
+					    coldDmg: 0,
+					    fireDmg: 100,
+					    energyDmg: 0,
+					    poisonDmg: 0,
+					    physicalDmg: 0
+					);
+                	break;
+			    }
+			}
 		}
 
 		public override void OnDeath( Container c )
@@ -103,13 +161,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 
 			if ( BaseSoundID == 274 )
 				BaseSoundID = 838;

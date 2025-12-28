@@ -72,6 +72,7 @@ namespace Server.Misc
 		+"  • NPCS that offer training can now train skills up to 50.<br>"
 		+"  • Exodus no longer auto-wrecks any pets that hit him.<br>"
 		+"  • Beholder-type enemies are now much rarer and much stronger. Watch out for their eyestalks!"
+		+"  • Various unique and powerful enemies now have access to interesting special attacks that will make the battles much more dynamic.<br>"
 		+" <br>"
 		+" * Progression & archetypes:<br>"
 		+"  • Highly skilled Druids now have venom immunity. "

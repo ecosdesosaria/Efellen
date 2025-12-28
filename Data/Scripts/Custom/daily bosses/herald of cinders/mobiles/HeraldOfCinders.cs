@@ -161,7 +161,21 @@ namespace Server.Mobiles
 
 			switch ( attackChoice )
 			{
-				case 1: // flame charge 
+				case 1: // fire cone
+					{
+						BossSpecialAttack.PerformConeBreath(
+				        boss: this,
+				        target: target,
+				        warcry: "*exhales devastating flames!*",
+				        hue: 1160,
+				        rage: m_Rage,
+				        range: 5,  // Maximum range
+						physicalDmg:0,
+				        fireDmg: 100
+				    );
+				    break;
+					}
+				case 2: // flame burst
 					{
 						BossSpecialAttack.PerformTargettedAoE(
 							this,
@@ -176,19 +190,6 @@ namespace Server.Mobiles
 							0      // energy
 						);
 						break;
-					}
-				case 2: // fire blast
-					{
-						BossSpecialAttack.PerformSlam(
-                   		    boss: this,
-                   		    warcry: "I shall consume you!",
-                   		    hue: 1160,
-                   		    rage: m_Rage,
-                   		    range: 6,
-                   		    physicalDmg: 0,
-							fireDmg: 100
-                   		);
-                   		break;
 					}
 				case 3: // magma eruption
 					{

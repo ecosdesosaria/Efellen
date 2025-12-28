@@ -2,12 +2,14 @@ using System;
 using Server;
 using Server.Items;
 using Server.Misc;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a titans corpse" )]
 	public class ElderTitan : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ return 0; } }
 		public override int BreathColdDamage{ get{ return 0; } }
@@ -61,6 +63,53 @@ namespace Server.Mobiles
 			VirtualArmor = 45;
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 2 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // ground stomp (knockback + stagger)
+				{
+					BossSpecialAttack.PerformSlam(
+                    	boss: this,
+                    	warcry: "*The ground quakes!*",
+                    	hue: Hue,
+                    	rage: 1,
+                    	range: 6,
+                    	physicalDmg: 100
+              		);
+                	break;
+				}
+                case 2: // rampage - multi charge
+				{
+                    BossSpecialAttack.PerformRampage(
+                       boss: this,
+                       warcry: "*The Titan charges wildly!*",
+                       hue: Hue,
+                       rage: 1,
+                       stunDuration: 5.0
+                   );
+                   break;
+				}
+			}
+		}
+
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
@@ -106,13 +155,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }
