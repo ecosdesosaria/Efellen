@@ -349,20 +349,8 @@ namespace Server.Mobiles
 
 		public override void OnDelete()
         {
-            CleanupSummons();
+            BossSummonSystem.CleanupSummons(m_Summons);
             base.OnDelete();
-        }
-
-        private void CleanupSummons()
-        {
-            for (int i = 0; i < m_Summons.Count; i++)
-            {
-                BaseCreature bc = m_Summons[i];
-
-                if (bc != null && !bc.Deleted)
-                    bc.Delete();
-            }
-            m_Summons.Clear();
         }
 
 		public override void OnDeath( Container c )

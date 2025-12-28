@@ -347,23 +347,10 @@ namespace Server.Mobiles
 
 		public override void OnDelete()
 		{
-			CleanupSummons();
+			BossSummonSystem.CleanupSummons(m_Summons);
 			CleanupExplosiveTiles();
 			base.OnDelete();
 		}
-
-		private void CleanupSummons()
-		{
-			for (int i = m_Summons.Count - 1; i >= 0; i--)
-			{
-				BaseCreature bc = m_Summons[i];
-
-				if (bc != null && !bc.Deleted)
-					bc.Delete();
-			}
-			m_Summons.Clear();
-		}
-
 		private void CleanupExplosiveTiles()
 		{
 			for (int i = m_ExplosiveTiles.Count - 1; i >= 0; i--)
