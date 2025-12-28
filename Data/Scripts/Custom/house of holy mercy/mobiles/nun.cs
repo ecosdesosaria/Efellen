@@ -3,6 +3,7 @@ using System.Collections;
 using Server.Misc;
 using Server.Items;
 using Server.Targeting;
+using Server.Regions;
 
 namespace Server.Mobiles
 {
@@ -119,48 +120,65 @@ namespace Server.Mobiles
             }
         }
 
+		private bool IsFriendlyCreature(Mobile m)
+		{
+			Region reg = Region.Find( this.Location, this.Map );
+			return (reg.IsPartOf( "House of Holy Mercy" ) && (
+					m is nun || 
+					m is Cook || 
+					m is Herbalist || 
+					m is Healer || 
+					m is Painter ||
+					m is MotherSuperior
+					));
+		}
+
 		public override bool IsEnemy( Mobile m )
 	    {
 			if (m == null || m.Deleted)
 	        	return false;
 			
+			if (IsFriendlyCreature(m))
+		    	return false;
+			
+			if (m.Player && m.Karma >= 0 && m.Combatant != this)
+				return false;
+			
 			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
 				return false;
 			
-			if (m is nun || m is Cook || m is Herbalist || m is Healer || m is Painter)
-				return false;
-
 			if ( m.Region != this.Region )
 				return false;
-		
+			
 			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
 			{
 				this.Location = m.Location;
 				this.Combatant = m;
 				this.Warmode = true;
 			}
+			
 			return true;
 	    }
 
 		public override void AggressiveAction(Mobile m, bool criminal)
 		{
-			if (m is nun || m is Cook || m is Herbalist || m is Healer || m is Painter)
+		    if (IsFriendlyCreature(m))
 				return;
 
-		    base.AggressiveAction(m, true);
+		    base.AggressiveAction(m, criminal);
 		}
 
 		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
 		{
-		   	if (m is nun || m is Cook || m is Herbalist || m is Healer || m is Painter)
-			    return false;
+		    if (IsFriendlyCreature(m))
+		        return false;
 
 		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
 		}
 
 		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
 		{
-		    if (m is nun || m is Cook || m is Herbalist || m is Healer || m is Painter)
+		    if (IsFriendlyCreature(m))
 		        return true;
 
 		    return base.CanBeBeneficial(m, message, allowDead);

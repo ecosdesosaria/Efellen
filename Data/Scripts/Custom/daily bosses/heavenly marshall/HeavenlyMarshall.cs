@@ -118,13 +118,26 @@ namespace Server.Mobiles
 		public override bool AlwaysAttackable{ get{ return true; } }
 		public override bool AlwaysMurderer { get { return false; } }
 
-        public override bool IsEnemy( Mobile m )
+        
+		private bool IsFriendlyCreature(Mobile m)
+		{
+			return 	m is HeavenlyMarshall || 
+					m is SkyKnight || 
+					m is GriffonRiding || 
+					m is WarGriffon || 
+					m is EtherealWarriorGeneral;
+		}
+
+		public override bool IsEnemy( Mobile m )
 	    {
 			if (m == null || m.Deleted)
 	        	return false;
 			
-			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral)
+			if (IsFriendlyCreature(m))
 		    	return false;
+			
+			if (m.Player && m.Karma >= 0 && m.Combatant != this)
+				return false;
 			
 			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
 				return false;
@@ -138,20 +151,21 @@ namespace Server.Mobiles
 				this.Combatant = m;
 				this.Warmode = true;
 			}
+			
 			return true;
 	    }
 
 		public override void AggressiveAction(Mobile m, bool criminal)
 		{
-			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
+		    if (IsFriendlyCreature(m))
 				return;
 
-		    base.AggressiveAction(m, true);
+		    base.AggressiveAction(m, criminal);
 		}
 
 		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
 		{
-		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
+		    if (IsFriendlyCreature(m))
 		        return false;
 
 		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
@@ -159,12 +173,11 @@ namespace Server.Mobiles
 
 		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
 		{
-		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
+		    if (IsFriendlyCreature(m))
 		        return true;
 
 		    return base.CanBeBeneficial(m, message, allowDead);
 		}
-
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
@@ -174,7 +187,7 @@ namespace Server.Mobiles
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
 				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 15 - (m_Rage * 2) );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 24 - (m_Rage * 2) );
 			}
 		
 			if (from.Player && from.Kills < 5 && !from.Criminal) 

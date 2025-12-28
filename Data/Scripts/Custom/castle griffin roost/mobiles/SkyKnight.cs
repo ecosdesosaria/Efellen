@@ -9,6 +9,7 @@ using Server.ContextMenus;
 using Server.Gumps;
 using Server.Misc;
 using Server.Mobiles;
+using Server.Regions;
 
 namespace Server.Mobiles 
 { 
@@ -294,41 +295,55 @@ namespace Server.Mobiles
 		        0, 0, 0, 0
 		    );
 		}
+		private bool IsFriendlyCreature(Mobile m)
+		{
+			Region reg = Region.Find( this.Location, this.Map );
+			return (reg.IsPartOf( "Castle Griffin Roost" ) && (
+					m is HeavenlyMarshall || 
+					m is SkyKnight || 
+					m is GriffonRiding || 
+					m is WarGriffon || 
+					m is EtherealWarriorGeneral));
+		}
 
 		public override bool IsEnemy( Mobile m )
 	    {
 			if (m == null || m.Deleted)
 	        	return false;
 			
-			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
+			if (IsFriendlyCreature(m))
 		    	return false;
-		
+			
+			if (m.Player && m.Karma >= 0 && m.Combatant != this)
+				return false;
+			
 			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
 				return false;
-		
+			
 			if ( m.Region != this.Region )
 				return false;
-		
+			
 			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
 			{
 				this.Location = m.Location;
 				this.Combatant = m;
 				this.Warmode = true;
 			}
+			
 			return true;
 	    }
 
 		public override void AggressiveAction(Mobile m, bool criminal)
 		{
-			if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
+		    if (IsFriendlyCreature(m))
 				return;
 
-		    base.AggressiveAction(m, true);
+		    base.AggressiveAction(m, criminal);
 		}
 
 		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
 		{
-		    if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral || m is Angel || m is Archangel)
+		    if (IsFriendlyCreature(m))
 		        return false;
 
 		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
@@ -336,13 +351,11 @@ namespace Server.Mobiles
 
 		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
 		{
-		     if (m is HeavenlyMarshall || m is SkyKnight || m is GriffonRiding || m is WarGriffon || m is EtherealWarriorGeneral  || m is Angel || m is Archangel)
+		    if (IsFriendlyCreature(m))
 		        return true;
 
 		    return base.CanBeBeneficial(m, message, allowDead);
 		}
-
-
 		public SkyKnight( Serial serial ) : base( serial ) 
 		{ 
 		} 
