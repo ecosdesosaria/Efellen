@@ -2,12 +2,14 @@ using System;
 using Server;
 using Server.Items;
 using Server.Misc;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a skeletal corpse" )]
 	public class DemiLich : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		[Constructable]
 		public DemiLich() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -202,6 +204,58 @@ namespace Server.Mobiles
         {
             return 0x621;
         }
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 60 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 2 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"My power shall be your end!",
+						Utility.RandomColor( 0 ),  // hue
+						0,     // physical
+						0,   // fire
+						0,     // cold
+						0,     // poison
+						100      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformSlam(
+                	    boss: this,
+                	    warcry: "Feel my eternal wrath!",
+                	    hue: Utility.RandomColor( 0 ),
+                	    rage: 1,
+                	    range: 6,
+                	    physicalDmg: 0,
+						energyDmg: 100
+                	);
+                	break;
+			    }
+			}
+		}
 
 		public DemiLich( Serial serial ) : base( serial )
 		{
@@ -210,13 +264,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

@@ -8,12 +8,14 @@ using Server.Mobiles;
 using System.Collections.Generic;
 using Server.Misc;
 using Server.Regions;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a dragon corpse" )]
 	public class RidingDragon : BaseMount
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		[Constructable]
 		public RidingDragon() : this( "a dragon", 59, 0 )
 		{
@@ -61,11 +63,41 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			Map map = this.Map;
+
+			BossSpecialAttack.PerformConeBreath(
+			    boss: this,
+			    target: target,
+			    warcry: "*exhales devastating flames!*",
+			    hue: rHue,
+			    rage: 1,
+			    range: 4, 
+				physicalDmg:0,
+			    fireDmg: 100
+			);
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
 
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 ); // version
 
 			writer.Write( rBody );
 			writer.Write( rHue );
@@ -85,6 +117,7 @@ namespace Server.Mobiles
 			writer.Write( rBreathSound );
 			writer.Write( rBreathItemID );
 			writer.Write( rBreathDelay );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -116,6 +149,10 @@ namespace Server.Mobiles
 			rBreathSound = reader.ReadInt();
 			rBreathItemID = reader.ReadInt();
 			rBreathDelay = reader.ReadDouble();
+			if ( version >= 2 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 
 		public override void OnAfterSpawn()

@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using Server.Items;
 using Server.Misc;
 using Server.Engines.PartySystem;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a titan corpse" )]
 	public class TitanHydros : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override int BreathPhysicalDamage{ get{ return 50; } }
 		public override int BreathFireDamage{ get{ return 0; } }
 		public override int BreathColdDamage{ get{ return 50; } }
@@ -37,9 +39,9 @@ namespace Server.Mobiles
 
 			SetStr( 986, 1185 );
 			SetDex( 177, 255 );
-			SetInt( 151, 250 );
+			SetInt( 251, 350 );
 
-			SetHits( 592, 711 );
+			SetHits( 892, 911 );
 
 			SetDamage( 22, 29 );
 
@@ -257,17 +259,86 @@ namespace Server.Mobiles
 		public TitanHydros( Serial serial ) : base( serial )
 		{
 		}
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
 
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"I shall destroy you!",
+						0xB46,  // hue
+						0,     // physical
+						0,   // fire
+						100,     // cold
+						0,     // poison
+						0      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "You will regret dabbling in my affairs!",
+					    hue: 0xB46,
+					    rage: 2,
+					    coldDmg: 100,
+					    physicalDmg: 0
+					);
+                	break;
+			    }
+				case 3: // energy nova
+				{
+					BossSpecialAttack.PerformSlam(
+                	    boss: this,
+                	    warcry: "Foolish mortal!",
+                	    hue: 0xB46,
+                	    rage: 2,
+                	    range: 6,
+                	    physicalDmg: 0,
+						coldDmg: 100
+                	);
+                	break;
+			    }
+			}
+		}
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

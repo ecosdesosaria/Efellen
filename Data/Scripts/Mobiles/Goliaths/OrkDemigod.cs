@@ -2,12 +2,14 @@ using System;
 using Server;
 using Server.Items;
 using Server.Misc;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a demigod corpse" )]
 	public class OrkDemigod : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		[Constructable]
 		public OrkDemigod () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -52,6 +54,53 @@ namespace Server.Mobiles
 				MyChest.Hue = 0x8A1;
 				MyChest.ItemID = 0xE41;
 				PackItem( MyChest );
+			}
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 2 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // ground stomp (knockback + stagger)
+				{
+					BossSpecialAttack.PerformSlam(
+                    	boss: this,
+                    	warcry: "*The ground quakes!*",
+                    	hue: Hue,
+                    	rage: 1,
+                    	range: 6,
+                    	physicalDmg: 100
+              		);
+                	break;
+				}
+                case 2: // rampage - multi charge
+				{
+                    BossSpecialAttack.PerformRampage(
+                       boss: this,
+                       warcry: "*The Demigod charges wildly!*",
+                       hue: Hue,
+                       rage: 1,
+                       stunDuration: 5.0
+                   );
+                   break;
+				}
 			}
 		}
 
@@ -130,13 +179,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

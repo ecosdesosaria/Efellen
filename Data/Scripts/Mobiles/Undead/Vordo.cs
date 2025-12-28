@@ -8,12 +8,14 @@ using Server.Network;
 using System.Text;
 using Server.Mobiles;
 using Server.Engines.PartySystem;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a ghostly essence" )]
 	public class Vordo : BaseCreature 
 	{ 
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		[Constructable] 
 		public Vordo() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{
@@ -31,11 +33,11 @@ namespace Server.Mobiles
 
 			BaseSoundID = 412;
 
-			SetStr( 171, 200 );
+			SetStr( 231, 260 );
 			SetDex( 126, 145 );
-			SetInt( 276, 305 );
+			SetInt( 376, 405 );
 
-			SetHits( 103, 120 );
+			SetHits( 163, 250 );
 
 			SetDamage( 24, 26 );
 
@@ -44,19 +46,19 @@ namespace Server.Mobiles
 			SetDamageType( ResistanceType.Energy, 50 );
 
 			SetResistance( ResistanceType.Physical, 40, 60 );
-			SetResistance( ResistanceType.Fire, 20, 30 );
-			SetResistance( ResistanceType.Cold, 50, 60 );
-			SetResistance( ResistanceType.Poison, 55, 65 );
-			SetResistance( ResistanceType.Energy, 40, 50 );
+			SetResistance( ResistanceType.Fire, 40 );
+			SetResistance( ResistanceType.Cold, 55 );
+			SetResistance( ResistanceType.Poison, 65 );
+			SetResistance( ResistanceType.Energy, 50 );
 
-			SetSkill( SkillName.Necromancy, 89, 99.1 );
-			SetSkill( SkillName.Spiritualism, 90.0, 99.0 );
-
+			SetSkill( SkillName.Necromancy, 109.1 );
+			SetSkill( SkillName.Spiritualism, 109.0 );
 			SetSkill( SkillName.Psychology, 100.0 );
-			SetSkill( SkillName.Magery, 70.1, 80.0 );
-			SetSkill( SkillName.Meditation, 85.1, 95.0 );
-			SetSkill( SkillName.MagicResist, 80.1, 100.0 );
-			SetSkill( SkillName.Tactics, 70.1, 90.0 );
+			SetSkill( SkillName.Magery, 100.0 );
+			SetSkill( SkillName.Meditation, 105.0 );
+			SetSkill( SkillName.MagicResist, 125.0 );
+			SetSkill( SkillName.Tactics, 100.0 );
+			SetSkill( SkillName.FistFighting, 90.0 );
 
 			Fame = 12000;
 			Karma = -12000;
@@ -196,6 +198,62 @@ namespace Server.Mobiles
 			return 0x28B;
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 2 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"My magic shall end thee!",
+						0x47E,  // hue
+						0,     // physical
+						0,   // fire
+						0,     // cold
+						0,     // poison
+						100      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "The weave bends to me!",
+					    hue: 0x47E,
+					    rage: 2,
+					    coldDmg: 20,
+					    fireDmg: 20,
+					    energyDmg: 20,
+					    poisonDmg: 20,
+					    physicalDmg: 20
+					);
+                	break;
+			    }
+			}
+		}
+
 		public Vordo( Serial serial ) : base( serial )
 		{
 		}
@@ -203,13 +261,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }

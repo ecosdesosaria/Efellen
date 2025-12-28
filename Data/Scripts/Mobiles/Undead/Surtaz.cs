@@ -10,12 +10,14 @@ using Server.Commands.Generic;
 using Server.Mobiles;
 using Server.Accounting;
 using Server.Regions;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Surtaz's corpse" )]
 	public class Surtaz : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		[Constructable]
 		public Surtaz() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -28,9 +30,9 @@ namespace Server.Mobiles
 
 			SetStr( 986, 1185 );
 			SetDex( 177, 255 );
-			SetInt( 151, 250 );
+			SetInt( 250, 350 );
 
-			SetHits( 592, 711 );
+			SetHits( 992, 1311 );
 
 			SetDamage( 22, 29 );
 
@@ -44,13 +46,13 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 100 );
 			SetResistance( ResistanceType.Energy, 40, 50 );
 
-			SetSkill( SkillName.Anatomy, 25.1, 50.0 );
+			SetSkill( SkillName.Anatomy, 80.0 );
 			SetSkill( SkillName.Psychology, 90.1, 100.0 );
-			SetSkill( SkillName.Magery, 95.5, 100.0 );
-			SetSkill( SkillName.Meditation, 25.1, 50.0 );
-			SetSkill( SkillName.MagicResist, 100.5, 150.0 );
-			SetSkill( SkillName.Tactics, 90.1, 100.0 );
-			SetSkill( SkillName.FistFighting, 90.1, 100.0 );
+			SetSkill( SkillName.Magery, 110.0 );
+			SetSkill( SkillName.Meditation, 60.0 );
+			SetSkill( SkillName.MagicResist, 120.5, 150.0 );
+			SetSkill( SkillName.Tactics, 110.0 );
+			SetSkill( SkillName.FistFighting, 110.0 );
 
 			Fame = 24000;
 			Karma = -24000;
@@ -152,6 +154,59 @@ namespace Server.Mobiles
             return 0x621;
         }
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 2 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						1,
+						"Darkness everlasting!",
+						0x9C4,  // hue
+						20,     // physical
+						20,   // fire
+						20,     // cold
+						20,     // poison
+						20      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformSlam(
+                	    boss: this,
+                	    warcry: "Night beckons for thy soul!",
+                	    hue: 0x9C4,
+                	    rage: 1,
+                	    range: 6,
+                	    physicalDmg: 0,
+						energyDmg: 100
+                	);
+                	break;
+			    }
+			}
+		}
+
 		public Surtaz( Serial serial ) : base( serial )
 		{
 		}
@@ -159,13 +214,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
+			writer.Write( m_NextSpecialAttack );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if ( version >= 1 )
+			{
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
 		}
 	}
 }
