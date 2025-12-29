@@ -83,6 +83,34 @@ namespace Server.Mobiles
 			}
 		}
 
+		public override void OnSpeech(SpeechEventArgs e)
+        {
+            Mobile from = e.Mobile;
+			
+            if (from == null || !(from is PlayerMobile))
+                return;
+          
+            if( e.Mobile.InRange( this, 4 ))
+			{
+			    if (e.Speech.IndexOf("reward") >= 0)
+                {
+					if (from is PlayerMobile && ((PlayerMobile)from).NpcGuild == NpcGuild.HealersGuild)
+                    {
+                        from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(from, 5, 0));
+                        Say("These are the gifts I can bestow thee, " + (from.Female ? "sister." : "brother."));
+                    }
+                    else
+                    {
+                        Say("I am only authorized to reward those that belong to our order, friend.");
+                    }
+                }
+			    else 
+			    { 
+			        base.OnSpeech( e ); 
+			    }
+			}
+        }
+
 		public HealerGuildmaster( Serial serial ) : base( serial )
 		{
 		}

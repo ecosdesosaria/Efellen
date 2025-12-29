@@ -15,7 +15,9 @@ namespace Server.Custom.DefenderOfTheRealm
         /*
             1 - defender of the realm
             2 - scourge of the realm
-            3 - thief guildmaster
+            3 - Marks of the shadowbroker - thief guildmaster
+            4 - Marks of the Wilds - druid guildmaster
+            5 - Marks of Devotion - thief guildmaster
         */
         private int type;
         private int m_Hue;
@@ -57,11 +59,17 @@ namespace Server.Custom.DefenderOfTheRealm
                     m_Hue = 1109;
                     list.AddRange(RewardTables.ShadowbrokerRewards);
                     break;
-                 case 4:
+                case 4:
                     AddLabel(160, 20, 1152, "Druidic Rewards");
                     m_CurrencyType = "Marks of the Wilds";
                     m_Hue = 669;
                     list.AddRange(RewardTables.NatureMasterRewards);
+                    break;
+                case 5:
+                    AddLabel(160, 20, 1152, "Cleric Rewards");
+                    m_CurrencyType = "Marks of Devotion";
+                    m_Hue = 0x9C2;
+                    list.AddRange(RewardTables.HealerRewards);
                     break;
 
                 default:
