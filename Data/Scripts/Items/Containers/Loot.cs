@@ -698,14 +698,12 @@ namespace Server
 				typeof( SlaversNet ),			typeof( BrokenArmoireDeed ),			typeof( BrokenVanityDeed ),
 				typeof( BrokenBookcaseDeed ),	typeof( StandingBrokenChairDeed ),		typeof( BrokenCoveredChairDeed ),
 				typeof( MountingBase ),			typeof( StuffingBasket ),				typeof( BrokenFallenChairDeed ),
-				typeof( RunicTinker ),			typeof( RunicSewingKit ),				typeof( RunicSaw ),
-				typeof( RunicHammer ),			typeof( RunicFletching ),				typeof( BrokenChestOfDrawersDeed ),
+				typeof( BrokenChestOfDrawersDeed ),
 				typeof( MagicPigment ),			typeof( RoseEastLargeAddonDeed ),		typeof( RoseEastSmallAddonDeed ),
 				typeof( TelescopeAddonDeed ),	typeof( RoseSouthLargeAddonDeed ),		typeof( ECrystalThroneDeed ),
 				typeof( ECrystalTableDeed ),	typeof( ECrystalSupplicantStatueDeed ),	typeof( RoseSouthSmallAddonDeed ),
 				typeof( ECrystalBullDeed ),		typeof( ECrystalBrazierDeed ),			typeof( ECrystalRunnerStatueDeed ),
-				typeof( ECrystalAltarDeed ),	typeof( ECrystalBeggarStatueDeed ),		typeof( RunicUndertaker ),
-				typeof( RunicLeatherKit ),		typeof( RunicScales ),					typeof( GolemManual ),
+				typeof( ECrystalAltarDeed ),	typeof( ECrystalBeggarStatueDeed ),		typeof( GolemManual ),
 				typeof( SummonPrison ),			typeof( MagicalWand ),					typeof( MagicalWand ),
 				typeof( BrokenBedDeed ),		typeof( Runebook ),						typeof( FrankenJournalInBox ),
 				typeof( LesserWandOfDisenchanting )
@@ -718,18 +716,18 @@ namespace Server
 			{
 				typeof( SkeletonsKey ),			typeof( MagicalDyes ),					typeof( EtherealPowerScroll),
 				typeof( HeavyEnhancementStone ),typeof( ConsecratedEnhancementStone ),	typeof( SummonPrison ),
-				typeof( MagicPigment ),			typeof( RunicHammer ),					typeof( RunicSaw ),
+				typeof( MagicPigment ),			
 				typeof( RoughEnhancementStone ),typeof( DenseEnhancementStone ),		typeof( ElementalEnhancementStone ),
 				typeof( ArtifactManual ),		typeof( Runebook ),						typeof( FrankenJournalInBox ),
-				typeof( CrystallineJar ),		typeof( DockingLantern ),				typeof( RunicFletching ),
-				typeof( BoatBuild ),			typeof( MalletStake ), 					typeof( RunicSewingKit ),		
+				typeof( CrystallineJar ),		typeof( DockingLantern ),				
+				typeof( BoatBuild ),			typeof( MalletStake ), 					
 				typeof( HairDyeBottle ),		typeof( MagicalWand ),					typeof( MagicalWand ),
 				typeof( RareAnvil ),			typeof( MasterSkeletonsKey ),			typeof( InvulnerabilityPotion ),
-				typeof( AlternateRealityMap ),	typeof( UnusualDyes ),					typeof( RunicLeatherKit ),
-				typeof( CarpetBuild ),			typeof( RunicScales ),					typeof( GolemManual ),
+				typeof( AlternateRealityMap ),	typeof( UnusualDyes ),					
+				typeof( CarpetBuild ),			typeof( GolemManual ),
 				typeof( SmallHollowBook ),		typeof( LargeHollowBook ),				typeof( RecallRune),
-				typeof( SlaversNet ),			typeof( TelescopeAddonDeed ),			typeof( RunicUndertaker ),
-				typeof( RunicTinker ),			typeof( WandOfDisenchanting )				
+				typeof( SlaversNet ),			typeof( TelescopeAddonDeed ),			
+				typeof( WandOfDisenchanting )				
 			};
 
 		public static Type[] AdventurerRareItemTypes{ get{ return m_RareItemTypes; } }
