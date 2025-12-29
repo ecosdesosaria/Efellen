@@ -64,7 +64,7 @@ namespace Server.Mobiles
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
-			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			if ( DateTime.UtcNow >= m_NextSpecialAttack && Utility.RandomDouble() < 0.25 )
 			{
 				PerformRageAttack( from );
 				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );

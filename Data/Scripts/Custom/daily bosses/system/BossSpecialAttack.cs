@@ -715,8 +715,8 @@ namespace Server.Custom.DailyBosses.System
 
             if (range < 3)
                 range = 3;
-            if (range > 5)
-                range = 5;
+            if (range > 8)
+                range = 8;
 
             boss.PublicOverheadMessage(MessageType.Regular, hue, false, "*" + boss.Name + " is filling its lungs!*");
             boss.PlaySound(0x227);

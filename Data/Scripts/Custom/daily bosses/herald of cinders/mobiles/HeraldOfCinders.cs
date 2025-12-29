@@ -146,6 +146,19 @@ namespace Server.Mobiles
 			{
 				PerformRageAttack( from );
 				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 24 - (m_Rage * 2) );
+			} 
+			else if (Utility.RandomDouble() < 0.025 )
+			{
+				BossSpecialAttack.PerformConeBreath(
+				    boss: this,
+				    target: from,
+				    warcry: "*exhales devastating flames!*",
+				    hue: 1160,
+				    rage: m_Rage,
+				    range: 5,
+					physicalDmg:0,
+				    fireDmg: 100
+				);	
 			}
 			
 			base.OnDamage( amount, from, willKill );
@@ -164,15 +177,15 @@ namespace Server.Mobiles
 				case 1: // fire cone
 					{
 						BossSpecialAttack.PerformConeBreath(
-				        boss: this,
-				        target: target,
-				        warcry: "*exhales devastating flames!*",
-				        hue: 1160,
-				        rage: m_Rage,
-				        range: 5,  // Maximum range
-						physicalDmg:0,
-				        fireDmg: 100
-				    );
+				    	    boss: this,
+				    	    target: target,
+				    	    warcry: "*exhales devastating flames!*",
+				    	    hue: 1160,
+				    	    rage: m_Rage,
+				    	    range: 8,
+							physicalDmg:0,
+				    	    fireDmg: 100
+				    	);
 				    break;
 					}
 				case 2: // flame burst
