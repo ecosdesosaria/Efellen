@@ -119,6 +119,8 @@ namespace Server.Mobiles
                 from.Karma += amount;
                 Say(SuccessLines[Utility.Random(SuccessLines.Length)]);
                 from.SendMessage("Your healing attempt succeeds. The patient feels better.");
+                from.AddToBackpack( new MarksOfDevotion( amount ) );
+				from.SendMessage( "You aqquired" + " " + amount + " " + "Marks of Devotion!" );
             }
             else
             {

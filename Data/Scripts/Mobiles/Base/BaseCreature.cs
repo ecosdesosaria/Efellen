@@ -8123,15 +8123,26 @@ public virtual int BreathComputeDamage()
 			SlayerEntry holyundead = SlayerGroup.GetEntryByName( SlayerName.Silver );
 			SlayerEntry holydemons = SlayerGroup.GetEntryByName( SlayerName.Exorcism );
 
-			Mobile holyman = this.LastKiller;																		// HOLY MANY HOLDING HOLY SYMBOL
-			if ( ( holyundead.Slays(this) || holydemons.Slays(this) ) && holyman != null && this.TotalGold > 0 )	// TURNS THE MONEY TO BANISH COUNT
+			Mobile cleric = this.LastKiller;																		// HOLY MANY HOLDING HOLY SYMBOL
+			if ( ( holyundead.Slays(this) || holydemons.Slays(this) ) && cleric != null && this.TotalGold > 0 )	// TURNS THE MONEY TO BANISH COUNT
 			{
-				if ( holyman is BaseCreature )
-					holyman = ((BaseCreature)holyman).GetMaster();
+				if ( cleric is BaseCreature )
+					cleric = ((BaseCreature)cleric).GetMaster();
 
-				if ( holyman is PlayerMobile )
+				if ( cleric is PlayerMobile )
 				{
-					Item symbol = holyman.FindItemOnLayer( Layer.Trinket );
+					// add spiritualism check for awarding marks, doesn't require the holy symbol to be equipped, checks for guild membership
+					double spiritualism = cleric.Skills[SkillName.Spiritualism].Value;
+					
+					if(((PlayerMobile)cleric).NpcGuild == NpcGuild.HealersGuild && spiritualism > Utility.RandomMinMax(50, 150 ) 
+					 && Utility.RandomDouble() < 0.65)
+					{
+						int markAmount = Utility.RandomMinMax(3,11);
+						cleric.AddToBackpack( new MarksOfDevotion( markAmount ) );
+						cleric.SendMessage( "You aqquired" + " " + markAmount + " " + "Marks of Devotion!" );
+					}
+
+					Item symbol = cleric.FindItemOnLayer( Layer.Trinket );
 
 					if ( symbol is HolySymbol )
 					{
@@ -8146,9 +8157,9 @@ public virtual int BreathComputeDamage()
 						{
 							Item dtcoins = this.Backpack.FindItemByType( typeof( Gold ) );
 							dtcoins.Delete();
-							holyman.SendMessage( "Evil has been banished." );
-							holyman.FixedParticles( 0x373A, 10, 15, 5018, EffectLayer.Waist );
-							holyman.PlaySound( 0x1EA );
+							cleric.SendMessage( "Evil has been banished." );
+							cleric.FixedParticles( 0x373A, 10, 15, 5018, EffectLayer.Waist );
+							cleric.PlaySound( 0x1EA );
 						}
 					}
 				}
