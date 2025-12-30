@@ -3740,27 +3740,30 @@ namespace Server.Misc
 
 			if ( m != null && from != null && m.Hits > 0 && from is PlayerMobile && m.InRange( from, 2 ) && m.Map == from.Map )
 			{
-				if ( m.Skills[SkillName.Stealing].Value >= Utility.RandomMinMax( 1, 125 ) && m.Skills[SkillName.Snooping].Value >= Utility.RandomMinMax( 1, 100 ) )
-				{
-					if ( Utility.RandomMinMax( 1, 5 ) == 1 )
-					{
-						int c = 0;
+			    if ( m.Skills[SkillName.Stealing].Value >= Utility.RandomMinMax( 1, 125 ) && m.Skills[SkillName.Snooping].Value >= Utility.RandomMinMax( 1, 100 ) )
+			    {
+			        if ( Utility.RandomMinMax( 1, 5 ) == 1 )
+			        {
+			            int nGold = 0;
+			            int toEat = 0;
+			            nGold = from.TotalGold/3;
+			            Container pack = from.Backpack;
+			            toEat = Utility.RandomMinMax( 1, nGold );
 
-						List<Item> belongings = new List<Item>();
-						foreach( Item i in from.Backpack.Items )
-						{
-							if ( i.LootType != LootType.Blessed && i.TotalItems == 0 ){ belongings.Add(i); c++; }
-						}
+			            int actualGold = Math.Min(toEat, from.TotalGold);
 
-						int o = Utility.RandomMinMax( 0, c );
+			            if ( pack.ConsumeTotal(typeof(Gold), actualGold) )
+			            {
+			                if ( m.Backpack != null )
+			                {
+								pack.ConsumeTotal(typeof(Gold), actualGold);
+			                    m.Backpack.DropItem( new Gold( actualGold ) );
+			                }
 
-						foreach ( Item stuff in belongings )
-						{
-							o++;
-							if ( c == o ){ ((BaseCreature)m).PackItem( stuff ); from.LocalOverheadMessage(MessageType.Emote, 0x916, true, m.Name + " stole something from you!"); }
-						}
-					}
-				}
+			                from.PublicOverheadMessage(MessageType.Regular, 0x35, false, m.Name + " stole " + actualGold + " gold from you!");
+			            }
+			        }
+			    }
 			}
 
 			if ( IHide > 0 && Utility.RandomMinMax( 1, 5 ) == 5 && m.Skills[SkillName.Stealth].Value >= Utility.RandomMinMax( 1, 125 ) )
