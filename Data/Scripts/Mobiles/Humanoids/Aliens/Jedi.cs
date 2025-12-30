@@ -17,9 +17,6 @@ namespace Server.Mobiles
 		[CommandProperty(AccessLevel.Owner)]
 		public int action_Count { get { return actionCount; } set { actionCount = value; InvalidateProperties(); } }
 
-		public override string TalkGumpTitle{ get{ return "The Way of the Jedi"; } }
-		public override string TalkGumpSubject{ get{ return "Jedi"; } }
-
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ return 0; } }
 		public override int BreathColdDamage{ get{ return 0; } }
@@ -40,7 +37,7 @@ namespace Server.Mobiles
 		public Jedi() : base( AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4 ) 
 		{
 			SpeechHue = Utility.RandomTalkHue();
-			Title = "the Jedi";
+			Title = "the Light Wizard";
 			Hue = Utility.RandomSkinColor();
 
 			if ( this.Female = Utility.RandomBool() )
@@ -95,122 +92,7 @@ namespace Server.Mobiles
 			int color = Utility.RandomNeutralHue();
 
 			VirtualArmor = 90;
-
-			Item robe = new Robe( color );
-				robe.Name = "Jedi robe";
-				AddItem( robe );
-				if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( robe, this ); }
-
-			Item boots = new ElvenBoots();
-				boots.Name = "Jedi boots";
-				AddItem( boots );
-				if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( boots, this ); }
-
-			if ( Utility.RandomBool() )
-			{
-				Item cloak = new Cloak( Utility.RandomNeutralHue() );
-					cloak.Name = "Jedi cloak";
-					AddItem( cloak );
-				if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( cloak, this ); }
-			}
-
-			if ( Utility.RandomBool() )
-			{
-				Item gloves = new LeatherGloves();
-					gloves.Name = "Jedi gloves";
-					AddItem( gloves );
-				if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( gloves, this ); }
-			}
-
-			Item hood = new ClothHood( color );
-				hood.Name = "Jedi hood";
-				AddItem( hood );
-			if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( hood, this ); }
-
-			if ( Utility.RandomMinMax( 1, 5 ) == 1 )
-			{
-				if ( Utility.RandomMinMax( 1, 5 ) == 1 )
-				{
-					Item sword = new DoubleLaserSword();
-						sword.Name = "Jedi double laser sword";
-						((BaseWeapon)sword).Attributes.SpellChanneling = 1;
-						AddItem( sword );
-						if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( sword, this ); }
-				}
-				else
-				{
-					Item sword = new LightSword();
-						sword.Name = "Jedi laser sword";
-						((BaseWeapon)sword).Attributes.SpellChanneling = 1;
-						AddItem( sword );
-						if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( sword, this ); }
-				}
-			}
-			else
-			{
-				Item sword = new Longsword();
-					sword.Name = "Jedi sword";
-					((BaseWeapon)sword).Attributes.SpellChanneling = 1;
-					AddItem( sword );
-					if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( sword, this ); }
-					else if ( CraftResources.GetType( ResourceMods.SearchResource(sword) ) == CraftResourceType.Metal ){ ((BaseWeapon)sword).Resource = ResourceMods.SciFiResource( ((BaseWeapon)sword).Resource ); }
-			}
-		}
-
-		public static void SpecialItem( Item item, Mobile m )
-		{
-			int min = (int)(m.Fame/200);
-			int max = (int)(m.Fame/100);
-			int props = (int)(m.Fame/1500) + Utility.RandomMinMax( 0, (int)(m.Fame/2000) );
-
-			if ( item is BaseHat ){ BaseHat hat = (BaseHat)item; BaseRunicTool.ApplyAttributesTo( hat, false, 0, props, min, max ); }
-			else if ( item is BaseClothing ){ BaseClothing cloth = (BaseClothing)item; BaseRunicTool.ApplyAttributesTo( cloth, false, 0, props, min, max ); }
-			else if ( item is BaseArmor ){ BaseArmor armor = (BaseArmor)item; BaseRunicTool.ApplyAttributesTo( armor, false, 0, props, min, max ); }
-			else if ( item is BaseWeapon ){ BaseWeapon weapon = (BaseWeapon)item; BaseRunicTool.ApplyAttributesTo( weapon, false, 0, props, min, max ); }
-		}
-
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			if ( Utility.RandomBool() )
-			{
-				LoreBook book = new LoreBook();
-				book.BookTitle = "The Jedi Order";
-				book.Name = book.BookTitle;
-				book.BookAuthor = "Zoda the Jedi Master";
-				LoreBook.SetBookCover( 16, book );
-				book.ItemID = 0x543C;
-				book.Light = LightType.Circle225;
-				LoreBook.GetText( book );
-				c.DropItem( book );
-			}
-		}
-
-		public override bool OnDragDrop( Mobile from, Item dropped )
-		{
-			if ( dropped is Gold && dropped.Amount >= 5000 && from.Karma >= 0 && from.Skills[SkillName.Psychology].Base >= 25 )
-			{
-				this.Say( "Take this, and be enlightened." );
-
-				LoreBook book = new LoreBook();
-				book.BookTitle = "The Jedi Order";
-				book.Name = book.BookTitle;
-				book.BookAuthor = "Zoda the Jedi Master";
-				LoreBook.SetBookCover( 16, book );
-				book.ItemID = 0x543C;
-				book.Light = LightType.Circle225;
-				LoreBook.GetText( book );
-				from.AddToBackpack ( book );
-
-				dropped.Delete();
-			}
-			else
-			{
-				from.AddToBackpack ( dropped );
-			}
-
-			return base.OnDragDrop( from, dropped );
+			Server.Misc.IntelligentAction.DressUpWizards( this, false );
 		}
 
 		public override void OnGaveMeleeAttack( Mobile defender )
