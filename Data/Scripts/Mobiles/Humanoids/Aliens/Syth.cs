@@ -30,7 +30,7 @@ namespace Server.Mobiles
 		public Syth() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{
 			SpeechHue = Utility.RandomTalkHue();
-			Title = "the Syth";
+			Title = "the Dark Mage";
 			Hue = Utility.RandomSkinColor();
 				if ( Utility.RandomBool() ){ Hue = Utility.RandomList( 0x6F6, 0x97F, 0x99B, 0x6E4, 0x5E0, 0xB38, 0xB2B ); }
 
@@ -83,72 +83,8 @@ namespace Server.Mobiles
 			Fame = 14000;
 			Karma = -14000;
 
-			int color = Utility.RandomList( 0xB80, 0xB5E, 0xB39, 0xB3A, 0xA9F, 0x99E, 0x997, 0x8D9, 0x8DA, 0x8DB, 0x8DC, 0x8B9 );
-
 			VirtualArmor = 90;
-
-			Item robe = new AssassinRobe( color );
-				robe.Name = "Syth robe";
-				AddItem( robe );
-				if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( robe, this ); }
-
-			Item boots = new ElvenBoots( color );
-				boots.Name = "Syth boots";
-				AddItem( boots );
-				if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( boots, this ); }
-
-			if ( Utility.RandomBool() )
-			{
-				Item cloak = new Cloak( color );
-					cloak.Name = "Syth cloak";
-					AddItem( cloak );
-				if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( cloak, this ); }
-			}
-
-			if ( Utility.RandomBool() )
-			{
-				Item gloves = new LeatherGloves();
-					gloves.Hue = color;
-					gloves.Name = "Syth gloves";
-					AddItem( gloves );
-				if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( gloves, this ); }
-			}
-
-			Item hood = new FloppyHat( color );
-				hood.Name = "Syth hood";
-				hood.ItemID = 0x4CDA;
-				if ( Utility.RandomMinMax( 1, 4 ) == 1 ){ hood.Name = "Syth cowl"; hood.ItemID = 0x4CDC; }
-				AddItem( hood );
-			if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( hood, this ); }
-
-			if ( Utility.RandomMinMax( 1, 5 ) == 1 )
-			{
-				if ( Utility.RandomMinMax( 1, 5 ) == 1 )
-				{
-					Item sword = new DoubleLaserSword();
-						sword.Name = "Syth double laser sword";
-						((BaseWeapon)sword).Attributes.SpellChanneling = 1;
-						AddItem( sword );
-						if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( sword, this ); }
-				}
-				else
-				{
-					Item sword = new LightSword();
-						sword.Name = "Syth laser sword";
-						((BaseWeapon)sword).Attributes.SpellChanneling = 1;
-						AddItem( sword );
-						if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( sword, this ); }
-				}
-			}
-			else
-			{
-				Item sword = new Longsword();
-					sword.Name = "Syth sword";
-					((BaseWeapon)sword).Attributes.SpellChanneling = 1;
-					AddItem( sword );
-					if ( Utility.RandomMinMax( 1, 10 ) == 1 ){ SpecialItem( sword, this ); }
-					else if ( CraftResources.GetType( ResourceMods.SearchResource(sword) ) == CraftResourceType.Metal ){ ((BaseWeapon)sword).Resource = ResourceMods.SciFiResource( ((BaseWeapon)sword).Resource ); }
-			}
+			Server.Misc.IntelligentAction.DressUpWizards( this, false );
 		}
 
 		public static void SpecialItem( Item item, Mobile m )
@@ -166,19 +102,6 @@ namespace Server.Mobiles
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
-
-			if ( Utility.RandomBool() )
-			{
-				LoreBook book = new LoreBook();
-				book.BookTitle = "The Rule of One";
-				book.Name = book.BookTitle;
-				book.BookAuthor = "Asajj Ventress the Syth Lord";
-				LoreBook.SetBookCover( 78, book );
-				book.ItemID = 0x4CDF;
-				book.Light = LightType.Circle225;
-				LoreBook.GetText( book );
-				c.DropItem( book );
-			}
 		}
 
 		public override void OnGaveMeleeAttack( Mobile defender )

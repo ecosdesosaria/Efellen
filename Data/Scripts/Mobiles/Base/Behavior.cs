@@ -423,8 +423,6 @@ namespace Server
 					typeof( Adventurers ),
 					typeof( SavageAlien ),
 					typeof( BombWorshipper ),
-					typeof( Syth ),
-					typeof( Jedi ),
 					typeof( Psionicist ),
 					typeof( HenchmanFighter ),
 					typeof( HenchmanArcher ),

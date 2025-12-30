@@ -324,7 +324,7 @@ namespace Server.Gumps
 				case 37: item = "GoldenRangers"; title = "The Golden Rangers"; id = 114; break;
 				case 38: item = "LearnTraps"; title = "Hidden Traps"; id = 112; break;
 				case 39: item = "LoreBook"; title = "The Ice Queen"; id = 19; break;
-				case 40: item = "LoreBook"; title = "The Jedi Order"; id = 46; break;
+				case 40: item = "LoreBook"; title = "Castle Griffin Roost"; id = 46; break;
 				case 41: item = "FamiliarClue"; title = "Journal on Familiars"; id = 108; break;
 				case 42: item = "LoreBook"; title = "The Knight Who Fell"; id = 14; break;
 				case 43: item = "LearnLeatherBook"; title = "Leather & Bone Crafts"; id = 207; break;
@@ -340,7 +340,7 @@ namespace Server.Gumps
 				case 53: item = "LoreBook"; title = "Rangers of Lodoria"; id = 24; break;
 				case 54: item = "LearnReagentsBook"; title = "Scroll of Various Reagents"; id = 204; break;
 				case 55: item = "LearnScalesBook"; title = "Reptile Scale Crafts"; id = 203; break;
-				case 56: item = "LoreBook"; title = "The Rule of One"; id = 44; break;
+				case 56: item = "LoreBook"; title = "Druids of Sosaria"; id = 44; break;
 				case 57: item = "RuneJournal"; title = "Rune Magic"; id = 120; break;
 				case 58: item = "LearnGraniteBook"; title = "Sand & Stone Crafts"; id = 208; break;
 				case 59: item = "LearnMiscBook"; title = "Skinning & Carving"; id = 205; break;
@@ -349,7 +349,7 @@ namespace Server.Gumps
 				case 62: item = "LoreBook"; title = "The Story of Exodus"; id = 29; break;
 				case 63: item = "LoreBook"; title = "The Story of Minax"; id = 30; break;
 				case 64: item = "LoreBook"; title = "The Story of Mondain"; id = 31; break;
-				case 65: item = "LoreBook"; title = "The Syth Order"; id = 43; break;
+				case 65: item = "LoreBook"; title = "The House of Holy Mercy"; id = 43; break;
 				case 66: item = "LearnTailorBook"; title = "Tailoring the Cloth"; id = 201; break;
 				case 67: item = "LoreBook"; title = "A Tattered Journal"; id = 21; break;
 				case 68: item = "TendrinsJournal"; title = "Tendrin's Journal"; id = 100; break;
@@ -362,6 +362,8 @@ namespace Server.Gumps
 				case 75: item = "MagestykcClueBook"; title = "Wizards in Exile"; id = 107; break;
 				case 76: item = "LearnWoodBook"; title = "Wooden Carvings"; id = 200; break;
 				case 77: item = "WorkShoppes"; title = "Work Shoppes"; id = 118; break;
+				case 78: item = "LoreBook"; title = "The Dreamstone"; id = 47; break;
+				case 79: item = "LoreBook"; title = "The Ballad of the Prince of Darkness"; id = 48; break;
 			}
 
 			if ( part == 1 )
@@ -415,7 +417,7 @@ namespace Server.Gumps
 			else if ( book.Name == "The Golden Rangers" ){ num = 36; }
 			else if ( book.Name == "Hidden Traps" ){ num = 37; }
 			else if ( book.Name == "The Ice Queen" ){ num = 38; }
-			else if ( book.Name == "The Jedi Order" ){ num = 39; }
+			else if ( book.Name == "Castle Griffin Roost" ){ num = 39; }
 			else if ( book.Name == "Journal on Familiars" ){ num = 40; }
 			else if ( book.Name == "The Knight Who Fell" ){ num = 41; }
 			else if ( book.Name == "Leather & Bone Crafts" ){ num = 42; }
@@ -431,7 +433,7 @@ namespace Server.Gumps
 			else if ( book.Name == "Rangers of Lodoria" ){ num = 52; }
 			else if ( book.Name == "Scroll of Various Reagents" ){ num = 53; }
 			else if ( book.Name == "Reptile Scale Crafts" ){ num = 54; }
-			else if ( book.Name == "The Rule of One" ){ num = 55; }
+			else if ( book.Name == "Druids of Sosaria" ){ num = 55; }
 			else if ( book.Name == "Rune Magic" ){ num = 56; }
 			else if ( book.Name == "Sand & Stone Crafts" ){ num = 57; }
 			else if ( book.Name == "Skinning & Carving" ){ num = 58; }
@@ -440,7 +442,7 @@ namespace Server.Gumps
 			else if ( book.Name == "The Story of Exodus" ){ num = 61; }
 			else if ( book.Name == "The Story of Minax" ){ num = 62; }
 			else if ( book.Name == "The Story of Mondain" ){ num = 63; }
-			else if ( book.Name == "The Syth Order" ){ num = 64; }
+			else if ( book.Name == "The House of Holy Mercy" ){ num = 64; }
 			else if ( book.Name == "Tailoring the Cloth" ){ num = 65; }
 			else if ( book.Name == "A Tattered Journal" ){ num = 66; }
 			else if ( book.Name == "Tendrin's Journal" ){ num = 67; }
@@ -453,6 +455,8 @@ namespace Server.Gumps
 			else if ( book.Name == "Wizards in Exile" ){ num = 74; }
 			else if ( book.Name == "Wooden Carvings" ){ num = 75; }
 			else if ( book.Name == "Work Shoppes" ){ num = 76; }
+			else if ( book.Name == "The Dreamstone" ){ num = 77; }
+			else if ( book.Name == "The Ballad of the Prince of Darkness" ){ num = 78; }
 
 			if ( num > 0 )
 			{

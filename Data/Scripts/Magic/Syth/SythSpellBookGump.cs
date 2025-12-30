@@ -395,7 +395,6 @@ namespace Server.Gumps
 					m_Book.steel = 0;
 					sword.Name = SwordName( sword.Name, from );
 					from.AddToBackpack ( sword );
-					LoggingFunctions.LogCreatedSyth( from, sword.Name );
 					from.SendMessage( "You can construct your own laser sword.");
 					Point3D blast = new Point3D( ( from.X ), ( from.Y ), from.Z+10 );
 					Effects.SendLocationEffect( blast, from.Map, 0x2A4E, 30, 10, 0xB00, 0 );

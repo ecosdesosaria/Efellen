@@ -393,7 +393,6 @@ namespace Server.Gumps
 					m_Book.steel = 0;
 					sword.Name = SwordName( sword.Name, from );
 					from.AddToBackpack ( sword );
-					LoggingFunctions.LogCreatedJedi( from, sword.Name );
 					from.SendMessage( "You can construct your own laser sword.");
 					from.FixedParticles( 0x373A, 9, 32, 5030, 0xB41, 0, EffectLayer.Waist );
 					from.PlaySound( 0x5C9 );
