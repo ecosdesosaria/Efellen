@@ -73,6 +73,7 @@ namespace Server.Misc
 		+"  • Exodus no longer auto-wrecks any pets that hit him.<br>"
 		+"  • Beholder-type enemies are now much rarer and much stronger. Watch out for their eyestalks!"
 		+"  • Various unique and powerful enemies now have access to interesting special attacks that will make the battles much more dynamic.<br>"
+		+"  • Rogue-type enemies are now only insterested in your gold. The random junk you have in your bags is safe.<br>"
 		+" <br>"
 		+" * Progression & archetypes:<br>"
 		+"  • Adds marks of Devotion to the game.<BR>"
