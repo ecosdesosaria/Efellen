@@ -4,6 +4,7 @@ using Server.Network;
 using Server.Items;
 using Server.Targeting;
 using Server.Mobiles;
+using Server.Engines.PartySystem;
 
 namespace Server.Spells.Elementalism
 {
@@ -57,8 +58,12 @@ namespace Server.Spells.Elementalism
 						Mobile pet = m;
 						if ( m is BaseCreature )
 							pet = ((BaseCreature)m).GetMaster();
+					
+						if ( IsPartyMember( Caster, m ) )
+							continue;
 
-						if ( Caster.Region == m.Region && Caster != m && Caster != pet && Caster.InLOS( m ) && m.Blessed == false && Caster.CanBeHarmful( m, true ) )
+						if ( Caster.Region == m.Region && Caster != m && Caster != pet && Caster.InLOS( m ) 
+							&& m.Blessed == false && Caster.CanBeHarmful( m, true ) && !IsPartyMember( Caster, pet ))
 						{
 							targets.Add( m );
 
@@ -79,7 +84,7 @@ namespace Server.Spells.Elementalism
 					Effects.PlaySound( p, Caster.Map, 0x160 );
 
 					if (targets.Count > 1)
-						damage = (damage * 2) / targets.Count;
+						damage /= 2;
 
 					double toDeal;
 					for ( int i = 0; i < targets.Count; ++i )
@@ -126,6 +131,19 @@ namespace Server.Spells.Elementalism
 			}
 
 			FinishSequence();
+		}
+
+		private bool IsPartyMember( Mobile caster, Mobile target )
+		{
+			if ( caster == null || target == null )
+				return false;
+			
+			Party party = Party.Get( caster );
+			
+			if ( party != null && party.Contains( target ) )
+				return true;
+			
+			return false;
 		}
 
 		private class InternalTarget : Target

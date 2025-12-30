@@ -4,6 +4,7 @@ using Server.Network;
 using Server.Items;
 using Server.Targeting;
 using Server.Mobiles;
+using Server.Engines.PartySystem;
 
 namespace Server.Spells.Elementalism
 {
@@ -34,8 +35,12 @@ namespace Server.Spells.Elementalism
 
 				if ( map != null )
 					foreach ( Mobile m in Caster.GetMobilesInRange( 1 + (int)(Caster.Skills[CastSkill].Value / 15.0) ) )
-						if ( Caster.Region == m.Region && Caster != m && SpellHelper.ValidIndirectTarget( Caster, m ) && Caster.CanBeHarmful( m, false ) && Caster.InLOS( m ) )
+					{
+						if ( Caster.Region == m.Region && Caster != m && SpellHelper.ValidIndirectTarget( Caster, m ) 
+							&& Caster.CanBeHarmful( m, false ) && Caster.InLOS( m ) && !IsPartyMember( Caster, m ) )
 							targets.Add( m );
+					}
+
 
 				string elm = ElementalSpell.GetElement( Caster );
 				int sound = 0;
@@ -128,6 +133,18 @@ namespace Server.Spells.Elementalism
 			}
 
 			FinishSequence();
+		}
+		private bool IsPartyMember( Mobile caster, Mobile target )
+		{
+			if ( caster == null || target == null )
+				return false;
+			
+			Party party = Party.Get( caster );
+			
+			if ( party != null && party.Contains( target ) )
+				return true;
+			
+			return false;
 		}
 	}
 }

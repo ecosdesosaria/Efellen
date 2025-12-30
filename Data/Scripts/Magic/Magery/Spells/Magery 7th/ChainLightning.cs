@@ -6,6 +6,7 @@ using Server.Targeting;
 using Server.Regions;
 using Server.Mobiles;
 using Server.Misc;
+using Server.Engines.PartySystem;
 
 namespace Server.Spells.Seventh
 {
@@ -61,13 +62,15 @@ namespace Server.Spells.Seventh
 					foreach ( Mobile m in eable )
 					{
 						Mobile pet = m;
-
+						if ( IsPartyMember( Caster, m ) )
+							continue;
+						
 						if ( Caster.Region == m.Region && Caster != m )
 						{
 							if ( m is BaseCreature )
 								pet = ((BaseCreature)m).GetMaster();
 
-							if ( Caster != pet )
+							if ( Caster != pet && !IsPartyMember( Caster, pet ) )
 							{
 								targets.Add( m );
 
@@ -90,7 +93,8 @@ namespace Server.Spells.Seventh
 
 				if ( targets.Count > 0 )
 				{
-					damage = (damage * 2) / targets.Count;
+					if (targets.Count > 1)
+						damage /= 2;
 
 					for ( int i = 0; i < targets.Count; ++i )
 					{
@@ -100,12 +104,6 @@ namespace Server.Spells.Seventh
 
 						double toDeal = damage;
 
-						if ( !Core.AOS && CheckResisted( m ) )
-						{
-							toDeal *= 0.5;
-
-							m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
-						}
 						if( !(house is Regions.HouseRegion) )
 						{
 							Caster.DoHarmful( m );
@@ -127,6 +125,19 @@ namespace Server.Spells.Seventh
 			}
 
 			FinishSequence();
+		}
+
+		private bool IsPartyMember( Mobile caster, Mobile target )
+		{
+			if ( caster == null || target == null )
+				return false;
+			
+			Party party = Party.Get( caster );
+			
+			if ( party != null && party.Contains( target ) )
+				return true;
+			
+			return false;
 		}
 
 		private class InternalTarget : Target
