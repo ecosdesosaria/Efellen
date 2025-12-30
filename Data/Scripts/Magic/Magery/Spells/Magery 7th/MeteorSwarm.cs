@@ -5,6 +5,7 @@ using Server.Items;
 using Server.Targeting;
 using Server.Mobiles;
 using Server.Misc;
+using Server.Engines.PartySystem;
 
 namespace Server.Spells.Seventh
 {
@@ -60,10 +61,13 @@ namespace Server.Spells.Seventh
 					foreach ( Mobile m in eable )
 					{
 						Mobile pet = m;
+						if ( IsPartyMember( Caster, m ) )
+							continue;
 						if ( m is BaseCreature )
 							pet = ((BaseCreature)m).GetMaster();
 
-						if ( Caster.Region == m.Region && Caster != m && Caster != pet && Caster.InLOS( m ) && m.Blessed == false && Caster.CanBeHarmful( m, true ) )
+						if ( Caster.Region == m.Region && Caster != m && Caster != pet && Caster.InLOS( m ) 
+							&& m.Blessed == false && Caster.CanBeHarmful( m, true ) && !IsPartyMember( Caster, pet ))
 						{
 							targets.Add( m );
 
@@ -92,24 +96,14 @@ namespace Server.Spells.Seventh
 				{
 					Effects.PlaySound( p, Caster.Map, 0x160 );
 
-					if ( Core.AOS && targets.Count > 2 )
-						damage = (damage * 2) / targets.Count;
-					else if ( !Core.AOS )
-						damage /= targets.Count;
+					if (targets.Count > 1)
+						damage /= 2;
 						
-					double toDeal;
 					for ( int i = 0; i < targets.Count; ++i )
 					{
 						Mobile m = targets[i];
 
-						toDeal  = damage;
-
-						if ( !Core.AOS && CheckResisted( m ) )
-						{
-							damage *= 0.5;
-
-							m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
-						}
+						double toDeal = damage;
 						toDeal *= GetDamageScalar( m );
 						Caster.DoHarmful( m );
 						SpellHelper.Damage( this, m, toDeal, 0, 100, 0, 0, 0 );
@@ -131,6 +125,19 @@ namespace Server.Spells.Seventh
 			}
 
 			FinishSequence();
+		}
+
+		private bool IsPartyMember( Mobile caster, Mobile target )
+		{
+			if ( caster == null || target == null )
+				return false;
+			
+			Party party = Party.Get( caster );
+			
+			if ( party != null && party.Contains( target ) )
+				return true;
+			
+			return false;
 		}
 
 		private class InternalTarget : Target
