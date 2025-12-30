@@ -477,7 +477,7 @@ namespace Server.Items
             new SpectralFormEntry("Stalker","Stalker", 74, 0, 0, 15, 0, 0, 0, 0, 0, 5, 85.0, 35, 
                 true, false, false, false, false, false, true, false, false,
                 SkillName.Stealth, SkillName.Hiding,85),
-			// Boa - Poison + paralyze on hit, Requires Poisoning 90
+			// giant scorpion - Poison + paralyze on hit, Requires Poisoning 90
 			new SpectralFormEntry("Giant Scorpion","Giant Scorpion", 0x13b, 0, 10, 10, 0, 10, 0, 0, 0, 0, 90.0, 30,
 				false, false, false, false, false, false, true, true, false, 
 				SkillName.Fencing, SkillName.Poisoning, 90.0),
@@ -493,7 +493,7 @@ namespace Server.Items
             new SpectralFormEntry("Griffon","Griffon", 0x31F, 0, 10, 10, 0, 5, 0, 0, 0, 0, 110.0, 45, 
                 true, true, false, false, false, false, false, false, false,
                 SkillName.Tactics, SkillName.Alchemy, 0),
-			 // Griffon - bleed on hit + Fast movement, Requires 110 druidism/spiritualism
+			 // stegosaurus - health and stam regen
             new SpectralFormEntry("Stegosaurus","Stegosaurus", 0x2C1, 0, 20, 0, 0, 15, 0, 0, 0, 0, 115.0, 45, 
                 false, false, true, true, false, false, false, false, false,
                 SkillName.Parry, SkillName.Alchemy, 0),

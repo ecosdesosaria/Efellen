@@ -3968,73 +3968,80 @@ namespace Server.Mobiles
 
 		public override TimeSpan ComputeMovementSpeed( Direction dir, bool checkTurning )
 		{
-			if ( checkTurning && (dir & Direction.Mask) != (this.Direction & Direction.Mask) )
-				return Mobile.RunMount;	// We are NOT actually moving (just a direction change)
+		    if ( checkTurning && (dir & Direction.Mask) != (this.Direction & Direction.Mask) )
+		        return Mobile.RunMount; // We are NOT actually moving (just a direction change)
 
-			TransformContext context = TransformationSpellHelper.GetContext( this );
+		    TransformContext context = TransformationSpellHelper.GetContext( this );
 
-			bool running = ( (dir & Direction.Running) != 0 );
+		    bool running = ( (dir & Direction.Running) != 0 );
+		    bool onHorse = ( this.Mount != null );
+		    AnimalFormContext animalContext = AnimalForm.GetContext( this );
+			SpectralFormContext spectralContext = HeartOfTheWilds.GetContext( this );
 
-			bool onHorse = ( this.Mount != null );
+		    if( onHorse || 
+		        (animalContext != null && animalContext.SpeedBoost) ||
+		        (spectralContext != null && spectralContext.SpeedBoost) )
+		        return ( running ? Mobile.RunMount : Mobile.WalkMount );
 
-			AnimalFormContext animalContext = AnimalForm.GetContext( this );
-
-			if( onHorse || (animalContext != null && animalContext.SpeedBoost) )
-				return ( running ? Mobile.RunMount : Mobile.WalkMount );
-
-			return ( running ? Mobile.RunFoot : Mobile.WalkFoot );
+		    return ( running ? Mobile.RunFoot : Mobile.WalkFoot );
 		}
 
 		public static bool MovementThrottle_Callback( NetState ns )
 		{
-			PlayerMobile pm = ns.Mobile as PlayerMobile;
+		    PlayerMobile pm = ns.Mobile as PlayerMobile;
+		    TimeSpan ts = pm.m_NextMovementTime - DateTime.Now;
 
-			TimeSpan ts = pm.m_NextMovementTime - DateTime.Now;
+		    if ( pm != null )
+		    {
+		        if ( pm.FindItemOnLayer( Layer.Shoes ) != null )
+		        {
+		            Item shoes = pm.FindItemOnLayer( Layer.Shoes );
+		            if ( shoes is Artifact_BootsofHermes ){ return true; }
+		            else if ( (shoes is HikingBoots || shoes is LevelHikingBoots || shoes is GiftHikingBoots) && pm.RaceID > 0 ){ return true; }
+		        }
 
-			if ( pm != null )
-			{
-				if ( pm.FindItemOnLayer( Layer.Shoes ) != null )
-				{
-					Item shoes = pm.FindItemOnLayer( Layer.Shoes );
-					if ( shoes is Artifact_BootsofHermes ){ return true; }
-					else if ( (shoes is HikingBoots || shoes is LevelHikingBoots || shoes is GiftHikingBoots) && pm.RaceID > 0 ){ return true; }
-				}
-				if ( Spells.Mystic.WindRunner.UnderEffect( pm ) )
-				{
-					return true;
-				}
-				if ( Spells.Syth.SythSpeed.UnderEffect( pm ) )
-				{
-					return true;
-				}
-				if ( Spells.Jedi.Celerity.UnderEffect( pm ) )
-				{
-					return true;
-				}
-				if ( Spells.Shinobi.CheetahPaws.UnderEffect( pm ) )
-				{
-					return true;
-				}
-			}
+		        SpectralFormContext spectralContext = HeartOfTheWilds.GetContext( pm );
+		        if ( spectralContext != null && spectralContext.SpeedBoost )
+		        {
+		            return true;
+		        }
 
-			if ( pm == null || !pm.UsesFastwalkPrevention )
-				return true;
+		        if ( Spells.Mystic.WindRunner.UnderEffect( pm ) )
+		        {
+		            return true;
+		        }
+		        if ( Spells.Syth.SythSpeed.UnderEffect( pm ) )
+		        {
+		            return true;
+		        }
+		        if ( Spells.Jedi.Celerity.UnderEffect( pm ) )
+		        {
+		            return true;
+		        }
+		        if ( Spells.Shinobi.CheetahPaws.UnderEffect( pm ) )
+		        {
+		            return true;
+		        }
+		    }
 
-			if ( pm.m_NextMovementTime == DateTime.MinValue )
-			{
-				// has not yet moved
-				pm.m_NextMovementTime = DateTime.Now;
-				return true;
-			}
+		    if ( pm == null || !pm.UsesFastwalkPrevention )
+		        return true;
 
-			if ( ts < TimeSpan.Zero )
-			{
-				// been a while since we've last moved
-				pm.m_NextMovementTime = DateTime.Now;
-				return true;
-			}
+		    if ( pm.m_NextMovementTime == DateTime.MinValue )
+		    {
+		        // has not yet moved
+		        pm.m_NextMovementTime = DateTime.Now;
+		        return true;
+		    }
 
-			return ( ts < FastwalkThreshold );
+		    if ( ts < TimeSpan.Zero )
+		    {
+		        // been a while since we've last moved
+		        pm.m_NextMovementTime = DateTime.Now;
+		        return true;
+		    }
+
+		    return ( ts < FastwalkThreshold );
 		}
 
 		#endregion
