@@ -54,19 +54,11 @@ namespace Server.Items
 			double totalSkill = druidism + spiritualism;
 
 			// checks druidism on hit, checks guild membership
-			if (attacker.CheckSkill(SkillName.Druidism, 0, 125) && IsInGuild(attacker))
+			if (attacker.CheckSkill(SkillName.Druidism, 0, 125) && IsInGuild(attacker) && Utility.RandomMinMax(1, 25) < druidism/10)
 			{
-				int marks = Utility.RandomMinMax(2, 12) + (int)(druidism)/10;
-				if (marks < 0)
-					marks = 0;
-				if( marks > 10 )
-					marks = 10;
-				// spiritualism gating
-			    if(attacker.Skills[SkillName.Spiritualism].Value > Utility.RandomMinMax(20, 126) && marks > 0)			
-				{
-					attacker.AddToBackpack(new MarksOfTheWilds(marks));
-					attacker.SendMessage(string.Format("You gained {0} Marks of the Wilds.", marks));
-				}
+				int marks = Utility.RandomMinMax(2, 12);
+				attacker.AddToBackpack(new MarksOfTheWilds(marks));
+				attacker.SendMessage(string.Format("You gained {0} Marks of the Wilds.", marks));
 			}
 
 			// Calculate hit chance: (Druidism + Spiritualism) / 10, capped at 25%

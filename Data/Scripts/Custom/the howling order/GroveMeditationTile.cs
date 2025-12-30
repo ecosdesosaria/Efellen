@@ -64,13 +64,13 @@ namespace Server.Custom.Grove
 			
 			if (successes > 0)
 			{
-				if(successes == 3)
+				if (from.Skills[SkillName.Druidism].Value > 75.0 && from.Skills[SkillName.Spiritualism].Value > 75.0)
 				{
 					HeartOfTheWilds existingHeart = from.FindItemOnLayer(Layer.Neck) as HeartOfTheWilds;
     		        if (existingHeart == null)
 					{
 	    				from.SendMessage("The grove answers to your presence, and you find new power within you");
-						from.SendMessage("You have aqquired the Heart of the Wilds");
+						from.SendMessage("You have acquired the Heart of the Wilds");
 						HeartOfTheWilds heart = new HeartOfTheWilds(from);
 	                    from.Backpack.DropItem(heart);
 					}
