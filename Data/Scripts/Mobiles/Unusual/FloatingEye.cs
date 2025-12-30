@@ -1,12 +1,14 @@
 using System;
 using Server;
 using Server.Items;
+using Server.Custom.BeholderSpecials;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a floating eye corpse" )]
 	public class FloatingEye : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack;
 		[Constructable]
 		public FloatingEye () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -43,12 +45,82 @@ namespace Server.Mobiles
 			Karma = -3500;
 
 			VirtualArmor = 36;
+			m_NextSpecialAttack = DateTime.Now;
 		}
 
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.Average );
 			AddLoot( LootPack.Rich );
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			base.OnDamage( amount, from, willKill );
+
+			if ( DateTime.Now >= m_NextSpecialAttack && from != null && from.Alive && !willKill )
+			{
+				if ( Utility.RandomDouble() < 0.50 )
+				{
+					TriggerSpecialAttack( from );
+					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 30 );
+				}
+			}
+		}
+
+		public override void OnGaveMeleeAttack( Mobile from)
+		{
+			base.OnGaveMeleeAttack(from);
+
+			if ( DateTime.Now >= m_NextSpecialAttack && from != null && from.Alive )
+			{
+				if ( Utility.RandomDouble() < 0.30 )
+				{
+					TriggerSpecialAttack( from );
+					m_NextSpecialAttack = DateTime.Now + TimeSpan.FromSeconds( 30 );
+				}
+			}
+		}
+
+		private void TriggerSpecialAttack( Mobile target )
+		{
+			int choice = Utility.Random( 4 );
+
+			switch ( choice )
+			{
+				case 0:
+				{
+					if ( BeholderSpecials.AntiMagicEye( this, 60, 45, target ) )
+					{
+						this.Say( "*Focuses its anti-magic eye on {0}*", target.Name );
+					}
+					break;
+				}
+				case 1:
+				{
+					if ( BeholderSpecials.Disintegration( this, 90, 90, target ) )
+					{
+						this.Say( "*Fires a disintegration ray at {0}*", target.Name );
+					}
+					break;
+				}
+				case 2:
+				{
+					if ( BeholderSpecials.Petrification( this, 30, target ) )
+					{
+						this.Say( "*Petrifies {0} with its gaze*", target.Name );
+					}
+					break;
+				}
+				case 3:
+				{
+					if ( BeholderSpecials.Fear( this, 60, target ) )
+					{
+						this.Say( "*Strikes fear into {0}*", target.Name );
+					}
+					break;
+				}
+			}
 		}
 
 		public override bool BleedImmune{ get{ return true; } }
@@ -65,13 +137,19 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+
+			writer.WriteEncodedInt( 1 ); // version
+			writer.Write(m_NextSpecialAttack);
 		}
 
-		public override void Deserialize( GenericReader reader )
+		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
-			int version = reader.ReadInt();
+			base.Deserialize(reader);
+			int version = reader.ReadEncodedInt();
+			if (version >= 1)
+		        m_NextSpecialAttack = reader.ReadDateTime();
+		    else
+		        m_NextSpecialAttack = DateTime.MinValue;
 		}
 	}
 }
