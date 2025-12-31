@@ -76,10 +76,25 @@ namespace Server.Mobiles
             potion.Delete();
             int playerLevel = Server.Misc.GetPlayerInfo.GetPlayerLevel(from);
             int transPower = Utility.RandomMinMax(playerLevel * 2, playerLevel * 5);
+            
+            // Store random hue
+            int randomHue = GetRandomHue();
+            
+            // Create bag and apply hue
+            Bag rewardBag = new Bag();
+            rewardBag.Hue = randomHue;
+            
+            // Create robe, apply hue and enchantment, add to bag
             Item reward = Loot.RandomRobe(false);
-            reward.Hue = GetRandomHue();
+            reward.Hue = randomHue;
             reward = Server.LootPackEntry.Enchant(from, transPower, reward);
-            from.AddToBackpack(reward);
+            rewardBag.DropItem(reward);
+            
+            AddPotionsToBag(rewardBag, transPower);
+            
+            // Give bag to player
+            from.AddToBackpack(rewardBag);
+            
             int karmaAmount = Utility.RandomMinMax(playerLevel, playerLevel * 2);
             from.Karma += karmaAmount;
             PublicOverheadMessage(Network.MessageType.Regular, 0x3B2, false, 
@@ -88,21 +103,129 @@ namespace Server.Mobiles
             m_LastPotionHandin[from] = DateTime.UtcNow;
             return true;
         }
+        
+        private void AddPotionsToBag(Bag bag, int transPower)
+        {
+            if (transPower >= 1 && transPower <= 100)
+            {
+                bag.DropItem(new RepairPotion());
+                
+                AddPotions(bag, typeof(ManaPotion), Utility.RandomMinMax(1, 2));
+                
+                AddPotions(bag, typeof(RefreshPotion), Utility.RandomMinMax(1, 2));
+                
+                if (Utility.RandomBool())
+                    AddPotions(bag, typeof(GreaterCurePotion), Utility.RandomMinMax(1, 2));
+                else
+                    AddPotions(bag, typeof(GreaterHealPotion), Utility.RandomMinMax(1, 2));
+            }
+            else if (transPower >= 101 && transPower <= 200)
+            {
+                switch (Utility.Random(4))
+                {
+                    case 0: AddPotions(bag, typeof(PotionOfMight), Utility.RandomMinMax(1, 3)); break;
+                    case 1: AddPotions(bag, typeof(PotionOfDexterity), Utility.RandomMinMax(1, 3)); break;
+                    case 2: AddPotions(bag, typeof(PotionOfWisdom), Utility.RandomMinMax(1, 3)); break;
+                    case 3: AddPotions(bag, typeof(SuperPotion), Utility.RandomMinMax(1, 3)); break;
+                }
+                
+                AddPotions(bag, typeof(ManaPotion), Utility.RandomMinMax(2, 3));
+                
+                AddPotions(bag, typeof(RefreshPotion), Utility.RandomMinMax(2, 3));
+                
+                AddPotions(bag, typeof(RepairPotion), 2);
+                
+                if (Utility.RandomBool())
+                    AddPotions(bag, typeof(GreaterCurePotion), 3);
+                else
+                    AddPotions(bag, typeof(GreaterHealPotion), 3);
+            }
+            else if (transPower >= 201 && transPower <= 300)
+            {
+                switch (Utility.Random(4))
+                {
+                    case 0: AddPotions(bag, typeof(PotionOfMight), Utility.RandomMinMax(2, 4)); break;
+                    case 1: AddPotions(bag, typeof(PotionOfDexterity), Utility.RandomMinMax(2, 4)); break;
+                    case 2: AddPotions(bag, typeof(PotionOfWisdom), Utility.RandomMinMax(2, 4)); break;
+                    case 3: AddPotions(bag, typeof(SuperPotion), Utility.RandomMinMax(1, 5)); break;
+                }
+                
+                AddPotions(bag, typeof(ManaPotion), Utility.RandomMinMax(3, 4));
+                
+                AddPotions(bag, typeof(RefreshPotion), Utility.RandomMinMax(3, 4));
+                
+                AddPotions(bag, typeof(RepairPotion), 3);
+                
+                if (Utility.RandomBool())
+                    AddPotions(bag, typeof(GreaterCurePotion), 4);
+                else
+                    AddPotions(bag, typeof(GreaterHealPotion), 4);
+            }
+            else if (transPower >= 301 && transPower <= 450)
+            {
+                switch (Utility.Random(4))
+                {
+                    case 0: AddPotions(bag, typeof(PotionOfMight), Utility.RandomMinMax(2, 4)); break;
+                    case 1: AddPotions(bag, typeof(PotionOfDexterity), Utility.RandomMinMax(2, 4)); break;
+                    case 2: AddPotions(bag, typeof(PotionOfWisdom), Utility.RandomMinMax(2, 4)); break;
+                    case 3: AddPotions(bag, typeof(SuperPotion), Utility.RandomMinMax(2, 5)); break;
+                }
+                
+                AddPotions(bag, typeof(RepairPotion), 4);
+                
+                bag.DropItem(new InvulnerabilityPotion());
+                
+                AddPotions(bag, typeof(TotalRefreshPotion), Utility.RandomMinMax(3, 4));
+                
+                AddPotions(bag, typeof(GreaterManaPotion), Utility.RandomMinMax(3, 4));
+                
+                if (Utility.RandomBool())
+                    AddPotions(bag, typeof(GreaterCurePotion), 5);
+                else
+                    AddPotions(bag, typeof(GreaterHealPotion), 5);
+            }
+            else if (transPower >= 451)
+            {
+                switch (Utility.Random(3))
+                {
+                    case 0: AddPotions(bag, typeof(PotionOfMight), Utility.RandomMinMax(3, 5)); break;
+                    case 1: AddPotions(bag, typeof(PotionOfDexterity), Utility.RandomMinMax(3, 5)); break;
+                    case 2: AddPotions(bag, typeof(PotionOfWisdom), Utility.RandomMinMax(3, 5)); break;
+                }
+                
+                AddPotions(bag, typeof(SuperPotion), Utility.RandomMinMax(5, 10));
+                
+                AddPotions(bag, typeof(RepairPotion), 5);
+                
+                AddPotions(bag, typeof(InvulnerabilityPotion), 2);
+                
+                AddPotions(bag, typeof(GreaterManaPotion), Utility.RandomMinMax(4, 5));
+                
+                AddPotions(bag, typeof(TotalRefreshPotion), Utility.RandomMinMax(4, 5));
+            }
+        }
+        
+        private void AddPotions(Bag bag, Type potionType, int count)
+        {
+            Item potion = (Item)Activator.CreateInstance(potionType);
+            potion.Amount = count;
+            bag.DropItem(potion);
+        }
 
         public virtual int GetRandomHue()
-		{
-			switch ( Utility.Random( 7 ) )
-			{
-				default:
-				case 0: return Utility.RandomBlueHue();
-				case 1: return Utility.RandomGreenHue();
-				case 2: return Utility.RandomRedHue();
-				case 3: return Utility.RandomYellowHue();
-				case 4: return Utility.RandomNeutralHue();
+        {
+            switch ( Utility.Random( 7 ) )
+            {
+                default:
+                case 0: return Utility.RandomBlueHue();
+                case 1: return Utility.RandomGreenHue();
+                case 2: return Utility.RandomRedHue();
+                case 3: return Utility.RandomYellowHue();
+                case 4: return Utility.RandomNeutralHue();
                 case 5: return Utility.RandomPinkHue();
                 case 6: return Utility.RandomRedHue();
-			}
-		}
+            }
+        }
         
         private string FormatTimeSpan(TimeSpan ts)
         {
