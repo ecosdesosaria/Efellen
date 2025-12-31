@@ -95,6 +95,21 @@ namespace Server.Mobiles
 			return true;
 	    }
 
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Worg",
+		        105.0,
+		        0.10
+		    );
+		}
+
 		public override void AggressiveAction(Mobile m, bool criminal)
 		{
 		    if (IsFriendlyCreature(m))

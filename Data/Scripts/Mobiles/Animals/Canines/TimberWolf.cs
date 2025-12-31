@@ -1,5 +1,6 @@
 using System;
 using Server.Mobiles;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -54,6 +55,21 @@ namespace Server.Mobiles
 
 		public TimberWolf(Serial serial) : base(serial)
 		{
+		}
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Worg",
+		        105.0,
+		        0.025
+		    );
 		}
 
 		public override void Serialize(GenericWriter writer)

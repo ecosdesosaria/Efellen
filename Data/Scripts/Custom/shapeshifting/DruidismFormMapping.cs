@@ -26,7 +26,7 @@ namespace Server.Items
                 return new DruidismFormMapping("Direbear", 85.0, 0.04);
                         
             if (c is CaveBearRiding)
-                return new DruidismFormMapping("Direbear", 85.0, 0.05);
+                return new DruidismFormMapping("Direbear", 85.0, 0.06);
 
             if (c is Stalker)
                 return new DruidismFormMapping("Stalker", 85.0, 0.05);
@@ -40,6 +40,15 @@ namespace Server.Items
             if (c is Gorakong)
                 return new DruidismFormMapping("Gorakong", 100.0, 0.04);
 
+            if (c is Gorilla)
+                return new DruidismFormMapping("Gorakong", 100.0, 0.02);
+
+            if( c is BlackWolf || c is GreyWolf || c is TimberWolf )
+                return new DruidismFormMapping("Worg", 105.0, 0.02);
+       
+            if( c is WereWolf || c is WhiteWolf || c is WinterWolf || c is WolfDire || c is WolfMan)
+                return new DruidismFormMapping("Worg", 105.0, 0.04);
+       
             if (c is Worg)
                 return new DruidismFormMapping("Worg", 105.0, 0.05);
 

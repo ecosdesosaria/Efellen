@@ -52,6 +52,21 @@ namespace Server.Mobiles
 			MinTameSkill = 65.1;
 		}
 
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Worg",
+		        105.0,
+		        0.10
+		    );
+		}
+
 		public override int Meat{ get{ return 1; } }
 		public override int Hides{ get{ return 6; } }
 		public override HideType HideType{ get{ return HideType.Frozen; } }

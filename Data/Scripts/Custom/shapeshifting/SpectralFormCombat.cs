@@ -54,7 +54,7 @@ namespace Server.Items
 			double totalSkill = druidism + spiritualism;
 
 			// checks druidism on hit, checks guild membership
-			if (attacker.CheckSkill(SkillName.Druidism, 0, 125) && IsInGuild(attacker) && Utility.RandomMinMax(1, 25) < druidism/10)
+			if (attacker.CheckSkill(SkillName.Druidism, 0, 125) && IsInGuild(attacker) && Utility.RandomMinMax(1, 50) < druidism/25)
 			{
 				int marks = Utility.RandomMinMax(2, 12);
 				attacker.AddToBackpack(new MarksOfTheWilds(marks));

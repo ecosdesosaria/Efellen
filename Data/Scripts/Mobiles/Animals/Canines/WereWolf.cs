@@ -204,6 +204,21 @@ namespace Server.Mobiles
 			}
 		}
 
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Worg",
+		        105.0,
+		        0.20
+		    );
+		}
+
 		public void Morph()
 		{
 			if (m_TrueForm)

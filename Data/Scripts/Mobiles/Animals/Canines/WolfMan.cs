@@ -50,6 +50,21 @@ namespace Server.Mobiles
 			VirtualArmor = 16;
 		}
 
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+
+		    Mobile killer = this.LastKiller;
+
+		    TotemDropHelper.TryDropTotem(
+		        killer,
+		        this,
+		        "Worg",
+		        105.0,
+		        0.20
+		    );
+		}
+
 		public override int Meat{ get{ return 1; } }
 		public override int Hides{ get{ return 7; } }
 		public override int Cloths{ get{ return 4; } }
