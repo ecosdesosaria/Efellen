@@ -67,7 +67,9 @@ namespace Server.Custom.BossSystems
 			if (DateTime.UtcNow < nextSummonTime)
 				return false;
 
-			int currentSummons = CountSummons(boss, creatureList, summonsList);
+			CleanupDeadSummons(summonsList);
+
+			int currentSummons = summonsList.Count;
 
 			if (currentSummons >= maxSummons)
 				return false;
@@ -82,6 +84,9 @@ namespace Server.Custom.BossSystems
 
 			for (int i = 0; i < newSummons; ++i)
 			{
+				if (summonsList.Count >= maxSummons)
+					break;
+
 				BaseCreature monster = CreateMonster(creatureList, rage);
 				if (monster == null)
 					continue;
@@ -107,31 +112,12 @@ namespace Server.Custom.BossSystems
 			return true;
 		}
 
-		private static int CountSummons(BaseCreature boss, Type[] creatureList, List<BaseCreature> summonsList)
+		private static void CleanupDeadSummons(List<BaseCreature> summonsList)
 		{
+			if (summonsList == null)
+				return;
+
 			summonsList.RemoveAll(s => s == null || s.Deleted || !s.Alive);
-
-			int count = 0;
-			IPooledEnumerable eable = boss.GetMobilesInRange(SUMMON_RANGE);
-
-			foreach (Mobile m in eable)
-			{
-				if (m == null || m.Deleted)
-					continue;
-
-				Type mobileType = m.GetType();
-				foreach (Type summonType in creatureList)
-				{
-					if (mobileType == summonType)
-					{
-						count++;
-						break;
-					}
-				}
-			}
-
-			eable.Free();
-			return count;
 		}
 
 		private static void RegisterSummon(BaseCreature bc, List<BaseCreature> summonsList)
@@ -141,13 +127,13 @@ namespace Server.Custom.BossSystems
 
 			summonsList.Add(bc);
 
-			Timer.DelayCall(TimeSpan.FromMinutes(1), delegate()
+			Timer.DelayCall(TimeSpan.FromMinutes(2), delegate()
 			{
 				if (bc != null && !bc.Deleted && bc.Alive)
 				{
 					bc.Delete();
-					summonsList.Remove(bc);
 				}
+				summonsList.Remove(bc);
 			});
 		}
 
