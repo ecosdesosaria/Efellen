@@ -220,12 +220,12 @@ namespace Server.Mobiles
 			PublicOverheadMessage( MessageType.Regular, 0x21, false, "The ground trembles with fury!" );
 			PlaySound( 0x307 );
 
-			int tileCount = Utility.RandomMinMax( 12, 22 );
+			int tileCount = Utility.RandomMinMax( 22, 32 );
 			List<Point3D> validLocations = new List<Point3D>();
 
 			for ( int attempts = 0; attempts < tileCount * 3 && validLocations.Count < tileCount; attempts++ )
 			{
-				int range = Utility.RandomMinMax( 3, 10 );
+				int range = Utility.RandomMinMax( 4, 16 );
 				int xOffset = Utility.RandomMinMax( -range, range );
 				int yOffset = Utility.RandomMinMax( -range, range );
 

@@ -53,7 +53,7 @@ namespace Server.Mobiles
 				{
 					m_Caster.DoHarmful( m );
 
-					int damage = Utility.RandomMinMax( 20, 30 );
+					int damage = Utility.RandomMinMax( 28, 36 );
 					AOS.Damage( m, m_Caster, damage, 0, 100, 0, 0, 0 );
 
 					m.FixedParticles( 0x3709, 10, 30, 5052, EffectLayer.Waist );
