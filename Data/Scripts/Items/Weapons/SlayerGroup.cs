@@ -401,6 +401,7 @@ namespace Server.Items
 			wizard.Opposition = new SlayerGroup[]{ };
 			wizard.FoundOn = new Type[]{ };
 			wizard.Super = new SlayerEntry( SlayerName.WizardSlayer, 
+				typeof( WitchOfTheDreadHost ),
 				typeof( ElfMage ), 
 				typeof( ElfBoatSailorMage ), 
 				typeof( PirateCrewMage ), 
@@ -1117,6 +1118,7 @@ namespace Server.Items
 			abyss.Opposition = new SlayerGroup[]{ };
 			abyss.FoundOn = new Type[]{ };
 			abyss.Super = new SlayerEntry( SlayerName.Exorcism, 
+				typeof( BlackPhillip),
 				typeof( PrinceOfDarkness),
 				typeof( Tarjan ), 
 				typeof( BloodDemigod ), 
@@ -1254,6 +1256,7 @@ namespace Server.Items
 			arachnid.Opposition = new SlayerGroup[]{ };
 			arachnid.FoundOn = new Type[]{ };
 			arachnid.Super = new SlayerEntry( SlayerName.ArachnidDoom, 
+				typeof( Fateweaver ),
 				typeof( DreadSpider ), 
 				typeof( ShadowRecluse ), 
 				typeof( ZombieSpider ), 
@@ -1283,6 +1286,7 @@ namespace Server.Items
 						typeof( Scorpion ), 
 						typeof( DeadlyScorpion ) ), 
 					new SlayerEntry( SlayerName.SpidersDeath, 
+						typeof( Fateweaver ),
 						typeof( DreadSpider ), 
 						typeof( ShadowRecluse ), 
 						typeof( ZombieSpider ), 

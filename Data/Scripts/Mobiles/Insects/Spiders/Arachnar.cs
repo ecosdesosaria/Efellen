@@ -10,26 +10,15 @@ using Server.Commands.Generic;
 using Server.Mobiles;
 using Server.Accounting;
 using Server.Regions;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Arachnar's corpse" )]
 	public class Arachnar : BaseCreature
 	{
-		public override int BreathPhysicalDamage{ get{ return 50; } }
-		public override int BreathFireDamage{ get{ return 0; } }
-		public override int BreathColdDamage{ get{ return 0; } }
-		public override int BreathPoisonDamage{ get{ return 50; } }
-		public override int BreathEnergyDamage{ get{ return 0; } }
-		public override int BreathEffectHue{ get{ return 0; } }
-		public override int BreathEffectSound{ get{ return 0x62A; } }
-		public override int BreathEffectItemID{ get{ return 0x10D4; } }
-		public override bool HasBreath{ get{ return true; } }
-		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override int GetBreathForm()
-		{
-		    return 6;
-		}
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
+		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 
 		[Constructable]
 		public Arachnar() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -43,7 +32,7 @@ namespace Server.Mobiles
 			SetDex( 177, 255 );
 			SetInt( 151, 250 );
 
-			SetHits( 592, 711 );
+			SetHits( 792, 911 );
 
 			SetDamage( 22, 29 );
 
@@ -106,6 +95,62 @@ namespace Server.Mobiles
 		public override int GetAttackSound(){ return 0x601; }	// A
 		public override int GetDeathSound(){ return 0x602; }	// D
 		public override int GetHurtSound(){ return 0x603; }		// H
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 2 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1: // energy burst
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						2,
+					    "*Screeches violently*",
+						0x4F6,  // hue
+						0,     // physical
+						0,   // fire
+						0,     // cold
+						100,     // poison
+						0      // energy
+					);
+					break;
+				}
+				case 2: // energy nova
+				{
+					BossSpecialAttack.PerformCrossExplosion(
+					    boss: this,
+					    target: target,
+					    warcry: "*Screeches violently*",
+					    hue: 0x4F6,
+					    rage: 2,
+					    coldDmg: 0,
+					    fireDmg: 0,
+					    energyDmg: 0,
+					    poisonDmg: 100,
+					    physicalDmg: 0
+					);
+                	break;
+			    }
+			}
+		}
 
 		public override bool OnBeforeDeath()
 		{

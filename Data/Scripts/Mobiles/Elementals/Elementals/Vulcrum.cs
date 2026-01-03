@@ -19,11 +19,7 @@ namespace Server.Mobiles
 	{
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
-		public override bool HasBreath{ get{ return true; } }
-		public override int GetBreathForm()
-		{
-		    return 9;
-		}
+		
 
 		[Constructable]
 		public Vulcrum () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -97,7 +93,7 @@ namespace Server.Mobiles
 					BossSpecialAttack.PerformTargettedAoE(
 						this,
 						target,
-						1,
+						2,
 						"Fire Everlasting!",
 						Hue,  // hue
 						0,     // physical
