@@ -17,7 +17,7 @@ namespace Server.Custom.DefenderOfTheRealm
             2 - scourge of the realm
             3 - Marks of the shadowbroker - thief guildmaster
             4 - Marks of the Wilds - druid guildmaster
-            5 - Marks of Devotion - thief guildmaster
+            5 - Marks of Devotion - healers guildmaster
         */
         private int type;
         private int m_Hue;
