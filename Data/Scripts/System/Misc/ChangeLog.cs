@@ -42,6 +42,7 @@ namespace Server.Misc
 		+" 		   • Firefang the Warchief is setting farms ablaze near the city of Moon.<br>"			
         +"         • The Spore mother took some of its fellow underdark denizens attracted by powerful psychic energies and set up a base on the Myconid cave.<br>"
 		+"		   • Fiorin the Archdruid tends to his pack in the howling grove.<br>"
+		+ "        • Black Phillip now gathers his covenant at a remote location in the Dread Island.<br>"
 		+"      • Tier 3 bosses (meant to be faced by powerful groups of adventurers): <br>"
 		+"         • The Daughter of Fire now has a permanent residence in the fires of hell.<br>"
 		+"         • The Skeleton King has awoken from its long slumber in the depths of the ancient pyramid.<br> "
