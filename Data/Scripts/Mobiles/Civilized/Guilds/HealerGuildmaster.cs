@@ -82,34 +82,50 @@ namespace Server.Mobiles
 				case 4: AddItem( new Server.Items.QuarterStaff() ); break;
 			}
 		}
+		public override bool HandlesOnSpeech(Mobile from)
+		{
+		    if (from is PlayerMobile && from.InRange(this, 4))
+		        return true;
+
+		    return base.HandlesOnSpeech(from);
+		}
 
 		public override void OnSpeech(SpeechEventArgs e)
-        {
-            Mobile from = e.Mobile;
-			
-            if (from == null || !(from is PlayerMobile))
-                return;
-          
-            if( e.Mobile.InRange( this, 4 ))
-			{
-			    if (e.Speech.IndexOf("reward") >= 0)
-                {
-					if (from is PlayerMobile && ((PlayerMobile)from).NpcGuild == NpcGuild.HealersGuild)
-                    {
-                        from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(from, 5, 0));
-                        Say("These are the gifts I can bestow thee, " + (from.Female ? "sister." : "brother."));
-                    }
-                    else
-                    {
-                        Say("I am only authorized to reward those that belong to our order, friend.");
-                    }
-                }
-			    else 
-			    { 
-			        base.OnSpeech( e ); 
-			    }
-			}
-        }
+		{
+		    Mobile from = e.Mobile;
+
+		    if (from == null || !(from is PlayerMobile))
+		    {
+		        base.OnSpeech(e);
+		        return;
+		    }
+
+		   
+		    if (!from.InRange(this, 4))
+		    {
+		        base.OnSpeech(e);
+		        return;
+		    }
+
+		    if (e.Speech.ToLower().IndexOf("reward") >= 0)
+		    {
+		        PlayerMobile healer = from as PlayerMobile;
+
+		        if (healer.NpcGuild == NpcGuild.HealersGuild)
+		        {
+		            from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(healer, 5, 0));
+		            Say("These are the gifts I can bestow thee, " + (from.Female ? "sister." : "brother."));
+		        }
+		        else
+		        {
+		            Say("I only trust those that are in good standing with our order, friend.");
+		        }
+		        e.Handled = true;
+		        return;
+		    }
+
+		    base.OnSpeech(e);
+		}
 
 		public HealerGuildmaster( Serial serial ) : base( serial )
 		{
