@@ -803,6 +803,274 @@ namespace Server.Custom.DailyBosses.System
         }
 
         #endregion
+        // Add this to BossSpecialAttack.cs
+
+        #region delayed explosion
+        /// <summary>
+        /// Performs a delayed explosion attack that marks tiles with explosive runes
+        /// </summary>
+        /// <param name="boss">The boss performing the attack</param>
+        /// <param name="warcry">Message displayed overhead</param>
+        /// <param name="hue">Color hue for visual effects</param>
+        /// <param name="radius">Radius around boss to place explosive tiles</param>
+        /// <param name="rage">Boss rage level (affects damage, delay, and tile count)</param>
+        /// <param name="physicalDmg">Physical damage percentage (0-100)</param>
+        /// <param name="fireDmg">Fire damage percentage (0-100)</param>
+        /// <param name="coldDmg">Cold damage percentage (0-100)</param>
+        /// <param name="poisonDmg">Poison damage percentage (0-100)</param>
+        /// <param name="energyDmg">Energy damage percentage (0-100)</param>
+        public static void PerformDelayedExplosion(
+            BaseCreature boss,
+            string warcry,
+            int hue,
+            int radius,
+            int rage,
+            int physicalDmg = 0,
+            int fireDmg = 100,
+            int coldDmg = 0,
+            int poisonDmg = 0,
+            int energyDmg = 0
+        )
+        {
+            if (boss == null || boss.Deleted || !boss.Alive || boss.Map == null)
+                return;
+        
+            int totalDamage = physicalDmg + fireDmg + coldDmg + poisonDmg + energyDmg;
+            if (totalDamage != 100)
+            {
+                Console.WriteLine("Warning: Damage percentages for " + boss.Name + " delayed explosion total " + totalDamage + "%, expected 100%");
+            }
+        
+            int tilesToMark = Utility.RandomMinMax(8, 12) + (rage * 3);
+        
+            if (!string.IsNullOrEmpty(warcry))
+            {
+                boss.PublicOverheadMessage(MessageType.Regular, hue, false, warcry);
+            }
+        
+            boss.PlaySound(0x233);
+        
+            List<Point3D> validLocations = new List<Point3D>();
+        
+            // Find valid spawn locations
+            for (int x = -radius; x <= radius; x++)
+            {
+                for (int y = -radius; y <= radius; y++)
+                {
+                    Point3D loc = new Point3D(boss.X + x, boss.Y + y, boss.Z);
+                    
+                    if (!boss.Map.CanSpawnMobile(loc.X, loc.Y, loc.Z))
+                        continue;
+        
+                    bool occupied = false;
+                    IPooledEnumerable eable = boss.Map.GetMobilesInRange(loc, 0);
+                    foreach (Mobile m in eable)
+                    {
+                        occupied = true;
+                        break;
+                    }
+                    eable.Free();
+        
+                    if (!occupied)
+                        validLocations.Add(loc);
+                }
+            }
+        
+            int marked = 0;
+            while (marked < tilesToMark && validLocations.Count > 0)
+            {
+                int index = Utility.Random(validLocations.Count);
+                Point3D loc = validLocations[index];
+                validLocations.RemoveAt(index);
+        
+                CreateDelayedExplosiveTile(boss, loc, hue, rage, physicalDmg, fireDmg, coldDmg, poisonDmg, energyDmg);
+                marked++;
+            }
+        }
+        
+        /// <summary>
+        /// Creates a single explosive tile that detonates after a delay
+        /// </summary>
+        private static void CreateDelayedExplosiveTile(
+            BaseCreature boss,
+            Point3D location,
+            int hue,
+            int rage,
+            int physicalDmg,
+            int fireDmg,
+            int coldDmg,
+            int poisonDmg,
+            int energyDmg
+        )
+        {
+            if (boss.Map == null)
+                return;
+        
+            new DelayedExplosiveTile(boss, location, boss.Map, hue, rage, physicalDmg, fireDmg, coldDmg, poisonDmg, energyDmg);
+        }
+        
+        /// <summary>
+        /// Represents an explosive tile that detonates after a delay
+        /// </summary>
+        private class DelayedExplosiveTile
+        {
+            private BaseCreature m_Boss;
+            private Point3D m_Location;
+            private Map m_Map;
+            private Item m_Visual;
+            private Timer m_Timer;
+            private int m_Hue;
+            private int m_PhysicalDmg;
+            private int m_FireDmg;
+            private int m_ColdDmg;
+            private int m_PoisonDmg;
+            private int m_EnergyDmg;
+            private int m_Damage;
+        
+            public DelayedExplosiveTile(
+                BaseCreature boss,
+                Point3D location,
+                Map map,
+                int hue,
+                int rage,
+                int physicalDmg,
+                int fireDmg,
+                int coldDmg,
+                int poisonDmg,
+                int energyDmg
+            )
+            {
+                m_Boss = boss;
+                m_Location = location;
+                m_Map = map;
+                m_Hue = hue;
+                m_PhysicalDmg = physicalDmg;
+                m_FireDmg = fireDmg;
+                m_ColdDmg = coldDmg;
+                m_PoisonDmg = poisonDmg;
+                m_EnergyDmg = energyDmg;
+                m_Damage = 150 + (rage * 10);
+        
+                // Create visual marker
+                m_Visual = new ExplosiveRuneItem(hue);
+                m_Visual.MoveToWorld(location, map);
+        
+                // Show warning effect
+                Effects.SendLocationParticles(
+                    EffectItem.Create(location, map, TimeSpan.FromSeconds(0.5)),
+                    0x3728, 
+                    5,
+                    10,
+                    0,
+                    0,
+                    0,
+                    0
+                );
+                Effects.PlaySound(location, map, 0x44D);
+        
+                // Calculate delay: base 5-9 seconds, -1 min and max per rage
+                int minDelay = Math.Max(1, 5 - rage);
+                int maxDelay = Math.Max(2, 9 - rage);
+                double delay = Utility.RandomMinMax(minDelay * 10, maxDelay * 10) / 10.0;
+                
+                m_Timer = Timer.DelayCall(TimeSpan.FromSeconds(delay), new TimerCallback(Explode));
+            }
+        
+            public void Stop()
+            {
+                if (m_Timer != null && m_Timer.Running)
+                    m_Timer.Stop();
+        
+                if (m_Visual != null && !m_Visual.Deleted)
+                    m_Visual.Delete();
+            }
+        
+            private void Explode()
+            {
+                if (m_Map == null || m_Boss == null || m_Boss.Deleted)
+                {
+                    Stop();
+                    return;
+                }
+        
+                // Explosion effect
+                Effects.SendLocationParticles(
+                    EffectItem.Create(m_Location, m_Map, EffectItem.DefaultDuration),
+                    0x3709,
+                    10,
+                    30,
+                    0,     
+                    0,
+                    5052,
+                    0
+                );
+                
+                // Smoke after explosion
+                Effects.SendLocationParticles(
+                    EffectItem.Create(m_Location, m_Map, TimeSpan.FromSeconds(1.5)),
+                    0x3728,
+                    10,
+                    15,
+                    0,    
+                    0,
+                    0,
+                    0
+                );
+                
+                Effects.PlaySound(m_Location, m_Map, 0x307);
+        
+                // Damage anyone standing on this tile
+                IPooledEnumerable eable = m_Map.GetMobilesInRange(m_Location, 0);
+                foreach (Mobile m in eable)
+                {
+                    if (m == null || m == m_Boss || !m.Alive)
+                        continue;
+        
+                    if (m is BaseCreature)
+                    {
+                        BaseCreature bc = m as BaseCreature;
+                        if (bc != null && bc.Team == m_Boss.Team)
+                            continue;
+                    }
+        
+                    AOS.Damage(m, m_Boss, m_Damage, m_PhysicalDmg, m_FireDmg, m_ColdDmg, m_PoisonDmg, m_EnergyDmg);
+                    m.FixedParticles(0x3709, 10, 30, 5052, m_Hue, 0, EffectLayer.Waist);
+                }
+                eable.Free();
+        
+                if (m_Visual != null && !m_Visual.Deleted)
+                    m_Visual.Delete();
+            }
+        
+            private class ExplosiveRuneItem : Item
+            {
+                public ExplosiveRuneItem(int hue) : base(0x1B1F) // Fire runes
+                {
+                    Movable = false;
+                    Hue = hue;
+                    Name = "Explosive Runes";
+                }
+        
+                public ExplosiveRuneItem(Serial serial) : base(serial)
+                {
+                }
+        
+                public override void Serialize(GenericWriter writer)
+                {
+                    base.Serialize(writer);
+                    writer.Write((int)0);
+                }
+        
+                public override void Deserialize(GenericReader reader)
+                {
+                    base.Deserialize(reader);
+                    int version = reader.ReadInt();
+                    
+                    Timer.DelayCall(TimeSpan.Zero, new TimerCallback(Delete));
+                }
+            }
+        }
+        #endregion
         #region helpers
         /// <summary>
         /// Cross shaped AoE attack

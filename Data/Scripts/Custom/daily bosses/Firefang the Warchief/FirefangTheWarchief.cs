@@ -53,7 +53,6 @@ namespace Server.Mobiles
 		private DateTime m_NextBomb = DateTime.MinValue;
 		private int m_Thrown;
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
-		private List<ExplosiveTile> m_ExplosiveTiles = new List<ExplosiveTile>();
 
 		public override InhumanSpeech SpeechType{ get{ return InhumanSpeech.Orc; } }
 
@@ -166,72 +165,37 @@ namespace Server.Mobiles
 				}
 				case 2:
 				{
-					PerformLightTheFuses(8);
+					BossSpecialAttack.PerformDelayedExplosion(
+					    this,
+					    "*LIGHT DA FUSES BOYS!*",
+					    348,   // hue
+					    8,     // radius
+					    m_Rage,
+					    0,     // physical
+					    100,   // fire
+					    0,     // cold
+					    0,     // poison
+					    0      // energy
+					);
 					break;
 				}
 				case 3:
 				{
-					PerformLightTheFuses(16);
+					 BossSpecialAttack.PerformDelayedExplosion(
+		                this,
+		                "*LIGHT DA FUSES BOYS!*",
+		                348,   // hue
+		                16,    // radius
+		                m_Rage,
+		                0,     // physical
+		                100,   // fire
+		                0,     // cold
+		                0,     // poison
+		                0      // energy
+		            );
 					break;
 				}
 			}
-		}
-
-		private void PerformLightTheFuses(int rad)
-		{
-			if ( this.Map == null )
-				return;
-
-			int tilesToMark = Utility.RandomMinMax( 8, 12 ) + (m_Rage * 3);
-			int radius = rad;
-			int marked = 0;
-
-			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*LIGHT DA FUSES BOYS!*" );
-			PlaySound( 0x233 );
-
-			List<Point3D> validLocations = new List<Point3D>();
-
-			for ( int x = -radius; x <= radius; x++ )
-			{
-				for ( int y = -radius; y <= radius; y++ )
-				{
-					Point3D loc = new Point3D( this.X + x, this.Y + y, this.Z );
-					
-					if ( !this.Map.CanSpawnMobile( loc.X, loc.Y, loc.Z ) )
-						continue;
-
-					bool occupied = false;
-					IPooledEnumerable eable = this.Map.GetMobilesInRange( loc, 0 );
-					foreach ( Mobile m in eable )
-					{
-						occupied = true;
-						break;
-					}
-					eable.Free();
-
-					if ( !occupied )
-						validLocations.Add( loc );
-				}
-			}
-
-			while ( marked < tilesToMark && validLocations.Count > 0 )
-			{
-				int index = Utility.Random( validLocations.Count );
-				Point3D loc = validLocations[index];
-				validLocations.RemoveAt( index );
-
-				CreateExplosiveTile( loc );
-				marked++;
-			}
-		}
-
-		private void CreateExplosiveTile( Point3D location )
-		{
-			if ( this.Map == null )
-				return;
-
-			ExplosiveTile tile = new ExplosiveTile( this, location, this.Map );
-			m_ExplosiveTiles.Add( tile );
 		}
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
@@ -348,23 +312,7 @@ namespace Server.Mobiles
 		public override void OnDelete()
 		{
 			BossSummonSystem.CleanupSummons(m_Summons);
-			CleanupExplosiveTiles();
 			base.OnDelete();
-		}
-		private void CleanupExplosiveTiles()
-		{
-			for (int i = m_ExplosiveTiles.Count - 1; i >= 0; i--)
-			{
-				ExplosiveTile tile = m_ExplosiveTiles[i];
-				if (tile != null)
-					tile.Stop();
-			}
-			m_ExplosiveTiles.Clear();
-		}
-
-		public void RemoveExplosiveTile( ExplosiveTile tile )
-		{
-			m_ExplosiveTiles.Remove( tile );
 		}
 
 		public override void OnDeath( Container c )
@@ -477,136 +425,8 @@ namespace Server.Mobiles
 			}
 
 			LeechImmune = true;
-			if(m_ExplosiveTiles == null)
-				m_ExplosiveTiles = new List<ExplosiveTile>();
 			if (m_Summons == null)
 					m_Summons = new List<BaseCreature>();
-		}
-	}
-
-	public class ExplosiveTile
-	{
-		private FirefangTheWarchief m_Boss;
-		private Point3D m_Location;
-		private Map m_Map;
-		private Item m_Visual;
-		private Timer m_Timer;
-
-		public ExplosiveTile( FirefangTheWarchief boss, Point3D location, Map map )
-		{
-			m_Boss = boss;
-			m_Location = location;
-			m_Map = map;
-			m_Visual = new InternalItem();
-			m_Visual.MoveToWorld( location, map );
-
-			// Show warning effect
-			Effects.SendLocationParticles(
-                EffectItem.Create( location, map, TimeSpan.FromSeconds( 0.5 ) ),
-                0x3728, 
-                5,
-                10,
-                0,
-                0,
-                0,
-                0
-            );
-			Effects.PlaySound( location, map, 0x44D );
-			double delay = Utility.RandomMinMax( 30, 90 ) / 10.0; // 3-9 seconds
-			m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( delay ), new TimerCallback( Explode ) );
-		}
-
-		public void Stop()
-		{
-			if ( m_Timer != null && m_Timer.Running )
-				m_Timer.Stop();
-
-			if ( m_Visual != null && !m_Visual.Deleted )
-				m_Visual.Delete();
-		}
-
-		private void Explode()
-		{
-			if ( m_Map == null || m_Boss == null || m_Boss.Deleted )
-			{
-				Stop();
-				return;
-			}
-
-			Effects.SendLocationParticles(
-                EffectItem.Create( m_Location, m_Map, EffectItem.DefaultDuration ),
-                0x3709,
-                10,
-                30,
-                0,     
-                0,
-                5052,
-                0
-            );          
-            // Smoke after explosion
-            Effects.SendLocationParticles(
-                EffectItem.Create( m_Location, m_Map, TimeSpan.FromSeconds( 1.5 ) ),
-                0x3728,
-                10,
-                15,
-                0,    
-                0,
-                0,
-                0
-            );
-			Effects.PlaySound( m_Location, m_Map, 0x307 );
-			// Damage anyone standing on this tile
-			IPooledEnumerable eable = m_Map.GetMobilesInRange( m_Location, 0 );
-			foreach ( Mobile m in eable )
-			{
-				if ( m == null || m == m_Boss || !m.Alive )
-					continue;
-
-				if ( m is BaseCreature )
-				{
-					BaseCreature bc = m as BaseCreature;
-					if ( bc != null && bc.Team == m_Boss.Team )
-						continue;
-				}
-                // heavy fire damage on anyone standing on the tile when it blows up
-				AOS.Damage( m, m_Boss, 180, 0, 100, 0, 0, 0 );
-				m.FixedParticles( 0x3709, 10, 30, 5052, 348, 0, EffectLayer.Waist );
-			}
-			eable.Free();
-
-			if ( m_Visual != null && !m_Visual.Deleted )
-				m_Visual.Delete();
-
-			if ( m_Boss != null && !m_Boss.Deleted )
-				m_Boss.RemoveExplosiveTile( this );
-		}
-
-		private class InternalItem : Item
-		{
-			public InternalItem() : base( 0x1B1F ) // Fire runes
-			{
-				Movable = false;
-				Hue = 1260;
-				Name = "Explosive Runes";
-			}
-
-			public InternalItem( Serial serial ) : base( serial )
-			{
-			}
-
-			public override void Serialize( GenericWriter writer )
-			{
-				base.Serialize( writer );
-				writer.Write( (int) 0 );
-			}
-
-			public override void Deserialize( GenericReader reader )
-			{
-				base.Deserialize( reader );
-				int version = reader.ReadInt();
-				
-				Timer.DelayCall( TimeSpan.Zero, new TimerCallback( Delete ) );
-			}
 		}
 	}
 }
