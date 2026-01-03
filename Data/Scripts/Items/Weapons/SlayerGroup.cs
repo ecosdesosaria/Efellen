@@ -356,6 +356,8 @@ namespace Server.Items
 				typeof( SeaZombie ), 
 				typeof( ZombieMage ), 
 				typeof( Zombie ) ,
+				typeof( RottingMinotaur ),
+				typeof( HellKnight), 
 				typeof( SkeletonKing));
 			undead.Entries = new SlayerEntry[0];
 
