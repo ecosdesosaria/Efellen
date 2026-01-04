@@ -89,10 +89,6 @@ namespace Server.SkillHandlers
 							startTimer = ( weapon.Type == WeaponType.Slashing || weapon.Type == WeaponType.Piercing );
 							if ( startTimer == false ){ from.SendMessage(38, "You can only poison slashing or piercing weapons."); }
 						}
-						else if ( weapon.Layer == Layer.TwoHanded && ((PlayerMobile)from).ClassicPoisoning == 1 )
-						{
-							from.SendMessage(38, "You can only poison one-handed slashing or piercing weapons.");
-						}
 					}
 
 					if ( startTimer )
@@ -144,11 +140,11 @@ namespace Server.SkillHandlers
 							}
 							else if ( m_Target is BaseWeapon)
 							{
-								// at 125 skill, a weapon can hold 41 poison charges. 
-								int maximumPoisonCharges =  (int)(m_From.Skills[SkillName.Poisoning].Value)/3;
+								// at 125 skill, a weapon can hold 25 poison charges. 
+								int maximumPoisonCharges =  (int)(m_From.Skills[SkillName.Poisoning].Value)/5;
 								((BaseWeapon)m_Target).Poison = m_Poison;
-								// every coating adds from poisoning/10 to poisoning/7 charges. At 125 skill that translates to 12 to 17 charges per potion.
-								int chargesToAdd = Utility.RandomMinMax((int)(m_From.Skills[SkillName.Poisoning].Value)/10,(int)(m_From.Skills[SkillName.Poisoning].Value/7));
+								// every coating adds from poisoning/10 to poisoning/5 charges. At 125 skill that translates to 12 to 25 charges per potion.
+								int chargesToAdd = Utility.RandomMinMax((int)(m_From.Skills[SkillName.Poisoning].Value)/10,(int)(m_From.Skills[SkillName.Poisoning].Value/5));
 								((BaseWeapon)m_Target).PoisonCharges = ((BaseWeapon)m_Target).PoisonCharges + chargesToAdd >  maximumPoisonCharges ? maximumPoisonCharges : ((BaseWeapon)m_Target).PoisonCharges + chargesToAdd;
 								if (((BaseWeapon)m_Target).PoisonCharges == maximumPoisonCharges)
 								{

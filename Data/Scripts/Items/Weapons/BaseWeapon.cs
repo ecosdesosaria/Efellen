@@ -1813,65 +1813,61 @@ namespace Server.Items
 			BaseWeapon poisonWeapon = attacker.Weapon as BaseWeapon; // ------- POISON SECTION ------- //
 			if ( poisonWeapon != null && attacker is PlayerMobile && defender != null )
 			{
-				Poison p = poisonWeapon.Poison;
-
-				bool willPoison = true;
-
-				int ClassicPoisons = 0;
-				ClassicPoisons = ((PlayerMobile)attacker).ClassicPoisoning;
-
-				if ( p != null )
-				{
-					// Use poisoning skill to help determine potency 
-					int maxLevel = attacker.Skills[SkillName.Poisoning].Fixed / 200;
-					if ( maxLevel < 0 ) maxLevel = 0;
-					if ( p.Level > maxLevel ) p = Poison.GetPoison( maxLevel );
-
-					if ( poisonWeapon.PoisonCharges < 1 && willPoison == true )
-						willPoison = false;
-
-					if ( defender is BaseCreature && willPoison == true )
-					{
-						BaseCreature bc = (BaseCreature)defender;
-						Poison venom = bc.PoisonImmune;
-						if ( venom != null && venom.Level >= p.Level )
-							willPoison = false;
-					}
-
-					if ( Server.Items.WeaponAbility.GetCurrentAbility( attacker ) == WeaponAbility.ShadowInfectiousStrike && willPoison == true && ClassicPoisons == 0 )
-						willPoison = false;
-					else if ( Server.Items.WeaponAbility.GetCurrentAbility( attacker ) == WeaponAbility.InfectiousStrike && willPoison == true && ClassicPoisons == 0 )
-						willPoison = false;
-					else if ( ClassicPoisons == 0 )
-						willPoison = false;
-
-					if ( defender.Poisoned && willPoison == true )
-						willPoison = false;
-
-					if ( willPoison == true )
-					{
-						if ( !(attacker.CheckSkill( SkillName.Poisoning, 0, 125 ) ) )
-							willPoison = false;
-					}
-
-					if ( ClassicPoisons > 0 && !( this is BaseKnife || this is BaseSword || this is BaseSpear ) )
-					{
-						willPoison = false;
-					}
-
-					if ( willPoison == true )
-					{
-						Misc.Titles.AwardKarma( attacker, -20, true );
-						--poisonWeapon.PoisonCharges;
-						defender.ApplyPoison( attacker, p );
-
-						defender.PlaySound( 0x62D );
-						defender.FixedParticles( 0x3728, 244, 25, 9941, 1266, 0, EffectLayer.Waist );
-
-						attacker.SendLocalizedMessage( 1008096, true, defender.Name ); // You have poisoned your target : 
-						defender.SendLocalizedMessage( 1008097, false, attacker.Name ); //  : poisoned you!
-					}
-				}
+			    Poison p = poisonWeapon.Poison;
+			    bool willPoison = true;
+			    int ClassicPoisons = 0;
+			    ClassicPoisons = ((PlayerMobile)attacker).ClassicPoisoning;
+			    if ( p != null )
+			    {
+			        // Use poisoning skill to help determine potency 
+			        int maxLevel = attacker.Skills[SkillName.Poisoning].Fixed / 200;
+			        if ( maxLevel < 0 ) maxLevel = 0;
+			        if ( p.Level > maxLevel ) p = Poison.GetPoison( maxLevel );
+			        if ( poisonWeapon.PoisonCharges < 1 && willPoison == true )
+			            willPoison = false;
+			        if ( defender is BaseCreature && willPoison == true )
+			        {
+			            BaseCreature bc = (BaseCreature)defender;
+			            Poison venom = bc.PoisonImmune;
+			            if ( venom != null && venom.Level >= p.Level )
+			                willPoison = false;
+			        }
+			        if ( Server.Items.WeaponAbility.GetCurrentAbility( attacker ) == WeaponAbility.ShadowInfectiousStrike && willPoison == true && ClassicPoisons == 0 )
+			            willPoison = false;
+			        else if ( Server.Items.WeaponAbility.GetCurrentAbility( attacker ) == WeaponAbility.InfectiousStrike && willPoison == true && ClassicPoisons == 0 )
+			            willPoison = false;
+			        else if ( ClassicPoisons == 0 )
+			            willPoison = false;
+			        if ( defender.Poisoned && willPoison == true )
+			            willPoison = false;
+			        if ( willPoison == true )
+			        {
+			            if ( !(attacker.CheckSkill( SkillName.Poisoning, 0, 125 ) ) )
+			                willPoison = false;
+			        }
+			        if ( ClassicPoisons > 0 && !( this is BaseKnife || this is BaseSword || this is BaseSpear ) )
+			        {
+			            willPoison = false;
+			        }
+			        if ( willPoison == true )
+			        {
+			            Misc.Titles.AwardKarma( attacker, -20, true );
+			
+			            // Chance to preserve poison charge based on poisoning skill
+			            double poisoningSkill = attacker.Skills[SkillName.Poisoning].Value;
+			            double preserveChance = poisoningSkill / 5.0;
+			            bool consumeCharge = (Utility.RandomDouble() * 100.0) >= preserveChance;
+			
+			            if ( consumeCharge )
+			                --poisonWeapon.PoisonCharges;
+			
+			            defender.ApplyPoison( attacker, p );
+			            defender.PlaySound( 0x62D );
+			            defender.FixedParticles( 0x3728, 244, 25, 9941, 1266, 0, EffectLayer.Waist );
+			            attacker.SendLocalizedMessage( 1008096, true, defender.Name ); // You have poisoned your target : 
+			            defender.SendLocalizedMessage( 1008097, false, attacker.Name ); //  : poisoned you!
+			        }
+			    }
 			}
 		}
 
