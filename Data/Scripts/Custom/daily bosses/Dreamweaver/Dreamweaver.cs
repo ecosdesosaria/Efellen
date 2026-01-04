@@ -302,20 +302,7 @@ namespace Server.Mobiles
 
 		public override void OnGaveMeleeAttack( Mobile defender )
 		{
-			BossSummonSystem.TrySummonCreature(
-				this,
-				defender,
-				SummonTypes,
-				m_Rage,
-				ref m_NextSummonTime,
-				SummonWarcries,
-				m_Summons,
-				0x96,
-				GetMaxSummons(),
-				60
-			);
-
-            if ( DateTime.UtcNow >= m_NextSpecialBeholderAttack && defender != null && defender.Alive )
+			if ( DateTime.UtcNow >= m_NextSpecialBeholderAttack && defender != null && defender.Alive )
 			{
 				if ( Utility.RandomDouble() < 0.30 )
 				{
