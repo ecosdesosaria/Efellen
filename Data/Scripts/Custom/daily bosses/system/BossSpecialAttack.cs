@@ -1071,6 +1071,233 @@ namespace Server.Custom.DailyBosses.System
             }
         }
         #endregion
+        #region degen aura
+        /// <summary>
+        /// Creates a degenerative aura around the boss that drains player attributes over time
+        /// </summary>
+        /// <param name="boss">The boss performing the attack</param>
+        /// <param name="warcry">Message displayed overhead when activated</param>
+        /// <param name="radius">Effect radius in tiles</param>
+        /// <param name="rage">Boss rage level</param>
+        /// <param name="duration">Base duration in seconds, which is further modified by rage</param>
+        /// <param name="intensity">Base damage per tick, which is further modified by rage</param>
+        /// <param name="attribute">Which attribute to drain: "health", "mana", or "stamina"</param>
+        /// <param name="hue">Color hue for visual effects</param>
+        public static void PerformDegenAura(
+            BaseCreature boss,
+            string warcry,
+            int radius,
+            int rage,
+            int duration,
+            int intensity,
+            string attribute,
+            int hue
+        )
+        {
+            if (boss == null || boss.Deleted || !boss.Alive)
+                return;
+
+            attribute = attribute.ToLower();
+            if (attribute != "health" && attribute != "mana" && attribute != "stamina")
+            {
+                Console.WriteLine("Warning: Invalid attribute '" + attribute + "' for DegenAura. Must be health, mana, or stamina.");
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(warcry))
+            {
+                boss.PublicOverheadMessage(MessageType.Regular, hue, false, warcry);
+            }
+
+           boss.FixedParticles(0x375A, 10, 15, 5037, hue, 0, EffectLayer.Waist);
+            boss.PlaySound(0x1F5);
+
+            int finalDuration = duration + rage*2;
+            int damagePerTick = intensity + rage;
+
+            new DegenAura(boss, radius, finalDuration, damagePerTick, attribute, hue);
+        }
+
+        /// <summary>
+        /// Represents an active degenerative aura around a boss
+        /// </summary>
+        private class DegenAura
+        {
+            private BaseCreature m_Boss;
+            private int m_Radius;
+            private int m_DamagePerTick;
+            private string m_Attribute;
+            private int m_Hue;
+            private Timer m_TickTimer;
+            private Timer m_DurationTimer;
+            private Timer m_VisualTimer;
+            private int m_TicksRemaining;
+            private bool m_Active;
+
+            private const double TICK_INTERVAL = 2.0; // Damage tick every 2 seconds
+
+            public DegenAura(
+                BaseCreature boss,
+                int radius,
+                int durationSeconds,
+                int damagePerTick,
+                string attribute,
+                int hue
+            )
+            {
+                m_Boss = boss;
+                m_Radius = radius;
+                m_DamagePerTick = damagePerTick;
+                m_Attribute = attribute;
+                m_Hue = hue;
+                m_TicksRemaining = (int)(durationSeconds / TICK_INTERVAL);
+                m_Active = true;
+
+                m_TickTimer = Timer.DelayCall(
+                    TimeSpan.FromSeconds(TICK_INTERVAL),
+                    TimeSpan.FromSeconds(TICK_INTERVAL),
+                    new TimerCallback(OnTick)
+                );
+
+                m_VisualTimer = Timer.DelayCall(
+                    TimeSpan.FromSeconds(0.5),
+                    TimeSpan.FromSeconds(0.5),
+                    new TimerCallback(ShowVisualEffect)
+                );
+
+                m_DurationTimer = Timer.DelayCall(
+                    TimeSpan.FromSeconds(durationSeconds),
+                    new TimerCallback(End)
+                );
+            }
+
+            private void OnTick()
+            {
+                if (!m_Active || m_Boss == null || m_Boss.Deleted || !m_Boss.Alive)
+                {
+                    End();
+                    return;
+                }
+
+                m_TicksRemaining--;
+
+                if (m_TicksRemaining <= 0)
+                {
+                    End();
+                    return;
+                }
+
+                Map map = m_Boss.Map;
+                if (map == null)
+                {
+                    End();
+                    return;
+                }
+
+                IPooledEnumerable eable = map.GetMobilesInRange(m_Boss.Location, m_Radius);
+
+                foreach (Mobile m in eable)
+                {
+                    if (m == null || m == m_Boss || !m.Alive || !m.Player)
+                        continue;
+
+                    if (!m_Boss.CanBeHarmful(m))
+                        continue;
+
+                    ApplyDegen(m);
+                }
+
+                eable.Free();
+            }
+
+            private void ApplyDegen(Mobile target)
+            {
+                if (target == null || target.Deleted || !target.Alive)
+                    return;
+
+                switch (m_Attribute)
+                {
+                    case "health":
+                        AOS.Damage(target, m_Boss, m_DamagePerTick, 100, 0, 0, 0, 0);
+                        target.FixedParticles(0x374A, 10, 15, 5013, m_Hue, 0, EffectLayer.Waist);
+                        target.PlaySound(0x1F1);
+                        break;
+
+                    case "mana":
+                        int manaDrain = Math.Min(m_DamagePerTick, target.Mana);
+                        target.Mana -= manaDrain;
+                        target.FixedParticles(0x374A, 10, 15, 5032, m_Hue, 0, EffectLayer.Head);
+                        target.PlaySound(0x1F8);
+                        break;
+
+                    case "stamina":
+                        int stamDrain = Math.Min(m_DamagePerTick, target.Stam);
+                        target.Stam -= stamDrain;
+                        target.FixedParticles(0x374A, 10, 15, 5028, m_Hue, 0, EffectLayer.CenterFeet);
+                        target.PlaySound(0x1F2);
+                        break;
+                }
+            }
+
+            private void ShowVisualEffect()
+            {
+                // Sanity
+                if (!m_Active || m_Boss == null || m_Boss.Deleted || !m_Boss.Alive)
+                {
+                    End();
+                    return;
+                }
+
+                m_Boss.FixedParticles(0x375A, 1, 10, 5037, m_Hue, 0, EffectLayer.Waist);
+
+                if (m_Boss.Map != null && Utility.RandomBool())
+                {
+                    Effects.SendLocationParticles(
+                        EffectItem.Create(m_Boss.Location, m_Boss.Map, TimeSpan.FromSeconds(0.5)),
+                        0x3728,
+                        10,
+                        10,
+                        m_Hue,
+                        0,
+                        5042,
+                        0
+                    );
+                }
+            }
+
+            public void End()
+            {
+                if (!m_Active)
+                    return;
+
+                m_Active = false;
+
+                if (m_TickTimer != null)
+                {
+                    m_TickTimer.Stop();
+                    m_TickTimer = null;
+                }
+
+                if (m_VisualTimer != null)
+                {
+                    m_VisualTimer.Stop();
+                    m_VisualTimer = null;
+                }
+
+                if (m_DurationTimer != null)
+                {
+                    m_DurationTimer.Stop();
+                    m_DurationTimer = null;
+                }
+
+                if (m_Boss != null && !m_Boss.Deleted && m_Boss.Map != null)
+                {
+                    m_Boss.FixedParticles(0x3735, 1, 30, 9902, m_Hue, 0, EffectLayer.Waist);
+                    m_Boss.PlaySound(0x1F3);
+                }
+            }
+        }
+        #endregion
         #region helpers
         /// <summary>
         /// Cross shaped AoE attack
