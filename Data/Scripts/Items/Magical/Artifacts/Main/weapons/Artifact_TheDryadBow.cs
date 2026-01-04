@@ -21,6 +21,7 @@ namespace Server.Items
 			SkillBonuses.SetValues( 1, SkillName.Taming, 10 );
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Entangles nature's foes" );
+			m_NextParalyze = DateTime.MinValue;
 		}
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
@@ -58,14 +59,22 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 );
+			writer.WriteEncodedInt( 1 );
+			writer.Write(m_NextParalyze);
 		}
-		
+
 		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
+			base.Deserialize(reader);
+			
 			ArtifactLevel = 2;
-			int version = reader.ReadInt();
+			
+			int version = reader.ReadEncodedInt();
+			
+			if (version >= 1)
+				m_NextParalyze = reader.ReadDateTime();
+			else
+				m_NextParalyze = DateTime.MinValue;
 		}
 	}
 }

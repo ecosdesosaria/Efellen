@@ -1,6 +1,7 @@
 using System;
 using Server;
 using Server.CustomEffects;
+using Server.Guilds;
 
 namespace Server.Items
 {
@@ -55,23 +56,31 @@ namespace Server.Items
 		{
 		}
 
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
+		public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
 
-			writer.WriteEncodedInt( 1 ); // version
-			writer.Write(m_NextArtifactAttackAllowed);
-		}
+            writer.WriteEncodedInt(1); // version
+            
+            writer.Write(m_NextArtifactAttackAllowed.Ticks);
+        }
 
-		public override void Deserialize(GenericReader reader)
-		{
-			base.Deserialize(reader);
-			int version = reader.ReadEncodedInt();
-			 if (version >= 1)
-		        m_NextArtifactAttackAllowed = reader.ReadDateTime();
-		    else
-		        m_NextArtifactAttackAllowed = DateTime.MinValue;
-			ArtifactLevel = 2;
-		}
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadEncodedInt();
+            
+            if (version >= 1)
+            {
+                long ticks = reader.ReadLong();
+                m_NextArtifactAttackAllowed = new DateTime(ticks);
+            }
+            else
+            {
+                m_NextArtifactAttackAllowed = DateTime.UtcNow;
+            }
+            
+            ArtifactLevel = 2;
+        }
 	}
 }

@@ -29,7 +29,7 @@ namespace Server.Items
 		{
 			base.OnHit( attacker, defender, damageBonus );
 
-			if (Utility.RandomDouble() > 0.25)
+			if (Utility.RandomDouble() > 0.15)
 				return;
 			double poisoning = attacker.Skills[SkillName.Poisoning].Value;
 		    double roll = Utility.RandomDouble();

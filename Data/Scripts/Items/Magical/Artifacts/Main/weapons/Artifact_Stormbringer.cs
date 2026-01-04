@@ -6,8 +6,6 @@ namespace Server.Items
 {
     public class Artifact_Stormbringer : GiftVikingSword
     {
-        private DateTime m_LastSoulHeal;
-
         public override int InitMinHits { get { return 80; } }
         public override int InitMaxHits { get { return 160; } }
 
@@ -23,7 +21,6 @@ namespace Server.Items
             Slayer = SlayerName.Repond;
 
             ArtifactLevel = 2;
-
             Server.Misc.Arty.ArtySetup(this, "Stormbringer is a vicious sword that fells the weak.");
         }
 

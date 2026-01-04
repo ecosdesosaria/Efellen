@@ -1,55 +1,55 @@
 using System;
 using Server;
-using System.Collections;
+using System.Collections.Generic;
 using Server.Spells.Chivalry;
 
 namespace Server.Items
 {
     public class Artifact_Fury : GiftKatana
-	{
-         private Hashtable m_Cooldowns;
-		public override int InitMinHits{ get{ return 80; } }
-		public override int InitMaxHits{ get{ return 160; } }
+    {
+        private Dictionary<Mobile, DateTime> m_Cooldowns;
+        
+        public override int InitMinHits{ get{ return 80; } }
+        public override int InitMaxHits{ get{ return 160; } }
 
         [Constructable]
         public Artifact_Fury()
         {
             Name = "Fury";
-			ItemID = 0x13FF;
+            ItemID = 0x13FF;
             WeaponAttributes.HitFireball = 25;
             WeaponAttributes.HitLightning = 25;
             WeaponAttributes.HitHarm = 25;
             Attributes.ReflectPhysical = 25;
             Hue = 1357;
-			ArtifactLevel = 2;
-			Server.Misc.Arty.ArtySetup( this, "Brings forth Divine Fury" );
-            m_Cooldowns = new Hashtable();
-		}
+            ArtifactLevel = 2;
+            Server.Misc.Arty.ArtySetup( this, "Brings forth Divine Fury" );
+            m_Cooldowns = new Dictionary<Mobile, DateTime>();
+        }
 
         private bool CanCast(Mobile m)
         {
-            if (m == null)
+            if (m == null || m.Deleted)
                 return false;
 
             DateTime next;
-
-            if (m_Cooldowns[m] == null)
+            if (!m_Cooldowns.TryGetValue(m, out next))
                 return true;
 
-            try
+            if (DateTime.UtcNow >= next)
             {
-                next = (DateTime)m_Cooldowns[m];
-            }
-            catch
-            {
+                m_Cooldowns.Remove(m);
                 return true;
             }
 
-            return DateTime.UtcNow >= next;
+            return false;
         }
 
         private void StartCooldown(Mobile m)
         {
+            if (m == null || m.Deleted)
+                return;
+
             m_Cooldowns[m] = DateTime.UtcNow + TimeSpan.FromMinutes(1.0);
         }
 
@@ -60,35 +60,34 @@ namespace Server.Items
             if (attacker == null || defender == null)
                 return;
 
-            if (Utility.RandomDouble() < 0.15)
-            {
-                if (CanCast(attacker))
-                {
-                    new DivineFurySpell(attacker, this).Cast();
-                    StartCooldown(attacker);
-                    attacker.SendMessage("Fury empowers you!");
-                }
-            }
+            if (Utility.RandomDouble() >= 0.15)
+                return;
+
+            if (!CanCast(attacker))
+                return;
+
+            new DivineFurySpell(attacker, this).Cast();
+            StartCooldown(attacker);
+            attacker.SendMessage("Fury empowers you!");
         }
 
         public override void OnDoubleClick( Mobile from )
-		{
-			if (Parent != from)
+        {
+            if (Parent != from)
             {
                 from.SendMessage("You must be holding Fury to invoke its power.");
+                return;
             }
-            else
-            {
-                if (CanCast(from))
-                {
-                    new DivineFurySpell(from, this).Cast();
-                    StartCooldown(from);
-                }
-                else
-                    from.SendMessage("Fury is still recharging.");
-            }
-		}
 
+            if (!CanCast(from))
+            {
+                from.SendMessage("Fury is still recharging.");
+                return;
+            }
+
+            new DivineFurySpell(from, this).Cast();
+            StartCooldown(from);
+        }
 
         public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
         {
@@ -100,21 +99,54 @@ namespace Server.Items
             chaos = 0;
             direct = 0;
         }
-        public Artifact_Fury( Serial serial )
-            : base( serial )
+
+        public Artifact_Fury( Serial serial ) : base( serial )
         {
         }
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write((int)1); // version
+            writer.Write((int)2);
+
+            writer.Write(m_Cooldowns.Count);
+            foreach (KeyValuePair<Mobile, DateTime> kvp in m_Cooldowns)
+            {
+                writer.Write(kvp.Key);
+                writer.Write(kvp.Value);
+            }
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
-            int version = reader.ReadInt();
+            
             ArtifactLevel = 2;
+            
+            int version = reader.ReadInt();
+
+            switch (version)
+            {
+                case 2:
+                {
+                    m_Cooldowns = new Dictionary<Mobile, DateTime>();
+                    int count = reader.ReadInt();
+                    for (int i = 0; i < count; i++)
+                    {
+                        Mobile m = reader.ReadMobile();
+                        DateTime dt = reader.ReadDateTime();
+                        if (m != null && !m.Deleted)
+                            m_Cooldowns[m] = dt;
+                    }
+                    break;
+                }
+                case 1:
+                case 0:
+                {
+                    m_Cooldowns = new Dictionary<Mobile, DateTime>();
+                    break;
+                }
+            }
         }
     }
 }

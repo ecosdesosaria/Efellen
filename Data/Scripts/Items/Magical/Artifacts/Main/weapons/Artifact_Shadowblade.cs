@@ -5,6 +5,7 @@ using Server.Mobiles;
 using Server.Network;
 using Server.Engines.PartySystem;
 using Server.EffectsUtil;
+using Server.Guilds;
 
 namespace Server.Items
 {
@@ -29,82 +30,83 @@ namespace Server.Items
         }
 
         public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
-        {
-            base.OnHit(attacker, defender, damageBonus);
+		{
+			base.OnHit(attacker, defender, damageBonus);
 
-            if (attacker == null || defender == null)
-                return;
+			if (attacker == null || defender == null)
+				return;
 
-            //only works for people serious about the dark knight business
-            if (attacker.Skills[SkillName.Knightship].Value > 75.0 && attacker.Karma < -7777)
-            {
-                if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
-                    return;
+			if (attacker.Skills[SkillName.Knightship].Value <= 75.0 || attacker.Karma >= -7777)
+				return;
 
-                double skill = attacker.Skills[SkillName.Knightship].Value;
+			if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
+				return;
 
-                double chance = 0.05 + (skill / 125.0) * 0.20; // 5% chant at 0 skill, 25% chance at 125 skill
+			double skill = attacker.Skills[SkillName.Knightship].Value;
+			double chance = 0.05 + (skill / 125.0) * 0.20;
 
-                if (Utility.RandomDouble() > chance)
-                    return;
+			if (Utility.RandomDouble() > chance)
+				return;
 
-                double seconds = 120.0 - (skill * (90.0 / 125.0)); // 120secs cooldown at 0 skill, 30 secs cooldown at 125 skill
+			double seconds = 120.0 - (skill * (90.0 / 125.0));
+			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
 
-                m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
-                int minDmg = (-attacker.Karma) / 777; // 19 at -15k
-                int maxDmg = (-attacker.Karma) / 555; // 27 at -15k
+			int minDmg = (-attacker.Karma) / 777; // 19 at -15k
+            int maxDmg = (-attacker.Karma) / 555; // 27 at -15k
 
-                if (minDmg < 0) minDmg = 0;
-                if (maxDmg < 0) maxDmg = 0;
-                if (maxDmg < minDmg) maxDmg = minDmg;
+			if (minDmg < 0) minDmg = 0;
+			if (maxDmg < minDmg) maxDmg = minDmg;
 
-                foreach (Mobile mob in defender.GetMobilesInRange(8))
-                {
-                    if (mob == null || mob == attacker || mob == defender)
-                        continue;
+			Party attackerParty = Party.Get(attacker);
+			BaseGuild attackerGuild = attacker.Guild;
 
-                    // don't smite your pets
-                    if (mob is BaseCreature)
-                    {
-                        BaseCreature bc = (BaseCreature)mob;
-                        if ((bc.Controlled && bc.ControlMaster == attacker) ||
-                            (bc.Summoned && bc.SummonMaster == attacker))
-                            continue;
-                    }
+			IPooledEnumerable eable = defender.GetMobilesInRange(8);
 
-                    // don't smite your buddies
-                    Party aParty = Party.Get(attacker);
-                    Party mParty = Party.Get(mob);
+			foreach (Mobile mob in eable)
+			{
+				if (mob == null || mob == attacker || mob == defender)
+					continue;
 
-                    if (aParty != null && mParty != null && aParty == mParty)
-                        continue;
+				if (mob is BaseCreature)
+				{
+					BaseCreature bc = (BaseCreature)mob;
+					if ((bc.Controlled && bc.ControlMaster == attacker) || (bc.Summoned && bc.SummonMaster == attacker))
+						continue;
+				}
 
-                    // don't smite guildmates
-                    if (attacker.Guild != null && mob.Guild != null && attacker.Guild == mob.Guild)
-                        continue;
+				if (attackerParty != null)
+				{
+					Party mobParty = Party.Get(mob);
+					if (mobParty != null && attackerParty == mobParty)
+						continue;
+				}
 
-                    // smites gooder people harder
-                    int bonus = 0;
-                    if (mob.Karma > 0)
-                    {
-                        int scaled = 1 + ((mob.Karma) * 24 / 15000);
-                        if (scaled < 1) scaled = 0;
-                        if (scaled > 25) scaled = 25;
-                        bonus = scaled;
-                    }
-					// smite!
-                    int dmg = Utility.RandomMinMax(minDmg, maxDmg) + bonus;
+				if (attackerGuild != null && mob.Guild != null && attackerGuild == mob.Guild)
+					continue;
 
-                    if (dmg > 0)
-                    {
-                        AOS.Damage(mob, attacker, dmg, 0, 0, 0, 0, 100);//nrgy damage
-                        mob.PlaySound(0x1FE);
-                     }
-                }
-                attacker.SendMessage("Your Shadow Blade erupts with vile darkness!");
-				SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 1315);
-            }
-        }
+				int bonus = 0;
+				if (mob.Karma > 0)
+				{
+					int scaled = 1 + ((mob.Karma) * 24 / 15000);
+					if (scaled < 1) scaled = 0;
+					if (scaled > 25) scaled = 25;
+					bonus = scaled;
+				}
+
+				int dmg = Utility.RandomMinMax(minDmg, maxDmg) + bonus;
+
+				if (dmg > 0)
+				{
+					AOS.Damage(mob, attacker, dmg, 0, 100, 0, 0, 0);
+					mob.PlaySound(0x208);
+				}
+			}
+
+			eable.Free();
+
+			attacker.SendMessage("Your Shadow Blade erupts with vile darkness!");
+			SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 1153);
+		}
 
 		public override bool OnEquip(Mobile from)
         {
@@ -124,20 +126,22 @@ namespace Server.Items
         public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-
-			writer.WriteEncodedInt( 1 ); // version
+			writer.WriteEncodedInt( 1 );
 			writer.Write(m_NextArtifactAttackAllowed);
 		}
 
 		public override void Deserialize(GenericReader reader)
 		{
 			base.Deserialize(reader);
-			int version = reader.ReadEncodedInt();
-			if (version >= 1)
-		        m_NextArtifactAttackAllowed = reader.ReadDateTime();
-		    else
-		        m_NextArtifactAttackAllowed = DateTime.MinValue;
+			
 			ArtifactLevel = 2;
+			
+			int version = reader.ReadEncodedInt();
+			
+			if (version >= 1)
+				m_NextArtifactAttackAllowed = reader.ReadDateTime();
+			else
+				m_NextArtifactAttackAllowed = DateTime.MinValue;
 		}
     }
 }

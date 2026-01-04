@@ -29,11 +29,13 @@ namespace Server.Items
             Attributes.AttackChance = 10;
             ArtifactLevel = 2;
             Server.Misc.Arty.ArtySetup(this, "The holy sword of an ancient king.");
+            m_LastHeal = DateTime.MinValue;
         }
 
         public Artifact_Excalibur(Serial serial) : base(serial)
         {
         }
+
         public override bool OnEquip(Mobile from)
         {
             if (from.Karma < 0)
@@ -49,87 +51,88 @@ namespace Server.Items
         {
             base.OnHit(attacker, defender, damageBonus);
 
-            if (attacker == null || attacker.Deleted || !attacker.Player) // you never know
+            if (attacker == null || attacker.Deleted || !attacker.Player)
                 return;
 
             if (attacker.Karma < 0)
                 return;
 
-			if (DateTime.Now < m_LastHeal + TimeSpan.FromMinutes(3.0))
+            if (DateTime.UtcNow < m_LastHeal + TimeSpan.FromMinutes(3.0))
                 return;
-				
-			double knightship = attacker.Skills[SkillName.Knightship].Value;
-			double karma = attacker.Karma;
-            
-			int chance = 10 + (int)(karma / 1000);
-			if (chance > 25)
-    			chance = 25;
-			
-			int radius = 3 + (int)(knightship / 25);
-				if (radius > 8)
-					radius = 8;
-			
-			int minHeal = 5 + (int)(knightship / 10) + (int)(karma / 1000);
-			if (minHeal > 25)
-			    minHeal = 25;
 
-			int maxHeal = 10 + (int)(knightship / 8) + (int)(karma / 500);
-			if (maxHeal > 55)
-    			maxHeal = 55;
+            double knightship = attacker.Skills[SkillName.Knightship].Value;
+            double karma = attacker.Karma;
+            
+            int chance = 10 + (int)(karma / 1000);
+            if (chance > 25)
+                chance = 25;
 
             if (Utility.Random(100) >= chance)
                 return;
 
-            m_LastHeal = DateTime.Now;
+            int radius = 3 + (int)(knightship / 25);
+            if (radius > 8)
+                radius = 8;
+            
+            int minHeal = 5 + (int)(knightship / 10) + (int)(karma / 1000);
+            if (minHeal > 25)
+                minHeal = 25;
 
-            ArrayList list = new ArrayList();
+            int maxHeal = 10 + (int)(knightship / 8) + (int)(karma / 500);
+            if (maxHeal > 55)
+                maxHeal = 55;
+
+            m_LastHeal = DateTime.UtcNow;
+
             Map map = attacker.Map;
-
             if (map == null)
                 return;
 
+            Party party = Party.Get(attacker);
+            List<Mobile> partyMembers = new List<Mobile>();
+
+            if (party != null)
+            {
+                for (int i = 0; i < party.Members.Count; i++)
+                {
+                    PartyMemberInfo pmi = party.Members[i];
+                    if (pmi != null && pmi.Mobile != null)
+                        partyMembers.Add(pmi.Mobile);
+                }
+            }
+
+            List<Mobile> toHeal = new List<Mobile>();
             IPooledEnumerable eable = map.GetMobilesInRange(attacker.Location, radius);
 
             foreach (Mobile m in eable)
             {
-                if (m == null || m.Deleted)
+                if (m == null || m.Deleted || !m.Alive)
+                    continue;
+
+                if (m.Hidden && m != attacker)
                     continue;
 
                 bool valid = (m == attacker);
 
-                Party party = Party.Get(attacker);
-				ArrayList partyMobiles = new ArrayList();
-
-                if (!valid && party != null)
-                {
-                    if (!valid && partyMobiles.Contains(m))
-					    valid = true;
-                }
+                if (!valid && partyMembers.Contains(m))
+                    valid = true;
 
                 if (!valid && m is BaseCreature)
                 {
                     BaseCreature bc = (BaseCreature)m;
-
-                    if (!valid && bc.Controlled)
-					{
-					    if (partyMobiles.Contains(bc.ControlMaster))
-					        valid = true;
-					}
+                    if (bc.Controlled && bc.ControlMaster != null && partyMembers.Contains(bc.ControlMaster))
+                        valid = true;
                 }
-				// keep rogues stealthed
-				// don't try to heal the dead
-				if ((m.Hidden && m != attacker) || !m.Alive)
-				    continue;
 
                 if (valid)
-                    list.Add(m);
+                    toHeal.Add(m);
             }
 
             eable.Free();
 
             int healedCount = 0;
 
-            foreach (Mobile m in list)
+            foreach (Mobile m in toHeal)
             {
                 int amount = Utility.RandomMinMax(minHeal, maxHeal);
                 m.Heal(amount);
@@ -147,17 +150,38 @@ namespace Server.Items
             else
                 attacker.Say("Light protects me!");
         }
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write((int)2); 
+            writer.Write((int)3);
+
+            writer.Write(m_LastHeal);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
-            int version = reader.ReadInt();
+            
             ArtifactLevel = 2;
+            
+            int version = reader.ReadInt();
+
+            switch (version)
+            {
+                case 3:
+                {
+                    m_LastHeal = reader.ReadDateTime();
+                    break;
+                }
+                case 2:
+                case 1:
+                case 0:
+                {
+                    m_LastHeal = DateTime.MinValue;
+                    break;
+                }
+            }
         }
     }
 }

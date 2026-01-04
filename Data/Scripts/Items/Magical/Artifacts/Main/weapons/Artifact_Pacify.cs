@@ -5,7 +5,7 @@ namespace Server.Items
 {
 	public class Artifact_Pacify : GiftPike
 	{
-		private DateTime m_NextParalyze;
+		private DateTime m_NextArtifactAttackAllowed;
 		public override int InitMinHits{ get{ return 80; } }
 		public override int InitMaxHits{ get{ return 160; } }
 
@@ -22,13 +22,14 @@ namespace Server.Items
 			WeaponAttributes.HitLeechHits = 50;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Immobilizes foes" );
+			m_NextArtifactAttackAllowed = DateTime.MinValue;
 		}
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
         {
             base.OnHit(attacker, defender, damageBonus);
 
-            if (DateTime.Now < m_NextParalyze)
+            if (DateTime.Now < m_NextArtifactAttackAllowed)
                 return;
 
 
@@ -38,7 +39,7 @@ namespace Server.Items
                 {
                     defender.Paralyze(TimeSpan.FromSeconds(9));
                     attacker.SendMessage("Your blow immobilizes your foe!");
-                    m_NextParalyze = DateTime.Now + TimeSpan.FromSeconds(90);
+                    m_NextArtifactAttackAllowed = DateTime.Now + TimeSpan.FromSeconds(90);
                 }
             }
         }
@@ -50,16 +51,22 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-
-			writer.Write( (int) 0 );
+			writer.WriteEncodedInt( 1 );
+			writer.Write(m_NextArtifactAttackAllowed);
 		}
-		
+
 		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
+			base.Deserialize(reader);
+			
 			ArtifactLevel = 2;
-
-			int version = reader.ReadInt();
+			
+			int version = reader.ReadEncodedInt();
+			
+			if (version >= 1)
+				m_NextArtifactAttackAllowed = reader.ReadDateTime();
+			else
+				m_NextArtifactAttackAllowed = DateTime.MinValue;
 		}
 	}
 }

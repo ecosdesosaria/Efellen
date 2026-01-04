@@ -33,7 +33,7 @@ namespace Server.Items
 
             if (!defender.Alive || defender.Hits <= 0)
             {
-                if (Utility.Random(100) < 15)
+                if (Utility.Random(100) < 10)
                 {
                     int hits = Utility.RandomMinMax(5, 25);
                     int mana = Utility.RandomMinMax(5, 15);

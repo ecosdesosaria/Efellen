@@ -8,7 +8,7 @@ namespace Server.Items
 {
 	public class Artifact_StaffoftheWoodlands : GiftShepherdsCrook
 	{
-		public DateTime TimeUsed;
+		public DateTime m_TimeUsed;
 		public override int InitMinHits{ get{ return 80; } }
 		public override int InitMaxHits{ get{ return 160; } }
 
@@ -27,12 +27,13 @@ namespace Server.Items
 			SkillBonuses.SetValues(2, SkillName.Herding,  15);
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Calls forth the spirit of a dire bear" );
+			m_TimeUsed = DateTime.MinValue;
 		}
 
 		public override void OnDoubleClick( Mobile from )
 		{
 			DateTime TimeNow = DateTime.Now;
-			long ticksThen = TimeUsed.Ticks;
+			long ticksThen = m_TimeUsed.Ticks;
 			long ticksNow = TimeNow.Ticks;
 			int minsThen = (int)TimeSpan.FromTicks(ticksThen).TotalMinutes;
 			int minsNow = (int)TimeSpan.FromTicks(ticksNow).TotalMinutes;
@@ -53,7 +54,7 @@ namespace Server.Items
 			else
 			{
 				new SummonDireBearSpell( from, this ).Cast();
-				TimeUsed = DateTime.Now;
+				m_TimeUsed = DateTime.Now;
 			}
 		}
 
@@ -70,14 +71,22 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.WriteEncodedInt( 0 ); // version
+			writer.WriteEncodedInt( 1 );
+			writer.Write(m_TimeUsed);
 		}
 
-		public override void Deserialize( GenericReader reader )
+		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
+			base.Deserialize(reader);
+			
 			ArtifactLevel = 2;
+			
 			int version = reader.ReadEncodedInt();
+			
+			if (version >= 1)
+				m_TimeUsed = reader.ReadDateTime();
+			else
+				m_TimeUsed = DateTime.MinValue;
 		}
 	}
 }
