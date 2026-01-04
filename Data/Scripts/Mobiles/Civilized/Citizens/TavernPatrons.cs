@@ -531,7 +531,7 @@ namespace Server.Misc
 			string relics = QuestCharacters.QuestItems( false );
 				if ( Utility.RandomBool() ){ relics = QuestCharacters.ArtyItems( false ); }
 
-			int max = 174; if ( !useAll ){ max = max + 40; }
+			int max = 192; if ( !useAll ){ max = max + 40; }
 			switch( Utility.RandomMinMax( 0, max ) )
 			{
 				case 0: sWords = "a bright white shrine in Sosaria that leads to the moon"; break;	
@@ -849,7 +849,34 @@ namespace Server.Misc
 					sWords = "a " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " that " + misc + " in " + dungeon + ""; break;
 				case 173: sWords = "Some Myconids have been wandering far from the underground lately"; break;
 				case 174: sWords = "Strange are the dreams I'm having as of late, the priest said I should consider my sins, and yet I wonder if there's nothing else at play here"; break;
-
+				case 175: sWords = "They said a Trollbear called Blacktooth has been raiding caravans passing by the woods near Montor"; break;
+				case 176: 
+					misc = "mother";	
+						switch( Utility.RandomMinMax( 0, 4 ) )
+						{
+							case 1: misc = "parrot"; break;	
+							case 2: misc = "father"; break;	
+							case 3: misc = "daughter"; break;	
+							case 4: misc = "wife"; break;	
+						}
+					sWords = "The Mother Superior at the convent of Holy Mercy near grey is taking care of my "+misc+"."; break;
+				case 177: sWords = "The Butcher is real. I've seen it, deep into the castle in Ravendark."; break;
+				case 178: sWords = "The orcs have a new warchief. Firefang has been setting farms on fire near Moon."; break;
+				case 179: sWords = "Strange mushrooms that seem to walk have been spotted on the eastern coast of Sosaria. I wonder what is causing that."; break;
+				case 180: sWords = "Archdruid Fiorin has long since abandoned civilization and now guards the Howling Grove on the western coast of Sosaria."; break;
+				case 181: sWords = "I've seen the black covenant at midnight, dancing around a vile goat in the dread islands!"; break;
+				case 182: sWords = "The Skeleton King has awoken, I say! Its tomb in the Ancient Pyramid rattles with his gilded bones!"; break;
+				case 183: sWords = "Strange have been my dreams of late. A sage I consulted in Lodoria told me that I was being influenced by some vile force."; break;
+				case 184: sWords = "The Eye Tyrants can fire dreadful rays from each of their eyestalks."; break;
+				case 185: sWords = "I've seen it in my sleep. Yellow and monstrous, all eyestalks and teech. It said its name is The Dreamweaver, and it dwells in Lodoria."; break;
+				case 186: sWords = "A hunter told me that the Old One Eye rampaged through their camp in the deserts of the Savaged Empire and killed many before moving on."; break;
+				case 187: sWords = "I've heard chilling songs coming from Ravendark. Some say the Prince of Darkness is back."; break;
+				case 188: sWords = "I've seen the angel that guards the Sky Knight's fortress. I'll never see something as beautiful again."; break;
+				case 189: sWords = "Strange cultists have been seen in Lodoria, talking about a great dragon called Ashardalom."; break;
+				case 190: sWords = "It's said that the fires of Destard are burning hotter than ever."; break;
+				case 191: sWords = "I've seen the druids of the Howling Order transform into wolves!"; break;
+				case 192: sWords = "They said that the Daughter of Fire attracts adventurers to the bowels of the Fires of Hell, and they are never seen again."; break;
+				
 			}
 			return sWords;	
 		}
