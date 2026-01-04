@@ -234,22 +234,6 @@ namespace Server.Mobiles
 			);
 		}
 
-		public override void OnGaveMeleeAttack( Mobile defender )
-		{
-			BossSummonSystem.TrySummonCreature(
-				this,//boss
-				defender,//target
-				SummonTypes,//creature list
-				m_Rage,// current rage
-				ref m_NextSummonTime,//next available summon
-				SummonWarcries,//warcries per rage
-				m_Summons,//current active summons
-				348,// effect hue
-				GetMaxSummons(),//summon limit
-				30// cooldown
-			);
-		}
-
 		public override bool OnBeforeDeath()
 		{
 			if ( m_Rage == 0 )
