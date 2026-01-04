@@ -38,6 +38,7 @@ namespace Server.Misc
 		+"     • Tier 1 bosses (meant to be soloable by a competent adventurer):<br>"
         +" 		   • The mother superior waits ready to defend her convent from those that would dare to defile it.<br>"
 		+"         • Blacktooth the trollbear now protects the southern forest of Sosaria from intruders.<br>"
+		+"		   • The vicious Butcher has been called upon by the mad mages of Ravendark.<BR>"
         +"      • Tier 2 bosses (meant to be soloable by a very well geared adventurer):<br>"
 		+" 		   • Firefang the Warchief is setting farms ablaze near the city of Moon.<br>"			
         +"         • The Spore mother took some of its fellow underdark denizens attracted by powerful psychic energies and set up a base on the Myconid cave.<br>"
