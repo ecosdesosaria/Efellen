@@ -20,7 +20,7 @@ namespace Server.Items
 			Slayer = SlayerName.Repond;
 			Attributes.SpellChanneling = 1;
 			ArtifactLevel = 2;
-			Server.Misc.Arty.ArtySetup( this, "A vicious blade made for evisceration." );
+			Server.Misc.Arty.ArtySetup( this, "Eviscerates enemies." );
 		}
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)

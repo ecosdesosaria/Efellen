@@ -108,14 +108,35 @@ namespace Server.Items
 		public override void Serialize(GenericWriter writer)
 		{
 			base.Serialize(writer);
-			writer.Write((int)0);
+            writer.Write((int)1); // version
+
+            writer.Write(m_NextArtifactBuff);
+            writer.Write(m_BuffActive);
 		}
 
 		public override void Deserialize(GenericReader reader)
 		{
 			base.Deserialize(reader);
-			ArtifactLevel = 2;
-			int version = reader.ReadInt();
+            
+            ArtifactLevel = 2;
+            
+            int version = reader.ReadInt();
+
+            switch (version)
+            {
+                case 1:
+                {
+                    m_NextArtifactBuff = reader.ReadDateTime();
+                    m_BuffActive = reader.ReadBool();
+                    break;
+                }
+                case 0:
+                {
+                    m_NextArtifactBuff = DateTime.MinValue;
+                    m_BuffActive = false;
+                    break;
+                }
+            }
 			if (Slayer == SlayerName.None)
 				Slayer = SlayerName.Silver;
 		}

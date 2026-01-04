@@ -5,7 +5,7 @@ namespace Server.Items
 {
 	public class Artifact_PixieSwatter : GiftScepter
 	{
-		private DateTime m_NextParalyze;
+		private DateTime m_NextArtifactAttackAllowed;
 		public override int InitMinHits{ get{ return 80; } }
 		public override int InitMaxHits{ get{ return 160; } }
 
@@ -20,13 +20,14 @@ namespace Server.Items
 			Slayer = SlayerName.Fey;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Immobilizes fey creatures" );
+			m_NextArtifactAttackAllowed = DateTime.MinValue;
 		}
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
         {
             base.OnHit(attacker, defender, damageBonus);
 
-            if (DateTime.Now < m_NextParalyze)
+            if (DateTime.Now < m_NextArtifactAttackAllowed)
                 return;
 
             bool validTarget = false;
@@ -36,13 +37,13 @@ namespace Server.Items
 			if (!validTarget)
                 return;
 
-            if (Utility.RandomDouble() < 0.25)
+            if (Utility.RandomDouble() < 0.15)
             {
                 if (defender != null && defender.Alive && !defender.Paralyzed)
                 {
                     defender.Paralyze(TimeSpan.FromSeconds(5));
                     attacker.SendMessage("Your blow immobilizes your foe!");
-                    m_NextParalyze = DateTime.Now + TimeSpan.FromSeconds(30);
+                    m_NextArtifactAttackAllowed = DateTime.Now + TimeSpan.FromSeconds(30);
                 }
             }
         }
@@ -61,16 +62,22 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-
-			writer.Write( (int) 0 );
+			writer.WriteEncodedInt( 1 );
+			writer.Write(m_NextArtifactAttackAllowed);
 		}
-		
+
 		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
+			base.Deserialize(reader);
+			
 			ArtifactLevel = 2;
-
-			int version = reader.ReadInt();
+			
+			int version = reader.ReadEncodedInt();
+			
+			if (version >= 1)
+				m_NextArtifactAttackAllowed = reader.ReadDateTime();
+			else
+				m_NextArtifactAttackAllowed = DateTime.MinValue;
 		}
 	}
 }

@@ -27,6 +27,7 @@ namespace Server.Items
 			Attributes.SpellChanneling = 1;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Calls forth Dragons" );
+			TimeUsed = DateTime.MinValue;
 		}
 
 		public override void OnDoubleClick( Mobile from )
@@ -73,7 +74,10 @@ namespace Server.Items
 			base.Deserialize( reader );
 			ArtifactLevel = 2;
 			int version = reader.ReadInt();
-			TimeUsed = reader.ReadDateTime();
+			if (version >= 1)
+				TimeUsed = reader.ReadDateTime();
+			else
+				TimeUsed = DateTime.MinValue;
 		}
 	}
 }

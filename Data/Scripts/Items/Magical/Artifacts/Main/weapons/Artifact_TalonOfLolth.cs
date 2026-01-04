@@ -5,6 +5,7 @@ using Server.Mobiles;
 using Server.Network;
 using Server.Engines.PartySystem;
 using Server.EffectsUtil;
+using Server.Guilds;
 
 namespace Server.Items
 {
@@ -31,69 +32,79 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
+
 			base.OnHit(attacker, defender, damageBonus);
+
 			if (attacker == null || defender == null)
 				return;
-			//only works for people serious about the vile poisoner thing
-			if (attacker.Skills[SkillName.Poisoning].Value > 75.0 && attacker.Karma < - 7777)
-			{
-				if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
-    	        return;
-    	    	double skill = attacker.Skills[SkillName.Poisoning].Value; 
-    	    	double chance = 0.05 + (skill / 125.0) * 0.20; // 5% chant at 0 skill, 25% chance at 125 skill
-    	    	if (Utility.RandomDouble() > chance)
-    	    	    return;
-    	    	double seconds = 120.0 - (skill * (90.0 / 125.0)); // 120secs cooldown at 0 skill, 30 secs cooldown at 125 skill
-    	    	m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
-				int minDmg = attacker.Int / 9; // 16 base min damage at 150 int
-		    	int maxDmg = attacker.Int / 5; // 30 base max damage at 150 int
-		    	if (minDmg < 0) minDmg = 0;
-		    	if (maxDmg < 0) maxDmg = 0;
-		    	if (maxDmg < minDmg) maxDmg = minDmg;
-    	    	foreach (Mobile mob in defender.GetMobilesInRange(8))
-    	    	{
-    	    	    if (mob == null || mob == attacker || mob == defender)
-    	    	        continue;
-					// dont zap pets/owned summoned creatures
-    	    	    if (mob is BaseCreature)
-    	    	    {
-    	    	        BaseCreature bc = (BaseCreature)mob;
-    	    	        if ((bc.Controlled && bc.ControlMaster == attacker) || (bc.Summoned && bc.SummonMaster == attacker))
-    	    	            continue;
-    	    	    }
-    	    	    // don't zap party members
-    	    	    Party attackerParty = Party.Get(attacker);
-    	    	    Party mobParty = Party.Get(mob);
-					if (attackerParty != null && mobParty != null && attackerParty == mobParty)
-						continue;
-    	    	    // dont zap guild mates
-    	    	    if (attacker.Guild != null && mob.Guild != null && attacker.Guild == mob.Guild)
-    	    	        continue;
-    	    	    // Only smite good things
-    	    	    if (mob.Karma < 0)
-    	    	        continue;
-					// adds damage based on how goood the target is
-					// zaps gooder people harder
-                    int bonus = 0;
-                    if (mob.Karma > 0)
-                    {
-                        int scaled = 1 + ((mob.Karma) * 24 / 15000);
-                        if (scaled < 1) scaled = 0;
-                        if (scaled > 25) scaled = 25;
-                        bonus = scaled;
-                    }
-					// zap!
-                    int dmg = Utility.RandomMinMax(minDmg, maxDmg) + bonus;
 
-                    if (dmg > 0)
-                    {
-                        AOS.Damage(mob, attacker, dmg, 0, 0, 0, 100, 0);//poison damage
-                        mob.PlaySound(0x1FE);
-                     }
-    	    	}
-    			attacker.SendMessage("Your Nightmarish weapon unleashes a burst of ghostly poison fumes!");
-				SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 0x4F6);
-			}
+			if (attacker.Skills[SkillName.Poisoning].Value <= 75.0 || attacker.Karma >= -7777)
+				return;
+
+			if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
+				return;
+
+			double skill = attacker.Skills[SkillName.Poisoning].Value;
+			double chance = 0.05 + (skill / 125.0) * 0.20;
+
+			if (Utility.RandomDouble() > chance)
+				return;
+
+			double seconds = 120.0 - (skill * (90.0 / 125.0));
+			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
+
+			int minDmg = (-attacker.Karma) / 777; // 19 at -15k
+            int maxDmg = (-attacker.Karma) / 555; // 27 at -15k
+
+			if (minDmg < 0) minDmg = 0;
+			if (maxDmg < minDmg) maxDmg = minDmg;
+
+			Party attackerParty = Party.Get(attacker);
+			BaseGuild attackerGuild = attacker.Guild;
+
+			IPooledEnumerable eable = defender.GetMobilesInRange(8);
+
+			foreach (Mobile mob in eable)
+    	    {
+    	        if (mob == null || mob == attacker || mob == defender)
+					continue;
+
+				if (mob is BaseCreature)
+				{
+					BaseCreature bc = (BaseCreature)mob;
+					if ((bc.Controlled && bc.ControlMaster == attacker) || (bc.Summoned && bc.SummonMaster == attacker))
+						continue;
+				}
+
+				if (attackerParty != null)
+				{
+					Party mobParty = Party.Get(mob);
+					if (mobParty != null && attackerParty == mobParty)
+						continue;
+				}
+
+				if (attackerGuild != null && mob.Guild != null && attackerGuild == mob.Guild)
+					continue;
+
+				int bonus = 0;
+				if (mob.Karma > 0)
+				{
+					int scaled = 1 + ((mob.Karma) * 24 / 15000);
+					if (scaled < 1) scaled = 0;
+					if (scaled > 25) scaled = 25;
+					bonus = scaled;
+				}
+
+				int dmg = Utility.RandomMinMax(minDmg, maxDmg) + bonus;
+
+				if (dmg > 0)
+				{
+					AOS.Damage(mob, attacker, dmg, 0, 0, 0, 100, 0);
+					mob.PlaySound(0x208);
+				}
+    	    }
+    		attacker.SendMessage("Your Nightmarish weapon unleashes a burst of ghostly poison fumes!");
+			SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 0x4F6);
     	}
 
 		public override bool OnEquip(Mobile from)

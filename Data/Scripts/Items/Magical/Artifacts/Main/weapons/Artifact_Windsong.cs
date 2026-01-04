@@ -23,6 +23,7 @@ namespace Server.Items
 			Velocity = 25;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Calls forth ruinous winds" );
+			TimeUsed = DateTime.MinValue;
 		}
 
 		public override void OnDoubleClick( Mobile from )
@@ -60,14 +61,22 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.WriteEncodedInt( 0 ); // version
+			writer.WriteEncodedInt( 1 );
+			writer.Write(TimeUsed);
 		}
 
-		public override void Deserialize( GenericReader reader )
+		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
+			base.Deserialize(reader);
+			
 			ArtifactLevel = 2;
+			
 			int version = reader.ReadEncodedInt();
+			
+			if (version >= 1)
+				TimeUsed = reader.ReadDateTime();
+			else
+				TimeUsed = DateTime.MinValue;
 		}
 	}
 }
