@@ -3546,20 +3546,12 @@ namespace Server.Items
 
 			if ( Quality == WeaponQuality.Exceptional )
 			{
-				if ( Attributes.WeaponDamage > 35 )
-					Attributes.WeaponDamage -= 20;
-				else
-					Attributes.WeaponDamage = 15;
+				Attributes.WeaponDamage += (int)(from.Skills.ArmsLore.Value / 20);
 
-				if( Core.ML )
-				{
-					Attributes.WeaponDamage += (int)(from.Skills.ArmsLore.Value / 20);
+				if ( Attributes.WeaponDamage > 40 )
+					Attributes.WeaponDamage = 40;
 
-					if ( Attributes.WeaponDamage > 50 )
-						Attributes.WeaponDamage = 50;
-
-					from.CheckSkill( SkillName.ArmsLore, 0, 100 );
-				}
+				from.CheckSkill( SkillName.ArmsLore, 0, 100 );
 			}
 
 			return quality;
