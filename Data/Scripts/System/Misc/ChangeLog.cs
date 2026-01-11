@@ -60,6 +60,7 @@ namespace Server.Misc
         +" * Crafting:<br>"
 		+"	• All crafting bonuses have been rebalanced from the ground up. Skills are more varied, progression is smoother and resists are more sensible,<br>"
 		+" 	• slayers can now be obtained more reliably from high grade materials, carpenter-made armors have mage armor, and all alien crafting is gone.<br>"
+		+"  • Crafting resistance bonuses for armor have been toned down dramatically.<br>"
         +" <br>"
 		+" * Artifacts:<br>"
 		+"	• All artifact weapons now have special attacks that affect gameplay rather significantly and are somewhat rarer.<br>" 
