@@ -958,7 +958,7 @@ namespace Server.Items
 
 				Resource = CraftResources.GetFromType( resourceType );
 			}
-			else
+			if(0 < resHue)
 			{
 				Hue = resHue;
 			}
