@@ -1,0 +1,322 @@
+using System;
+using Server;
+using System.Collections;
+using System.Collections.Generic;
+using Server.Items;
+using Server.ContextMenus;
+using Server.Misc;
+using Server.Network;
+using Server.Mobiles;
+using Server.Commands;
+using Server.Commands.Generic;
+using Server.EffectsUtil;
+using Server.Custom;
+using Server.Custom.DailyBosses.System;
+using Server.Custom.BossSystems;
+
+namespace Server.Mobiles
+{
+	[CorpseName( "Hrimah's Corpse" )]
+	public class FistOfTheNorth : BaseCreature
+	{
+		private static readonly Type[] SummonTypes = new Type[] 
+		{ 
+			typeof(FrostTroll),
+			typeof(Giant),
+			typeof(HillGiant),  
+			typeof(FrostGiant), 
+			typeof(IceGiant) 
+		};
+
+		private static readonly string[] SummonWarcries = new string[]
+		{
+			"Kin of frost, I call thee!",
+			"This land belongs to us! Thou shall regret invading it!",
+			"We shall make trophies of thy bones!",
+			"Brothers, prey approaches!"
+		};
+		
+		private static readonly List<Type> BossDrops = new List<Type>
+    	{
+    	    typeof(Artifact_BreastplateOfTheNorth),
+    	    typeof(Artifact_CrownOfTheNorth),
+    	    typeof(Artifact_GlovesOfTheNorth),
+    	    typeof(Artifact_ArmsOfTheNorth),
+			typeof(Artifact_LeggingsOfTheNorth),
+			typeof(Artifact_FistOfTheNorth)
+    	};
+
+		private int m_Rage = 0;
+		private Mobile m_LastTarget;
+		private DateTime m_NextSummonTime = DateTime.MinValue;
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
+		private List<BaseCreature> m_Summons = new List<BaseCreature>();
+
+		[Constructable]
+		public FistOfTheNorth () : base( AIType.AI_Melee, FightMode.Closest, 20, 1, 0.4, 0.8 )
+		{
+			Name = "Hrimah";
+            Title = "The fist of the north";
+			Body = 0x20;
+			BaseSoundID = 609;
+			NameHue = 0x22;
+			
+			SetStr( 696, 685 );
+			SetDex( 185, 205 );
+			SetInt( 286, 325 );
+
+			SetHits( 7000 );
+			SetDamage( 28, 33 );
+
+			SetDamageType( ResistanceType.Physical, 100 );
+			SetResistance( ResistanceType.Physical, 75 );
+			SetResistance( ResistanceType.Fire, 40 );
+			SetResistance( ResistanceType.Cold, 80 );
+			SetResistance( ResistanceType.Poison, 55 );
+			SetResistance( ResistanceType.Energy, 60 );
+
+			SetSkill( SkillName.MagicResist, 105.0 );
+			SetSkill( SkillName.Tactics, 125.0 );
+			SetSkill( SkillName.FistFighting, 125.0 );
+			SetSkill( SkillName.Anatomy, 105.0);
+
+			Fame = 25000;
+			Karma = -25000;
+
+			VirtualArmor = 40;
+
+			PackItem( Loot.RandomArty() );
+			PackItem( Loot.RandomArty() );
+			PackItem( Loot.RandomArty() );
+		}
+
+		public override void GenerateLoot()
+		{
+			AddLoot( LootPack.UltraRich, 4 );
+		}
+
+		public override int TreasureMapLevel{ get{ return 4; } }
+		public override bool CanRummageCorpses{ get{ return false; } }
+		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
+		public override bool BleedImmune{ get{ return true; } }
+		public override bool BardImmune { get { return true; } }
+		public override bool Unprovokable { get { return true; } }
+		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+			
+			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 - (m_Rage * 2) );
+			}
+			base.OnDamage( amount, from, willKill );
+		}
+
+        private void PerformRageAttack( Mobile target )
+        {
+            if ( target == null || target.Deleted || !target.Alive )
+                return;
+
+            int availableAttacks = m_Rage;
+            int attackChoice = Utility.RandomMinMax( 1, availableAttacks );
+            Map map = this.Map;
+
+            switch ( attackChoice )
+            {
+                case 1: // Rampage
+                {
+                   BossSpecialAttack.PerformRampage(
+                       boss: this,
+                       warcry: "*Hrimah prepares to charge!*",
+                       hue: 1153,
+                       rage: m_Rage,
+                       stunDuration: 4.0
+                   );
+                   break;
+                }
+				case 2: // Honor guard
+                {
+                    BossSpecialAttack.SummonHonorGuard(
+                        boss: this,
+                        target: target,
+                        warcry: "Come hither, my kin!",
+                        amount: 3,
+                        creatureType: typeof(IceGiant),
+                        hue: 1153
+                    );
+                    break;
+                }
+				case 3: // blast
+                {
+                    BossSpecialAttack.PerformSlam(
+                       boss: this,
+                       warcry: "Frost shall devour thee!",
+                       hue: 1153,
+                       rage: m_Rage,
+                       range: 6,
+                       physicalDmg: 0,
+					   coldDmg: 100
+                   );
+                   break;
+                }
+                
+            }
+        }
+
+	
+		public override void CheckReflect( Mobile caster, ref bool reflect )
+		{
+			int chance = m_Rage * 11;
+			reflect = ( Utility.Random(100) < chance );
+		}
+
+		private int GetMaxSummons()
+		{
+			switch( m_Rage )
+			{
+				case 0: return 8;
+				case 1: return 4;
+				case 2: return 3;
+				case 3: return 2;
+				default: return 8;
+			}
+		}
+		
+		public override void OnGotMeleeAttack( Mobile attacker )
+		{
+			BossSummonSystem.TrySummonCreature(
+				this,//boss
+				attacker,//target
+				SummonTypes,//creature list
+				m_Rage,// current rage
+				ref m_NextSummonTime,//next available summon
+				SummonWarcries,//warcries per rage
+				m_Summons,//current active summons
+				0x09d3,// effect hue
+				GetMaxSummons(),//summon limit
+				50// cooldown
+			);
+		}
+
+		public override bool OnBeforeDeath()
+		{
+			if ( m_Rage == 0 )
+			{
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "For winter's biting blessing!" );
+				this.Hits = this.HitsMax;
+				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+				this.PlaySound( 0x202 );
+				
+				SetStr( Str + 30 );
+				SetDamage( 38, 43 );
+				VirtualArmor += 5;
+				m_Rage = 1;
+				return false;
+			}
+			else if ( m_Rage == 1 )
+			{
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Cold shall be thy tomb!" );
+				this.Hits = this.HitsMax;
+				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+				this.PlaySound( 0x202 );
+				
+				SetStr( Str + 60 );
+				SetDex( Dex + 25 );
+				SetDamage( 43, 48 );
+				VirtualArmor += 5;
+				
+				m_Rage = 2;
+				return false;
+			}
+			else if ( m_Rage == 2 )
+			{
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Hell shall freeze over before you can defeat me!" );
+				this.Hits = this.HitsMax;
+				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+				this.PlaySound( 0x202 );
+				
+				SetStr( Str + 120 );
+				SetDex( Dex + 50 );
+				SetDamage( 48, 53 );
+				VirtualArmor += 10;				
+				m_Rage = 3;
+				return false;
+			}
+			else 
+			{
+				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
+				this.PlaySound( 0x1FE );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Ancestors...Here I come..." );
+				Mobile killer = this.LastKiller;
+				if (killer != null && killer.Player && killer.Karma > 0)
+            	{
+            	    int marks = Utility.RandomMinMax(81, 137);
+            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
+            	}
+			}
+			return base.OnBeforeDeath();
+		}
+
+		public override void OnDelete()
+        {
+            BossSummonSystem.CleanupSummons(m_Summons);
+            base.OnDelete();
+        }
+
+		public override void OnDeath( Container c )
+		{
+			base.OnDeath( c );
+
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
+
+			int amt = Utility.RandomMinMax( 3, 6 );
+			for ( int i = 0; i < amt; i++ )
+			{
+				c.DropItem( new EtherealPowerScroll() );
+			}
+			// gold explosion
+		    RichesSystem.SpawnRiches( m_LastTarget, 3 );
+		}
+
+		public override void OnAfterSpawn()
+		{
+			base.OnAfterSpawn();
+			LeechImmune = true;
+		}
+
+		public FistOfTheNorth( Serial serial ) : base( serial )
+		{
+		}
+
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+			writer.Write( (int) 1 ); // version
+
+			writer.Write( m_Rage );
+			writer.Write( m_NextSummonTime );
+			writer.Write( m_NextSpecialAttack );
+		}
+
+		public override void Deserialize( GenericReader reader )
+		{
+			base.Deserialize( reader );
+			int version = reader.ReadInt();
+
+			if ( version >= 1 )
+			{
+				m_Rage = reader.ReadInt();
+				m_NextSummonTime = reader.ReadDateTime();
+				m_NextSpecialAttack = reader.ReadDateTime();
+			}
+
+			LeechImmune = true;
+			if (m_Summons == null)
+					m_Summons = new List<BaseCreature>();
+		}
+	}
+}
