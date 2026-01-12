@@ -77,11 +77,6 @@ namespace Server.Items
 				from.SendMessage( "You cannot setup this tent near a boat." );
 				return;
 			}
-			else if ( Server.Misc.Worlds.IsOnSpaceship( from.Location, from.Map ) )
-			{
-				from.SendMessage( "You don't have anywhere to setup camp in this strange place." );
-				return;
-			}
 			else if ( inCombat )
 			{
 				from.SendMessage( "You cannot setup a tent while in combat." );

@@ -201,12 +201,6 @@ namespace Server.Items
 							case 7: box = "stolen chest"; break;
 						}
 
-						if (Server.Misc.Worlds.IsOnSpaceship(from.Location, from.Map))
-						{
-							Server.Misc.ContainerFunctions.MakeSpaceCrate(((LockableContainer)item));
-							box = item.Name;
-						}
-
 						switch (Utility.RandomMinMax(0, 1))
 						{
 							case 0: item.Name = box + " from " + Server.Misc.Worlds.GetRegionName(from.Map, from.Location); break;
@@ -227,9 +221,7 @@ namespace Server.Items
 				}
 				else
 				{
-					if ( Worlds.IsOnSpaceship( from.Location, from.Map ) )
-						item = new DDXormite( ( from.Luck + Utility.RandomMinMax( 333, 666 ) ) );
-					else if ( from.Land == Land.Underworld )
+					if ( from.Land == Land.Underworld )
 						item = new DDJewels( ( from.Luck + Utility.RandomMinMax( 500, 1000 ) ) );
 					else
 						item = new Gold( ( from.Luck + Utility.RandomMinMax( 1000, 2000 ) ) );

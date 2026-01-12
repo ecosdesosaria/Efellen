@@ -105,7 +105,6 @@ namespace Server.Misc
 						if ( buildTreasure )
 						{
 							MyHoard = new HoardPiles();
-								if ( Worlds.IsOnSpaceship( from.Location, from.Map ) ){ MyHoard.ItemID = Utility.RandomList( 0x096D, 0x096E ); }
 							spawn = ( Item )targets[ i ];
 							loc = spawn.Location;
 							map = spawn.Map;

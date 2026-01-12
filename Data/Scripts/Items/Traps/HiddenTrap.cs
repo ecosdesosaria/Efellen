@@ -48,12 +48,8 @@ namespace Server.Items
 
 		public static void SetAppearance( Item trap )
 		{
-			if ( trap.Weight >= 5.0 && Server.Misc.Worlds.IsOnSpaceship( trap.Location, trap.Map ) )
-				trap.ItemID = 0x65F4;
-			else if ( trap.Weight >= 5.0 )
+			if ( trap.Weight >= 5.0 )
 				trap.ItemID = 0x65FB;
-			else if ( Server.Misc.Worlds.IsOnSpaceship( trap.Location, trap.Map ) )
-				trap.ItemID = 0x65F1;
 			else
 				trap.ItemID = 0x65F7;
 
@@ -99,17 +95,6 @@ namespace Server.Items
 
 					HiddenTrapType = nTrapType;
 
-					if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-					{
-						HiddenTrapType = Utility.RandomList( 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 16, 18, 19, 20, 21, 22, 23 );
-						nTrapType = HiddenTrapType;
-					}
-					else if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-					{
-						HiddenTrapType = Utility.RandomList( 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 16, 18, 19, 20, 21, 22, 23 );
-						nTrapType = HiddenTrapType;
-					}
-
 					if ( m is PlayerMobile && Spells.Research.ResearchAirWalk.UnderEffect( m ) )
 					{
 						Point3D air = new Point3D( ( m.X+1 ), ( m.Y+1 ), ( m.Z+5 ) );
@@ -121,12 +106,6 @@ namespace Server.Items
 						textSay = "You triggered a magical revealing trap!";
 						textLog = "a revealing trap";
 			
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You stepped on a statically charged tile, revealing you!";
-							textLog = "a statically charged tile";
-						}
-
 						if ( m.Hidden != false ){ m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay); sTrapType = textLog; }
 					}
 					else if ( nTrapType == 2 && SavingThrow( m, "Agility", true, this ) == false ) // TRIP WIRE
@@ -138,12 +117,6 @@ namespace Server.Items
 							textSay = "You tripped over a wire and dropped your backpack!";
 							textLog = "a trip wire trap";
 				
-							if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-							{
-								textSay = "You tripped over a loose deck plate and dropped your backpack!";
-								textLog = "a loose deck plate";
-							}
-
 							int nDrop = 0;
 
 							List<Item> belongings = new List<Item>();
@@ -172,12 +145,6 @@ namespace Server.Items
 							textSay = "You tripped over a wire and dropped one of your equipped items!";
 							textLog = "a trip wire trap";
 				
-							if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-							{
-								textSay = "You tripped over a loose deck plate and dropped one of your equipped items!";
-								textLog = "a loose deck plate";
-							}
-
 							Item iTripped = GetMyItem( m );
 
 							if ( iTripped != null )
@@ -194,12 +161,6 @@ namespace Server.Items
 						textSay = "A trap triggered, making your coins heavier!";
 						textLog = "a transmutation trap";
 			
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You stepped over a molecular atomizer, making your coins turn to lead!";
-							textLog = "a molecular atomizer";
-						}
-
 						Container cont = m.Backpack;
 						int nDull = 0;
 
@@ -241,11 +202,6 @@ namespace Server.Items
 						textSay = "A trap triggered, almost ruining one of your protected items!";
 						textLog = "a destructive trap";
 			
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You stepped over a molecular oxidizer, almost ruining one of your protected items!";
-							textLog = "a molecular oxidizer";
-						}
 
 						Container cont = m.Backpack;
 						Item iRuined = GetMyItem( m );
@@ -260,11 +216,6 @@ namespace Server.Items
 							{
 								textSay = "A trap triggered, rusting one of your equipped items!";
 					
-								if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-								{
-									textSay = "You stepped over a molecular oxidizer, rusting one of your equipped items!";
-								}
-
 								int Rusted = 0;
 								if ( iRuined is BaseWeapon )
 								{
@@ -300,11 +251,6 @@ namespace Server.Items
 								{
 									textSay = "A trap triggered, ruining one of your equipped items!";
 						
-									if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-									{
-										textSay = "You stepped over a molecular oxidizer, ruining one of your equipped items!";
-									}
-
 									m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 									BrokenGear broke = new BrokenGear();
 									broke.ItemID = iRuined.ItemID;
@@ -330,12 +276,6 @@ namespace Server.Items
 								textSay = "A trap triggered, making you feel weaker!";
 								textLog = "a weakness trap";
 					
-								if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-								{
-									textSay = "You walked over some bacteria, making you feel weaker!";
-									textLog = "a bacterial contamination";
-								}
-
 								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 								m.FixedParticles( 0x3779, 10, 15, 5009, EffectLayer.Waist );
 								m.PlaySound( 0x1E6 );
@@ -350,12 +290,6 @@ namespace Server.Items
 								textSay = "A trap triggered, making you feel sluggish!";
 								textLog = "a slowness trap";
 					
-								if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-								{
-									textSay = "You walked over some bacteria, making you feel sluggish!";
-									textLog = "a bacterial contamination";
-								}
-
 								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 								m.FixedParticles( 0x3779, 10, 15, 5002, EffectLayer.Head );
 								m.PlaySound( 0x1DF );
@@ -370,12 +304,6 @@ namespace Server.Items
 								textSay = "A trap triggered, making your mind cloudy!";
 								textLog = "a mind numbing trap";
 					
-								if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-								{
-									textSay = "You walked over some bacteria, making your mind cloudy!";
-									textLog = "a bacterial contamination";
-								}
-
 								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 								m.FixedParticles( 0x3779, 10, 15, 5004, EffectLayer.Head );
 								m.PlaySound( 0x1E4 );
@@ -389,12 +317,6 @@ namespace Server.Items
 						textSay = "A trap triggered, making you feel ill!";
 						textLog = "a poison gas trap";
 			
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You stepped on some biological contamination, making you feel ill!";
-							textLog = "a biological contamination";
-						}
-
 						int itHurts = m.PoisonResistance;
 						int itSicks = 0;
 
@@ -428,12 +350,6 @@ namespace Server.Items
 							textSay = "A trap triggered, making you feel near dead!";
 							textLog = "a life draining trap";
 				
-							if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-							{
-								textSay = "You stepped over a radioactive spill, making you feel near dead!";
-								textLog = "a radioactive spill";
-							}
-
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 							m.FixedParticles( 0x3779, 10, 15, 5009, EffectLayer.Waist );
 							m.PlaySound( 0x1E6 );
@@ -445,12 +361,6 @@ namespace Server.Items
 							textSay = "A trap triggered, making you feel really tired!";
 							textLog = "a stamina draining trap";
 				
-							if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-							{
-								textSay = "You stepped over a radioactive spill, making you feel really tired!";
-								textLog = "a radioactive spill";
-							}
-
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 							m.FixedParticles( 0x3779, 10, 15, 5002, EffectLayer.Head );
 							m.PlaySound( 0x1DF );
@@ -462,12 +372,6 @@ namespace Server.Items
 							textSay = "A trap triggered, draining your mana!";
 							textLog = "a mana draining trap";
 				
-							if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-							{
-								textSay = "You stepped over a radioactive spill, draining your mana!";
-								textLog = "a radioactive spill";
-							}
-
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 							m.FixedParticles( 0x3779, 10, 15, 5004, EffectLayer.Head );
 							m.PlaySound( 0x1E4 );
@@ -505,12 +409,6 @@ namespace Server.Items
 							textSay = "A trap triggered, making your gems fuse together!";
 							textLog = "a lode stone trap";
 				
-							if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-							{
-								textSay = "You stepped over a damaged power coil, fusing your gemstones together!";
-								textLog = "a damaged power coil";
-							}
-
 							RuinedGems rocks = new RuinedGems();
 							rocks.Weight = nAmount * 5.0;
 							rocks.RuinedCount = nAmount;
@@ -620,12 +518,6 @@ namespace Server.Items
 						textSay = "A trap triggered, teleporting you away from here!";
 						textLog = "a teleportation trap";
 			
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You stepped over an overcharged transporter pad, transporting you away from here!";
-							textLog = "an overcharged transporter pad";
-						}
-
 						Point3D p = Worlds.GetRandomLocation( m.Land, "land" );
 						Map map = Worlds.GetMyDefaultMap( m.Land );
 
@@ -705,12 +597,6 @@ namespace Server.Items
 						textSay = "You triggered a fire trap!";
 						textLog = "a fire trap";
 			
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You stepped on thermal vent, scorching you!";
-							textLog = "a thermal vent";
-						}
-
 						Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3709, 10, 30, 5052 );
 						Effects.PlaySound( this.Location, this.Map, 0x225 );
 						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -732,12 +618,6 @@ namespace Server.Items
 						textSay = "You triggered an explosion trap!";
 						textLog = "an explosion trap";
 			
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You trip over a plasma grenade!";
-							textLog = "a plasma grenade";
-						}
-
 						m.FixedParticles( 0x36BD, 20, 10, 5044, EffectLayer.Head );
 						m.PlaySound( 0x307 );
 						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -750,12 +630,6 @@ namespace Server.Items
 						textSay = "You triggered an electrical trap!";
 						textLog = "an electrical trap";
 			
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You stepped onto an electrically charged deck plate!";
-							textLog = "an electrically charged deck plate";
-						}
-
 						m.BoltEffect( 0 );
 						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 						int itHurts = (int)( (Utility.RandomMinMax(50,200) * ( 100 - m.EnergyResistance ) ) / 100 );
@@ -803,12 +677,6 @@ namespace Server.Items
 								textSay = "You tripped over a wire and broke all of your " + sTripped + "!";
 								textLog = "a trip wire trap";
 					
-								if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-								{
-									textSay = "You tripped over a loose deck plate and broke all of your " + sTripped + "!";
-									textLog = "a loose deck plate";
-								}
-
 								Shaft wood = new Shaft();
 								wood.Amount = nAmount;
 								m.AddToBackpack ( wood );
@@ -875,12 +743,6 @@ namespace Server.Items
 							textSay = "You tripped over a wire and broke all of your potion bottles!";
 							textLog = "a trip wire trap";
 				
-							if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-							{
-								textSay = "You tripped over a loose deck plate and broke all of your potion bottles!";
-								textLog = "a loose deck plate";
-							}
-
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 							m.PlaySound( 0x040 );
 							sTrapType = textLog;
@@ -917,12 +779,6 @@ namespace Server.Items
 							textSay = "A trap triggered, melting all of your jewelry!";
 							textLog = "a jewelry melting trap";
 				
-							if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-							{
-								textSay = "You stepped over an exposed power relay, melting all of your jewelry!";
-								textLog = "an exposed power relay";
-							}
-
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 							RustyJunk broke = new RustyJunk();
 							broke.ItemID = 0x122A;
@@ -1135,10 +991,6 @@ namespace Server.Items
 				if ( isTrap )
 				{
 					string textSay = "You got near a hidden trap, but with your " + area + "...you avoid it.";
-					if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-					{
-						textSay = "You got near something dangerous, but with your " + area + "...you avoid it.";
-					}
 					m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 					m.PlaySound( m.Female ? 778 : 1049 );
 
@@ -1203,9 +1055,7 @@ namespace Server.Items
 				if ( item.Weight <= 2.0 && HiddenTrap.SeeIfTrapActive( item ) && m.CheckSkill( SkillName.Searching, 0, 125 ) )
 				{
 					string textSay = "There is a hidden floor trap beneath your feet!";
-					if ( Server.Misc.Worlds.IsOnSpaceship( item.Location, item.Map ) )
-						textSay = "There is a dangerous panel beneath your feet!";
-
+					
 					m.PlaySound( m.Female ? 778 : 1049 ); m.Say( "*ah!*" );
 					m.SendMessage( textSay );
 					item.Visible = true;
@@ -1282,10 +1132,6 @@ namespace Server.Items
 					else
 					{
 						textSay = "You got near a hidden trap, but your skill in removing traps has helped you disable it.";
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You got near something dangerous, but your skill in removing traps has helped you avoid it.";
-						}
 						m.PlaySound( m.Female ? 0x32E : 0x440 );
 						m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 						m.PlaySound( 0x241 );
@@ -1313,10 +1159,6 @@ namespace Server.Items
 							else
 							{
 								textSay = "You got near a hidden trap, but the magic of your orb has disabled it.";
-								if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-								{
-									textSay = "You got near something dangerous, but the magic of your orb has helped you avoid it.";
-								}
 								m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 							}
 							m.PlaySound( 0x1F0 );
@@ -1333,11 +1175,7 @@ namespace Server.Items
 					else
 					{
 						textSay = "You got near a hidden trap, but with luck on your side...it broke.";
-						if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-						{
-							textSay = "You got near something dangerous, but with luck on your side...you avoid it."; m.PlaySound( 0x54B );
-						}
-						else { m.PlaySound( 0x241 ); }
+						m.PlaySound( 0x241 ); 
 						m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 					}
 					nSprung = false;
@@ -1362,10 +1200,6 @@ namespace Server.Items
 								else
 								{
 									textSay = "You tap your ten foot pole, disabling a hidden trap and breaking the pole.";
-									if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-									{
-										textSay = "You tap your ten foot pole, avoiding something dangerous and breaking the pole.";
-									}
 									m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 								}
 							}
@@ -1378,10 +1212,6 @@ namespace Server.Items
 								else
 								{
 									textSay = "You tap your ten foot pole, disabling a hidden trap.";
-									if ( Server.Misc.Worlds.IsOnSpaceship( m.Location, m.Map ) )
-									{
-										textSay = "You tap your ten foot pole, avoiding something dangerous.";
-									}
 									m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 								}
 								poles.InvalidateProperties();

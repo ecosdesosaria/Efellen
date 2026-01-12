@@ -384,17 +384,6 @@ namespace Server.Misc
 			return false;
 		}
 
-		public static bool IsOnSpaceship( Point3D p, Map map )
-		{
-			Region reg = Region.Find( p, map );
-
-			if ( reg.IsPartOf( "the Ancient Crash Site" ) || 
-			reg.IsPartOf( "the Ancient Sky Ship" ) )
-				return true;
-
-			return false;
-		}
-
 		public static bool IsIceDungeon( Point3D p, Map map )
 		{
 			Region reg = Region.Find( p, map );

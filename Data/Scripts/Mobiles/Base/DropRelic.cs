@@ -29,19 +29,6 @@ namespace Server.Misc
 				{
 					Region reg = Region.Find( from.Location, from.Map );
 
-					if ( Server.Misc.Worlds.IsOnSpaceship( from.Location, from.Map ) )
-					{
-						int fameCycle = (int)( from.Fame / 2400 );
-							if ( fameCycle > 10 ){ fameCycle = 10; }
-							if ( fameCycle < 1 ){ fameCycle = 1; }
-							fameCycle = Utility.RandomMinMax( 0, fameCycle );
-							while ( fameCycle > 0 )
-							{
-								fameCycle--;
-								c.DropItem( Loot.RandomSciFiItems() );
-							}
-					}
-
 					if ( from is ServiceDroid || from is BattleDroid || from is SecurityDroid || from is MaintenanceDroid || from is ExcavationDroid || from is CombatDroid )
 					{
 						if ( Utility.RandomMinMax( 1, 300 ) < (from.Fame/100) ){ c.DropItem( new RobotSheetMetal( Utility.RandomMinMax( 4, 10 ) ) ); }

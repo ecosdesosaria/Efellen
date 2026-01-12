@@ -41,10 +41,6 @@ namespace Server.Spells.Elementalism
 			{
 				Caster.SendMessage("You cannot cast this near a boat.");
 			}
-			else if (Server.Misc.Worlds.IsOnSpaceship(Caster.Location, Caster.Map))
-			{
-				Caster.SendMessage("The metal walls of this place seems to be blocking this spell.");
-			}
 			else if (inCombat)
 			{
 				Caster.SendMessage("You cannot cast this while in combat.");

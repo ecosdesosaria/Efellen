@@ -203,10 +203,7 @@ namespace Server.SkillHandlers
 					if ( item.Weight <= 2.0 && HiddenTrap.SeeIfTrapActive( item ) )
 					{
 						string textSay = "There is a hidden floor trap somewhere nearby!";
-						if ( Server.Misc.Worlds.IsOnSpaceship( item.Location, item.Map ) )
-						{
-							textSay = "There is a dangerous area nearby!";
-						}
+						
 						m.SendMessage( textSay );
 						foundAnyone = true;
 						HiddenTrap.DiscoverTrap( item );

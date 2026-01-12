@@ -129,14 +129,7 @@ namespace Server.Items
 
 			int nOwner = 0;
 
-			if ( Server.Misc.Worlds.IsOnSpaceship( finder.Location, finder.Map ) )
-			{
-				nOwner = ContainerFunctions.BuildContainer( this, 0, 18, 0, 0 );
-			}
-			else
-			{
-				nOwner = ContainerFunctions.BuildContainer( this, 0, 0, 0, 0 );
-			}
+			nOwner = ContainerFunctions.BuildContainer( this, 0, 0, 0, 0 );
 
 			ContainerFunctions.FillTheContainer( level, this, finder );
 			if ( GetPlayerInfo.LuckyPlayer( finder.Luck ) ){ ContainerFunctions.FillTheContainer( level, this, finder ); }
