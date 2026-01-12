@@ -531,7 +531,7 @@ namespace Server.Misc
 			string relics = QuestCharacters.QuestItems( false );
 				if ( Utility.RandomBool() ){ relics = QuestCharacters.ArtyItems( false ); }
 
-			int max = 192; if ( !useAll ){ max = max + 40; }
+			int max = 193; if ( !useAll ){ max = max + 40; }
 			switch( Utility.RandomMinMax( 0, max ) )
 			{
 				case 0: sWords = "a bright white shrine in Sosaria that leads to the moon"; break;	
@@ -876,7 +876,7 @@ namespace Server.Misc
 				case 190: sWords = "It's said that the fires of Destard are burning hotter than ever."; break;
 				case 191: sWords = "I've seen the druids of the Howling Order transform into wolves!"; break;
 				case 192: sWords = "They said that the Daughter of Fire attracts adventurers to the bowels of the Fires of Hell, and they are never seen again."; break;
-				
+				case 193: sWords = "Hrimah has claimed the frozen crown and proclamed himself to the Fist of the North in the Glacial Scar."; break;				
 			}
 			return sWords;	
 		}

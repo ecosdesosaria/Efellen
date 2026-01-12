@@ -8,7 +8,7 @@ using Server.Misc;
 namespace Server.Mobiles
 {
 	[CorpseName( "a giant corpse" )]
-	public class FrostGiant : BaseCreature
+	public class FrostGiantGeneral : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
 		{
@@ -30,11 +30,11 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public FrostGiant() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
+		public FrostGiantGeneral() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = NameList.RandomName( "giant" );
-			Title = "the frost giant";
-			Body = Utility.RandomList( 777, 325, 0x20 );
+			Title = "the frost giant general";
+			Body = 0x20;
 			BaseSoundID = 609;
 
 			SetStr( 536, 585 );
@@ -129,7 +129,7 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(5); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Colossal; } }
 
-		public FrostGiant( Serial serial ) : base( serial )
+		public FrostGiantGeneral( Serial serial ) : base( serial )
 		{
 		}
 

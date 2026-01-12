@@ -45,6 +45,7 @@ namespace Server.Misc
 		+"		   • Fiorin the Archdruid tends to his pack in the howling grove.<br>"
 		+ "        • Black Phillip now gathers his covenant at a remote location in the Dread Island.<br>"
 		+"      • Tier 3 bosses (meant to be faced by powerful groups of adventurers): <br>"
+		+"         • Hrimah, the fist of the north has claimed the giant's crown and now rules over the Glacial Scar (with a new giant model!).<br>"
 		+"         • The Daughter of Fire now has a permanent residence in the fires of hell.<br>"
 		+"         • The Skeleton King has awoken from its long slumber in the depths of the ancient pyramid.<br> "
 		+"      • Tier 4 bosses (meant to be faced by powerful groups of very powerful adventurers): <br>"
