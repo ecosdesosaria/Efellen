@@ -531,6 +531,7 @@ namespace Server.Misc
 
 			int Heat = 0;
 			int ChestLevel = 0;
+			/* this is so fucking stupid, jesus christ  */
 ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(284,384,-3), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
 ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(386,2999,-3), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
 ChestLevel = 6; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(914,1495,-3), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
@@ -4483,7 +4484,24 @@ ChestLevel = 4; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.Move
 ChestLevel = 4; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6436,2758,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
 ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6410,2750,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
 ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6421,2729,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
-ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(6410,2753,0), Map.Lodor); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+/* sunless citadel chests */
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7140,3512,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;	
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7140,3532,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7113,3560,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7113,3515,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7086,3506,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7096,3525,5), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7077,3579,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7061,3569,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+/* sunless citadel level 2 */
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7072,3680,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7132,3706,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7095,3652,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7076,3657,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7089,3622,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7129,3630,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 2; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7155,3621,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
+ChestLevel = 2; chestSpawner = new DungeonChestSpawner(1,0.1); chestSpawner.MoveToWorld (new Point3D(7151,3657,0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty( chestSpawner.Location, chestSpawner.Map ); if (Heat < 0){Heat=0;} chestSpawner.SpawnerLevel = ChestLevel + Heat;
 		}
 	}
 }
@@ -6193,6 +6211,7 @@ namespace Server.Misc
 				case 78 : specialPed.MoveToWorld (new Point3D(6109, 698, 0), Map.Lodor); break; // Argentrock Castle
 				case 79 : specialPed.MoveToWorld (new Point3D(6216, 1343, 0), Map.Lodor); break; // the Sanctum of Saltmarsh
 				case 80 : specialPed.MoveToWorld (new Point3D(6458, 2921, 0), Map.Lodor); break; // Hive of the Eye Tyrant
+				case 81 : specialPed.MoveToWorld (new Point3D(7138, 3656, 0), Map.Sosaria); break; // The Sunless Citadel
 			}
 		}
 	}
@@ -15735,6 +15754,7 @@ namespace Server.Misc
 				else if ( area == 87 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Sanctum of Saltmarsh
 				else if ( area == 88 ){ pedestal = new SearchBase(1); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Ancient Sky Ship
 				else if ( area == 89 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Hive of the Eye Tyrant
+				else if ( area == 90 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Sunless Citadel
 			}
 		}
 
@@ -16390,6 +16410,17 @@ namespace Server.Misc
 					case 3:	loc = new Point3D(6445, 2842, 0); map = Map.Lodor; break;
 					case 4:	loc = new Point3D(6407, 2786, 0); map = Map.Lodor; break;
 					case 5:	loc = new Point3D(6438, 2779, 0); map = Map.Lodor; break;
+				}
+			}
+			else if ( area == 90 )
+			{ 
+				switch ( Utility.RandomMinMax( 1, 5 ) ) // The Sunless Citadel
+				{
+					case 1:	loc = new Point3D(7162, 3618, 0); map = Map.Sosaria; break;
+					case 2:	loc = new Point3D(7145, 3673, 0); map = Map.Sosaria; break;
+					case 3:	loc = new Point3D(7132, 3706, 0); map = Map.Sosaria; break;
+					case 4:	loc = new Point3D(7080, 3640, 0); map = Map.Sosaria; break;
+					case 5:	loc = new Point3D(7067, 3658, 0); map = Map.Sosaria; break;
 				}
 			}
 			

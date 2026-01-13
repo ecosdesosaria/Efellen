@@ -137,6 +137,7 @@ namespace Server
 				else if ( reg.IsPartOf( "Vordo's Castle" ) ){ Heat = 3; }
 				else if ( reg.IsPartOf( "Vordo's Dungeon" ) ){ Heat = 3; }
 				else if ( reg.IsPartOf( "Vordo's Castle Grounds" ) ){ Heat = 3; }
+				else if ( reg.IsPartOf( "The Sunless Citadel" ) ){ Heat = 0; }
 			}
 			else if ( map == Map.SerpentIsland )
 			{
