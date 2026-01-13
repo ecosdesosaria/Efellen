@@ -925,6 +925,13 @@
 					<object id="2033" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="35" />
 				</spawning>
 		</region>
+		<region type="DungeonRegion" priority="50" name="the Sunless Citadel">
+			<rect x="6973" y="3457" width="346" height="561" />
+				<spawning>
+					<object id="2205" type="HiddenTrap" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="25" />
+					<object id="2206" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="30" />
+				</spawning>
+		</region>
 		<region type="DungeonRegion" priority="90" name="the Tower of Brass">
 			<rect x="6916" y="3473" width="56" height="155" />
 			<rect x="6787" y="3787" width="75" height="97" />

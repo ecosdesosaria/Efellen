@@ -194,7 +194,8 @@ namespace Server.Items
 			else if ( reg.IsPartOf( "Dungeon Wrath" ) ){ sound = "cave"; }
 			else if ( reg.IsPartOf( "Frostwall Caverns" ) ){ sound = "cave"; }
 			else if ( reg.IsPartOf( "Stonegate Castle" ) ){ sound = "cave"; }
-			else if ( reg.IsPartOf( "the Hive of the Eye Tyrant" ) ){ sound = "cave"; }
+			else if ( reg.IsPartOf( "the Hive of the Eye Tyrant" ) ){ sound = "dungeon"; }
+			else if ( reg.IsPartOf( "the Sunless Citadel" ) ){ sound = "dungeon"; }
 			else if ( reg.IsPartOf( "the Cave of Banished Mages" ) ){ sound = "cave"; }
 			else if ( reg.IsPartOf( "the Cave of Souls" ) ){ sound = "cave"; }
 			else if ( reg.IsPartOf( "the Cave of the Zuluu" ) ){ sound = "cave"; }

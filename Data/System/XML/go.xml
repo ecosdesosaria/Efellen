@@ -858,6 +858,16 @@
 
 				</parent>
 
+				<parent name="The Sunless Citadel">
+
+					<child name="Entrance" x="1028" y="474" z="2" map="Sosaria" />
+
+					<child name="Level 1" x="7134" y="3483" z="0" map="Sosaria" />
+
+					<child name="Level 2" x="7088" y="3690" z="0" map="Sosaria" />
+
+				</parent>
+
 				<child name="Black Blade Ruins" x="4505" y="1894" z="2" map="Sosaria" />
 
 				<parent name="Castle Exodus">

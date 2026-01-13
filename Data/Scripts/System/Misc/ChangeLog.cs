@@ -106,6 +106,8 @@ namespace Server.Misc
 		+"	• Rewards from taming contracts have been rebalanced to be more fitting of the current game's design and to no longer generate very ugly pets.<br>"
 		+ "<br>"
 		+"* Locations:<br>"
+		+"  • Added a new dungeon called The Sunless Citadel in Sosaria. It's meant to be challenging to new adventurers fresh out of the newbie dungeons, and was built in homage to the old<br>"
+		+"  	ttrpg module of the same name, from the d&d third edition days. It has a challenging encounter by the end of it, approach carefully!<br>"
 		+"  • Added a new dungeon called Hive of the Eye Tyrant to Lodoria. Visiting is only advised for those not particularly attached to their internal organs.<BR>"
 		+"	• Added a new Point of interest called Castle Griffin Roost to the southern coast of Sosaria, east of Montor. It is filled with knights that challenge evil doers to come test their mettle.<br>"
 		+"	• Added a new Point of interest called the Myconid caves close to the eastern coast of Sosaria. It's a small cave that irradiates psychic energy.<br>"
