@@ -61,7 +61,7 @@ namespace Server.Mobiles
 			SetSkill( SkillName.FistFighting, 111.0, 121.0 );
 
 			Fame = 13000;
-			Karma = 15000;
+			Karma = -15000;
 
 			VirtualArmor = 20;
 		}
