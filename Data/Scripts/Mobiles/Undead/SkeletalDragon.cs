@@ -1,12 +1,14 @@
 using System;
 using Server;
 using Server.Items;
+using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a skeletal dragon corpse" )]
 	public class SkeletalDragon : BaseCreature
 	{
+		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override int BreathPhysicalDamage{ get{ return 20; } }
 		public override int BreathFireDamage{ get{ return 20; } }
 		public override int BreathColdDamage{ get{ return 20; } }
@@ -89,6 +91,73 @@ namespace Server.Mobiles
 					{
 						c.DropItem( new DracolichSkull() );
 					}
+				}
+			}
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			if ( DateTime.UtcNow >= m_NextSpecialAttack )
+			{
+				PerformRageAttack( from );
+				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 30 );
+			}
+			
+			base.OnDamage( amount, from, willKill );
+		}
+		
+		private void PerformRageAttack( Mobile target )
+		{
+			if ( target == null || target.Deleted || !target.Alive )
+				return;
+
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
+            Map map = this.Map;
+
+			switch ( attackChoice  )
+			{
+				case 1:
+                {
+                    BossSpecialAttack.SummonHonorGuard(
+                        boss: this,
+                        target: target,
+                        warcry: "*Rattles Bones into servitude*",
+                        amount: 4,
+                        creatureType: typeof(SkeletalKnight),
+                        hue: 267
+                    );
+                    break;
+                }
+				case 2:
+                {
+                    BossSpecialAttack.PerformConeBreath(
+					    boss: this,
+					    target: target,
+					    warcry: "*exhales devastating fumes!*",
+					    hue: 267,
+					    rage: 1,
+					    range: 6, 
+						physicalDmg:0,
+						coldDmg:0,
+						poisonDmg:100,
+						energyDmg:0,
+					    fireDmg: 0
+					);
+					break;
+                }
+				case 3:
+				{
+					BossSpecialAttack.PerformDegenAura(
+		                this,
+		                "*Channels the powers of undeath!*",
+		                6,          // radius
+		                2,     		// rage level
+		                12,         // duration - 12 + rage*2 seconds, damage happens every 2 seconds 
+		                12,         // intensity - 20 + rage damage per tick
+		                "health",   // target attribute
+		                267         // hue
+		            );
+                    break;
 				}
 			}
 		}

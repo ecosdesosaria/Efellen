@@ -921,15 +921,15 @@
 		<region type="DungeonRegion" priority="50" name="the Ancient Pyramid">
 			<rect x="5192" y="422" width="246" height="561" />
 				<spawning>
-					<object id="2032" type="HiddenTrap" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="70" />
-					<object id="2033" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="35" />
+					<object id="2032" type="HiddenTrap" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="80" />
+					<object id="2033" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="45" />
 				</spawning>
 		</region>
 		<region type="DungeonRegion" priority="50" name="the Sunless Citadel">
 			<rect x="6973" y="3457" width="346" height="561" />
 				<spawning>
 					<object id="2205" type="HiddenTrap" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="25" />
-					<object id="2206" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="30" />
+					<object id="2206" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="35" />
 				</spawning>
 		</region>
 		<region type="DungeonRegion" priority="90" name="the Tower of Brass">

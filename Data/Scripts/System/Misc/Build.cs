@@ -5893,6 +5893,7 @@ namespace Server.Misc
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(244, 3486, 0), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5225, 541, 0), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5302, 897, 0), Map.Sosaria);
+			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5281, 619, 0), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(520, 192, 27), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5584, 796, 0), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5943 ,387, 0), Map.Sosaria);
@@ -15891,7 +15892,7 @@ namespace Server.Misc
 				case 3:	loc = new Point3D(2796, 3753, 0); map = Map.Sosaria; break;
 				case 4:	loc = new Point3D(2747, 3750, 0); map = Map.Sosaria; break;
 			}
-			} else if ( area == 19 ){ switch ( Utility.RandomMinMax( 1, 7 ) ) // "the Ancient Pyramid"
+			} else if ( area == 19 ){ switch ( Utility.RandomMinMax( 1, 10 ) ) // "the Ancient Pyramid"
 			{
 				case 1:	loc = new Point3D(5359, 918, 0); map = Map.Sosaria; break;
 				case 2:	loc = new Point3D(5288, 901, 0); map = Map.Sosaria; break;
@@ -15900,6 +15901,9 @@ namespace Server.Misc
 				case 5:	loc = new Point3D(5309, 784, 0); map = Map.Sosaria; break;
 				case 6:	loc = new Point3D(5243, 761, 0); map = Map.Sosaria; break;
 				case 7:	loc = new Point3D(5302, 724, 0); map = Map.Sosaria; break;
+				case 8:	loc = new Point3D(5300, 599, 0); map = Map.Sosaria; break;
+				case 9:	loc = new Point3D(5344, 462, 0); map = Map.Sosaria; break;
+				case 10:	loc = new Point3D(5260, 652, 0); map = Map.Sosaria; break;
 			}
 			} else if ( area == 20 ){ switch ( Utility.RandomMinMax( 1, 4 ) ) // "Dungeon Exodus"
 			{
