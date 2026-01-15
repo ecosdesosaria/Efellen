@@ -90,11 +90,7 @@ namespace Server.Mobiles
 
 			VirtualArmor = 50;
 
-			PackItem( Loot.RandomArty() );
-			PackItem( Loot.RandomArty() );
-			PackItem( Loot.RandomArty() );
-			PackItem( Loot.RandomArty() );
-            m_NextSpecialBeholderAttack = DateTime.UtcNow;
+			m_NextSpecialBeholderAttack = DateTime.UtcNow;
 		}
 
 		public override void GenerateLoot()
@@ -381,7 +377,10 @@ namespace Server.Mobiles
 			base.OnDeath( c );
 
 			BossLootSystem.AwardBossSpecial(this, BossDrops, 15);
-
+			c.DropItem( Loot.RandomArty() );
+			c.DropItem( Loot.RandomArty() );
+			c.DropItem( Loot.RandomArty() );
+			c.DropItem( Loot.RandomArty() );
 			if ( Utility.RandomDouble() < 0.15 )
 			{
 				c.DropItem( new EternalPowerScroll() );

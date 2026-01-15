@@ -94,7 +94,6 @@ namespace Server.Mobiles
 
 			VirtualArmor = 30;
 
-			PackItem( Loot.RandomArty() );
 			AddItem(new Scimitar { Hue = 267 });
 		    AddItem(new LeatherArms { Hue = 267 });
 		    AddItem(new LeatherChest { Hue = 267 });
@@ -361,7 +360,8 @@ namespace Server.Mobiles
 			base.OnDeath( c );
 
 			BossLootSystem.AwardBossSpecial(this, BossDrops, 15);
-
+			c.DropItem( Loot.RandomArty() );
+			
 			int amt = Utility.RandomMinMax( 1, 2 );
 			for ( int i = 0; i < amt; i++ )
 			{

@@ -94,7 +94,6 @@ namespace Server.Mobiles
 
 			VirtualArmor = 30;
 
-			PackItem( Loot.RandomArty() );
 		}
 
 		public override void GenerateLoot()
@@ -304,7 +303,7 @@ namespace Server.Mobiles
 			base.OnDeath( c );
 
 			BossLootSystem.AwardBossSpecial(this, BossDrops, 15);
-
+			c.DropItem( Loot.RandomArty() );
 			int amt = Utility.RandomMinMax( 1, 2 );
 			for ( int i = 0; i < amt; i++ )
 			{
