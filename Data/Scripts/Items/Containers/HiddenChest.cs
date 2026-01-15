@@ -184,8 +184,7 @@ namespace Server.Items
 
 			string sound = "dungeon";	
 
-			if ( reg.IsPartOf( "the Ancient Sky Ship" ) ){ sound = "scifi"; }
-			else if ( reg.IsPartOf( "the Blood Temple" ) ){ sound = "dungeon"; }
+			if ( reg.IsPartOf( "the Blood Temple" ) ){ sound = "dungeon"; }
 			else if ( reg.IsPartOf( "Dungeon Covetous" ) ){ sound = "cave"; }
 			else if ( reg.IsPartOf( "Dungeon Despise" ) ){ sound = "cave"; }
 			else if ( reg.IsPartOf( "Dungeon Destard" ) ){ sound = "cave"; }
@@ -286,8 +285,7 @@ namespace Server.Items
 
 			int value = 1;	
 
-			if ( sound == "scifi" ){ 			value = Utility.RandomList( 0x55E, 0x549, 0x54A, 0x2F5, 0x457 ); }
-			else if ( sound == "cave" ){ 		value = Utility.RandomList( 0x668, 0x669, 0x64D, 0x568, 0x567, 0x566, 0x4D0, 0x4CF, 0x382, 0x2DA, 0x290, 0x222, 0x223, 0x221, 0x220, 0x0CD, 0x102, 0x103 ); }
+			if ( sound == "cave" ){ 		value = Utility.RandomList( 0x668, 0x669, 0x64D, 0x568, 0x567, 0x566, 0x4D0, 0x4CF, 0x382, 0x2DA, 0x290, 0x222, 0x223, 0x221, 0x220, 0x0CD, 0x102, 0x103 ); }
 			else if ( sound == "dungeon" ){ 	value = Utility.RandomList( 0x476, 0x3E7, 0x391, 0x22C, 0x11D, 0x101, 0x0F5, 0x0F0, 0x0EC, 0x0EE, 0x02B, 0x02C, 0x041, 0x03F, 0x050, 0x057, 0x0CD ); }
 			else if ( sound == "fire" ){ 		value = Utility.RandomList( 0x5D0, 0x5CB, 0x4BB, 0x44C, 0x359, 0x346, 0x227, 0x1DE, 0x055, 0x11D, 0x11E ); }
 			else if ( sound == "forest" ){ 		value = Utility.RandomList( 0x64D, 0x5CE, 0x009, 0x00A ); }

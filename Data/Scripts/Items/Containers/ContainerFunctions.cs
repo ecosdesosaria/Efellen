@@ -44,9 +44,6 @@ namespace Server.Misc
 				default: box.TrapType = TrapType.None; break;
 			}
 
-			if (box is TreasureMapChest || (box.Catalog == Catalogs.SciFi && box.TrapType != TrapType.None))
-				box.TrapType = TrapType.ExplosionTrap;
-
 			if (box is ParagonChest)
 			{
 				switch (Utility.Random(4))

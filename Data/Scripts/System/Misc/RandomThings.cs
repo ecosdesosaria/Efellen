@@ -2578,9 +2578,6 @@ namespace Server.Misc
 			if ( !( item is BaseArmor || item is BaseWeapon || item is BaseInstrument || item is BaseClothing || item is BaseTrinket || item is BaseQuiver || item is Spellbook ) )
 				return;
 
-			if ( Worlds.isSciFiRegion( m ) )
-				return;
-
 			string RegionName = null;
 			string xName = ContainerFunctions.GetOwner( "property" );
 

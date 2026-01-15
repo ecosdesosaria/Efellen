@@ -67,25 +67,7 @@ namespace Server.Items
 
 		public static void ConfigureItem( Item item, Container cont, Mobile m )
 		{
-			if ( Worlds.isSciFiRegion( m ) && item.Catalog == Catalogs.Reagent && !(item is Container) )
-			{
-				Container unk = new ReagentJar();
-				unk.Hue = Utility.RandomColor(0);
-				unk.Name = "jar of " + item.Name;
-				unk.Weight = item.Weight;
-				unk.InfoText1 = "open to dump";
-				unk.InfoText2 = "them out";
-				unk.CoinPrice = item.Amount * 3;
-
-				if ( item.Amount > 1 )
-				{
-					unk.ColorText3 = "Amount: " + item.Amount + "";
-					unk.ColorHue3 = "87E15A";
-				}
-
-				unk.DropItem(item);
-				cont.DropItem(unk);
-			}
+			
 		}
 
 		public ReagentJar( Serial serial ) : base( serial )

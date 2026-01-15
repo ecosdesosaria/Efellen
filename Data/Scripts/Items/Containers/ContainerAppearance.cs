@@ -27,8 +27,6 @@ namespace Server.Misc
 		// Urns and stone coffers
 		private static readonly int[] UrnVaseIDs = { 0x1AFC, 0x1AFD, 0x1AFE, 0x1AFF, 0x398B, 0x39A2, 0x4B59, 0x4C2A };
 		private static readonly int[] StoneCofferIDs = { 0x281D, 0x281E, 0x281F, 0x2820, 0x2821, 0x2822, 0x2823, 0x2824, 0x2825, 0x2826, 0x4FE6, 0x4FE7 };
-		// Sci-fi containers
-		private static readonly int[] SciFiCrateIDs = { 0x10EA, 0x10EB, 0x10EC, 0x10ED };
 		// Gump IDs
 		private const int GumpWoodChest = 0x49;
 		private const int GumpIronChest = 0x4A;
@@ -44,7 +42,6 @@ namespace Server.Misc
 		private const int GumpSarc      = 0x1D;
 		private const int GumpCoffin    = 0x41D;
 		private const int GumpBoat      = 0x4C;
-		private const int GumpSciFi     = 0x976;
 		// Common hues
 		private const int HueWood = 0x724;
 		private const int HueIron = 0x835;
@@ -70,8 +67,7 @@ namespace Server.Misc
 				case 14: ApplyCoffinOrSarcophagus(box); break;
 				case 15: ApplyBoat(box); break;
 				case 16: ApplyStoneCoffer(box); break;
-				case 17: ApplyAlienRemains(box); break;
-				default: ApplyCargoContainer(box); break;
+				default: break;
 			}
 
 			if (hue > 0)
@@ -259,46 +255,11 @@ namespace Server.Misc
 			box.Name = "Stone Chest";
 		}
 
-		private static void ApplyAlienRemains(LockableContainer box)
-		{
-			box.Weight = 25.0;
-			box.ItemID = Utility.RandomList(0x3564, 0x3565, 0x3582, 0x3583, 0x35AD, 0x3868);
-			box.GumpID = GumpCorpse;
-			box.Resource = CraftResource.BrittleSkeletal;
-
-			if (box.ItemID == 0x3564 || box.ItemID == 0x3565)
-			{
-				box.GumpID = GumpSciFi;
-				box.Name = RandomBrokenRobotName();
-				box.Resource = CraftResource.Iron;
-			}
-			else if (box.ItemID == 0x3582 || box.ItemID == 0x3583)
-			{
-				box.Name = "alien corpse";
-				box.Resource = ResourceMods.SciFiResource(CraftResource.BrittleSkeletal);
-			}
-			else
-			{
-				box.Name = "mutant corpse";
-				box.Resource = ResourceMods.SciFiResource(CraftResource.BrittleSkeletal);
-			}
-		}
-
 		private static string RandomBrokenRobotName()
 		{
 			string[] states = { "broken", "busted", "crippled", "crumbled", "crushed", "damaged", "defective", "demolished", "mangled", "smashed" };
 			int idx = Utility.Random(states.Length);
 			return states[idx] + " " + Server.Misc.RandomThings.GetRandomRobot(0);
-		}
-
-		private static void ApplyCargoContainer(LockableContainer box)
-		{
-			box.Weight = 10.0;
-			box.ItemID = Utility.RandomList(SciFiCrateIDs);
-			box.GumpID = GumpSciFi;
-			box.Name = "Cargo Container";
-			box.Resource = ResourceMods.SciFiResource(CraftResource.Iron);
-			box.Catalog = Catalogs.SciFi;
 		}
 	}
 }

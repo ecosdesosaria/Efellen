@@ -118,23 +118,6 @@ namespace Server.Misc
 			return false;
 		}
 
-		public static bool isSciFiRegion( Mobile m )
-		{
-			if ( m.Map != Map.SavagedEmpire )
-				return false;
-
-			if ( m.X >= 556 && m.Y >= 2816 && m.X <= 781 && m.Y <= 3123 )
-				return true;
-
-			if ( m.X >= 982 && m.Y >= 2907 && m.X <= 1233 && m.Y <= 3174 )
-				return true;
-
-			if ( m.X >= 875 && m.Y >= 3617 && m.X <= 1244 && m.Y <= 4054 )
-				return true;
-
-			return false;
-		}
-
 		public static bool NoApocalypse( Point3D p, Map map )
 		{
 			Region reg = Region.Find( p, map );

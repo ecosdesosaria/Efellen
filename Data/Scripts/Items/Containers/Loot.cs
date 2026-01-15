@@ -86,13 +86,6 @@ namespace Server
 
 		public static Type[] RangedWeaponTypes{ get{ return m_RangedWeaponTypes; } }
 
-		private static Type[] m_SciFiGunTypes = new Type[]
-			{
-				typeof( KilrathiHeavyGun ),		typeof( KilrathiGun )
-			};
-
-		public static Type[] SciFiGunTypes{ get{ return m_SciFiGunTypes; } }
-
 		// ------------------------------------------------------------------------------------------------------------------------------------------
 
 		private static Type[] m_OrientArmorTypes = new Type[]
@@ -830,45 +823,7 @@ namespace Server
 		public static Type[] JunkTypes{ get{ return m_JunkTypes; } }
 
 		// ------------------------------------------------------------------------------------------------------------------------------------------
-
-		private static Type[] m_SciFiItemTypes = new Type[]
-			{
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-				typeof( SciFiJunk ),			typeof( SciFiJunk ),				typeof( SciFiJunk ),
-
-				typeof( DataPad ),				typeof( DataPad ),					typeof( DataPad ),
-
-				typeof( Bandage ),				typeof( SkeletonsKey ),				typeof( MasterSkeletonsKey ),
-				typeof( Lockpick ), 			typeof( Jar ), 						typeof( Bottle ),
-				typeof( Fork ), 				typeof( ForkLeft ),
-				typeof( ForkRight ), 			typeof( Spoon ), 					typeof( SpoonLeft ),
-				typeof( SpoonRight ), 			typeof( Knife ), 					typeof( KnifeLeft ),
-				typeof( KnifeRight ), 			typeof( Plate ), 					typeof( GlassMug ),
-				typeof( Pillows ),				typeof( Bedroll ),
-				typeof( SmallTent ),			typeof( CampersTent ),				typeof( PlasmaTorch ),
-
-				typeof( Krystal ),				typeof( Spyglass ),					typeof( ArtifactManual ),
-				typeof( LandmineSetup ),		typeof( PlasmaGrenade),				typeof( DataPad ),
-				typeof( PuzzleCube ),			typeof( DuctTape ),					typeof( PortableSmelter ),
-				typeof( FirstAidKit ),			typeof( ThermalDetonator ),			typeof( Chainsaw ),
-
-				typeof( RobotBatteries ),		typeof( RobotSheetMetal ),			typeof( RobotOil ),
-				typeof( RobotGears ),			typeof( RobotEngineParts ),			typeof( RobotCircuitBoard ),
-				typeof( RobotBolt ),			typeof( RobotTransistor ),			typeof( MaterialLiquifier )
-			};
-
-		public static Type[] SciFiItemTypes{ get{ return m_SciFiItemTypes; } }
-
-		// ------------------------------------------------------------------------------------------------------------------------------------------
-
+		
 		private static Type[] m_HorrorTypes = new Type[]
 			{
 				typeof( GuillotineDeed ),					typeof( IronMaidenDeed ),			typeof( ScarecrowDeed ),	
@@ -1327,8 +1282,7 @@ namespace Server
 				int booked = Utility.RandomMinMax( filler,fillup );
 				for ( int b = 0; b < booked; ++b )
 				{
-					int buk = 1; if ( !Worlds.isSciFiRegion( from ) ){ buk = 0; }
-					booking = Utility.RandomMinMax( buk, 3 );
+					booking = Utility.RandomMinMax( 0, 3 );
 
 					if ( (level * 9) > Utility.Random( 100 ) )
 					{
@@ -1398,9 +1352,7 @@ namespace Server
 		{
 			Item item = null;
 
-			if ( m != null && Worlds.isSciFiRegion( m ) )
-				item = new DDXormite( Utility.RandomMinMax( 5, 50 ) );
-			else if ( m != null && m.Land == Land.Underworld )
+			if ( m != null && m.Land == Land.Underworld )
 				item = new DDJewels( Utility.RandomMinMax( 5, 50 ) );
 			else if ( m != null && (Region.Find( m.Location, m.Map )).IsPartOf( "the Mines of Morinia" ) )
 				item = new Crystals( Utility.RandomMinMax( 5, 20 ) );

@@ -813,30 +813,6 @@ namespace Server
 				if ( Utility.Random( 10 ) == 0 && rare > 6 )
 					special = true;
 
-			if ( from != null && Worlds.isSciFiRegion( from ) )
-			{
-				if ( CraftResources.GetType( resource ) == CraftResourceType.Fabric )
-					resource = CraftResource.RegularLeather;
-				else if ( CraftResources.GetType( resource ) == CraftResourceType.Block )
-					resource = CraftResource.Iron;
-				else if ( CraftResources.GetType( resource ) == CraftResourceType.Scales )
-					resource = CraftResource.Iron;
-				else if ( CraftResources.GetType( resource ) == CraftResourceType.Skin )
-					resource = CraftResource.RegularLeather;
-
-				if ( nonStandard || rare > 9 )
-					item.Resource = SciFiResource( resource );
-				else
-				{
-					Item sci = (Item)Activator.CreateInstance( item.GetType() );
-					sci.Resource = SciFiResource( sci.Resource );
-					item.SubResource = sci.Resource;
-					sci.Delete();
-				}
-
-				return;
-			}
-
 			if ( CraftResources.GetType( resource ) == CraftResourceType.Metal )
 			{
 				min = min+0;
@@ -1312,23 +1288,11 @@ namespace Server
 				else if ( item is BaseLeather && from.Land == Land.Savaged && special ){ choice = 56; }
 				else if ( item is BaseHides && from.Land == Land.Savaged && special ){ choice = 157; }
 				else if ( item is BaseScales && from.Land == Land.Ambrosia && special ){ choice = 45; }
-				else if ( item is BaseIngot && !Worlds.isSciFiRegion( from ) && from.Land == Land.Underworld && special ){ choice = 14; }
-				else if ( item is BaseOre && !Worlds.isSciFiRegion( from ) && from.Land == Land.Underworld && special ){ choice = 194; }
-				else if ( item is BaseGranite && !Worlds.isSciFiRegion( from ) && from.Land == Land.Underworld && special ){ choice = 223; }
-				else if ( item is BaseGranite && Worlds.isSciFiRegion( from ) && from.Land == Land.Underworld && special ){ choice = 224; }
-				else if ( item is BaseWoodBoard && !Worlds.isSciFiRegion( from ) && from.Land == Land.Underworld && special ){ choice = 172; }
-				else if ( item is BaseLog && !Worlds.isSciFiRegion( from ) && from.Land == Land.Underworld && special ){ choice = 82; }
-
-				if ( Worlds.isSciFiRegion( from ) )
-				{
-					if ( item is BaseIngot || item is BaseOre || item is BaseBlocks ){ choice = Utility.RandomMinMax( 16, 32 ); }
-					else if ( item is BaseWoodBoard || item is BaseLog ){ choice = Utility.RandomMinMax( 174, 181 ); }
-					else if ( item is BaseHides && Utility.RandomBool() ){ choice = 158; }
-					else if ( item is BaseLeather || item is BaseHides || item is BaseFabric || item is BaseSkins ){ choice = Utility.RandomMinMax( 57, 68 ); }
-					else if ( item is BaseSkeletal ){ choice = Utility.RandomMinMax( 138, 146 ); }
-					else if ( item is BaseScales ){ choice = Utility.RandomMinMax( 225, 228 ); }
-					else if ( item is BaseGranite ){ choice = 224; }
-				}
+				else if ( item is BaseIngot && from.Land == Land.Underworld && special ){ choice = 14; }
+				else if ( item is BaseOre && from.Land == Land.Underworld && special ){ choice = 194; }
+				else if ( item is BaseGranite && from.Land == Land.Underworld && special ){ choice = 223; }
+				else if ( item is BaseWoodBoard && from.Land == Land.Underworld && special ){ choice = 172; }
+				else if ( item is BaseLog && from.Land == Land.Underworld && special ){ choice = 82; }
 
 				if ( Worlds.isHauntedRegion( from ) && special && Utility.RandomBool() )
 				{
