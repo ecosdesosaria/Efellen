@@ -2162,6 +2162,11 @@ namespace Server.Misc
 
 		public static void DressUpFighters( Mobile m, string race, bool isEnemy, bool isDojo, bool isTown )
 		{
+
+			BaseCreature bc = (BaseCreature)m;
+
+			Region reg = Region.Find( bc.Home, bc.Map );
+
 			int cloakColor = 0;
 			if ( 1 == Utility.RandomMinMax( 1, 2 ) ){ cloakColor = Utility.RandomColor( 0 ); m.AddItem( new Cloak( cloakColor ) ); }
 
@@ -2523,25 +2528,52 @@ namespace Server.Misc
 				}
 			}
 
-			switch ( myTitle )
+			if(reg.IsPartOf("Library of Bal Tsareth"))
 			{
-				case 0: m.Title = "the " + race + "fighter"; break;
-				case 1: m.Title = "the " + race + "knight"; break;
-				case 2: m.Title = "the " + race + "champion"; break;
-				case 3: m.Title = "the " + race + "warrior"; break;
-				case 4: m.Title = "the " + race + "soldier"; break;
-				case 5: m.Title = "the " + race + "vanquisher"; break;
-				case 6: m.Title = "the " + race + "battler"; break;
-				case 7: m.Title = "the " + race + "gladiator"; break;
-				case 8: m.Title = "the " + race + "mercenary"; break;
-				case 9: m.Title = "the " + race + "nomad"; break;
-				case 10: m.Title = "the " + race + "berserker"; break;
-				case 11: m.Title = "the " + race + "barbarian"; if ( m.Female ){ m.Title = "the " + race + "amazon"; } break;
-				case 12: m.Title = "the " + race + "pit fighter"; break;
-				case 13: m.Title = "the " + race + "brute"; break;
-				case 14: m.Title = "the " + race + "samurai"; break;
-				case 15: m.Title = "the " + race + "ronin"; break;
+			switch ( myTitle )
+				{
+					case 0: m.Title = "the possessed " + race + "fighter"; break;
+					case 1: m.Title = "the possessed " + race + "knight"; break;
+					case 2: m.Title = "the possessed " + race + "champion"; break;
+					case 3: m.Title = "the possessed " + race + "warrior"; break;
+					case 4: m.Title = "the possessed " + race + "soldier"; break;
+					case 5: m.Title = "the possessed " + race + "vanquisher"; break;
+					case 6: m.Title = "the possessed " + race + "battler"; break;
+					case 7: m.Title = "the possessed " + race + "gladiator"; break;
+					case 8: m.Title = "the possessed " + race + "mercenary"; break;
+					case 9: m.Title = "the possessed " + race + "nomad"; break;
+					case 10: m.Title = "the possessed " + race + "berserker"; break;
+					case 11: m.Title = "the possessed " + race + "barbarian"; if ( m.Female ){ m.Title = "the " + race + "amazon"; } break;
+					case 12: m.Title = "the possessed " + race + "pit fighter"; break;
+					case 13: m.Title = "the possessed " + race + "brute"; break;
+					case 14: m.Title = "the possessed " + race + "samurai"; break;
+					case 15: m.Title = "the possessed " + race + "ronin"; break;
+				}
 			}
+			else 
+			{
+			switch ( myTitle )
+				{
+					case 0: m.Title = "the " + race + "fighter"; break;
+					case 1: m.Title = "the " + race + "knight"; break;
+					case 2: m.Title = "the " + race + "champion"; break;
+					case 3: m.Title = "the " + race + "warrior"; break;
+					case 4: m.Title = "the " + race + "soldier"; break;
+					case 5: m.Title = "the " + race + "vanquisher"; break;
+					case 6: m.Title = "the " + race + "battler"; break;
+					case 7: m.Title = "the " + race + "gladiator"; break;
+					case 8: m.Title = "the " + race + "mercenary"; break;
+					case 9: m.Title = "the " + race + "nomad"; break;
+					case 10: m.Title = "the " + race + "berserker"; break;
+					case 11: m.Title = "the " + race + "barbarian"; if ( m.Female ){ m.Title = "the " + race + "amazon"; } break;
+					case 12: m.Title = "the " + race + "pit fighter"; break;
+					case 13: m.Title = "the " + race + "brute"; break;
+					case 14: m.Title = "the " + race + "samurai"; break;
+					case 15: m.Title = "the " + race + "ronin"; break;
+				}
+			}
+
+
 
 			m.ProcessClothing();
 			m.ProcessHair();
@@ -2870,6 +2902,11 @@ namespace Server.Misc
 				m.HairItemID = 0;
 				m.FacialHairItemID = 0;
 				m.BaseSoundID = 0x482;
+			}
+			else if ( reg.IsPartOf( "Library of Bal Tsareth" ) )
+			{
+				MorphingTime.ColorMyClothes( m, 0x0213, 0 );
+				m.Title = "the Possesed Brigand";
 			}
 			else
 			{
