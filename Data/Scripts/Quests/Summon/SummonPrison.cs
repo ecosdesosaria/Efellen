@@ -983,7 +983,7 @@ namespace Server.Items
 				case 19: sWhere = "the Ancient Pyramid"; sWho = "the pharaoh of suffering"; sWhat = "chest of suffering"; break;
 				case 20: sWhere = "Dungeon Exodus"; sWho = "the torturer from below"; sWhat = "whip from below"; break;
 				case 21: sWhere = "the Caverns of Poseidon"; sWho = "the naga from the deep"; sWhat = "scale of the sea"; break;
-				case 22: sWhere = "Dungeon Clues"; sWho = "Marxas the titan of war"; sWhat = "braclet of war"; break;
+				case 22: sWhere = "Library of Bal Tsareth"; sWho = "Marxas the titan of war"; sWhat = "braclet of war"; break;
 				case 23: sWhere = "Dardin's Pit"; sWho = "the ancient reaper"; sWhat = "stump of the ancients"; break;
 				case 24: sWhere = "Dungeon Doom"; sWho = "a dark blood elemental"; sWhat = "dark blood"; break;
 				case 25: sWhere = "the Fires of Hell"; sWho = "a firescale drake"; sWhat = "firescale tooth"; break;

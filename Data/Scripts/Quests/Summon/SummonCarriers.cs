@@ -287,7 +287,7 @@ namespace Server.Misc
 					scaly.Hue = 0xA09;
 					b.PackItem( scaly );
 			}
-			else if ( reg.IsPartOf( "Dungeon Clues" ) && m is Titan && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5971, 2232, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "Library of Bal Tsareth" ) && m is Titan && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5971, 2232, Map.Sosaria ) )
 			{
 				m.EmoteHue = 123;
 				m.Name = "Marxas";

@@ -95,19 +95,16 @@ namespace Server.Mobiles
 
 				if ( killer is PlayerMobile )
 				{
-					if ( GetPlayerInfo.LuckyKiller( killer.Luck ) )
+					if ( Utility.RandomMinMax( 1, 10 ) == 1 )
+                    {
+                        EtherealBeetle mount = new EtherealBeetle();
+                        mount.Hue = 0x09D3;
+                        c.DropItem( mount );
+                    }
+                    if ( Utility.RandomMinMax( 1, 5 ) == 1 )
 					{
-						if ( Utility.RandomMinMax( 1, 10 ) == 1 )
-                        {
-                            EtherealBeetle mount = new EtherealBeetle();
-                            mount.Hue = 0x09D3;
-                            c.DropItem( mount );
-                        }
-                        if ( Utility.RandomMinMax( 1, 5 ) == 1 )
-						{
-							CanopicJar jar = new CanopicJar();
-							c.DropItem( jar );
-						}
+						CanopicJar jar = new CanopicJar();
+						c.DropItem( jar );
 					}
 					if ( GetPlayerInfo.LuckyKiller( killer.Luck ) && Server.Misc.IntelligentAction.FameBasedEvent( this ) )
 					{

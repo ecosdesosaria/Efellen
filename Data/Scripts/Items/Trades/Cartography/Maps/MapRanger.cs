@@ -206,7 +206,7 @@ namespace Server.Items
 					case 6: paper.m_MapDestination = "the Ancient Pyramid"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(1162, 472, 0); break;
 					case 7: paper.m_MapDestination = "Dungeon Exodus"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(877, 2702, 0); break;
 					case 8: paper.m_MapDestination = "the Cave of Banished Mages"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3798, 1879, 2); break;
-					case 9: paper.m_MapDestination = "Dungeon Clues"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3760, 2038, 0); break;
+					case 9: paper.m_MapDestination = "Library of Bal Tsareth"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3760, 2038, 0); break;
 					case 10: paper.m_MapDestination = "Dardin's Pit"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3006, 446, 0); break;
 					case 11: paper.m_MapDestination = "Dungeon Doom"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(1628, 2561, 0); break;
 					case 12: paper.m_MapDestination = "the Fires of Hell"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3345, 1647, 0); break;

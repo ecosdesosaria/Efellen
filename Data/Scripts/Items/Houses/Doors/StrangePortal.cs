@@ -98,7 +98,7 @@ namespace Server.Items
 				case 16: loc = new Point3D(5354, 923, 0); map = Map.Sosaria; break; // the Ancient Pyramid
 				case 17: loc = new Point3D(5965, 636, 0); map = Map.Sosaria; break; // Dungeon Exodus
 				case 18: loc = new Point3D(262, 3380, 0); map = Map.Sosaria; break; // the Cave of Banished Mages
-				case 19: loc = new Point3D(5981, 2154, 0); map = Map.Sosaria; break; // Dungeon Clues
+				case 19: loc = new Point3D(5981, 2154, 0); map = Map.Sosaria; break; // Library of Bal Tsareth
 				case 20: loc = new Point3D(5550, 393, 0); map = Map.Sosaria; break; // Dardin's Pit
 				case 21: loc = new Point3D(5259, 262, 0); map = Map.Sosaria; break; // Dungeon Doom
 				case 22: loc = new Point3D(5526, 1228, 0); map = Map.Sosaria; break; // the Fires of Hell

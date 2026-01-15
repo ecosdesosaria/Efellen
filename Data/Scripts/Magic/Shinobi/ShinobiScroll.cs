@@ -312,7 +312,7 @@ namespace Server.Items
 				else if ( type == "icon" ){ 	str = "10871"; }
 				else if ( type == "prize1" ){	str = "braclet of war"; }
 				else if ( type == "prize2" ){	str = "face of the ancient king"; }
-				else if ( type == "where1" ){	str = "Dungeon Clues"; }
+				else if ( type == "where1" ){	str = "Library of Bal Tsareth"; }
 				else if ( type == "where2" ){	str = "the Lodoria Catacombs"; }
 				else
 				{ 

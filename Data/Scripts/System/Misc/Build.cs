@@ -6152,7 +6152,7 @@ namespace Server.Misc
 				case 21 : specialPed.MoveToWorld (new Point3D(5333, 895, 0), Map.Sosaria); break; // the Ancient Pyramid
 				case 22 : specialPed.MoveToWorld (new Point3D(5939, 654, 0), Map.Sosaria); break; // Dungeon Exodus
 				case 23 : specialPed.MoveToWorld (new Point3D(5843, 1752, 0), Map.Sosaria); break; // the Caverns of Poseidon
-				case 24 : specialPed.MoveToWorld (new Point3D(5620, 2172, 0), Map.Sosaria); break; // Dungeon Clues
+				case 24 : specialPed.MoveToWorld (new Point3D(5620, 2172, 0), Map.Sosaria); break; // Library of Bal Tsareth
 				case 25 : specialPed.MoveToWorld (new Point3D(5622, 367, 0), Map.Sosaria); break; // Dardin's Pit
 				case 26 : specialPed.MoveToWorld (new Point3D(5242, 219, 0), Map.Sosaria); break; // Dungeon Doom
 				case 27 : specialPed.MoveToWorld (new Point3D(5528, 1246, 0), Map.Sosaria); break; // the Fires of Hell
@@ -15687,7 +15687,7 @@ namespace Server.Misc
 				else if ( area == 19 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Ancient Pyramid
 				else if ( area == 20 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // Dungeon Exodus
 				else if ( area == 21 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Cave of Banished Mages
-				else if ( area == 22 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // Dungeon Clues
+				else if ( area == 22 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // Library of Bal Tsareth
 				else if ( area == 23 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // Dardin's Pit
 				else if ( area == 24 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // Dungeon Doom
 				else if ( area == 25 ){ pedestal = new SearchBase(0); MoveQuestPedestals( pedestal, area ); prisoner = new Prisoner(); MoveQuestPedestals( prisoner, area ); } // the Fires of Hell
@@ -15919,7 +15919,7 @@ namespace Server.Misc
 				case 3:	loc = new Point3D(124, 3767, 0); map = Map.Sosaria; break;
 				case 4:	loc = new Point3D(124, 3462, 0); map = Map.Sosaria; break;
 			}
-			} else if ( area == 22 ){ switch ( Utility.RandomMinMax( 1, 4 ) ) // "Dungeon Clues"
+			} else if ( area == 22 ){ switch ( Utility.RandomMinMax( 1, 4 ) ) // "Library of Bal Tsareth"
 			{
 				case 1:	loc = new Point3D(5905, 2120, 0); map = Map.Sosaria; break;
 				case 2:	loc = new Point3D(5960, 2222, 0); map = Map.Sosaria; break;

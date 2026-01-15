@@ -245,7 +245,7 @@ namespace Server.Items
 
 			if ( m.Land == Land.Kuldar && !(PlayerSettings.GetDiscovered( m, "the Bottle World of Kuldar" )) ){}
 			else if ( gate == 1 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" ) ){ sGate = "Sosaria - Central"; }
-			else if ( gate == 2 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Clues"; }
+			else if ( gate == 2 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Bal Tsareth"; }
 			else if ( gate == 3 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Devil Guard"; }
 			else if ( gate == 4 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - East"; }
 			else if ( gate == 5 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Frozen Isles"; }
