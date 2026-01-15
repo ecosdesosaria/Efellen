@@ -158,7 +158,7 @@ namespace Server.Custom.BalTsareth
             if (enchanted != null)
             {
                 enchanted.Hue = 0x0213;
-                enchanted.Name = "Bal Tsaroth's Sash";
+                enchanted.Name = "Bal Tsareth's Sash";
                 rewardBag.DropItem(enchanted);
             }
         }
