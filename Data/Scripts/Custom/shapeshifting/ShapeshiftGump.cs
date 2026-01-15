@@ -193,15 +193,15 @@ namespace Server.Gumps
 				"• You can learn new forms by aqquiring Totems of the wilds. These can be found by studying creatures, fighting alongside tamed pets and slaying creatures that have a wild shape form<BR><BR>" +
 				"• The following forms can be learned:<BR>"+
 				"• Anaconda (learned from various giant serpents, requires poisoning 80)<BR>"+
-				"• Dire Bear (learned from cave bears and elder bears)<BR>"+
-				"• Stalker (learned only from stalkers, requires 85 hiding)<BR>"+
-				"• Scorpion (learned from scorpions and deadly scorpion, requires poisoning 90)<BR>"+
-				"• Gorakong (learned only from Gorakongs)<BR>"+
-				"• Worg (learned from Worgs)<BR>"+
-				"• Griffon (learned from Griffons and Trained Griffons)<BR>"+
-				"• Stegosaurus (learned from Stegosaurus)<BR>"+
-				"• Monstrous spider (learned from monstrous spiders, requires 120 poisoning)<BR>"+
-				"• Tyranasaur (learned from Tyranasaurus)<BR>"+
+				"• Dire Bear (learned from cave bears and elder bears requires 85 druidism)<BR>"+
+				"• Stalker (learned only from stalkers, requires 85 hiding and druidism)<BR>"+
+				"• Scorpion (learned from scorpions and deadly scorpion, requires poisoning 90 and druidism)<BR>"+
+				"• Gorakong (learned only from gorillas Gorakongs)<BR>"+
+				"• Worg (learned from wolves and Worgs requires 105 druidism)<BR>"+
+				"• Griffon (learned from Griffons and Trained Griffons, requires 110 druidism)<BR>"+
+				"• Stegosaurus (learned from Stegosaurus) requires 115 druidism<BR>"+
+				"• Monstrous spider (learned from monstrous spiders, requires 120 poisoning and druidism)<BR>"+
+				"• Tyranasaur (learned from Tyranasaurus requires 125 druidism)<BR>"+
 				"</BASEFONT>";
 
 			AddHtml(20, 45, 460, 360, helpText, false, true);

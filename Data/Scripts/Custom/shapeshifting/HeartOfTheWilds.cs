@@ -104,7 +104,7 @@ namespace Server.Items
 			{
 				Item item = from.Items[i];
 
-				if (item is BaseArmor)
+				if (item is BaseArmor && !(item is BaseShield))
 				{
 					BaseArmor armor = (BaseArmor)item;
 
@@ -120,7 +120,6 @@ namespace Server.Items
 					}
 				}
 			}
-
 			return false;
 		}
 

@@ -117,7 +117,7 @@ namespace Server.Misc
 		+"        Destard has been promoved from 'challenging' to 'hard'.<BR>"
 		+"	• All easy dungeons now have one extra room with slightly more challenging monsters. They also had their spawn pool rebuilt to be more consize.<br>"
 		+"	• Mages are now slightly more common in newbie dungeons to help new characters get their spellbooks started.<br>"
-		+"	• The ancient pyramid had a slight makeover to make it less blocky. It also has some nasty new inhabitants.<br>"
+		+"	• The ancient pyramid had a major makeover and is more pyramid shaped now. It also has many nasty new inhabitants and encounters.<br>"
         +" <br>"
         + sepLine()
 
