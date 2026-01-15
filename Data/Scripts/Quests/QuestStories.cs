@@ -140,7 +140,7 @@ namespace Server.Misc
 				case 24: sPlace = "the Ancient Pyramid"; break;
 				case 25: sPlace = "Dungeon Exodus"; break;
 				case 26: sPlace = "the Cave of Banished Mages"; break;
-				case 27: sPlace = "Dungeon Clues"; break;
+				case 27: sPlace = "Library of Bal Tsareth"; break;
 				case 28: sPlace = "Dardin's Pit"; break;
 				case 29: sPlace = "Dungeon Doom"; break;
 				case 30: sPlace = "the Fires of Hell"; break;

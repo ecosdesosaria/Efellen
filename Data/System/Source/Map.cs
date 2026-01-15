@@ -101,7 +101,7 @@ namespace Server
 				else if ( reg.IsPartOf( "House of Holy Mercy" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "The Howling Grove" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "the Mausoleum" ) ){ Heat = 1; }
-				else if ( reg.IsPartOf( "Dungeon Clues" ) ){ Heat = 0; }
+				else if ( reg.IsPartOf( "Library of Bal Tsareth" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "Dardin's Pit" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "Frostwall Caverns" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "Dungeon Doom" ) ){ Heat = 0; }

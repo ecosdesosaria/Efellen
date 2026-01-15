@@ -172,12 +172,12 @@ namespace Server.Gumps
 					text1 = text1 + "Banish summoned creatures back to their realm, demons back to hell, or elementals back to their plane of existence.";
 					icon1 = 0x5010;
 
-					sGrave = Worlds.GetAreaEntrance( 0, "Dungeon Clues", Map.Sosaria, out placer_2, out xc_2, out yc_2 );
+					sGrave = Worlds.GetAreaEntrance( 0, "Library of Bal Tsareth", Map.Sosaria, out placer_2, out xc_2, out yc_2 );
 					name2 = "Demonic Touch";
 					soul2 = "11";
 					skil2 = "15";
 					mana2 = "16";
-					text2 = ""; if ( !this.HasSpell( from, 751) ){ m_NotHave_2 = true; z2=220; text2 = "Lord Monduiz Dephaar<BR>Land of Sosaria: Dungeon Clues<BR>" + sGrave + "<BR><BR>"; }
+					text2 = ""; if ( !this.HasSpell( from, 751) ){ m_NotHave_2 = true; z2=220; text2 = "Lord Monduiz Dephaar<BR>Land of Sosaria: Library of Bal Tsareth<BR>" + sGrave + "<BR><BR>"; }
 					text2 = text2 + "The death knight's target is healed by demonic forces for a significant amount.";
 					icon2 = 0x5009;
 				}

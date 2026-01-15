@@ -208,7 +208,7 @@ namespace Server.Items
 			else if ( reg.IsPartOf( "Dardin's Pit" ) ){ sound = "dungeon"; }
 			else if ( reg.IsPartOf( "Dungeon Ankh" ) ){ sound = "dungeon"; }
 			else if ( reg.IsPartOf( "Dungeon Bane" ) ){ sound = "dungeon"; }
-			else if ( reg.IsPartOf( "Dungeon Clues" ) ){ sound = "dungeon"; }
+			else if ( reg.IsPartOf( "Library of Bal Tsareth" ) ){ sound = "dungeon"; }
 			else if ( reg.IsPartOf( "Dungeon Exodus" ) ){ sound = "dungeon"; }
 			else if ( reg.IsPartOf( "Dungeon Hythloth" ) ){ sound = "dungeon"; }
 			else if ( reg.IsPartOf( "Dungeon Torment" ) ){ sound = "dungeon"; }

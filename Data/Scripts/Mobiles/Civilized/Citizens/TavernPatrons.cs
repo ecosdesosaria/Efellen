@@ -552,7 +552,7 @@ namespace Server.Misc
 				case 15: sWords = "a frozen palace where the ice queen dwells"; break;	
 				case 16: sWords = "a ghost haunting those ruins in the Savaged Empire"; break;	
 				case 17: sWords = "a gigantic squid living in the bottom of the Flooded Temple"; break;	
-				case 18: sWords = "a great many secrets that can be learned in Dungeon Clues"; break;	
+				case 18: sWords = "a great many secrets that can be learned in the Library of Bal Tsareth"; break;	
 				case 19: sWords = "a group of devil worshipers in Dungeon Vile"; break;	
 				case 20: sWords = "a group of ophidians worshiping in the Serpent Sanctum"; break;	
 				case 21: sWords = "a horde of demons in Dungeon Torment"; break;	

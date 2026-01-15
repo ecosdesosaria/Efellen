@@ -49,6 +49,7 @@ namespace Server.Misc
 		+"         • The Daughter of Fire now has a permanent residence in the fires of hell.<br>"
 		+"         • The Skeleton King has awoken from its long slumber in the depths of the ancient pyramid.<br> "
 		+"      • Tier 4 bosses (meant to be faced by powerful groups of very powerful adventurers): <br>"
+		+"          • Bal Tsareth's ghost returned from death to expel the invaders from her sanctum!<br>"
 		+"          • The Dreamweaver now threathens all of Lodoria from the depths of its lair.<br>"
 		+"          • The Old One Eye now stalks for prey across the wastes of the Savage Empire.<br>"
 		+"          • The Fateweaver now guards the entrance to the vile temple of Lolth in the Underworld.<br>"
@@ -118,7 +119,8 @@ namespace Server.Misc
 		+"	• All easy dungeons now have one extra room with slightly more challenging monsters. They also had their spawn pool rebuilt to be more consize.<br>"
 		+"	• Mages are now slightly more common in newbie dungeons to help new characters get their spellbooks started.<br>"
 		+"	• The ancient pyramid had a major makeover and is more pyramid shaped now. It also has many nasty new inhabitants and encounters.<br>"
-        +" <br>"
+        +"  • The Library of Bal Tsareth (formerly known as 'Clues') had its mobpool, encounters and lore rebuilt. There's a new quest related to it, accessible by talking to the expedition leader at its entrance.<br>"
+		+" <br>"
         + sepLine()
 
 			+ "";

@@ -3542,7 +3542,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	ScarecrowDeed	),	5000	,	1	,	95	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Farmer	),
 			new ItemSalesInfo( typeof(	Scepter	),	39	,	31	,	0	,	false	,	false	,	World.None	,	Category.Weapon	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	ScholarRobe	),	40	,	5	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.Cloth	,	Market.Sage	),
-			new ItemSalesInfo( typeof(	SciFiJunk	),	1	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Tinker	),
 			new ItemSalesInfo( typeof(	Scimitar	),	36	,	15	,	0	,	false	,	false	,	World.None	,	Category.Weapon	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	Scissors	),	11	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Tailor	),
 			new ItemSalesInfo( typeof(	ScribesPen	),	16	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Scribe	),

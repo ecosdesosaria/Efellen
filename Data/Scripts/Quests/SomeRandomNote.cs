@@ -288,7 +288,7 @@ namespace Server.Items
 				case 19: Part1 = "the Ancient Pyramid"; Part2 = "chest of suffering"; break;
 				case 20: Part1 = "Dungeon Exodus"; Part2 = "whip from below"; break;
 				case 21: Part1 = "the Caverns of Poseidon"; Part2 = "scale of the sea"; break;
-				case 22: Part1 = "Dungeon Clues"; Part2 = "braclet of war"; break;
+				case 22: Part1 = "Library of Bal Tsareth"; Part2 = "braclet of war"; break;
 				case 23: Part1 = "Dardin's Pit"; Part2 = "stump of the ancients"; break;
 				case 24: Part1 = "Dungeon Doom"; Part2 = "dark blood"; break;
 				case 25: Part1 = "the Fires of Hell"; Part2 = "firescale tooth"; break;

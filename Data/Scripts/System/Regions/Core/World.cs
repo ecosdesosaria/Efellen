@@ -703,7 +703,7 @@ namespace Server.Misc
 				case 20: loc = new Point3D(5354, 923, 0); map = Map.Sosaria; break; // the Ancient Pyramid
 				case 21: loc = new Point3D(5965, 636, 0); map = Map.Sosaria; break; // Dungeon Exodus
 				case 22: loc = new Point3D(262, 3380, 0); map = Map.Sosaria; break; // the Cave of Banished Mages
-				case 23: loc = new Point3D(5981, 2154, 0); map = Map.Sosaria; break; // Dungeon Clues
+				case 23: loc = new Point3D(5981, 2154, 0); map = Map.Sosaria; break; // Library of Bal Tsareth
 				case 24: loc = new Point3D(5550, 393, 0); map = Map.Sosaria; break; // Dardin's Pit
 				case 25: loc = new Point3D(5259, 262, 0); map = Map.Sosaria; break; // Dungeon Doom
 				case 26: loc = new Point3D(5526, 1228, 0); map = Map.Sosaria; break; // the Fires of Hell
@@ -851,7 +851,7 @@ namespace Server.Misc
 			else if ( ( exact == 8 || zone == "the Ancient Pyramid" ) && map == Map.Sosaria ){ loc = new Point3D(1162, 472, 0); zone = "the Ancient Pyramid"; }
 			else if ( ( exact == 9 || zone == "Dungeon Exodus" ) && map == Map.Sosaria ){ loc = new Point3D(877, 2702, 0); zone = "Dungeon Exodus"; }
 			else if ( ( exact == 10 || zone == "the Cave of Banished Mages" ) && map == Map.Sosaria ){ loc = new Point3D(3798, 1879, 2); zone = "the Cave of Banished Mages"; }
-			else if ( ( exact == 11 || zone == "Dungeon Clues" ) && map == Map.Sosaria ){ loc = new Point3D(3760, 2038, 0); zone = "Dungeon Clues"; }
+			else if ( ( exact == 11 || zone == "Library of Bal Tsareth" ) && map == Map.Sosaria ){ loc = new Point3D(3760, 2038, 0); zone = "Library of Bal Tsareth"; }
 			else if ( ( exact == 12 || zone == "Dardin's Pit" ) && map == Map.Sosaria ){ loc = new Point3D(3006, 446, 0); zone = "Dardin's Pit"; }
 			else if ( ( exact == 13 || zone == "Dungeon Doom" ) && map == Map.Sosaria ){ loc = new Point3D(1628, 2561, 0); zone = "Dungeon Doom"; }
 			else if ( ( exact == 14 || zone == "the Fires of Hell" ) && map == Map.Sosaria ){ loc = new Point3D(3345, 1647, 0); zone = "the Fires of Hell"; }
@@ -1017,7 +1017,7 @@ namespace Server.Misc
 			yc = 0;
 
 			if ( i == 1 ){ dungeon = "Dardin's Pit"; location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; }
-			else if ( i == 2 ){ dungeon = "Dungeon Clues"; location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; }
+			else if ( i == 2 ){ dungeon = "Library of Bal Tsareth"; location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; }
 			else if ( i == 3 ){ dungeon = "Dungeon Doom"; location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; }
 			else if ( i == 4 ){ dungeon = "Dungeon Exodus"; location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; }
 			else if ( i == 5 ){ dungeon = "the Pirate Cave"; location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; }
