@@ -347,51 +347,7 @@ namespace Server.Items
 
 				if ( BaseRace.BloodDrinker( m.RaceID ) ){ item = new BloodyDrink(); }
 				else if ( BaseRace.BrainEater( m.RaceID ) ){ item = new FreshBrain(); }
-				else if ( Worlds.isSciFiRegion( m ) )
-				{
-					if ( food is Apple ){ item = new CubedFruit(); }
-					else if ( food is Banana ){ item = new CubedFruit(); }
-					else if ( food is Cabbage ){ item = new CubedFruit(); }
-					else if ( food is Cantaloupe ){ item = new CubedFruit(); }
-					else if ( food is Carrot ){ item = new CubedFruit(); }
-					else if ( food is Grapes ){ item = new CubedFruit(); }
-					else if ( food is GreenGourd ){ item = new CubedFruit(); }
-					else if ( food is HoneydewMelon ){ item = new CubedFruit(); }
-					else if ( food is Lemon ){ item = new CubedFruit(); }
-					else if ( food is Lettuce ){ item = new CubedFruit(); }
-					else if ( food is Lime ){ item = new CubedFruit(); }
-					else if ( food is Onion ){ item = new CubedFruit(); }
-					else if ( food is Peach ){ item = new CubedFruit(); }
-					else if ( food is Pear ){ item = new CubedFruit(); }
-					else if ( food is Pumpkin ){ item = new CubedFruit(); }
-					else if ( food is Squash ){ item = new CubedFruit(); }
-					else if ( food is Watermelon ){ item = new CubedFruit(); }
-					else if ( food is YellowGourd ){ item = new CubedFruit(); }
-
-					else if ( food is Muffins ){ item = new CubedGrain(); }
-					else if ( food is BreadLoaf ){ item = new CubedGrain(); }
-					else if ( food is CheeseWedge ){ item = new CubedGrain(); }
-					else if ( food is CheeseWheel ){ item = new CubedGrain(); }
-					else if ( food is FrenchBread ){ item = new CubedGrain(); }
-
-					else if ( food is CheeseWedge ){ item = new CubedMeat(); }
-					else if ( food is CheeseWheel ){ item = new CubedMeat(); }
-					else if ( food is ChickenLeg ){ item = new CubedMeat(); }
-					else if ( food is CookedBird ){ item = new CubedMeat(); }
-					else if ( food is FishSteak ){ item = new CubedMeat(); }
-					else if ( food is Ham ){ item = new CubedMeat(); }
-					else if ( food is LambLeg ){ item = new CubedMeat(); }
-					else if ( food is Ribs ){ item = new CubedMeat(); }
-					else if ( food is Sausage ){ item = new CubedMeat(); }
-					else if ( food is BaseBeverage )
-					{
-						if ( Utility.Random( 20 ) == 0 )
-							item = new RomulanAle();
-						else
-							item = new Canteen();
-					}
-				}
-
+				
 				if ( item != null )
 				{
 					food.Delete();

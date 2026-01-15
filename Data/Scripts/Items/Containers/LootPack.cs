@@ -544,19 +544,7 @@ namespace Server
 			{
 				if ( item is BaseWeapon || item is BaseArmor || item is BaseTrinket || item is BaseInstrument || item is BaseQuiver || item is BaseClothing || item is Spellbook )
 				{
-					if ( Worlds.isSciFiRegion( from ) && Utility.Random(20) == 0 && item is BaseRanged )
-					{
-						item.Delete();
-						item = Loot.RandomSciFiGun();
-					}
-					// removed as of issue #110
-					/* if ( Worlds.isSciFiRegion( from ) && Utility.Random(20) == 0 && item is BaseWeapon )
-					{
-						 removed as of issue #110
-						 item.Delete();
-						 item = Loot.RandomSciFiWeapon();
-					} */
-
+					
 					int bonusProps = GetBonusProperties();
 					int min = m_MinIntensity;
 					int max = m_MaxIntensity;
@@ -924,67 +912,6 @@ namespace Server
 			item = Food.ModifyFood( item, from );				// MAKE STAR TREK TYPE FOOD OR RACE SPECIFIC
 			item = ResourceMods.GetRandomItem( item, from );	// MAKE RESOURCES FOR THE AREA
 
-			if ( Worlds.isSciFiRegion( from ) )
-			{
-				if ( !item.NotModAble )
-				{
-					if ( item.Catalog == Catalogs.Trinket || item is BaseQuiver || item is BaseHarvestTool || item is BaseTool || item.Catalog == Catalogs.Scroll || item.Catalog == Catalogs.Book || item.Catalog == Catalogs.Stone )
-					{
-						item.Delete();
-						item = Loot.RandomSciFiItems();
-					}
-
-					if ( item is SkeletonsKey ){ item.Name = "minimal access card"; item.ItemID = 0x3A75; item.Hue = 0x59A; item.Technology = true; }
-					else if ( item is MasterSkeletonsKey ){ item.Name = "full access card"; item.ItemID = 0x3A75; item.Hue = 0x66D; item.Technology = true; }
-					else if ( item is Lockpick ){ item.Name = "security card"; item.ItemID = 0x3A75; item.Hue = 0x53C; item.Technology = true; }
-					else if ( item is BasePotion ){ Server.Items.BasePotion.MakePillBottle( item ); item.Technology = true; }
-					else if ( item is Krystal ){ item.Technology = true; }
-					else if ( item is Spellbook ){ item.Delete(); item = new DataPad(); item.Technology = true; }
-					else if ( item is StarSapphire ){ item.ItemID = 0xF26; item.Hue = 0x996; item.Name = "kyber crystal"; item.Technology = true; }
-					else if ( item is Emerald ){ item.ItemID = 0xF25; item.Hue = 0x950; item.Name = "etaan crystal"; item.Technology = true; }
-					else if ( item is Sapphire ){ item.ItemID = 0xF2D; item.Hue = 0xB40; item.Name = "trilithium crystal"; item.Technology = true; }
-					else if ( item is Ruby ){ item.ItemID = 0xF16; item.Hue = 0x94F; item.Name = "lava crystal"; item.Technology = true; }
-					else if ( item is Citrine ){ item.ItemID = 0xF21; item.Hue = 0xB54; item.Name = "dilithium crystal"; item.Technology = true; }
-					else if ( item is Amethyst ){ item.ItemID = 0xF10; item.Hue = 0x94A; item.Name = "dantari crystal"; item.Technology = true; }
-					else if ( item is Tourmaline ){ item.ItemID = 0xF19; item.Hue = 0x86C; item.Name = "vexxtal crystal"; item.Technology = true; }
-					else if ( item is Amber ){ item.ItemID = 0xF13; item.Hue = 0x8FC; item.Name = "nova crystal"; item.Technology = true; }
-					else if ( item is Diamond ){ item.ItemID = 0xF15; item.Hue = 0x90F; item.Name = "permafrost crystal"; item.Technology = true; }
-					else if ( item is Bedroll ){ item.Name = "sleeping bag"; item.Hue = Utility.RandomColor(0); item.Technology = true; }
-					else if ( item is Spyglass ){ item.Name = "binoculars"; item.ItemID = 0x3562; item.Technology = true; }
-					else if ( item is ArtifactManual ){ item.Name = "magnifying lense"; item.ItemID = 0x202F; item.Hue = 0; item.Technology = true; }
-					else if ( item is GolemManual ){ item.Delete(); item = new RobotSchematics(); item.Technology = true; }
-					else if ( item is BaseHat && Utility.RandomBool() ) // ONLY HALF THE HATS BECOME GOGGLES
-					{
-						item.ItemID = Utility.RandomList( 0x2FB8, 0x3172 );
-						item.Name = "Goggles";
-						item.ColorText1 = null;
-						item.ColorText2 = null;
-						item.Technology = true; 
-						switch( Utility.RandomMinMax( 0, 10 ) )
-						{
-							case 1: item.Name = "Pilot Goggles"; break;
-							case 2: item.Name = "Medical Goggles"; break;
-							case 3: item.Name = "Security Goggles"; break;
-							case 4: item.Name = "Engineering Goggles"; break;
-							case 5: item.Name = "Science Goggles"; break;
-							case 6: item.Name = "Laboratory Goggles"; break;
-							case 7: item.Name = "Safety Goggles"; break;
-							case 8: item.Name = "Sun Goggles"; break;
-							case 9: item.Name = "Night Goggles";
-								if ( item is BaseClothing ){ ((BaseClothing)item).Attributes.NightSight = 1; }
-								break;
-							case 10: item.Name = "Soldier Goggles"; break;
-						}
-						ResourceMods.SetRandomResource( true, true, item, CraftResource.Iron, false, from );
-					}
-					else if ( item is BaseInstrument )
-					{
-						item.ColorText2 = null;
-						item.ColorText1 = Server.Misc.RandomThings.GetRandomAlienRace() + " " + item.Name + "";
-						item.ColorHue1 = "11DADA";
-					}
-				}
-			}
 			if ( item is CandleLarge || item is Candelabra || item is CandelabraStand )
 			{
 				ResourceMods.SetRandomResource( false, false, item, CraftResource.Iron, false, null );
@@ -1017,7 +944,7 @@ namespace Server
 
 			RandomThings.SpecialName( item, from, from.Region );
 
-			if ( !Worlds.isSciFiRegion( from ) && item is BaseTrinket && item.Catalog == Catalogs.Jewelry )
+			if ( item is BaseTrinket && item.Catalog == Catalogs.Jewelry )
 				BaseTrinket.RandomGem( (BaseTrinket)item );
 
 			if ( item.Hue == 0 && item is BaseClothing )
@@ -1080,13 +1007,7 @@ namespace Server
 
 				if ( amount > 0 )
 				{
-					if ( Worlds.isSciFiRegion( m ) )
-					{
-						int xormite = (int)(amount/3);
-						pack.DropItem( new DDXormite( xormite ) );
-						if ( bc != null ){ bc.Coins = xormite; bc.CoinType = "xormite"; }
-					}
-					else if ( (Region.Find( m.Location, m.Map )).IsPartOf( "the Mines of Morinia" ) && Utility.RandomMinMax( 1, 5 ) == 1 )
+					if ( (Region.Find( m.Location, m.Map )).IsPartOf( "the Mines of Morinia" ) && Utility.RandomMinMax( 1, 5 ) == 1 )
 					{
 						int crystals = (int)(amount/5);
 						pack.DropItem( new Crystals( crystals ) );

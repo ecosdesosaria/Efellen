@@ -305,26 +305,6 @@ namespace Server.Engines.Harvest
 			return false;
 		}
 
-		public static void FishUpFromSpaceship( Mobile from )
-		{
-			int nGuild = 0;
-
-			PlayerMobile pc = (PlayerMobile)from;
-			if ( pc.NpcGuild != NpcGuild.FishermensGuild )
-			{
-				nGuild = (int)(from.Skills[SkillName.Seafaring].Value/4);
-			}
-
-			int nChance = (int)(from.Skills[SkillName.Seafaring].Value/4) + nGuild;
-
-			if ( nChance > Utility.Random(100) )
-			{
-				Item preLoot = Loot.RandomSciFiItems();
-				BaseContainer.PutStuffInContainer( from, 3, preLoot );
-				from.SendMessage("You fish up something from the wreckage below.");
-			}
-		}
-
 		public static void FishUpFromRuins( Mobile from )
 		{
 			int nGuild = 1;

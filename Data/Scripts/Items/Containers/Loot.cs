@@ -51,13 +51,6 @@ namespace Server
 
 		public static Type[] WeaponTypes{ get{ return m_WeaponTypes; } }
 
-		private static Type[] m_SciFiWeaponTypes = new Type[]
-			{
-				typeof( LightSword ),		typeof( DoubleLaserSword )
-			};
-
-		public static Type[] SciFiWeaponTypes{ get{ return m_SciFiWeaponTypes; } }
-
 		// ------------------------------------------------------------------------------------------------------------------------------------------
 		private static Type[] m_RobeTypes = new Type[]
 		{
@@ -973,21 +966,12 @@ namespace Server
 			return Construct( m_JunkTypes );
 		}
 
-		public static Item RandomSciFiItems()
-		{
-			Item item = Construct( m_SciFiItemTypes );
-			item.Technology = true;
-			return item;
-		}
-
 		public static Item RandomItem( Mobile m, int level )
 		{
 			Item item = null;
 
 			int var = Utility.RandomMinMax( 1, 5 );
-			if ( Worlds.isSciFiRegion( m ) )
-				var = Utility.RandomMinMax( 0, 1 );
-
+			
 			if ( level == -10 ) // VENDOR BAGS
 			{
 				switch ( Utility.Random( 6 ) ) 
@@ -1013,7 +997,6 @@ namespace Server
 			{
 				switch ( var ) 
 				{
-					case 0: item = RandomSciFi(); break;
 					case 1: if ( Utility.RandomBool() ){ item = RandomFoods( false, false ); } else { item = RandomPossibleReagent(); } break;
 					case 2: item = RandomBooks( Utility.Random(4)+1 ); break;
 					case 3: item = RandomProvisions(); break;
@@ -1032,24 +1015,20 @@ namespace Server
 		{
 			Item item = null;
 
-			int var = Utility.RandomMinMax( 2, 11 );
-			if ( Worlds.isSciFiRegion( m ) )
-				var = Utility.RandomMinMax( 0, 3 );
-
+			int var = Utility.RandomMinMax( 0, 9 );
+			
 			switch ( var ) 
 			{
-				case 0: item = RandomSciFi(); break;
-				case 1: item = RandomSciFi(); break;
-				case 2: item = RandomFoods( false, false ); break;
-				case 3: item = RandomPossibleReagent(); break;
-				case 4: item = RandomTools(); break;
-				case 5: item = RandomStatue(); break;
-				case 6: item = RandomRelic( m ); break;
-				case 7: item = RandomRelic( m ); break;
-				case 8: item = RandomRare( level, m ); break;
+				case 0: item = RandomFoods( false, false ); break;
+				case 1: item = RandomPossibleReagent(); break;
+				case 2: item = RandomTools(); break;
+				case 3: item = RandomStatue(); break;
+				case 4: item = RandomRelic( m ); break;
+				case 5: item = RandomRelic( m ); break;
+				case 6: item = RandomRare( level, m ); break;
+				case 7: item = RandomJunk(); break;
+				case 8: item = RandomJunk(); break;
 				case 9: item = RandomJunk(); break;
-				case 10: item = RandomJunk(); break;
-				case 11: item = RandomJunk(); break;
 			}
 
 			if ( item == null )
@@ -1111,11 +1090,6 @@ namespace Server
 			return Construct( m_RangedWeaponTypes ) as BaseWeapon;
 		}
 
-		public static BaseWeapon RandomSciFiGun()
-		{
-			return Construct( m_SciFiGunTypes ) as BaseWeapon;
-		}
-
 		public static BaseWeapon RandomWeapon()
 		{
 			return RandomWeapon( false );
@@ -1127,11 +1101,6 @@ namespace Server
 				return Construct( m_OrientWeaponTypes, m_WeaponTypes ) as BaseWeapon;
 
 			return Construct( m_WeaponTypes ) as BaseWeapon;
-		}
-
-		public static BaseWeapon RandomSciFiWeapon()
-		{
-			return Construct( m_SciFiWeaponTypes ) as BaseWeapon;
 		}
 
 		public static BaseTrinket RandomJewelry()
@@ -1393,11 +1362,6 @@ namespace Server
 		public static Item RandomSea()
 		{
 			return Construct( m_SeaTypes );
-		}
-
-		public static Item RandomSciFi()
-		{
-			return Construct( m_SciFiItemTypes );
 		}
 
 		public static Item RandomReagent()

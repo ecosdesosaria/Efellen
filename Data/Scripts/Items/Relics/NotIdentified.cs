@@ -97,11 +97,7 @@ namespace Server.Items
 					unk.ItemID = 0x2827;
 					unk.Hue = Utility.RandomColor(0);
 					unk.Name = RandomThings.GetOddityAdjective() + " bottle of liquid";
-					if ( Worlds.isSciFiRegion( m ) )
-					{
-						unk.ItemID = 0x27FF;
-						unk.Name = RandomThings.GetOddityAdjective() + " syringe of liquid";
-					}
+					
 					if ( item.Amount > 1 )
 					{
 						unk.ColorText3 = "Amount: " + item.Amount + "";
@@ -116,11 +112,6 @@ namespace Server.Items
 					unk.ItemID = 0x282F;
 					unk.Hue = Utility.RandomColor(0);
 					unk.Name = RandomThings.GetOddityAdjective() + " jar of reagents";
-					if ( Worlds.isSciFiRegion( m ) )
-					{
-						unk.ItemID = 0x27FE;
-						unk.Name = RandomThings.GetOddityAdjective() + " bottle of reagents";
-					}
 					if ( item.Amount > 1 )
 					{
 						unk.ColorText3 = "Amount: " + item.Amount + "";

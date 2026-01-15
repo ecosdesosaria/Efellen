@@ -460,10 +460,6 @@ namespace Server.Engines.Harvest
 							{
 								Server.Engines.Harvest.Fishing.FishUpFromMajorWreck( from );
 							}
-							else if ( tool is FishingPole && Server.Engines.Harvest.Fishing.IsNearSpaceCrash( from ) && from.Skills[SkillName.Seafaring].Value >= Utility.RandomMinMax( 1, 250 ) )
-							{
-								Server.Engines.Harvest.Fishing.FishUpFromSpaceship( from );
-							}
 							else if ( tool is FishingPole && Server.Engines.Harvest.Fishing.IsNearUnderwaterRuins( from ) && from.Skills[SkillName.Seafaring].Value >= Utility.RandomMinMax( 1, 250 ) )
 							{
 								Server.Engines.Harvest.Fishing.FishUpFromRuins( from );
