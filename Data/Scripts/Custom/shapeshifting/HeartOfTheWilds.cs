@@ -548,7 +548,7 @@ namespace Server.Items
 
 			m_ResistMods = new ResistanceMod[5];
 		}
-		// hacky as all hell but will do for now
+		
 		public void CheckSpeedBoost(Mobile m)
 		{
 			if ((DateTime.UtcNow - m_LastSpeedCheck).TotalSeconds < 3.5)
