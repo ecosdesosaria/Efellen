@@ -95,7 +95,7 @@ namespace Server.Mobiles
 			SetSkill( SkillName.Psychology, 101.0, 110.0 );
 
 			Fame = 30000;
-			Karma = 30000;
+			Karma = -30000;
 			VirtualArmor = 50;
 
 			PackItem( new EerieIdol(Utility.Random(12,26)) );
