@@ -162,9 +162,7 @@ namespace Server.Misc
 						if ( theVictim is Daemon ){ killName = "a daemon"; killTitle = ""; }
 						if ( theVictim is Balron ){ killName = "a balron"; killTitle = ""; }
 						if ( theVictim is RidingDragon || theVictim is Dragons ){ killName = "a dragon"; killTitle = ""; }
-						if ( theVictim is BombWorshipper ){ killName = "a worshipper of the bomb"; killTitle = ""; }
-						if ( theVictim is Psionicist ){ killName = "a psychic of the bomb"; killTitle = ""; }
-
+					
 					string myexplorer = kVictim + "#" + killTitle + "#" + killName + "#" + Server.Misc.Worlds.GetRegionName( theVictim.Map, theVictim.Location ) + "#0#" + kDollar + "#" + kWorld + "#Monster";
 					PlayerSettings.SetQuestInfo( m, "AssassinQuest", myexplorer );
 

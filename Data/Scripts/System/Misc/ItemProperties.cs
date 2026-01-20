@@ -532,7 +532,7 @@ namespace Server
 			if ( (prop = var.Attributes.RegenMana) != 0 )
 				text += "Mana Regeneration: " + prop.ToString() + "<BR>";
 
-			if ( (prop = var.Attributes.NightSight) != 0 && !(var is LightSword) && !(var is DoubleLaserSword) && !(var is LevelLaserSword) && !(var is LevelDoubleLaserSword) )
+			if ( (prop = var.Attributes.NightSight) != 0 )
 				text += "Night Sight<BR>";
 
 			if ( (prop = var.Attributes.ReflectPhysical) != 0 )

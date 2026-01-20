@@ -700,9 +700,9 @@ namespace Server
 			if ( price < 1 )
 				price = 1;
 			// gold cut rate
-			price = (int)(price - ( price * 50 ));
+			price = (int)(price - ( price * 50 / 100 ));
 			if ( price < 1 )
-				price = 1;
+			    price = 1;
 
 			return price;
 		}
@@ -2131,7 +2131,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	EmptyCanopicJar	),	1	,	0	,	200	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Evil	),
 			new ItemSalesInfo( typeof(	CanopicJar	),	600	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Undertaker	),
 			new ItemSalesInfo( typeof(	Cantaloupe	),	6	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Farmer	),
-			new ItemSalesInfo( typeof(	Canteen	),	10	,	0	,	0	,	false	,	false	,	World.None	,	Category.Tavern	,	Material.None	,	Market.Inn	),
 			new ItemSalesInfo( typeof(	Cap	),	10	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.Cloth	,	Market.Tailor	),
 			new ItemSalesInfo( typeof(	CarpenterCrate	),	400	,	5	,	75	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Carpenter	),
 			new ItemSalesInfo( typeof(	CarpenterTools	),	15	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Carpenter	),
@@ -2161,7 +2160,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	ChainCoif	),	17	,	15	,	0	,	false	,	false	,	World.None	,	Category.Armor	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	ChainHatsuburi	),	76	,	15	,	0	,	false	,	false	,	World.Orient	,	Category.Armor	,	Material.Metal	,	Market.Monk	),
 			new ItemSalesInfo( typeof(	ChainLegs	),	149	,	15	,	0	,	false	,	false	,	World.None	,	Category.Armor	,	Material.Metal	,	Market.Smith	),
-			new ItemSalesInfo( typeof(	Chainsaw	),	520	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Tinker	),
 			new ItemSalesInfo( typeof(	ChainSkirt	),	149	,	15	,	0	,	false	,	false	,	World.None	,	Category.Armor	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	ChampionShield	),	231	,	15	,	0	,	false	,	false	,	World.None	,	Category.Shield	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	ChaosShield	),	256	,	15	,	0	,	false	,	false	,	World.None	,	Category.Shield	,	Material.Metal	,	Market.Smith	),
@@ -2311,7 +2309,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	DarkShield	),	231	,	15	,	0	,	false	,	false	,	World.None	,	Category.Shield	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	DartBoardEastDeed	),	32	,	0	,	0	,	false	,	false	,	World.None	,	Category.Tavern	,	Material.None	,	Market.Inn	),
 			new ItemSalesInfo( typeof(	DartBoardSouthDeed	),	32	,	0	,	0	,	false	,	false	,	World.None	,	Category.Tavern	,	Material.None	,	Market.Inn	),
-			new ItemSalesInfo( typeof(	DataPad	),	300	,	0	,	0	,	false	,	false	,	World.None	,	Category.Book	,	Material.None	,	Market.Sage	),
 			new ItemSalesInfo( typeof(	DeadBodyEWDeed	),	345	,	3	,	95	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Evil	),
 			new ItemSalesInfo( typeof(	DeadBodyNSDeed	),	345	,	3	,	95	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Evil	),
 			new ItemSalesInfo( typeof(	DeadMask	),	28	,	10	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Evil	),
@@ -3318,7 +3315,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	LethalPoisonPotion	),	320	,	2	,	95	,	false	,	false	,	World.None	,	Category.Potion	,	Material.None	,	Market.Assassin	),
 			new ItemSalesInfo( typeof(	GoldenSerpentVenom	),	420	,	0	,	0	,	false	,	false	,	World.None	,	Category.Potion	,	Material.None	,	Market.Assassin	),
 			new ItemSalesInfo( typeof(	PolishBoneBrush	),	12	,	10	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Undertaker	),
-			new ItemSalesInfo( typeof(	PortableSmelter	),	520	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Tinker	),
 			new ItemSalesInfo( typeof(	PotionKeg	),	60	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Alchemy	),
 			new ItemSalesInfo( typeof(	PottedCactusDeed	),	5000	,	1	,	95	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Herbalist	),
 			new ItemSalesInfo( typeof(	Pouch	),	6	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Provisions	),

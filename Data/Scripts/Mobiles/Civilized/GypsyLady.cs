@@ -332,39 +332,6 @@ namespace Server.Mobiles
 					}
 				}
 				///////////////////////////////////////////////////////////////////////////////////
-				else if ( targeted is DataPad )
-				{
-					int nCost = 100;
-
-					if ( BaseVendor.BeggingPose(from) > 0 ) // LET US SEE IF THEY ARE BEGGING
-					{
-						nCost = nCost - (int)( ( from.Skills[SkillName.Begging].Value * 0.005 ) * nCost );
-					}
-
-					int toConsume = nCost;
-
-					if (pack.ConsumeTotal(typeof(Gold), toConsume))
-					{
-						string WillSay = "";
-
-						switch ( Utility.RandomMinMax( 0, 3 ) ) 
-						{
-							case 0: WillSay = "The spirits tell me that this glowing book is"; break;
-							case 1: WillSay = "My mind is showing me that this glowing book is"; break;
-							case 2: WillSay = "The voices all speak that this glowing book is"; break;
-							case 3: WillSay = "I can see beyond that this glowing book is"; break;
-						}
-
-						m_GypsyLady.SayTo(from, WillSay + " truthfully written.");
-
-						from.SendMessage(String.Format("You pay {0} gold.", toConsume));
-					}
-					else
-					{
-						m_GypsyLady.SayTo(from, "I require {0} gold for my visions.", toConsume);
-					}
-				}
-				///////////////////////////////////////////////////////////////////////////////////
 				else
 				{
 					m_GypsyLady.SayTo(from, "That is not a book or parchment.");

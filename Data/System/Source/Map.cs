@@ -207,8 +207,8 @@ namespace Server
 				else if ( reg.IsPartOf( "the Azure Castle" ) ){ Heat = 3; }
 				else if ( reg.IsPartOf( "the Scurvy Reef" ) ){ Heat = 2; }
 
-				else if ( reg.IsPartOf( "the Ancient Crash Site" ) ){ Heat = 4; }
-				else if ( reg.IsPartOf( "the Ancient Sky Ship" ) ){ Heat = 4; }
+				else if ( reg.IsPartOf( "Fanaedar" ) ){ Heat = 4; }
+				else if ( reg.IsPartOf( "Demonweb Pits" ) ){ Heat = 4; }
 			}
 			else if ( map == Map.Atlantis )
 			{
@@ -371,9 +371,9 @@ namespace Server
 
 			else if ( map == Map.Sosaria && reg.IsPartOf( "the Chamber of Corruption" ) ){ land = Land.Underworld; }
 
-			else if ( map == Map.SavagedEmpire && ( reg.IsPartOf( "the Ancient Crash Site" ) || 
+			else if ( map == Map.SavagedEmpire && ( reg.IsPartOf( "Fanaedar" ) || 
 												reg.IsPartOf( "the Obsidian Fortress" ) || 
-												reg.IsPartOf( "the Ancient Sky Ship" ) ) ){ land = Land.Underworld; }
+												reg.IsPartOf( "Demonweb Pits" ) ) ){ land = Land.Underworld; }
 
 			else if ( map == Map.Underworld && ( reg.IsPartOf( "the Glacial Scar" ) ) ){ land = Land.IslesDread; }
 

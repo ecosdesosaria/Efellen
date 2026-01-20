@@ -902,7 +902,7 @@
 
 				</parent>
 
-				<parent name="Clues">
+				<parent name="Library of Bal Tsareth">
 
 					<child name="Entrance" x="3760" y="2041" z="0" map="Sosaria" />
 

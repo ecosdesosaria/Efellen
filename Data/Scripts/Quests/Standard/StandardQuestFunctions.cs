@@ -207,9 +207,7 @@ namespace Server.Misc
 							if ( theone is Daemon ){ killName = "a daemon"; killTitle = ""; }
 							if ( theone is Balron ){ killName = "a balron"; killTitle = ""; }
 							if ( theone is RidingDragon || theone is Dragons ){ killName = "a dragon"; killTitle = ""; }
-							if ( theone is BombWorshipper ){ killName = "a worshipper of the bomb"; killTitle = ""; }
-							if ( theone is Psionicist ){ killName = "a psychic of the bomb"; killTitle = ""; }
-
+						
 						string myexplorer = kexplorer + "#" + killTitle + "#" + killName + "#" + Server.Misc.Worlds.GetRegionName( theone.Map, theone.Location ) + "#0#" + kDollar + "#" + kWorld + "#Monster";
 						PlayerSettings.SetQuestInfo( m, "StandardQuest", myexplorer );
 

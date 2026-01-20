@@ -165,23 +165,7 @@ namespace Server.Spells.Research
 						from.SendMessage(WillSay + " falsely written.");
 					}
 				}
-				///////////////////////////////////////////////////////////////////////////////////
-				else if ( targeted is DataPad )
-				{
-					consume = true;
-					from.PlaySound( 0xF9 );
-					string WillSay = "";
-
-					switch ( Utility.RandomMinMax( 0, 3 ) ) 
-					{
-						case 0: WillSay = "The spirits tell you that this glowing book is"; break;
-						case 1: WillSay = "Your mind is showing you that this glowing book is"; break;
-						case 2: WillSay = "The voices all speak that this glowing book is"; break;
-						case 3: WillSay = "You can see beyond that this glowing book is"; break;
-					}
-
-					from.SendMessage(WillSay + " truthfully written.");
-				}
+				
 				///////////////////////////////////////////////////////////////////////////////////
 				else
 				{

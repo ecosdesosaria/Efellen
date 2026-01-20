@@ -388,10 +388,8 @@ namespace Server.Items
 			UnscaleDurability();
 			ResourceMods.Modify( this, true );
 			m_Resource = resource;
-
-			if ( !(this is LightSword) && !(this is DoubleLaserSword) )
-				Hue = CraftResources.GetHue(m_Resource);
-			else if ( CraftResources.GetType( m_Resource ) == CraftResourceType.Block )
+			
+			if ( CraftResources.GetType( m_Resource ) == CraftResourceType.Block )
 				Hue = CraftResources.GetHue(m_Resource);
 
 			ResourceMods.Modify( this, false );
@@ -3358,7 +3356,7 @@ namespace Server.Items
 			if ( (prop = m_AosAttributes.RegenMana) != 0 )
 				list.Add( 1060440, prop.ToString() ); // mana regeneration ~1_val~
 
-			if ( (prop = m_AosAttributes.NightSight) != 0 && !(this is LightSword) && !(this is DoubleLaserSword) && !(this is LevelLaserSword) && !(this is LevelDoubleLaserSword) )
+			if ( (prop = m_AosAttributes.NightSight) != 0 )
 				list.Add( 1060441 ); // night sight
 
 			if ( (prop = m_AosAttributes.ReflectPhysical) != 0 )

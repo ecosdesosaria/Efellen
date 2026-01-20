@@ -148,9 +148,7 @@ namespace Server.Items
 					case 7:
 						int luckMod = from.Luck; if (luckMod > 2000) { luckMod = 2000; }
 
-						if ((Region.Find(from.Location, from.Map)).IsPartOf("the Ancient Crash Site") || (Region.Find(from.Location, from.Map)).IsPartOf("the Ancient Sky Ship"))
-							item = new DDXormite((luckMod + Utility.RandomMinMax(333, 666)));
-						else if ((Region.Find(from.Location, from.Map)).IsPartOf("the Mines of Morinia"))
+						if ((Region.Find(from.Location, from.Map)).IsPartOf("the Mines of Morinia"))
 							item = new Crystals((luckMod + Utility.RandomMinMax(200, 400)));
 						else if (from.Land == Land.Underworld)
 							item = new DDJewels((luckMod + Utility.RandomMinMax(500, 1000)));

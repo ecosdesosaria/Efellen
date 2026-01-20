@@ -82,29 +82,7 @@ namespace Server.Items
 				}
 				else if ( targeted is BaseDoor )
 				{
-					if ( Server.Items.DoorType.IsSpaceshipDoor( (BaseDoor)targeted ) && m_Key.ItemID != 0x3A75 )
-					{
-						from.SendMessage( "This doesn't have a key hole, but it does have a card slot." );
-					}
-					else if ( !(Server.Items.DoorType.IsSpaceshipDoor( (BaseDoor)targeted )) && m_Key.ItemID == 0x3A75 )
-					{
-						from.SendMessage( "This doesn't have a card slot, but it does have a key hole." );
-					}
-					else if ( Server.Items.DoorType.IsSpaceshipDoor( (BaseDoor)targeted ) && m_Key.ItemID == 0x3A75 )
-					{
-						if ( ((BaseDoor)targeted).Locked == false )
-							from.SendMessage( "That does not need to be unlocked." );
-
-						else
-						{
-							((BaseDoor)targeted).Locked = false;
-							Server.Items.DoorType.UnlockDoors( (BaseDoor)targeted );
-							from.RevealingAction();
-							from.PlaySound( 0x54B );
-							m_Key.Consume();
-						}
-					}
-					else if ( Server.Items.DoorType.IsDungeonDoor( (BaseDoor)targeted ) && m_Key.ItemID != 0x3A75 )
+					if ( Server.Items.DoorType.IsDungeonDoor( (BaseDoor)targeted ) && m_Key.ItemID != 0x3A75 )
 					{
 						if ( ((BaseDoor)targeted).Locked == false )
 							from.SendMessage( "That does not need to be unlocked." );

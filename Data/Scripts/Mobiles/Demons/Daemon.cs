@@ -177,7 +177,6 @@ namespace Server.Mobiles
 				else if ( Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 6873, 202, Map.Sosaria ) ){ 	category = "dungeon"; }
 				else if ( reg.IsPartOf( "the Forgotten Halls" ) 
 						&& Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 409, 3670, Map.SavagedEmpire ) ){ 		category = "swamp"; }
-				else if ( reg.IsPartOf( "the Ancient Crash Site" ) || reg.IsPartOf( "the Ancient Sky Ship" ) ){ category = "radiation"; }
 				else if ( Server.Misc.Worlds.IsFireDungeon( this.Location, this.Map ) ){			category = "fire"; }
 				else if ( Server.Misc.Worlds.IsIceDungeon( this.Location, this.Map ) ){				category = "snow"; }
 				else if ( Server.Misc.Worlds.IsSeaDungeon( this.Location, this.Map ) ){				category = "sea"; }
