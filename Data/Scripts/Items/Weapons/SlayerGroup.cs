@@ -76,6 +76,15 @@ namespace Server.Items
 			humanoid.Opposition = new SlayerGroup[]{ };
 			humanoid.FoundOn = new Type[]{ };
 			humanoid.Super = new SlayerEntry( SlayerName.Repond, 
+				typeof( BelakTheOutcast ),
+				typeof( SirBradford ),
+				typeof( Sharwyn ),
+				typeof( PossessedMage),
+				typeof( PossessedBrigand),
+				typeof( PossessedScholar),
+				typeof( PossessedMinstrel),
+				typeof( PossessedBerserker),
+				typeof( BalTsareth),
 				typeof( MotherSuperior),
 				typeof( PirateCaptain ), 
 				typeof( PirateCrew ), 
@@ -245,6 +254,7 @@ namespace Server.Items
 			undead.Opposition = new SlayerGroup[]{ };
 			undead.FoundOn = new Type[]{ };
 			undead.Super = new SlayerEntry( SlayerName.Silver, 
+				typeof( Vraax ),
 				typeof( AncientLich ), 
 				typeof( LichKing ), 
 				typeof( BaronAlmric ), 
@@ -451,7 +461,11 @@ namespace Server.Items
 				typeof( Nazghoul ), 
 				typeof( Vordo ), 
 				typeof( SkeletalMage ), 
-				typeof( SkeletalWizard ), 
+				typeof( SkeletalWizard ),
+				typeof( PossessedMage), 
+				typeof( PossessedScholar),
+				typeof( BalTsareth ), 
+				typeof( Desmona ), 
 				typeof( UndeadDruid ) );
 			wizard.Entries = new SlayerEntry[0];
 
