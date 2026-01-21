@@ -14,12 +14,12 @@ This list shows the lowers level in which a spell becomes available
 
 Level 1
 
-Burning Hands
+Burngle
+Magic Missile
+Sleepning Hands
 Cause Fear
 Cure Light Wounds
-Entangle
-Magic Missile
-Sleep
+Enta
 Summon Nature’s Ally I
 Summon Spore Field
 Vigor, Lesser
@@ -623,7 +623,7 @@ namespace Server.CustomSpells
                 0
             );
     
-            int damage = Utility.RandomMinMax(damageMin, damageMax) + level * 2;
+            int damage = Utility.RandomMinMax(damageMin, damageMax) + level;
     
             DamageAtLocation(
                 caster,
@@ -736,15 +736,18 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            caster.FixedParticles(0x3709, 10, 15, 5052, hue != 0 ? hue : 1160, 0, EffectLayer.RightHand);
+            caster.FixedParticles(0x3709, 10, 15, 5052, hue != 0 ? hue : 1160, 0, EffectLayer.LeftHand);
+            
             SpellHelpers.DoConeDamage(
-            caster,
-            6,
-            15, 35,
-            level,
-            30, 0, 0, 0, 70,
-            0x375A,
-            hue != 0 ? hue : 1160,
-            "You are burned!"
+                caster,
+                3,
+                15, 20,
+                level,
+                0, 100, 0, 0, 0, 
+                0x3709,
+                hue != 0 ? hue : 1160,
+                "You are burned by scorching flames!"
             );
         }
     }
@@ -770,19 +773,32 @@ namespace Server.CustomSpells
             if (target.Skills[SkillName.Knightship].Value > 50 + level * 2)
             {
                 target.SendMessage("Your bravery shields you from fear!");
-                target.FixedEffect(0x373A, 10, 15);
+                target.FixedEffect(0x375A, 10, 20, hue != 0 ? hue : 0x47E, 0);
+                target.PlaySound(0x1F7);
                 return;
             }
 
             caster.DoHarmful(target);
+
             target.FixedParticles(0x374A, 10, 15, 5013, hue != 0 ? hue : 0x455, 0, EffectLayer.Waist);
+            target.FixedParticles(0x376A, 9, 20, 5044, hue != 0 ? hue : 0x455, 0, EffectLayer.Head);
             target.PlaySound(0x1F8);
 
             Direction dir = target.GetDirectionTo(caster);
-            for (int i = 0; i < level + 1; i++)
+            int distance = level + 1;
+            
+            for (int i = 0; i < distance; i++)
+            {
                 target.Move(dir);
+                
+                if (i % 2 == 0)
+                {
+                    Effects.SendLocationEffect(target.Location, target.Map, 0x3728, 10, 10, hue != 0 ? hue : 0x455, 0);
+                }
+            }
 
             target.FixedParticles(0x376A, 9, 32, 5008, hue != 0 ? hue : 0x455, 0, EffectLayer.Waist);
+            target.SendMessage("You flee in terror!");
         }
     }
 
@@ -800,6 +816,11 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             int duration = 6 + (level / 2);
+            
+            caster.FixedParticles(0x376A, 9, 32, 5030, hue != 0 ? hue : 0x47D, 0, EffectLayer.Waist);
+            caster.PlaySound(0x1F7);
+            caster.SendMessage("You feel vitality flowing through your body.");
+            
             NatureSpellHelper.ApplyVigor(caster, 3, duration, level);
         }
     }
@@ -818,9 +839,14 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            caster.Heal(Utility.RandomMinMax(4, 12) * level);
+            int healAmount = Utility.RandomMinMax(4, 12) * level;
+            caster.Heal(healAmount);
+            
             caster.FixedParticles(0x376A, 9, 32, 5030, hue != 0 ? hue : 0x47D, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x375A, 10, 15, 5018, hue != 0 ? hue : 0x47D, 0, EffectLayer.Head);
             caster.PlaySound(0x202);
+            
+            caster.SendMessage("You feel healing energy flow through you.");
         }
     }
 
@@ -839,20 +865,31 @@ namespace Server.CustomSpells
             if (target == null || !target.Alive)
                 return;
 
-            SpellHelpers.CreateAreaEffect(target.Location, target.Map, 4, 0.5, 0x3735, 20, 10, hue != 0 ? hue : 0x47E);
+            SpellHelpers.CreateAreaEffect(
+                target.Location, 
+                target.Map, 
+                4, 
+                0.5, 
+                0x3735, 
+                20, 
+                10, 
+                hue != 0 ? hue : 0x47E
+            );
 
-            IPooledEnumerable eable = target.GetMobilesInRange(4);
-            foreach (Mobile m in eable)
+            Effects.PlaySound(target.Location, target.Map, 0x5C6);
+
+            SpellHelpers.ForEachHostileInRange(target, caster, 4, delegate(Mobile m)
             {
-                if (m != caster && m.Alive && caster.CanBeHarmful(m))
-                {
-                    double duration = Math.Max(3.0, (3.0 + level) - (m.Skills[SkillName.MagicResist].Value / 100.0 * 6.0));
-                    m.Paralyze(TimeSpan.FromSeconds(duration));
-                    m.FixedEffect(0x376A, 9, 32);
-                    m.PlaySound(0x204);
-                }
-            }
-            eable.Free();
+                caster.DoHarmful(m);
+                
+                double duration = Math.Max(3.0, (3.0 + level) - (m.Skills[SkillName.MagicResist].Value / 100.0 * 6.0));
+                m.Paralyze(TimeSpan.FromSeconds(duration));
+                
+                m.FixedEffect(0x376A, 9, 32);
+                m.FixedParticles(0x3735, 10, 20, 5052, hue != 0 ? hue : 0x47E, 0, EffectLayer.Waist);
+                m.PlaySound(0x204);
+                m.SendMessage("Magical vines entangle you!");
+            });
         }
     }
 
@@ -873,26 +910,48 @@ namespace Server.CustomSpells
                 return;
 
             caster.DoHarmful(target);
+            
             int missiles = (level >= 9) ? 5 : (level >= 7) ? 4 : (level >= 5) ? 3 : (level >= 3) ? 2 : 1;
 
             for (int i = 0; i < missiles; i++)
             {
                 Timer.DelayCall(TimeSpan.FromSeconds(i * 0.3), delegate ()
                 {
-                    if (target != null && target.Alive && !target.Deleted)
-                    {
-                        Effects.SendMovingEffect(caster, target, 0x379F, 7, 0, false, false, hue != 0 ? hue : 0x0213, 0);
-                        Effects.PlaySound(caster.Location, caster.Map, 0x1F5);
+                    if (target == null || !target.Alive || target.Deleted)
+                        return;
 
-                        Timer.DelayCall(TimeSpan.FromSeconds(0.5), delegate ()
-                        {
-                            if (target != null && target.Alive && !target.Deleted)
-                            {
-                                AOS.Damage(target, caster, Utility.RandomMinMax(5, 13), 0, 0, 0, 0, 100);
-                                Effects.SendLocationEffect(target.Location, target.Map, 0x3709, 10, 30, hue != 0 ? hue : 0x0213, 0);
-                            }
-                        });
-                    }
+                    Effects.SendMovingEffect(
+                        caster, 
+                        target, 
+                        0x379F, 
+                        7, 
+                        0, 
+                        false, 
+                        false, 
+                        hue != 0 ? hue : 0x0213, 
+                        0
+                    );
+                    Effects.PlaySound(caster.Location, caster.Map, 0x1F5);
+
+                    Timer.DelayCall(TimeSpan.FromSeconds(0.5), delegate ()
+                    {
+                        if (target == null || !target.Alive || target.Deleted)
+                            return;
+
+                        int damage = Utility.RandomMinMax(3, 7) + level;
+                        AOS.Damage(target, caster, damage, 0, 0, 0, 0, 100);
+                        
+                        Effects.SendLocationEffect(
+                            target.Location, 
+                            target.Map, 
+                            0x3709, 
+                            10, 
+                            30, 
+                            hue != 0 ? hue : 0x0213, 
+                            0
+                        );
+                        target.FixedParticles(0x36BD, 6, 10, 5044, hue != 0 ? hue : 0x0213, 0, EffectLayer.Waist);
+                    });
                 });
             }
         }
@@ -916,22 +975,23 @@ namespace Server.CustomSpells
                 return;
 
             double baseDuration = Math.Min(9.0, 3.0 + level);
+            
             target.FixedEffect(0x375A, 10, 20, hue != 0 ? hue : 0x47E, 0);
+            target.FixedParticles(0x373A, 10, 15, 5036, hue != 0 ? hue : 0x47E, 0, EffectLayer.Head);
             target.PlaySound(0x1F2);
 
-            IPooledEnumerable eable = target.GetMobilesInRange(1);
-            foreach (Mobile m in eable)
+            SpellHelpers.ForEachHostileInRange(target, caster, 1, delegate(Mobile m)
             {
-                if (m != caster && m.Alive && caster.CanBeHarmful(m))
-                {
-                    double duration = Math.Max(1.0, baseDuration - (m.Skills[SkillName.MagicResist].Value / 100.0 * baseDuration));
-                    m.Paralyze(TimeSpan.FromSeconds(duration));
-                    m.FixedEffect(0x376A, 9, 32, hue != 0 ? hue : 0x47E, 0);
-                    m.PlaySound(0x204);
-                    m.SendMessage("You fall asleep!");
-                }
-            }
-            eable.Free();
+                caster.DoHarmful(m);
+                
+                double duration = Math.Max(1.0, baseDuration - (m.Skills[SkillName.MagicResist].Value / 100.0 * baseDuration));
+                m.Paralyze(TimeSpan.FromSeconds(duration));
+                
+                m.FixedEffect(0x376A, 9, 32, hue != 0 ? hue : 0x47E, 0);
+                m.FixedParticles(0x375A, 9, 20, 5044, hue != 0 ? hue : 0x47E, 0, EffectLayer.Head);
+                m.PlaySound(0x204);
+                m.SendMessage("You fall into a magical slumber!");
+            });
         }
     }
 
@@ -951,8 +1011,11 @@ namespace Server.CustomSpells
             if (target == null)
                 target = caster;
 
-            int range = 2;
-            TimeSpan duration = TimeSpan.FromSeconds(8 + (level / 1));
+            int range = 1;
+            TimeSpan duration = TimeSpan.FromSeconds(8 + level);
+
+            Effects.SendLocationEffect(target.Location, target.Map, 0x3728, 20, 10, 0x48, 0);
+            caster.PlaySound(0x222);
 
             for (int x = -range; x <= range; x++)
             {
@@ -961,13 +1024,12 @@ namespace Server.CustomSpells
                     Point3D loc = new Point3D(
                         target.X + x,
                         target.Y + y,
-                        target.Z);
+                        target.Z
+                    );
 
                     NatureSpellHelper.SpawnSporeTile(loc, target.Map, caster, level, duration);
                 }
             }
-
-            caster.PlaySound(0x222);
         }
     }
 
@@ -994,10 +1056,15 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            caster.AddStatMod(new StatMod(StatType.Str, "AidStr", 13 + level, TimeSpan.FromSeconds(30)));
-            caster.Hits += Utility.RandomMinMax(12, 22) + level;
+            int strBonus = 13 + level;
+            int healAmount = Utility.RandomMinMax(12, 22) + level;
+
+            caster.AddStatMod(new StatMod(StatType.Str, "AidStr", strBonus, TimeSpan.FromSeconds(30)));
+            caster.Hits += healAmount;
+
             caster.FixedParticles(0x376A, 10, 32, 5030, hue != 0 ? hue : 0x47D, 0, EffectLayer.Waist);
             caster.FixedParticles(0x375A, 9, 20, 5030, hue != 0 ? hue : 0x47D, 0, EffectLayer.Head);
+            caster.FixedParticles(0x373A, 10, 15, 5018, hue != 0 ? hue : 0x47D, 0, EffectLayer.RightHand);
             caster.PlaySound(0x1F2);
         }
     }
@@ -1009,27 +1076,24 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
             AddLevel(SpellType.Druid, 2);
-            AddLevel(SpellType.Cleric, 2);  
-
+            AddLevel(SpellType.Cleric, 2);
             AddTag(SpellTag.Buff);
             AddTag(SpellTag.SingleTarget);
-        }   
+        }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            int bonusHP = 35 + level;   
+            int bonusHP = 35 + level;
+            int strBonus = Math.Max(1, bonusHP / 2);
 
-            int strBonus = bonusHP / 2;
-            if (strBonus < 1)
-                strBonus = 1;   
+            caster.AddStatMod(new StatMod(StatType.Str, "BearsEndurance", strBonus, TimeSpan.FromSeconds(60)));
+            caster.Hits += bonusHP;
 
-            StatMod mod = new StatMod(StatType.Str, "BearsEndurance", strBonus, TimeSpan.FromSeconds(60));
-            caster.AddStatMod(mod); 
-
-            caster.Hits += bonusHP; 
-
-            caster.FixedEffect(0x376A, 10, 20);
+            caster.FixedEffect(0x376A, 10, 20, hue != 0 ? hue : 0x21, 0);
+            caster.FixedParticles(0x373A, 10, 15, 5018, hue != 0 ? hue : 0x21, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x375A, 9, 20, 5044, hue != 0 ? hue : 0x21, 0, EffectLayer.Head);
             caster.PlaySound(0x1EA);
+            
         }
     }
 
@@ -1045,53 +1109,56 @@ namespace Server.CustomSpells
             AddTag(SpellTag.DoT);
             AddTag(SpellTag.AoE);
             AddTag(SpellTag.Offensive);
-            }
+        }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
             int duration = level * 2;
 
-            Timer t = new InternalTimer(caster, level, duration);
-            t.Start();
-
-            caster.FixedEffect(0x3709, 10, 30);
+            caster.FixedEffect(0x3709, 10, 30, hue != 0 ? hue : 0x501, 0);
+            caster.FixedParticles(0x376A, 9, 32, 5008, hue != 0 ? hue : 0x501, 0, EffectLayer.Waist);
             caster.PlaySound(0x208);
+            caster.SendMessage("Your body radiates scorching heat!");
+
+            new BodyOfTheSunTimer(caster, level, duration, hue).Start();
         }
 
-        private class InternalTimer : Timer
+        private class BodyOfTheSunTimer : Timer
         {
             private Mobile m_Caster;
             private int m_Level;
             private int m_Ticks;
+            private int m_Hue;
 
-            public InternalTimer(Mobile caster, int level, int duration)
+            public BodyOfTheSunTimer(Mobile caster, int level, int duration, int hue)
                 : base(TimeSpan.Zero, TimeSpan.FromSeconds(2))
             {
                 m_Caster = caster;
                 m_Level = level;
                 m_Ticks = duration / 2;
+                m_Hue = hue;
             }
 
             protected override void OnTick()
             {
-                if (!m_Caster.Alive || m_Ticks-- <= 0)
+                if (m_Caster == null || m_Caster.Deleted || !m_Caster.Alive || m_Ticks-- <= 0)
                 {
                     Stop();
                     return;
                 }
 
-                IPooledEnumerable eable = m_Caster.GetMobilesInRange(1);
-                foreach (Mobile m in eable)
+                m_Caster.FixedParticles(0x3709, 5, 10, 5052, m_Hue != 0 ? m_Hue : 0x501, 0, EffectLayer.Waist);
+
+                SpellHelpers.ForEachHostileInRange(m_Caster, m_Caster, 1, delegate(Mobile m)
                 {
-                    if (!m.Alive || !m_Caster.CanBeHarmful(m))
-                        continue;
+                    m_Caster.DoHarmful(m);
+                    
+                    int dmg = Utility.RandomMinMax(8, 13) + m_Level;
+                    AOS.Damage(m, m_Caster, dmg, 0, 100, 0, 0, 0);
 
-                    int dmg = Utility.RandomMinMax(9, 14) + m_Level;
-                    AOS.Damage(m, m_Caster, dmg, 100, 0, 0, 0, 0);
-
-                    m.FixedEffect(0x3709, 10, 20);
-                }
-                eable.Free();
+                    m.FixedEffect(0x3709, 10, 20, m_Hue != 0 ? m_Hue : 0x501, 0);
+                    m.PlaySound(0x208);
+                });
             }
         }
     }
@@ -1122,7 +1189,11 @@ namespace Server.CustomSpells
 
             caster.FixedEffect(0x375A, 10, 20, hue != 0 ? hue : 0x21, 0);
             caster.FixedParticles(0x373A, 10, 15, 5018, hue != 0 ? hue : 0x21, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x376A, 9, 20, 5044, hue != 0 ? hue : 0x21, 0, EffectLayer.LeftHand);
+            caster.FixedParticles(0x376A, 9, 20, 5044, hue != 0 ? hue : 0x21, 0, EffectLayer.RightHand);
             caster.PlaySound(0x1E9);
+            
+            caster.SendMessage("You feel the strength of a raging bull!");
         }
     }
 
@@ -1151,7 +1222,10 @@ namespace Server.CustomSpells
 
             caster.FixedEffect(0x375A, 10, 20, hue != 0 ? hue : 0x47E, 0);
             caster.FixedParticles(0x376A, 9, 32, 5008, hue != 0 ? hue : 0x47E, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x373A, 10, 15, 5036, hue != 0 ? hue : 0x47E, 0, EffectLayer.Head);
             caster.PlaySound(0x1E9);
+            
+            caster.SendMessage("You move with feline grace and agility!");
         }
     }
 
@@ -1176,55 +1250,64 @@ namespace Server.CustomSpells
             Map map = target.Map;
 
             int duration = 6 + (level / 3) * 2;
-            new InternalTimer(caster, loc, map, level, duration).Start();
 
+            // Enhanced visuals: Spinning blade cloud
             Effects.SendLocationEffect(loc, map, 0x36CB, 20, 10, hue != 0 ? hue : 0x481, 0);
+            Effects.PlaySound(loc, map, 0x23B);
+
+            new CloudOfKnivesTimer(caster, loc, map, level, duration, hue).Start();
         }
 
-        private class InternalTimer : Timer
+        private class CloudOfKnivesTimer : Timer
         {
             private Mobile m_Caster;
             private Point3D m_Loc;
             private Map m_Map;
             private int m_Level;
             private int m_Ticks;
+            private int m_Hue;
 
-            public InternalTimer(Mobile caster, Point3D loc, Map map, int level, int duration)
-                : base(TimeSpan.Zero, TimeSpan.FromSeconds(2))
+            public CloudOfKnivesTimer(Mobile caster, Point3D loc, Map map, int level, int duration, int hue)
+                : base(TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(2))
             {
                 m_Caster = caster;
                 m_Loc = loc;
                 m_Map = map;
                 m_Level = level;
                 m_Ticks = duration / 2;
+                m_Hue = hue;
             }
 
             protected override void OnTick()
             {
-                if (m_Ticks-- <= 0)
+                if (m_Caster == null || m_Caster.Deleted || m_Ticks-- <= 0)
                 {
                     Stop();
                     return;
                 }
+                Effects.SendLocationEffect(m_Loc, m_Map, 0x36CB, 10, 10, m_Hue != 0 ? m_Hue : 0x481, 0);
+                Effects.PlaySound(m_Loc, m_Map, 0x23B);
 
                 IPooledEnumerable eable = m_Map.GetMobilesInRange(m_Loc, 0);
                 foreach (Mobile m in eable)
                 {
-                    if (!m.Alive || !m_Caster.CanBeHarmful(m))
-                        continue;
-
-                    int dmg = Utility.RandomMinMax(11, 23) + m_Level;
-                    AOS.Damage(m, m_Caster, dmg, 100, 0, 0, 0, 0);
+                    if (m.Alive && m_Caster.CanBeHarmful(m))
+                    {
+                        m_Caster.DoHarmful(m);
+                        
+                        int dmg = Utility.RandomMinMax(8, 13) + m_Level;
+                        AOS.Damage(m, m_Caster, dmg, 100, 0, 0, 0, 0);
+                        
+                        m.SendMessage("Whirling blades slice into you!");
+                    }
                 }
                 eable.Free();
-
-                Effects.SendLocationEffect(m_Loc, m_Map, 0x36CB, 10, 10);
             }
         }
     }
 
 
-    public class DarkBoltSpell : CustomSpell
+     public class DarkBoltSpell : CustomSpell
     {
         public DarkBoltSpell() : base("Dark Bolt", 0x36BD)
         {
@@ -1243,18 +1326,35 @@ namespace Server.CustomSpells
                 return;
 
             caster.DoHarmful(target);
+
             caster.MovingEffect(target, 0x36BD, 7, 0, false, false, hue != 0 ? hue : 0x497, 0);
+            caster.FixedParticles(0x374A, 10, 15, 5013, hue != 0 ? hue : 0x497, 0, EffectLayer.RightHand);
 
-            int dmg = Utility.RandomMinMax(14, 20) + level;
-            AOS.Damage(target, caster, dmg, 100, 0, 0, 0, 0);
+            Timer.DelayCall(TimeSpan.FromSeconds(0.5), delegate()
+            {
+                if (target == null || target.Deleted || !target.Alive)
+                    return;
 
-            double resist = target.Skills[SkillName.MagicResist].Value;
-            int roll = Utility.RandomMinMax(6, 26) + level;
+                int dmg = Utility.RandomMinMax(17, 22) + level;
+                AOS.Damage(target, caster, dmg, 100, 0, 0, 0, 0);
 
-            if (resist < roll)
-                target.Paralyze(TimeSpan.FromSeconds(4));
+                target.FixedParticles(0x374A, 10, 15, 5013, hue != 0 ? hue : 0x497, 0, EffectLayer.Waist);
+                target.FixedParticles(0x36BD, 6, 10, 5044, hue != 0 ? hue : 0x497, 0, EffectLayer.Head);
+                target.PlaySound(0x1F2);
 
-            target.PlaySound(0x1F2);
+                double resist = target.Skills[SkillName.MagicResist].Value;
+                int roll = Utility.RandomMinMax(6, 26) + level;
+
+                if (resist < roll)
+                {
+                    target.Paralyze(TimeSpan.FromSeconds(4));
+                    target.SendMessage("Dark energy freezes you in place!");
+                }
+                else
+                {
+                    target.SendMessage("You resist the paralyzing energy!");
+                }
+            });
         }
     }
 
@@ -1265,7 +1365,6 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 2);
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
-
             AddTag(SpellTag.Offensive);
             AddTag(SpellTag.AoE);
             AddTag(SpellTag.DoT);
@@ -1280,30 +1379,60 @@ namespace Server.CustomSpells
             Point3D loc = target.Location;
             Map map = target.Map;
 
-            Effects.SendLocationEffect(loc, map, 0x36BD, 20, 10, 0x489, 0);
+            Effects.SendLocationEffect(loc, map, 0x36BD, 20, 10, hue != 0 ? hue : 0x489, 0);
+            Effects.PlaySound(loc, map, 0x208);
 
-            int ticks = (6 + (level / 3) * 2) / 2;
-            int count = 0;
+            int duration = 6 + (level / 3) * 2;
+            new FlamingSphereTimer(caster, loc, map, level, duration, hue).Start();
+        }
 
-            Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(2), delegate
+        private class FlamingSphereTimer : Timer
+        {
+            private Mobile m_Caster;
+            private Point3D m_Loc;
+            private Map m_Map;
+            private int m_Level;
+            private int m_Ticks;
+            private int m_Hue;
+
+            public FlamingSphereTimer(Mobile caster, Point3D loc, Map map, int level, int duration, int hue)
+                : base(TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(2))
             {
-                if (count++ >= ticks)
-                    return;
+                m_Caster = caster;
+                m_Loc = loc;
+                m_Map = map;
+                m_Level = level;
+                m_Ticks = duration / 2;
+                m_Hue = hue;
+            }
 
-                IPooledEnumerable eable = map.GetMobilesInRange(loc, 1);
+            protected override void OnTick()
+            {
+                if (m_Caster == null || m_Caster.Deleted || m_Ticks-- <= 0)
+                {
+                    Stop();
+                    return;
+                }
+
+                Effects.SendLocationEffect(m_Loc, m_Map, 0x36BD, 20, 10, m_Hue != 0 ? m_Hue : 0x489, 0);
+                Effects.PlaySound(m_Loc, m_Map, 0x208);
+
+                IPooledEnumerable eable = m_Map.GetMobilesInRange(m_Loc, 1);
                 foreach (Mobile m in eable)
                 {
-                    if (!m.Alive || !caster.CanBeHarmful(m))
-                        continue;
-
-                    int dmg = Utility.RandomMinMax(11, 23) + level;
-                    AOS.Damage(m, caster, dmg, 0, 100, 0, 0, 0);
-                    m.PlaySound(0x208);
+                    if (m.Alive && m_Caster.CanBeHarmful(m))
+                    {
+                        m_Caster.DoHarmful(m);
+                        
+                        int dmg = Utility.RandomMinMax(12, 21) + m_Level;
+                        AOS.Damage(m, m_Caster, dmg, 0, 100, 0, 0, 0);
+                        
+                        m.FixedParticles(0x3709, 10, 15, 5052, m_Hue != 0 ? m_Hue : 0x489, 0, EffectLayer.Waist);
+                        m.SendMessage("The flaming sphere burns you!");
+                    }
                 }
                 eable.Free();
-
-                Effects.SendLocationEffect(loc, map, 0x36BD, 20, 10, 0x489, 0);
-            });
+            }
         }
     }
 
@@ -1327,12 +1456,16 @@ namespace Server.CustomSpells
                 return;
 
             caster.DoHarmful(target);
+            
             double duration = Math.Max(1.0, (6.0 + level) - (target.Skills[SkillName.MagicResist].Value / 100.0 * 6.0));
             target.Paralyze(TimeSpan.FromSeconds(duration));
+
             target.FixedParticles(0x376A, 9, 32, 5030, hue != 0 ? hue : 0x0, 0, EffectLayer.Waist);
             target.FixedParticles(0x3779, 10, 15, 5009, hue != 0 ? hue : 0x0, 0, EffectLayer.Head);
+            target.FixedParticles(0x375A, 10, 20, 5044, hue != 0 ? hue : 0x0, 0, EffectLayer.LeftHand);
+            target.FixedParticles(0x375A, 10, 20, 5044, hue != 0 ? hue : 0x0, 0, EffectLayer.RightHand);
             target.PlaySound(0x204);
-            target.SendMessage("You are paralyzed!");
+            target.SendMessage("Magical bonds hold you completely still!");
         }
     }
 
@@ -1354,11 +1487,24 @@ namespace Server.CustomSpells
                 return;
 
             caster.DoHarmful(target);
-            Effects.SendMovingEffect(caster, target, 0x36D4, 10, 0, false, false, hue > 0 ? hue : 0x48E, 0);
-            AOS.Damage(target, caster, Utility.RandomMinMax(12, 22), 0, 0, 0, 100, 0);
 
-            Timer.DelayCall(TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(3), level,
-                new TimerStateCallback(DoTick), new object[] { caster, target });
+            Effects.SendMovingEffect(caster, target, 0x36D4, 10, 0, false, false, hue > 0 ? hue : 0x48E, 0);
+            Effects.PlaySound(caster.Location, caster.Map, 0x5D3);
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.5), delegate()
+            {
+                if (target == null || target.Deleted || !target.Alive)
+                    return;
+
+                int initialDamage = Utility.RandomMinMax(20, 25) + level;
+                AOS.Damage(target, caster, initialDamage, 0, 0, 0, 100, 0);
+
+                target.FixedParticles(0x36BD, 10, 20, 5044, 0x48E, 0, EffectLayer.Waist);
+                target.SendMessage("Acid sears your flesh!");
+
+                Timer.DelayCall(TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(3), level,
+                    new TimerStateCallback(DoTick), new object[] { caster, target });
+            });
         }
 
         private void DoTick(object state)
@@ -1370,8 +1516,11 @@ namespace Server.CustomSpells
             if (target == null || target.Deleted || !target.Alive)
                 return;
 
-            AOS.Damage(target, caster, Utility.RandomMinMax(12, 22), 0, 0, 0, 100, 0);
+            int dotDamage = Utility.RandomMinMax(12, 17);
+            AOS.Damage(target, caster, dotDamage, 0, 0, 0, 100, 0);
+            
             target.FixedEffect(0x36BD, 10, 20, 0x48E, 0);
+            target.SendMessage("The acid continues to burn!");
         }
     }
 
@@ -1398,9 +1547,12 @@ namespace Server.CustomSpells
                     caster.RawInt -= bonus;
             });
 
-            caster.FixedEffect(0x375A, 10, 20, hue != 0 ? hue : 0x21, 0);
-            caster.FixedParticles(0x373A, 10, 15, 5018, hue != 0 ? hue : 0x21, 0, EffectLayer.Waist);
+            caster.FixedEffect(0x375A, 10, 20, hue != 0 ? hue : 0x480, 0);
+            caster.FixedParticles(0x373A, 10, 15, 5018, hue != 0 ? hue : 0x480, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x376A, 9, 32, 5008, hue != 0 ? hue : 0x480, 0, EffectLayer.Head);
             caster.PlaySound(0x1E9);
+            
+            caster.SendMessage("Ancient wisdom fills your mind!");
         }
     }
 
@@ -1421,13 +1573,25 @@ namespace Server.CustomSpells
                 return;
 
             caster.DoHarmful(target);
+            
             int rays = Math.Min(3, 1 + ((level - 1) / 4));
 
             for (int i = 0; i < rays; i++)
             {
-                caster.MovingParticles(target, 0x36D4, 7, 0, false, true, hue != 0 ? hue : 1160, 0, 9502, 1, 0, (EffectLayer)255, 0x100);
-                AOS.Damage(target, caster, Utility.Dice(4, 6, 0) + level, 0, 100, 0, 0, 0);
+                Timer.DelayCall(TimeSpan.FromSeconds(i * 0.2), delegate()
+                {
+                    if (target == null || target.Deleted || !target.Alive)
+                        return;
+
+                    caster.MovingParticles(target, 0x36D4, 7, 0, false, true, hue != 0 ? hue : 1160, 0, 9502, 1, 0, (EffectLayer)255, 0x100);
+                    
+                    int damage = Utility.RandomMinMax(10, 18) + level;
+                    AOS.Damage(target, caster, damage, 0, 100, 0, 0, 0);
+                    
+                    target.FixedParticles(0x3709, 10, 15, 5052, hue != 0 ? hue : 1160, 0, EffectLayer.Waist);
+                });
             }
+            
             target.PlaySound(0x208);
         }
     }
@@ -1490,7 +1654,7 @@ namespace Server.CustomSpells
             SpellHelpers.CreateExplosion(target.Location, target.Map, 0x36BD, hue != 0 ? hue : 0x4F6);
             List<Mobile> targets = SpellHelpers.GetMobilesInRange(target, caster, 1);
             foreach (Mobile m in targets)
-                AOS.Damage(m, caster, Utility.RandomMinMax(25, 35) + level * 2, 0, 0, 0, 100, 0);
+                AOS.Damage(m, caster, Utility.RandomMinMax(20, 25) + level, 0, 0, 0, 100, 0);
         }
     }
 
@@ -1541,7 +1705,7 @@ namespace Server.CustomSpells
     public class AuraOfColdLesserSpell : AuraOfColdSpell
     {
         public AuraOfColdLesserSpell()
-            : base("Aura of Cold, Lesser", 0x480, 13, 19)
+            : base("Aura of Cold, Lesser", 0x480, 16, 21)
         {
             AddLevel(SpellType.Cleric, 3);
             AddLevel(SpellType.Druid, 3);
@@ -1606,7 +1770,7 @@ namespace Server.CustomSpells
                 {
                     caster.DoHarmful(target);
                     target.BoltEffect(hue != 0 ? hue : 0);
-                    AOS.Damage(target, caster, Utility.RandomMinMax(12, 26) + (level * 2), 0, 0, 0, 0, 100);
+                    AOS.Damage(target, caster, Utility.RandomMinMax(16, 21) + level, 0, 0, 0, 0, 100);
                     target.PlaySound(0x29);
                 }
             });
@@ -1684,7 +1848,7 @@ namespace Server.CustomSpells
             if (target == null || !target.Alive)
                 return;
 
-            int damage = Utility.RandomMinMax(16, 28) + level;
+            int damage = Utility.RandomMinMax(20, 25) + level;
             target.FixedEffect(0x37C4, 10, 30, hue != 0 ? hue : 0x0, 0);
 
             IPooledEnumerable eable = target.GetMobilesInRange(1);
@@ -1757,7 +1921,7 @@ namespace Server.CustomSpells
                 if (!m.Alive || !caster.CanBeHarmful(m))
                     continue;
 
-                int damage = Utility.RandomMinMax(20, 31) + level;
+                int damage = Utility.RandomMinMax(20, 25) + level;
                 AOS.Damage(m, caster, damage, 0, 0, 0, 100, 0);
 
                 m.FixedEffect(0x36BD, 10, 25);
@@ -1789,7 +1953,7 @@ namespace Server.CustomSpells
             SpellHelpers.CreateExplosion(target.Location, target.Map, 0x36BD, hue != 0 ? hue : 1160);
             List<Mobile> targets = SpellHelpers.GetMobilesInRange(target, caster, 1);
             foreach (Mobile m in targets)
-                AOS.Damage(m, caster, Utility.RandomMinMax(25, 35) + level * 2, 0, 100, 0, 0, 0);
+                AOS.Damage(m, caster, Utility.RandomMinMax(16, 25)+level, 0, 100, 0, 0, 0);
         }
     }
 
@@ -1911,7 +2075,7 @@ namespace Server.CustomSpells
 
                     caster.DoHarmful(m);    
 
-                    int dmg = Utility.RandomMinMax(25, 35) + level;
+                    int dmg = Utility.RandomMinMax(20, 25) + level;
                     AOS.Damage(m, caster, dmg, 0, 0, 0, 100, 0);
                 }
                 eable.Free();
@@ -2161,7 +2325,7 @@ namespace Server.CustomSpells
                         if (!m.Alive || !caster.CanBeHarmful(m))
                             continue;   
 
-                        int dmg = Utility.RandomMinMax(9, 15) + level;  
+                        int dmg = Utility.RandomMinMax(20, 25) + level;  
 
                         AOS.Damage(m, caster, dmg, 100, 0, 0, 0, 0);
                         m.Stam = Math.Max(0, m.Stam - dmg); 
@@ -2224,7 +2388,7 @@ namespace Server.CustomSpells
                 hue != 0 ? hue : 0x489
             );
 
-            int damage = Utility.RandomMinMax(28, 42) + level;
+            int damage = Utility.RandomMinMax(30, 35) + level;
 
             AOS.Damage(target, caster, damage, 0, 100, 0, 0, 0);
 
@@ -2262,7 +2426,7 @@ namespace Server.CustomSpells
                 if (!caster.CanBeHarmful(m))
                     continue;
 
-                int dmg = Utility.RandomMinMax(20, 32) + level;
+                int dmg = Utility.RandomMinMax(24, 29) + level;
 
                 SpellHelper.Damage(
                     TimeSpan.Zero,
@@ -2317,7 +2481,7 @@ namespace Server.CustomSpells
                 0
             );
 
-            int damage = Utility.RandomMinMax(22, 36) + (int)(level * 1.5);
+            int damage = Utility.RandomMinMax(30, 35) + level;
 
             AOS.Damage(
                 target,
@@ -2441,7 +2605,7 @@ namespace Server.CustomSpells
             SpellHelpers.DoConeDamage(
                 caster,
                 6,
-                15, 35,
+                24, 29,
                 level,
                 30, 0, 0, 0, 70,
                 0x375A,
@@ -2557,7 +2721,7 @@ namespace Server.CustomSpells
                     target.BoltEffect(hue != 0 ? hue : 0);
                     target.PlaySound(0x29);
 
-                    int dmg = Utility.RandomMinMax(22, 36) + (level * 2);
+                    int dmg = Utility.RandomMinMax(24, 29) + level;
                     AOS.Damage(target, caster, dmg, 0, 0, 0, 0, 100);
 
                     target.SendMessage("A bolt of lightning crashes down on you!");
@@ -2629,7 +2793,7 @@ namespace Server.CustomSpells
             }
             else
             {
-                int damage = Utility.RandomMinMax(12, 36) + level;
+                int damage = Utility.RandomMinMax(17, 22) + level;
                 AOS.Damage(target, caster, damage, 100, 0, 0, 0, 0);
 
                 target.SendMessage("You resist death but suffer terrible pain!");
@@ -2687,7 +2851,7 @@ namespace Server.CustomSpells
 
                 caster.DoHarmful(m);
 
-                int damage = Utility.RandomMinMax(22, 32) + level;
+                int damage = Utility.RandomMinMax(35, 40) + level;
                 AOS.Damage(m, caster, damage, 0, 0, 0, 100, 0);
 
                 int save = Utility.RandomMinMax(40, 52) + level * 2;
@@ -2808,13 +2972,12 @@ namespace Server.CustomSpells
 
                 m_Caster.DoHarmful(m);
 
-                int dmg = Utility.RandomMinMax(20, 33) + m_Level;
+                int dmg = Utility.RandomMinMax(28, 33) + m_Level;
                 AOS.Damage(m, m_Caster, dmg, 0, 0, 0, 100, 0);
 
                 m.FixedEffect(0x36BD, 10, 20);
                 m.SendMessage("The acid burns your flesh!");
             }
-
             eable.Free();
         }
 
@@ -2969,7 +3132,7 @@ namespace Server.CustomSpells
                         if (!m.Alive || !caster.CanBeHarmful(m))
                             continue;
 
-                        int dmg = Utility.RandomMinMax(18, 24);
+                        int dmg = Utility.RandomMinMax(28, 33);
                         AOS.Damage(m, caster, dmg, 0, 0, 0, 100, 0);
                     }
 
@@ -3039,7 +3202,7 @@ namespace Server.CustomSpells
                 caster.DoHarmful(m);
 
                 m.BoltEffect(hue);
-                int dmg = Utility.RandomMinMax(34, 45) + level * 2;
+                int dmg = Utility.RandomMinMax(32, 37) + level;
 
                 AOS.Damage(m, caster, dmg, 0, 0, 0, 0, 100);
                 m.SendMessage("Electricity surges through your body!");
@@ -3066,7 +3229,7 @@ namespace Server.CustomSpells
             if (target == null || !caster.CanBeHarmful(target))
                 return;
 
-            int dmg = Utility.RandomMinMax(30, 45) + level;
+            int dmg = Utility.RandomMinMax(30, 35) + level;
 
             SpellHelper.Damage(
                 TimeSpan.Zero,
@@ -3152,8 +3315,8 @@ namespace Server.CustomSpells
             bool weakened = target.Hits < (target.HitsMax / 2);
 
             int dmg = weakened
-                ? Utility.RandomMinMax(90, 130) + level * 2
-                : Utility.RandomMinMax(45, 75) + level * 2;
+                ? Utility.RandomMinMax(70, 80) + level * 2
+                : Utility.RandomMinMax(35, 40) + level * 2;
 
             AOS.Damage(target, caster, dmg, 100, 0, 0, 0, 0);
 
@@ -3176,8 +3339,8 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             int range = 9;
-            int min = 35;
-            int max = 55;
+            int min = 32;
+            int max = 37;
            SpellHelpers.DoConeDamage(caster, range, min, max, level,50,0,0,0,50,0x375A,hue != 0 ? hue : 0x480, "A powerful scream pierces your ears!");
         }
     }
@@ -3274,7 +3437,7 @@ namespace Server.CustomSpells
     public class AuraOfColdGreaterSpell : AuraOfColdSpell
     {
         public AuraOfColdGreaterSpell()
-            : base("Aura of Cold, Greater", 0x480, 22, 28)
+            : base("Aura of Cold, Greater", 0x480, 32, 37)
         {
             AddLevel(SpellType.Cleric, 7);
             AddLevel(SpellType.Druid, 7);
@@ -3360,8 +3523,8 @@ namespace Server.CustomSpells
                 caster,
                 target,
                 roll,
-                22,
-                46,
+                32,
+                37,
                 level
             );
         }
@@ -3476,7 +3639,7 @@ namespace Server.CustomSpells
                 if (!m.Alive || !m_Caster.CanBeHarmful(m))
                     continue;
 
-                int dmg = Utility.RandomMinMax(23, 31) + m_Level;
+                int dmg = Utility.RandomMinMax(32, 37) + m_Level;
 
                 SpellHelper.Damage(
                     TimeSpan.Zero,
@@ -3586,7 +3749,7 @@ namespace Server.CustomSpells
 
                 target.BoltEffect(hue != 0 ? hue : 0x480);
 
-                int dmg = Utility.RandomMinMax(22 + level, 42 + level);
+                int dmg = Utility.RandomMinMax(45, 50)+level;
                 AOS.Damage(target, caster, dmg, 0, 100, 0, 0, 0);
 
                 double resist = target.Skills[SkillName.MagicResist].Value;
@@ -3623,9 +3786,7 @@ namespace Server.CustomSpells
             caster.MovingParticles(target, 0x36D4, 7, 0, false, true,
                 hue != 0 ? hue : 0x455, 0, 9502, 1, 0, (EffectLayer)255, 0);
 
-            int dmg = Utility.RandomMinMax(
-                (int)(32 + level * 1.5),
-                (int)(45 + level * 1.5));
+            int dmg = Utility.RandomMinMax(50,55)+level;
 
             AOS.Damage(target, caster, dmg, 0, 0, 100, 0, 0);
 
@@ -3700,7 +3861,7 @@ namespace Server.CustomSpells
 
             SpellHelpers.ForEachHostileInRange(target, caster, 3, m =>
             {
-                int dmg = Utility.RandomMinMax(42, 62) + (int)(level * 1.5);
+                int dmg = Utility.RandomMinMax(36, 39) + level;
                 AOS.Damage(m, caster, dmg, 0, 50, 0, 50, 0);
 
                 m.FixedEffect(0x3709, 10, 30);
@@ -3739,7 +3900,7 @@ namespace Server.CustomSpells
             {
                 caster.DoHarmful(m);
 
-                int dmg = Utility.RandomMinMax(30 + level * 2, 48 + level * 2);
+                int dmg = Utility.RandomMinMax(40, 45)+level;
                 AOS.Damage(m, caster, dmg, 0, 100, 0, 0, 0);
 
                 double resist = m.Skills[SkillName.MagicResist].Value;
@@ -3777,9 +3938,7 @@ namespace Server.CustomSpells
             caster.MovingParticles(target, 0x36D4, 7, 0, false, true,
                 hue != 0 ? hue : 0x480, 0, 9502, 1, 0, (EffectLayer)255, 0);    
 
-            int dmg = Utility.RandomMinMax(
-                (int)(52 + level * 1.5),
-                (int)(65 + level * 1.5));   
+            int dmg = Utility.RandomMinMax(50,55)+level;   
 
             AOS.Damage(target, caster, dmg, 0, 0, 100, 0, 0);   
 
@@ -3929,7 +4088,7 @@ namespace Server.CustomSpells
             {
                 Effects.SendLocationEffect(m.Location, m.Map, 0x36BD, 20, 10, 0x480, 0);
 
-                int damage = Utility.RandomMinMax(45 + level, 75 + level);
+                int damage = Utility.RandomMinMax(44, 49)+level;
                 int stamLoss = damage / 3;
 
                 AOS.Damage(m, caster, damage, 0, 0, 100, 0, 0);
@@ -3977,7 +4136,7 @@ namespace Server.CustomSpells
                     center,
                     target.Map,
                     1,
-                    () => Utility.RandomMinMax(33 + level, 65 + level),
+                    () => Utility.RandomMinMax(44, 49)+level,
                     0, 100, 0, 0, 0,
                     0x36CB,
                     hue != 0 ? hue : 0x501
@@ -4043,7 +4202,7 @@ namespace Server.CustomSpells
                 7,
                 5,
                 3,
-                () => Utility.RandomMinMax(12 + level, 21 + level),
+                () => Utility.RandomMinMax(44, 49)+level,
                 25, 25, 25, 25, 0,
                 0x36BD,
                 hue != 0 ? hue : 0x480,
