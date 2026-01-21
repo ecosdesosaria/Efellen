@@ -18,6 +18,23 @@ namespace Server.CustomSpells
         Cleric = 16
     }
 
+    [Flags]
+    public enum SpellTag
+    {
+        None         = 0,
+        AoE          = 1 << 0, // area of effect
+        SingleTarget = 1 << 1,
+        Heal         = 1 << 2,
+        CC           = 1 << 3, // crowd control
+        Offensive    = 1 << 4,
+        Summon       = 1 << 5,
+        Buff         = 1 << 6,
+        Debuff       = 1 << 7,
+        DoT          = 1 << 8, // damage over time
+        HoT          = 1 << 9, // heal over time
+    }
+
+
     public abstract class CustomSpell
     {
         private string m_Name;
@@ -27,11 +44,24 @@ namespace Server.CustomSpells
         public string Name { get { return m_Name; } }
         public int DefaultHue { get { return m_DefaultHue; } }
         
+        private SpellTag m_Tags;
+        public SpellTag Tags { get { return m_Tags; } }
         public CustomSpell(string name, int defaultHue)
         {
             m_Name = name;
             m_DefaultHue = defaultHue;
             m_Levels = new Dictionary<SpellType, int>();
+            m_Tags = SpellTag.None;
+        }
+
+        public void AddTag(SpellTag tag)
+        {
+            m_Tags |= tag;
+        }
+
+        public bool HasTag(SpellTag tag)
+        {
+            return (m_Tags & tag) != 0;
         }
 
         public void AddLevel(SpellType type, int level)
@@ -333,6 +363,11 @@ namespace Server.CustomSpells
             RegisterSpell(new CloudOfKnivesSpell());
             RegisterSpell(new DarkBoltSpell());
             RegisterSpell(new BodyOfTheSunSpell());
+            RegisterSpell(new BearsEnduranceSpell());
+            RegisterSpell(new MassBearsEnduranceSpell());
+            RegisterSpell(new BestowCurseSpell());
+            RegisterSpell(new FlamingSphereSpell());
+
             RegisterSummonNatureAllySpells();
 
         }

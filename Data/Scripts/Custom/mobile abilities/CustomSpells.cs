@@ -24,8 +24,10 @@ summon nature's ally I
 Vigor, lesser
 
 level 2
+flaming sphere
+bear's endurance
 cloud of knvies
-dark bold
+dark bolt
 body of the sun
 hold person
 web
@@ -37,6 +39,7 @@ cat's grace
 summon nature's ally II
 
 level 3
+bestow curse
 contagion
 lightningbolt
 fireball
@@ -69,6 +72,7 @@ summon nature's ally V
 Vigor, Greater
 
 level 6
+bear endurance, mass
 acid fog 
 bull strength, mass
 cat's grace, mass
@@ -316,6 +320,7 @@ namespace Server.CustomSpells
             SpellLevel = level;
             CreatureType = creatureType;
             AddLevel(SpellType.Druid, level);
+            AddTag(SpellTag.Summon);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -355,7 +360,6 @@ namespace Server.CustomSpells
                 }
             }       
 
-            caster.SendMessage("There is no room to summon a creature.");
             return;     
 
         FOUND:      
@@ -374,7 +378,6 @@ namespace Server.CustomSpells
             }
             catch
             {
-                caster.SendMessage("The spirits fail to answer your call.");
                 return;
             }       
 
@@ -556,7 +559,6 @@ namespace Server.CustomSpells
             );
         }
     
-        caster.SendMessage(message);
     }
 
 
@@ -654,6 +656,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 1);
             AddLevel(SpellType.Sorcerer, 1);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -679,6 +683,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Sorcerer, 1);
             AddLevel(SpellType.Bard, 1);
             AddLevel(SpellType.Cleric, 1);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.CC);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -712,6 +718,9 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Cleric, 1);
             AddLevel(SpellType.Druid, 1);
+            AddTag(SpellTag.Heal);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.HoT);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -729,11 +738,13 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Cleric, 1);
             AddLevel(SpellType.Druid, 1);
             AddLevel(SpellType.Bard, 1);
+            AddTag(SpellTag.Heal);
+            AddTag(SpellTag.SingleTarget);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            caster.Heal(Utility.RandomMinMax(1, 4) * level);
+            caster.Heal(Utility.RandomMinMax(4, 12) * level);
             caster.FixedParticles(0x376A, 9, 32, 5030, hue != 0 ? hue : 0x47D, 0, EffectLayer.Waist);
             caster.PlaySound(0x202);
         }
@@ -744,6 +755,8 @@ namespace Server.CustomSpells
         public EntangleSpell() : base("Entangle", 0x3728)
         {
             AddLevel(SpellType.Druid, 1);
+            AddTag(SpellTag.CC);
+            AddTag(SpellTag.AoE);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -775,6 +788,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 1);
             AddLevel(SpellType.Sorcerer, 1);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.SingleTarget);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -816,6 +831,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Wizard, 1);
             AddLevel(SpellType.Sorcerer, 1);
             AddLevel(SpellType.Bard, 1);
+            AddTag(SpellTag.CC);
+            AddTag(SpellTag.AoE);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -849,6 +866,9 @@ namespace Server.CustomSpells
         public SporeFieldSpell() : base("Spore Field", 0x375A)
         {
             AddLevel(SpellType.Druid, 1);
+            AddTag(SpellTag.CC);
+            AddTag(SpellTag.Debuff);
+            AddTag(SpellTag.AoE);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -894,6 +914,8 @@ namespace Server.CustomSpells
         public AidSpell() : base("Aid", 0x376A)
         {
             AddLevel(SpellType.Cleric, 2);
+            AddTag(SpellTag.Buff);
+            AddTag(SpellTag.Heal);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -906,6 +928,42 @@ namespace Server.CustomSpells
         }
     }
 
+    public class BearsEnduranceSpell : CustomSpell
+    {
+        public BearsEnduranceSpell() : base("Bear's Endurance", 0x480)
+        {
+            AddLevel(SpellType.Wizard, 2);
+            AddLevel(SpellType.Sorcerer, 2);
+            AddLevel(SpellType.Druid, 2);
+            AddLevel(SpellType.Cleric, 2);
+
+            AddTag(SpellTag.Buff);
+            AddTag(SpellTag.SingleTarget);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            int bonus = 35 + level;
+
+            caster.HitsMaxSeed += bonus;
+            caster.Hits += bonus;
+
+            caster.FixedEffect(0x376A, 10, 20);
+            caster.PlaySound(0x1EA);
+
+            Timer.DelayCall(TimeSpan.FromSeconds(60), delegate
+            {
+                if (caster == null || caster.Deleted)
+                    return;
+
+                caster.HitsMaxSeed -= bonus;
+                if (caster.Hits > caster.HitsMax)
+                    caster.Hits = caster.HitsMax;
+            });
+        }
+    }
+
+
     public class BodyOfTheSunSpell : CustomSpell
     {
         public BodyOfTheSunSpell() : base("Body of the Sun", 0x3709)
@@ -913,7 +971,10 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 2);
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
-        }
+            AddTag(SpellTag.DoT);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
@@ -973,6 +1034,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Sorcerer, 2);
             AddLevel(SpellType.Cleric, 2);
             AddLevel(SpellType.Druid, 2);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Buff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1000,6 +1063,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Sorcerer, 2);
             AddLevel(SpellType.Bard, 2);
             AddLevel(SpellType.Druid, 2);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Buff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1026,6 +1091,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Cleric, 2);
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
+            AddTag(SpellTag.DoT);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1093,6 +1160,9 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Cleric, 2);
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.CC);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1117,6 +1187,56 @@ namespace Server.CustomSpells
         }
     }
 
+    public class FlamingSphereSpell : CustomSpell
+    {
+        public FlamingSphereSpell() : base("Flaming Sphere", 0x36BD)
+        {
+            AddLevel(SpellType.Druid, 2);
+            AddLevel(SpellType.Wizard, 2);
+            AddLevel(SpellType.Sorcerer, 2);
+    
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.DoT);
+        }
+    
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            Mobile target = caster.Combatant as Mobile;
+            if (target == null)
+                return;
+    
+            Point3D loc = target.Location;
+            Map map = target.Map;
+    
+            Effects.SendLocationEffect(loc, map, 0x36BD, 20, 10, 0x489, 0);
+    
+            int ticks = (6 + (level / 3) * 2) / 2;
+            int count = 0;
+    
+            Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(2), delegate
+            {
+                if (count++ >= ticks)
+                    return;
+    
+                IPooledEnumerable eable = map.GetMobilesInRange(loc, 1);
+                foreach (Mobile m in eable)
+                {
+                    if (!m.Alive || !caster.CanBeHarmful(m))
+                        continue;
+    
+                    int dmg = Utility.RandomMinMax(11, 23) + level;
+                    AOS.Damage(m, caster, dmg, 0, 100, 0, 0, 0);
+                    m.PlaySound(0x208);
+                }
+                eable.Free();
+    
+                Effects.SendLocationEffect(loc, map, 0x36BD, 20, 10, 0x489, 0);
+            });
+        }
+    }
+
+
 
     public class HoldPersonSpell : CustomSpell
     {
@@ -1125,6 +1245,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Cleric, 2);
             AddLevel(SpellType.Wizard, 3);
             AddLevel(SpellType.Sorcerer, 3);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.CC);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1149,6 +1271,9 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.DoT);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1184,6 +1309,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1219,6 +1346,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.CC);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1247,6 +1376,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 3);
             AddLevel(SpellType.Sorcerer, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1262,11 +1393,45 @@ namespace Server.CustomSpells
         }
     }
 
+    public class BestowCurseSpell : CustomSpell
+    {
+        public BestowCurseSpell() : base("Bestow Curse", 0x455)
+        {
+            AddLevel(SpellType.Cleric, 3);
+            AddLevel(SpellType.Wizard, 4);
+            AddLevel(SpellType.Sorcerer, 4);
+
+            AddTag(SpellTag.Debuff);
+            AddTag(SpellTag.SingleTarget);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            Mobile target = caster.Combatant as Mobile;
+            if (target == null || !caster.CanBeHarmful(target))
+                return;
+
+            caster.DoHarmful(target);
+
+            int strLoss = (int)(target.RawStr * (0.12 + level * 0.01));
+            TimeSpan dur = TimeSpan.FromSeconds(30 + level);
+
+            target.AddStatMod(new StatMod(StatType.Str, "BestowCurse", -strLoss, dur));
+
+            target.FixedEffect(0x3728, 10, 20);
+            target.PlaySound(0x1F8);
+        }
+    }
+
+
     public class CallLightningSpell : CustomSpell
     {
         public CallLightningSpell() : base("Call Lightning", 0x379F)
         {
             AddLevel(SpellType.Druid, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.DoT);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1297,6 +1462,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Cleric, 3);
             AddLevel(SpellType.Druid, 3);
             AddLevel(SpellType.Bard, 4);
+            AddTag(SpellTag.Heal);
+            AddTag(SpellTag.SingleTarget);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1316,6 +1483,9 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 3);
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.Debuff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1345,6 +1515,9 @@ namespace Server.CustomSpells
         public DeafeningBlastSpell() : base("Deafening Blast", 0x3728)
         {
             AddLevel(SpellType.Bard, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.Debuff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1378,6 +1551,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 3);
             AddLevel(SpellType.Sorcerer, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1399,6 +1574,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 3);
             AddLevel(SpellType.Sorcerer, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
         }   
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1458,6 +1635,9 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Cleric, 3);
             AddLevel(SpellType.Druid, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Heal);
+            AddTag(SpellTag.HoT);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1482,6 +1662,9 @@ namespace Server.CustomSpells
         public PrayerSpell() : base("Prayer", 0x376A)
         {
             AddLevel(SpellType.Cleric, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Buff);
+            AddTag(SpellTag.Debuff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1519,6 +1702,9 @@ namespace Server.CustomSpells
         public SpikeGrowthSpell() : base("Spike Growth", 0x36BD)
         {
             AddLevel(SpellType.Druid, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.Debuff);
         }   
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1570,6 +1756,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Cleric, 3);
             AddLevel(SpellType.Druid, 3);
+            AddTag(SpellTag.Heal);
+            AddTag(SpellTag.HoT);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1587,6 +1775,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1667,6 +1857,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
 
         protected override int Phys { get { return 0; } }
@@ -1684,6 +1876,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
     
         protected override int Phys { get { return 0; } }
@@ -1701,6 +1895,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
     
         protected override int Phys { get { return 0; } }
@@ -1718,6 +1914,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
     
         protected override int Phys { get { return 0; } }
@@ -1735,6 +1933,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
     
         protected override int Phys { get { return 100; } }
@@ -1753,6 +1953,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
             AddLevel(SpellType.Bard, 4);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1779,6 +1981,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
             AddLevel(SpellType.Druid, 5);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Buff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1806,6 +2010,9 @@ namespace Server.CustomSpells
         public CallLightningStormSpell() : base("Call Lightning Storm", 0x379F)
         {
             AddLevel(SpellType.Druid, 5);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.DoT);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1854,6 +2061,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Cleric, 5);
             AddLevel(SpellType.Druid, 5);
             AddLevel(SpellType.Bard, 6);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Heal);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1865,7 +2074,6 @@ namespace Server.CustomSpells
             caster.FixedParticles(0x376A, 9, 32, 5030, hue, 0, EffectLayer.Waist);
             caster.PlaySound(0x202);
 
-            caster.SendMessage("You feel divine energy mend your wounds.");
         }
     }
 
@@ -1874,6 +2082,8 @@ namespace Server.CustomSpells
         public SlayLivingSpell() : base("Slay Living", 0x22C5)
         {
             AddLevel(SpellType.Cleric, 5);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1889,7 +2099,6 @@ namespace Server.CustomSpells
                 ((silver != null && silver.Slays(target)) ||
                  (exorcism != null && exorcism.Slays(target))))
             {
-                caster.SendMessage("This creature is not truly alive.");
                 return;
             }
 
@@ -1904,7 +2113,6 @@ namespace Server.CustomSpells
             if (roll > resist)
             {
                 target.SendMessage("Your life force is ripped from your body!");
-                caster.SendMessage("You slay your foe with divine judgment!");
                 target.Kill();
             }
             else
@@ -1913,7 +2121,6 @@ namespace Server.CustomSpells
                 AOS.Damage(target, caster, damage, 100, 0, 0, 0, 0);
 
                 target.SendMessage("You resist death but suffer terrible pain!");
-                caster.SendMessage("Your spell fails to kill, but wounds the target.");
                 target.PlaySound(0x1F2);
             }
         }
@@ -1931,6 +2138,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Cleric, 5);
             AddLevel(SpellType.Druid, 5);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Heal);
         }
     
         public override void Cast(Mobile caster, int hue, int level)
@@ -1948,6 +2157,9 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 6);
             AddLevel(SpellType.Sorcerer, 6);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.DoT);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -1955,13 +2167,11 @@ namespace Server.CustomSpells
             Mobile target = caster.Combatant as Mobile;
             if (target == null)
             {
-                caster.SendMessage("You must have a target for this spell.");
                 return;
             }
 
             caster.PlaySound(0x231);
-            caster.SendMessage("You conjure a cloud of burning acid!");
-
+    
             FieldSpellHelper.SpawnField(
                 caster,
                 target.Location,
@@ -2030,6 +2240,52 @@ namespace Server.CustomSpells
         }
     }
 
+    public class MassBearsEnduranceSpell : CustomSpell
+    {
+        public MassBearsEnduranceSpell() : base("Mass Bear's Endurance", 0x480)
+        {
+            AddLevel(SpellType.Wizard, 6);
+            AddLevel(SpellType.Sorcerer, 6);
+            AddLevel(SpellType.Druid, 6);
+            AddLevel(SpellType.Cleric, 6);
+
+            AddTag(SpellTag.Buff);
+            AddTag(SpellTag.AoE);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            IPooledEnumerable eable = caster.GetMobilesInRange(6);
+            foreach (Mobile m in eable)
+            {
+                if (!m.Alive || !caster.CanBeBeneficial(m))
+                    continue;
+
+                caster.DoBeneficial(m);
+
+                int bonus = 45 + level * 2;
+
+                m.HitsMaxSeed += bonus;
+                m.Hits += bonus;
+
+                m.FixedEffect(0x376A, 10, 20);
+                m.PlaySound(0x1EA);
+
+                Timer.DelayCall(TimeSpan.FromSeconds(60), delegate
+                {
+                    if (m == null || m.Deleted)
+                        return;
+
+                    m.HitsMaxSeed -= bonus;
+                    if (m.Hits > m.HitsMax)
+                        m.Hits = m.HitsMax;
+                });
+            }
+            eable.Free();
+        }
+    }
+
+
     public class BullsStrengthMassSpell : CustomSpell
     {
         public BullsStrengthMassSpell() : base("Bull's Strength, Mass", 0x375A)
@@ -2038,6 +2294,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 6);
             AddLevel(SpellType.Wizard, 6);
             AddLevel(SpellType.Sorcerer, 6);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Buff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2045,7 +2303,6 @@ namespace Server.CustomSpells
             int bonus = 30 + level * 2;
 
             caster.PlaySound(0x1E9);
-            caster.SendMessage("You empower your allies with the strength of the bull!");
 
             MassBuffHelper.ApplyStatBuff(
                 caster,
@@ -2069,6 +2326,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 6);
             AddLevel(SpellType.Wizard, 6);
             AddLevel(SpellType.Sorcerer, 6);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Buff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2076,8 +2335,7 @@ namespace Server.CustomSpells
             int bonus = 30 + level * 2;
 
             caster.PlaySound(0x1E9);
-            caster.SendMessage("You grant feline agility to your allies!");
-
+        
             MassBuffHelper.ApplyStatBuff(
                 caster,
                 6,
@@ -2098,13 +2356,14 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 6);
             AddLevel(SpellType.Sorcerer, 6);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
             caster.PlaySound(0x29);
-            caster.SendMessage("Lightning leaps from your hands!");
-
+        
             IPooledEnumerable eable = caster.GetMobilesInRange(3);
 
             foreach (Mobile m in eable)
@@ -2120,7 +2379,6 @@ namespace Server.CustomSpells
                 AOS.Damage(m, caster, dmg, 0, 0, 0, 0, 100);
                 m.SendMessage("Electricity surges through your body!");
             }
-
             eable.Free();
         }
     }
@@ -2131,6 +2389,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 6);
             AddLevel(SpellType.Sorcerer, 6);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2138,13 +2398,11 @@ namespace Server.CustomSpells
             Mobile target = caster.Combatant as Mobile;
             if (target == null || !target.Alive || !caster.CanBeHarmful(target))
             {
-                caster.SendMessage("You have no valid target.");
                 return;
             }
 
             caster.DoHarmful(target);
-            caster.SendMessage("You attempt to unravel your enemy's form!");
-
+        
             Effects.SendMovingEffect(
                 caster, target, 0x36D4, 10, 0, false, false, hue != 0 ? hue : 0x47E, 0
             );
@@ -2169,6 +2427,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Wizard, 8);
             AddLevel(SpellType.Sorcerer, 8);
             AddLevel(SpellType.Bard, 6);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
         }
     
         public override void Cast(Mobile caster, int hue, int level)
@@ -2186,6 +2446,9 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Cleric, 6);
             AddLevel(SpellType.Druid, 6);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Heal);
+            AddTag(SpellTag.HoT);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2211,6 +2474,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Cleric, 6);
             AddLevel(SpellType.Druid, 7);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Heal);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2218,8 +2483,7 @@ namespace Server.CustomSpells
             int heal = level * 12;
 
             caster.Heal(heal);
-            caster.SendMessage("A wave of divine energy restores your wounds.");
-
+        
             caster.FixedParticles(0x376A, 9, 32, 5030, hue != 0 ? hue : 0x376A, 0, EffectLayer.Waist);
             caster.PlaySound(0x202);
         }
@@ -2239,6 +2503,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 7);
             AddLevel(SpellType.Sorcerer, 7);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.CC);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2246,13 +2512,10 @@ namespace Server.CustomSpells
             Mobile center = caster.Combatant as Mobile;
             if (center == null)
             {
-                caster.SendMessage("You have no target.");
                 return;
             }
 
             caster.PlaySound(0x204);
-            caster.SendMessage("You unleash a wave of paralyzing force!");
-
             IPooledEnumerable eable = center.GetMobilesInRange(4);
 
             foreach (Mobile m in eable)
@@ -2288,6 +2551,8 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 8);
             AddLevel(SpellType.Sorcerer, 7);
             AddLevel(SpellType.Wizard, 7);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2295,19 +2560,16 @@ namespace Server.CustomSpells
             Mobile target = caster.Combatant as Mobile;
             if (target == null || !target.Alive || !caster.CanBeHarmful(target))
             {
-                caster.SendMessage("You have no valid target.");
                 return;
             }
 
             if (DeathSpellHelper.IsUndead(target))
             {
-                caster.SendMessage("This spell has no effect on the undead.");
                 return;
             }
 
             caster.DoHarmful(target);
-            caster.SendMessage("You point at your enemy and utter a word of death!");
-
+    
             int roll = Utility.Random(50 + level * 2);
 
             DeathSpellHelper.TryKill(
@@ -2329,6 +2591,10 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 7);
             AddLevel(SpellType.Wizard, 8);
             AddLevel(SpellType.Sorcerer, 8);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.DoT);
+            AddTag(SpellTag.Debuff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2336,13 +2602,10 @@ namespace Server.CustomSpells
             Mobile center = caster.Combatant as Mobile;
             if (center == null)
             {
-                caster.SendMessage("You have no target.");
                 return;
             }
 
             caster.PlaySound(0x205);
-            caster.SendMessage("A wave of pestilence spreads outward!");
-
             IPooledEnumerable eable = center.GetMobilesInRange(4);
 
             foreach (Mobile m in eable)
@@ -2379,6 +2642,8 @@ namespace Server.CustomSpells
         public SunbeamSpell() : base("Sunbeam", 0x3709)
         {
             AddLevel(SpellType.Druid, 7);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2386,15 +2651,13 @@ namespace Server.CustomSpells
             Mobile target = caster.Combatant as Mobile;
             if (target == null)
             {
-                caster.SendMessage("You have no target.");
                 return;
             }
 
             int beams = Math.Max(1, level / 3);
 
             caster.PlaySound(0x29);
-            caster.SendMessage("Blazing rays of sunlight strike your foe!");
-
+            
             for (int i = 0; i < beams; i++)
             {
                 if (!target.Alive || !caster.CanBeHarmful(target))
@@ -2422,6 +2685,9 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 8);
             AddLevel(SpellType.Sorcerer, 8);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.Debuff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2429,12 +2695,10 @@ namespace Server.CustomSpells
             Mobile target = caster.Combatant as Mobile;
             if (target == null || !caster.CanBeHarmful(target))
             {
-                caster.SendMessage("You have no target.");
                 return;
             }
 
             caster.DoHarmful(target);
-            caster.SendMessage("Black fire engulfs your enemy!");
             target.SendMessage("Black flames burn into your soul!");
 
             caster.MovingParticles(target, 0x36D4, 7, 0, false, true,
@@ -2467,6 +2731,9 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Wizard, 8);
             AddLevel(SpellType.Sorcerer, 8);
             AddLevel(SpellType.Cleric, 8);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.Debuff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2475,7 +2742,6 @@ namespace Server.CustomSpells
             if (target == null)
                 return;
 
-            caster.SendMessage("You drain the vitality of your foes!");
 
             SpellHelpers.ForEachHostileInRange(target, caster, 1, m =>
             {
@@ -2502,6 +2768,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 8);
             AddLevel(SpellType.Sorcerer, 8);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2510,7 +2778,6 @@ namespace Server.CustomSpells
             if (target == null)
                 return;
 
-            caster.SendMessage("You draw the moisture from all living flesh!");
 
             SpellHelpers.ForEachHostileInRange(target, caster, 3, m =>
             {
@@ -2540,11 +2807,13 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 8);
             AddLevel(SpellType.Wizard, 8);
             AddLevel(SpellType.Sorcerer, 8);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.CC);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            caster.SendMessage("A blinding solar explosion erupts!");
             caster.PlaySound(0x29);
 
             SpellHelpers.ForEachHostileInRange(caster, caster, 4, m =>
@@ -2572,6 +2841,9 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 8);
             AddLevel(SpellType.Sorcerer, 8);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.CC);
         }   
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2581,7 +2853,6 @@ namespace Server.CustomSpells
                 return; 
 
             caster.DoHarmful(target);
-            caster.SendMessage("A freezing ray lances toward your foe!");
             target.SendMessage("You are struck by absolute cold!"); 
 
             caster.MovingParticles(target, 0x36D4, 7, 0, false, true,
@@ -2610,11 +2881,13 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Wizard, 8);
             AddLevel(SpellType.Sorcerer, 8);
             AddLevel(SpellType.Cleric, 8);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.CC);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            caster.SendMessage("You utter a word of pure terror!");
             caster.PlaySound(0x204);
 
             SpellHelpers.ForEachHostileInRange(caster, caster, 5, m =>
@@ -2647,11 +2920,13 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Wizard, 8);
             AddLevel(SpellType.Sorcerer, 8);
             AddLevel(SpellType.Cleric, 8);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.Debuff);
         }
     
         public override void Cast(Mobile caster, int hue, int level)
         {
-            caster.SendMessage("A crushing exhaustion washes over your enemies!");
             caster.PlaySound(0x1F8);
     
             SpellHelpers.ForEachHostileInRange(caster, caster, 5, m =>
@@ -2678,6 +2953,9 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 9);
             AddLevel(SpellType.Sorcerer, 9);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.Debuff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2686,7 +2964,6 @@ namespace Server.CustomSpells
             if (target == null)
                 return;
 
-            caster.SendMessage("Massive blocks of ice fall from the heavens!");
             caster.PlaySound(0x64E);
 
             SpellHelpers.ForEachHostileInRange(target, caster, 3, m =>
@@ -2710,6 +2987,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 9);
             AddLevel(SpellType.Sorcerer, 9);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2718,7 +2997,6 @@ namespace Server.CustomSpells
             if (target == null)
                 return;
 
-            caster.SendMessage("The sky rains fire and stone!");
             caster.PlaySound(0x307);
 
             for (int i = 0; i < 4; i++)
@@ -2755,6 +3033,9 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Wizard, 9);
             AddLevel(SpellType.Sorcerer, 9);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.Debuff);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -2770,8 +3051,6 @@ namespace Server.CustomSpells
                 target.Kill();
                 target.FixedEffect(0x3709, 10, 30);
                 target.PlaySound(0x211);
-
-                caster.SendMessage("You speak the word of death.");
             }
             else
             {
@@ -2797,8 +3076,6 @@ namespace Server.CustomSpells
 
             Point3D center = target.Location;
             Map map = target.Map;
-
-            caster.SendMessage("You call down the storm of divine vengeance!");
 
             SpellHelpers.DoTimedStorm(
                 caster,
