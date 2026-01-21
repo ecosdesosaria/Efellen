@@ -12,103 +12,177 @@ using Server.Items;
 
 This list shows the lowers level in which a spell becomes available
 
-level 1
-burning hands
-magic missile
-cure light wounds
-entangle
-sleep
-cause fear
+Level 1
+
+Burning Hands
+Cause Fear
+Cure Light Wounds
+Entangle
+Magic Missile
+Sleep
+Summon Nature’s Ally I
 Summon Spore Field
-summon nature's ally I
-Vigor, lesser
+Vigor, Lesser
 
-level 2
-flaming sphere
-bear's endurance
-cloud of knvies
-dark bolt
-body of the sun
-hold person
-web
-scorching ray
-aid
-Melf's Acid Arrow
-bull's strength
-cat's grace
-summon nature's ally II
+Level 2
 
-level 3
-bestow curse
-contagion
-lightningbolt
-fireball
-acidball
-call lightning
-cure moderate wounds
-deafening blast
+Aid
+Bear’s Endurance
+Body of the Sun
+Bull’s Strength
+Cat’s Grace
+Cloud of Knives
+Dark Bolt
+Flaming Sphere
+Hold Person
+Melf’s Acid Arrow
+Owl’s Wisdom
+Scorching Ray
+Summon Nature’s Ally II
+Web
+
+Level 3
+
+Acidball
+Aura of Cold, Lesser
+Bestow Curse
+Call Lightning
+Contagion
+Cure Moderate Wounds
+Deafening Blast
+Dirge of Discord
+Dissonant Chord
+Fireball
+Good Hope
+Harmonic Chorus
+Lightningbolt
 Mass Vigor, Lesser
-prayer 
-spike growth 
-summon nature's ally III
+Prayer
+Protection from Energy: Acid
+Protection from Energy: Cold
+Protection from Energy: Electricity
+Protection from Energy: Fire
+Spike Growth
+Summon Nature’s Ally III
 Vigor
 
-level 4
-flamestrike
-orb of acid
-orb of cold
-orb of electricity
-orb of fire
-orb of force
-shout
+Level 4
+
+Flamestrike
+Ice Storm
+Orb of Acid
+Orb of Cold
+Orb of Electricity
+Orb of Fire
+Orb of Force
+Shout
 Stoneskin
-summon nature's ally IV
+Summon Nature’s Ally IV
+Valiant Spirit
 
-level 5
-call lightning storm
-cure serious wounds
-SlayLivingSpell
-summon nature's ally V
+Level 5
+
+Call Lightning Storm
+Cure Serious Wounds
+Slay Living Spell
+Summon Nature’s Ally V
 Vigor, Greater
+Wail of Doom
 
-level 6
-bear endurance, mass
-acid fog 
-bull strength, mass
-cat's grace, mass
-chain lightning
-greater shout
-disintegrate
-heal
+Level 6
+
+Acid Fog
+Bear Endurance, Mass
+Bestow Curse, Greater
+Bull Strength, Mass
+Cacophonic Shield
+Cat’s Grace, Mass
+Chain Lightning
+Cometfall
+Disintegrate
+Greater Shout
+Heal
 Mass Vigor
-summon nature's ally VI
+Owl’s Wisdom, Mass
+Summon Nature’s Ally VI
 
-level 7
-FingerOfDeathSpell
-plague
-sunbeam
-hold person, mass
-summon nature's ally VII
+Level 7
 
-level 8
-black fire
-enervation
+Aura of Cold, Greater
+Firestorm
+Finger of Death Spell
+Hold Person, Mass
+Plague
+Sunbeam
+Summon Nature’s Ally VII
+
+Level 8
+
+Black Fire
+Enervation
 Horrid Wilting
-sunburst 
-polar ray 
-powerword: fear
-powerword: fatigue
-summon nature's ally VIII
+Polar Ray
+Powerword: Fatigue
+Powerword: Fear
+Sunburst
+Summon Nature’s Ally VIII
+Valiant Spirit, mass
 
-level 9
-meteor swarm
-powerword: kill
-iceberg
-Storm of vengeance 
-summon nature's ally IX
+Level 9
+
+Iceberg
+Meteor Swarm
+Powerword: Kill
+Storm of Vengeance
+Summon Nature’s Ally IX
  */
 namespace Server.CustomSpells
 {
+    public enum EnergyProtectionType
+    {
+        Cold,
+        Fire,
+        Energy,
+        Poison
+    }
+
+    public static class BardSpellHelpers
+    {
+        public static bool IsFriendly(Mobile caster, Mobile target)
+        {
+            if (target == caster)
+                return true;
+
+            BaseCreature bc = caster as BaseCreature;
+            if (bc != null && bc.Controlled && bc.ControlMaster == target)
+                return true;
+
+            return !caster.CanBeHarmful(target);
+        }
+
+
+        public static void ApplyStatBuff(
+            Mobile m,
+            int str, int dex, int intel,
+            TimeSpan duration,
+            string namePrefix)
+        {
+            m.AddStatMod(new StatMod(StatType.Str, namePrefix + "_Str", str, duration));
+            m.AddStatMod(new StatMod(StatType.Dex, namePrefix + "_Dex", dex, duration));
+            m.AddStatMod(new StatMod(StatType.Int, namePrefix + "_Int", intel, duration));
+        }   
+
+        public static void ApplySkillBuff(
+            Mobile m,
+            SkillName skill,
+            double value,
+            string name)
+        {
+            m.AddSkillMod(new DefaultSkillMod(skill, true, value));
+        }
+    }
+
+
     public static class NatureSpellHelper
     {
         public static void ApplyVigor(
@@ -935,33 +1009,30 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
             AddLevel(SpellType.Druid, 2);
-            AddLevel(SpellType.Cleric, 2);
+            AddLevel(SpellType.Cleric, 2);  
 
             AddTag(SpellTag.Buff);
             AddTag(SpellTag.SingleTarget);
-        }
+        }   
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            int bonus = 35 + level;
+            int bonusHP = 35 + level;   
 
-            caster.HitsMaxSeed += bonus;
-            caster.Hits += bonus;
+            int strBonus = bonusHP / 2;
+            if (strBonus < 1)
+                strBonus = 1;   
+
+            StatMod mod = new StatMod(StatType.Str, "BearsEndurance", strBonus, TimeSpan.FromSeconds(60));
+            caster.AddStatMod(mod); 
+
+            caster.Hits += bonusHP; 
 
             caster.FixedEffect(0x376A, 10, 20);
             caster.PlaySound(0x1EA);
-
-            Timer.DelayCall(TimeSpan.FromSeconds(60), delegate
-            {
-                if (caster == null || caster.Deleted)
-                    return;
-
-                caster.HitsMaxSeed -= bonus;
-                if (caster.Hits > caster.HitsMax)
-                    caster.Hits = caster.HitsMax;
-            });
         }
     }
+
 
 
     public class BodyOfTheSunSpell : CustomSpell
@@ -1194,43 +1265,43 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 2);
             AddLevel(SpellType.Wizard, 2);
             AddLevel(SpellType.Sorcerer, 2);
-    
+
             AddTag(SpellTag.Offensive);
             AddTag(SpellTag.AoE);
             AddTag(SpellTag.DoT);
         }
-    
+
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
             if (target == null)
                 return;
-    
+
             Point3D loc = target.Location;
             Map map = target.Map;
-    
+
             Effects.SendLocationEffect(loc, map, 0x36BD, 20, 10, 0x489, 0);
-    
+
             int ticks = (6 + (level / 3) * 2) / 2;
             int count = 0;
-    
+
             Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(2), delegate
             {
                 if (count++ >= ticks)
                     return;
-    
+
                 IPooledEnumerable eable = map.GetMobilesInRange(loc, 1);
                 foreach (Mobile m in eable)
                 {
                     if (!m.Alive || !caster.CanBeHarmful(m))
                         continue;
-    
+
                     int dmg = Utility.RandomMinMax(11, 23) + level;
                     AOS.Damage(m, caster, dmg, 0, 100, 0, 0, 0);
                     m.PlaySound(0x208);
                 }
                 eable.Free();
-    
+
                 Effects.SendLocationEffect(loc, map, 0x36BD, 20, 10, 0x489, 0);
             });
         }
@@ -1303,6 +1374,36 @@ namespace Server.CustomSpells
             target.FixedEffect(0x36BD, 10, 20, 0x48E, 0);
         }
     }
+
+    public class OwlsWisdomSpell : CustomSpell
+    {
+        public OwlsWisdomSpell() : base("Owl's Wisdom", 0x375A)
+        {
+            AddLevel(SpellType.Wizard, 2);
+            AddLevel(SpellType.Sorcerer, 2);
+            AddLevel(SpellType.Cleric, 2);
+            AddLevel(SpellType.Druid, 2);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Buff);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            int bonus = 15 + level;
+            caster.RawInt += bonus;
+
+            Timer.DelayCall(TimeSpan.FromSeconds(30), delegate
+            {
+                if (caster != null && !caster.Deleted)
+                    caster.RawInt -= bonus;
+            });
+
+            caster.FixedEffect(0x375A, 10, 20, hue != 0 ? hue : 0x21, 0);
+            caster.FixedParticles(0x373A, 10, 15, 5018, hue != 0 ? hue : 0x21, 0, EffectLayer.Waist);
+            caster.PlaySound(0x1E9);
+        }
+    }
+
     public class ScorchingRaySpell : CustomSpell
     {
         public ScorchingRaySpell() : base("Scorching Ray", 0x36D4)
@@ -1393,10 +1494,67 @@ namespace Server.CustomSpells
         }
     }
 
+    public abstract class AuraOfColdSpell : CustomSpell
+    {
+        protected int Min;
+        protected int Max;
+
+        protected AuraOfColdSpell(string name, int hue, int min, int max) : base(name, hue)
+        {
+            Min = min;
+            Max = max;
+
+            AddTag(SpellTag.DoT);
+            AddTag(SpellTag.AoE);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            int ticks = (level * 2) / 2;
+
+            caster.FixedParticles(0x374A, 10, 30, 5032, hue, 3, EffectLayer.Waist);
+
+            Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(2), ticks, () =>
+            {
+                if (caster.Deleted)
+                    return;
+
+                foreach (Mobile m in caster.GetMobilesInRange(1))
+                {
+                    if (m != caster && caster.CanBeHarmful(m))
+                        continue;
+
+                    int dmg = Utility.RandomMinMax(Min, Max) + level;
+
+                    SpellHelper.Damage(
+                        TimeSpan.Zero,
+                        m,
+                        caster,
+                        dmg,
+                        0, 0, 0, 100, 0
+                    );
+                }
+            });
+        }
+    }
+
+    public class AuraOfColdLesserSpell : AuraOfColdSpell
+    {
+        public AuraOfColdLesserSpell()
+            : base("Aura of Cold, Lesser", 0x480, 13, 19)
+        {
+            AddLevel(SpellType.Cleric, 3);
+            AddLevel(SpellType.Druid, 3);
+        }
+    }
+
+
+
     public class BestowCurseSpell : CustomSpell
     {
         public BestowCurseSpell() : base("Bestow Curse", 0x455)
         {
+            AddLevel(SpellType.Bard, 3);
             AddLevel(SpellType.Cleric, 3);
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
@@ -1545,6 +1703,73 @@ namespace Server.CustomSpells
         }
     }
 
+    public class DirgeOfDiscordSpell : CustomSpell
+    {
+        public DirgeOfDiscordSpell() : base("Dirge of Discord", 0x455)
+        {
+            AddLevel(SpellType.Bard, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Debuff);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            Mobile target = caster.Combatant as Mobile;
+            if (target == null)
+                return;
+
+            int dexLoss = 20 + level * 2;
+            int strLoss = (int)(25 + level * 1.5);
+            TimeSpan duration = TimeSpan.FromSeconds(30 + level);
+
+            IPooledEnumerable eable = target.GetMobilesInRange(2);
+
+            foreach (Mobile m in eable)
+            {
+                if (!m.Alive || !caster.CanBeHarmful(m))
+                    continue;
+
+                m.AddStatMod(new StatMod(StatType.Dex, "DirgeDex", -dexLoss, duration));
+                m.AddStatMod(new StatMod(StatType.Str, "DirgeStr", -strLoss, duration));
+
+                m.FixedEffect(0x376A, 10, 25);
+                m.PlaySound(0x204);
+            }
+            eable.Free();
+        }
+    }
+
+    public class DissonantChordSpell : CustomSpell
+    {
+        public DissonantChordSpell() : base("Dissonant Chord", 0x481)
+        {
+            AddLevel(SpellType.Bard, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            IPooledEnumerable eable = caster.GetMobilesInRange(2);
+
+            foreach (Mobile m in eable)
+            {
+                if (!m.Alive || !caster.CanBeHarmful(m))
+                    continue;
+
+                int damage = Utility.RandomMinMax(20, 31) + level;
+                AOS.Damage(m, caster, damage, 0, 0, 0, 100, 0);
+
+                m.FixedEffect(0x36BD, 10, 25);
+                m.PlaySound(0x1F2);
+            }
+
+            eable.Free();
+        }
+    }
+
+
+
     public class FireballSpell : CustomSpell
     {
         public FireballSpell() : base("Fireball", 0x36D4)
@@ -1567,6 +1792,75 @@ namespace Server.CustomSpells
                 AOS.Damage(m, caster, Utility.RandomMinMax(25, 35) + level * 2, 0, 100, 0, 0, 0);
         }
     }
+
+    public class GoodHopeSpell : CustomSpell
+    {
+        public GoodHopeSpell() : base("Good Hope", 0x480)
+        {
+            AddLevel(SpellType.Bard, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Buff);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            int statBonus = 15 + level;
+            int skillBonus = 10 + level;
+            TimeSpan duration = TimeSpan.FromSeconds(30 + level * 2);
+
+            IPooledEnumerable eable = caster.GetMobilesInRange(3);
+
+            foreach (Mobile m in eable)
+            {
+                if (!m.Alive || !BardSpellHelpers.IsFriendly(caster, m))
+                    continue;
+
+                BardSpellHelpers.ApplyStatBuff(m, statBonus, statBonus, statBonus, duration, "GoodHope");
+
+                m.AddSkillMod(new DefaultSkillMod(SkillName.Tactics, true, skillBonus));
+                m.AddSkillMod(new DefaultSkillMod(SkillName.Parry, true, skillBonus));
+
+                m.FixedParticles(0x373A, 10, 15, 5012, hue, 0, EffectLayer.Waist);
+                m.PlaySound(0x1ED);
+            }
+
+            eable.Free();
+        }
+    }
+
+    public class HarmonicChorusSpell : CustomSpell
+    {
+        public HarmonicChorusSpell() : base("Harmonic Chorus", 0x480)
+        {
+            AddLevel(SpellType.Bard, 3);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Buff);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            int skillBonus = 10 + level;
+            TimeSpan duration = TimeSpan.FromSeconds(30 + level * 2);
+
+            IPooledEnumerable eable = caster.GetMobilesInRange(2);
+
+            foreach (Mobile m in eable)
+            {
+                if (!m.Alive || !BardSpellHelpers.IsFriendly(caster, m))
+                    continue;
+
+                m.AddStatMod(new StatMod(StatType.Int, "ChorusInt", 25, duration));
+
+                m.AddSkillMod(new DefaultSkillMod(SkillName.Meditation, true, skillBonus));
+                m.AddSkillMod(new DefaultSkillMod(SkillName.Focus, true, skillBonus));
+
+                m.FixedParticles(0x373A, 10, 15, 5012, hue, 0, EffectLayer.Waist);
+            }
+            eable.Free();
+        }
+    }
+
+
 
     public class LightningBoltSpell : CustomSpell
     {
@@ -1696,6 +1990,142 @@ namespace Server.CustomSpells
             caster.PlaySound(0x1F2);
         }
     }
+
+    public abstract class ProtectionFromEnergySpell : CustomSpell
+    {
+        private ResistanceType m_ResistType;
+        private EnergyProtectionType m_Type;
+
+        protected ProtectionFromEnergySpell(
+            string name,
+            int hue,
+            ResistanceType resistType,
+            EnergyProtectionType type
+        ) : base(name, hue)
+        {
+            m_ResistType = resistType;
+            m_Type = type;
+
+            AddTag(SpellTag.Buff);
+            AddTag(SpellTag.SingleTarget);
+
+            AddLevel(SpellType.Cleric, 3);
+            AddLevel(SpellType.Druid, 3);
+            AddLevel(SpellType.Wizard, 3);
+            AddLevel(SpellType.Sorcerer, 3);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            int amount = 12 + level;
+
+            if (GetResist(caster) >= 70)
+            {
+                return;
+            }
+
+            if (GetResist(caster) + amount > 70)
+                amount = 70 - GetResist(caster);
+
+            TimeSpan duration = TimeSpan.FromSeconds(40 + level * 2);
+
+            ResistanceMod mod = new ResistanceMod(m_ResistType, amount);
+
+            caster.AddResistanceMod(mod);
+
+            caster.FixedParticles(0x373A, 10, 15, 5012, hue, 3, EffectLayer.Waist);
+            caster.PlaySound(0x1EA);
+
+            new ExpireTimer(caster, mod, duration, m_Type).Start();
+        }
+
+        private int GetResist(Mobile m)
+        {
+            switch (m_ResistType)
+            {
+                case ResistanceType.Cold: return m.ColdResistance;
+                case ResistanceType.Fire: return m.FireResistance;
+                case ResistanceType.Energy: return m.EnergyResistance;
+                case ResistanceType.Poison: return m.PoisonResistance;
+            }
+            return 0;
+        }
+
+        private class ExpireTimer : Timer
+        {
+            private Mobile m_Mobile;
+            private ResistanceMod m_Mod;
+            private EnergyProtectionType m_Type;
+
+            public ExpireTimer(Mobile m, ResistanceMod mod, TimeSpan delay, EnergyProtectionType type)
+                : base(delay)
+            {
+                m_Mobile = m;
+                m_Mod = mod;
+                m_Type = type;
+            }
+
+            protected override void OnTick()
+            {
+                if (m_Mobile == null)
+                    return;
+
+                m_Mobile.RemoveResistanceMod(m_Mod);
+
+                switch (m_Type)
+                {
+                    case EnergyProtectionType.Cold:
+                        m_Mobile.SendMessage("Your protection from cold fades.");
+                        break;
+                    case EnergyProtectionType.Fire:
+                        m_Mobile.SendMessage("Your protection from fire fades.");
+                        break;
+                    case EnergyProtectionType.Energy:
+                        m_Mobile.SendMessage("Your protection from electricity fades.");
+                        break;
+                    case EnergyProtectionType.Poison:
+                        m_Mobile.SendMessage("Your protection from acid fades.");
+                        break;
+                }
+
+                Stop();
+            }
+        }
+    }
+
+    public class ProtectionFromColdSpell : ProtectionFromEnergySpell
+    {
+        public ProtectionFromColdSpell()
+            : base("Protection from Energy: Cold", 0x480, ResistanceType.Cold, EnergyProtectionType.Cold)
+        {
+        }
+    }
+
+    public class ProtectionFromFireSpell : ProtectionFromEnergySpell
+    {
+        public ProtectionFromFireSpell()
+            : base("Protection from Energy: Fire", 0x489, ResistanceType.Fire, EnergyProtectionType.Fire)
+        {
+        }
+    }
+
+    public class ProtectionFromElectricitySpell : ProtectionFromEnergySpell
+    {
+        public ProtectionFromElectricitySpell()
+            : base("Protection from Energy: Electricity", 0x4A0, ResistanceType.Energy, EnergyProtectionType.Energy)
+        {
+        }
+    }
+    public class ProtectionFromAcidSpell : ProtectionFromEnergySpell
+    {
+        public ProtectionFromAcidSpell()
+            : base("Protection from Energy: Acid", 0x455, ResistanceType.Poison, EnergyProtectionType.Poison)
+        {
+        }
+    }
+
+
+
     
     public class SpikeGrowthSpell : CustomSpell
     {
@@ -1794,13 +2224,62 @@ namespace Server.CustomSpells
                 hue != 0 ? hue : 0x489
             );
 
-            int damage = Utility.RandomMinMax(28, 42) + level * 2;
+            int damage = Utility.RandomMinMax(28, 42) + level;
 
             AOS.Damage(target, caster, damage, 0, 100, 0, 0, 0);
 
             target.SendMessage("You are hit by a pillar of flame!");
         }
     }
+
+    public class IceStormSpell : CustomSpell
+    {
+        public IceStormSpell() : base("Ice Storm", 0x480)
+        {
+            AddLevel(SpellType.Druid, 4);
+            AddLevel(SpellType.Wizard, 4);
+            AddLevel(SpellType.Sorcerer, 4);
+
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            Mobile target = caster.Combatant as Mobile;
+            if (target == null || !caster.CanBeHarmful(target))
+                return;
+
+            Point3D loc = target.Location;
+
+            IPooledEnumerable eable = caster.Map.GetMobilesInRange(loc, 3);
+
+            foreach (Mobile m in eable)
+            {
+                if (m == caster)
+                    continue;
+
+                if (!caster.CanBeHarmful(m))
+                    continue;
+
+                int dmg = Utility.RandomMinMax(20, 32) + level;
+
+                SpellHelper.Damage(
+                    TimeSpan.Zero,
+                    m,
+                    caster,
+                    dmg,
+                    0, 0, 0, 100, 0
+                );
+
+                m.FixedParticles(0x374A, 10, 15, 5032, hue, 3, EffectLayer.Waist);
+            }
+
+            eable.Free();
+        }
+
+    }
+
 
     public abstract class BaseOrbSpell : CustomSpell
     {
@@ -2004,6 +2483,39 @@ namespace Server.CustomSpells
         }
     }
 
+    public class ValiantSpiritSpell : CustomSpell
+    {
+        public ValiantSpiritSpell() : base("Valiant Spirit", 0x480)
+        {
+            AddLevel(SpellType.Bard, 4);
+            AddLevel(SpellType.Cleric, 4);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Buff);
+            AddTag(SpellTag.Heal);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            int heal = Utility.RandomMinMax(20, 32) + level;
+            int str = 5 + level;
+            int resist = Math.Min(70, 6 + level);
+
+            caster.Hits += heal;
+            caster.AddStatMod(new StatMod(StatType.Str, "ValiantStr", str, TimeSpan.FromSeconds(60 + level * 10)));
+
+            TimeSpan dur = TimeSpan.FromSeconds(60 + level * 10);
+            caster.AddResistanceMod(new ResistanceMod(ResistanceType.Fire, resist));
+            caster.AddResistanceMod(new ResistanceMod(ResistanceType.Cold, resist));
+            caster.AddResistanceMod(new ResistanceMod(ResistanceType.Energy, resist));
+            caster.AddResistanceMod(new ResistanceMod(ResistanceType.Poison, resist));
+            caster.AddResistanceMod(new ResistanceMod(ResistanceType.Physical, resist));
+
+            caster.FixedParticles(0x375A, 10, 15, 5012, hue, 0, EffectLayer.Waist);
+            caster.PlaySound(0x1F7);
+        }
+    }
+
+
     // ===== LEVEL 5 =====
     public class CallLightningStormSpell : CustomSpell
     {
@@ -2149,6 +2661,88 @@ namespace Server.CustomSpells
         }
     }
 
+    public class WailOfDoomSpell : CustomSpell
+    {
+        public WailOfDoomSpell() : base("Wail of Doom", 0x482)
+        {
+            AddLevel(SpellType.Bard, 5);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.CC);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            int range = 4;
+            int angle = 60; 
+            Direction dir = caster.Direction;
+
+            foreach (Mobile m in caster.GetMobilesInRange(range))
+            {
+                if (!m.Alive || !caster.CanBeHarmful(m))
+                    continue;
+
+                if (!InCone(caster, m, dir, angle))
+                    continue;
+
+                caster.DoHarmful(m);
+
+                int damage = Utility.RandomMinMax(22, 32) + level;
+                AOS.Damage(m, caster, damage, 0, 0, 0, 100, 0);
+
+                int save = Utility.RandomMinMax(40, 52) + level * 2;
+                if (m.Int < save)
+                {
+                    m.Paralyze(TimeSpan.FromSeconds(6 + level));
+                }
+
+                m.FixedEffect(0x36BD, 10, 25);
+                m.PlaySound(0x204);
+            }
+        }
+
+        private bool InCone(Mobile caster, Mobile target, Direction dir, int angle)
+        {
+            double dx = target.X - caster.X;
+            double dy = target.Y - caster.Y;
+            double dist = Math.Sqrt(dx * dx + dy * dy);
+
+            if (dist == 0)
+                return true;
+
+            double targetAngle = Math.Atan2(dy, dx) * 180 / Math.PI;
+            double facingAngle = GetFacingAngle(dir);
+
+            double diff = Math.Abs(NormalizeAngle(targetAngle - facingAngle));
+            return diff <= angle / 2;
+        }
+
+        private double GetFacingAngle(Direction dir)
+        {
+            switch (dir & Direction.Mask)
+            {
+                case Direction.North: return -90;
+                case Direction.Right: return 0;
+                case Direction.East: return 0;
+                case Direction.Down: return 90;
+                case Direction.South: return 90;
+                case Direction.Left: return 180;
+                case Direction.West: return 180;
+                case Direction.Up: return -90;
+            }
+
+            return 0;
+        }
+
+        private double NormalizeAngle(double angle)
+        {
+            while (angle < -180) angle += 360;
+            while (angle > 180) angle -= 360;
+            return angle;
+        }
+    }
+
+
 
     // ===== LEVEL 6 =====
     public class AcidFogSpell : CustomSpell
@@ -2263,25 +2857,48 @@ namespace Server.CustomSpells
 
                 caster.DoBeneficial(m);
 
-                int bonus = 45 + level * 2;
+                int bonusHP = 45 + level * 2;
+                int strBonus = bonusHP / 2;
+                if (strBonus < 1)
+                    strBonus = 1;
 
-                m.HitsMaxSeed += bonus;
-                m.Hits += bonus;
+                m.AddStatMod(new StatMod(StatType.Str, "MassBearsEndurance", strBonus, TimeSpan.FromSeconds(60)));
+                m.Hits += bonusHP;
 
                 m.FixedEffect(0x376A, 10, 20);
                 m.PlaySound(0x1EA);
-
-                Timer.DelayCall(TimeSpan.FromSeconds(60), delegate
-                {
-                    if (m == null || m.Deleted)
-                        return;
-
-                    m.HitsMaxSeed -= bonus;
-                    if (m.Hits > m.HitsMax)
-                        m.Hits = m.HitsMax;
-                });
             }
             eable.Free();
+        }
+    }
+
+    public class GreaterBestowCurseSpell : CustomSpell
+    {
+        public GreaterBestowCurseSpell() : base("Bestow Curse, Greater", 0x455)
+        {
+            AddLevel(SpellType.Bard, 6);
+            AddLevel(SpellType.Cleric, 7);
+            AddLevel(SpellType.Wizard, 8);
+            AddLevel(SpellType.Sorcerer, 8);
+            AddTag(SpellTag.Debuff);
+            AddTag(SpellTag.SingleTarget);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            Mobile target = caster.Combatant as Mobile;
+            if (target == null || !caster.CanBeHarmful(target))
+                return;
+
+            caster.DoHarmful(target);
+
+            int strLoss = (int)(target.RawStr * (0.24 + level * 0.02));
+            TimeSpan dur = TimeSpan.FromSeconds(30 + level);
+
+            target.AddStatMod(new StatMod(StatType.Str, "GreaterBestowCurse", -strLoss, dur));
+
+            target.FixedEffect(0x3728, 10, 20);
+            target.PlaySound(0x1F8);
         }
     }
 
@@ -2317,6 +2934,54 @@ namespace Server.CustomSpells
             );
         }
     }
+
+    public class CacophonicShieldSpell : CustomSpell
+    {
+        public CacophonicShieldSpell() : base("Cacophonic Shield", 0x481)
+        {
+            AddLevel(SpellType.Bard, 6);
+            AddLevel(SpellType.Wizard, 7);
+            AddLevel(SpellType.Sorcerer, 7);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Buff);
+            AddTag(SpellTag.DoT);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            int resist = 6 + level;
+            TimeSpan dur = TimeSpan.FromSeconds(21 + level);
+
+            caster.AddResistanceMod(new ResistanceMod(ResistanceType.Energy, resist));
+
+            int ticks = (int)(dur.TotalSeconds / 2);
+
+            Timer.DelayCall(
+                TimeSpan.Zero,
+                TimeSpan.FromSeconds(2),
+                ticks,
+                delegate
+                {
+                    IPooledEnumerable eable = caster.GetMobilesInRange(1);
+
+                    foreach (Mobile m in eable)
+                    {
+                        if (!m.Alive || !caster.CanBeHarmful(m))
+                            continue;
+
+                        int dmg = Utility.RandomMinMax(18, 24);
+                        AOS.Damage(m, caster, dmg, 0, 0, 0, 100, 0);
+                    }
+
+                    eable.Free();
+                }
+            );
+
+
+            caster.FixedParticles(0x375A, 10, 15, 5012, hue, 0, EffectLayer.Waist);
+        }
+    }
+
 
     public class CatsGraceMassSpell : CustomSpell
     {
@@ -2382,6 +3047,83 @@ namespace Server.CustomSpells
             eable.Free();
         }
     }
+
+    public class CometfallSpell : CustomSpell
+    {
+        public CometfallSpell() : base("Cometfall", 0x489)
+        {
+            AddLevel(SpellType.Cleric, 6);
+            AddLevel(SpellType.Druid, 6);
+
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.CC);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            Mobile target = caster.Combatant as Mobile;
+            if (target == null || !caster.CanBeHarmful(target))
+                return;
+
+            int dmg = Utility.RandomMinMax(30, 45) + level;
+
+            SpellHelper.Damage(
+                TimeSpan.Zero,
+                target,
+                caster,
+                dmg,
+                50, 0, 50, 0, 0
+            );
+
+            target.FixedParticles(0x36BD, 20, 10, 5044, hue, 3, EffectLayer.Head);
+            target.PlaySound(0x160);
+
+            if (target.Dex < Utility.RandomMinMax(20, 60) + level)
+            {
+                DoKnockback(target, caster, 3);
+                target.Paralyze(TimeSpan.FromSeconds(4));
+            }
+        }
+
+        private void DoKnockback(Mobile target, Mobile caster, int tiles)
+        {
+            Direction d = caster.GetDirectionTo(target);
+            Point3D loc = target.Location;
+            Map map = target.Map;
+
+            for (int i = 0; i < tiles; i++)
+            {
+                Point3D next = GetOffset(loc, d);
+
+                if (map == null || !map.CanFit(next, 16, false, false))
+                    break;
+
+                loc = next;
+            }
+
+            target.MoveToWorld(loc, map);
+        }
+
+        private Point3D GetOffset(Point3D p, Direction d)
+        {
+            switch (d)
+            {
+                case Direction.North: return new Point3D(p.X, p.Y - 1, p.Z);
+                case Direction.South: return new Point3D(p.X, p.Y + 1, p.Z);
+                case Direction.West:  return new Point3D(p.X - 1, p.Y, p.Z);
+                case Direction.East:  return new Point3D(p.X + 1, p.Y, p.Z);
+                case Direction.Up:    return new Point3D(p.X - 1, p.Y - 1, p.Z);
+                case Direction.Down:  return new Point3D(p.X + 1, p.Y + 1, p.Z);
+                case Direction.Left:  return new Point3D(p.X - 1, p.Y + 1, p.Z);
+                case Direction.Right: return new Point3D(p.X + 1, p.Y - 1, p.Z);
+            }
+
+            return p;
+        }
+    }
+
+
 
     public class DisintegrateSpell : CustomSpell
     {
@@ -2467,6 +3209,38 @@ namespace Server.CustomSpells
         }
     }
 
+        public class OwlsWisdomMassSpell : CustomSpell
+        {
+            public OwlsWisdomMassSpell() : base("Owl's Wisdom, Mass", 0x375A)
+            {
+                AddLevel(SpellType.Cleric, 6);
+                AddLevel(SpellType.Druid, 6);
+                AddLevel(SpellType.Wizard, 6);
+                AddLevel(SpellType.Sorcerer, 6);
+                AddTag(SpellTag.AoE);
+                AddTag(SpellTag.Buff);
+            }
+
+            public override void Cast(Mobile caster, int hue, int level)
+            {
+                int bonus = 30 + level * 2;
+
+                caster.PlaySound(0x1E9);
+
+                MassBuffHelper.ApplyStatBuff(
+                    caster,
+                    6,
+                    bonus,
+                    TimeSpan.FromMinutes(1),
+                    delegate(Mobile m, int amt) { m.RawInt += amt; },
+                    delegate(Mobile m, int amt) { m.RawInt -= amt; },
+                    0x375A,
+                    hue,
+                    "Your mind becomes clearer!"
+                );
+            }
+        }
+
 
     public class HealSpell : CustomSpell
     {
@@ -2497,6 +3271,16 @@ namespace Server.CustomSpells
     }
 
     // ===== LEVEL 7 =====
+    public class AuraOfColdGreaterSpell : AuraOfColdSpell
+    {
+        public AuraOfColdGreaterSpell()
+            : base("Aura of Cold, Greater", 0x480, 22, 28)
+        {
+            AddLevel(SpellType.Cleric, 7);
+            AddLevel(SpellType.Druid, 7);
+        }
+    }
+
     public class HoldPersonMassSpell : CustomSpell
     {
         public HoldPersonMassSpell() : base("Hold Person, Mass", 0x376A)
@@ -2582,6 +3366,141 @@ namespace Server.CustomSpells
             );
         }
     }
+
+    public class FirestormSpell : CustomSpell
+    {
+        public FirestormSpell() : base("Firestorm", 0x489)
+        {
+            AddLevel(SpellType.Cleric, 8);
+            AddLevel(SpellType.Druid, 7);
+
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.DoT);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            for (int i = 0; i < level; i++)
+            {
+                Direction dir = (Direction)Utility.Random(8);
+                Point3D loc = caster.Location;
+
+                for (int j = 0; j < 2; j++)
+                {
+                    loc = GetOffset(loc, dir);
+
+                    FirestormField field = new FirestormField(loc, caster, level);
+                    field.MoveToWorld(loc, caster.Map);
+                }
+            }
+        }
+
+        private Point3D GetOffset(Point3D p, Direction d)
+        {
+            switch (d)
+            {
+                case Direction.North: return new Point3D(p.X, p.Y - 1, p.Z);
+                case Direction.South: return new Point3D(p.X, p.Y + 1, p.Z);
+                case Direction.West:  return new Point3D(p.X - 1, p.Y, p.Z);
+                case Direction.East:  return new Point3D(p.X + 1, p.Y, p.Z);
+                case Direction.Up:    return new Point3D(p.X - 1, p.Y - 1, p.Z);
+                case Direction.Down:  return new Point3D(p.X + 1, p.Y + 1, p.Z);
+                case Direction.Left:  return new Point3D(p.X - 1, p.Y + 1, p.Z);
+                case Direction.Right: return new Point3D(p.X + 1, p.Y - 1, p.Z);
+            }
+
+            return p;
+        }
+
+    }
+
+    public class FirestormField : Item
+    {
+        private Timer m_Timer;
+        private Mobile m_Caster;
+        private int m_Level;
+
+        public FirestormField(Point3D loc, Mobile caster, int level) : base(0x398C)
+        {
+            Movable = false;
+            m_Caster = caster;
+            m_Level = level;
+
+            MoveToWorld(loc, caster.Map);
+
+            m_Timer = Timer.DelayCall(
+                TimeSpan.Zero,
+                TimeSpan.FromSeconds(2),
+                new TimerCallback(Tick)
+            );
+
+            Timer.DelayCall(TimeSpan.FromSeconds(12 + level), Delete);
+        }
+
+        public FirestormField(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+
+            writer.Write(m_Caster);
+            writer.Write(m_Level);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+
+            m_Caster = reader.ReadMobile();
+            m_Level = reader.ReadInt();
+
+            Delete();
+        }
+
+        private void Tick()
+        {
+            if (Deleted || m_Caster == null)
+                return;
+
+            IPooledEnumerable eable = GetMobilesInRange(0);
+
+            foreach (Mobile m in eable)
+            {
+                if (!m.Alive || !m_Caster.CanBeHarmful(m))
+                    continue;
+
+                int dmg = Utility.RandomMinMax(23, 31) + m_Level;
+
+                SpellHelper.Damage(
+                    TimeSpan.Zero,
+                    m,
+                    m_Caster,
+                    dmg,
+                    0, 100, 0, 0, 0
+                );
+            }
+
+            eable.Free();
+        }
+
+        public override void OnDelete()
+        {
+            if (m_Timer != null)
+                m_Timer.Stop();
+
+            base.OnDelete();
+        }
+    }
+
+
+
 
     public class PlagueSpell : CustomSpell
     {
@@ -2946,6 +3865,46 @@ namespace Server.CustomSpells
             });
         }
     }
+
+    public class MassValiantSpiritSpell : CustomSpell
+    {
+        public MassValiantSpiritSpell() : base("Valiant Spirit, Mass", 0x480)
+        {
+            AddLevel(SpellType.Cleric, 8);
+            AddTag(SpellTag.AoE);
+            AddTag(SpellTag.Heal);
+            AddTag(SpellTag.Buff);
+        }
+
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            IPooledEnumerable eable = caster.GetMobilesInRange(3);
+
+            foreach (Mobile m in eable)
+            {
+                if (!m.Alive || !BardSpellHelpers.IsFriendly(caster, m))
+                    continue;
+
+                int heal = Utility.RandomMinMax(40, 52) + level;
+                int str = 10 + level;
+                int resist = Math.Min(70, 11 + level);
+
+                m.Hits += heal;
+                m.AddStatMod(new StatMod(StatType.Str, "ValiantMassStr", str, TimeSpan.FromSeconds(60 + level * 10)));
+
+                m.AddResistanceMod(new ResistanceMod(ResistanceType.Fire, resist));
+                m.AddResistanceMod(new ResistanceMod(ResistanceType.Cold, resist));
+                m.AddResistanceMod(new ResistanceMod(ResistanceType.Energy, resist));
+                m.AddResistanceMod(new ResistanceMod(ResistanceType.Poison, resist));
+                m.AddResistanceMod(new ResistanceMod(ResistanceType.Physical, resist));
+
+                m.FixedParticles(0x375A, 10, 15, 5012, hue, 0, EffectLayer.Waist);
+            }
+
+            eable.Free();
+        }
+    }
+
     // ===== LEVEL 9 =====
     public class IcebergSpell : CustomSpell
     {
