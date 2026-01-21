@@ -15,11 +15,11 @@ using Server.EffectsUtil;
 using Server.Custom;
 using Server.Custom.DailyBosses.System;
 using Server.Custom.BossSystems;
-
+using Server.CustomSpells;
 namespace Server.Mobiles
 {
 	[CorpseName( "Fiorin's Corpse" )]
-	public class FiorinTheArchdruid : BaseCreature
+	public class FiorinTheArchdruid : BaseSpellCaster
 	{
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
@@ -373,6 +373,7 @@ namespace Server.Mobiles
 
 		public override void OnAfterSpawn()
 		{
+			this.MobileMagics(6, SpellType.Druid, 0x92E);
 			base.OnAfterSpawn();
 			LeechImmune = true;
 		}
@@ -384,7 +385,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 ); // version
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
@@ -407,6 +408,11 @@ namespace Server.Mobiles
 			
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
+
+			if(version >=2)
+			{
+				this.MobileMagics(6, SpellType.Druid, 0x92E);
+			}
 		}
 	}
 }

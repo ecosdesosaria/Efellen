@@ -57,12 +57,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Gems, Utility.RandomMinMax( 1, 4 ) );
 		}
 
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public override void OnGotMeleeAttack( Mobile attacker )
 		{
 			base.OnGotMeleeAttack( attacker );

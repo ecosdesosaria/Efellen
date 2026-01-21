@@ -56,12 +56,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedPotions );
 		}
 
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public override bool CanRummageCorpses{ get{ return true; } }
 		public override bool BleedImmune{ get{ return true; } }
 		public override int Scales{ get{ return 1; } }

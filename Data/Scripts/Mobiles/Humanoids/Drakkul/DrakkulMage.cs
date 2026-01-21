@@ -57,13 +57,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Rich );
 			AddLoot( LootPack.Gems, Utility.RandomMinMax( 1, 4 ) );
 		}
-
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public override int Meat{ get{ return 2; } }
 		public override int Hides{ get{ return 2; } }
 		public override int Scales{ get{ return 2; } }

@@ -128,7 +128,6 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
 			Server.Misc.IntelligentAction.BeforeMyDeath( this );
 			return base.OnBeforeDeath();
 		}

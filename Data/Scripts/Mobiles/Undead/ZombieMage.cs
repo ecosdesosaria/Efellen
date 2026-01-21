@@ -73,12 +73,6 @@ namespace Server.Mobiles
 		public override int Hides{ get{ return 3; } }
 		public override HideType HideType{ get{ return HideType.Necrotic; } }
 
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public ZombieMage( Serial serial ) : base( serial )
 		{
 		}

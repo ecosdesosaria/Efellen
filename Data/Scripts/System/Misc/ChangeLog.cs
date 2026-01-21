@@ -81,8 +81,9 @@ namespace Server.Misc
 		+"  • Various unique and powerful enemies now have access to interesting special attacks that will make the battles much more dynamic.<br>"
 		+"  • Rogue-type enemies are now only insterested in your gold. The random junk you have in your bags is safe.<br>"
 		+"  • Dramatically reworked how enemy spellcasting works. Most mage-type enemies now have a spell list based on a character class which gives them access to a wide variety of different new tools to make you "+
-		"miserable. Druid enemies will be more prone to summoning animals, mages will zap you, clerics will smite you, bards will yell at you, and so on. There are about 70 new spells directly taken from d&d 3.5"+
+		"miserable. Druid enemies will be more prone to summoning animals, mages will zap you, clerics will smite you, bards will yell at you, and so on. There are about 100 new spells directly taken from d&d 3.5"+
 		" ready to be used by your foes.<br>"
+		+"  • Most spellcasting enemies no longer have a chance to heal to full upon being defeated.<br>"
 		+" <br>"
 		+" * Progression,  archetypes & system changes:<br>"
 		+"  • Marks of Devotion:<BR>"

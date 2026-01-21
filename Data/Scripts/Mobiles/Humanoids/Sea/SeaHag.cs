@@ -61,12 +61,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedScrolls, 2 );
 		}
 
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public override bool CanRummageCorpses{ get{ return true; } }
 		public override int TreasureMapLevel{ get{ return 3; } }
 		public override bool BleedImmune{ get{ return true; } }

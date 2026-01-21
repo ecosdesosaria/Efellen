@@ -55,13 +55,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.LowScrolls );
 			AddLoot( LootPack.LowPotions );
 		}
-
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public override int Meat{ get{ return 1; } }
 		public override int Hides{ get{ return 1; } }
 		public override HideType HideType{ get{ return HideType.Horned; } }

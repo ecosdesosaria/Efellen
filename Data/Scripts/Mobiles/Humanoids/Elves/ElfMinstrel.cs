@@ -6,10 +6,11 @@ using Server.ContextMenus;
 using Server.Misc;
 using Server.Network;
 using System.Collections.Generic;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
-	public class ElfMinstrel : BaseCreature
+	public class ElfMinstrel : BaseSpellCaster
 	{
 		[Constructable]
 		public ElfMinstrel() : base( AIType.AI_Archer, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -81,6 +82,13 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Songs );
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(3,6), SpellType.Bard, 0);
+			base.OnAfterSpawn();
+		}
+
+
 		public override bool AlwaysAttackable{ get{ return true; } }
 		public override bool ClickTitle{ get{ return false; } }
 		public override bool ShowFameTitle{ get{ return false; } }
@@ -115,13 +123,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if(version>=1)
+			{
+				this.MobileMagics(Utility.Random(3,6), SpellType.Bard, 0);
+			} 
 		}
 	}
 }

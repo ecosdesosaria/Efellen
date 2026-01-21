@@ -14,11 +14,12 @@ using Server.EffectsUtil;
 using Server.Custom;
 using Server.Custom.DailyBosses.System;
 using Server.Regions;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Mother Superior's Corpse" )]
-	public class MotherSuperior : BaseCreature
+	public class MotherSuperior : BaseSpellCaster
 	{
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
@@ -322,6 +323,7 @@ namespace Server.Mobiles
 
 		public override void OnAfterSpawn()
 		{
+			this.MobileMagics(5, SpellType.Cleric, 0);
 			base.OnAfterSpawn();
 		}
 
@@ -332,7 +334,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 ); // version
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSpecialAttack );
@@ -347,6 +349,10 @@ namespace Server.Mobiles
 			{
 				m_Rage = reader.ReadInt();
 				m_NextSpecialAttack = reader.ReadDateTime();
+			}
+			if(version >=2)
+			{
+				this.MobileMagics(5, SpellType.Cleric, 0);
 			}
 		}
 	}

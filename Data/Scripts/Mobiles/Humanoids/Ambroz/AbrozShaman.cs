@@ -78,12 +78,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Gems, 4);
 		}
 
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public override bool CanRummageCorpses{ get{ return true; } }
 
 		// TODO: Body Transformation
