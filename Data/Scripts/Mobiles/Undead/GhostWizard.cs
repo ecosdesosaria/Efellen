@@ -4,11 +4,12 @@ using System.Collections;
 using Server.Items;
 using Server.Targeting;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a ghostly essence" )]
-	public class GhostWizard : BaseCreature 
+	public class GhostWizard : BaseSpellCaster 
 	{ 
 		[Constructable] 
 		public GhostWizard() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
@@ -108,6 +109,12 @@ namespace Server.Mobiles
 			AddItem( new LightSource() );
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(2,4), SpellType.Wizard, 0);
+			base.OnAfterSpawn();
+		}
+
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.Average );
@@ -135,13 +142,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,4), SpellType.Wizard, 0);
+			}
 		}
 	}
 }

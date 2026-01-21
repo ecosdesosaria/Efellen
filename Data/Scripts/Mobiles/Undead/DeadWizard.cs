@@ -4,11 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Server.Items;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
 	[CorpseName( "a corpse" )] 
-	public class DeadWizard : BaseCreature 
+	public class DeadWizard : BaseSpellCaster 
 	{ 
 		[Constructable] 
 		public DeadWizard() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
@@ -150,7 +151,7 @@ namespace Server.Mobiles
 					hands.Layer = Layer.Gloves;
 					AddItem( hands );
 			}
-
+			this.MobileMagics(Utility.Random(2,5), SpellType.Wizard, 0);
 			base.OnAfterSpawn();
 		}
 
@@ -171,13 +172,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,5), SpellType.Wizard, 0);
+			}
 		}
 	}
 }

@@ -1,11 +1,12 @@
 using System;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a neptar corpse" )]
-	public class NeptarWizard : BaseCreature
+	public class NeptarWizard : BaseSpellCaster
 	{
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ return 0; } }
@@ -90,6 +91,12 @@ namespace Server.Mobiles
 		public override int Skin{ get{ return Utility.Random(2); } }
 		public override SkinType SkinType{ get{ return SkinType.Seaweed; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(3,5), SpellType.Wizard | SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
+
 		public NeptarWizard( Serial serial ) : base( serial )
 		{
 		}
@@ -97,13 +104,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(3,5), SpellType.Wizard | SpellType.Sorcerer, 0);
+			}
 		}
 	}
 }

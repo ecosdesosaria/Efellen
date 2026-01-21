@@ -3,11 +3,12 @@ using System.Collections;
 using Server.Items;
 using Server.Misc;
 using Server.Targeting;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a rotting corpse" )]
-	public class ZombieMage : BaseCreature
+	public class ZombieMage : BaseSpellCaster
 	{
 		[Constructable]
 		public ZombieMage() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -59,6 +60,13 @@ namespace Server.Mobiles
 			AddLoot( LootPack.LowPotions );
 		}
 
+		public override void OnAfterSpawn()
+		{
+			Server.Misc.IntelligentAction.BeforeMyBirth( this );
+			this.MobileMagics(Utility.Random(1,3), SpellType.Wizard, 0);
+			base.OnAfterSpawn();
+		}
+
 		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Regular; } }
 		public override bool CanRummageCorpses{ get{ return true; } }
@@ -78,13 +86,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(1,3), SpellType.Wizard, 0);
+			}
 		}
 	}
 }

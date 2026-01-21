@@ -4,11 +4,12 @@ using Server;
 using Server.Misc;
 using Server.Items;
 using Server.Spells;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a savage corpse" )]
-	public class SavageShaman : BaseCreature
+	public class SavageShaman : BaseSpellCaster
 	{
 		[Constructable]
 		public SavageShaman() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -268,6 +269,12 @@ namespace Server.Mobiles
 			}
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(3,4), SpellType.Cleric | SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public SavageShaman( Serial serial ) : base( serial )
 		{
 		}
@@ -275,13 +282,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(3,4), SpellType.Cleric | SpellType.Druid, 0);
+			}
 		}
 	}
 }

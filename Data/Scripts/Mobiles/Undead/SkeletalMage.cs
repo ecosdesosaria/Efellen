@@ -1,11 +1,12 @@
 using System;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a skeletal corpse" )]
-	public class SkeletalMage : BaseCreature
+	public class SkeletalMage : BaseSpellCaster
 	{
 		[Constructable]
 		public SkeletalMage() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -59,6 +60,7 @@ namespace Server.Mobiles
 		public override void OnAfterSpawn()
 		{
 			Server.Misc.IntelligentAction.BeforeMyBirth( this );
+			this.MobileMagics(Utility.Random(1,2), SpellType.Wizard, 0);
 			base.OnAfterSpawn();
 		}
 
@@ -76,7 +78,6 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
 			Server.Misc.IntelligentAction.BeforeMyDeath( this );
 			Server.Misc.IntelligentAction.DropItem( this, this.LastKiller );
 			return base.OnBeforeDeath();
@@ -89,13 +90,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(1,2), SpellType.Wizard, 0);
+			}
 		}
 	}
 }

@@ -2,11 +2,12 @@ using System;
 using Server;
 using Server.Misc;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "an orc corpse" )]
-	public class OrcishMage : BaseCreature
+	public class OrcishMage : BaseSpellCaster
 	{
 		public override InhumanSpeech SpeechType{ get{ return InhumanSpeech.Orc; } }
 
@@ -60,6 +61,12 @@ namespace Server.Mobiles
 			return base.OnBeforeDeath();
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(1,2), SpellType.Cleric | SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
+
 		public override bool CanRummageCorpses{ get{ return true; } }
 		public override int TreasureMapLevel{ get{ return 1; } }
 		public override int Meat{ get{ return 1; } }
@@ -80,6 +87,7 @@ namespace Server.Mobiles
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			this.MobileMagics(Utility.Random(1,2), SpellType.Cleric | SpellType.Sorcerer, 0);
 		}
 	}
 }

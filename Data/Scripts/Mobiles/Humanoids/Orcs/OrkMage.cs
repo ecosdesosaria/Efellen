@@ -2,11 +2,12 @@ using System;
 using Server;
 using Server.Misc;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
 	[CorpseName( "an orcish corpse" )] 
-	public class OrkMage : BaseCreature 
+	public class OrkMage : BaseSpellCaster 
 	{ 
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ if ( YellHue < 2 ){ return 100; } else { return 0; } } }
@@ -118,6 +119,7 @@ namespace Server.Mobiles
 
 		public override void OnAfterSpawn()
 		{
+			this.MobileMagics(Utility.Random(2,4), SpellType.Wizard, 0);
 			Server.Misc.IntelligentAction.BeforeMyBirth( this );
 			base.OnAfterSpawn();
 			Server.Misc.MorphingTime.CheckMorph( this );
@@ -138,7 +140,6 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
 			Server.Misc.IntelligentAction.BeforeMyDeath( this );
 			return base.OnBeforeDeath();
 		}
@@ -150,13 +151,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if(version>=1)
+			{
+				this.MobileMagics(Utility.Random(2,4), SpellType.Wizard, 0);
+			}
+
 		}
 	}
 }

@@ -4,21 +4,13 @@ using Server.Misc;
 using Server.Items;
 using System.Collections.Generic;
 using Server.Custom.BalTsareth;
+using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
 	[CorpseName( "a possesed mage's corpse" )] 
 	public class PossessedMage : BaseCreature 
 	{ 
-		private DateTime m_NextSpellTime;
-		private bool m_IsChanneling;
-		private Timer m_ChannelTimer;
-		private Mobile m_ChannelTarget;
-		private int m_ChannelSpell; // 0 = Arcane Armor, 1 = Fireball, 2 = Magic Missile, 3 = Web
-		private DateTime m_ArcaneArmorEnds;
-		private bool m_HasArcaneArmor;
-		private int m_OriginalPhysicalResist;
-
 		[Constructable] 
 		public PossessedMage() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{ 
@@ -99,9 +91,7 @@ namespace Server.Mobiles
 			Karma = -6000;
 
 			VirtualArmor = 30;
-			PackReg( Utility.RandomMinMax( 2, 10 ) );
-			PackReg( Utility.RandomMinMax( 2, 10 ) );
-			PackReg( Utility.RandomMinMax( 2, 10 ) );
+			PackReg( Utility.RandomMinMax( 4, 12 ) );
 
 			if ( 0.7 > Utility.RandomDouble() )
 				PackItem( new ArcaneGem() );
@@ -109,230 +99,16 @@ namespace Server.Mobiles
 			if ( 0.7 > Utility.RandomDouble() )
 				PackItem( new EerieIdol() );
 
-			m_NextSpellTime = DateTime.UtcNow;
-			m_IsChanneling = false;
-			m_HasArcaneArmor = false;
 		}
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			base.OnDamage( amount, from, willKill );
 
-			if ( m_IsChanneling )
-			{
-				InterruptChannel();
-			}
-		}
-
-		private void InterruptChannel()
-		{
-			if ( !m_IsChanneling )
-				return;
-
-			m_IsChanneling = false;
-			this.Frozen = false;
-			Say("*The spell fizzles*");
-
-			if ( m_ChannelTimer != null )
-			{
-				m_ChannelTimer.Stop();
-				m_ChannelTimer = null;
-			}
-
-			m_ChannelTarget = null;
-		}
-
-		public override void OnThink()
-		{
-			base.OnThink();
-
-			if ( m_HasArcaneArmor && DateTime.UtcNow >= m_ArcaneArmorEnds )
-			{
-				RemoveArcaneArmor();
-			}
-
-			if ( !m_IsChanneling && Combatant != null && Hits < HitsMax && 
-			     DateTime.UtcNow >= m_NextSpellTime && Utility.RandomDouble() < 0.10 )
-			{
-				m_ChannelSpell = Utility.Random( 4 );
-				m_ChannelTarget = Combatant;
-				
-				StartChanneling();
-			}
-		}
-
-		private void StartChanneling()
-		{
-			m_IsChanneling = true;
-			this.Frozen = true;
-			Say("*starts channeling a spell*");
-
-			m_ChannelTimer = Timer.DelayCall( TimeSpan.FromSeconds( 3 ), new TimerCallback( ExecuteSpell ) );
-		}
-
-		private void ExecuteSpell()
-		{
-			if ( !m_IsChanneling )
-				return;
-
-			m_IsChanneling = false;
-			this.Frozen = false;
-
-			switch ( m_ChannelSpell )
-			{
-				case 0: CastArcaneArmor(); break;
-				case 1: CastFireball(); break;
-				case 2: CastMagicMissile(); break;
-				case 3: CastWeb(); break;
-			}
-
-			m_NextSpellTime = DateTime.UtcNow + TimeSpan.FromMinutes( 1 );
-		}
-
-		private void CastArcaneArmor()
-		{
-			Say("*Casts Arcane Armor*");
-
-			Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 0x0213 );
-			Effects.PlaySound( this.Location, this.Map, 0x1F2 );
-
-			m_OriginalPhysicalResist = this.GetResistance( ResistanceType.Physical );
-			this.SetResistance( ResistanceType.Physical, 60 );
-			
-			m_HasArcaneArmor = true;
-			m_ArcaneArmorEnds = DateTime.UtcNow + TimeSpan.FromSeconds( 60 );
-		}
-
-		private void RemoveArcaneArmor()
-		{
-			if ( !m_HasArcaneArmor )
-				return;
-
-			m_HasArcaneArmor = false;
-			this.SetResistance( ResistanceType.Physical, m_OriginalPhysicalResist );
-		}
-
-		private void CastFireball()
-		{
-			if ( m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
-				return;
-			Say("*Casts Fireball*");
-
-			Point3D targetLoc = m_ChannelTarget.Location;
-			Map map = m_ChannelTarget.Map;
-
-			Effects.SendLocationEffect( targetLoc, map, 0x36BD, 20, 10, 0x0213, 0 );
-			Effects.PlaySound( targetLoc, map, 0x307 );
-
-			for ( int x = -1; x <= 1; x++ )
-			{
-				for ( int y = -1; y <= 1; y++ )
-				{
-					Point3D loc = new Point3D( targetLoc.X + x, targetLoc.Y + y, targetLoc.Z );
-					Effects.SendLocationEffect( loc, map, 0x36BD, 20, 10, 0x0213, 0 );
-				}
-			}
-
-			IPooledEnumerable eable = m_ChannelTarget.GetMobilesInRange( 1 );
-			List<Mobile> targets = new List<Mobile>();
-
-			foreach ( Mobile m in eable )
-			{
-				if ( m != this && m.Alive && CanBeHarmful( m ) )
-					targets.Add( m );
-			}
-			eable.Free();
-
-			foreach ( Mobile m in targets )
-			{
-				int damage = Utility.RandomMinMax( 35, 45 );
-				AOS.Damage( m, this, damage, 0, 100, 0, 0, 0 );
-			}
-		}
-
-		private void CastMagicMissile()
-		{
-			if ( m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
-				return;
-
-			Say("*Casts Magic Missile*");
-
-			int projectileCount = Utility.RandomMinMax( 2, 4 );
-			
-			for ( int i = 0; i < projectileCount; i++ )
-			{
-				Timer.DelayCall( TimeSpan.FromSeconds( i * 0.3 ), delegate()
-				{
-					if ( m_ChannelTarget != null && m_ChannelTarget.Alive && !m_ChannelTarget.Deleted )
-					{
-						Effects.SendMovingEffect( this, m_ChannelTarget, 0x379F, 7, 0, false, false, 0x0213, 0 );
-						Effects.PlaySound( this.Location, this.Map, 0x1F5 );
-
-						Timer.DelayCall( TimeSpan.FromSeconds( 0.5 ), delegate()
-						{
-							if ( m_ChannelTarget != null && m_ChannelTarget.Alive && !m_ChannelTarget.Deleted )
-							{
-								int damage = Utility.RandomMinMax( 5, 13 );
-								AOS.Damage( m_ChannelTarget, this, damage, 0, 0, 0, 0, 100 );
-								
-								Effects.SendLocationEffect( m_ChannelTarget.Location, m_ChannelTarget.Map, 0x3709, 10, 30, 0x0213, 0 );
-							}
-						});
-					}
-				});
-			}
-		}
-
-		private void CastWeb()
-		{
-			if ( m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
-				return;
-
-			Say("*Casts Web*");
-
-			IPooledEnumerable eable = m_ChannelTarget.GetMobilesInRange( 2 );
-			List<Mobile> targets = new List<Mobile>();
-
-			foreach ( Mobile m in eable )
-			{
-				if ( m != this && m.Alive && CanBeHarmful( m ) )
-					targets.Add( m );
-			}
-			eable.Free();
-
-			foreach ( Mobile m in targets )
-			{
-				// paralyze duration: 15 - (magic resist / 10 + dex / 10), min 3 seconds
-				double magicResist = m.Skills[SkillName.MagicResist].Value;
-				int dex = m.Dex;
-				double duration = 15.0 - (magicResist / 10.0 + dex / 10.0);
-				
-				if ( duration < 3.0 )
-					duration = 3.0;
-
-				m.Paralyze( TimeSpan.FromSeconds( duration ) );
-
-				Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x376A, 9, 10, 0x0213 );
-				Effects.SendLocationEffect( m.Location, m.Map, 0x3709, 30, 10, 0x0213, 0 );
-				Effects.PlaySound( m.Location, m.Map, 0x204 );
-
-				m.SendMessage( "You are trapped in a magical web!" );
-			}
 		}
 
 		public override void OnDelete()
 		{
-			if ( m_ChannelTimer != null )
-			{
-				m_ChannelTimer.Stop();
-				m_ChannelTimer = null;
-			}
-
-			if ( m_HasArcaneArmor )
-			{
-				RemoveArcaneArmor();
-			}
-
 			base.OnDelete();
 		}
 
@@ -365,6 +141,7 @@ namespace Server.Mobiles
 		public override void OnAfterSpawn()
 		{
 			Server.Misc.IntelligentAction.BeforeMyBirth( this );
+			this.MobileMagics(Utility.Random(1,3), SpellType.Wizard | SpellType.Sorcerer, 0x0213);
 			base.OnAfterSpawn();
 		}
 
@@ -376,37 +153,13 @@ namespace Server.Mobiles
 		{
 			base.Serialize( writer );
 			writer.Write( (int) 1 ); // version
-
-			writer.Write( m_NextSpellTime );
-			writer.Write( m_IsChanneling );
-			writer.Write( m_HasArcaneArmor );
-			writer.Write( m_ArcaneArmorEnds );
-			writer.Write( m_OriginalPhysicalResist );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
-
-			if ( version >= 1 )
-			{
-				m_NextSpellTime = reader.ReadDateTime();
-				m_IsChanneling = reader.ReadBool();
-				m_HasArcaneArmor = reader.ReadBool();
-				m_ArcaneArmorEnds = reader.ReadDateTime();
-				m_OriginalPhysicalResist = reader.ReadInt();
-
-				if ( m_IsChanneling )
-				{
-					m_IsChanneling = false;
-				}
-
-				if ( m_HasArcaneArmor && DateTime.UtcNow >= m_ArcaneArmorEnds )
-				{
-					RemoveArcaneArmor();
-				}
-			}
+			this.MobileMagics(Utility.Random(1,3), SpellType.Wizard | SpellType.Sorcerer, 0x0213);
 		}
 	}
 }

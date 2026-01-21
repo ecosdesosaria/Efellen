@@ -1,11 +1,12 @@
 using System;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a hag's corpse" )]
-	public class SeaHagGreater : BaseCreature
+	public class SeaHagGreater : BaseSpellCaster
 	{
 		[Constructable]
 		public SeaHagGreater() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -72,6 +73,12 @@ namespace Server.Mobiles
 		public override int Skin{ get{ return Utility.Random(3); } }
 		public override SkinType SkinType{ get{ return SkinType.Seaweed; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(4,6), SpellType.Wizard | SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
+
 		public SeaHagGreater( Serial serial ) : base( serial )
 		{
 		}
@@ -79,13 +86,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(4,6), SpellType.Wizard | SpellType.Sorcerer, 0);
+			}
 		}
 	}
 }

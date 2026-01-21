@@ -4,11 +4,12 @@ using Server.Items;
 using Server.ContextMenus;
 using Server.Misc;
 using Server.Network;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a tribesman corpse" )]
-	public class NativeWitchDoctor : BaseCreature
+	public class NativeWitchDoctor : BaseSpellCaster
 	{
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ if ( YellHue < 2 ){ return 100; } else { return 0; } } }
@@ -119,6 +120,12 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(3); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Brittle; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(3,4), SpellType.Cleric | SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public NativeWitchDoctor( Serial serial ) : base( serial )
 		{
 		}
@@ -126,13 +133,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(3,4), SpellType.Cleric | SpellType.Druid, 0);
+			}
 		}
 	}
 }

@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "an ambroz corpse" )]
-	public class AbrozShaman : BaseCreature
+	public class AbrozShaman : BaseSpellCaster
 	{
 		public override WeaponAbility GetWeaponAbility()
 		{
@@ -106,6 +107,12 @@ namespace Server.Mobiles
 			}
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(2,6), SpellType.Cleric | SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public AbrozShaman( Serial serial ) : base( serial )
 		{
 		}
@@ -113,13 +120,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,6), SpellType.Cleric | SpellType.Druid, 0);
+			}
 		}
 	}
 }

@@ -3,11 +3,12 @@ using System.Collections;
 using Server.Misc;
 using Server.Items;
 using Server.Targeting;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a glowing ratman corpse" )]
-	public class RatmanMage : BaseCreature
+	public class RatmanMage : BaseSpellCaster
 	{
 		public override InhumanSpeech SpeechType{ get{ return InhumanSpeech.Ratman; } }
 
@@ -58,10 +59,10 @@ namespace Server.Mobiles
 			AddLoot( LootPack.LowScrolls );
 		}
 
-		public override bool OnBeforeDeath()
+		public override void OnAfterSpawn()
 		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
+			this.MobileMagics(Utility.Random(1,3), SpellType.Wizard | SpellType.Bard, 0);
+			base.OnAfterSpawn();
 		}
 
 		public override bool CanRummageCorpses{ get{ return true; } }
@@ -75,13 +76,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if(version>=1)
+			{
+				this.MobileMagics(Utility.Random(1,3), SpellType.Wizard | SpellType.Bard, 0);
+			}
+
 		}
 	}
 }

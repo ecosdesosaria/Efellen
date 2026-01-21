@@ -4,11 +4,12 @@ using System.Collections;
 using Server.Items;
 using Server.Targeting;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a cyclops corpse" )]
-	public class ShamanicCyclops : BaseCreature
+	public class ShamanicCyclops : BaseSpellCaster
 	{
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ return 0; } }
@@ -78,16 +79,27 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(2,4), SpellType.Cleric | SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,4), SpellType.Cleric | SpellType.Druid, 0);
+			}
+
 		}
 	}
 }

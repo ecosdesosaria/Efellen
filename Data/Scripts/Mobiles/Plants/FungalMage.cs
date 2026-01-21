@@ -1,11 +1,12 @@
 using System;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a fungal corpse" )]
-	public class FungalMage : BaseCreature
+	public class FungalMage : BaseSpellCaster
 	{
 		[Constructable]
 		public FungalMage() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -99,6 +100,12 @@ namespace Server.Mobiles
 			return 0x455;
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(2,4), SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public FungalMage( Serial serial ) : base( serial )
 		{
 		}
@@ -106,13 +113,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,4), SpellType.Druid, 0);
+			}
 		}
 	}
 }

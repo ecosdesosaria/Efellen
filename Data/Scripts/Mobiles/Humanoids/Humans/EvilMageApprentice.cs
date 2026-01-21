@@ -2,11 +2,12 @@ using System;
 using Server;
 using Server.Misc;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
 	[CorpseName( "a mage corpse" )] 
-	public class EvilMageApprentice : BaseCreature 
+	public class EvilMageApprentice : BaseSpellCaster 
 	{ 
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ if ( YellHue < 2 ){ return 100; } else { return 0; } } }
@@ -121,6 +122,7 @@ namespace Server.Mobiles
 		public override void OnAfterSpawn()
 		{
 			Server.Misc.IntelligentAction.BeforeMyBirth( this );
+			this.MobileMagics(Utility.Random(1,2), SpellType.Wizard | SpellType.Sorcerer, 0);
 			base.OnAfterSpawn();
 		}
 
@@ -138,13 +140,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if(version>=1)
+			{
+				this.MobileMagics(Utility.Random(1,2), SpellType.Wizard | SpellType.Sorcerer, 0);
+			}
 		}
 	}
 }

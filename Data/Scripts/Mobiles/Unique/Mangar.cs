@@ -9,11 +9,12 @@ using Server.Mobiles;
 using Server.Commands;
 using Server.Commands.Generic;
 using Server.Custom.DailyBosses.System;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Mangar's corpse" )]
-	public class Mangar : BaseCreature
+	public class Mangar : BaseSpellCaster
 	{
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		private Point3D m_MoonDest;
@@ -295,11 +296,16 @@ namespace Server.Mobiles
 			m_MoonTimer = null;
 			base.OnAfterDelete();
 		}
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(6,8), SpellType.Wizard, 0);
+			base.OnAfterSpawn();
+		}
 
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 );
+			writer.Write( (int) 2 );
 			writer.Write( m_NextSpecialAttack );
 			/*Moongate destination*/
 			writer.Write((int)m_MoonDest.X);
@@ -321,7 +327,11 @@ namespace Server.Mobiles
 			int new_Y = reader.ReadInt();
 			int new_Z = reader.ReadInt();
 			m_MoonDest = new Point3D(2830, 1874, 95);
-			/*--------------------*/			
+			/*--------------------*/	
+			if (version >= 2)
+			{
+				this.MobileMagics(Utility.Random(6,8), SpellType.Wizard, 0);
+			}		
 		}
 		
 		private class InternalTimer : Timer

@@ -2,28 +2,13 @@ using System;
 using Server;
 using Server.Misc;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
 	[CorpseName( "a mage corpse" )] 
-	public class EvilMage : BaseCreature 
+	public class EvilMage : BaseSpellCaster 
 	{ 
-		public override int BreathPhysicalDamage{ get{ return 0; } }
-		public override int BreathFireDamage{ get{ if ( YellHue < 2 ){ return 100; } else { return 0; } } }
-		public override int BreathColdDamage{ get{ if ( YellHue == 3 ){ return 100; } else { return 0; } } }
-		public override int BreathPoisonDamage{ get{ if ( YellHue == 2 ){ return 100; } else { return 0; } } }
-		public override int BreathEnergyDamage{ get{ return 0; } }
-		public override int BreathEffectHue{ get{ if ( YellHue == 1 ){ return 0x488; } else if ( YellHue == 2 ){ return 0xB92; } else if ( YellHue == 3 ){ return 0x5B5; } else { return 0x4FD; } } }
-		public override int BreathEffectSound{ get{ return 0x238; } }
-		public override int BreathEffectItemID{ get{ return 0x1005; } } // EXPLOSION POTION
-		public override bool HasBreath{ get{ return true; } }
-		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override int GetBreathForm()
-		{
-		    return 3;
-		}
-		public override double BreathDamageScalar{ get{ return 0.4; } }
-
 		[Constructable] 
 		public EvilMage() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{ 
@@ -121,6 +106,7 @@ namespace Server.Mobiles
 		public override void OnAfterSpawn()
 		{
 			Server.Misc.IntelligentAction.BeforeMyBirth( this );
+			this.MobileMagics(Utility.Random(2,4), SpellType.Wizard | SpellType.Sorcerer, 0);
 			base.OnAfterSpawn();
 		}
 
@@ -139,7 +125,6 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
 			Server.Misc.IntelligentAction.BeforeMyDeath( this );
 			return base.OnBeforeDeath();
 		}
@@ -158,6 +143,7 @@ namespace Server.Mobiles
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			this.MobileMagics(Utility.Random(2,4), SpellType.Wizard | SpellType.Sorcerer, 0);
 		}
 	}
 }

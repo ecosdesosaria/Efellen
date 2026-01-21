@@ -4,11 +4,12 @@ using System.Collections;
 using Server.Items;
 using Server.Targeting;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "an ettin corpse" )]
-	public class EttinShaman : BaseCreature
+	public class EttinShaman : BaseSpellCaster
 	{
 		[Constructable]
 		public EttinShaman() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -61,6 +62,12 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(5); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Colossal; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(1,3), SpellType.Cleric | SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public EttinShaman( Serial serial ) : base( serial )
 		{
 		}
@@ -68,13 +75,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(1,3), SpellType.Cleric | SpellType.Druid, 0);
+			}
+
 		}
 	}
 }

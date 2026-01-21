@@ -3,11 +3,12 @@ using Server;
 using Server.Items;
 using Server.Misc;
 using Server.Custom.DailyBosses.System;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a skeletal corpse" )]
-	public class DemiLich : BaseCreature
+	public class DemiLich : BaseSpellCaster
 	{
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		[Constructable]
@@ -126,6 +127,7 @@ namespace Server.Mobiles
 		public override void OnAfterSpawn()
 		{
 			Server.Misc.IntelligentAction.BeforeMyBirth( this );
+			this.MobileMagics(Utility.Random(5,8), SpellType.Wizard, 0);
 			base.OnAfterSpawn();
 		}
 
@@ -264,7 +266,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 );
+			writer.Write( (int) 2 );
 			writer.Write( m_NextSpecialAttack );
 		}
 
@@ -276,6 +278,10 @@ namespace Server.Mobiles
 			{
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
-		}
+			if (version >= 2)
+			{
+				this.MobileMagics(Utility.Random(5,8), SpellType.Wizard, 0);
+			}
+		}		
 	}
 }

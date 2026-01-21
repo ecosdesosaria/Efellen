@@ -2,11 +2,12 @@ using System;
 using Server;
 using Server.Misc;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
 	[CorpseName( "Sharwyn's corpse" )] 
-	public class Sharwyn : BaseCreature 
+	public class Sharwyn : BaseSpellCaster 
 	{ 
 		public override int BreathPhysicalDamage{ get{ return 0; } }
 		public override int BreathFireDamage{ get{ if ( YellHue < 2 ){ return 100; } else { return 0; } } }
@@ -94,6 +95,12 @@ namespace Server.Mobiles
 			}
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(2, SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
+
 		public override bool ClickTitle{ get{ return false; } }
 		public override bool ShowFameTitle{ get{ return false; } }
 		public override bool CanRummageCorpses{ get{ return true; } }
@@ -110,13 +117,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if(version>=1)
+			{
+				this.MobileMagics(2, SpellType.Sorcerer, 0);
+			}
 		}
 	}
 }
