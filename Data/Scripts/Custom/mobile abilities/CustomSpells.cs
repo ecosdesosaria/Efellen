@@ -477,6 +477,28 @@ namespace Server.CustomSpells
             });
         }
 
+        public static bool isValidHostileTarget(Mobile caster, Mobile m)
+        {
+            if (m == null || m.Deleted || !m.Alive)
+                return false;
+            bool valid = false;
+            if (m is PlayerMobile)
+            {
+                valid = true;
+            }
+            else
+            {
+                BaseCreature bc = m as BaseCreature;
+                if (bc != null && (bc.Controlled || bc.Summoned))
+                    valid = true;
+            }
+            if (!valid)
+                return false;
+            if (!caster.CanBeHarmful(m))
+                return false;
+            return valid;
+        }
+
         public static void DamageHostilesAtPoint(
             Mobile caster,
             Point3D center,
@@ -487,18 +509,24 @@ namespace Server.CustomSpells
             int effectID,
             int hue)
         {
+            if (map == null || caster == null || caster.Deleted)
+                return;
+
             Effects.SendLocationEffect(center, map, effectID, 20, 10, hue, 0);
 
             IPooledEnumerable eable = map.GetMobilesInRange(center, range);
+
             foreach (Mobile m in eable)
             {
-                if (m.Alive && caster.CanBeHarmful(m))
-                {
-                    caster.DoHarmful(m);
-                    int dmg = damageRoll();
-                    AOS.Damage(m, caster, dmg, phys, fire, cold, poison, energy);
-                    m.PlaySound(0x64E);
-                }
+                if(!isValidHostileTarget(caster,m))
+                    continue;
+
+                caster.DoHarmful(m);
+
+                int dmg = damageRoll();
+                AOS.Damage(m, caster, dmg, phys, fire, cold, poison, energy);
+
+                m.PlaySound(0x64E);
             }
             eable.Free();
         }
@@ -518,22 +546,35 @@ namespace Server.CustomSpells
         {
             for (int i = 0; i < ticks; i++)
             {
-                Timer.DelayCall(TimeSpan.FromSeconds(i * secondsBetweenTicks), delegate
+                Timer.DelayCall(TimeSpan.FromSeconds(i * secondsBetweenTicks), () =>
                 {
+                    if (caster == null || caster.Deleted)
+                        return;
+
+                    if (map == null)
+                        return;
+
+                    if (caster.Map != map)
+                        return;
+
                     Effects.SendLocationEffect(center, map, effectID, 30, 10, hue, 0);
 
                     IPooledEnumerable eable = map.GetMobilesInRange(center, radius);
+
                     foreach (Mobile m in eable)
                     {
-                        if (m.Alive && caster.CanBeHarmful(m))
-                        {
-                            caster.DoHarmful(m);
-                            int dmg = damageRoll();
-                            AOS.Damage(m, caster, dmg, phys, fire, cold, poison, energy);
-                            m.PlaySound(0x64E);
-                            m.SendMessage(message);
-                        }
+                        if(!isValidHostileTarget(caster,m))
+                            continue;
+
+                        caster.DoHarmful(m);
+
+                        int dmg = damageRoll();
+                        AOS.Damage(m, caster, dmg, phys, fire, cold, poison, energy);
+
+                        m.PlaySound(0x64E);
+                        m.SendMessage(message);
                     }
+
                     eable.Free();
                 });
             }
@@ -590,8 +631,9 @@ namespace Server.CustomSpells
 
         foreach (Mobile m in eable)
         {
-            if (m.Alive && caster.CanBeHarmful(m))
-                action(m);
+            if(!isValidHostileTarget(caster,m))
+                    continue;
+            action(m);
         }
         eable.Free();
     }
@@ -653,7 +695,10 @@ namespace Server.CustomSpells
             IPooledEnumerable eable = caster.Map.GetMobilesInRange(loc, 0);
             foreach (Mobile m in eable)
             {
-                if (m != caster && m.Alive && caster.CanBeHarmful(m))
+                if(!isValidHostileTarget(caster,m))
+                    continue;
+
+                if (m != caster)
                 {
                     caster.DoHarmful(m);
                     AOS.Damage(m, caster, damage, phys, fire, cold, poison, energy);
@@ -699,8 +744,10 @@ namespace Server.CustomSpells
             IPooledEnumerable eable = center.GetMobilesInRange(range);
             foreach (Mobile m in eable)
             {
-                if (m != caster && m.Alive && caster.CanBeHarmful(m))
-                    list.Add(m);
+                if(!isValidHostileTarget(caster,m))
+                    continue;
+
+                list.Add(m);
             }
             eable.Free();
             return list;
@@ -712,7 +759,9 @@ namespace Server.CustomSpells
             Mobile target = null;
             foreach (Mobile m in eable)
             {
-                if (m != caster && m.Alive && caster.CanBeHarmful(m))
+                if(!isValidHostileTarget(caster,m))
+                    continue;
+                if (m != caster && caster.CanBeHarmful(m))
                 {
                     target = m;
                     break;
@@ -767,7 +816,8 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !target.Alive || !caster.CanBeHarmful(target))
+
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
                 return;
 
             if (target.Skills[SkillName.Knightship].Value > 50 + level * 2)
@@ -862,7 +912,7 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !target.Alive)
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
                 return;
 
             SpellHelpers.CreateAreaEffect(
@@ -906,7 +956,7 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !caster.CanBeHarmful(target))
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
                 return;
 
             caster.DoHarmful(target);
@@ -1008,8 +1058,8 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null)
-                target = caster;
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
+                return;
 
             int range = 1;
             TimeSpan duration = TimeSpan.FromSeconds(8 + level);
@@ -1291,15 +1341,14 @@ namespace Server.CustomSpells
                 IPooledEnumerable eable = m_Map.GetMobilesInRange(m_Loc, 0);
                 foreach (Mobile m in eable)
                 {
-                    if (m.Alive && m_Caster.CanBeHarmful(m))
-                    {
-                        m_Caster.DoHarmful(m);
+                    if(!SpellHelpers.isValidHostileTarget(caster,m))
+                        continue;
+                    m_Caster.DoHarmful(m);
                         
-                        int dmg = Utility.RandomMinMax(8, 13) + m_Level;
-                        AOS.Damage(m, m_Caster, dmg, 100, 0, 0, 0, 0);
+                    int dmg = Utility.RandomMinMax(8, 13) + m_Level;
+                    AOS.Damage(m, m_Caster, dmg, 100, 0, 0, 0, 0);
                         
-                        m.SendMessage("Whirling blades slice into you!");
-                    }
+                    m.SendMessage("Whirling blades slice into you!");
                 }
                 eable.Free();
             }
@@ -1322,7 +1371,7 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !caster.CanBeHarmful(target))
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
                 return;
 
             caster.DoHarmful(target);
@@ -1420,16 +1469,16 @@ namespace Server.CustomSpells
                 IPooledEnumerable eable = m_Map.GetMobilesInRange(m_Loc, 1);
                 foreach (Mobile m in eable)
                 {
-                    if (m.Alive && m_Caster.CanBeHarmful(m))
-                    {
-                        m_Caster.DoHarmful(m);
+                    if(!SpellHelpers.isValidHostileTarget(m_Caster,m))
+                        continue;
+                    
+                    m_Caster.DoHarmful(m);
                         
-                        int dmg = Utility.RandomMinMax(12, 21) + m_Level;
-                        AOS.Damage(m, m_Caster, dmg, 0, 100, 0, 0, 0);
+                    int dmg = Utility.RandomMinMax(12, 21) + m_Level;
+                    AOS.Damage(m, m_Caster, dmg, 0, 100, 0, 0, 0);
                         
-                        m.FixedParticles(0x3709, 10, 15, 5052, m_Hue != 0 ? m_Hue : 0x489, 0, EffectLayer.Waist);
-                        m.SendMessage("The flaming sphere burns you!");
-                    }
+                    m.FixedParticles(0x3709, 10, 15, 5052, m_Hue != 0 ? m_Hue : 0x489, 0, EffectLayer.Waist);
+                    m.SendMessage("The flaming sphere burns you!");
                 }
                 eable.Free();
             }
@@ -1452,7 +1501,7 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !(target is PlayerMobile) || !caster.CanBeHarmful(target))
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
                 return;
 
             caster.DoHarmful(target);
@@ -1483,7 +1532,7 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !caster.CanBeHarmful(target))
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
                 return;
 
             caster.DoHarmful(target);
@@ -1569,7 +1618,7 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !caster.CanBeHarmful(target))
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
                 return;
 
             caster.DoHarmful(target);
@@ -1618,7 +1667,7 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null)
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
                 return;
 
             List<Mobile> targets = SpellHelpers.GetMobilesInRange(target, caster, 2);
@@ -1648,7 +1697,7 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || target.Deleted || !target.Alive)
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
                 return;
 
             SpellHelpers.CreateExplosion(target.Location, target.Map, 0x36BD, hue != 0 ? hue : 0x4F6);
