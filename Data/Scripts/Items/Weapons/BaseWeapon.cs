@@ -805,7 +805,7 @@ namespace Server.Items
 
 		public override void OnRemoved( object parent )
 		{
-			if ( parent is Mobile )
+			if ( parent is Mobile && parent != null )
 			{
 				Mobile m = (Mobile)parent;
 				BaseWeapon weapon = m.Weapon as BaseWeapon;
