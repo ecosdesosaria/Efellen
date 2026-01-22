@@ -279,7 +279,10 @@ namespace Server.CustomSpells
         private void FinishCasting(object state)
         {
             int manaCost = (int)state;
-            
+
+            if(m_Mobile.Map == null || m_Mobile == null || m_Mobile.Deleted || !m_Mobile.Alive)
+                return;
+        
             m_IsChanneling = false;
             m_Mobile.Frozen = false;
             m_Mobile.Mana -= manaCost;

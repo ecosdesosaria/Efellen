@@ -406,6 +406,18 @@ namespace Server.CustomSpells
 
     public static class SpellHelpers
     {
+        public static bool IsValidCaster(Mobile m)
+        {
+            return m != null && !m.Deleted && m.Alive && m.Map != null;
+        }
+
+        public static void SafeTimer(Mobile caster, Action action)
+        {
+            if (!IsValidCaster(caster))
+                return;
+            action();
+        }
+
         public static void SummonNatureAlly(
             Mobile caster,
             Type creatureType,
@@ -548,7 +560,7 @@ namespace Server.CustomSpells
             {
                 Timer.DelayCall(TimeSpan.FromSeconds(i * secondsBetweenTicks), () =>
                 {
-                    if (caster == null || caster.Deleted)
+                    if (!SpellHelpers.IsValidCaster(caster))
                         return;
 
                     if (map == null)
@@ -674,7 +686,6 @@ namespace Server.CustomSpells
                 phys, fire, cold, poison, energy
             );
         }
-    
     }
 
 
@@ -1341,7 +1352,7 @@ namespace Server.CustomSpells
                 IPooledEnumerable eable = m_Map.GetMobilesInRange(m_Loc, 0);
                 foreach (Mobile m in eable)
                 {
-                    if(!SpellHelpers.isValidHostileTarget(caster,m))
+                    if(!SpellHelpers.isValidHostileTarget(m_Caster,m))
                         continue;
                     m_Caster.DoHarmful(m);
                         
@@ -1697,13 +1708,78 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if(!SpellHelpers.isValidHostileTarget(caster,target))
+
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
-            SpellHelpers.CreateExplosion(target.Location, target.Map, 0x36BD, hue != 0 ? hue : 0x4F6);
-            List<Mobile> targets = SpellHelpers.GetMobilesInRange(target, caster, 1);
-            foreach (Mobile m in targets)
-                AOS.Damage(m, caster, Utility.RandomMinMax(20, 25) + level, 0, 0, 0, 100, 0);
+            int damage = Utility.RandomMinMax(20, 25) + level;
+            int effectHue = hue != 0 ? hue : 0x4F6;
+
+            caster.FixedParticles(0x36BD, 10, 15, 5044, effectHue, 0, EffectLayer.RightHand);
+            caster.PlaySound(0x5D3);
+
+            caster.MovingEffect(target, 0x36D4, 10, 0, false, false, effectHue, 0);
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.5), delegate()
+            {
+                if (!SpellHelpers.IsValidCaster(caster))
+                    return;
+
+                if (!SpellHelpers.isValidHostileTarget(caster, target))
+                    return;
+
+                SpellHelpers.CreateExplosion(target.Location, target.Map, 0x36BD, effectHue);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    Point3D sprayLoc = new Point3D(
+                        target.X + Utility.RandomMinMax(-1, 1),
+                        target.Y + Utility.RandomMinMax(-1, 1),
+                        target.Z
+                    );
+                    Effects.SendLocationEffect(sprayLoc, target.Map, 0x36BD, 15, 10, effectHue, 0);
+                }
+
+                Effects.PlaySound(target.Location, target.Map, 0x231);
+
+                SpellHelpers.ForEachHostileInRange(target, caster, 1, delegate(Mobile m)
+                {
+                    caster.DoHarmful(m);
+
+                    AOS.Damage(m, caster, damage, 0, 0, 0, 100, 0);
+
+                    m.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.Waist);
+                    m.FixedParticles(0x36BD, 8, 12, 5044, effectHue, 0, EffectLayer.Head);
+
+                    for (int i = 1; i <= 2; i++)
+                    {
+                        Timer.DelayCall(TimeSpan.FromSeconds(i * 0.4), delegate()
+                        {
+                            if (!SpellHelpers.IsValidCaster(caster))
+                                return;
+
+                            if (m != null && !m.Deleted && m.Alive)
+                            {
+                                m.FixedParticles(0x374A, 5, 10, 5013, effectHue, 0, EffectLayer.Waist);
+                                Effects.SendLocationEffect(m.Location, m.Map, 0x36BD, 8, 8, effectHue, 0);
+                            }
+                        });
+                    }
+
+                    m.SendMessage("Acid burns through your armor and flesh!");
+                });
+
+                Timer.DelayCall(TimeSpan.FromSeconds(0.6), delegate()
+                {
+                    if (!SpellHelpers.IsValidCaster(caster))
+                        return;
+
+                    if (target != null && !target.Deleted)
+                    {
+                        Effects.SendLocationEffect(target.Location, target.Map, 0x3728, 20, 10, effectHue, 0);
+                    }
+                });
+            });
         }
     }
 
@@ -1729,12 +1805,12 @@ namespace Server.CustomSpells
 
             Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(2), ticks, () =>
             {
-                if (caster.Deleted)
+                if(!SpellHelpers.IsValidCaster(caster))
                     return;
 
                 foreach (Mobile m in caster.GetMobilesInRange(1))
                 {
-                    if (m != caster && caster.CanBeHarmful(m))
+                    if (!SpellHelpers.isValidHostileTarget(caster, m))
                         continue;
 
                     int dmg = Utility.RandomMinMax(Min, Max) + level;
@@ -1779,7 +1855,7 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !caster.CanBeHarmful(target))
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
             caster.DoHarmful(target);
@@ -1811,7 +1887,7 @@ namespace Server.CustomSpells
 
             Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(3), delegate
             {
-                if (caster.Deleted || !caster.Alive || DateTime.UtcNow > end)
+               if(!SpellHelpers.IsValidCaster(caster))
                     return;
 
                 Mobile target = SpellHelpers.FindNearbyEnemy(caster, 3);
@@ -1862,10 +1938,16 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !caster.CanBeHarmful(target))
+
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
             caster.DoHarmful(target);
+
+            target.FixedParticles(0x374A, 10, 15, 5013, hue != 0 ? hue : 0x48E, 0, EffectLayer.Waist);
+            target.FixedParticles(0x36BD, 10, 20, 5044, hue != 0 ? hue : 0x48E, 0, EffectLayer.Head);
+             Effects.SendLocationEffect(target.Location, target.Map, 0x3728, 20, 10, hue != 0 ? hue : 0x48E, 0);
+            target.PlaySound(0x205);
 
             target.ApplyPoison(caster, Poison.Greater);
 
@@ -1875,13 +1957,28 @@ namespace Server.CustomSpells
             int strLoss = 6 + level;
             target.AddStatMod(new StatMod(StatType.Str, "ContagionStr", -strLoss, TimeSpan.FromMinutes(2)));
 
-            target.FixedEffect(0x36BD, 10, 20);
-            target.PlaySound(0x205);
+            target.SendMessage("A virulent disease weakens your body!");
+
+            Timer.DelayCall(TimeSpan.FromSeconds(2), delegate()
+            {
+                if (target != null && !target.Deleted && target.Alive)
+                {
+                    target.FixedParticles(0x374A, 5, 10, 5013, hue != 0 ? hue : 0x48E, 0, EffectLayer.Waist);
+                }
+            });
+
+            Timer.DelayCall(TimeSpan.FromSeconds(4), delegate()
+            {
+                if (target != null && !target.Deleted && target.Alive)
+                {
+                    target.FixedParticles(0x374A, 5, 10, 5013, hue != 0 ? hue : 0x48E, 0, EffectLayer.Waist);
+                }
+            });
         }
     }
 
 
-    public class DeafeningBlastSpell : CustomSpell
+   public class DeafeningBlastSpell : CustomSpell
     {
         public DeafeningBlastSpell() : base("Deafening Blast", 0x3728)
         {
@@ -1894,25 +1991,53 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !target.Alive)
+
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
             int damage = Utility.RandomMinMax(20, 25) + level;
-            target.FixedEffect(0x37C4, 10, 30, hue != 0 ? hue : 0x0, 0);
+            int effectHue = hue != 0 ? hue : 0x47E;
 
-            IPooledEnumerable eable = target.GetMobilesInRange(1);
-            foreach (Mobile m in eable)
+            caster.FixedParticles(0x36BD, 10, 15, 5044, effectHue, 0, EffectLayer.Waist);
+            caster.PlaySound(0x307);
+
+            target.FixedEffect(0x37C4, 10, 30, effectHue, 0);
+            Effects.SendLocationEffect(target.Location, target.Map, 0x37C4, 20, 10, effectHue, 0);
+
+            SpellHelpers.ForEachHostileInRange(target, caster, 1, delegate(Mobile m)
             {
-                if (m != caster && m.Alive && caster.CanBeHarmful(m))
+                caster.DoHarmful(m);
+
+                AOS.Damage(m, caster, damage, 50, 0, 0, 0, 50);
+
+                m.Stam = Math.Max(0, m.Stam - damage);
+
+                m.FixedParticles(0x376A, 9, 32, 5008, effectHue, 0, EffectLayer.Waist);
+                m.FixedParticles(0x3728, 10, 15, 5052, effectHue, 0, EffectLayer.Head);
+                m.FixedParticles(0x36BD, 6, 10, 5044, effectHue, 0, EffectLayer.CenterFeet);
+
+                for (int i = 0; i < 3; i++)
                 {
-                    caster.DoHarmful(m);
-                    AOS.Damage(m, caster, damage, 50, 0, 0, 0, 50);
-                    m.Stam = Math.Max(0, m.Stam - damage);
-                    m.FixedParticles(0x376A, 9, 32, 5008, EffectLayer.Waist);
-                    m.PlaySound(0x2F3);
+                    Timer.DelayCall(TimeSpan.FromSeconds(i * 0.15), delegate()
+                    {
+                        if (m != null && !m.Deleted && m.Alive)
+                        {
+                            Effects.SendLocationEffect(m.Location, m.Map, 0x3728, 8, 10, effectHue, 0);
+                        }
+                    });
                 }
-            }
-            eable.Free();
+
+                m.PlaySound(0x2F3);
+                m.SendMessage("A deafening sonic blast assaults your senses!");
+            });
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.3), delegate()
+            {
+                if (target != null && !target.Deleted)
+                {
+                    Effects.SendLocationEffect(target.Location, target.Map, 0x37C4, 15, 10, effectHue, 0);
+                }
+            });
         }
     }
 
@@ -1928,27 +2053,57 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null)
+
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
             int dexLoss = 20 + level * 2;
             int strLoss = (int)(25 + level * 1.5);
             TimeSpan duration = TimeSpan.FromSeconds(30 + level);
+            int effectHue = hue != 0 ? hue : 0x455;
 
-            IPooledEnumerable eable = target.GetMobilesInRange(2);
+            caster.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.Waist);
+            caster.PlaySound(0x1F8);
 
-            foreach (Mobile m in eable)
+            Effects.SendLocationEffect(target.Location, target.Map, 0x3728, 20, 10, effectHue, 0);
+
+            SpellHelpers.ForEachHostileInRange(target, caster, 2, delegate(Mobile m)
             {
-                if (!m.Alive || !caster.CanBeHarmful(m))
-                    continue;
+                caster.DoHarmful(m);
 
                 m.AddStatMod(new StatMod(StatType.Dex, "DirgeDex", -dexLoss, duration));
                 m.AddStatMod(new StatMod(StatType.Str, "DirgeStr", -strLoss, duration));
 
-                m.FixedEffect(0x376A, 10, 25);
+                m.FixedEffect(0x376A, 10, 25, effectHue, 0);
+                m.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.Waist);
+                m.FixedParticles(0x3728, 9, 20, 5044, effectHue, 0, EffectLayer.Head);
+
+                for (int i = 1; i <= 3; i++)
+                {
+                    Timer.DelayCall(TimeSpan.FromSeconds(i * 0.5), delegate()
+                    {
+                        if (m != null && !m.Deleted && m.Alive)
+                        {
+                            m.FixedParticles(0x374A, 5, 10, 5013, effectHue, 0, EffectLayer.Waist);
+                            Effects.SendLocationEffect(m.Location, m.Map, 0x3728, 10, 8, effectHue, 0);
+                        }
+                    });
+                }
+
                 m.PlaySound(0x204);
+                m.SendMessage("A discordant dirge saps your strength and agility!");
+            });
+
+            for (int i = 1; i <= 2; i++)
+            {
+                Timer.DelayCall(TimeSpan.FromSeconds(i * 0.8), delegate()
+                {
+                    if (target != null && !target.Deleted)
+                    {
+                        Effects.SendLocationEffect(target.Location, target.Map, 0x3728, 15, 10, effectHue, 0);
+                    }
+                });
             }
-            eable.Free();
         }
     }
 
@@ -1963,25 +2118,57 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            IPooledEnumerable eable = caster.GetMobilesInRange(2);
+            int damage = Utility.RandomMinMax(20, 25) + level;
+            int effectHue = hue != 0 ? hue : 0x481;
 
-            foreach (Mobile m in eable)
+            caster.FixedParticles(0x375A, 10, 15, 5018, effectHue, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x376A, 9, 20, 5044, effectHue, 0, EffectLayer.Head);
+            caster.PlaySound(0x22F);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x37C4, 20, 10, effectHue, 0);
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.3), delegate()
             {
-                if (!m.Alive || !caster.CanBeHarmful(m))
-                    continue;
+                if (!SpellHelpers.IsValidCaster(caster))
+                    return;
 
-                int damage = Utility.RandomMinMax(20, 25) + level;
-                AOS.Damage(m, caster, damage, 0, 0, 0, 100, 0);
+                SpellHelpers.ForEachHostileInRange(caster, caster, 2, delegate(Mobile m)
+                {
+                    caster.DoHarmful(m);
 
-                m.FixedEffect(0x36BD, 10, 25);
-                m.PlaySound(0x1F2);
-            }
+                    AOS.Damage(m, caster, damage, 0, 0, 0, 100, 0);
 
-            eable.Free();
+                    m.FixedEffect(0x36BD, 10, 25, effectHue, 0);
+                    m.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.Waist);
+                    m.FixedParticles(0x36CB, 8, 12, 5044, effectHue, 0, EffectLayer.Head);
+
+                    Effects.SendLocationEffect(m.Location, m.Map, 0x3728, 15, 10, effectHue, 0);
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Timer.DelayCall(TimeSpan.FromSeconds(i * 0.2), delegate()
+                        {
+                            if (m != null && !m.Deleted && m.Alive)
+                            {
+                                Effects.SendLocationEffect(m.Location, m.Map, 0x37C4, 8, 8, effectHue, 0);
+                            }
+                        });
+                    }
+
+                    m.PlaySound(0x1F2); 
+                    m.SendMessage("A dissonant chord tears through you!");
+                });
+
+                Timer.DelayCall(TimeSpan.FromSeconds(0.2), delegate()
+                {
+                    if (SpellHelpers.IsValidCaster(caster))
+                    {
+                        Effects.SendLocationEffect(caster.Location, caster.Map, 0x37C4, 25, 10, effectHue, 0);
+                    }
+                });
+            });
         }
     }
-
-
 
     public class FireballSpell : CustomSpell
     {
@@ -1996,13 +2183,93 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || target.Deleted || !target.Alive)
+
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
-            SpellHelpers.CreateExplosion(target.Location, target.Map, 0x36BD, hue != 0 ? hue : 1160);
-            List<Mobile> targets = SpellHelpers.GetMobilesInRange(target, caster, 1);
-            foreach (Mobile m in targets)
-                AOS.Damage(m, caster, Utility.RandomMinMax(16, 25)+level, 0, 100, 0, 0, 0);
+            int damage = Utility.RandomMinMax(16, 25) + level;
+            int effectHue = hue != 0 ? hue : 1160;
+
+            caster.FixedParticles(0x3709, 10, 15, 5052, effectHue, 0, EffectLayer.RightHand);
+            caster.FixedParticles(0x3709, 10, 15, 5052, effectHue, 0, EffectLayer.LeftHand);
+            caster.PlaySound(0x15E); // Fire whoosh sound
+
+            caster.MovingEffect(target, 0x36D4, 10, 0, false, false, effectHue, 0);
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.5), delegate()
+            {
+                if (!SpellHelpers.IsValidCaster(caster))
+                    return;
+
+                if (!SpellHelpers.isValidHostileTarget(caster, target))
+                    return;
+
+                SpellHelpers.CreateExplosion(target.Location, target.Map, 0x36BD, effectHue);
+
+                for (int i = 0; i < 6; i++)
+                {
+                    Point3D flameLoc = new Point3D(
+                        target.X + Utility.RandomMinMax(-2, 2),
+                        target.Y + Utility.RandomMinMax(-2, 2),
+                        target.Z
+                    );
+                    Timer.DelayCall(TimeSpan.FromSeconds(i * 0.1), delegate()
+                    {
+                        if (!SpellHelpers.IsValidCaster(caster))
+                            return;
+
+                        if (target != null && !target.Deleted)
+                        {
+                            Effects.SendLocationEffect(flameLoc, target.Map, 0x3709, 15, 10, effectHue, 0);
+                        }
+                    });
+                }
+
+                Effects.PlaySound(target.Location, target.Map, 0x307);
+
+                SpellHelpers.ForEachHostileInRange(target, caster, 1, delegate(Mobile m)
+                {
+                    caster.DoHarmful(m);
+
+                    AOS.Damage(m, caster, damage, 0, 100, 0, 0, 0);
+
+                    m.FixedParticles(0x3709, 10, 30, 5052, effectHue, 0, EffectLayer.Waist);
+                    m.FixedParticles(0x36BD, 10, 15, 5044, effectHue, 0, EffectLayer.Head);
+                    m.FixedParticles(0x374A, 8, 12, 5013, effectHue, 0, EffectLayer.CenterFeet);
+
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        Timer.DelayCall(TimeSpan.FromSeconds(i * 0.3), delegate()
+                        {
+                            if (!SpellHelpers.IsValidCaster(caster))
+                                return;
+
+                            if (m != null && !m.Deleted && m.Alive)
+                            {
+                                m.FixedParticles(0x3709, 5, 10, 5052, effectHue, 0, EffectLayer.Waist);
+                                Effects.SendLocationEffect(m.Location, m.Map, 0x3709, 8, 8, effectHue, 0);
+                            }
+                        });
+                    }
+
+                    m.PlaySound(0x208);
+                    m.SendMessage("You are engulfed in a massive fireball!");
+                });
+
+                for (int i = 1; i <= 2; i++)
+                {
+                    Timer.DelayCall(TimeSpan.FromSeconds(i * 0.5), delegate()
+                    {
+                        if (!SpellHelpers.IsValidCaster(caster))
+                            return;
+
+                        if (target != null && !target.Deleted)
+                        {
+                            Effects.SendLocationEffect(target.Location, target.Map, 0x3735, 20, 10, effectHue, 0);
+                        }
+                    });
+                }
+            });
         }
     }
 
@@ -2017,27 +2284,66 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
+
             int statBonus = 15 + level;
             int skillBonus = 10 + level;
             TimeSpan duration = TimeSpan.FromSeconds(30 + level * 2);
+            int effectHue = hue != 0 ? hue : 0x480;
+
+            caster.FixedParticles(0x375A, 10, 15, 5018, effectHue, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x376A, 9, 20, 5044, effectHue, 0, EffectLayer.Head);
+            caster.PlaySound(0x1F7);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x375A, 20, 10, effectHue, 0);
 
             IPooledEnumerable eable = caster.GetMobilesInRange(3);
-
             foreach (Mobile m in eable)
             {
-                if (!m.Alive || !BardSpellHelpers.IsFriendly(caster, m))
+                if (m == null || m.Deleted || !m.Alive)
+                    continue;
+
+                if (SpellHelpers.isValidHostileTarget(caster, m))
                     continue;
 
                 BardSpellHelpers.ApplyStatBuff(m, statBonus, statBonus, statBonus, duration, "GoodHope");
-
                 m.AddSkillMod(new DefaultSkillMod(SkillName.Tactics, true, skillBonus));
                 m.AddSkillMod(new DefaultSkillMod(SkillName.Parry, true, skillBonus));
 
-                m.FixedParticles(0x373A, 10, 15, 5012, hue, 0, EffectLayer.Waist);
+                m.FixedParticles(0x373A, 10, 15, 5012, effectHue, 0, EffectLayer.Waist);
+                m.FixedParticles(0x376A, 9, 20, 5008, effectHue, 0, EffectLayer.Head);
+                m.FixedParticles(0x375A, 8, 15, 5044, effectHue, 0, EffectLayer.RightHand);
+
+                for (int i = 1; i <= 2; i++)
+                {
+                    Timer.DelayCall(TimeSpan.FromSeconds(i * 0.4), delegate()
+                    {
+                        if (!SpellHelpers.IsValidCaster(caster))
+                            return;
+
+                        if (m != null && !m.Deleted && m.Alive)
+                        {
+                            m.FixedParticles(0x373A, 5, 10, 5012, effectHue, 0, EffectLayer.Waist);
+                            Effects.SendLocationEffect(m.Location, m.Map, 0x375A, 10, 8, effectHue, 0);
+                        }
+                    });
+                }
+
                 m.PlaySound(0x1ED);
             }
-
             eable.Free();
+
+            for (int i = 1; i <= 3; i++)
+            {
+                Timer.DelayCall(TimeSpan.FromSeconds(i * 0.3), delegate()
+                {
+                    if (!SpellHelpers.IsValidCaster(caster))
+                        return;
+
+                    Effects.SendLocationEffect(caster.Location, caster.Map, 0x375A, 15, 10, effectHue, 0);
+                });
+            }
         }
     }
 
@@ -2052,24 +2358,65 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
+
             int skillBonus = 10 + level;
             TimeSpan duration = TimeSpan.FromSeconds(30 + level * 2);
+            int effectHue = hue != 0 ? hue : 0x480;
+
+            caster.FixedParticles(0x375A, 10, 15, 5018, effectHue, 0, EffectLayer.Head);
+            caster.FixedParticles(0x376A, 9, 20, 5044, effectHue, 0, EffectLayer.Waist);
+            caster.PlaySound(0x1F2);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x37C4, 20, 10, effectHue, 0);
 
             IPooledEnumerable eable = caster.GetMobilesInRange(2);
-
             foreach (Mobile m in eable)
             {
-                if (!m.Alive || !BardSpellHelpers.IsFriendly(caster, m))
+                if (m == null || m.Deleted || !m.Alive)
+                    continue;
+
+                if (SpellHelpers.isValidHostileTarget(caster, m))
                     continue;
 
                 m.AddStatMod(new StatMod(StatType.Int, "ChorusInt", 25, duration));
-
                 m.AddSkillMod(new DefaultSkillMod(SkillName.Meditation, true, skillBonus));
                 m.AddSkillMod(new DefaultSkillMod(SkillName.Focus, true, skillBonus));
 
-                m.FixedParticles(0x373A, 10, 15, 5012, hue, 0, EffectLayer.Waist);
+                m.FixedParticles(0x373A, 10, 15, 5012, effectHue, 0, EffectLayer.Waist);
+                m.FixedParticles(0x375A, 9, 20, 5008, effectHue, 0, EffectLayer.Head);
+                m.FixedParticles(0x376A, 8, 15, 5044, effectHue, 0, EffectLayer.RightHand);
+
+                for (int i = 1; i <= 2; i++)
+                {
+                    Timer.DelayCall(TimeSpan.FromSeconds(i * 0.3), delegate()
+                    {
+                        if (!SpellHelpers.IsValidCaster(caster))
+                            return;
+
+                        if (m != null && !m.Deleted && m.Alive)
+                        {
+                            m.FixedParticles(0x376A, 5, 10, 5008, effectHue, 0, EffectLayer.Head);
+                            Effects.SendLocationEffect(m.Location, m.Map, 0x37C4, 10, 8, effectHue, 0);
+                        }
+                    });
+                }
+
+                m.PlaySound(0x1ED);
             }
             eable.Free();
+
+            for (int i = 1; i <= 3; i++)
+            {
+                Timer.DelayCall(TimeSpan.FromSeconds(i * 0.25), delegate()
+                {
+                    if (!SpellHelpers.IsValidCaster(caster))
+                        return;
+
+                    Effects.SendLocationEffect(caster.Location, caster.Map, 0x37C4, 15, 10, effectHue, 0);
+                });
+            }
         }
     }
 
@@ -2083,17 +2430,23 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Sorcerer, 3);
             AddTag(SpellTag.AoE);
             AddTag(SpellTag.Offensive);
-        }   
+        }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
+
             Mobile target = caster.Combatant as Mobile;
-            if (target == null)
-                return; 
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
+                return;
+
+            int damage = Utility.RandomMinMax(20, 25) + level;
+            int effectHue = hue != 0 ? hue : 0x480;
 
             Direction d = caster.GetDirectionTo(target);
             int dx = 0;
-            int dy = 0; 
+            int dy = 0;
 
             switch (d & Direction.Mask)
             {
@@ -2105,32 +2458,47 @@ namespace Server.CustomSpells
                 case Direction.Down: dx = 1; dy = 1; break;
                 case Direction.Left: dx = -1; dy = 1; break;
                 case Direction.Right: dx = 1; dy = -1; break;
-            }   
+            }
+
+            caster.FixedParticles(0x3818, 10, 15, 5052, effectHue, 0, EffectLayer.RightHand);
+            caster.PlaySound(0x29);
 
             Point3D p = caster.Location;
-            Map map = caster.Map;   
+            Map map = caster.Map;
 
             for (int i = 0; i < 6; i++)
             {
-                p = new Point3D(p.X + dx, p.Y + dy, p.Z);   
+                p = new Point3D(p.X + dx, p.Y + dy, p.Z);
 
-                Effects.SendLocationEffect(p, map, 0x29, 10, 10, hue != 0 ? hue : 0x480, 0);    
+                Effects.SendLocationEffect(p, map, 0x3818, 10, 10, effectHue, 0);
+
+                Timer.DelayCall(TimeSpan.FromSeconds(i * 0.1), delegate()
+                {
+                    if (!SpellHelpers.IsValidCaster(caster))
+                        return;
+
+                    Effects.SendLocationEffect(p, map, 0x3818, 8, 8, effectHue, 0);
+                });
 
                 IPooledEnumerable eable = map.GetMobilesInRange(p, 0);
                 foreach (Mobile m in eable)
                 {
-                    if (!m.Alive || !caster.CanBeHarmful(m))
-                        continue;   
+                    if (!SpellHelpers.isValidHostileTarget(caster, m))
+                        continue;
 
-                    caster.DoHarmful(m);    
+                    caster.DoHarmful(m);
 
-                    int dmg = Utility.RandomMinMax(20, 25) + level;
-                    AOS.Damage(m, caster, dmg, 0, 0, 0, 100, 0);
+                    AOS.Damage(m, caster, damage, 0, 0, 0, 0, 100);
+
+                    m.FixedParticles(0x3818, 10, 15, 5044, effectHue, 0, EffectLayer.Waist);
+                    m.FixedParticles(0x374A, 8, 12, 5013, effectHue, 0, EffectLayer.Head);
+                    m.BoltEffect(effectHue);
+
+                    m.PlaySound(0x28);
+                    m.SendMessage("Lightning strikes through you!");
                 }
                 eable.Free();
-            }   
-
-            caster.PlaySound(0x29);
+            }
         }
     }
 
@@ -2153,7 +2521,7 @@ namespace Server.CustomSpells
 
             foreach (Mobile m in caster.GetMobilesInRange(2))
             {
-                if (m.Alive && caster.CanBeBeneficial(m))
+                if (SpellHelpers.isValidHostileTarget(caster, m))
                 {
                     NatureSpellHelper.ApplyVigor(m, 3, duration, level);
                 }
@@ -2176,31 +2544,94 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
+
             int effect = 25 + level;
             TimeSpan duration = TimeSpan.FromSeconds(20 + level);
-            caster.FixedParticles(0x375A, 10, 30, 5052, hue != 0 ? hue : 0x47D, 0, EffectLayer.Waist);
+            int buffHue = hue != 0 ? hue : 0x47D;
+            int debuffHue = hue != 0 ? hue : 0x455;
+
+            caster.FixedParticles(0x375A, 10, 30, 5052, buffHue, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x376A, 9, 20, 5044, buffHue, 0, EffectLayer.Head);
+            caster.PlaySound(0x1F2);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x375A, 25, 10, buffHue, 0);
 
             IPooledEnumerable eable = caster.GetMobilesInRange(3);
             foreach (Mobile m in eable)
             {
-                if (!m.Alive)
+                if (m == null || m.Deleted || !m.Alive)
                     continue;
 
-                if (m == caster || !caster.CanBeHarmful(m))
+                bool isHostile = SpellHelpers.isValidHostileTarget(caster, m);
+
+                if (isHostile)
                 {
-                    m.AddStatMod(new StatMod(StatType.Str, "PrayerStr", effect, duration));
-                    m.AddStatMod(new StatMod(StatType.Dex, "PrayerDex", effect, duration));
-                    m.FixedEffect(0x376A, 10, 32, hue != 0 ? hue : 0x47D, 0);
+                    caster.DoHarmful(m);
+
+                    m.AddStatMod(new StatMod(StatType.Str, "PrayerStrDebuff", -effect, duration));
+                    m.AddStatMod(new StatMod(StatType.Dex, "PrayerDexDebuff", -effect, duration));
+
+                    m.FixedEffect(0x374A, 10, 32, debuffHue, 0);
+                    m.FixedParticles(0x374A, 10, 15, 5013, debuffHue, 0, EffectLayer.Waist);
+                    m.FixedParticles(0x3728, 8, 12, 5044, debuffHue, 0, EffectLayer.Head);
+
+                    for (int i = 1; i <= 2; i++)
+                    {
+                        Timer.DelayCall(TimeSpan.FromSeconds(i * 0.4), delegate()
+                        {
+                            if (!SpellHelpers.IsValidCaster(caster))
+                                return;
+
+                            if (m != null && !m.Deleted && m.Alive)
+                            {
+                                m.FixedParticles(0x374A, 5, 10, 5013, debuffHue, 0, EffectLayer.Waist);
+                            }
+                        });
+                    }
+
+                    m.PlaySound(0x1F8);
+                    m.SendMessage("A divine curse weakens your body!");
                 }
                 else
                 {
-                    m.AddStatMod(new StatMod(StatType.Str, "PrayerStrDebuff", -effect, duration));
-                    m.AddStatMod(new StatMod(StatType.Dex, "PrayerDexDebuff", -effect, duration));
-                    m.FixedEffect(0x374A, 10, 32, hue != 0 ? hue : 0x455, 0);
+                    m.AddStatMod(new StatMod(StatType.Str, "PrayerStr", effect, duration));
+                    m.AddStatMod(new StatMod(StatType.Dex, "PrayerDex", effect, duration));
+
+                    m.FixedEffect(0x376A, 10, 32, buffHue, 0);
+                    m.FixedParticles(0x376A, 9, 20, 5044, buffHue, 0, EffectLayer.Waist);
+                    m.FixedParticles(0x375A, 8, 15, 5018, buffHue, 0, EffectLayer.Head);
+
+                    for (int i = 1; i <= 2; i++)
+                    {
+                        Timer.DelayCall(TimeSpan.FromSeconds(i * 0.4), delegate()
+                        {
+                            if (!SpellHelpers.IsValidCaster(caster))
+                                return;
+
+                            if (m != null && !m.Deleted && m.Alive)
+                            {
+                                m.FixedParticles(0x376A, 5, 10, 5018, buffHue, 0, EffectLayer.Waist);
+                            }
+                        });
+                    }
+
+                    m.PlaySound(0x202);
                 }
             }
             eable.Free();
-            caster.PlaySound(0x1F2);
+
+            for (int i = 1; i <= 3; i++)
+            {
+                Timer.DelayCall(TimeSpan.FromSeconds(i * 0.3), delegate()
+                {
+                    if (!SpellHelpers.IsValidCaster(caster))
+                        return;
+
+                    Effects.SendLocationEffect(caster.Location, caster.Map, 0x375A, 20, 10, buffHue, 0);
+                });
+            }
         }
     }
 
@@ -2348,39 +2779,63 @@ namespace Server.CustomSpells
             AddTag(SpellTag.AoE);
             AddTag(SpellTag.Offensive);
             AddTag(SpellTag.Debuff);
-        }   
+        }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
+
             Mobile target = caster.Combatant as Mobile;
-            if (target == null)
-                return; 
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
+                return;
 
             Point3D center = target.Location;
-            Map map = target.Map;   
+            Map map = target.Map;
+            int effectHue = hue != 0 ? hue : 0x59B;
+            int damage = Utility.RandomMinMax(20, 25) + level;
 
-            Effects.SendLocationEffect(center, map, 0x36BD, 20, 10, 0x59B, 0);  
+            caster.FixedParticles(0x3735, 10, 15, 5052, effectHue, 0, EffectLayer.Waist);
+            caster.PlaySound(0x5C6);
 
-            int duration = level + 1;   
+            Effects.SendLocationEffect(center, map, 0x36BD, 20, 10, effectHue, 0);
 
+            for (int x = -2; x <= 2; x++)
+            {
+                for (int y = -2; y <= 2; y++)
+                {
+                    if (Utility.RandomDouble() < 0.4)
+                    {
+                        Point3D spikeLoc = new Point3D(center.X + x, center.Y + y, center.Z);
+                        Effects.SendLocationEffect(spikeLoc, map, 0x3735, 15, 10, effectHue, 0);
+                    }
+                }
+            }
+
+            int duration = level + 1;
             for (int i = 0; i < duration; i++)
             {
                 Timer.DelayCall(TimeSpan.FromSeconds(i * 2), delegate
                 {
-                    IPooledEnumerable eable = caster.GetMobilesInRange(2);
+                    if (!SpellHelpers.IsValidCaster(caster))
+                        return;
 
-                    foreach (Mobile m in eable)
+                    Effects.SendLocationEffect(center, map, 0x36BD, 15, 10, effectHue, 0);
+
+                    SpellHelpers.ForEachHostileInRange(caster, caster, 2, delegate(Mobile m)
                     {
-                        if (!m.Alive || !caster.CanBeHarmful(m))
-                            continue;   
+                        caster.DoHarmful(m);
 
-                        int dmg = Utility.RandomMinMax(20, 25) + level;  
+                        AOS.Damage(m, caster, damage, 100, 0, 0, 0, 0);
+                        m.Stam = Math.Max(0, m.Stam - damage);
 
-                        AOS.Damage(m, caster, dmg, 100, 0, 0, 0, 0);
-                        m.Stam = Math.Max(0, m.Stam - dmg); 
-                        m.FixedEffect(0x36BD, 10, 10);
-                    }   
-                    eable.Free();
+                        m.FixedEffect(0x36BD, 10, 10, effectHue, 0);
+                        m.FixedParticles(0x3735, 10, 15, 5044, effectHue, 0, EffectLayer.CenterFeet);
+                        m.FixedParticles(0x374A, 8, 12, 5013, effectHue, 0, EffectLayer.Waist);
+
+                        m.PlaySound(0x22F);
+                        m.SendMessage("Sharp spikes pierce through you!");
+                    });
                 });
             }
         }
@@ -2424,24 +2879,57 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            Mobile target = caster.Combatant as Mobile;
-            if (target == null || !caster.CanBeHarmful(target))
+            if (!SpellHelpers.IsValidCaster(caster))
                 return;
 
-            caster.DoHarmful(target);
-
-            SpellHelpers.CreateExplosion(
-                target.Location,
-                target.Map,
-                0x3709,
-                hue != 0 ? hue : 0x489
-            );
+            Mobile target = caster.Combatant as Mobile;
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
+                return;
 
             int damage = Utility.RandomMinMax(30, 35) + level;
+            int effectHue = hue != 0 ? hue : 0x489;
 
-            AOS.Damage(target, caster, damage, 0, 100, 0, 0, 0);
+            caster.FixedParticles(0x3709, 10, 15, 5052, effectHue, 0, EffectLayer.RightHand);
+            caster.PlaySound(0x15E);
 
-            target.SendMessage("You are hit by a pillar of flame!");
+            Point3D above = new Point3D(target.X, target.Y, target.Z + 20);
+            Effects.SendLocationEffect(above, target.Map, 0x3709, 30, 10, effectHue, 0);
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.4), delegate()
+            {
+                if (!SpellHelpers.IsValidCaster(caster))
+                    return;
+
+                if (!SpellHelpers.isValidHostileTarget(caster, target))
+                    return;
+
+                caster.DoHarmful(target);
+
+                target.FixedParticles(0x3709, 10, 30, 5052, effectHue, 0, EffectLayer.Waist);
+                target.FixedParticles(0x36BD, 10, 20, 5044, effectHue, 0, EffectLayer.Head);
+                target.FixedParticles(0x374A, 8, 15, 5013, effectHue, 0, EffectLayer.CenterFeet);
+
+                SpellHelpers.CreateExplosion(target.Location, target.Map, 0x3709, effectHue);
+
+                AOS.Damage(target, caster, damage, 0, 100, 0, 0, 0);
+
+                for (int i = 1; i <= 3; i++)
+                {
+                    Timer.DelayCall(TimeSpan.FromSeconds(i * 0.2), delegate()
+                    {
+                        if (!SpellHelpers.IsValidCaster(caster))
+                            return;
+
+                        if (target != null && !target.Deleted && target.Alive)
+                        {
+                            target.FixedParticles(0x3709, 5, 10, 5052, effectHue, 0, EffectLayer.Waist);
+                            Effects.SendLocationEffect(target.Location, target.Map, 0x3709, 10, 8, effectHue, 0);
+                        }
+                    });
+                }
+
+                target.SendMessage("A pillar of divine fire engulfs you!");
+            });
         }
     }
 
@@ -2452,45 +2940,86 @@ namespace Server.CustomSpells
             AddLevel(SpellType.Druid, 4);
             AddLevel(SpellType.Wizard, 4);
             AddLevel(SpellType.Sorcerer, 4);
-
             AddTag(SpellTag.AoE);
             AddTag(SpellTag.Offensive);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
+
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !caster.CanBeHarmful(target))
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
             Point3D loc = target.Location;
+            Map map = target.Map;
+            int damage = Utility.RandomMinMax(24, 29) + level;
+            int effectHue = hue != 0 ? hue : 0x480;
 
-            IPooledEnumerable eable = caster.Map.GetMobilesInRange(loc, 3);
+            caster.FixedParticles(0x376A, 10, 15, 5044, effectHue, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x375A, 9, 20, 5018, effectHue, 0, EffectLayer.Head);
+            caster.PlaySound(0x64F);
 
-            foreach (Mobile m in eable)
+            Effects.SendLocationEffect(loc, map, 0x376A, 30, 10, effectHue, 0);
+
+            for (int x = -3; x <= 3; x++)
             {
-                if (m == caster)
-                    continue;
+                for (int y = -3; y <= 3; y++)
+                {
+                    if (Utility.RandomDouble() < 0.3)
+                    {
+                        Point3D iceLoc = new Point3D(loc.X + x, loc.Y + y, loc.Z);
+                        Timer.DelayCall(TimeSpan.FromSeconds(Utility.RandomDouble() * 0.5), delegate()
+                        {
+                            if (!SpellHelpers.IsValidCaster(caster))
+                                return;
 
-                if (!caster.CanBeHarmful(m))
-                    continue;
-
-                int dmg = Utility.RandomMinMax(24, 29) + level;
-
-                SpellHelper.Damage(
-                    TimeSpan.Zero,
-                    m,
-                    caster,
-                    dmg,
-                    0, 0, 0, 100, 0
-                );
-
-                m.FixedParticles(0x374A, 10, 15, 5032, hue, 3, EffectLayer.Waist);
+                            Effects.SendLocationEffect(iceLoc, map, 0x36BD, 15, 10, effectHue, 0);
+                        });
+                    }
+                }
             }
 
-            eable.Free();
-        }
+            Timer.DelayCall(TimeSpan.FromSeconds(0.3), delegate()
+            {
+                if (!SpellHelpers.IsValidCaster(caster))
+                    return;
 
+                SpellHelpers.ForEachHostileInRange(target, caster, 3, delegate(Mobile m)
+                {
+                    caster.DoHarmful(m);
+
+                    AOS.Damage(m, caster, damage, 0, 0, 100, 0, 0);
+
+                    m.FixedParticles(0x374A, 10, 15, 5032, effectHue, 3, EffectLayer.Waist);
+                    m.FixedParticles(0x376A, 9, 20, 5044, effectHue, 0, EffectLayer.Head);
+                    m.FixedParticles(0x36BD, 8, 12, 5013, effectHue, 0, EffectLayer.CenterFeet);
+
+                    int slowDuration = 3 + (level / 2);
+                    m.Paralyze(TimeSpan.FromSeconds(slowDuration));
+
+                    for (int i = 1; i <= 2; i++)
+                    {
+                        Timer.DelayCall(TimeSpan.FromSeconds(i * 0.5), delegate()
+                        {
+                            if (!SpellHelpers.IsValidCaster(caster))
+                                return;
+
+                            if (m != null && !m.Deleted && m.Alive)
+                            {
+                                m.FixedParticles(0x374A, 5, 10, 5032, effectHue, 0, EffectLayer.Waist);
+                                Effects.SendLocationEffect(m.Location, m.Map, 0x36BD, 10, 8, effectHue, 0);
+                            }
+                        });
+                    }
+
+                    m.PlaySound(0x64F);
+                    m.SendMessage("Freezing ice shards rain down upon you!");
+                });
+            });
+        }
     }
 
 
@@ -2651,18 +3180,73 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            SpellHelpers.DoConeDamage(
-                caster,
-                6,
-                24, 29,
-                level,
-                30, 0, 0, 0, 70,
-                0x375A,
-                hue != 0 ? hue : 0x480,
-                "You hear a thunderous shout!"
-            );
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
 
+            int effectHue = hue != 0 ? hue : 0x480;
+
+            caster.FixedParticles(0x37C4, 10, 15, 5044, effectHue, 0, EffectLayer.Head);
+            caster.FixedParticles(0x375A, 9, 20, 5018, effectHue, 0, EffectLayer.Waist);
             caster.PlaySound(0x2A1);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x37C4, 25, 10, effectHue, 0);
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.2), delegate()
+            {
+                if (!SpellHelpers.IsValidCaster(caster))
+                    return;
+
+                Direction d = caster.Direction & Direction.Mask;
+
+                for (int i = 1; i <= 6; i++)
+                {
+                    Point3D loc = SpellHelpers.GetPointInDirection(caster, d, i);
+
+                    Effects.SendLocationEffect(loc, caster.Map, 0x37C4, 20, 10, effectHue, 0);
+                    Effects.SendLocationEffect(loc, caster.Map, 0x3728, 15, 10, effectHue, 0);
+
+                    int damage = Utility.RandomMinMax(24, 29) + level;
+
+                    IPooledEnumerable eable = caster.Map.GetMobilesInRange(loc, 0);
+                    foreach (Mobile m in eable)
+                    {
+                        if (!SpellHelpers.isValidHostileTarget(caster, m))
+                            continue;
+
+                        caster.DoHarmful(m);
+
+                        AOS.Damage(m, caster, damage, 30, 0, 0, 0, 70);
+
+                        m.FixedParticles(0x37C4, 10, 15, 5044, effectHue, 0, EffectLayer.Waist);
+                        m.FixedParticles(0x3728, 8, 12, 5013, effectHue, 0, EffectLayer.Head);
+
+                        int pushBack = 2;
+                        Direction pushDir = caster.GetDirectionTo(m);
+                        Direction opposite = (Direction)(((int)pushDir + 4) % 8);
+
+                        for (int p = 0; p < pushBack; p++)
+                        {
+                            m.Move(opposite);
+                        }
+
+                        m.PlaySound(0x2F3);
+                        m.SendMessage("A thunderous shout blasts you backwards!");
+                    }
+                    eable.Free();
+                }
+
+                for (int i = 1; i <= 3; i++)
+                {
+                    Timer.DelayCall(TimeSpan.FromSeconds(i * 0.15), delegate()
+                    {
+                        if (!SpellHelpers.IsValidCaster(caster))
+                            return;
+
+                        Point3D midLoc = SpellHelpers.GetPointInDirection(caster, d, 3);
+                        Effects.SendLocationEffect(midLoc, caster.Map, 0x37C4, 20, 10, effectHue, 0);
+                    });
+                }
+            });
         }
     }
 
@@ -2742,38 +3326,73 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
+
             TimeSpan duration = TimeSpan.FromSeconds(12 + level);
             DateTime end = DateTime.UtcNow + duration;
+            int damage = Utility.RandomMinMax(24, 29) + level;
+            int effectHue = hue != 0 ? hue : 0x480;
+
+            caster.FixedParticles(0x376A, 10, 15, 5044, effectHue, 0, EffectLayer.Waist);
+            caster.FixedParticles(0x3818, 9, 20, 5018, effectHue, 0, EffectLayer.Head);
+            caster.PlaySound(0x28);
 
             caster.PublicOverheadMessage(
                 Server.Network.MessageType.Emote,
                 0x3B2,
                 false,
-                "*dark clouds gather overhead*"
+                "*dark storm clouds gather overhead*"
             );
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x3728, 30, 10, effectHue, 0);
 
             Timer.DelayCall(
                 TimeSpan.Zero,
                 TimeSpan.FromSeconds(3),
                 delegate
                 {
-                    if (caster.Deleted || !caster.Alive || DateTime.UtcNow > end)
+                    if (!SpellHelpers.IsValidCaster(caster) || DateTime.UtcNow > end)
                         return;
 
                     Mobile target = SpellHelpers.FindNearbyEnemy(caster, 6);
-
                     if (target == null)
                         return;
 
-                    caster.DoHarmful(target);
+                    Point3D above = new Point3D(target.X, target.Y, target.Z + 20);
+                    Effects.SendLocationEffect(above, target.Map, 0x3818, 25, 10, effectHue, 0);
 
-                    target.BoltEffect(hue != 0 ? hue : 0);
-                    target.PlaySound(0x29);
+                    Timer.DelayCall(TimeSpan.FromSeconds(0.3), delegate()
+                    {
+                        if (!SpellHelpers.IsValidCaster(caster))
+                            return;
 
-                    int dmg = Utility.RandomMinMax(24, 29) + level;
-                    AOS.Damage(target, caster, dmg, 0, 0, 0, 0, 100);
+                        if (!SpellHelpers.isValidHostileTarget(caster, target))
+                            return;
 
-                    target.SendMessage("A bolt of lightning crashes down on you!");
+                        caster.DoHarmful(target);
+
+                        target.BoltEffect(effectHue);
+                        target.FixedParticles(0x3818, 10, 15, 5044, effectHue, 0, EffectLayer.Waist);
+                        target.FixedParticles(0x374A, 8, 12, 5013, effectHue, 0, EffectLayer.Head);
+
+                        Effects.SendLocationEffect(target.Location, target.Map, 0x3818, 20, 10, effectHue, 0);
+
+                        AOS.Damage(target, caster, damage, 0, 0, 0, 0, 100);
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Point3D flashLoc = new Point3D(
+                                target.X + Utility.RandomMinMax(-1, 1),
+                                target.Y + Utility.RandomMinMax(-1, 1),
+                                target.Z
+                            );
+                            Effects.SendLocationEffect(flashLoc, target.Map, 0x3818, 10, 8, effectHue, 0);
+                        }
+
+                        target.PlaySound(0x29);
+                        target.SendMessage("A lightning bolt crashes down upon you!");
+                    });
                 }
             );
         }
@@ -2813,41 +3432,75 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
+
             Mobile target = caster.Combatant as Mobile;
-            if (target == null || !target.Alive || !caster.CanBeHarmful(target))
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
-            SlayerEntry silver = SlayerGroup.GetEntryByName(SlayerName.Silver);
-            SlayerEntry exorcism = SlayerGroup.GetEntryByName(SlayerName.Exorcism);
-
-            if (target is BaseCreature &&
-                ((silver != null && silver.Slays(target)) ||
-                 (exorcism != null && exorcism.Slays(target))))
-            {
+            if (DeathSpellHelper.IsUndead(target))
                 return;
-            }
 
-            caster.DoHarmful(target);
+            int effectHue = hue != 0 ? hue : 0x497;
 
-            target.FixedEffect(0x3709, 10, 30);
-            target.PlaySound(0x211);
+            caster.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.RightHand);
+            caster.FixedParticles(0x3709, 9, 20, 5044, effectHue, 0, EffectLayer.Waist);
+            caster.PlaySound(0x1FC);
 
-            double resist = target.Skills[SkillName.MagicResist].Value;
-            int roll = Utility.Random(40 + level * 2);
+            caster.MovingEffect(target, 0x36D4, 10, 0, false, false, effectHue, 0);
 
-            if (roll > resist)
+            Timer.DelayCall(TimeSpan.FromSeconds(0.5), delegate()
             {
-                target.SendMessage("Your life force is ripped from your body!");
-                target.Kill();
-            }
-            else
-            {
-                int damage = Utility.RandomMinMax(17, 22) + level;
-                AOS.Damage(target, caster, damage, 100, 0, 0, 0, 0);
+                if (!SpellHelpers.IsValidCaster(caster))
+                    return;
 
-                target.SendMessage("You resist death but suffer terrible pain!");
-                target.PlaySound(0x1F2);
-            }
+                if (!SpellHelpers.isValidHostileTarget(caster, target))
+                    return;
+
+                caster.DoHarmful(target);
+
+                target.FixedEffect(0x3709, 10, 30, effectHue, 0);
+                target.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.Waist);
+                target.FixedParticles(0x36BD, 10, 20, 5044, effectHue, 0, EffectLayer.Head);
+                target.PlaySound(0x211);
+
+                double resist = target.Skills[SkillName.MagicResist].Value;
+                int roll = Utility.Random(40 + level * 2);
+
+                if (roll > resist)
+                {
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        Timer.DelayCall(TimeSpan.FromSeconds(i * 0.2), delegate()
+                        {
+                            if (target != null && !target.Deleted)
+                            {
+                                target.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.Waist);
+                                Effects.SendLocationEffect(target.Location, target.Map, 0x3709, 15, 10, effectHue, 0);
+                            }
+                        });
+                    }
+
+                    Timer.DelayCall(TimeSpan.FromSeconds(0.8), delegate()
+                    {
+                        if (target != null && !target.Deleted && target.Alive)
+                        {
+                            target.Kill();
+                            target.SendMessage("Your life force is violently ripped from your body!");
+                        }
+                    });
+                }
+                else
+                {
+                    int damage = Utility.RandomMinMax(17, 22) + level;
+                    AOS.Damage(target, caster, damage, 100, 0, 0, 0, 0);
+
+                    target.FixedParticles(0x376A, 9, 20, 5044, effectHue, 0, EffectLayer.CenterFeet);
+                    target.PlaySound(0x1F2);
+                    target.SendMessage("You resist the death magic but suffer terrible pain!");
+                }
+            });
         }
     }
     public class SummonNatureAllyVSpell : SummonNatureAllySpell
@@ -2886,32 +3539,81 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
+            if (!SpellHelpers.IsValidCaster(caster))
+                return;
+
             int range = 4;
-            int angle = 60; 
+            int angle = 60;
+            int damage = Utility.RandomMinMax(35, 40) + level;
+            int effectHue = hue != 0 ? hue : 0x482;
             Direction dir = caster.Direction;
 
-            foreach (Mobile m in caster.GetMobilesInRange(range))
+            caster.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.Head);
+            caster.FixedParticles(0x36BD, 10, 20, 5044, effectHue, 0, EffectLayer.Waist);
+            caster.PlaySound(0x1FB);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x37C4, 30, 10, effectHue, 0);
+
+            for (int i = 1; i <= 4; i++)
             {
-                if (!m.Alive || !caster.CanBeHarmful(m))
-                    continue;
-
-                if (!InCone(caster, m, dir, angle))
-                    continue;
-
-                caster.DoHarmful(m);
-
-                int damage = Utility.RandomMinMax(35, 40) + level;
-                AOS.Damage(m, caster, damage, 0, 0, 0, 100, 0);
-
-                int save = Utility.RandomMinMax(40, 52) + level * 2;
-                if (m.Int < save)
-                {
-                    m.Paralyze(TimeSpan.FromSeconds(6 + level));
-                }
-
-                m.FixedEffect(0x36BD, 10, 25);
-                m.PlaySound(0x204);
+                Point3D coneLoc = SpellHelpers.GetPointInDirection(caster, dir, i);
+                Effects.SendLocationEffect(coneLoc, caster.Map, 0x3728, 20, 10, effectHue, 0);
             }
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.3), delegate()
+            {
+                if (!SpellHelpers.IsValidCaster(caster))
+                    return;
+
+                IPooledEnumerable eable = caster.GetMobilesInRange(range);
+                foreach (Mobile m in eable)
+                {
+                    if (!SpellHelpers.isValidHostileTarget(caster, m))
+                        continue;
+
+                    if (!InCone(caster, m, dir, angle))
+                        continue;
+
+                    caster.DoHarmful(m);
+
+                    AOS.Damage(m, caster, damage, 0, 0, 0, 100, 0);
+
+                    m.FixedEffect(0x36BD, 10, 25, effectHue, 0);
+                    m.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.Waist);
+                    m.FixedParticles(0x3728, 8, 12, 5044, effectHue, 0, EffectLayer.Head);
+
+                    int save = Utility.RandomMinMax(40, 52) + level * 2;
+                    if (m.Int < save)
+                    {
+                        int stunDuration = 6 + level;
+                        m.Paralyze(TimeSpan.FromSeconds(stunDuration));
+
+                        for (int i = 1; i <= 3; i++)
+                        {
+                            Timer.DelayCall(TimeSpan.FromSeconds(i * 0.4), delegate()
+                            {
+                                if (!SpellHelpers.IsValidCaster(caster))
+                                    return;
+
+                                if (m != null && !m.Deleted && m.Alive)
+                                {
+                                    m.FixedParticles(0x374A, 5, 10, 5013, effectHue, 0, EffectLayer.Head);
+                                    Effects.SendLocationEffect(m.Location, m.Map, 0x3728, 10, 8, effectHue, 0);
+                                }
+                            });
+                        }
+
+                        m.SendMessage("The wail of doom overwhelms your mind!");
+                    }
+                    else
+                    {
+                        m.SendMessage("You resist the terrifying wail!");
+                    }
+
+                    m.PlaySound(0x204);
+                }
+                eable.Free();
+            });
         }
 
         private bool InCone(Mobile caster, Mobile target, Direction dir, int angle)
@@ -2919,14 +3621,13 @@ namespace Server.CustomSpells
             double dx = target.X - caster.X;
             double dy = target.Y - caster.Y;
             double dist = Math.Sqrt(dx * dx + dy * dy);
-
             if (dist == 0)
                 return true;
 
             double targetAngle = Math.Atan2(dy, dx) * 180 / Math.PI;
             double facingAngle = GetFacingAngle(dir);
-
             double diff = Math.Abs(NormalizeAngle(targetAngle - facingAngle));
+
             return diff <= angle / 2;
         }
 
@@ -2943,7 +3644,6 @@ namespace Server.CustomSpells
                 case Direction.West: return 180;
                 case Direction.Up: return -90;
             }
-
             return 0;
         }
 
@@ -2968,16 +3668,39 @@ namespace Server.CustomSpells
             AddTag(SpellTag.Offensive);
             AddTag(SpellTag.DoT);
         }
-
+    
         public override void Cast(Mobile caster, int hue, int level)
         {
-            Mobile target = caster.Combatant as Mobile;
-            if (target == null)
-            {
+            if (!SpellHelpers.IsValidCaster(caster))
                 return;
-            }
-
+    
+            Mobile target = caster.Combatant as Mobile;
+            if (!SpellHelpers.isValidHostileTarget(caster, target))
+                return;
+    
+            int effectHue = hue != 0 ? hue : 0x48E;
+    
+            caster.FixedParticles(0x374A, 10, 15, 5013, effectHue, 0, EffectLayer.RightHand);
+            caster.FixedParticles(0x36BD, 9, 20, 5044, effectHue, 0, EffectLayer.Waist);
             caster.PlaySound(0x231);
+    
+            Effects.SendLocationEffect(target.Location, target.Map, 0x3728, 30, 10, effectHue, 0);
+    
+            for (int i = 0; i < 4; i++)
+            {
+                Timer.DelayCall(TimeSpan.FromSeconds(i * 0.2), delegate()
+                {
+                    if (!SpellHelpers.IsValidCaster(caster))
+                        return;
+    
+                    Point3D fogLoc = new Point3D(
+                        target.X + Utility.RandomMinMax(-2, 2),
+                        target.Y + Utility.RandomMinMax(-2, 2),
+                        target.Z
+                    );
+                    Effects.SendLocationEffect(fogLoc, target.Map, 0x3728, 20, 10, effectHue, 0);
+                });
+            }
     
             FieldSpellHelper.SpawnField(
                 caster,
@@ -2985,60 +3708,84 @@ namespace Server.CustomSpells
                 target.Map,
                 6,
                 1,
-                delegate { return new AcidFogTile(caster, level); }
+                delegate { return new AcidFogTile(caster, level, effectHue); }
             );
         }
     }
-
+    
     public class AcidFogTile : Item
     {
         private Mobile m_Caster;
         private int m_Level;
-
-        public AcidFogTile(Mobile caster, int level) : base(0x398C)
+        private int m_Hue;
+        private Timer m_TickTimer;
+    
+        public AcidFogTile(Mobile caster, int level, int hue) : base(0x398C)
         {
             Movable = false;
-            Hue = 0x48E;
-
+            Hue = hue;
             m_Caster = caster;
             m_Level = level;
-
-            Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(1.0), Tick);
+            m_Hue = hue;
+    
+            m_TickTimer = Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(1.0), Tick);
             Timer.DelayCall(TimeSpan.FromSeconds(2 + level), Delete);
         }
-
+    
         private void Tick()
         {
-            if (Deleted)
+            if (Deleted || m_Caster == null || m_Caster.Deleted)
+            {
+                if (m_TickTimer != null)
+                    m_TickTimer.Stop();
                 return;
-
+            }
+    
+            Effects.SendLocationEffect(Location, Map, 0x3728, 10, 10, m_Hue, 0);
+    
             IPooledEnumerable eable = GetMobilesInRange(0);
-
             foreach (Mobile m in eable)
             {
-                if (!m.Alive || !m_Caster.CanBeHarmful(m))
+                if (!SpellHelpers.isValidHostileTarget(m_Caster, m))
                     continue;
-
+    
                 m_Caster.DoHarmful(m);
-
+    
                 int dmg = Utility.RandomMinMax(28, 33) + m_Level;
                 AOS.Damage(m, m_Caster, dmg, 0, 0, 0, 100, 0);
-
-                m.FixedEffect(0x36BD, 10, 20);
-                m.SendMessage("The acid burns your flesh!");
+    
+                m.FixedEffect(0x36BD, 10, 20, m_Hue, 0);
+                m.FixedParticles(0x374A, 8, 12, 5013, m_Hue, 0, EffectLayer.Waist);
+                m.FixedParticles(0x36BD, 6, 10, 5044, m_Hue, 0, EffectLayer.CenterFeet);
+    
+                m.PlaySound(0x231);
+                m.SendMessage("Corrosive acid fog burns your flesh!");
             }
             eable.Free();
         }
-
+    
+        public override void OnAfterDelete()
+        {
+            base.OnAfterDelete();
+    
+            if (m_TickTimer != null)
+            {
+                m_TickTimer.Stop();
+                m_TickTimer = null;
+            }
+    
+            Effects.SendLocationEffect(Location, Map, 0x3728, 15, 10, m_Hue, 0);
+        }
+    
         public AcidFogTile(Serial serial) : base(serial) { }
-
+    
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             reader.ReadInt();
             Delete();
         }
-
+    
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
