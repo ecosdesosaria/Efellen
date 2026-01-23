@@ -233,7 +233,6 @@ namespace Server.Mobiles
 				if ( reg.IsPartOf( "Argentrock Castle" ) ){											category = "sky"; }
 				else if ( reg.IsPartOf( "the Blood Temple" ) ){ 									category = "blood"; }
 				else if ( reg.IsPartOf( "the Sanctum of Saltmarsh" ) ){								category = "swamp"; }
-				else if ( reg.IsPartOf( "the Ancient Crash Site" ) || reg.IsPartOf( "the Ancient Sky Ship" ) ){ category = "radiation"; }
 				else if ( Server.Misc.Worlds.IsFireDungeon( this.Location, this.Map ) ){			category = "fire"; }
 				else if ( Server.Misc.Worlds.IsIceDungeon( this.Location, this.Map ) ){				category = "snow"; }
 				else if ( Server.Misc.Worlds.IsSeaDungeon( this.Location, this.Map ) ){				category = "sea"; }

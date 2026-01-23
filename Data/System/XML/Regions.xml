@@ -950,7 +950,7 @@
 					<object id="2120" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="70" />
 				</spawning>
 		</region>
-		<region type="DungeonRegion" priority="50" name="Dungeon Clues">
+		<region type="DungeonRegion" priority="50" name="Library of Bal Tsareth">
 			<rect x="5242" y="2229" width="199" height="160" />
 			<rect x="5535" y="2087" width="199" height="173" />
 			<rect x="5800" y="2080" width="234" height="185" />
@@ -1951,7 +1951,7 @@
 				</spawning>
 		</region>
 
-		<region type="DungeonRegion" priority="50" name="the Ancient Sky Ship">
+		<region type="DungeonRegion" priority="50" name="Demonweb Pits">
 			<rect x="981" y="2906" width="255" height="273" />
 			<rect x="886" y="3634" width="357" height="416" />
 				<spawning>
@@ -1959,7 +1959,7 @@
 					<object id="4781" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="75" />
 				</spawning>
 		</region>
-		<region type="DungeonRegion" priority="50" name="the Ancient Crash Site">
+		<region type="DungeonRegion" priority="50" name="Fanaedar">
 			<rect x="571" y="2828" width="194" height="285" />
 		</region>
 

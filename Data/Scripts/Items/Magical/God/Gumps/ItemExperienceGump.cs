@@ -46,16 +46,8 @@ namespace Server.Gumps
 
 			AddPage(0);
 
-			if ( item is LevelDoubleLaserSword || item is LevelLaserSword )
-			{
-				AddImage(50, 35, 9611, Server.Misc.PlayerSettings.GetGumpHue( from ));
-				AddImage(50, 35, 9609, 2845);
-			}
-			else
-			{
-				AddImage(50, 35, 9610, Server.Misc.PlayerSettings.GetGumpHue( from ));
-				AddImage(50, 35, 9609, 2394);
-			}
+			AddImage(50, 35, 9610, Server.Misc.PlayerSettings.GetGumpHue( from ));
+			AddImage(50, 35, 9609, 2394);
 
 			AddLabel(262, 56, TitleHue, @"Item Experience");
 

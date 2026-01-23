@@ -71,7 +71,7 @@ namespace Server.Mobiles
 			SetInt( 586, 675 );
 
 			SetHits( 19000 );
-			SetDamage( 23, 34 );
+			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Energy, 100 );
 			SetResistance( ResistanceType.Physical, 60 );
@@ -242,7 +242,7 @@ namespace Server.Mobiles
 						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
 						{
 							DoHarmful( m );
-							int manaDrain = Utility.RandomMinMax( 35, 45 );
+							int manaDrain = Utility.RandomMinMax( 60, 90 );
 							m.Mana -= manaDrain;
 							int damage = Utility.RandomMinMax( manaDrain/2, manaDrain*2 );
 							AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
@@ -338,9 +338,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 30 );
-				SetDamage( 28, 34 );
+				SetDamage( 16, 20 );
 				VirtualArmor += 10;	
 				m_Rage = 1;
 				return false;
@@ -351,12 +349,8 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 60 );
-				SetDex( Dex + 25 );
-				SetDamage( 33, 39 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 10;
-				
 				m_Rage = 2;
 				return false;
 			}
@@ -366,10 +360,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 120 );
-				SetDex( Dex + 50 );
-				SetDamage( 38, 44 );
+				SetDamage( 26, 30 );
 				VirtualArmor += 10;	
 				m_Rage = 3;
 				return false;
@@ -392,23 +383,16 @@ namespace Server.Mobiles
 		}
 
         public override void OnDelete()
-        {
-            CleanupSummons();
-            base.OnDelete();
-        }
+		{
+		    if (m_Summons != null)
+		    {
+		        BossSummonSystem.CleanupSummons(m_Summons);
+		        m_Summons.Clear();
+		        m_Summons = null;
+		    }
 
-        private void CleanupSummons()
-        {
-            for (int i = 0; i < m_Summons.Count; i++)
-            {
-                BaseCreature bc = m_Summons[i];
-
-                if (bc != null && !bc.Deleted)
-                    bc.Delete();
-            }
-            m_Summons.Clear();
-        }
-
+		    base.OnDelete();
+		}
 
 		public override void OnDeath( Container c )
 		{

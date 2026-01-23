@@ -7,17 +7,12 @@ using Server.Misc;
 using Server.Network;
 using System.Collections.Generic;
 using Server.Custom.BalTsareth;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
-	public class PossessedMinstrel : BaseCreature
+	public class PossessedMinstrel : BaseSpellCaster
 	{
-		private DateTime m_NextAbilityTime;
-		private bool m_IsChanneling;
-		private Timer m_ChannelTimer;
-		private Mobile m_ChannelTarget;
-		private int m_ChannelAbility; // 0 = Sound Burst, 1 = Shatter
-
 		[Constructable]
 		public PossessedMinstrel() : base( AIType.AI_Archer, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -107,153 +102,8 @@ namespace Server.Mobiles
 					item.Hue = 0x0213;
 			}
 
-			m_NextAbilityTime = DateTime.UtcNow;
-			m_IsChanneling = false;
 			if ( 0.5 > Utility.RandomDouble() )
 				PackItem( new EerieIdol() );
-		}
-
-		public override void OnDamage( int amount, Mobile from, bool willKill )
-		{
-			base.OnDamage( amount, from, willKill );
-
-			if ( m_IsChanneling )
-			{
-				InterruptChannel();
-			}
-		}
-
-		private void InterruptChannel()
-		{
-			if ( !m_IsChanneling )
-				return;
-
-			m_IsChanneling = false;
-			PublicOverheadMessage( MessageType.Emote, 0x21, false, "*The spell fizzles*" );
-
-			if ( m_ChannelTimer != null )
-			{
-				m_ChannelTimer.Stop();
-				m_ChannelTimer = null;
-			}
-
-			m_ChannelTarget = null;
-		}
-
-		public override void OnActionCombat()
-		{
-			base.OnActionCombat();
-
-			if ( !m_IsChanneling && Combatant != null && DateTime.UtcNow >= m_NextAbilityTime && Utility.RandomDouble() < 0.50 )
-			{
-				m_ChannelAbility = Utility.Random( 2 );
-				m_ChannelTarget = Combatant;
-				
-				if ( m_ChannelAbility == 0 )
-				{
-					StartSoundBurst();
-				}
-				else
-				{
-					StartShatter();
-				}
-			}
-		}
-
-		private void StartSoundBurst()
-		{
-			m_IsChanneling = true;
-			PublicOverheadMessage( MessageType.Emote, 0x21, false, "*Channeling Soundburst*" );
-
-			m_ChannelTimer = Timer.DelayCall( TimeSpan.FromSeconds( 2 ), new TimerCallback( ExecuteSoundBurst ) );
-		}
-
-		private void ExecuteSoundBurst()
-		{
-			if ( !m_IsChanneling || m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
-			{
-				m_IsChanneling = false;
-				return;
-			}
-
-			m_IsChanneling = false;
-
-			Point3D targetLoc = m_ChannelTarget.Location;
-			Map map = m_ChannelTarget.Map;
-
-			Effects.SendLocationEffect( targetLoc, map, 0x36BD, 20, 10, 0x0213, 0 );
-
-			for ( int x = -1; x <= 1; x++ )
-			{
-				for ( int y = -1; y <= 1; y++ )
-				{
-					Point3D loc = new Point3D( targetLoc.X + x, targetLoc.Y + y, targetLoc.Z );
-					Effects.SendLocationEffect( loc, map, 0x36BD, 20, 10, 0x0213, 0 );
-				}
-			}
-
-			IPooledEnumerable eable = m_ChannelTarget.GetMobilesInRange( 1 );
-			List<Mobile> targets = new List<Mobile>();
-
-			foreach ( Mobile m in eable )
-			{
-				if ( m != this && m.Alive && CanBeHarmful( m ) )
-					targets.Add( m );
-			}
-			eable.Free();
-
-			foreach ( Mobile m in targets )
-			{
-				int damage = Utility.RandomMinMax( 15, 35 );
-				AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
-			}
-
-			m_NextAbilityTime = DateTime.UtcNow + TimeSpan.FromSeconds( 90 );
-		}
-
-		private void StartShatter()
-		{
-			m_IsChanneling = true;
-			PublicOverheadMessage( MessageType.Emote, 0x21, false, "*Channeling Shatter*" );
-
-			m_ChannelTimer = Timer.DelayCall( TimeSpan.FromSeconds( 2 ), new TimerCallback( ExecuteShatter ) );
-		}
-
-		private void ExecuteShatter()
-		{
-			if ( !m_IsChanneling || m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
-			{
-				m_IsChanneling = false;
-				return;
-			}
-
-			m_IsChanneling = false;
-
-			Effects.SendMovingEffect( this, m_ChannelTarget, 0x379F, 7, 0, false, false, 0x0213, 0 );
-
-			Timer.DelayCall( TimeSpan.FromSeconds( 0.5 ), delegate()
-			{
-				if ( m_ChannelTarget != null && m_ChannelTarget.Alive )
-				{
-					int damage = Utility.RandomMinMax( 25, 45 );
-					AOS.Damage( m_ChannelTarget, this, damage, 0, 0, 0, 0, 100 );
-					
-					Effects.SendLocationEffect( m_ChannelTarget.Location, m_ChannelTarget.Map, 0x36BD, 20, 10, 0x0213, 0 );
-				}
-			});
-
-			m_NextAbilityTime = DateTime.UtcNow + TimeSpan.FromSeconds( 90 );
-		}
-
-		public override void OnDelete()
-		{
-			if ( m_ChannelTimer != null )
-			{
-				m_ChannelTimer.Stop();
-				m_ChannelTimer = null;
-			}
-
-			base.OnDelete();
 		}
 
 		public override void GenerateLoot()
@@ -292,6 +142,12 @@ namespace Server.Mobiles
             }
         }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(1,3), SpellType.Bard, 0);
+			base.OnAfterSpawn();
+		}
+
 		public PossessedMinstrel( Serial serial ) : base( serial )
 		{
 		}
@@ -300,25 +156,15 @@ namespace Server.Mobiles
 		{
 			base.Serialize( writer );
 			writer.Write( (int) 1 ); // version
-
-			writer.Write( m_NextAbilityTime );
-			writer.Write( m_IsChanneling );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
-
-			if ( version >= 1 )
+			if(version>=1)
 			{
-				m_NextAbilityTime = reader.ReadDateTime();
-				m_IsChanneling = reader.ReadBool();
-
-				if ( m_IsChanneling )
-				{
-					m_IsChanneling = false;
-				}
+				this.MobileMagics(Utility.Random(1,3), SpellType.Bard, 0);
 			}
 		}
 	}

@@ -1,11 +1,12 @@
 using System;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a drider corpse" )]
-	public class DriderWizard : BaseCreature
+	public class DriderWizard : BaseSpellCaster
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
 		public override int BreathFireDamage{ get{ return 0; } }
@@ -70,10 +71,10 @@ namespace Server.Mobiles
 			AddLoot( LootPack.FilthyRich );
 		}
 
-		public override bool OnBeforeDeath()
+		public override void OnAfterSpawn()
 		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
+			this.MobileMagics(Utility.Random(3,5), SpellType.Wizard | SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
 		}
 
 		public override Poison PoisonImmune{ get{ return Poison.Deadly; } }
@@ -89,7 +90,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -99,6 +100,10 @@ namespace Server.Mobiles
 
 			if ( BaseSoundID == 263 )
 				BaseSoundID = 1170;
+			if(version>=1)
+			{
+				this.MobileMagics(Utility.Random(3,5), SpellType.Wizard | SpellType.Sorcerer, 0);
+			}
 		}
 	}
 }

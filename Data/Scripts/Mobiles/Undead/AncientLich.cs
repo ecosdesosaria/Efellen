@@ -2,11 +2,12 @@ using System;
 using Server;
 using Server.Items;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an ancient liche's corpse" )]
-	public class AncientLich : BaseCreature
+	[CorpseName( "an ancient lich's corpse" )]
+	public class AncientLich : BaseSpellCaster
 	{
 		[Constructable]
 		public AncientLich() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -107,12 +108,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedScrolls, 2 );
 		}
 
-		public override void OnAfterSpawn()
-		{
-			Server.Misc.IntelligentAction.BeforeMyBirth( this );
-			base.OnAfterSpawn();
-		}
-
 		public override void OnGotMeleeAttack( Mobile attacker )
 		{
 			base.OnGotMeleeAttack( attacker );
@@ -139,6 +134,13 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(4); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Lich; } }
 
+		public override void OnAfterSpawn()
+		{
+			Server.Misc.IntelligentAction.BeforeMyBirth( this );
+			this.MobileMagics(Utility.Random(4,7), SpellType.Wizard, 0);
+			base.OnAfterSpawn();
+		}
+
 		public AncientLich( Serial serial ) : base( serial )
 		{
 		}
@@ -146,13 +148,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(4,7), SpellType.Wizard, 0);
+			}
 		}
 	}
 }

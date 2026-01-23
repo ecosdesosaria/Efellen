@@ -4,11 +4,12 @@ using Server.Misc;
 using Server.Items;
 using Server.Targeting;
 using Server.Regions;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a Nun corpse" )]
-	public class nun : BaseCreature
+	public class nun : BaseSpellCaster
 	{
         private DateTime m_NextHeal = DateTime.MinValue;
 
@@ -212,6 +213,12 @@ namespace Server.Mobiles
             }
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(1,2), SpellType.Cleric, 0);
+			base.OnAfterSpawn();
+		}
+
 		public nun( Serial serial ) : base( serial )
 		{
 		}
@@ -219,13 +226,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if(version >=1)
+			{
+				this.MobileMagics(Utility.Random(1,2), SpellType.Cleric, 0);
+			}
 		}
 	}
 }

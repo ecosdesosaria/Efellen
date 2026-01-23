@@ -4,11 +4,12 @@ using System.Collections;
 using Server.Items;
 using Server.Targeting;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "an urcish corpse" )]
-	public class UrcShaman : BaseCreature
+	public class UrcShaman : BaseSpellCaster
 	{
 		[Constructable]
 		public UrcShaman() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -48,10 +49,10 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedScrolls );
 		}
 
-		public override bool OnBeforeDeath()
+		public override void OnAfterSpawn()
 		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
+			this.MobileMagics(Utility.Random(1,3), SpellType.Cleric, 0);
+			base.OnAfterSpawn();
 		}
 
 		public override bool CanRummageCorpses{ get{ return true; } }
@@ -66,13 +67,18 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if(version>=1)
+			{
+				this.MobileMagics(Utility.Random(1,3), SpellType.Cleric, 0);
+			}
+
 		}
 	}
 }

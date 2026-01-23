@@ -63,7 +63,6 @@ namespace Server.Mobiles
 				if ( Utility.RandomMinMax( 1, 20 ) == 1 ){ keepSword = false; }
 
 			if ( Utility.RandomBool() ){ Item sword = new LightSword(); if ( keepSword ){ sword.LootType = LootType.Blessed; } AddItem( sword ); }
-			else { Item swords = new DoubleLaserSword(); if ( keepSword ){ swords.LootType = LootType.Blessed; } AddItem( swords ); }
 		}
 
 		public override void GenerateLoot()

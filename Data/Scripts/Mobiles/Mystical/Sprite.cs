@@ -3,11 +3,12 @@ using Server;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a sprite corpse" )]
-	public class Sprite : BaseCreature
+	public class Sprite : BaseSpellCaster
 	{
 		public override int BreathPhysicalDamage{ get{ return 20; } }
 		public override int BreathFireDamage{ get{ return 20; } }
@@ -97,6 +98,12 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(2); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Mystical; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(2,4), SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public Sprite( Serial serial ) : base( serial )
 		{
 		}
@@ -104,13 +111,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,4), SpellType.Druid, 0);
+			}
 		}
 	}
 }

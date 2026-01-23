@@ -85,27 +85,7 @@ namespace Server.Items
 
 				if ( targeted is BaseDoor && from.Skills[SkillName.Lockpicking].Value >= 30 )
 				{
-					if ( Server.Items.DoorType.IsSpaceshipDoor( (BaseDoor)targeted ) && m_Item.ItemID != 0x3A75 )
-					{
-						from.SendMessage( "This doesn't have a key hole, but it does have a card slot." );
-					}
-					else if ( !(Server.Items.DoorType.IsSpaceshipDoor( (BaseDoor)targeted )) && m_Item.ItemID == 0x3A75 )
-					{
-						from.SendMessage( "This doesn't have a card slot, but it does have a key hole." );
-					}
-					else if ( Server.Items.DoorType.IsSpaceshipDoor( (BaseDoor)targeted ) && m_Item.ItemID == 0x3A75 )
-					{
-						if ( ((BaseDoor)targeted).Locked == false )
-							from.SendLocalizedMessage( 502069 ); // This does not appear to be locked
-
-						else
-						{
-							from.PlaySound( 0x54B );
-							((BaseDoor)targeted).Locked = false;
-							Server.Items.DoorType.UnlockDoors( (BaseDoor)targeted );
-						}
-					}
-					else if ( Server.Items.DoorType.IsDungeonDoor( (BaseDoor)targeted ) )
+					if ( Server.Items.DoorType.IsDungeonDoor( (BaseDoor)targeted ) )
 					{
 						if ( ((BaseDoor)targeted).Locked == false )
 							from.SendLocalizedMessage( 502069 ); // This does not appear to be locked
@@ -125,16 +105,7 @@ namespace Server.Items
 					Item item = (Item)targeted;
 					from.Direction = from.GetDirectionTo( item );
 
-					if ( item.Catalog == Catalogs.SciFi && ((ILockpickable)targeted).Locked && m_Item.ItemID != 0x3A75 )
-					{
-						from.SendMessage( "This doesn't have a key hole, but it does have a card slot." );
-					}
-					else if ( item.Catalog == Catalogs.SciFi && ((ILockpickable)targeted).Locked && m_Item.ItemID == 0x3A75 )
-					{
-						from.PlaySound( 0x54B );
-						new InternalTimer( from, (ILockpickable)targeted, m_Item ).Start();
-					}
-					else if ( ((ILockpickable)targeted).Locked && m_Item.ItemID != 0x3A75 )
+					if ( ((ILockpickable)targeted).Locked && m_Item.ItemID != 0x3A75 )
 					{
 						from.PlaySound( 0x241 );
 						new InternalTimer( from, (ILockpickable)targeted, m_Item ).Start();

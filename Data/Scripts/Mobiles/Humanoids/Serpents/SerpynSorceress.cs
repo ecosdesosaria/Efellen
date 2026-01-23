@@ -1,11 +1,12 @@
 using System;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a serpyn corpse" )]
-	public class SerpynSorceress : BaseCreature
+	public class SerpynSorceress : BaseSpellCaster
 	{
 		[Constructable]
 		public SerpynSorceress() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -67,6 +68,11 @@ namespace Server.Mobiles
 		public SerpynSorceress( Serial serial ) : base( serial )
 		{
 		}
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(2,6), SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
 
 		public override void Serialize( GenericWriter writer )
 		{
@@ -78,6 +84,10 @@ namespace Server.Mobiles
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,6), SpellType.Sorcerer, 0);
+			}
 		}
 	}
 }

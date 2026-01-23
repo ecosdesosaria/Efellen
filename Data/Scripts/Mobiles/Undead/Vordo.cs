@@ -9,11 +9,12 @@ using System.Text;
 using Server.Mobiles;
 using Server.Engines.PartySystem;
 using Server.Custom.DailyBosses.System;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a ghostly essence" )]
-	public class Vordo : BaseCreature 
+	public class Vordo : BaseSpellCaster 
 	{ 
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		[Constructable] 
@@ -37,7 +38,7 @@ namespace Server.Mobiles
 			SetDex( 126, 145 );
 			SetInt( 376, 405 );
 
-			SetHits( 163, 250 );
+			SetHits( 263, 450 );
 
 			SetDamage( 24, 26 );
 
@@ -54,9 +55,9 @@ namespace Server.Mobiles
 			SetSkill( SkillName.Necromancy, 109.1 );
 			SetSkill( SkillName.Spiritualism, 109.0 );
 			SetSkill( SkillName.Psychology, 100.0 );
-			SetSkill( SkillName.Magery, 100.0 );
+			SetSkill( SkillName.Magery, 110.0 );
 			SetSkill( SkillName.Meditation, 105.0 );
-			SetSkill( SkillName.MagicResist, 125.0 );
+			SetSkill( SkillName.MagicResist, 135.0 );
 			SetSkill( SkillName.Tactics, 100.0 );
 			SetSkill( SkillName.FistFighting, 90.0 );
 
@@ -78,6 +79,7 @@ namespace Server.Mobiles
 		public override void OnAfterSpawn()
 		{
 			Server.Misc.IntelligentAction.BeforeMyBirth( this );
+			this.MobileMagics(8, SpellType.Wizard, 0);
 			base.OnAfterSpawn();
 		}
 
@@ -261,7 +263,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 );
+			writer.Write( (int) 2 );
 			writer.Write( m_NextSpecialAttack );
 		}
 
@@ -272,6 +274,10 @@ namespace Server.Mobiles
 			if ( version >= 1 )
 			{
 				m_NextSpecialAttack = reader.ReadDateTime();
+			}
+			if (version >= 2)
+			{
+				this.MobileMagics(8, SpellType.Wizard, 0);
 			}
 		}
 	}

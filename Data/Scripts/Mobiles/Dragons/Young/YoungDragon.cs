@@ -130,7 +130,6 @@ namespace Server.Mobiles
 					else if ( this.X >= 5217 && this.Y >= 901 && this.X <= 5241 && this.Y<= 927 ){ 	category = "sea"; }
 					else { category = "dungeon"; }
 				}
-				else if ( reg.IsPartOf( "the Ancient Crash Site" ) || reg.IsPartOf( "the Ancient Sky Ship" ) ){ category = "radiation"; }
 				else if ( Server.Misc.Worlds.IsFireDungeon( this.Location, this.Map ) ){		category = "fire"; }
 				else if ( Server.Misc.Worlds.IsIceDungeon( this.Location, this.Map ) ){			category = "snow"; }
 				else if ( Server.Misc.Worlds.IsSeaDungeon( this.Location, this.Map ) ){			category = "sea"; }

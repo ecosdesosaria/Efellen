@@ -1225,26 +1225,28 @@ namespace Server.Items
 			return base.OnEquip( from );
 		}
 
-		public override void OnRemoved( object parent )
+		public override void OnRemoved(object parent)
 		{
-			if ( parent is Mobile )
-			{
-				Mobile m = (Mobile)parent;
-				string modName = this.Serial.ToString();
-
-				m.RemoveStatMod( modName + "Str" );
-				m.RemoveStatMod( modName + "Dex" );
-				m.RemoveStatMod( modName + "Int" );
-
-				if ( Core.AOS )
-					m_AosSkillBonuses.Remove();
-
-				((Mobile)parent).Delta( MobileDelta.Armor ); // Tell them armor rating has changed
-				m.CheckStatTimers();
-			}
-
-			base.OnRemoved( parent );
+		   Mobile m = parent as Mobile;
+		
+		   if (m != null && !m.Deleted)
+		   {
+		       string modName = this.Serial.ToString();
+		
+		       m.RemoveStatMod(modName + "Str");
+		       m.RemoveStatMod(modName + "Dex");
+		       m.RemoveStatMod(modName + "Int");
+		
+		       if (Core.AOS && m_AosSkillBonuses != null)
+		           m_AosSkillBonuses.Remove();
+		
+		       m.Delta(MobileDelta.Armor);
+		       m.CheckStatTimers();
+		   }
+		
+		   base.OnRemoved(parent);
 		}
+
 
 		public virtual int OnHit( BaseWeapon weapon, int damageTaken )
 		{

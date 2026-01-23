@@ -5,11 +5,12 @@ using Server.Items;
 using Server.Targeting;
 using Server.Misc;
 using Server.Custom.DailyBosses.System;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a devil corpse" )]
-	public class Satan : BaseCreature
+	public class Satan : BaseSpellCaster
 	{
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override double DispelDifficulty{ get{ return 150.0; } }
@@ -194,6 +195,12 @@ namespace Server.Mobiles
 			}
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(6,8), SpellType.Wizard | SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
+
 		public Satan( Serial serial ) : base( serial )
 		{
 		}
@@ -201,7 +208,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 );
+			writer.Write( (int) 2 );
 			writer.Write( m_NextSpecialAttack );
 		}
 
@@ -212,6 +219,10 @@ namespace Server.Mobiles
 			if ( version >= 1 )
 			{
 				m_NextSpecialAttack = reader.ReadDateTime();
+			}
+			if (version >= 2)
+			{
+				this.MobileMagics(Utility.Random(6,8), SpellType.Wizard | SpellType.Sorcerer, 0);
 			}
 		}
 	}

@@ -700,9 +700,9 @@ namespace Server
 			if ( price < 1 )
 				price = 1;
 			// gold cut rate
-			price = (int)(price - ( price * 50 ));
+			price = (int)(price / 2);
 			if ( price < 1 )
-				price = 1;
+			    price = 1;
 
 			return price;
 		}
@@ -1531,7 +1531,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	PotionOfWisdom	),	1000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Potion	,	Material.None	,	Market.Alchemy	),
 			new ItemSalesInfo( typeof(	AutoResPotion	),	1200	,	0	,	0	,	false	,	false	,	World.None	,	Category.Potion	,	Material.None	,	Market.Alchemy	),
 			new ItemSalesInfo( typeof(	InvulnerabilityPotion	),	1200	,	0	,	0	,	false	,	false	,	World.None	,	Category.Potion	,	Material.None	,	Market.Alchemy	),
-			new ItemSalesInfo( typeof(	AlienEgg	),	2000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	AlternateRealityMap	),	2000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Cartographer	),
 			new ItemSalesInfo( typeof(	JewelryNecklace	),	20	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Jeweler	),
 			new ItemSalesInfo( typeof(	AnvilEastDeed	),	52	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Smith	),
@@ -2131,7 +2130,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	EmptyCanopicJar	),	1	,	0	,	200	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Evil	),
 			new ItemSalesInfo( typeof(	CanopicJar	),	600	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Undertaker	),
 			new ItemSalesInfo( typeof(	Cantaloupe	),	6	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Farmer	),
-			new ItemSalesInfo( typeof(	Canteen	),	10	,	0	,	0	,	false	,	false	,	World.None	,	Category.Tavern	,	Material.None	,	Market.Inn	),
 			new ItemSalesInfo( typeof(	Cap	),	10	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.Cloth	,	Market.Tailor	),
 			new ItemSalesInfo( typeof(	CarpenterCrate	),	400	,	5	,	75	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Carpenter	),
 			new ItemSalesInfo( typeof(	CarpenterTools	),	15	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Carpenter	),
@@ -2161,7 +2159,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	ChainCoif	),	17	,	15	,	0	,	false	,	false	,	World.None	,	Category.Armor	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	ChainHatsuburi	),	76	,	15	,	0	,	false	,	false	,	World.Orient	,	Category.Armor	,	Material.Metal	,	Market.Monk	),
 			new ItemSalesInfo( typeof(	ChainLegs	),	149	,	15	,	0	,	false	,	false	,	World.None	,	Category.Armor	,	Material.Metal	,	Market.Smith	),
-			new ItemSalesInfo( typeof(	Chainsaw	),	520	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Tinker	),
 			new ItemSalesInfo( typeof(	ChainSkirt	),	149	,	15	,	0	,	false	,	false	,	World.None	,	Category.Armor	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	ChampionShield	),	231	,	15	,	0	,	false	,	false	,	World.None	,	Category.Shield	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	ChaosShield	),	256	,	15	,	0	,	false	,	false	,	World.None	,	Category.Shield	,	Material.Metal	,	Market.Smith	),
@@ -2311,7 +2308,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	DarkShield	),	231	,	15	,	0	,	false	,	false	,	World.None	,	Category.Shield	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	DartBoardEastDeed	),	32	,	0	,	0	,	false	,	false	,	World.None	,	Category.Tavern	,	Material.None	,	Market.Inn	),
 			new ItemSalesInfo( typeof(	DartBoardSouthDeed	),	32	,	0	,	0	,	false	,	false	,	World.None	,	Category.Tavern	,	Material.None	,	Market.Inn	),
-			new ItemSalesInfo( typeof(	DataPad	),	300	,	0	,	0	,	false	,	false	,	World.None	,	Category.Book	,	Material.None	,	Market.Sage	),
 			new ItemSalesInfo( typeof(	DeadBodyEWDeed	),	345	,	3	,	95	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Evil	),
 			new ItemSalesInfo( typeof(	DeadBodyNSDeed	),	345	,	3	,	95	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Evil	),
 			new ItemSalesInfo( typeof(	DeadMask	),	28	,	10	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Evil	),
@@ -2685,7 +2681,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	DraconicHides	),	14	,	15	,	85	,	false	,	false	,	World.None	,	Category.Resource	,	Material.None	,	Market.Tanner	),
 			new ItemSalesInfo( typeof(	HellishHides	),	16	,	15	,	87	,	false	,	false	,	World.None	,	Category.Resource	,	Material.None	,	Market.Tanner	),
 			new ItemSalesInfo( typeof(	DinosaurHides	),	16	,	15	,	89	,	false	,	false	,	World.Savage	,	Category.Resource	,	Material.None	,	Market.Tanner	),
-			new ItemSalesInfo( typeof(	AlienHides	),	16	,	0	,	80	,	false	,	false	,	World.None	,	Category.Resource	,	Material.None	,	Market.Tanner	),
 			new ItemSalesInfo( typeof(	HikingBoots	),	800	,	15	,	0	,	false	,	false	,	World.None	,	Category.MonsterRace	,	Material.Leather	,	Market.Shoes	),
 			new ItemSalesInfo( typeof(	Hinge	),	2	,	5	,	80	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Tinker	),
 			new ItemSalesInfo( typeof(	HiveTool	),	100	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Wax	),
@@ -2875,7 +2870,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	HellishLeather	),	16	,	15	,	87	,	false	,	false	,	World.None	,	Category.Resource	,	Material.None	,	Market.Leather	),
 			new ItemSalesInfo( typeof(	LeatherJingasa	),	11	,	15	,	0	,	false	,	false	,	World.Orient	,	Category.Armor	,	Material.Leather	,	Market.Monk	),
 			new ItemSalesInfo( typeof(	DinosaurLeather	),	16	,	15	,	89	,	false	,	false	,	World.Savage	,	Category.Resource	,	Material.None	,	Market.Leather	),
-			new ItemSalesInfo( typeof(	AlienLeather	),	16	,	0	,	80	,	false	,	false	,	World.None	,	Category.Resource	,	Material.None	,	Market.Leather	),
 			new ItemSalesInfo( typeof(	LeatherLegs	),	80	,	15	,	0	,	false	,	false	,	World.None	,	Category.Armor	,	Material.Leather	,	Market.Leather	),
 			new ItemSalesInfo( typeof(	LeatherMempo	),	28	,	0	,	0	,	false	,	false	,	World.Orient	,	Category.Armor	,	Material.Leather	,	Market.Monk	),
 			new ItemSalesInfo( typeof(	LeatherNinjaBelt	),	24	,	0	,	0	,	false	,	false	,	World.Orient	,	Category.None	,	Material.Cloth	,	Market.Monk	),
@@ -3318,7 +3312,6 @@ namespace Server
 			new ItemSalesInfo( typeof(	LethalPoisonPotion	),	320	,	2	,	95	,	false	,	false	,	World.None	,	Category.Potion	,	Material.None	,	Market.Assassin	),
 			new ItemSalesInfo( typeof(	GoldenSerpentVenom	),	420	,	0	,	0	,	false	,	false	,	World.None	,	Category.Potion	,	Material.None	,	Market.Assassin	),
 			new ItemSalesInfo( typeof(	PolishBoneBrush	),	12	,	10	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Undertaker	),
-			new ItemSalesInfo( typeof(	PortableSmelter	),	520	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Tinker	),
 			new ItemSalesInfo( typeof(	PotionKeg	),	60	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Alchemy	),
 			new ItemSalesInfo( typeof(	PottedCactusDeed	),	5000	,	1	,	95	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Herbalist	),
 			new ItemSalesInfo( typeof(	Pouch	),	6	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Provisions	),

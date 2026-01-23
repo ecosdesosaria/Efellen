@@ -2,11 +2,12 @@ using System;
 using Server;
 using Server.Items;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a nazghoul's corpse" )]
-	public class Nazghoul : BaseCreature
+	public class Nazghoul : BaseSpellCaster
 	{
 		[Constructable]
 		public Nazghoul() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -56,12 +57,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedScrolls, 2 );
 		}
 
-		public override void OnAfterSpawn()
-		{
-			Server.Misc.IntelligentAction.BeforeMyBirth( this );
-			base.OnAfterSpawn();
-		}
-
 		public override void OnGotMeleeAttack( Mobile attacker )
 		{
 			base.OnGotMeleeAttack( attacker );
@@ -90,6 +85,13 @@ namespace Server.Mobiles
 		public override int Cloths{ get{ return 5; } }
 		public override ClothType ClothType{ get{ return ClothType.Vile; } }
 
+		public override void OnAfterSpawn()
+		{
+			Server.Misc.IntelligentAction.BeforeMyBirth( this );
+			this.MobileMagics(Utility.Random(5,7), SpellType.Cleric, 0);
+			base.OnAfterSpawn();
+		}
+
 		public Nazghoul( Serial serial ) : base( serial )
 		{
 		}
@@ -97,13 +99,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(5,7), SpellType.Cleric, 0);
+			}
 		}
 	}
 }

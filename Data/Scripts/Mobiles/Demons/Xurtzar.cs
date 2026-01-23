@@ -11,11 +11,12 @@ using Server.Mobiles;
 using Server.Accounting;
 using Server.Regions;
 using Server.Custom.DailyBosses.System;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Xurtzar's corpse" )]
-	public class Xurtzar : BaseCreature
+	public class Xurtzar : BaseSpellCaster
 	{
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		public override int BreathPhysicalDamage{ get{ return 0; } }
@@ -181,6 +182,12 @@ namespace Server.Mobiles
 			    }
 			}
 		}
+		
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(5,7), SpellType.Wizard | SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
 
 		public Xurtzar( Serial serial ) : base( serial )
 		{
@@ -189,7 +196,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 );
+			writer.Write( (int) 2 );
 			writer.Write( m_NextSpecialAttack );
 		}
 
@@ -200,6 +207,10 @@ namespace Server.Mobiles
 			if ( version >= 1 )
 			{
 				m_NextSpecialAttack = reader.ReadDateTime();
+			}
+			if ( version >= 2 )
+			{
+				this.MobileMagics(Utility.Random(5,7), SpellType.Wizard | SpellType.Sorcerer, 0);
 			}
 		}
 	}

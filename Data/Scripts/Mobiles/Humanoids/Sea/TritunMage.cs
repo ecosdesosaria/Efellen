@@ -4,11 +4,12 @@ using Server.Items;
 using Server.ContextMenus;
 using Server.Misc;
 using Server.Network;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a tritun corpse" )]
-	public class TritunMage : BaseCreature
+	public class TritunMage : BaseSpellCaster
 	{
 		[Constructable]
 		public TritunMage() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -55,12 +56,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedPotions );
 		}
 
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public override bool CanRummageCorpses{ get{ return true; } }
 		public override bool BleedImmune{ get{ return true; } }
 		public override int Scales{ get{ return 1; } }
@@ -72,6 +67,12 @@ namespace Server.Mobiles
 		public override int Skin{ get{ return Utility.Random(2); } }
 		public override SkinType SkinType{ get{ return SkinType.Seaweed; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(2,4), SpellType.Wizard | SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
+
 		public TritunMage( Serial serial ) : base( serial )
 		{
 		}
@@ -79,13 +80,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,4), SpellType.Wizard | SpellType.Sorcerer, 0);
+			}
 		}
 	}
 }

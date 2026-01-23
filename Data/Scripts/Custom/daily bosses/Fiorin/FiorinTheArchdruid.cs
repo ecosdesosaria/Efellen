@@ -15,11 +15,11 @@ using Server.EffectsUtil;
 using Server.Custom;
 using Server.Custom.DailyBosses.System;
 using Server.Custom.BossSystems;
-
+using Server.CustomSpells;
 namespace Server.Mobiles
 {
 	[CorpseName( "Fiorin's Corpse" )]
-	public class FiorinTheArchdruid : BaseCreature
+	public class FiorinTheArchdruid : BaseSpellCaster
 	{
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
@@ -72,7 +72,7 @@ namespace Server.Mobiles
 			SetInt( 286, 375 );
 
 			SetHits( 3000 );
-			SetDamage( 13, 24 );
+			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
 			SetResistance( ResistanceType.Physical, 60 );
@@ -186,7 +186,6 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
@@ -246,7 +245,7 @@ namespace Server.Mobiles
                         boss: this,
                         target: target,
                         warcry: "Spirits, aid me!",
-                        amount: 2,
+                        amount: 4,
                         creatureType: typeof(GuardianPanda),
                         hue: 0xb73
                     );
@@ -297,9 +296,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 25 );
-				SetDamage( 22, 29 );
-				
+				SetDamage( 16, 20 );
 				m_Rage = 1;
 				return false;
 			}
@@ -309,10 +306,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 50 );
-				SetDex( Dex + 15 );
-				SetDamage( 27, 34 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 5;
 				m_Rage = 2;
 				return false;
@@ -324,9 +318,9 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
 				//Werewolf form gets him a lot stronger
-				SetStr( Str + 200 );
+				SetStr( Str + 100 );
 				SetDex( Dex + 95 );
-				SetDamage( 37, 44 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 5;
 				m_Rage = 3;
                 Body = 0x5E;
@@ -350,10 +344,16 @@ namespace Server.Mobiles
 		}
 
         public override void OnDelete()
-        {
-            BossSummonSystem.CleanupSummons(m_Summons);
-            base.OnDelete();
-        }
+		{
+		    if (m_Summons != null)
+		    {
+		        BossSummonSystem.CleanupSummons(m_Summons);
+		        m_Summons.Clear();
+		        m_Summons = null;
+		    }
+
+		    base.OnDelete();
+		}
 
         public override void OnDeath( Container c )
 		{
@@ -373,6 +373,7 @@ namespace Server.Mobiles
 
 		public override void OnAfterSpawn()
 		{
+			this.MobileMagics(6, SpellType.Druid, 0x92E);
 			base.OnAfterSpawn();
 			LeechImmune = true;
 		}
@@ -384,7 +385,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 ); // version
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
@@ -407,6 +408,11 @@ namespace Server.Mobiles
 			
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
+
+			if(version >=2)
+			{
+				this.MobileMagics(6, SpellType.Druid, 0x92E);
+			}
 		}
 	}
 }

@@ -309,8 +309,6 @@ namespace Server
 					typeof( Lich ),
 					typeof( LionRiding ),
 					typeof( SnowLion ),
-					typeof( Kilrathi ),
-					typeof( KilrathiGunner ),
 					typeof( CragCat ),
 					typeof( ManticoreRiding ),
 					typeof( Marilith ),
@@ -422,8 +420,6 @@ namespace Server
 					typeof( Berserker ),
 					typeof( Adventurers ),
 					typeof( SavageAlien ),
-					typeof( BombWorshipper ),
-					typeof( Psionicist ),
 					typeof( HenchmanFighter ),
 					typeof( HenchmanArcher ),
 					typeof( HenchmanWizard ),
@@ -5491,36 +5487,6 @@ namespace Server.Misc
 							case 11: from.Say("The elements themselves bow to my will!"); break;
 							case 12: from.Say("Your primitive tactics cannot breach my wards!"); break;
 							case 13: from.Say("Witness the power of a true archmage!"); break;
-						};
-					}
-					else if ( from is BombWorshipper || from is Psionicist )
-					{
-						switch ( Utility.Random( 9 ))		   
-						{
-							case 0: from.Say("I have converted others stonger than you, " + m.Name + "!"); break;
-							case 1: from.Say("You will soon be one with the glow!"); break;
-							case 2: from.Say("All will know that " + from.Name + " gave " + m.Name + " to the glow!"); break;
-							case 3: from.Say("Maybe you should flee before it is too late!"); break;
-							case 4: from.Say("Do you think you can beat me?!"); break;
-							case 5: from.Say("No one desecrates the temple of the bomb!"); break;
-							case 6: from.Say("Your life ends here!"); break;
-							case 7: from.Say("Your life ends here, " + m.Name + "!"); break;
-							case 8: from.Say("You will kneel before the bomb!"); break;
-						};
-					}
-					else if ( from is Syth )
-					{
-						switch ( Utility.Random( 9 ))		   
-						{
-							case 0: from.Say("The Syth will be the last thing you see, " + m.Name + "!"); break;
-							case 1: from.Say("You will submit to my dark power!"); break;
-							case 2: from.Say("No one will find the bones of " + m.Name + "!"); break;
-							case 3: from.Say("You should have fled but it is too late!"); break;
-							case 4: from.Say("Do you think you can beat me?!"); break;
-							case 5: from.Say("No one has faced a syth and lived!"); break;
-							case 6: from.Say("Your life ends here!"); break;
-							case 7: from.Say("Your life ends here, " + m.Name + "!"); break;
-							case 8: from.Say("You will kneel before the Syth!"); break;
 						};
 					}
 					else if ( from is ElfBerserker

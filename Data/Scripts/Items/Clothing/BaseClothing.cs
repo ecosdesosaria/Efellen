@@ -372,7 +372,7 @@ namespace Server.Items
 		public override void OnRemoved( object parent )
 		{
 			Mobile mob = parent as Mobile;
-
+			if (mob == null || mob.Deleted) return;
 			if ( mob != null )
 			{
 				if ( Core.AOS )

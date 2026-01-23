@@ -5,11 +5,12 @@ using Server.Items;
 using Server.Targeting;
 using Server.Misc;
 using System.Collections.Generic;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a xatyr's corpse" )]
-	public class Xatyr : BaseCreature
+	public class Xatyr : BaseSpellCaster
 	{
 		[Constructable]
 		public Xatyr() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -74,6 +75,12 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(2); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Mystical; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(2,4), SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public Xatyr( Serial serial ) : base( serial )
 		{
 		}
@@ -82,7 +89,7 @@ namespace Server.Mobiles
 		{
 			base.Serialize( writer );
 
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -90,6 +97,10 @@ namespace Server.Mobiles
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,4), SpellType.Druid, 0);
+			}
 		}
 	}
 }

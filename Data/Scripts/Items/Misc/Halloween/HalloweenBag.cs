@@ -51,7 +51,8 @@ namespace Server.Items
 		public override void OnRemoved( object parent )
 		{      	
 			Mobile owner = parent as Mobile;
-	
+			if (owner == null || owner.Deleted) return;
+
 			if (owner != null)
 			{
 				owner.HueMod = -1;

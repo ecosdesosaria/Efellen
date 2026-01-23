@@ -135,6 +135,7 @@ namespace Server.Items
 			if (parent is Mobile)
 			{
 				Mobile m = (Mobile)parent;
+				if (m == null || m.Deleted) return;
 				SpectralFormContext context = GetContext(m);
 
 				if (context != null)

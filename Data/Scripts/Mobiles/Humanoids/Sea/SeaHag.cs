@@ -1,11 +1,12 @@
 using System;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a hag's corpse" )]
-	public class SeaHag : BaseCreature
+	public class SeaHag : BaseSpellCaster
 	{
 		[Constructable]
 		public SeaHag() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -60,12 +61,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedScrolls, 2 );
 		}
 
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public override bool CanRummageCorpses{ get{ return true; } }
 		public override int TreasureMapLevel{ get{ return 3; } }
 		public override bool BleedImmune{ get{ return true; } }
@@ -76,16 +71,26 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(3,5), SpellType.Wizard | SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(3,5), SpellType.Wizard | SpellType.Sorcerer, 0);
+			}
 		}
 	}
 }

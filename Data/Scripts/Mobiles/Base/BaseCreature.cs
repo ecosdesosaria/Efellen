@@ -2326,38 +2326,6 @@ public virtual int BreathComputeDamage()
 				}
 			}
 
-			if ( reg.IsPartOf( "the Ancient Crash Site" ) || reg.IsPartOf( "the Ancient Sky Ship" ) )
-			{
-				if ( this is SwampTentacle )
-				{
-					Name = "mutant plant";
-					Body = 869;
-					Hue = 0;
-				}
-				else if ( this is ElderGazer )
-				{
-					Name = "mutant gazer";
-					Body = 457;
-					Hue = 0x824;
-				}
-				else if ( this is MarshWurm )
-				{
-					Name = "alien mutant";
-					Body = 931;
-				}
-				else if ( this is Viscera )
-				{
-					Name = "crawling organs";
-					Body = 951;
-					Hue = 0;
-				}
-				else if ( this is Ghoul )
-				{
-					Name = "a ghoulish mutant";
-					Body = 961;
-				}
-			}
-
 			if ( this.Map == Map.Lodor && this.Z > 10 && this.X >= 1975 && this.Y >= 2201 && this.X <= 2032 && this.Y <= 2247 ) // ZOO ONLY HAS FRIENDLY ANIMALS
 			{
 				AI = AIType.AI_Melee;
@@ -2752,22 +2720,6 @@ public virtual int BreathComputeDamage()
 			{
 				if ( this is Gazer ){ this.Name = "a seeker"; }
 				if ( this is StoneElemental ){ this.Name = "a stone golem"; }
-			}
-
-			if ( reg.IsPartOf( "the Ancient Crash Site" ) || reg.IsPartOf( "the Ancient Sky Ship" ) )
-			{
-				if ( this is Fungal ){ this.Name = "a mushroom man"; this.Hue=0x56B; this.AddItem( new LightSource() ); }
-				else if ( this is FungalMage ){ this.Name = "a psychic mushroom"; this.Hue=0xABA; this.AddItem( new LightSource() ); }
-				else if ( this is ToxicElemental ){ this.Name = "a toxic waste elemental"; this.Hue=0xBA1; this.AddItem( new LighterSource() ); this.Body = 707;}
-				else if ( this is PoisonBeetleRiding ){ this.Name = "a rad beetle"; this.Hue=0xB07; this.AddItem( new LighterSource() ); }
-				else if ( this is ElectricalElemental ){ this.Name = "a plasma elemental"; this.Hue=0xB53; }
-				else if ( this is Stirge ){ this.Name = "a mynock"; this.Body = 742; }
-				else if ( this is BloodElemental )
-				{
-					this.AddItem( new LighterSource() ); 
-					if ( this.X > 954 && this.Y > 3771 && this.X < 976 && this.Y < 3793 ) { this.Name = "a coolant elemental"; this.Hue = 0xB73; }
-					else { this.Name = "a contaminated elemental"; this.Hue = 0xBAD; }
-				}
 			}
 
 			if ( Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( this.Map, this.Location ) ) && Server.Misc.Worlds.GetRegionName( this.Map, this.Location ) == "the Savaged Empire" )

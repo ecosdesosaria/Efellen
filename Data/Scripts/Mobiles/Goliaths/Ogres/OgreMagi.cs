@@ -4,11 +4,12 @@ using System.Collections;
 using Server.Items;
 using Server.Targeting;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "an ogre magi corpse" )]
-	public class OgreMagi : BaseCreature
+	public class OgreMagi : BaseSpellCaster
 	{
 		[Constructable]
 		public OgreMagi() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -59,6 +60,12 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(4); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Ogre; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(3,6), SpellType.Wizard | SpellType.Sorcerer, 0);
+			base.OnAfterSpawn();
+		}
+
 		public OgreMagi( Serial serial ) : base( serial )
 		{
 		}
@@ -73,6 +80,7 @@ namespace Server.Mobiles
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			this.MobileMagics(Utility.Random(3,6), SpellType.Wizard | SpellType.Sorcerer, 0);
 		}
 	}
 }

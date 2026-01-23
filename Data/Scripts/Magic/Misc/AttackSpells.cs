@@ -894,7 +894,6 @@ namespace Server.Spells.Magical
 			else if ( m is MutantDaemon ){ wizardry = Utility.RandomList( 2 ); }
 			else if ( m is OgreMagi ){ wizardry = Utility.RandomList( 2 ); }
 			else if ( m is PirateCrewMage ){ wizardry = Utility.RandomList( 2 ); }
-			else if ( m is Psionicist ){ wizardry = Utility.RandomList( 2 ); }
 			else if ( m is RoyalSphinx ){ wizardry = Utility.RandomList( 2 ); }
 			else if ( m is RuneBeetle ){ wizardry = Utility.RandomList( 2 ); }
 			else if ( m is RuneGuardian ){ wizardry = Utility.RandomList( 2 ); }

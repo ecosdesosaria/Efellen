@@ -27,19 +27,6 @@ namespace Server.Items
 			return false;
 		}
 
-		public static bool IsSpaceshipDoor( BaseDoor door )
-		{
-			Region reg = Region.Find( door.Location, door.Map );
-
-			if ( reg.IsPartOf( "the Ancient Crash Site" ) )
-				return true;
-
-			if ( reg.IsPartOf( "the Ancient Sky Ship" ) )
-				return true;
-
-			return false;
-		}
-
 		public static void LockDoors( BaseDoor door )
 		{
             ArrayList list = new ArrayList();

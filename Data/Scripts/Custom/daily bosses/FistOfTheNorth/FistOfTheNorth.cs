@@ -66,7 +66,7 @@ namespace Server.Mobiles
 			SetInt( 286, 325 );
 
 			SetHits( 7000 );
-			SetDamage( 28, 33 );
+			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
 			SetResistance( ResistanceType.Physical, 75 );
@@ -128,7 +128,7 @@ namespace Server.Mobiles
                 {
                    BossSpecialAttack.PerformRampage(
                        boss: this,
-                       warcry: "*Hrimah prepares to charge!*",
+                       warcry: "*Hrimah chaarges!*",
                        hue: 1153,
                        rage: m_Rage,
                        stunDuration: 4.0
@@ -141,7 +141,7 @@ namespace Server.Mobiles
                         boss: this,
                         target: target,
                         warcry: "Come hither, my kin!",
-                        amount: 3,
+                        amount: 5,
                         creatureType: typeof(IceGiant),
                         hue: 1153
                     );
@@ -151,7 +151,7 @@ namespace Server.Mobiles
                 {
                     BossSpecialAttack.PerformSlam(
                        boss: this,
-                       warcry: "Frost shall devour thee!",
+                       warcry: "Frost shall end thee!",
                        hue: 1153,
                        rage: m_Rage,
                        range: 6,
@@ -207,9 +207,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 30 );
-				SetDamage( 38, 43 );
+				SetDamage( 16, 20 );
 				VirtualArmor += 5;
 				m_Rage = 1;
 				return false;
@@ -220,12 +218,8 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 60 );
-				SetDex( Dex + 25 );
-				SetDamage( 43, 48 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 5;
-				
 				m_Rage = 2;
 				return false;
 			}
@@ -235,10 +229,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 120 );
-				SetDex( Dex + 50 );
-				SetDamage( 48, 53 );
+				SetDamage( 26, 30 );
 				VirtualArmor += 10;				
 				m_Rage = 3;
 				return false;
@@ -259,10 +250,16 @@ namespace Server.Mobiles
 		}
 
 		public override void OnDelete()
-        {
-            BossSummonSystem.CleanupSummons(m_Summons);
-            base.OnDelete();
-        }
+		{
+		    if (m_Summons != null)
+		    {
+		        BossSummonSystem.CleanupSummons(m_Summons);
+		        m_Summons.Clear();
+		        m_Summons = null;
+		    }
+
+		    base.OnDelete();
+		}
 
 		public override void OnDeath( Container c )
 		{

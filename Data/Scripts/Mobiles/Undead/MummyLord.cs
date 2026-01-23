@@ -3,11 +3,12 @@ using System.Collections;
 using Server.Items;
 using Server.Targeting;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a mummy corpse" )]
-	public class MummyLord : BaseCreature
+	public class MummyLord : BaseSpellCaster
 	{
 		public override int BreathPhysicalDamage{ get{ return 100; } }
 		public override int BreathFireDamage{ get{ return 0; } }
@@ -147,6 +148,12 @@ namespace Server.Mobiles
 		public override int Cloths{ get{ return 10; } }
 		public override ClothType ClothType{ get{ return ClothType.Haunted; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(3,5), SpellType.Cleric, 0);
+			base.OnAfterSpawn();
+		}
+
 		public MummyLord( Serial serial ) : base( serial )
 		{
 		}
@@ -154,13 +161,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(3,5), SpellType.Cleric, 0);
+			}
 		}
 	}
 }

@@ -76,6 +76,15 @@ namespace Server.Items
 			humanoid.Opposition = new SlayerGroup[]{ };
 			humanoid.FoundOn = new Type[]{ };
 			humanoid.Super = new SlayerEntry( SlayerName.Repond, 
+				typeof( BelakTheOutcast ),
+				typeof( SirBradford ),
+				typeof( Sharwyn ),
+				typeof( PossessedMage),
+				typeof( PossessedBrigand),
+				typeof( PossessedScholar),
+				typeof( PossessedMinstrel),
+				typeof( PossessedBerserker),
+				typeof( BalTsareth),
 				typeof( MotherSuperior),
 				typeof( PirateCaptain ), 
 				typeof( PirateCrew ), 
@@ -100,9 +109,6 @@ namespace Server.Items
 				typeof( NativeWitchDoctor ), 
 				typeof( Berserker ), 
 				typeof( Adventurers ), 
-				typeof( SavageAlien ), 
-				typeof( BombWorshipper ), 
-				typeof( Psionicist ), 
 				typeof( Monks ), 
 				typeof( Brigand ), 
 				typeof( PirateCult ), 
@@ -110,8 +116,6 @@ namespace Server.Items
 				typeof( SailorMerchant ), 
 				typeof( Bugbear ), 
 				typeof( Gnoll ), 
-				typeof( Kilrathi ), 
-				typeof( KilrathiGunner ), 
 				typeof( Rogue ), 
 				typeof( Executioner ), 
 				typeof( EvilMage ),
@@ -250,6 +254,7 @@ namespace Server.Items
 			undead.Opposition = new SlayerGroup[]{ };
 			undead.FoundOn = new Type[]{ };
 			undead.Super = new SlayerEntry( SlayerName.Silver, 
+				typeof( Vraax ),
 				typeof( AncientLich ), 
 				typeof( LichKing ), 
 				typeof( BaronAlmric ), 
@@ -397,6 +402,12 @@ namespace Server.Items
 				typeof( MLDryad ), 
 				typeof( xDryad ), 
 				typeof( Xatyr ), 
+				typeof( DrowPriestess),
+				typeof( DrowMage),
+				typeof( DrowGuard),
+				typeof( DrowPoisoner),
+				typeof( DrowMageLord),
+				typeof( Annath ),
 				typeof( Satyr ) );
 			fey.Entries = new SlayerEntry[0];
 
@@ -411,7 +422,6 @@ namespace Server.Items
 				typeof( SeaHag ), 
 				typeof( SeaHagGreater ), 
 				typeof( FungalMage ), 
-				typeof( Psionicist ), 
 				typeof( Archmage ), 
 				typeof( DrakkulMage ), 
 				typeof( ZombieMage ), 
@@ -457,7 +467,11 @@ namespace Server.Items
 				typeof( Nazghoul ), 
 				typeof( Vordo ), 
 				typeof( SkeletalMage ), 
-				typeof( SkeletalWizard ), 
+				typeof( SkeletalWizard ),
+				typeof( PossessedMage), 
+				typeof( PossessedScholar),
+				typeof( BalTsareth ), 
+				typeof( Desmona ), 
 				typeof( UndeadDruid ) );
 			wizard.Entries = new SlayerEntry[0];
 

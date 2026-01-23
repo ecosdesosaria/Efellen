@@ -4,11 +4,12 @@ using System.Collections;
 using Server.Items;
 using Server.Targeting;
 using Server.Misc;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a troll corpse" )]
-	public class FrostTrollShaman : BaseCreature
+	public class FrostTrollShaman : BaseSpellCaster
 	{
 		[Constructable]
 		public FrostTrollShaman() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -59,6 +60,12 @@ namespace Server.Mobiles
 		public override int Skeletal{ get{ return Utility.Random(3); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Troll; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(1,4), SpellType.Cleric | SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public FrostTrollShaman( Serial serial ) : base( serial )
 		{
 		}
@@ -66,13 +73,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(1,4), SpellType.Cleric | SpellType.Druid, 0);
+			}
 		}
 	}
 }

@@ -6,10 +6,11 @@ using Server.ContextMenus;
 using Server.Misc;
 using Server.Network;
 using System.Collections.Generic;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
-	public class Minstrel : BaseCreature
+	public class Minstrel : BaseSpellCaster
 	{
 		[Constructable]
 		public Minstrel() : base( AIType.AI_Archer, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -123,6 +124,12 @@ namespace Server.Mobiles
 			Server.Misc.IntelligentAction.CryOut( this );
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(1,3), SpellType.Bard, 0);
+			base.OnAfterSpawn();
+		}
+
 		public Minstrel( Serial serial ) : base( serial )
 		{
 		}
@@ -137,6 +144,7 @@ namespace Server.Mobiles
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			this.MobileMagics(Utility.Random(1,3), SpellType.Bard, 0);
 		}
 	}
 }

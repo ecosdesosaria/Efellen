@@ -45,7 +45,7 @@ namespace Server.Mobiles
 			SetInt( 106, 135 );
 
 			SetHits( 1755 );
-			SetDamage( 19, 29 );
+			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
 
@@ -84,13 +84,12 @@ namespace Server.Mobiles
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
-		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
+		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
 		public override Poison HitPoison{ get{ return Poison.Greater; } }
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
@@ -135,7 +134,7 @@ namespace Server.Mobiles
 		                8,          // radius
 		                m_Rage,     // rage level
 		                12,         // duration - 12 + rage*2 seconds, damage happens every 2 seconds 
-		                20,         // intensity - 20 + rage damage per tick
+		                26,         // intensity - 20 + rage damage per tick
 		                "health",   // target attribute
 		                0x845       // hue
 		            );
@@ -157,10 +156,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 50 );
-				SetDex( Dex + 25 );
-				SetDamage( 13, 19 );
+				SetDamage( 16, 21 );
 				m_Rage = 1;
 				return false;
 			}
@@ -170,10 +166,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 80 );
-				SetDex( Dex + 35 );
-				SetDamage( 21, 29 );
+				SetDamage( 21, 26 );
 				VirtualArmor += 5;
 				m_Rage = 2;
 				return false;
@@ -192,12 +185,7 @@ namespace Server.Mobiles
 			}
 			
 			return base.OnBeforeDeath();
-		}
-
-        public override void OnDelete()
-        {
-            base.OnDelete();
-        }       
+		}  
 
 		public override void OnDeath( Container c )
 		{

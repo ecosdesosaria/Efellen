@@ -562,7 +562,14 @@
 
 		Ulvir, Umrae, Vas, Vic, Vier, Vlon, Waer, Wuyon, Xull, Xun, Yas, Zar, Zebey, Zes, Zilv,
 
-		Lyrah, Viconia, Asha, Evadra, Kiaransalee, Yvonnel, Ilvara, Pharae, Zress, Chathi, Lavandera
+		Lyrah, Viconia, Asha, Evadra, Kiaransalee, Yvonnel, Ilvara, Pharae, Zress, Chathi, Lavandera,
+		
+		Veylira, Drisane, Morwyn, Thalira, Zynelle, Erythra, Kaelith, Selvara, Xyrisse, Vaerith, Myrris,
+		Zhalira, Coriseth, Velithra, Tyrris, Shaelra, Vorisse, Orivelle, Thalynn, Ziranne, Drovira, Malryss, 
+		Kysera, Erynnith, Sylvara, Vorrisse, Kaevira, Myrrith, Tyselle, Dravira, Selryth, Zalirae, Korivra, 
+		Veyrise, Thyrris, Morissa, Xalvryn, Zerisse, Nylvra, Vorvessa, Eryssa, Calvrae, Zhaevra, Velrith, Tyssira, Drovella,
+		Kyssira, Malvra, Oriseth
+
 
 	</namelist>
 
@@ -582,7 +589,14 @@
 
 		Taz, Uhls, Hurz, Vesz, Vic, Val, Wod, Wehl, Wruz, Url, Xun, Yaz, Zakn, Zek, Zsz, Vuz,
 
-		Xanryz, Valtaris, Sorn, Pharaun, Nym, Nisstyre, Uluyara, Sorn, Larath, Deanth
+		Xanryz, Valtaris, Sorn, Pharaun, Nym, Nisstyre, Uluyara, Sorn, Larath, Deanth,
+		
+ 	   Zyranth, Korvrel, Thalven, Drovik, Myrros, Calvarn, Velthor, Zhalrik, Kyrran, Voriss, 
+	   Eryndar, Malrith, Torvran, Orivel, Veyrik, Thyros, Sylvenn, Drovann, Zarvik, 
+	   Kaelros, Fenrik, Tovren, Vorissar, Kyrrith, Morrik, Drayven, Selrik, Calroth, Xyrris, 
+	   Vaelrik, Tharven, Zhalven, Vorrith, Kaevrik, Nyrros, Malvenn, Torvrel, Orinvar, Velrann, Zirrik, 
+	   Corvran, Thalrik, Kyrral, Vorrel, Myrrik, Drovrel, Xalros, Veyrin, Zhalros, Malrik
+
 
 	</namelist>
 
@@ -600,7 +614,15 @@
 
 		stra, tana, thara, thrae, tree, tyrr, ual, ue, uit, une, uque, urra, va, vayas, vrae, 
 
-		vyll, vyrae, wae, wiira, wyss, xae, xena, xyra, yl, ylene, ymma, ynda, ynrae, yrr, zyne
+		vyll, vyrae, wae, wiira, wyss, xae, xena, xyra, yl, ylene, ymma, ynda, ynrae, yrr, zyne,
+		
+    	Serivelle, Thalisse, Veylana, Orivienne, Zyrelithra, Kaevirae, Syltheris, Morrivelle, 
+		Elyssira, Velvanna, Xyrivelle, Tyssandra, Calithrae, Zhaerilith, Vorvianne, Kyserelle, 
+		Nymeris, Drovianne, Selvessa, Tharivelle, Zirivella, Vaeloria, Myrrilith, Korivelle, 
+		Erythanna, Shaelvienne, Morilisse, Velisse, Dravielle, Xalivessa, Veyrelith, Torvianne, 
+		Zalithrae, Calvessa, Kyserith, Nylisse, Vorrelith, Sylrissa, Orivanna, Malivelle, Thalorisse, 
+		Zhaevielle, Tysivelle, Drovanna, Kaelvissa, Velrisse, Eryssirae, Morivanna, Zerivelle, Veylithrae
+
 
 	</namelist>
 
@@ -616,7 +638,14 @@
 
 		oyn, ryn, ral, rysn, trin, tran, ton, tar, olg, tel, tyrr, dan, dor, dar, diin, uque, dax, ven, 
 
-		vayas, vrae, vyll, vyr, hrae, hriir, hrys, zaer, zen, zyr, yl, yln, inyon, yrd, yraen, yrr, zt
+		vayas, vrae, vyll, vyr, hrae, hriir, hrys, zaer, zen, zyr, yl, yln, inyon, yrd, yraen, yrr, zt,
+		
+    	Velithran, Sylvaris, Thalvyrn, Eryndrel, Morivath, Zhaelorin, Kyssanth, Vorivrel, Caelthros, Drovinar, 
+		Nyssaril, Valthyris, Xyrindel, Shaevorin, Torraveth, Korivras, Myrthalen, Zirivran, Orivathis, Veyndrel, Thalvornis, 
+		Drisvrae, Seltharion, Malvyris, Kyrelthar, Vorindral, Zhalyssor, Erynveth, Vaelorin, Tysvralis, Morivrelth, Corvannis, 
+		Syltharion, Zyranthor, Thalvyril, Vorrindel, Nyssavrae, Drovathis, Zhaelorith, Torvannis, Velindral, Kyrrathis, Morrithan, 
+		Orivallis, Vorilthar, Thalrannis, Eryndralis, Zhalvrynn, Caelvoris, Veylthran
+
 
 	</namelist>
 

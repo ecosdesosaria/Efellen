@@ -81,7 +81,7 @@ namespace Server.Mobiles
 			SetInt( 586, 675 );
 
 			SetHits( 19000 );
-			SetDamage( 23, 34 );
+			SetDamage( 11, 16 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
 		
@@ -349,8 +349,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 30 );
-				SetDamage( 28, 34 );
+				SetDamage( 16, 20 );
 				m_Rage = 1;
 				return;
 			}
@@ -360,9 +359,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 60 );
-				SetDex( Dex + 25 );
-				SetDamage( 33, 39 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 10;
 				m_Rage = 2;
 				return;
@@ -373,9 +370,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 120 );
-				SetDex( Dex + 50 );
-				SetDamage( 38, 44 );
+				SetDamage( 26, 30 );
 				VirtualArmor += 10;             
 				m_Rage = 3;
 				return;
@@ -428,9 +423,14 @@ namespace Server.Mobiles
 
 		public override void OnDelete()
 		{
-			BossSummonSystem.CleanupSummons(m_Summons);
+		    if (m_Summons != null)
+		    {
+		        BossSummonSystem.CleanupSummons(m_Summons);
+		        m_Summons.Clear();
+		        m_Summons = null;
+		    }
 			CleanupMagmaTiles();
-			base.OnDelete();
+		    base.OnDelete();
 		}
 
 		private void CleanupMagmaTiles()

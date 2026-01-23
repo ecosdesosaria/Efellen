@@ -70,7 +70,7 @@ namespace Server.Mobiles
 			SetInt( 506, 605 );
 
 			SetHits( 11000 );
-			SetDamage( 20, 25 );
+			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Energy, 100 );
 			SetResistance( ResistanceType.Physical, 50 );
@@ -179,9 +179,9 @@ namespace Server.Mobiles
 					foreach ( Mobile m in targets )
 					{
 						DoHarmful( m );
-						int staminaDrain = Utility.RandomMinMax( 35, 55 );
+						int staminaDrain = Utility.RandomMinMax( 75, 95 );
 						m.Stam -= staminaDrain;
-						int damage = Utility.RandomMinMax( staminaDrain/2, staminaDrain ) + m_Rage*3;
+						int damage = Utility.RandomMinMax( staminaDrain/2, staminaDrain*2 ) + m_Rage*3;
 						AOS.Damage( m, this, damage, 0, 0, 0, 0, 100 );
 						m.FixedParticles( 0x374A, 10, 15, 5013, 0x81b, 0, EffectLayer.Waist );
 						m.PlaySound( 0x1FB );
@@ -316,8 +316,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 30 );
-				SetDamage( 25, 30 );
+				SetDamage( 16, 20 );
 				VirtualArmor += 5;
 				m_Rage = 1;
 				return false;
@@ -328,10 +327,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 60 );
-				SetDex( Dex + 20 );
-				SetDamage( 30, 35 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 10;
 				m_Rage = 2;
 				return false;
@@ -342,10 +338,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 90 );
-				SetDex( Dex + 40 );
-				SetDamage( 35, 40 );
+				SetDamage( 26, 30 );
 				VirtualArmor += 15;
 				m_Rage = 3;
 				return false;
@@ -367,10 +360,16 @@ namespace Server.Mobiles
 		}
 
 		public override void OnDelete()
-        {
-            BossSummonSystem.CleanupSummons(m_Summons);
-            base.OnDelete();
-        }
+		{
+		    if (m_Summons != null)
+		    {
+		        BossSummonSystem.CleanupSummons(m_Summons);
+		        m_Summons.Clear();
+		        m_Summons = null;
+		    }
+
+		    base.OnDelete();
+		}
 
 		public override void OnDeath( Container c )
 		{

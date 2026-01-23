@@ -5,11 +5,12 @@ using Server.Misc;
 using Server.Items;
 using Server.Network;
 using Server.Spells;
+using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
 	[CorpseName( "Belak's corpse" )] 
-	public class BelakTheOutcast : BaseCreature 
+	public class BelakTheOutcast : BaseSpellCaster 
 	{ 
 		private DateTime m_NextAbility;
 		private static readonly TimeSpan AbilityCooldown = TimeSpan.FromSeconds(45);
@@ -90,55 +91,13 @@ namespace Server.Mobiles
 			{
 				double healthPercent = (double)Hits / (double)HitsMax;
 
-				if ( healthPercent > 0.80 )
-					CastEntangle();
-				else if ( healthPercent > 0.40 )
+				if ( healthPercent > 0.40 )
 					CastSummonNatureAlly();
 				else
 					CastSpikeGrowth();
 
 				m_NextAbility = DateTime.UtcNow + AbilityCooldown;
 			}
-		}
-
-		private void CastEntangle()
-		{
-			if ( Combatant == null || !Combatant.Alive )
-				return;
-
-			PublicOverheadMessage( MessageType.Regular, 0x3B2, false, "*casts Entangle*" );
-
-			Mobile target = Combatant;
-			
-			for ( int x = -4; x <= 4; x++ )
-			{
-				for ( int y = -4; y <= 4; y++ )
-				{
-					Point3D loc = new Point3D( target.X + x, target.Y + y, target.Z );
-					if ( Utility.RandomDouble() < 0.5 )
-					{
-						Effects.SendLocationEffect( loc, target.Map, 0x3735, 20, 10, 0x47E, 0 ); 
-					}
-				}
-			}
-
-			IPooledEnumerable eable = target.GetMobilesInRange( 4 );
-			foreach ( Mobile m in eable )
-			{
-				if ( m != this && m.Alive && CanBeHarmful( m ) && !m.Player == false || m.Player )
-				{
-					double magicResist = m.Skills[SkillName.MagicResist].Value;
-					double duration = 12.0 - ( magicResist / 100.0 * 6.0 ); 
-					
-					if ( duration < 6.0 )
-						duration = 6.0;
-
-					m.Paralyze( TimeSpan.FromSeconds( duration ) );
-					m.FixedEffect( 0x376A, 9, 32 );
-					m.PlaySound( 0x204 );
-				}
-			}
-			eable.Free();
 		}
 
 		private void CastSummonNatureAlly()
@@ -311,6 +270,12 @@ namespace Server.Mobiles
 			}
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(3, SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
+
 		public override bool ClickTitle{ get{ return false; } }
 		public override bool ShowFameTitle{ get{ return false; } }
 		public override bool CanRummageCorpses{ get{ return false; } }
@@ -327,7 +292,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer ) 
 		{ 
 			base.Serialize( writer ); 
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 			writer.Write( m_NextAbility );
 		} 
 
@@ -336,6 +301,10 @@ namespace Server.Mobiles
 			base.Deserialize( reader ); 
 			int version = reader.ReadInt();
 			m_NextAbility = reader.ReadDateTime();
+			if(version>=1)
+			{
+				this.MobileMagics(3, SpellType.Druid, 0);
+			}
 		} 
 	} 
 }

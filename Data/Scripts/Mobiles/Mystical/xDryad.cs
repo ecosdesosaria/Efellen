@@ -3,11 +3,12 @@ using Server;
 using Server.Engines.Plants;
 using Server.Misc;
 using Server.Mobiles;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a dryad's corpse" )]
-	public class xDryad : BaseCreature
+	public class xDryad : BaseSpellCaster
 	{
 		[Constructable]
 		public xDryad() : base( AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4 )
@@ -74,6 +75,11 @@ namespace Server.Mobiles
 			}
 			base.OnThink();
 		}
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(3,5), SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
 
 		public xDryad( Serial serial ) : base( serial )
 		{
@@ -82,13 +88,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(3,5), SpellType.Druid, 0);
+			}
 		}
 	}
 }

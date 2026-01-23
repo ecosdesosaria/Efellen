@@ -4,28 +4,13 @@ using Server.Items;
 using Server.ContextMenus;
 using Server.Misc;
 using Server.Network;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a zuluu corpse" )]
-	public class ZuluuWitchDoctor : BaseCreature
+	public class ZuluuWitchDoctor : BaseSpellCaster
 	{
-		public override int BreathPhysicalDamage{ get{ return 0; } }
-		public override int BreathFireDamage{ get{ if ( YellHue < 2 ){ return 100; } else { return 0; } } }
-		public override int BreathColdDamage{ get{ if ( YellHue == 3 ){ return 100; } else { return 0; } } }
-		public override int BreathPoisonDamage{ get{ if ( YellHue == 2 ){ return 100; } else { return 0; } } }
-		public override int BreathEnergyDamage{ get{ return 0; } }
-		public override int BreathEffectHue{ get{ if ( YellHue == 1 ){ return 0x488; } else if ( YellHue == 2 ){ return 0xB92; } else if ( YellHue == 3 ){ return 0x5B5; } else { return 0x4FD; } } }
-		public override int BreathEffectSound{ get{ return 0x238; } }
-		public override int BreathEffectItemID{ get{ return 0x1005; } } // EXPLOSION POTION
-		public override bool HasBreath{ get{ return true; } }
-		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override int GetBreathForm()
-		{
-		    return 3;
-		}
-		public override double BreathDamageScalar{ get{ return 0.4; } }
-
 		[Constructable]
 		public ZuluuWitchDoctor() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -115,12 +100,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedPotions );
 		}
 
-		public override bool OnBeforeDeath()
-		{
-			if ( Server.Misc.IntelligentAction.HealThySelf( this ) ){ return false; }
-			return base.OnBeforeDeath();
-		}
-
 		public override bool ClickTitle{ get{ return false; } }
 		public override bool ShowFameTitle{ get{ return false; } }
 		public override bool AlwaysAttackable{ get{ return true; } }
@@ -131,17 +110,25 @@ namespace Server.Mobiles
 		public ZuluuWitchDoctor( Serial serial ) : base( serial )
 		{
 		}
-
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(3,5), SpellType.Cleric | SpellType.Druid, 0);
+			base.OnAfterSpawn();
+		}
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(3,5), SpellType.Cleric | SpellType.Druid, 0);
+			}
 		}
 	}
 }

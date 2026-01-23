@@ -1,12 +1,13 @@
 using System;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "an ophidian corpse" )]
 	[TypeAlias( "Server.Mobiles.OphidianShaman" )]
-	public class OphidianMage : BaseCreature
+	public class OphidianMage : BaseSpellCaster
 	{
 		private static string[] m_Names = new string[]
 			{
@@ -70,16 +71,26 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(2,4), SpellType.Sorcerer | SpellType.Wizard, 0);
+			base.OnAfterSpawn();
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,4), SpellType.Sorcerer | SpellType.Wizard, 0);
+			}
 		}
 	}
 }

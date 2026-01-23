@@ -15,11 +15,12 @@ using Server.EffectsUtil;
 using Server.Custom;
 using Server.Custom.DailyBosses.System;
 using Server.Custom.BossSystems;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "Prince of Darkness Corpse" )]
-	public class PrinceOfDarkness : BaseCreature
+	public class PrinceOfDarkness : BaseSpellCaster
 	{	
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
@@ -68,7 +69,7 @@ namespace Server.Mobiles
 			SetInt( 586, 675 );
 
 			SetHits( 19000 );
-			SetDamage( 23, 34 );
+			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
 			SetResistance( ResistanceType.Physical, 60 );
@@ -240,9 +241,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 30 );
-				SetDamage( 28, 34 );
+				SetDamage( 16, 21 );
 				
 				m_Rage = 1;
 				return false;
@@ -253,12 +252,8 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 60 );
-				SetDex( Dex + 25 );
-				SetDamage( 33, 39 );
+				SetDamage( 21, 26 );
 				VirtualArmor += 10;
-				
 				m_Rage = 2;
 				return false;
 			}
@@ -268,12 +263,8 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 120 );
-				SetDex( Dex + 50 );
-				SetDamage( 38, 45 );
+				SetDamage( 27, 32 );
 				VirtualArmor += 10;
-				
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "SHAAAAROOON!" );
 				BaseCreature sharon = new Sharon();
 				sharon.Team = this.Team;
@@ -303,11 +294,15 @@ namespace Server.Mobiles
 		}
 
 		public override void OnDelete()
-        {
-            BossSummonSystem.CleanupSummons(m_Summons);
-            base.OnDelete();
-        }
-
+		{
+		    if (m_Summons != null)
+		    {
+		        BossSummonSystem.CleanupSummons(m_Summons);
+		        m_Summons.Clear();
+		        m_Summons = null;
+		    }
+		    base.OnDelete();
+		}
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
@@ -335,6 +330,7 @@ namespace Server.Mobiles
 
 		public override void OnAfterSpawn()
 		{
+			this.MobileMagics(9, SpellType.Wizard, 0x497);
 			base.OnAfterSpawn();
 			LeechImmune = true;
 		}
@@ -346,7 +342,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 ); // version
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
@@ -369,6 +365,11 @@ namespace Server.Mobiles
 			// Initialize summons list if null
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
+
+			if(version >=2)
+			{
+				this.MobileMagics(9, SpellType.Wizard, 0x497);
+			}
 		}
 	}
 }

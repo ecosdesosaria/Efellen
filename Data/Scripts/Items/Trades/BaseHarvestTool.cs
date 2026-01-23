@@ -124,6 +124,8 @@ namespace Server.Items
 			if ( parent is Mobile && m_AosSkillBonuses != null )
 			{
 				Mobile from = (Mobile)parent;
+				if (from == null || from.Deleted) return;
+
 				m_AosSkillBonuses.Remove();
 			}
 			base.OnRemoved( parent );

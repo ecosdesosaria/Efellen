@@ -41,6 +41,8 @@ namespace Server.Items
 			if ( parent is Mobile )
 			{
 				Mobile from = (Mobile)parent;
+				if (from == null || from.Deleted) return;
+
 				from.Send(SpeedControl.Disable);
 			}
 			base.OnRemoved(parent);

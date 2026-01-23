@@ -245,11 +245,61 @@ namespace Server.Items
 
 		public virtual bool CanFortify{ get{ return true; } }
 
-		public override int PhysicalResistance{ get{ return m_AosWeaponAttributes.ResistPhysicalBonus; } }
-		public override int FireResistance{ get{ return m_AosWeaponAttributes.ResistFireBonus; } }
-		public override int ColdResistance{ get{ return m_AosWeaponAttributes.ResistColdBonus; } }
-		public override int PoisonResistance{ get{ return m_AosWeaponAttributes.ResistPoisonBonus; } }
-		public override int EnergyResistance{ get{ return m_AosWeaponAttributes.ResistEnergyBonus; } }
+		public override int PhysicalResistance
+		{
+		    get
+		    {
+		        if (Deleted || m_AosWeaponAttributes == null)
+		            return 0;
+		
+		        return m_AosWeaponAttributes.ResistPhysicalBonus;
+		    }
+		}
+		
+		public override int FireResistance
+		{
+		    get
+		    {
+		        if (Deleted || m_AosWeaponAttributes == null)
+		            return 0;
+		
+		        return m_AosWeaponAttributes.ResistFireBonus;
+		    }
+		}
+		
+		public override int ColdResistance
+		{
+		    get
+		    {
+		        if (Deleted || m_AosWeaponAttributes == null)
+		            return 0;
+		
+		        return m_AosWeaponAttributes.ResistColdBonus;
+		    }
+		}
+		
+		public override int PoisonResistance
+		{
+		    get
+		    {
+		        if (Deleted || m_AosWeaponAttributes == null)
+		            return 0;
+		
+		        return m_AosWeaponAttributes.ResistPoisonBonus;
+		    }
+		}
+		
+		public override int EnergyResistance
+		{
+		    get
+		    {
+		        if (Deleted || m_AosWeaponAttributes == null)
+		            return 0;
+		
+		        return m_AosWeaponAttributes.ResistEnergyBonus;
+		    }
+		}
+
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public override Density Density { get { return CraftResources.GetDensity( this ); } }
@@ -388,10 +438,8 @@ namespace Server.Items
 			UnscaleDurability();
 			ResourceMods.Modify( this, true );
 			m_Resource = resource;
-
-			if ( !(this is LightSword) && !(this is DoubleLaserSword) )
-				Hue = CraftResources.GetHue(m_Resource);
-			else if ( CraftResources.GetType( m_Resource ) == CraftResourceType.Block )
+			
+			if ( CraftResources.GetType( m_Resource ) == CraftResourceType.Block )
 				Hue = CraftResources.GetHue(m_Resource);
 
 			ResourceMods.Modify( this, false );
@@ -805,44 +853,47 @@ namespace Server.Items
 			}
 		}
 
-		public override void OnRemoved( object parent )
+		public override void OnRemoved(object parent)
 		{
-			if ( parent is Mobile )
-			{
-				Mobile m = (Mobile)parent;
-				BaseWeapon weapon = m.Weapon as BaseWeapon;
+		    Mobile m = parent as Mobile;
 
-				string modName = this.Serial.ToString();
+		    if (m == null || m.Deleted)
+		        return;
 
-				m.RemoveStatMod( modName + "Str" );
-				m.RemoveStatMod( modName + "Dex" );
-				m.RemoveStatMod( modName + "Int" );
+		    BaseWeapon weapon = m.Weapon as BaseWeapon;
+		    string modName = this.Serial.ToString();
 
-				if ( weapon != null )
-					m.NextCombatTime = DateTime.Now + weapon.GetDelay( m );
+		    m.RemoveStatMod(modName + "Str");
+		    m.RemoveStatMod(modName + "Dex");
+		    m.RemoveStatMod(modName + "Int");
 
-				if ( UseSkillMod && m_SkillMod != null )
-				{
-					m_SkillMod.Remove();
-					m_SkillMod = null;
-				}
+		    if (weapon != null)
+		        m.NextCombatTime = DateTime.Now + weapon.GetDelay(m);
 
-				if ( m_MageMod != null )
-				{
-					m_MageMod.Remove();
-					m_MageMod = null;
-				}
+		    if (UseSkillMod && m_SkillMod != null)
+		    {
+		        m_SkillMod.Remove();
+		        m_SkillMod = null;
+		    }
 
-				if ( Core.AOS )
-					m_AosSkillBonuses.Remove();
+		    if (m_MageMod != null)
+		    {
+		        m_MageMod.Remove();
+		        m_MageMod = null;
+		    }
 
-				m.CheckStatTimers();
+		    if (Core.AOS && m_AosSkillBonuses != null)
+		        m_AosSkillBonuses.Remove();
 
-				m.Delta( MobileDelta.WeaponDamage );
+		    if (!m.Deleted)
+		    {
+		        m.CheckStatTimers();
+		        m.Delta(MobileDelta.WeaponDamage);
+		    }
 
-				CustomWeaponAbilities.Check(m);
-			}
+		    CustomWeaponAbilities.Check(m);
 		}
+
 
 		public virtual SkillName GetUsedSkill( Mobile m, bool checkSkillAttrs )
 		{
@@ -3358,7 +3409,7 @@ namespace Server.Items
 			if ( (prop = m_AosAttributes.RegenMana) != 0 )
 				list.Add( 1060440, prop.ToString() ); // mana regeneration ~1_val~
 
-			if ( (prop = m_AosAttributes.NightSight) != 0 && !(this is LightSword) && !(this is DoubleLaserSword) && !(this is LevelLaserSword) && !(this is LevelDoubleLaserSword) )
+			if ( (prop = m_AosAttributes.NightSight) != 0 )
 				list.Add( 1060441 ); // night sight
 
 			if ( (prop = m_AosAttributes.ReflectPhysical) != 0 )

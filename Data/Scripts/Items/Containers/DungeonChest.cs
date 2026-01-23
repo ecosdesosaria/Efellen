@@ -88,8 +88,6 @@ namespace Server.Items
 
 			if ( Server.Misc.Worlds.IsIceDungeon( box.Location, box.Map ) ){ design = 1; }
 			else if ( reg.IsPartOf( "the Daemon's Crag" ) || reg.IsPartOf( "Dungeon Covetous" ) ){ design = 2; } // CRATES, BARRELS, BODIES
-			else if ( reg.IsPartOf( "the Ancient Sky Ship" ) && box.X > 879 && box.Y > 3613 ){ design = 14; } // METAL CRATES
-			else if ( reg.IsPartOf( "the Ancient Crash Site" ) || reg.IsPartOf( "the Ancient Sky Ship" ) ){ design = 13; } // METAL CRATES AND ALIEN BODIES
 			else if ( reg.IsPartOf( "the Temple of Osirus" ) ){ design = 4; } // BODIES
 			else if ( reg.IsPartOf( "the Lodoria Sewers" ) || reg.IsPartOf( "the Montor Sewers" ) || reg.IsPartOf( "the Sewers" ) || reg.IsPartOf( "the Kuldara Sewers" ) ){ design = 5; } // CRATES, BARRELS
 			else if ( Server.Misc.Worlds.IsFireDungeon( box.Location, box.Map ) ){ design = 6; } // METAL CHESTS

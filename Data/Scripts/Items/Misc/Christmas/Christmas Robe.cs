@@ -43,7 +43,8 @@ namespace Server.Items
 			if ( parent is Mobile )
 			{
 				Mobile from = ( Mobile ) parent;
-				
+				if (from == null || from.Deleted) return;
+
 				from.Hue = m_OrigHue;
 				
 				from.SendMessage( "You remove your Christmas Robe." );

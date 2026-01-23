@@ -1,12 +1,13 @@
 using System;
 using Server;
 using Server.Items;
+using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "an ophidian corpse" )]
 	[TypeAlias( "Server.Mobiles.OphidianJusticar", "Server.Mobiles.OphidianZealot" )]
-	public class OphidianArchmage : BaseCreature
+	public class OphidianArchmage : BaseSpellCaster
 	{
 		private static string[] m_Names = new string[]
 			{
@@ -65,6 +66,12 @@ namespace Server.Mobiles
 		public override int Skin{ get{ return Utility.Random(3); } }
 		public override SkinType SkinType{ get{ return SkinType.Snake; } }
 
+		public override void OnAfterSpawn()
+		{
+			this.MobileMagics(Utility.Random(4,5), SpellType.Sorcerer | SpellType.Wizard, 0);
+			base.OnAfterSpawn();
+		}
+
 		public OphidianArchmage( Serial serial ) : base( serial )
 		{
 		}
@@ -72,13 +79,17 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+			if (version >= 1)
+			{
+				this.MobileMagics(Utility.Random(4,5), SpellType.Sorcerer | SpellType.Wizard, 0);
+			}
 		}
 	}
 }

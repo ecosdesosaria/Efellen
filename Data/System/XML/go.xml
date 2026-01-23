@@ -902,7 +902,7 @@
 
 				</parent>
 
-				<parent name="Clues">
+				<parent name="Library of Bal Tsareth">
 
 					<child name="Entrance" x="3760" y="2041" z="0" map="Sosaria" />
 
@@ -1238,11 +1238,11 @@
 
 			<parent name="Dungeons">
 
-				<parent name="Alien Ship">
+				<parent name="Lolth's Sanctum">
 
-					<child name="Alien Cave" x="66" y="561" z="0" map="Underworld" />
+					<child name="Entrance" x="66" y="561" z="0" map="Underworld" />
 
-					<child name="Entrance" x="613" y="2857" z="0" map="SavagedEmpire" />
+					<child name="Fanaedar" x="613" y="2857" z="0" map="SavagedEmpire" />
 
 					<child name="Level 1" x="1093" y="3162" z="20" map="SavagedEmpire" />
 

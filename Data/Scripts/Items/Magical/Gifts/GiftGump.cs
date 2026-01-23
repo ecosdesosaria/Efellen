@@ -44,16 +44,8 @@ namespace Server.Gumps
 			Dragable=true;
 			Resizable=false;
 
-			if ( item is LevelDoubleLaserSword || item is LevelLaserSword )
-			{
-				AddImage(50, 35, 9611, Server.Misc.PlayerSettings.GetGumpHue( from ));
-				AddImage(50, 35, 9609, 2845);
-			}
-			else
-			{
-				AddImage(50, 35, 9610, Server.Misc.PlayerSettings.GetGumpHue( from ));
+			AddImage(50, 35, 9610, Server.Misc.PlayerSettings.GetGumpHue( from ));
 				AddImage(50, 35, 9609, 2747);
-			}
 
 			AddLabel(262, 56, TitleHue, @"Item Status");
 
