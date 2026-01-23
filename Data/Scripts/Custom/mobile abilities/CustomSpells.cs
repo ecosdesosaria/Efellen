@@ -148,19 +148,6 @@ namespace Server.CustomSpells
 
     public static class BardSpellHelpers
     {
-        public static bool IsFriendly(Mobile caster, Mobile target)
-        {
-            if (target == caster)
-                return true;
-
-            BaseCreature bc = caster as BaseCreature;
-            if (bc != null && bc.Controlled && bc.ControlMaster == target)
-                return true;
-
-            return !caster.CanBeHarmful(target);
-        }
-
-
         public static void ApplyStatBuff(
             Mobile m,
             int str, int dex, int intel,
@@ -171,7 +158,7 @@ namespace Server.CustomSpells
             m.AddStatMod(new StatMod(StatType.Dex, namePrefix + "_Dex", dex, duration));
             m.AddStatMod(new StatMod(StatType.Int, namePrefix + "_Int", intel, duration));
         }   
-
+        // unused for now
         public static void ApplySkillBuff(
             Mobile m,
             SkillName skill,
@@ -292,32 +279,6 @@ namespace Server.CustomSpells
             }
 
             return false;
-        }
-
-        public static void TryKill(
-            Mobile caster,
-            Mobile target,
-            int roll,
-            int minDmg,
-            int maxDmg,
-            int level)
-        {
-            double resist = target.Skills[SkillName.MagicResist].Value;
-
-            if (roll > resist)
-            {
-                target.Kill();
-                target.FixedEffect(0x3709, 10, 30);
-                target.PlaySound(0x211);
-                target.SendMessage("Your life is ripped away!");
-            }
-            else
-            {
-                int dmg = Utility.RandomMinMax(minDmg, maxDmg) + level;
-                AOS.Damage(target, caster, dmg, 100, 0, 0, 0, 0);
-                target.PlaySound(0x1F2);
-                target.SendMessage("You resist death, but suffer terribly!");
-            }
         }
     }
 
@@ -561,17 +522,24 @@ namespace Server.CustomSpells
                 {
                     if (!SpellHelpers.IsValidCaster(caster))
                         return;
-
                     if (map == null)
                         return;
-
                     if (caster.Map != map)
                         return;
 
                     Effects.SendLocationEffect(center, map, effectID, 30, 10, hue, 0);
 
-                    IPooledEnumerable eable = map.GetMobilesInRange(center, radius);
+                    for(int j = 0; j < 8; j++)
+                    {
+                        int ox = Utility.RandomMinMax(-radius, radius);
+                        int oy = Utility.RandomMinMax(-radius, radius);
+                        Point3D boltLoc = new Point3D(center.X + ox, center.Y + oy, center.Z);
+                        Effects.SendLocationEffect(boltLoc, map, 0x3818, 20, 10, hue, 0);
+                    }
 
+                    Effects.PlaySound(center, map, 0x29);
+
+                    IPooledEnumerable eable = map.GetMobilesInRange(center, radius);
                     foreach (Mobile m in eable)
                     {
                         if(!isValidHostileTarget(caster,m))
@@ -579,13 +547,17 @@ namespace Server.CustomSpells
 
                         caster.DoHarmful(m);
 
+                        m.FixedEffect(0x3818, 10, 20, hue, 0);
+                        m.FixedEffect(0x37CC, 10, 15, hue, 0);
+
                         int dmg = damageRoll();
                         AOS.Damage(m, caster, dmg, phys, fire, cold, poison, energy);
 
                         m.PlaySound(0x64E);
+                        m.PlaySound(0x5CF);
+
                         m.SendMessage(message);
                     }
-
                     eable.Free();
                 });
             }
@@ -5329,23 +5301,72 @@ namespace Server.CustomSpells
 
         public override void Cast(Mobile caster, int hue, int level)
         {
-            caster.PlaySound(0x29);
+            caster.PlaySound(0x15E);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x3709, 30, 10, 0x480, 0);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x3728, 20, 10, 0x480, 0);
+
+            for (int i = 0; i < 8; i++)
+            {
+                int xOffset = 0;
+                int yOffset = 0;
+
+                switch(i)
+                {
+                    case 0: xOffset = 3; yOffset = 0; break;   // East
+                    case 1: xOffset = -3; yOffset = 0; break;  // West
+                    case 2: xOffset = 0; yOffset = 3; break;   // South
+                    case 3: xOffset = 0; yOffset = -3; break;  // North
+                    case 4: xOffset = 2; yOffset = 2; break;   // SE
+                    case 5: xOffset = -2; yOffset = 2; break;  // SW
+                    case 6: xOffset = 2; yOffset = -2; break;  // NE
+                    case 7: xOffset = -2; yOffset = -2; break; // NW
+                }
+
+                Point3D targetLoc = new Point3D(
+                    caster.X + xOffset, 
+                    caster.Y + yOffset, 
+                    caster.Z
+                );
+
+                Effects.SendLocationEffect(targetLoc, caster.Map, 0x3818, 15, 10, 0x480, 0);
+            }
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.3), () => 
+            {
+                caster.PlaySound(0x307);
+            });
 
             SpellHelpers.ForEachHostileInRange(caster, caster, 4, m =>
             {
                 caster.DoHarmful(m);
 
-                int dmg = Utility.RandomMinMax(40, 45)+level;
+                int dmg = Utility.RandomMinMax(40, 45) + level;
                 AOS.Damage(m, caster, dmg, 0, 100, 0, 0, 0);
+
+                m.FixedEffect(0x3709, 10, 30, 0x480, 0);
+
+                m.FixedEffect(0x375A, 10, 15, 0x480, 0);
+
+                m.PlaySound(0x208);
 
                 double resist = m.Skills[SkillName.MagicResist].Value;
                 int para = (int)(8 + level - resist / 10);
 
                 if (para > 0)
+                {
                     m.Paralyze(TimeSpan.FromSeconds(para));
 
-                m.FixedEffect(0x3709, 10, 30);
+                    m.FixedEffect(0x376A, 9, 32, 0x480, 0);
+                }
+
                 m.SendMessage("You are blinded by searing light!");
+            });
+
+            Timer.DelayCall(TimeSpan.FromSeconds(0.5), () =>
+            {
+                Effects.SendLocationEffect(caster.Location, caster.Map, 0x3735, 15, 10, 0x480, 0);
             });
         }
     }
@@ -5366,28 +5387,46 @@ namespace Server.CustomSpells
             Mobile target = caster.Combatant as Mobile;
             if(!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
-            
+
+            caster.PlaySound(0x64D);
+
             caster.DoHarmful(target);
             target.SendMessage("You are struck by absolute cold!"); 
 
             caster.MovingParticles(target, 0x36D4, 7, 0, false, true,
-                hue != 0 ? hue : 0x480, 0, 9502, 1, 0, (EffectLayer)255, 0);    
+                hue != 0 ? hue : 0x481, 0, 9502, 1, 0, (EffectLayer)255, 0);
+
+            Effects.SendTargetEffect(target, 0x37CC, 10, 32, 0x481, 0);
+
+            caster.MovingParticles(target, 0x1363, 10, 0, false, false, 0x481, 0, 9502, 1, 0, (EffectLayer)255, 0);
 
             int dmg = Utility.RandomMinMax(50,55)+level;   
-
             AOS.Damage(target, caster, dmg, 0, 0, 100, 0, 0);   
+
+            target.PlaySound(0x64F);
+            target.PlaySound(0x28);
+
+            target.FixedEffect(0x376A, 10, 16, 0x481, 0);
 
             double resist = target.Skills[SkillName.MagicResist].Value;
             int para = (int)(12 + level - resist / 10); 
-
             if (para > 0)
-                target.Paralyze(TimeSpan.FromSeconds(para));    
+            {
+                target.Paralyze(TimeSpan.FromSeconds(para));
+                target.FixedEffect(0x3779, 10, 30, 0x481, 0);
+            }
 
-            target.PlaySound(0x64F);
+            for(int i = 0; i < 3; i++)
+            {
+                int xOffset = Utility.RandomMinMax(-1, 1);
+                int yOffset = Utility.RandomMinMax(-1, 1);
+                Point3D iceLoc = new Point3D(target.X + xOffset, target.Y + yOffset, target.Z);
+                Effects.SendLocationEffect(iceLoc, target.Map, 0x352D, 16, 10, 0x481, 0);
+            }
         }
     }
 
-   public class PowerWordFearSpell : CustomSpell
+    public class PowerWordFearSpell : CustomSpell
     {
         public PowerWordFearSpell() : base("Powerword: Fear", 0x22C5)
         {
@@ -5402,31 +5441,61 @@ namespace Server.CustomSpells
         public override void Cast(Mobile caster, int hue, int level)
         {
             caster.PlaySound(0x204);
+            caster.PlaySound(0x1FB);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x37C4, 20, 10, 0x496, 0);
+
+            for(int i = 0; i < 8; i++)
+            {
+                int xOffset = 0;
+                int yOffset = 0;
+
+                switch(i)
+                {
+                    case 0: xOffset = 4; yOffset = 0; break;
+                    case 1: xOffset = -4; yOffset = 0; break;
+                    case 2: xOffset = 0; yOffset = 4; break;
+                    case 3: xOffset = 0; yOffset = -4; break;
+                    case 4: xOffset = 3; yOffset = 3; break;
+                    case 5: xOffset = -3; yOffset = 3; break;
+                    case 6: xOffset = 3; yOffset = -3; break;
+                    case 7: xOffset = -3; yOffset = -3; break;
+                }
+
+                Point3D waveLoc = new Point3D(caster.X + xOffset, caster.Y + yOffset, caster.Z);
+                Effects.SendLocationEffect(waveLoc, caster.Map, 0x3709, 15, 10, 0x496, 0);
+            }
 
             SpellHelpers.ForEachHostileInRange(caster, caster, 5, m =>
             {
                 caster.DoHarmful(m);
 
+                m.FixedEffect(0x374A, 10, 16, 0x496, 0);
+                m.FixedEffect(0x37C4, 10, 30, 0x496, 0);
+
+                m.PlaySound(0x213);
+
                 double resist = m.Skills[SkillName.MagicResist].Value;
                 double duration = Math.Max(2, (10 + level) - resist / 15.0);
-
                 m.Paralyze(TimeSpan.FromSeconds(duration));
 
                 int dist = Utility.RandomMinMax(5, 8);
-                Point3D flee = SpellHelpers.GetPointInDirection(
-                    m,
-                    m.GetDirectionTo(caster),
-                    -dist);
+                Point3D flee = SpellHelpers.GetPointInDirection(m, m.GetDirectionTo(caster), -dist);
+
+                Effects.SendLocationEffect(m.Location, m.Map, 0x3728, 13, 10, 0x496, 0);
 
                 m.MoveToWorld(flee, m.Map);
 
-                m.FixedEffect(0x376A, 9, 32);
+                m.FixedEffect(0x376A, 9, 32, 0x496, 0);
+
+                Effects.SendLocationEffect(flee, m.Map, 0x3728, 10, 10, 0x496, 0);
+
                 m.SendMessage("You flee in absolute terror!");
             });
         }
     }
     
-   public class PowerWordFatigueSpell : CustomSpell
+    public class PowerWordFatigueSpell : CustomSpell
     {
         public PowerWordFatigueSpell() : base("Powerword: Fatigue", 0x22C5)
         {
@@ -5437,24 +5506,62 @@ namespace Server.CustomSpells
             AddTag(SpellTag.Offensive);
             AddTag(SpellTag.Debuff);
         }
-    
+
         public override void Cast(Mobile caster, int hue, int level)
         {
             caster.PlaySound(0x1F8);
-    
+            caster.PlaySound(0x1E1);
+
+            Effects.SendLocationEffect(caster.Location, caster.Map, 0x37CC, 20, 10, 0x21, 0);
+
+            for(int i = 0; i < 8; i++)
+            {
+                int xOffset = 0;
+                int yOffset = 0;
+
+                switch(i)
+                {
+                    case 0: xOffset = 4; yOffset = 0; break;
+                    case 1: xOffset = -4; yOffset = 0; break;
+                    case 2: xOffset = 0; yOffset = 4; break;
+                    case 3: xOffset = 0; yOffset = -4; break;
+                    case 4: xOffset = 3; yOffset = 3; break;
+                    case 5: xOffset = -3; yOffset = 3; break;
+                    case 6: xOffset = 3; yOffset = -3; break;
+                    case 7: xOffset = -3; yOffset = -3; break;
+                }
+
+                Point3D waveLoc = new Point3D(caster.X + xOffset, caster.Y + yOffset, caster.Z);
+                Effects.SendLocationEffect(waveLoc, caster.Map, 0x3779, 15, 10, 0x21, 0);
+            }
+
             SpellHelpers.ForEachHostileInRange(caster, caster, 5, m =>
             {
                 caster.DoHarmful(m);
-    
+
+                m.FixedEffect(0x376A, 10, 30, 0x21, 0);
+                m.FixedEffect(0x37C4, 10, 20, 0x21, 0);
+
+                m.PlaySound(0x1F1);
+
                 double resist = m.Skills[SkillName.MagicResist].Value;
                 double remaining = resist / 20.0;
                 if (remaining > 5)
                     remaining = 5;
-    
+
                 int newStam = (int)(m.StamMax * (remaining / 100.0));
                 m.Stam = Math.Max(0, newStam);
-    
-                m.FixedEffect(0x3709, 10, 30);
+
+                m.FixedEffect(0x3709, 10, 30, 0x21, 0);
+
+                for(int i = 0; i < 2; i++)
+                {
+                    int xOffset = Utility.RandomMinMax(-1, 1);
+                    int yOffset = Utility.RandomMinMax(-1, 1);
+                    Point3D exhaustLoc = new Point3D(m.X + xOffset, m.Y + yOffset, m.Z);
+                    Effects.SendLocationEffect(exhaustLoc, m.Map, 0x3735, 10, 10, 0x21, 0);
+                }
+
                 m.SendMessage("Your limbs feel unbearably heavy!");
             });
         }
@@ -5518,16 +5625,41 @@ namespace Server.CustomSpells
                 return;
 
             caster.PlaySound(0x64E);
+            caster.PlaySound(0x1FB);
+
+            Effects.SendLocationEffect(target.Location, target.Map, 0x3779, 20, 10, 0x481, 0);
+
+            for(int i = 0; i < 12; i++)
+            {
+                int xOffset = Utility.RandomMinMax(-3, 3);
+                int yOffset = Utility.RandomMinMax(-3, 3);
+                Point3D iceLoc = new Point3D(target.X + xOffset, target.Y + yOffset, target.Z);
+                Effects.SendLocationEffect(iceLoc, target.Map, 0x352D, 20, 10, 0x481, 0);
+            }
 
             SpellHelpers.ForEachHostileInRange(target, caster, 3, m =>
             {
-                Effects.SendLocationEffect(m.Location, m.Map, 0x36BD, 20, 10, 0x480, 0);
+                Effects.SendLocationEffect(m.Location, m.Map, 0x36BD, 20, 10, 0x481, 0);
+
+                m.FixedEffect(0x37CC, 10, 30, 0x481, 0);
+
+                m.PlaySound(0x664);
+                m.PlaySound(0x208);
+
+                for(int i = 0; i < 4; i++)
+                {
+                    int xOffset = Utility.RandomMinMax(-1, 1);
+                    int yOffset = Utility.RandomMinMax(-1, 1);
+                    Point3D shardLoc = new Point3D(m.X + xOffset, m.Y + yOffset, m.Z);
+                    Effects.SendLocationEffect(shardLoc, m.Map, 0x36D4, 15, 10, 0x481, 0);
+                }
 
                 int damage = Utility.RandomMinMax(44, 49)+level;
                 int stamLoss = damage / 3;
-
                 AOS.Damage(m, caster, damage, 0, 0, 100, 0, 0);
                 m.Stam = Math.Max(0, m.Stam - stamLoss);
+
+                m.FixedEffect(0x376A, 10, 16, 0x481, 0);
 
                 m.SendMessage("You are crushed beneath falling ice!");
             });
@@ -5550,20 +5682,38 @@ namespace Server.CustomSpells
             if(!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
+            int effectHue = hue != 0 ? hue : 0x4A5;
+
             caster.PlaySound(0x307);
+            caster.PlaySound(0x15E);
+
+            Effects.SendLocationEffect(target.Location, target.Map, 0x3709, 20, 10, effectHue, 0);
 
             for (int i = 0; i < 4; i++)
             {
                 int ox = Utility.RandomMinMax(-3, 3);
                 int oy = Utility.RandomMinMax(-3, 3);
-
                 Point3D center = new Point3D(target.X + ox, target.Y + oy, target.Z);
+
+                Point3D skyPoint = new Point3D(center.X, center.Y, center.Z + 20);
+                Effects.SendLocationEffect(skyPoint, target.Map, 0x36D4, 30, 10, effectHue, 0);
+
+                Effects.SendLocationEffect(center, target.Map, 0x36CB, 20, 10, effectHue, 0);
+                Effects.SendLocationEffect(center, target.Map, 0x3709, 18, 10, effectHue, 0);
 
                 for (int x = -1; x <= 0; x++)
                 for (int y = -1; y <= 0; y++)
                 {
                     Point3D loc = new Point3D(center.X + x, center.Y + y, center.Z);
-                    Effects.SendLocationEffect(loc, target.Map, 0x36CB, 16, 10, hue != 0 ? hue : 0x501, 0);
+                    Effects.SendLocationEffect(loc, target.Map, 0x36CB, 16, 10, effectHue, 0);
+                }
+
+                for(int j = 0; j < 6; j++)
+                {
+                    int debrisX = Utility.RandomMinMax(-2, 2);
+                    int debrisY = Utility.RandomMinMax(-2, 2);
+                    Point3D debrisLoc = new Point3D(center.X + debrisX, center.Y + debrisY, center.Z);
+                    Effects.SendLocationEffect(debrisLoc, target.Map, 0x36BD, 12, 10, effectHue, 0);
                 }
 
                 SpellHelpers.DamageHostilesAtPoint(
@@ -5574,9 +5724,11 @@ namespace Server.CustomSpells
                     () => Utility.RandomMinMax(44, 49)+level,
                     0, 100, 0, 0, 0,
                     0x36CB,
-                    hue != 0 ? hue : 0x501
+                    effectHue
                 );
             }
+
+            caster.PlaySound(0x11D);
         }
     }
     public class PowerWordKillSpell : CustomSpell
@@ -5596,16 +5748,38 @@ namespace Server.CustomSpells
             if(!SpellHelpers.isValidHostileTarget(caster, target))
                 return;
 
+            caster.PlaySound(0x1FB);
+            caster.PlaySound(0x208);
+
+            caster.FixedEffect(0x37C4, 10, 20, 0x1, 0);
+
+            caster.MovingParticles(target, 0x374A, 9, 0, false, true, 0x1, 0, 9502, 1, 0, (EffectLayer)255, 0);
+
             caster.DoHarmful(target);
 
             if (target.Hits < 101)
             {
-                target.Kill();
-                target.FixedEffect(0x3709, 10, 30);
+                target.FixedEffect(0x37C4, 10, 30, 0x1, 0);
+                target.FixedEffect(0x376A, 10, 30, 0x1, 0);
+
+                for(int i = 0; i < 8; i++)
+                {
+                    int xOffset = Utility.RandomMinMax(-2, 2);
+                    int yOffset = Utility.RandomMinMax(-2, 2);
+                    Point3D deathLoc = new Point3D(target.X + xOffset, target.Y + yOffset, target.Z);
+                    Effects.SendLocationEffect(deathLoc, target.Map, 0x3709, 10, 10, 0x1, 0);
+                }
+
                 target.PlaySound(0x211);
+                target.PlaySound(0x1F1);
+
+                target.Kill();
+
+                Effects.SendLocationEffect(target.Location, target.Map, 0x3728, 13, 10, 0x1, 0);
             }
             else
             {
+                target.FixedEffect(0x3779, 10, 15, 0x1, 0);
                 target.SendMessage("The word of death fails to claim you!");
                 target.PlaySound(0x1F2);
             }
@@ -5618,6 +5792,8 @@ namespace Server.CustomSpells
         {
             AddLevel(SpellType.Druid, 9);
             AddLevel(SpellType.Cleric, 9);
+            AddTag(SpellTag.Offensive);
+            AddTag(SpellTag.AoE);
         }
 
         public override void Cast(Mobile caster, int hue, int level)
@@ -5628,6 +5804,20 @@ namespace Server.CustomSpells
 
             Point3D center = target.Location;
             Map map = target.Map;
+            int effectHue = hue != 0 ? hue : 0x480;
+
+            caster.PlaySound(0x5CF);
+            caster.PlaySound(0x5CE);
+
+            Effects.SendLocationEffect(center, map, 0x3709, 30, 10, effectHue, 0);
+
+            for(int i = 0; i < 12; i++)
+            {
+                int ox = Utility.RandomMinMax(-7, 7);
+                int oy = Utility.RandomMinMax(-7, 7);
+                Point3D cloudLoc = new Point3D(center.X + ox, center.Y + oy, center.Z);
+                Effects.SendLocationEffect(cloudLoc, map, 0x3779, 25, 10, effectHue, 0);
+            }
 
             SpellHelpers.DoTimedStorm(
                 caster,
@@ -5639,7 +5829,7 @@ namespace Server.CustomSpells
                 () => Utility.RandomMinMax(44, 49)+level,
                 25, 25, 25, 25, 0,
                 0x36BD,
-                hue != 0 ? hue : 0x480,
+                effectHue,
                 "The storm tears into you!"
             );
         }
