@@ -136,13 +136,15 @@ namespace Server.Mobiles
 		    if (weapon != null)
 		    {
 		        weapon.Hue = hue;
-		        AddItem(weapon);
+				MakeSpellChanneling(weapon);
+			    AddItem(weapon);
 		    }
 		
 		    if (shield != null)
 		    {
 		        shield.Hue = hue;
-		        AddItem(shield);
+				MakeSpellChanneling(shield);
+			    AddItem(shield);
 		    }
 		
 		    if (Utility.RandomDouble() < 0.25)
@@ -185,6 +187,22 @@ namespace Server.Mobiles
 		    boots.Hue = Utility.RandomDrowHue();
 		    AddItem(boots);
 		}
+
+		private void MakeSpellChanneling(Item item)
+		{
+		    if (item == null)
+		        return;
+
+		    if (item is BaseWeapon)
+		    {
+		        ((BaseWeapon)item).Attributes.SpellChanneling = 1;
+		    }
+		    else if (item is BaseShield)
+		    {
+		        ((BaseShield)item).Attributes.SpellChanneling = 1;
+		    }
+		}
+
 
 		private Item CreateRandomShield()
 		{
