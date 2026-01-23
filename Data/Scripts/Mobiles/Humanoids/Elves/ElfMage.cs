@@ -158,7 +158,7 @@ namespace Server.Mobiles
 			int version = reader.ReadInt();
 			if(version>=1)
 			{
-				this.MobileMagics(Utility.Random(4,6), SpellType.Wizard | SpellType.Sorcerer, 0);
+				this.MobileMagics(Utility.Random(3,6), SpellType.Wizard | SpellType.Sorcerer, 0);
 			} 
 		}
 	}

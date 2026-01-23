@@ -13,9 +13,9 @@ namespace Server.Mobiles
 		public DrowPoisoner() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{ 
 			
-			Body = 0x190; 
-			Name = NameList.RandomName( "elf_male" );
-			Title = "the Drow Druid";
+			Body = 605; 
+			Name = NameList.RandomName( "dark_elf_prefix_male" ) + NameList.RandomName( "dark_elf_suffix_male" );
+			Title = "the Drow Poisoner";
 			Utility.AssignRandomHair( this );
 			HairHue = 1150;
 			Hue = 1316;

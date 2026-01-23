@@ -3,11 +3,12 @@ using Server;
 using Server.Misc;
 using Server.Items;
 using Server.Regions;
+using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
 	[CorpseName( "a Druid's corpse" )] 
-	public class DruidOfTheHowlingOrder : BaseCreature 
+	public class DruidOfTheHowlingOrder : BaseSpellCaster 
 	{ 
 		private DateTime m_NextSummon;
         private DateTime m_NextWolfCall;
@@ -89,7 +90,7 @@ namespace Server.Mobiles
 		public override void OnAfterSpawn()
 		{
 		    base.OnAfterSpawn();		
-
+			this.MobileMagics(Utility.Random(2,5), SpellType.Druid, 0);
 		    AddEquipment();
 		}		
 
@@ -372,7 +373,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 
 			writer.Write( m_NextSummon );
 		}
@@ -381,7 +382,10 @@ namespace Server.Mobiles
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
-
+			if(version >= 1)
+			{
+				this.MobileMagics(Utility.Random(2,5), SpellType.Druid, 0);
+			}
 			m_NextSummon = reader.ReadDateTime();
 		}
 	}

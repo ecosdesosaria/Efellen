@@ -13,8 +13,8 @@ namespace Server.Mobiles
 		public DrowMage() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{ 
 			
-			Body = 0x190; 
-			Name = NameList.RandomName( "elf_male" );
+			Body = 605; 
+			Name = NameList.RandomName( "dark_elf_prefix_male" ) + NameList.RandomName( "dark_elf_suffix_male" );
 			switch ( Utility.RandomMinMax( 0, 5 ) )
 			{
 				case 0: Title = "the Drow Wizard"; break;
