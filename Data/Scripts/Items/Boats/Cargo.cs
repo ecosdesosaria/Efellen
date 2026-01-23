@@ -708,9 +708,8 @@ namespace Server.Items
 			{
 				CargoVendor = "Leatherworker or Tanner"; 
 				ItemID = 0x5093;
-				int rare = Utility.RandomMinMax( 1, 2048 );
-				if ( rare <= 1 ){ CargoMaterial = 12; Name = "crate of alien hides"; Hue = CraftResources.GetHue( CraftResource.AlienLeather );					CargoContains = "AlienHides"; 		CargoQty = (int)(CargoValue/14);	}
-				else if ( rare <= 2 ){ CargoMaterial = 11; Name = "crate of dinosaur hides"; Hue = CraftResources.GetHue( CraftResource.DinosaurLeather );		CargoContains = "DinosaurHides"; 	CargoQty = (int)(CargoValue/14);	}
+				int rare = Utility.RandomMinMax( 2, 2048 );
+				if ( rare <= 2 ){ CargoMaterial = 11; Name = "crate of dinosaur hides"; Hue = CraftResources.GetHue( CraftResource.DinosaurLeather );		CargoContains = "DinosaurHides"; 	CargoQty = (int)(CargoValue/14);	}
 				else if ( rare <= 4 ){ CargoMaterial = 10; Name = "crate of hellish hides"; Hue = CraftResources.GetHue( CraftResource.HellishLeather );		CargoContains = "HellishHides"; 	CargoQty = (int)(CargoValue/14);	}
 				else if ( rare <= 8 ){ CargoMaterial = 9; Name = "crate of draconic hides"; Hue = CraftResources.GetHue( CraftResource.DraconicLeather );		CargoContains = "DraconicHides"; 	CargoQty = (int)(CargoValue/12);	}
 				else if ( rare <= 16 ){ CargoMaterial = 8; Name = "crate of goliath hides"; Hue = CraftResources.GetHue( CraftResource.GoliathLeather );		CargoContains = "GoliathHides"; 	CargoQty = (int)(CargoValue/12);	}

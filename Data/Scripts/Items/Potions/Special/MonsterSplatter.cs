@@ -206,17 +206,6 @@ namespace Server.Items
 					AOS.Damage( m, owner, Hurt( owner, 24, 48 ), 	0, 		0, 		0, 		100, 	0 );
 					//												Ph,		Fr,		Cd,		Ps,		Eg
 				}
-				else if ( this.Name == "alien blood" && !(m is Xenomorph ) && !(m is Xenomutant ) )
-				{
-					owner.DoHarmful( m );
-					Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 0x25, 7, 9915, 0 );
-					int eSound = 0x229;
-					if ( m.Body == 0x190 && m is PlayerMobile ){ eSound = 0x43F; }
-					else if ( m.Body == 0x191 && m is PlayerMobile ){ eSound = 0x32D; }
-					Effects.PlaySound( m.Location, m.Map, eSound );
-					AOS.Damage( m, owner, Hurt( owner, 24, 48 ), 	20, 	20, 	20, 	20, 	20 );
-					//												Ph,		Fr,		Cd,		Ps,		Eg
-				}
 				else if ( this.Name == "green blood" && !(m is ZombieGiant ) )
 				{
 					owner.DoHarmful( m );

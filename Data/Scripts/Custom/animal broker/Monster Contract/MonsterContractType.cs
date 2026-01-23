@@ -11,9 +11,6 @@ namespace Server.Items
 		{
 			new MonsterContractType (typeof(Bird), "Forest Birds", 29),
 			new MonsterContractType (typeof(AbysmalDrake), "Abysmal Drakes", 104),
-			new MonsterContractType (typeof(Alien), "Aliens", 111),
-			new MonsterContractType (typeof(AlienSmall), "Alien Hatchlings", 81),
-			new MonsterContractType (typeof(AlienSpider), "Alien Spiders", 91),
 			new MonsterContractType (typeof(Alligator), "Alligators", 57),
 			new MonsterContractType (typeof(AncientDrake), "Ancient Drakes", 114),
 			new MonsterContractType (typeof(AncientNightmareRiding), "Ancient Nightmares", 121),

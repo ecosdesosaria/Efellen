@@ -113,47 +113,7 @@ namespace Server.Items
 						from.SendLocalizedMessage( 501666 ); // You can't unlock that!
 					else if ( o.Locked )
 					{
-						if ( o is BaseDoor && !((BaseDoor)o).UseLocks() )  // this seems to check house doors also
-						{
-							from.SendMessage( "This key is to unlock any container." );
-						}
-						else if ( ((Item)o).Catalog == Catalogs.SciFi && ((ILockpickable)targeted).Locked && m_Key.ItemID != 0x3A75 )
-						{
-							from.SendMessage( "This doesn't have a key hole, but it does have a card slot." );
-						}
-						else if ( ((Item)o).Catalog != Catalogs.SciFi && ((ILockpickable)targeted).Locked && m_Key.ItemID == 0x3A75 )
-						{
-							from.SendMessage( "This doesn't have a card slot, but it does have a key hole." );
-						}
-						else if ( ((Item)o).Catalog == Catalogs.SciFi && o.Locked && m_Key.ItemID == 0x3A75 )
-						{
-							o.Locked = false;
-
-							if ( o is LockableContainer )
-							{
-								LockableContainer cont = (LockableContainer)o;
-								if ( cont.LockLevel == -255 )
-								{
-									cont.LockLevel = cont.RequiredSkill - 10;
-									if ( cont.LockLevel == 0 )
-										cont.LockLevel = -1;
-								}
-
-								cont.Picker = from;  // sets "lockpicker" to the user.
-							}
-
-							if ( targeted is Item )
-							{
-								Item item = (Item)targeted;
-								if ( trash ){ from.SendMessage( "You swipe the key card to open the lock, but also wearing it out from further use." ); }
-								else { from.SendMessage( "You swipe the key card to open the lock." ); }
-							}
-
-							from.RevealingAction();
-							from.PlaySound( 0x54B );
-							if ( trash ){ m_Key.Consume(); }
-						}
-						else if ( o.Locked && m_Key.ItemID != 0x3A75 )
+						if ( o.Locked && m_Key.ItemID != 0x3A75 )
 						{
 							o.Locked = false;
 

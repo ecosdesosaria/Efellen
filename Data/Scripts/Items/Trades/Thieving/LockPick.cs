@@ -105,16 +105,7 @@ namespace Server.Items
 					Item item = (Item)targeted;
 					from.Direction = from.GetDirectionTo( item );
 
-					if ( item.Catalog == Catalogs.SciFi && ((ILockpickable)targeted).Locked && m_Item.ItemID != 0x3A75 )
-					{
-						from.SendMessage( "This doesn't have a key hole, but it does have a card slot." );
-					}
-					else if ( item.Catalog == Catalogs.SciFi && ((ILockpickable)targeted).Locked && m_Item.ItemID == 0x3A75 )
-					{
-						from.PlaySound( 0x54B );
-						new InternalTimer( from, (ILockpickable)targeted, m_Item ).Start();
-					}
-					else if ( ((ILockpickable)targeted).Locked && m_Item.ItemID != 0x3A75 )
+					if ( ((ILockpickable)targeted).Locked && m_Item.ItemID != 0x3A75 )
 					{
 						from.PlaySound( 0x241 );
 						new InternalTimer( from, (ILockpickable)targeted, m_Item ).Start();
