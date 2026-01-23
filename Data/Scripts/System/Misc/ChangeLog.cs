@@ -52,6 +52,7 @@ namespace Server.Misc
 		+"          • The Dreamweaver now threathens all of Lodoria from the depths of its lair.<br>"
 		+"          • The Old One Eye now stalks for prey across the wastes of the Savage Empire.<br>"
 		+"          • The Fateweaver now guards the entrance to the vile drow city of Fanaedar in the Underworld.<br>"
+		+"			• Annath, the shroud of the lightless, can be found preaching the mysteries of Lolth in Fanaedar.<br>"
 		+"     • Tier 5 bosses (meant to be faced by large groups of extremely optimized adventurers): <br>"
 		+"         • The Prince of Darkness now holds court in Ravendark. RIP Ozzy.<br>"
 		+"         • The Heavenly Marshall is leading the conquest of southern Sosaria at castle griffin roost. Evildoers beware!<br>"
