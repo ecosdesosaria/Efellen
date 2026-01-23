@@ -316,6 +316,7 @@ namespace Server.Items
 			if ( parent is Mobile )
 			{
 				Mobile mob = (Mobile) parent;
+				if (mob == null || mob.Deleted) return;
 
 				m_Attributes.RemoveStatBonuses( mob );
 			}

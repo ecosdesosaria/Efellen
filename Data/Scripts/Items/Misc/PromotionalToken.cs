@@ -51,8 +51,10 @@ namespace Server.Items
 			if( parent is Item )
 				m = ((Item)parent).RootParent as Mobile;
 			else if( parent is Mobile )
+			{
 				m = (Mobile)parent;
-
+				if (m == null || m.Deleted) return;				
+			}
 			if( m != null )
 				m.CloseGump( typeof( PromotionalTokenGump ) );
 		}

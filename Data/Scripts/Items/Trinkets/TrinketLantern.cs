@@ -39,6 +39,8 @@ namespace Server.Items
 			if ( parent is Mobile )
 			{
 				Mobile from = (Mobile)parent;
+				if (from == null || from.Deleted) return;
+
 				from.PlaySound( 0x4BB );
 			}
 			this.ItemID = 0xA18;

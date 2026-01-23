@@ -402,6 +402,12 @@ namespace Server.Items
 				typeof( MLDryad ), 
 				typeof( xDryad ), 
 				typeof( Xatyr ), 
+				typeof( DrowPriestess),
+				typeof( DrowMage),
+				typeof( DrowGuard),
+				typeof( DrowPoisoner),
+				typeof( DrowMageLord),
+				typeof( Annath ),
 				typeof( Satyr ) );
 			fey.Entries = new SlayerEntry[0];
 

@@ -43,6 +43,8 @@ namespace Server.Items
 
 		public override void OnRemoved( object parent )
 		{
+			Mobile m = parent as Mobile;
+			if (m == null || m.Deleted) return;
 			this.ItemID = 0xF6B;
 			base.OnRemoved( parent );
 		}
