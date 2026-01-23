@@ -110,6 +110,86 @@ namespace Server.CustomSpells
 
         public bool IsChanneling { get { return m_IsChanneling; } }
 
+        private int CountHostilesInRange(int range)
+        {
+            int count = 0;
+            IPooledEnumerable eable = m_Mobile.GetMobilesInRange(range);
+            foreach (Mobile m in eable)
+            {
+                if (SpellHelpers.isValidHostileTarget(m_Mobile, m))
+                    count++;
+            }
+            eable.Free();
+            return count;
+        }
+
+        private int CountFriendliesInRange(int range)
+        {
+            int count = 0;
+            IPooledEnumerable eable = m_Mobile.GetMobilesInRange(range);
+            foreach (Mobile m in eable)
+            {
+                if (m != m_Mobile && !SpellHelpers.isValidHostileTarget(m_Mobile, m))
+                    count++;
+            }
+            eable.Free();
+            return count;
+        }
+
+        private Mobile GetPrimaryHostileTarget(int range)
+        {
+             if (m_Mobile == null || m_Mobile.Deleted || m_Mobile.Map == null)
+                return null;
+        
+            IPooledEnumerable eable = m_Mobile.GetMobilesInRange(range);
+            Mobile best = null;
+
+            foreach (Mobile m in eable)
+            {
+                if (SpellHelpers.isValidHostileTarget(m_Mobile, m))
+                {
+                    best = m;
+                    break;
+                }
+            }
+
+            eable.Free();
+            return best;
+        }
+
+
+        private double HealthPercent
+        {
+            get { return (double)m_Mobile.Hits / m_Mobile.HitsMax; }
+        }
+
+        private List<CustomSpell> FilterByTag(List<CustomSpell> spells, SpellTag tag)
+        {
+            List<CustomSpell> list = new List<CustomSpell>();
+            foreach (var s in spells)
+                if (s.HasTag(tag))
+                    list.Add(s);
+            return list;
+        }
+
+        private List<CustomSpell> FilterByTags(List<CustomSpell> spells, SpellTag tag1, SpellTag tag2)
+        {
+            List<CustomSpell> list = new List<CustomSpell>();
+            foreach (var s in spells)
+                if (s.HasTag(tag1) && s.HasTag(tag2))
+                    list.Add(s);
+            return list;
+        }
+
+        private CustomSpell PickRandom(List<CustomSpell> spells)
+        {
+            if (spells.Count == 0)
+                return null;
+            return spells[Utility.Random(spells.Count)];
+        }
+
+
+
         static MobileMagic()
         {
             RegisterSpells();
@@ -158,6 +238,9 @@ namespace Server.CustomSpells
 
         public void TryCastSpell()
         {
+            if (m_Mobile == null || m_Mobile.Deleted || m_Mobile.Map == null)
+                return;
+
             if (!CanCast())
                 return;
 
@@ -176,49 +259,138 @@ namespace Server.CustomSpells
 
         private CustomSpell SelectSpell()
         {
-            List<CustomSpell> availableSpells = new List<CustomSpell>();
-            int highestLevel = 0;
+            if (m_Mobile == null || m_Mobile.Deleted || m_Mobile.Map == null)
+                return null;        
+
+            List<CustomSpell> available = new List<CustomSpell>();
+            int highestLevel = 0;       
 
             foreach (CustomSpell spell in m_AllSpells)
             {
                 foreach (SpellType type in spell.GetTypes())
                 {
-                    if ((m_SpellTypes & type) != 0)
-                    {
-                        int level = spell.GetLevel(type);
-                        if (level <= m_MaxLevel)
-                        {
-                            int manaCost = level * 9;
-                            if (m_Mobile.Mana >= manaCost)
-                            {
-                                availableSpells.Add(spell);
-                                if (level > highestLevel)
-                                    highestLevel = level;
-                                break;
-                            }
-                        }
-                    }
+                    if ((m_SpellTypes & type) == 0)
+                        continue;       
+
+                    int level = spell.GetLevel(type);
+                    if (level > m_MaxLevel)
+                        continue;       
+
+                    int manaCost = level * 9;
+                    if (m_Mobile.Mana < manaCost)
+                        continue;       
+
+                    available.Add(spell);
+                    if (level > highestLevel)
+                        highestLevel = level;
+                    break;
                 }
-            }
+            }       
 
-            if (availableSpells.Count == 0)
-                return null;
+            if (available.Count == 0)
+                return null;        
 
-            if (Utility.RandomDouble() < 0.70)
+            int hostiles = CountHostilesInRange(6);
+            int friendlies = CountFriendliesInRange(6);
+            double hp = HealthPercent;
+            Mobile primary = GetPrimaryHostileTarget(6);
+            double enemyHp = 1.0;       
+
+            if (primary != null && primary.HitsMax > 0)
+                enemyHp = (double)primary.Hits / primary.HitsMax;       
+
+            if (hp <= 0.40 && Utility.RandomDouble() < 0.80)
             {
-                List<CustomSpell> highestSpells = new List<CustomSpell>();
-                foreach (CustomSpell spell in availableSpells)
-                {
-                    if (GetSpellLevelForMobile(spell) == highestLevel)
-                        highestSpells.Add(spell);
-                }
-                
-                if (highestSpells.Count > 0)
-                    return highestSpells[Utility.Random(highestSpells.Count)];
+                var heals = FilterByTag(available, SpellTag.Heal);
+                var pick = PickRandom(heals);
+                if (pick != null)
+                    return pick;
+            }       
+
+            if (hostiles > 1 && Utility.RandomDouble() < 0.70)
+            {
+                var aoeOff = FilterByTags(available, SpellTag.AoE, SpellTag.Offensive);
+                var pick = PickRandom(aoeOff);
+                if (pick != null)
+                    return pick;
             }
 
-            return availableSpells[Utility.Random(availableSpells.Count)];
-        }
+            if (hostiles > 1 && hostiles > friendlies && Utility.RandomDouble() < 0.60)
+            {
+                var aoeCC = FilterByTags(available, SpellTag.AoE, SpellTag.CC);
+                var pick = PickRandom(aoeCC);
+                if (pick != null)
+                    return pick;
+            }       
+
+            if (hostiles > friendlies && Utility.RandomDouble() < 0.60)
+            {
+                var summons = FilterByTag(available, SpellTag.Summon);
+                var pick = PickRandom(summons);
+                if (pick != null)
+                    return pick;
+            }       
+
+            if (enemyHp >= 0.70 && Utility.RandomDouble() < 0.60)
+            {
+                var cc = FilterByTags(available, SpellTag.CC, SpellTag.SingleTarget);
+                var pick = PickRandom(cc);
+                if (pick != null)
+                    return pick;
+            }       
+
+            if (enemyHp < 0.70 && Utility.RandomDouble() < 0.50)
+            {
+                var dots = FilterByTag(available, SpellTag.DoT);
+                var pick = PickRandom(dots);
+                if (pick != null)
+                    return pick;
+            }       
+
+            if (hp <= 0.50 && Utility.RandomDouble() < 0.50)
+            {
+                var hots = FilterByTag(available, SpellTag.HoT);
+                var pick = PickRandom(hots);
+                if (pick != null)
+                    return pick;
+            }       
+
+            if (friendlies == 0 && Utility.RandomDouble() < 0.50)
+            {
+                var buffs = FilterByTag(available, SpellTag.Buff);
+                var pick = PickRandom(buffs);
+                if (pick != null)
+                    return pick;
+            }       
+
+            if (friendlies > 2 && Utility.RandomDouble() < 0.60)
+            {
+                var buffs = FilterByTags(available, SpellTag.Buff, SpellTag.AoE);
+                var pick = PickRandom(buffs);
+                if (pick != null)
+                    return pick;
+            }       
+
+            if (Utility.RandomDouble() < 0.60)
+            {
+                var single = FilterByTags(available, SpellTag.Offensive, SpellTag.SingleTarget);
+                var pick = PickRandom(single);
+                if (pick != null)
+            return pick;
+    }
+
+    List<CustomSpell> highest = new List<CustomSpell>();
+    foreach (var s in available)
+        if (GetSpellLevelForMobile(s) == highestLevel)
+            highest.Add(s);
+
+    if (highest.Count > 0)
+        return highest[Utility.Random(highest.Count)];
+
+    return available[Utility.Random(available.Count)];
+}
+
+
 
         private int GetSpellLevelForMobile(CustomSpell spell)
         {
