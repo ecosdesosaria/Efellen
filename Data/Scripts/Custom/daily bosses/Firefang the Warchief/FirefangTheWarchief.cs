@@ -71,7 +71,7 @@ namespace Server.Mobiles
 			SetInt( 206, 275 );
 
 			SetHits( 3000 );
-			SetDamage( 13, 24 );
+			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Fire, 50 );
 			SetDamageType( ResistanceType.Physical, 50 );
@@ -120,12 +120,11 @@ namespace Server.Mobiles
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
-		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
+		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
@@ -241,9 +240,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 50 );
-				SetDamage( 22, 29 );
+				SetDamage( 16, 20 );
 				
 				m_Rage = 1;
 				return false;
@@ -254,10 +251,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 75 );
-				SetDex( Dex + 15 );
-				SetDamage( 27, 34 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 5;
 				m_Rage = 2;
 				return false;
@@ -268,10 +262,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 100 );
-				SetDex( Dex + 25 );
-				SetDamage( 32, 39 );
+				SetDamage( 26, 30 );
 				VirtualArmor += 5;
 				m_Rage = 3;
 				return false;
@@ -294,8 +285,14 @@ namespace Server.Mobiles
 
 		public override void OnDelete()
 		{
-			BossSummonSystem.CleanupSummons(m_Summons);
-			base.OnDelete();
+		    if (m_Summons != null)
+		    {
+		        BossSummonSystem.CleanupSummons(m_Summons);
+		        m_Summons.Clear();
+		        m_Summons = null;
+		    }
+
+		    base.OnDelete();
 		}
 
 		public override void OnDeath( Container c )

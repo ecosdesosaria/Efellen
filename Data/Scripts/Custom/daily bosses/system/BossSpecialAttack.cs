@@ -57,15 +57,12 @@ namespace Server.Custom.DailyBosses.System
                 boss.PublicOverheadMessage(MessageType.Regular, hue, false, warcry);
             }
 
-            // Telegraph phase
             boss.FixedParticles(0x3709, 10, 30, 5052, hue, 0, EffectLayer.Waist);
             boss.PlaySound(0x208);
 
-            // Store boss location and map (in case boss moves/dies during delay)
             Point3D bossLocation = boss.Location;
             Map bossMap = boss.Map;
 
-            // Execute attack after telegraph delay
             Timer.DelayCall(TimeSpan.FromSeconds(TELEGRAPH_DELAY), delegate()
             {
                 if (boss.Deleted || !boss.Alive || bossMap == null)
@@ -74,8 +71,8 @@ namespace Server.Custom.DailyBosses.System
                 boss.PlaySound(0x64F);
                 Effects.SendLocationEffect(bossLocation, bossMap, 0x36B0, 30, 10, hue, 0);
 
-                int minDamage = 30 + (int)(rage * 2);//30-36
-                int maxDamage = 40 + (rage * 3);//40-49
+                int minDamage = 50 + (int)(rage * 4);//50-66
+                int maxDamage = 70 + (rage * 6);//70-88
 
                 IPooledEnumerable eable = bossMap.GetMobilesInRange(bossLocation, range);
                 
@@ -144,8 +141,8 @@ namespace Server.Custom.DailyBosses.System
                 boss.PlaySound(0x51D);
 
                 int chargeCount = Utility.RandomMinMax(3, 5) + rage;
-                int minDamage = 20 + (int)(rage * 2);//20-26
-                int maxDamage = 35 + (rage * 4);//35-47
+                int minDamage = 40 + (int)(rage * 4);//40-52
+                int maxDamage = 55 + (rage * 4);//55-67
 
                 List<Point3D> path = BuildRampagePath(boss, chargeCount);
                 List<Mobile> damagedMobiles = new List<Mobile>();
@@ -452,18 +449,16 @@ namespace Server.Custom.DailyBosses.System
             target.FixedParticles(0x3709, 10, 30, 5052, hue, 0, EffectLayer.Waist);
             Effects.PlaySound(target.Location, target.Map, 0x208);
 
-            // Store target location for delayed explosion
             Point3D targetLocation = target.Location;
             Map targetMap = target.Map;
 
-            // Double the normal telegraph delay (3 seconds)
             Timer.DelayCall(TimeSpan.FromSeconds(TELEGRAPH_DELAY * 2), delegate()
             {
                 if (boss.Deleted || !boss.Alive || targetMap == null)
                     return;
 
-                int minDamage = 35 + (rage * 2);//35-41
-                int maxDamage = 45 + (rage * 3);//45-54
+                int minDamage = 55 + (rage * 3);//55-64
+                int maxDamage = 75 + (rage * 6);//75-93
 
                 Point3D[] points = CrossPoints(target.Location, rage*2);
 
@@ -528,16 +523,14 @@ namespace Server.Custom.DailyBosses.System
 
         	int radius = 4 + rage;
 
-        	int minDamage = (int)(25 + (rage * 2));//25-31
-        	int maxDamage = 35 + (rage * 3);//35-44
+        	int minDamage = (int)(45 + (rage * 2));//45-51
+        	int maxDamage = 55 + (rage * 4);//55-77
 
-        	// Telegraph / warning
         	if (!string.IsNullOrEmpty(warcry))
             {
                 boss.PublicOverheadMessage(MessageType.Regular, hue, false, warcry);
             }
 
-        	// Charge / targeting effect
         	boss.MovingParticles(
         		target,
         		0x1C19,
@@ -637,7 +630,6 @@ namespace Server.Custom.DailyBosses.System
            if (boss == null || boss.Deleted || !boss.Alive || target == null || target.Deleted || !target.Alive)
                 return;
 
-            // Validate damage percentages -- must equal to 100
             int totalDamage = physicalDmg + fireDmg + coldDmg + poisonDmg + energyDmg;
             if (totalDamage != 100)
             {
@@ -647,13 +639,10 @@ namespace Server.Custom.DailyBosses.System
             {
                 boss.PublicOverheadMessage(MessageType.Regular, hue, false, warcry);
             }
-            // Telegraph phase
             boss.FixedParticles(0x3709, 10, 30, 5052, hue, 0, EffectLayer.Waist);
             boss.PlaySound(0x208);
-            // Store boss location and map (in case boss moves/dies during delay)
             Point3D bossLocation = boss.Location;
             Map bossMap = boss.Map;
-            // Execute attack after telegraph delay
             Timer.DelayCall(TimeSpan.FromSeconds(TELEGRAPH_DELAY), delegate()
             {
                 if (boss.Deleted || !boss.Alive || bossMap == null || target == null || target.Deleted || !target.Alive)
@@ -661,8 +650,8 @@ namespace Server.Custom.DailyBosses.System
                 
                 boss.PlaySound(0x64F);
                 Effects.SendLocationEffect(bossLocation, bossMap, 0x36B0, 30, 10, hue, 0);
-                int minDamage = 25 + (int)(rage * 3);//25-34
-                int maxDamage = 35 + (rage * 4);//35-47
+                int minDamage = 65 + (int)(rage * 3);//65-77
+                int maxDamage = 80 + (rage * 4);//80-92
                 boss.DoHarmful(target);
                 int damage = Utility.RandomMinMax(minDamage, maxDamage);
 	            target.BoltEffect(0);
@@ -744,8 +733,8 @@ namespace Server.Custom.DailyBosses.System
 
                 boss.PlaySound(0x227);
 
-                int minDamage = 35 + (rage * 3);
-                int maxDamage = 45 + (rage * 3);
+                int minDamage = 55 + (rage * 3);//55-64
+                int maxDamage = 65 + (rage * 3);//65-77
 
                 List<Mobile> damagedMobiles = new List<Mobile>();
 
@@ -1461,7 +1450,7 @@ namespace Server.Custom.DailyBosses.System
                 return;
             }
 
-            int damage = Utility.RandomMinMax(level * 2, level * 3);
+            int damage = Utility.RandomMinMax(level * 3, level * 5);
             
             if (!m.Player)
                 damage *= 2;

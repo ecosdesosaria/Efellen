@@ -67,7 +67,7 @@ namespace Server.Mobiles
 			SetDex( 165, 225 );
 			SetInt( 556, 655 );
 			SetHits( 10000 );
-			SetDamage( 19, 23 );
+			SetDamage( 11, 15 );
 			SetDamageType( ResistanceType.Physical, 20 );
 			SetDamageType( ResistanceType.Poison, 20 );
 			SetDamageType( ResistanceType.Cold, 20 );
@@ -215,8 +215,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 30 );
-				SetDamage( 25, 30 );
+				SetDamage( 16, 20 );
 				VirtualArmor += 5;
 				m_Rage = 1;
 				return false;
@@ -227,9 +226,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 60 );
-				SetDex( Dex + 20 );
-				SetDamage( 30, 35 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 10;
 				m_Rage = 2;
 				return false;
@@ -240,9 +237,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				SetStr( Str + 90 );
-				SetDex( Dex + 40 );
-				SetDamage( 35, 40 );
+				SetDamage( 26, 30 );
 				VirtualArmor += 15;
 				m_Rage = 3;
 				return false;
@@ -264,10 +259,16 @@ namespace Server.Mobiles
 		}
 
 		public override void OnDelete()
-        {
-            BossSummonSystem.CleanupSummons( m_Summons );
-            base.OnDelete();
-        }
+		{
+		    if (m_Summons != null)
+		    {
+		        BossSummonSystem.CleanupSummons(m_Summons);
+		        m_Summons.Clear();
+		        m_Summons = null;
+		    }
+
+		    base.OnDelete();
+		}
 
 		public override void OnDeath( Container c )
 		{

@@ -69,7 +69,7 @@ namespace Server.Mobiles
 			SetInt( 486, 475 );
 
 			SetHits( 7000 );
-			SetDamage( 23, 28 );
+			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Fire, 100 );
 			SetResistance( ResistanceType.Physical, 50 );
@@ -116,7 +116,6 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
 			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
 			{
@@ -156,7 +155,7 @@ namespace Server.Mobiles
                         boss: this,
                         target: target,
                         warcry: "Awake the volcano!",
-                        amount: 2,
+                        amount: 4,
                         creatureType: typeof(EvilScorchingVortex),
                         hue: 0xb73
                     );
@@ -171,8 +170,8 @@ namespace Server.Mobiles
                     PublicOverheadMessage(Network.MessageType.Emote, 0x22, false, "*lashes a blazing whip of fire!*");
                     Point3D start = this.Location;
                     int dx = 0, dy = 0;
-					int minDamage = (30+m_Rage*3);
-					int maxDamage = (40+m_Rage*4);
+					int minDamage = (50+m_Rage*3);
+					int maxDamage = (70+m_Rage*4);
                     GetDirectionVector(this.Direction, out dx, out dy);
                     for (int i = 1; i <= range; i++)
                     {
@@ -273,10 +272,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 25 );
-				SetDex( Dex + 25 );
-				SetDamage( 28, 33 );
+				SetDamage( 16, 20 );
 				VirtualArmor += 5;
 				m_Rage = 1;
 				return false;
@@ -287,10 +283,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 50 );
-				SetDex( Dex + 50 );
-				SetDamage( 33, 38 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 5;
 				
 				m_Rage = 2;
@@ -302,12 +295,8 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
-				
-				SetStr( Str + 100 );
-				SetDex( Dex + 100 );
-				SetDamage( 38, 43 );
+				SetDamage( 26, 30 );
 				VirtualArmor += 10;
-				
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fool! I'm fire everlasting" );
 				m_Rage = 3;
 				return false;
@@ -329,10 +318,16 @@ namespace Server.Mobiles
 		}
 
 		public override void OnDelete()
-        {
-            BossSummonSystem.CleanupSummons(m_Summons);
-            base.OnDelete();
-        }
+		{
+		    if (m_Summons != null)
+		    {
+		        BossSummonSystem.CleanupSummons(m_Summons);
+		        m_Summons.Clear();
+		        m_Summons = null;
+		    }
+
+		    base.OnDelete();
+		}
 
 		public override void OnDeath( Container c )
 		{

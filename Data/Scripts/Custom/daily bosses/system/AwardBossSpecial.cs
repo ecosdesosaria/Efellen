@@ -44,6 +44,35 @@ namespace Server.Custom
             }
         }
 
+        public static void BossEnchant(
+            Mobile from,
+            int enchantLevel,
+            Item item,
+            int chance = 100
+        )
+        {
+            if (from == null || item == null || item.Deleted)
+                return;
+        
+            if (chance < 1)
+                chance = 1;
+            if (chance > 100)
+                chance = 100;
+        
+            if (Utility.Random(100) >= chance)
+                return;
+        
+            try
+            {
+                LootPackEntry.Enchant(from, enchantLevel, item);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("BossEnchant error: " + ex.Message);
+            }
+        }
+
+
         public static void AwardBossSpecial(BaseCreature boss, int chance, params Type[] dropList)
         {
             AwardBossSpecial(boss, new List<Type>(dropList), chance);

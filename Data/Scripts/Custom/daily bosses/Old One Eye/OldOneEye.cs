@@ -52,7 +52,7 @@ namespace Server.Mobiles
 			SetInt( 106, 205 );
 
 			SetHits( 11000 );
-			SetDamage( 24, 34 );
+			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
 			SetResistance( ResistanceType.Physical, 75 );
@@ -221,7 +221,7 @@ namespace Server.Mobiles
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x63F );
 				SetStr( Str + 30 );
-				SetDamage( 29, 39 );
+				SetDamage( 16, 20 );
 				VirtualArmor += 5;
 				m_Rage = 1;
 				return false;
@@ -232,10 +232,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x63F );
-				
-				SetStr( Str + 60 );
-				SetDex( Dex + 20 );
-				SetDamage( 34, 44 );
+				SetDamage( 21, 25 );
 				VirtualArmor += 10;
 				m_Rage = 2;
 				return false;
@@ -246,10 +243,7 @@ namespace Server.Mobiles
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x63F );
-				
-				SetStr( Str + 90 );
-				SetDex( Dex + 40 );
-				SetDamage( 39, 49 );
+				SetDamage( 25, 30 );
 				VirtualArmor += 10;
 				m_Rage = 3;
 				return false;
