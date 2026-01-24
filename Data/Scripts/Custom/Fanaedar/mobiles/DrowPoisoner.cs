@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		{ 
 			
 			Body = 605; 
-			Name = NameList.RandomName( "dark_elf_prefix_male" ) + NameList.RandomName( "dark_elf_suffix_male" );
+			Name = NameList.RandomName( "dark_elf_prefix_male" ) +" "+ NameList.RandomName( "dark_elf_suffix_male" );
 			Title = "the Drow Poisoner";
 			Utility.AssignRandomHair( this );
 			HairHue = 1150;

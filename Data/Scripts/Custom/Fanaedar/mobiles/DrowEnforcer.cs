@@ -20,7 +20,7 @@ namespace Server.Mobiles
 			Hue = 1316;
 
 			Body = 605;
-			Name = NameList.RandomName( "dark_elf_prefix_male" ) + NameList.RandomName( "dark_elf_suffix_male" );
+			Name = NameList.RandomName( "dark_elf_prefix_male" )  +" "+  NameList.RandomName( "dark_elf_suffix_male" );
 			AddItem( new ShortPants( Utility.RandomColor(0) ) );
 			Utility.AssignRandomHair( this );
 			HairHue = 1150;

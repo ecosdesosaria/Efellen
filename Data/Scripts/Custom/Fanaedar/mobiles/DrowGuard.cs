@@ -17,7 +17,7 @@ namespace Server.Mobiles
 			Title = "the Drow Guard";
 			Hue = 1316;
 			Body = 605;
-			Name = NameList.RandomName( "dark_elf_prefix_male" ) + NameList.RandomName( "dark_elf_suffix_male" );
+			Name = NameList.RandomName( "dark_elf_prefix_male" )  +" "+  NameList.RandomName( "dark_elf_suffix_male" );
 			Utility.AssignRandomHair( this );
 			HairHue = 1150;
 			

@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		{ 
 			
 			Body = 605; 
-			Name = NameList.RandomName( "dark_elf_prefix_male" ) + NameList.RandomName( "dark_elf_suffix_male" );
+			Name = NameList.RandomName( "dark_elf_prefix_male" )  +" "+  NameList.RandomName( "dark_elf_suffix_male" );
 			switch ( Utility.RandomMinMax( 0, 5 ) )
 			{
 				case 0: Title = "the Drow Wizard"; break;

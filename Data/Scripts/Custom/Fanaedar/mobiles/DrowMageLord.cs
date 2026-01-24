@@ -25,7 +25,7 @@ namespace Server.Mobiles
 				case 5: sGrand = "almighty"; break;
 			}
 			Body = 605; 
-			Name = NameList.RandomName( "dark_elf_prefix_male" ) + NameList.RandomName( "dark_elf_suffix_male" );
+			Name = NameList.RandomName( "dark_elf_prefix_male" )  +" "+  NameList.RandomName( "dark_elf_suffix_male" );
 			switch ( Utility.RandomMinMax( 0, 5 ) )
 			{
 				case 0: Title = "the " + sGrand + " Drow Wizard"; break;
