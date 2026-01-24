@@ -110,6 +110,7 @@ namespace Server.Misc
 		+"	• Rewards from taming contracts have been rebalanced to be more fitting of the current game's design and to no longer generate very ugly pets.<br>"
 		+ "<br>"
 		+"* Locations:<br>"
+		+"  • Added a giant new dungeon called Fanaedar, the city of the drow. Its meant to be an extremely challenging dungeon even for veteran adventurers. It can be found in the underworld, guarded by an ungodly amount of nasty spiders.<br>"
 		+"  • Added a new dungeon called The Sunless Citadel in Sosaria. It's meant to be challenging to new adventurers fresh out of the newbie dungeons, and was built in homage to the old ttrpg module of the same name, from the d&d third edition days. It has a miniboss at the end, designed for a party of four absolute newbies or by one mildly competent adventurer.<br>"
 		+"  • Added a new dungeon called Hive of the Eye Tyrant to Lodoria. Its a very difficult dungeon filled with powerful enemies.<BR>"
 		+"	• Added a new Point of interest called Castle Griffin Roost to the southern coast of Sosaria, east of Montor. It is filled with knights that challenge evil doers to come test their mettle.<br>"
