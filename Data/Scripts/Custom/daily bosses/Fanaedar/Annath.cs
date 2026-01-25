@@ -144,6 +144,37 @@ namespace Server.Mobiles
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
 
+		public override void OnThink()
+		{
+		    base.OnThink();
+
+		    Mobile combatant = this.Combatant;
+
+		    if (combatant == null || combatant.Deleted || !combatant.Alive)
+		        return;
+
+		    BossSummonSystem.TrySummonCreature(
+		        this,
+		        combatant,
+		        SummonTypes,
+		        m_Rage,
+		        ref m_NextSummonTime,
+		        SummonWarcries,
+		        m_Summons,
+		        1316,
+		        GetMaxSummons(),
+		        35
+		    );
+
+		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    {
+		        PerformRageAttack(combatant);
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(35 - (m_Rage * 2));
+		    }
+
+		    m_LastTarget = combatant;
+		}
+
 		private void PerformRageAttack( Mobile target )
 		{
 			if ( target == null || target.Deleted || !target.Alive )
@@ -280,24 +311,8 @@ namespace Server.Mobiles
 				case 1: return 12;
 				case 2: return 10;
 				case 3: return 8;
-				default: return 12;
+				default: return 8;
 			}
-		}
-
-		public override void OnGotMeleeAttack( Mobile attacker )
-		{
-			BossSummonSystem.TrySummonCreature(
-				this,
-				attacker,
-				SummonTypes,
-				m_Rage,
-				ref m_NextSummonTime,
-				SummonWarcries,
-				m_Summons,
-				1316,
-				GetMaxSummons(),
-				60
-			);
 		}
 
 		public override bool OnBeforeDeath()
@@ -366,25 +381,21 @@ namespace Server.Mobiles
 		public override void OnDeath( Container c )
 		{
 			Item weapon = new Whips();
-			BossLootSystem.BossEnchant(this, 500, weapon, 100);
+			BossLootSystem.BossEnchant(this, 550, weapon, 100);
 			weapon.Hue = Utility.RandomDrowHue();
 			c.DropItem(weapon);
 
 			Item shield = new DarkShield();
-			BossLootSystem.BossEnchant(this, 500, shield, 100);
+			BossLootSystem.BossEnchant(this, 550, shield, 100);
 			shield.Hue = Utility.RandomDrowHue();
 			c.DropItem(shield);
 
 			BossLootSystem.AwardBossSpecial( this, BossDrops, 15 );
 			for ( int i = 0; i < 4; i++ )
- 	           c.DropItem( Loot.RandomArty() );
- 
-			if ( Utility.RandomDouble() < 0.15 )
-				c.DropItem( new EternalPowerScroll() );
-
-			int amt = Utility.RandomMinMax( 3, 9 );
-			for ( int i = 0; i < amt; i++ )
+			{
+ 	           	c.DropItem( Loot.RandomArty() );				
 				c.DropItem( new EtherealPowerScroll() );
+			}
 
 			RichesSystem.SpawnRiches( m_LastTarget, 4 );
 

@@ -87,17 +87,22 @@ namespace Server.Mobiles
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
 		public override Poison HitPoison{ get{ return Poison.Greater; } }
 
-		public override void OnDamage( int amount, Mobile from, bool willKill )
+		public override void OnThink()
 		{
-			m_LastTarget = from;
-			
-			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
-			{
-				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 40 - (m_Rage * 2) );
-			}
+		    base.OnThink();
 
-			base.OnDamage( amount, from, willKill );
+		    Mobile combatant = this.Combatant;
+
+		    if (combatant == null || combatant.Deleted || !combatant.Alive)
+		        return;
+
+		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    {
+		        PerformRageAttack(combatant);
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(50 - (m_Rage * 2));
+		    }
+
+		    m_LastTarget = combatant;
 		}
 
 		private void PerformRageAttack(Mobile target)
@@ -144,8 +149,7 @@ namespace Server.Mobiles
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
-			int chance = m_Rage * 7;
-			reflect = ( Utility.Random(100) < chance );
+			reflect = ( Utility.Random( 100 ) < m_Rage * 8 );
 		}
 
 		public override bool OnBeforeDeath()
@@ -192,12 +196,7 @@ namespace Server.Mobiles
 			base.OnDeath( c );
 
 			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
-
-			int amt = Utility.RandomMinMax( 1, 2 );
-			for ( int i = 0; i < amt; i++ )
-			{
-				c.DropItem( new EtherealPowerScroll() );
-			}
+			c.DropItem( new EtherealPowerScroll() );
 			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 1 );
 		}

@@ -111,13 +111,7 @@ namespace Server.Mobiles
 			m_LastTarget = from;
 			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
-			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
-			{
-				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 27 - (m_Rage * 2) );
-			}
-
-            if ( DateTime.UtcNow >= m_NextSpecialBeholderAttack && from != null && from.Alive && !willKill )
+			if ( DateTime.UtcNow >= m_NextSpecialBeholderAttack && from != null && from.Alive && !willKill )
 			{
 				if ( Utility.RandomDouble() < 0.50 )
 				{
@@ -127,6 +121,37 @@ namespace Server.Mobiles
 			}
 			
 			base.OnDamage( amount, from, willKill );
+		}
+
+		public override void OnThink()
+		{
+		    base.OnThink();
+
+		    Mobile combatant = this.Combatant;
+
+		    if (combatant == null || combatant.Deleted || !combatant.Alive)
+		        return;
+
+		    BossSummonSystem.TrySummonCreature(
+		        this,
+		        combatant,
+		        SummonTypes,
+		        m_Rage,
+		        ref m_NextSummonTime,
+		        SummonWarcries,
+		        m_Summons,
+		        1316,
+		        GetMaxSummons(),
+		        35
+		    );
+
+		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    {
+		        PerformRageAttack(combatant);
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(35 - (m_Rage * 2));
+		    }
+
+		    m_LastTarget = combatant;
 		}
 
         private int getParalyzeDuration(Mobile m)
@@ -264,36 +289,19 @@ namespace Server.Mobiles
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
-			int chance = m_Rage * 16;
-			reflect = ( Utility.Random(100) < chance );
+			reflect = ( Utility.Random( 100 ) < m_Rage * 16 );
 		}
 
 		private int GetMaxSummons()
 		{
 			switch( m_Rage )
 			{
-				case 0: return 6;
-				case 1: return 4;
-				case 2: return 3;
-				case 3: return 2;
-				default: return 6;
+				case 0: return 8;
+				case 1: return 7;
+				case 2: return 6;
+				case 3: return 5;
+				default: return 5;
 			}
-		}
-
-		public override void OnGotMeleeAttack( Mobile attacker )
-		{
-			BossSummonSystem.TrySummonCreature(
-				this,//boss
-				attacker,//target
-				SummonTypes,//creature list
-				m_Rage,// current rage
-				ref m_NextSummonTime,//next available summon
-				SummonWarcries,//warcries per rage
-				m_Summons,//current active summons
-				0x96,// effect hue
-				GetMaxSummons(),//summon limit
-				60// cooldown
-			);
 		}
 
 		public override void OnGaveMeleeAttack( Mobile defender )
@@ -376,19 +384,14 @@ namespace Server.Mobiles
 			base.OnDeath( c );
 
 			BossLootSystem.AwardBossSpecial(this, BossDrops, 15);
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
+			for ( int i = 0; i < 4; i++ )
+			{
+				c.DropItem( Loot.RandomArty() );
+				c.DropItem( new EtherealPowerScroll() );
+			}
 			if ( Utility.RandomDouble() < 0.15 )
 			{
 				c.DropItem( new EternalPowerScroll() );
-			}
-
-			int amt = Utility.RandomMinMax( 3, 9 );
-			for ( int i = 0; i < amt; i++ )
-			{
-				c.DropItem( new EtherealPowerScroll() );
 			}
 			// gold explosion
 			RichesSystem.SpawnRiches( m_LastTarget, 4 );
