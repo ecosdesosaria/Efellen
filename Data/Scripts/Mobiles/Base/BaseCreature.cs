@@ -129,7 +129,6 @@ namespace Server.Mobiles
 		Violet,
 		Platinum,
 		Cadalyte,
-		SciFi
 	}
 
 	public enum SkeletalType
@@ -151,9 +150,7 @@ namespace Server.Mobiles
 		Sphinx,
 		Devil,
 		Draco,
-		Xeno,
 		All,
-		SciFi
 	}
 
 	public enum HideType
@@ -168,8 +165,7 @@ namespace Server.Mobiles
 		Goliath,
 		Draconic,
 		Hellish,
-		Dinosaur,
-		Alien
+		Dinosaur
 	}
 
 	public enum SkinType
@@ -240,8 +236,7 @@ namespace Server.Mobiles
 		Topaz,
 		Caddellite,
 		Crystals,
-		Stones,
-		SciFi
+		Stones
 	}
 
 	public enum MetalType
@@ -261,8 +256,7 @@ namespace Server.Mobiles
 		Brass,
 		Mithril,
 		Xormite,
-		Dwarven,
-		SciFi
+		Dwarven
 	}
 
 	public enum WoodType
@@ -4150,7 +4144,6 @@ public virtual int BreathComputeDamage()
 				case CraftResource.SphinxSkeletal: skeletal = SkeletalType.Sphinx; break;
 				case CraftResource.DevilSkeletal: skeletal = SkeletalType.Devil; break;
 				case CraftResource.DracoSkeletal: skeletal = SkeletalType.Draco; break;
-				case CraftResource.XenoSkeletal: skeletal = SkeletalType.Xeno; break;
 			}
 
 			return skeletal;
@@ -4515,7 +4508,6 @@ public virtual int BreathComputeDamage()
 						case HideType.Draconic:     corpse.AddCarvedItem( new DraconicLeather( hides ), from ); break;
 						case HideType.Hellish:     	corpse.AddCarvedItem( new HellishLeather( hides ), from ); break;
 						case HideType.Dinosaur:     corpse.AddCarvedItem( new DinosaurLeather( hides ), from ); break;
-						case HideType.Alien:     	corpse.AddCarvedItem( new AlienLeather( hides ), from ); break;
 					}
 
 					from.SendMessage( "You cut away some leather and they are on the corpse." );
@@ -4723,29 +4715,6 @@ public virtual int BreathComputeDamage()
 						case MetalType.Mithril:     corpse.AddCarvedItem( new MithrilIngot( metal ), from ); break;
 						case MetalType.Xormite:     corpse.AddCarvedItem( new XormiteIngot( metal ), from ); break;
 						case MetalType.Dwarven:     corpse.AddCarvedItem( new DwarvenIngot( metal ), from ); break;
-						case MetalType.SciFi:
-						{
-							switch ( Utility.RandomMinMax( 1, 16 ) )
-							{
-								case 1: corpse.AddCarvedItem( new AgriniumIngot( metal ), from ); break;	
-								case 2: corpse.AddCarvedItem( new BeskarIngot( metal ), from ); break;	
-								case 3: corpse.AddCarvedItem( new CarboniteIngot( metal ), from ); break;
-								case 4: corpse.AddCarvedItem( new CortosisIngot( metal ), from ); break;
-								case 5: corpse.AddCarvedItem( new DurasteelIngot( metal ), from ); break;
-								case 6: corpse.AddCarvedItem( new DuriteIngot( metal ), from ); break;
-								case 7: corpse.AddCarvedItem( new FariumIngot( metal ), from ); break;
-								case 8: corpse.AddCarvedItem( new LaminasteelIngot( metal ), from ); break;
-								case 9: corpse.AddCarvedItem( new NeuraniumIngot( metal ), from ); break;
-								case 10: corpse.AddCarvedItem( new PhrikIngot( metal ), from ); break;
-								case 11: corpse.AddCarvedItem( new PromethiumIngot( metal ), from ); break;
-								case 12: corpse.AddCarvedItem( new QuadraniumIngot( metal ), from ); break;
-								case 13: corpse.AddCarvedItem( new SongsteelIngot( metal ), from ); break;
-								case 14: corpse.AddCarvedItem( new TitaniumIngot( metal ), from ); break;
-								case 15: corpse.AddCarvedItem( new TrimantiumIngot( metal ), from ); break;
-								case 16: corpse.AddCarvedItem( new XonoliteIngot( metal ), from ); break;
-							}
-							break;
-						}
 					}
 
 					from.SendMessage( "You chip away some metal and it is on the corpse." );
@@ -4770,17 +4739,6 @@ public virtual int BreathComputeDamage()
 						case ScaleType.Violet:		corpse.AddCarvedItem( new VioletScales( scales ), from ); break;
 						case ScaleType.Platinum:	corpse.AddCarvedItem( new PlatinumScales( scales ), from ); break;
 						case ScaleType.Cadalyte:	corpse.AddCarvedItem( new CadalyteScales( scales ), from ); break;
-						case ScaleType.SciFi:
-						{
-							switch ( Utility.RandomMinMax( 1, 4 ) )
-							{
-								case 1: corpse.AddCarvedItem( new GornScales( scales ), from ); break;	
-								case 2: corpse.AddCarvedItem( new TrandoshanScales( scales ), from ); break;	
-								case 3: corpse.AddCarvedItem( new SilurianScales( scales ), from ); break;
-								case 4: corpse.AddCarvedItem( new KraytScales( scales ), from ); break;
-							}
-							break;
-						}
 					}
 
 					from.SendMessage( "You cut away some scales and they are on the corpse." );
@@ -4811,7 +4769,6 @@ public virtual int BreathComputeDamage()
 						case SkeletalType.Sphinx:	corpse.AddCarvedItem( new SphinxSkeletal( skeletal ), from ); break;
 						case SkeletalType.Devil:	corpse.AddCarvedItem( new DevilSkeletal( skeletal ), from ); break;
 						case SkeletalType.Draco:	corpse.AddCarvedItem( new DracoSkeletal( skeletal ), from ); break;
-						case SkeletalType.Xeno:		corpse.AddCarvedItem( new XenoSkeletal( skeletal ), from ); break;
 						case SkeletalType.All:
 						{
 							int skcy = skeletal;
@@ -4839,22 +4796,6 @@ public virtual int BreathComputeDamage()
 									case 16: corpse.AddCarvedItem( new DevilSkeletal( 1 ), from ); break;
 									case 17: corpse.AddCarvedItem( new DracoSkeletal( 1 ), from ); break;
 								}
-							}
-							break;
-						}
-						case SkeletalType.SciFi:
-						{
-							switch ( Utility.RandomMinMax( 1, 9 ) )
-							{
-								case 1: corpse.AddCarvedItem( new XenoSkeletal( skeletal ), from ); break;
-								case 2: corpse.AddCarvedItem( new AndorianSkeletal( skeletal ), from ); break;
-								case 3: corpse.AddCarvedItem( new CardassianSkeletal( skeletal ), from ); break;
-								case 4: corpse.AddCarvedItem( new MartianSkeletal( skeletal ), from ); break;
-								case 5: corpse.AddCarvedItem( new RodianSkeletal( skeletal ), from ); break;
-								case 6: corpse.AddCarvedItem( new TuskenSkeletal( skeletal ), from ); break;
-								case 7: corpse.AddCarvedItem( new TwilekSkeletal( skeletal ), from ); break;
-								case 8: corpse.AddCarvedItem( new XindiSkeletal( skeletal ), from ); break;
-								case 9: corpse.AddCarvedItem( new ZabrakSkeletal( skeletal ), from ); break;
 							}
 							break;
 						}

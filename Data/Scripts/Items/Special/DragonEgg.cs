@@ -33,7 +33,7 @@ namespace Server.Items
 				HavePotionD = 0;
 				HaveGold = 0;
 
-				AnimalTrainerLocation = Server.Items.AlienEgg.GetRandomVet();
+				AnimalTrainerLocation = GetRandomVet();
 
 				PieceRumor = Server.Items.CubeOnCorpse.GetRumor();
 				PieceLocation = Server.Items.CubeOnCorpse.PickDungeon();
@@ -81,6 +81,50 @@ namespace Server.Items
 			}
 
 			return false;
+		}
+
+		public static string GetRandomVet()
+		{
+			int aCount = 0;
+			Region reg = null;
+			string sRegion = "";
+
+			ArrayList targets = new ArrayList();
+			foreach ( Mobile target in World.Mobiles.Values )
+			if ( target is BaseVendor )
+			{
+				reg = Region.Find( target.Location, target.Map );
+
+				if (	target.Land == Land.Sosaria || 
+						target.Land == Land.Lodoria || 
+						target.Land == Land.Serpent || 
+						target.Land == Land.IslesDread || 
+						target.Land == Land.Savaged || 
+						target.Land == Land.UmberVeil || 
+						target.Land == Land.Kuldar )
+				{
+					if ( ( target is AnimalTrainer || target is Veterinarian ) && reg.IsPartOf( typeof( VillageRegion ) ))
+					{
+						targets.Add( target ); aCount++;
+					}
+				}
+			}
+
+			aCount = Utility.RandomMinMax( 1, aCount );
+
+			int xCount = 0;
+			for ( int i = 0; i < targets.Count; ++i )
+			{
+				Mobile vet = ( Mobile )targets[ i ];
+				xCount++;
+
+				if ( xCount == aCount )
+				{
+					sRegion = Server.Misc.Worlds.GetRegionName( vet.Map, vet.Location );
+				}
+			}
+
+			return sRegion;
 		}
 
 		public DragonEgg( Serial serial ) : base( serial )

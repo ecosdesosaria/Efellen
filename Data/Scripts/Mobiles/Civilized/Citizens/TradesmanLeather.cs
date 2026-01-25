@@ -175,7 +175,6 @@ namespace Server.Items
 				else if ( Resource == CraftResource.DraconicLeather ){ from.AddToBackpack ( new DraconicLeather( Limits ) ); }
 				else if ( Resource == CraftResource.HellishLeather ){ from.AddToBackpack ( new HellishLeather( Limits ) ); }
 				else if ( Resource == CraftResource.DinosaurLeather ){ from.AddToBackpack ( new DinosaurLeather( Limits ) ); }
-				else if ( Resource == CraftResource.AlienLeather ){ from.AddToBackpack ( new AlienLeather( Limits ) ); }
 				else { from.AddToBackpack ( new Leather( Limits ) ); }
 
 				from.PrivateOverheadMessage(MessageType.Regular, 0x14C, false, "You separate the leather into your backpack", from.NetState);

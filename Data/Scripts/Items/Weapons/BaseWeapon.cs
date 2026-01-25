@@ -1732,7 +1732,7 @@ namespace Server.Items
 			int ruin = 20 + (int)Density; // chance to lower durability
 			bool acidic = false;
 
-			if ( defender is Slime || defender is Xenomorph || defender is GreenSlime || defender is BlackPudding || defender is LavaPuddle || defender is AcidPuddle || defender is ToxicElemental )
+			if ( defender is Slime || defender is GreenSlime || defender is BlackPudding || defender is LavaPuddle || defender is AcidPuddle || defender is ToxicElemental )
 				acidic = true;
 
 			if ( m_MaxHits > 0 && Density != Density.None && ( ( MaxRange <= 1 && acidic ) || Utility.Random( ruin ) == 0 ) )

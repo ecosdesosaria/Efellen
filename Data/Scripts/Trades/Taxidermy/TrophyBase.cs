@@ -184,7 +184,6 @@ namespace Server.Items
 								trophyID = 0x393F;
 							}
 							else if ( ( typeof( Sakleth ) == c.Owner.GetType() ) || 
-							( typeof( MutantLizardman ) == c.Owner.GetType() ) || 
 							( typeof( Grathek ) == c.Owner.GetType() ) || 
 							( typeof( Sleestax ) == c.Owner.GetType() ) || 
 							( typeof( SaklethArcher ) == c.Owner.GetType() ) || 
@@ -486,11 +485,9 @@ namespace Server.Items
 							}
 							else if ( typeof( AncientWyvern ) == c.Owner.GetType() ){ trophyID = 0x3397; }
 							else if ( typeof( IceDevil ) == c.Owner.GetType() ){ trophyID = 0x338F; }
-							else if ( typeof( Xenomorph ) == c.Owner.GetType() ){ trophyID = 0x33B9; trophyColor = 0; }
 							else if ( typeof( HippogriffRiding ) == c.Owner.GetType() ){ trophyID = 0x33DD; }
 							else if ( typeof( HellBeast ) == c.Owner.GetType() ){ trophyID = 0x33DB; }
 							else if ( typeof( Styguana ) == c.Owner.GetType() ){ trophyID = 0x33B7; }
-							else if ( typeof( Watcher ) == c.Owner.GetType() ){ trophyID = 0x33BB; }
 							else if ( typeof( CragCat ) == c.Owner.GetType() ){ trophyID = 0x33BD; }
 							else if ( typeof( PrimevalGreenDragon ) == c.Owner.GetType() ){ trophyID = 0x33C1; }
 							else if ( typeof( PrimevalNightDragon ) == c.Owner.GetType() ){ trophyID = 0x33D3; }

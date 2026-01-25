@@ -1126,10 +1126,6 @@ namespace Server.Mobiles
 				{
 					Server.Items.RobotSchematics.ProcessRobotBook( from, this, dropped );
 				}
-				else if ( dropped is AlienEgg && ( this is AnimalTrainer || this is Veterinarian ) )
-				{
-					Server.Items.AlienEgg.ProcessAlienEgg( from, this, dropped );
-				}
 				else if ( dropped is DragonEgg && ( this is AnimalTrainer || this is Veterinarian ) )
 				{
 					Server.Items.DragonEgg.ProcessDragonEgg( from, this, dropped );

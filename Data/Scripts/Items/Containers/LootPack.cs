@@ -98,7 +98,6 @@ namespace Server
 						
 					item = LootPackChange.ChangeItem( item, from, level );
 					NotIdentified.ConfigureItem( item, cont, from );
-					ReagentJar.ConfigureItem( item, cont, from );
 				}
 			}
 		}
@@ -964,7 +963,7 @@ namespace Server
 				item.Amount = Utility.RandomMinMax( 2, 8 ) * level;
 			else if ( item is MagicalDyes )
 				item.Amount = Utility.RandomMinMax( 1, level+2 );
-			else if ( item is MageEye || item is HarpoonRope || item is Arrow || item is Bolt || item is Krystal || item is ThrowingWeapon )
+			else if ( item is MageEye || item is HarpoonRope || item is Arrow || item is Bolt || item is ThrowingWeapon )
 				item.Amount = Utility.RandomMinMax( 5, 20 ) * level;
 			else if ( item is Shuriken )
 				item.Amount = Utility.RandomMinMax( 2, 10 ) * level;

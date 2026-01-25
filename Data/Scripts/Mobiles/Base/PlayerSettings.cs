@@ -130,56 +130,6 @@ namespace Server.Misc
 			m.AddToBackpack( tent );
 		}
 
-		public static void SetSpaceMan( Mobile m ) // -------------------------------------------------------------------------------------------------
-		{
-			Point3D loc = new Point3D( 7000, 4000, 0 );
-			m.MoveToWorld( loc, Map.Lodor );
-
-			MyServerSettings.SkillBegin( "alien", (PlayerMobile)m );
-			Server.Misc.MorphingTime.RemoveMyClothes( m );
-
-			List<Item> contents = new List<Item>();
-			foreach( Item i in m.Backpack.Items )
-			{
-				contents.Add(i);
-			}
-			foreach ( Item item in contents )
-			{
-				item.Delete();
-			}
-
-			for( int i = 0; i < m.Skills.Length; i++ )
-			{
-				Skill skill = (Skill)m.Skills[i];
-				skill.Base = 0;
-			}
-
-			m.AddItem( new FancyShirt() );
-			m.AddItem( new Boots() );
-			m.AddItem( new LongPants() );
-
-			BaseWeapon dagger = new Dagger();
-			dagger.Name = "knife";
-			m.AddItem( dagger );
-
-			Item meat = new CookedBird( 10 );
-			meat.Hue = 0xB64;
-			meat.Name = "cooked alien meat";
-			m.AddToBackpack( meat );
-
-			Item water = new Pitcher( BeverageType.Water );
-			water.ItemID = 0x4971;
-			water.Name = "empty canteen";
-			m.AddToBackpack( water );
-
-			MedicalRecord record = new MedicalRecord();
-			record.DataPatient = m.Name;
-			m.AddToBackpack( record );
-
-			loc = new Point3D( 4109, 3775, 2 );
-			m.MoveToWorld( loc, Map.Sosaria );
-		}
-
 		public static void SetWanted( Mobile m ) // -------------------------------------------------------------------------------------------------
 		{
 			string wName = NameList.RandomName( "male" );
@@ -1297,7 +1247,6 @@ namespace Server.Misc
 							else if ( i is SpidersSilk ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is SulfurousAsh ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is reagents_magic_jar1 ){ belongings.Add(i); foundReagents = 1; }
-							else if ( i is ReagentJar ){ belongings.Add(i); foundReagents = 1; }
 						}
 					}
 					else if ( nEntry == 9 && found == "1" )
@@ -1312,7 +1261,6 @@ namespace Server.Misc
 							else if ( i is reagents_magic_jar1 ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is reagents_magic_jar2 ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is reagents_magic_jar3 ){ belongings.Add(i); foundReagents = 1; }
-							else if ( i is ReagentJar ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is EyeOfToad ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is BeetleShell ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is GargoyleEar ){ belongings.Add(i); foundReagents = 1; }
@@ -1441,7 +1389,6 @@ namespace Server.Misc
 							else if ( i is Brimstone ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is ButterflyWings ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is reagents_magic_jar3 ){ belongings.Add(i); foundReagents = 1; }
-							else if ( i is ReagentJar ){ belongings.Add(i); foundReagents = 1; }
 						}
 					}
 					else if ( nEntry == 16 && found == "1" )
@@ -1468,7 +1415,6 @@ namespace Server.Misc
 							else if ( i is SilverWidow ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is reagents_magic_jar3 ){ belongings.Add(i); foundReagents = 1; }
 							else if ( i is reagents_magic_jar1 ){ belongings.Add(i); foundReagents = 1; }
-							else if ( i is ReagentJar ){ belongings.Add(i); foundReagents = 1; }
 						}
 					}
 

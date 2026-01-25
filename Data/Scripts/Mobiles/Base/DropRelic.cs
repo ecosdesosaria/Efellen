@@ -29,18 +29,6 @@ namespace Server.Misc
 				{
 					Region reg = Region.Find( from.Location, from.Map );
 
-					if ( from is ServiceDroid || from is BattleDroid || from is SecurityDroid || from is MaintenanceDroid || from is ExcavationDroid || from is CombatDroid )
-					{
-						if ( Utility.RandomMinMax( 1, 300 ) < (from.Fame/100) ){ c.DropItem( new RobotSheetMetal( Utility.RandomMinMax( 4, 10 ) ) ); }
-						if ( Utility.RandomMinMax( 1, 300 ) < (from.Fame/100) ){ c.DropItem( new RobotBatteries() ); }
-						if ( Utility.RandomMinMax( 1, 300 ) < (from.Fame/100) ){ c.DropItem( new RobotEngineParts() ); }
-						if ( Utility.RandomMinMax( 1, 300 ) < (from.Fame/100) ){ c.DropItem( new RobotCircuitBoard() ); }
-						if ( Utility.RandomMinMax( 1, 300 ) < (from.Fame/100) ){ c.DropItem( new RobotTransistor() ); }
-						if ( Utility.RandomMinMax( 1, 300 ) < (from.Fame/100) ){ c.DropItem( new RobotBolt( Utility.RandomMinMax( 1, 4 ) ) ); }
-						if ( Utility.RandomMinMax( 1, 300 ) < (from.Fame/100) ){ c.DropItem( new RobotGears( Utility.RandomMinMax( 1, 4 ) ) ); }
-						if ( Utility.RandomMinMax( 1, 300 ) < (from.Fame/100) ){ c.DropItem( new RobotOil( Utility.RandomMinMax( 1, 2 ) ) ); }
-					}
-
 					if ( GetPlayerInfo.LuckyKiller( killer.Luck ) && Utility.RandomMinMax( 0, 100 ) > 95 )
 					{
 						int min = (int)(from.Fame/2000); if ( min < 1 ){ min = 1; }

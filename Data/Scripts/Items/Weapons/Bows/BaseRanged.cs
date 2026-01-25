@@ -106,7 +106,7 @@ namespace Server.Items
 
 		public override void OnHit( Mobile attacker, Mobile defender, double damageBonus )
 		{
-			if ( !( Ammo is Krystal ) && !( Ammo is HarpoonRope ) && !( Ammo is MageEye ) && !( Ammo is ThrowingWeapon ) && attacker.Player && !defender.Player && (defender.Body.IsAnimal || defender.Body.IsMonster) && 0.4 >= Utility.RandomDouble() )
+			if ( !( Ammo is HarpoonRope ) && !( Ammo is MageEye ) && !( Ammo is ThrowingWeapon ) && attacker.Player && !defender.Player && (defender.Body.IsAnimal || defender.Body.IsMonster) && 0.4 >= Utility.RandomDouble() )
 				defender.AddToBackpack( Ammo );
 
 			if ( defender is BaseCreature && Ammo is ThrowingWeapon && attacker.Player )
@@ -156,7 +156,7 @@ namespace Server.Items
 		{
 			if ( attacker.Player && 0.4 >= Utility.RandomDouble() )
 			{
-				if ( !( Ammo is ThrowingWeapon ) && !( Ammo is MageEye ) && !( Ammo is HarpoonRope ) && !( Ammo is Krystal ) )
+				if ( !( Ammo is ThrowingWeapon ) && !( Ammo is MageEye ) && !( Ammo is HarpoonRope ) )
 				{
 					PlayerMobile p = attacker as PlayerMobile;
 
