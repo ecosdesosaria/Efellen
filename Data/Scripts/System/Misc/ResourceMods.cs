@@ -298,9 +298,7 @@ namespace Server
 							item.Resource == CraftResource.GargoyleSkeletal || 
 							item.Resource == CraftResource.MinotaurSkeletal || 
 							item.Resource == CraftResource.DevilSkeletal || 
-							item.Resource == CraftResource.DracoSkeletal || 
-							item.Resource == CraftResource.XenoSkeletal || 
-							item.Resource == CraftResource.ZabrakSkeletal 
+							item.Resource == CraftResource.DracoSkeletal 
 						)
 						item.ItemID = 0x1F0B;
 					else if ( item is SavageHelm )

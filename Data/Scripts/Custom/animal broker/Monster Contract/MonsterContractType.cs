@@ -196,7 +196,6 @@ namespace Server.Items
 			new MonsterContractType (typeof(Tyranasaur), "Tyranasaurs", 103),
 			new MonsterContractType (typeof(Unicorn), "Unicorns", 115),
 			new MonsterContractType (typeof(Walrus), "Walruses", 55),
-			new MonsterContractType (typeof(Watcher), "Watchers", 104),
 			new MonsterContractType (typeof(WaterBeetleRiding), "Water Beetles", 59),
 			new MonsterContractType (typeof(Weasel), "Weasels", 10),
 			new MonsterContractType (typeof(WhiteRabbit), "White Rabbits", 12),

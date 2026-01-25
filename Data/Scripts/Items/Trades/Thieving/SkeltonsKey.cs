@@ -109,52 +109,6 @@ namespace Server.Items
 						from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 503101 ); // That did not need to be unlocked.
 					else if ( cont2.LockLevel == 0 )
 						from.SendLocalizedMessage( 501666 ); // You can't unlock that!
-					else if ( cont2.Catalog == Catalogs.SciFi && o.Locked && m_Key.ItemID != 0x3A75 )
-					{
-						from.SendMessage( "This doesn't have a key hole, but it does have a card slot." );
-					}
-					else if ( cont2.Catalog != Catalogs.SciFi && o.Locked && m_Key.ItemID == 0x3A75 )
-					{
-						from.SendMessage( "This doesn't have a card slot, but it does have a key hole." );
-					}
-					else if ( cont2.Catalog == Catalogs.SciFi && o.Locked && m_Key.ItemID == 0x3A75 )
-					{
-						int neededMod = Server.Difficult.GetDifficulty( from.Location, from.Map ) * 5;
-							if ( neededMod < 1 ){ neededMod = 0; }
-						int neededSkill = 51 + neededMod;
-
-						if ( cont2.RequiredSkill < neededSkill )
-						{
-							o.Locked = false;
-
-							if ( o is LockableContainer )
-							{
-								LockableContainer cont = (LockableContainer)o;
-								if ( cont.LockLevel == -255 )
-								{
-									cont.LockLevel = cont.RequiredSkill - 10;
-									if ( cont.LockLevel == 0 )
-										cont.LockLevel = -1;
-								}
-
-								cont.Picker = from;  // sets "lockpicker" to the user.
-							}
-
-							if ( targeted is Item )
-							{
-								Item item = (Item)targeted;
-								from.SendMessage( "You swipe the key card to open the lock, but also wearing it out from further use." );
-							}
-
-							from.RevealingAction();
-							from.PlaySound( 0x54B );
-							m_Key.Consume();
-						}
-						else 
-						{
-							from.SendMessage( "The lock seems too secure for this key card." );
-						}
-					}
 					else if ( o.Locked && m_Key.ItemID != 0x3A75 )
 					{
 						if ( o is BaseDoor && !((BaseDoor)o).UseLocks() )  // this seems to check house doors also

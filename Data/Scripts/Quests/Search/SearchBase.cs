@@ -200,7 +200,6 @@ namespace Server.Items
 			else if (	from.Backpack.FindItemByType( typeof ( SearchPage ) ) != null || 
 						from.Backpack.FindItemByType( typeof ( DDRelicTablet ) ) != null || 
 						from.Backpack.FindItemByType( typeof ( VortexCube ) ) != null || 
-						from.Backpack.FindItemByType( typeof ( AlienEgg ) ) != null || 
 						from.Backpack.FindItemByType( typeof ( ResearchBag ) ) != null || 
 						from.Backpack.FindItemByType( typeof ( DragonEgg ) ) != null || 
 						from.Backpack.FindItemByType( typeof ( DracolichSkull ) ) != null || 
@@ -354,27 +353,6 @@ namespace Server.Items
 								cube.TextCrystal = "";
 								cube.LocationCrystal = "";
 							}
-						}
-					}
-				}
-
-				if ( from.Backpack.FindItemByType( typeof ( AlienEgg ) ) != null )
-				{
-					Item eggs = from.Backpack.FindItemByType( typeof ( AlienEgg ) );
-					AlienEgg egg = (AlienEgg)eggs;
-
-					if ( egg.PieceLocation == Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) )
-					{
-						bool pickNewEggSpot = false;
-						if ( egg.HaveRod < 1 ){ pickNewEggSpot = true; egg.HaveRod = 1; from.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found the rod of amber!"); from.SendSound( 0x3D ); EmptyBox = 0; }
-						else if ( egg.HaveYellowCrystal < 1 ){ pickNewEggSpot = true; egg.HaveYellowCrystal = 1; from.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found the sun crystal!"); from.SendSound( 0x3D ); EmptyBox = 0; }
-						else if ( egg.HaveRedCrystal < 1 ){ pickNewEggSpot = true; egg.HaveRedCrystal = 1; from.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found the blood crystal!"); from.SendSound( 0x3D ); EmptyBox = 0; }
-						else if ( egg.HavePotion < 1 ){ pickNewEggSpot = true; egg.HavePotion = 1; from.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found the potion of growth!"); from.SendSound( 0x3D ); EmptyBox = 0; }
-
-						if ( pickNewEggSpot )
-						{
-							egg.PieceRumor = Server.Items.CubeOnCorpse.GetRumor();
-							egg.PieceLocation = Server.Items.CubeOnCorpse.PickDungeon();
 						}
 					}
 				}

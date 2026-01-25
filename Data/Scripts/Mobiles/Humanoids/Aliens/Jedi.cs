@@ -142,11 +142,6 @@ namespace Server.Mobiles
 		public override bool AlwaysAttackable{ get{ return true; } }
 		public override int Meat{ get{ return 1; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
-		public override int Skeletal{ get{ return Utility.Random(3); } }
-		public override SkeletalType SkeletalType{ get{ return SkeletalType.SciFi; } }
-		public override int Hides{ get{ return Utility.Random(3); } }
-		public override HideType HideType{ get{ return HideType.Alien; } }
-
 		public Jedi( Serial serial ) : base( serial ) 
 		{ 
 		} 

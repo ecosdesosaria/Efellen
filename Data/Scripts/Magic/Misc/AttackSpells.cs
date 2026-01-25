@@ -1104,7 +1104,6 @@ namespace Server.Spells.Magical
 			else if ( m is VolcanicDragon ){ wizardry = Utility.RandomList( 5, 4 ); }
 			else if ( m is Wraith ){ wizardry = Utility.RandomList( 5, 7, 4, 3 ); }
 			else if ( m is xDryad ){ wizardry = Utility.RandomList( 5, 6 ); }
-			else if ( m is Xenomutant ){ wizardry = Utility.RandomList( 5, 7 ); }
 			else if ( m is Xurtzar ){ wizardry = Utility.RandomList( 5, 7, 4 ); }
 			else if ( m is ZombieDragon ){ wizardry = Utility.RandomList( 5, 7, 4, 3 ); }
 			else if ( m is ZombieMage ){ wizardry = Utility.RandomList( 5, 7, 4, 3 ); }

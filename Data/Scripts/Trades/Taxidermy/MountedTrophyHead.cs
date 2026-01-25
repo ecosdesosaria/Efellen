@@ -247,8 +247,6 @@ namespace Server.Items
 				else if ( this.ItemID == 0x33BE ){ this.ItemID = 0x33BD; } //mounted lion 
 				else if ( this.ItemID == 0x33B7 ){ this.ItemID = 0x33B8; } //mounted styguana 
 				else if ( this.ItemID == 0x33B8 ){ this.ItemID = 0x33B7; } //mounted styguana 
-				else if ( this.ItemID == 0x33BB ){ this.ItemID = 0x33BC; } //mounted watcher 
-				else if ( this.ItemID == 0x33BC ){ this.ItemID = 0x33BB; } //mounted watcher 
 				else if ( this.ItemID == 0x33DF ){ this.ItemID = 0x33E0; } //mounted walrus 
 				else if ( this.ItemID == 0x33E0 ){ this.ItemID = 0x33DF; } //mounted walrus 
 				else if ( this.ItemID == 0x33E1 ){ this.ItemID = 0x33E2; } //mounted ogre 

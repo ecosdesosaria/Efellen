@@ -1835,17 +1835,6 @@ namespace Server.Items
 					else
 						from.SendMessage( "You drink the liquid and are no longer thirsty" );
 
-					if ( drink is RomulanAle )
-					{
-						from.BAC += 2;
-
-						if( from.BAC > 60 )
-							from.BAC = 60;
-
-						BaseBeverage.CheckHeaveTimer( from );
-						from.AddToBackpack( new Bottle() );
-					}
-
 					drink.Consume();
 
 					from.PlaySound( Utility.RandomList( 0x30, 0x2D6 ) );

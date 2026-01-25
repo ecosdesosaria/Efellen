@@ -189,7 +189,7 @@ namespace Server.Items
 												case 3: shelf = new BraceletOfBinding(); break;	
 												case 4: shelf = new PowerScroll( SkillName.Druidism, 10); break;
 												case 5: shelf = new PowerScroll( SkillName.Taming, 10); break;
-												case 6: shelf = new AlienEgg( ); break;
+												case 6: shelf = new DragonEgg( ); break;
 												case 8: shelf = new DragonEgg( ); break;
 												case 9: shelf = new PetGrowthDeedMid( ); break;
 												case 10: shelf = Construct( m_MidMorph ) as Item; break;

@@ -522,9 +522,8 @@ namespace Server.Items
 			}
 			else
 			{
-				switch ( Utility.RandomMinMax( 0, 3 ) )
+				switch ( Utility.RandomMinMax( 1, 3 ) )
 				{
-					case 0:		book.VillainType = "Watcher";					book.VillainName = NameList.RandomName( "drakkul" );		book.VillainCategory = "a watcher";			break;
 					case 1:		book.VillainType = "Cerberus";					book.VillainName = NameList.RandomName( "greek" );			book.VillainCategory = "a cerberus";		break;
 					case 2:		book.VillainType = "Styguana";					book.VillainName = NameList.RandomName( "lizardman" );		book.VillainCategory = "a styguana";		break;
 					case 3:		book.VillainType = "HellBeast";					book.VillainName = NameList.RandomName( "imp" );			book.VillainCategory = "a hell beast";		break;

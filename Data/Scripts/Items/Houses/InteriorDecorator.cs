@@ -948,8 +948,6 @@ namespace Server.Items
 					else if ( item.ItemID == 0x3392 ){ item.ItemID = 0x3391; } //mounted tyranasaur
 					else if ( item.ItemID == 0x3393 ){ item.ItemID = 0x3394; } //mounted stegosaurus
 					else if ( item.ItemID == 0x3394 ){ item.ItemID = 0x3393; } //mounted stegosaurus
-					else if ( item.ItemID == 0x3395 ){ item.ItemID = 0x3396; } //mounted alien
-					else if ( item.ItemID == 0x3396 ){ item.ItemID = 0x3395; } //mounted alien
 					else if ( item.ItemID == 0x3397 ){ item.ItemID = 0x3398; } //mounted wyvern
 					else if ( item.ItemID == 0x3398 ){ item.ItemID = 0x3397; } //mounted wyvern
 					else if ( item.ItemID == 0x3399 ){ item.ItemID = 0x339A; } //mounted black bear
@@ -986,8 +984,6 @@ namespace Server.Items
 					else if ( item.ItemID == 0x33B4 ){ item.ItemID = 0x33B3; } //mounted skeletal dragon
 					else if ( item.ItemID == 0x33B5 ){ item.ItemID = 0x33B6; } //mounted wyvern
 					else if ( item.ItemID == 0x33B6 ){ item.ItemID = 0x33B5; } //mounted wyvern
-					else if ( item.ItemID == 0x33B9 ){ item.ItemID = 0x33BA; } //mounted alien 
-					else if ( item.ItemID == 0x33BA ){ item.ItemID = 0x33B9; } //mounted alien 
 					else if ( item.ItemID == 0x33CB ){ item.ItemID = 0x33CC; } //mounted dragon abysmal
 					else if ( item.ItemID == 0x33CC ){ item.ItemID = 0x33CB; } //mounted dragon abysmal
 					else if ( item.ItemID == 0x33D1 ){ item.ItemID = 0x33D2; } //mounted dragon amber
@@ -1024,8 +1020,6 @@ namespace Server.Items
 					else if ( item.ItemID == 0x33BE ){ item.ItemID = 0x33BD; } //mounted lion 
 					else if ( item.ItemID == 0x33B7 ){ item.ItemID = 0x33B8; } //mounted styguana 
 					else if ( item.ItemID == 0x33B8 ){ item.ItemID = 0x33B7; } //mounted styguana 
-					else if ( item.ItemID == 0x33BB ){ item.ItemID = 0x33BC; } //mounted watcher 
-					else if ( item.ItemID == 0x33BC ){ item.ItemID = 0x33BB; } //mounted watcher 
 					else if ( item.ItemID == 0x33DF ){ item.ItemID = 0x33E0; } //mounted walrus 
 					else if ( item.ItemID == 0x33E0 ){ item.ItemID = 0x33DF; } //mounted walrus 
 					else if ( item.ItemID == 0x33E1 ){ item.ItemID = 0x33E2; } //mounted ogre 
