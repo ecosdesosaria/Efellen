@@ -174,17 +174,42 @@ namespace Server.Mobiles
 		    return base.CanBeBeneficial(m, message, allowDead);
 		}
 
+		public override void OnThink()
+		{
+		    base.OnThink();
+
+		    Mobile combatant = this.Combatant;
+
+		    if (combatant == null || combatant.Deleted || !combatant.Alive)
+		        return;
+
+		    BossSummonSystem.TrySummonCreature(
+		        this,
+		        combatant,
+		        SummonTypes,
+		        m_Rage,
+		        ref m_NextSummonTime,
+		        SummonWarcries,
+		        m_Summons,
+		        1316,
+		        GetMaxSummons(),
+		        30
+		    );
+
+		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    {
+		        PerformRageAttack(combatant);
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(30 - (m_Rage * 2));
+		    }
+
+		    m_LastTarget = combatant;
+		}
+
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
 			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
-			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
-			{
-				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 24 - (m_Rage * 2) );
-			}
-		
 			if (from.Player && from.Kills < 5 && !from.Criminal) 
 				from.Criminal = true;		
 		
@@ -298,8 +323,7 @@ namespace Server.Mobiles
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
-			int chance = m_Rage * 22;
-			reflect = ( Utility.Random(100) < chance );
+			reflect = ( Utility.Random( 100 ) < m_Rage * 20 );
 		}
 
 		private int GetMaxSummons()
@@ -312,22 +336,6 @@ namespace Server.Mobiles
 				case 3: return 6;
 				default: return 12;
 			}
-		}
-
-		public override void OnGotMeleeAttack( Mobile attacker )
-		{
-			BossSummonSystem.TrySummonCreature(
-				this,//boss
-				attacker,//target
-				SummonTypes,//creature list
-				m_Rage,// current rage
-				ref m_NextSummonTime,//next available summon
-				SummonWarcries,//warcries per rage
-				m_Summons,//current active summons
-				0x0672,// effect hue
-				GetMaxSummons(),//summon limit
-				40// cooldown
-			);
 		}
 
 		public override bool OnBeforeDeath()
@@ -399,22 +407,17 @@ namespace Server.Mobiles
 			base.OnDeath( c );
 
 			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
+			for ( int i = 0; i < 5; i++ )
+			{
+				c.DropItem( Loot.RandomArty() );
+				c.DropItem( new EtherealPowerScroll() );
+			}
 			if ( Utility.RandomDouble() < 0.15 )
 			{
 				c.DropItem( new EternalPowerScroll() );
 			}
 
-			int amt = Utility.RandomMinMax( 3, 9 );
-			for ( int i = 0; i < amt; i++ )
-			{
-				c.DropItem( new EtherealPowerScroll() );
-			}
-		    // gold explosion
+			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 5 );
 		}
 

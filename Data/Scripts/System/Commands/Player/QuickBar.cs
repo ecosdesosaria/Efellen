@@ -97,7 +97,7 @@ namespace Server.Gumps
 			int throwCount = from.Backpack.GetAmount( typeof( ThrowingWeapon ), true );
 			int mageeyeCount = from.Backpack.GetAmount( typeof( MageEye ), true );
 			int ropeCount = from.Backpack.GetAmount( typeof( HarpoonRope ), true );
-			int krystalCount = from.Backpack.GetAmount( typeof( Krystal ), true );
+			int krystalCount = 0;
 
 			if ( from.FindItemOnLayer( Layer.Cloak ) != null )
 			{
@@ -111,7 +111,6 @@ namespace Server.Gumps
 						if ( arrow is ThrowingWeapon ){ throwCount = throwCount + arrow.Amount; }
 						if ( arrow is MageEye ){ mageeyeCount = mageeyeCount + arrow.Amount; }
 						if ( arrow is HarpoonRope ){ ropeCount = ropeCount + arrow.Amount; }
-						if ( arrow is Krystal ){ krystalCount = krystalCount + arrow.Amount; }
 					}
 				}
 			}

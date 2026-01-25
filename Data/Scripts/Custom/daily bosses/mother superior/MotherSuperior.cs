@@ -188,16 +188,28 @@ namespace Server.Mobiles
 		    return base.CanBeBeneficial(m, message, allowDead);
 		}
 
+		public override void OnThink()
+		{
+		    base.OnThink();
+
+		    Mobile combatant = this.Combatant;
+
+		    if (combatant == null || combatant.Deleted || !combatant.Alive)
+		        return;
+
+		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    {
+		        PerformRageAttack(combatant);
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(45 - (m_Rage * 2));
+		    }
+
+		    m_LastTarget = combatant;
+		}
+
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
 			
-			if ( m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack )
-			{
-				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 40 - (m_Rage * 2) );
-			}
-
 			if (from.Player && from.Kills < 5 && !from.Criminal) 
 				from.Criminal = true;	
 			
@@ -251,7 +263,7 @@ namespace Server.Mobiles
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
-			int chance = m_Rage * 7;
+			int chance = m_Rage * 8;
 			reflect = ( Utility.Random(100) < chance );
 		}
 
@@ -308,14 +320,8 @@ namespace Server.Mobiles
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
-
 			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
-
-			int amt = Utility.RandomMinMax( 1, 2 );
-			for ( int i = 0; i < amt; i++ )
-			{
-				c.DropItem( new EtherealPowerScroll() );
-			}
+			c.DropItem( new EtherealPowerScroll() );
 			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 1 );
 		}

@@ -148,14 +148,33 @@ namespace Server.Mobiles
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
-			int chance = m_Rage * 16;
-			reflect = ( Utility.Random(100) < chance );
+			reflect = ( Utility.Random( 100 ) < m_Rage * 16 );
+		}
+
+		public override void OnThink()
+		{
+		    base.OnThink();
+
+		    Mobile combatant = this.Combatant;
+
+		    if (combatant == null || combatant.Deleted || !combatant.Alive)
+		        return;
+
+		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    {
+		        PerformRageAttack(combatant);
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(35 - (m_Rage * 2));
+		    }
+
+		    m_LastTarget = combatant;
 		}
 
 		public override void OnGotMeleeAttack( Mobile attacker )
 		{
 			base.OnGotMeleeAttack(attacker);
-			
+			if (Utility.RandomDouble() < 0.5 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, attacker );
+
 			if (Utility.Random(100) < 15 && DateTime.UtcNow >= m_NextTailSwipe)
 			{
 				PerformTailSwipe();
@@ -267,18 +286,9 @@ namespace Server.Mobiles
 			base.OnDeath( c );
 
 			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
-			c.DropItem( Loot.RandomArty() );
-			if ( Utility.RandomDouble() < 0.15 )
+			for ( int i = 0; i < 4; i++ )
 			{
-				c.DropItem( new EternalPowerScroll() );
-			}
-
-			int amt = Utility.RandomMinMax( 3, 9 );
-			for ( int i = 0; i < amt; i++ )
-			{
+				c.DropItem( Loot.RandomArty() );
 				c.DropItem( new EtherealPowerScroll() );
 			}
 			// gold explosion
