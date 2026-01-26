@@ -45,6 +45,10 @@ namespace Server.Mobiles
 		{
 		    base.OnDeath(c);
 		    BossLootSystem.BossEnchant(this, c, 500, 10, 1, "DrowBlackGuard");
+			if (Utility.RandomDouble() < 0.02)
+    		{
+    		    c.DropItem(new EssenceOfLolthsHatred());
+    		}
 		}
 
 		public override bool ClickTitle{ get{ return false; } }
@@ -149,7 +153,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich, 3 );
+			AddLoot( LootPack.Rich, 1 );
 		}
 
 		public DrowGuard( Serial serial ) : base( serial )

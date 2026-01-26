@@ -16,7 +16,7 @@ namespace Server.Items
         public MarksOfTheShadowbroker(int amount) : base(0x2ff8)
         {
             Stackable = true;
-            Weight = 0.1;
+            Weight = 0.01;
             Hue = 0x455;
             Amount = amount;
             Name = "Mark of the Shadow Broker";

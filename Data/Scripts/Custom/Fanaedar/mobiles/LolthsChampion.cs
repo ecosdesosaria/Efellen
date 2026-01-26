@@ -82,6 +82,15 @@ namespace Server.Mobiles
 		{
 		}
 
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+			if (Utility.RandomDouble() < 0.04)
+    		{
+    		    c.DropItem(new EssenceOfLolthsHatred());
+    		}
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );

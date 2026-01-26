@@ -300,6 +300,8 @@ namespace Server.Mobiles
 				c.DropItem( Loot.RandomArty() );
 				c.DropItem( new EtherealPowerScroll() );
 			}
+			int amount = Utility.Random(3,6);
+			c.DropItem(new EssenceOfLolthsHatred(amount));
 			// gold explosion
 			RichesSystem.SpawnRiches( m_LastTarget, 4 );
             // wildshape totem

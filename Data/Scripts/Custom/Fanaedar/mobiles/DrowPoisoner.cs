@@ -59,12 +59,16 @@ namespace Server.Mobiles
 		public override void OnDeath(Container c)
 		{
 		    base.OnDeath(c);
+			if (Utility.RandomDouble() < 0.04)
+    		{
+    		    c.DropItem(new EssenceOfLolthsHatred());
+    		}
 		    BossLootSystem.BossEnchant(this, c, 450, 10, 1, "DrowMage");
 		}
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich, 2 );
+			AddLoot( LootPack.Rich, 1 );
 			AddLoot( LootPack.MedPotions, 2 );
 		}
 

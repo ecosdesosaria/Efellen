@@ -69,6 +69,15 @@ namespace Server.Mobiles
 				AddItem( Venom );
 		}
 
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+			if (Utility.RandomDouble() < 0.02)
+    		{
+    		    c.DropItem(new EssenceOfLolthsHatred());
+    		}
+		}
+
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.Rich );
