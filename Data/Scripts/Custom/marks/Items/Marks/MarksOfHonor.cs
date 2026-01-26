@@ -14,11 +14,13 @@ namespace Server.Items
         public MarksOfHonor(int amount) : base(0xFF5)
         {
             Stackable = true;
-            Weight = 0.1;
+            Weight = 0.01;
             Hue = 0x35;
             Amount = amount;
             Name = "Mark of Honor";
         }
+
+                public override string DefaultDescription{ get{ return "A Mark of Honor represents your commitment to all that is good. It can be aqquired by  while defeating their enemies, specially those that do terrible deeds in the name of all that is evil. The Defender of the realm can offer many boons for those that would speak of rewards with them in exchange for these marks."; } }
 
         public MarksOfHonor(Serial serial) : base(serial)
         {

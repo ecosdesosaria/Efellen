@@ -16,7 +16,7 @@ namespace Server.Items
         public MarksOfDevotion(int amount) : base(0x2ff8)
         {
             Stackable = true;
-            Weight = 0.1;
+            Weight = 0.01;
             Hue = 0x9C2;
             Amount = amount;
             Name = "Mark of Devotion";

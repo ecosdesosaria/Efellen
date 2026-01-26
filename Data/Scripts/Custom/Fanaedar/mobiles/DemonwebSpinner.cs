@@ -72,6 +72,11 @@ namespace Server.Mobiles
 		{
 		    base.OnDeath(c);
 
+			if (Utility.RandomDouble() < 0.07)
+    		{
+    		    c.DropItem(new EssenceOfLolthsHatred());
+    		}
+
 		    Mobile killer = this.LastKiller;
 
 		    TotemDropHelper.TryDropTotem(

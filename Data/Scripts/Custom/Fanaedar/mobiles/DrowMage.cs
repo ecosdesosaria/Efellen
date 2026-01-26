@@ -68,7 +68,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich, 2 );
+			AddLoot( LootPack.Rich, 1 );
 			AddLoot( LootPack.MedScrolls, 2 );
 			AddLoot( LootPack.MedPotions );
 		}
@@ -100,6 +100,10 @@ namespace Server.Mobiles
 		{
 		    base.OnDeath(c);
 		    BossLootSystem.BossEnchant(this, c, 400, 10, 1, "DrowMage");
+			if (Utility.RandomDouble() < 0.04)
+    		{
+    		    c.DropItem(new EssenceOfLolthsHatred());
+    		}
 		}
 
 		public override void OnGaveMeleeAttack( Mobile defender )

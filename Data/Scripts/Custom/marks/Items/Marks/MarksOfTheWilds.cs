@@ -16,7 +16,7 @@ namespace Server.Items
         public MarksOfTheWilds(int amount) : base(0x2ff8)
         {
             Stackable = true;
-            Weight = 0.1;
+            Weight = 0.01;
             Hue = 669;
             Amount = amount;
             Name = "Mark of the Wilds";

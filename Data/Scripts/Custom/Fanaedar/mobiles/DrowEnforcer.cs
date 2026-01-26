@@ -78,11 +78,15 @@ namespace Server.Mobiles
 		{
 		    base.OnDeath(c);
 		    BossLootSystem.BossEnchant(this, c, 500, 10, 1, "DrowBard");
+			if (Utility.RandomDouble() < 0.03)
+    		{
+    		    c.DropItem(new EssenceOfLolthsHatred());
+    		}
 		}
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich, 2 );
+			AddLoot( LootPack.Rich, 1 );
 			AddLoot( LootPack.Songs );
 		}
 

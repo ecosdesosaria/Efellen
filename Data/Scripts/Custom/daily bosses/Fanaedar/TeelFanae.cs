@@ -318,7 +318,8 @@ namespace Server.Mobiles
 			{
 				c.DropItem( new EternalPowerScroll() );
 			}
-
+			int amount = Utility.Random(6,12);
+			c.DropItem(new EssenceOfLolthsHatred(amount));
 			RichesSystem.SpawnRiches( m_LastTarget, 5 );
 
 			base.OnDeath( c );

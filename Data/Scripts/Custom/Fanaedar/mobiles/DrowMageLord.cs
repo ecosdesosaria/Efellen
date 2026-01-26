@@ -78,7 +78,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich, 2 );
+			AddLoot( LootPack.Rich, 1 );
 			AddLoot( LootPack.HighScrolls, 1 );
 			AddLoot( LootPack.MedScrolls, 2 );
 		}
@@ -102,6 +102,11 @@ namespace Server.Mobiles
 		public override void OnDeath(Container c)
 		{
 		    base.OnDeath(c);
+			if (Utility.RandomDouble() < 0.05)
+    		{
+    		    c.DropItem(new EssenceOfLolthsHatred());
+    		}
+		
 		    BossLootSystem.BossEnchant(this, c, 500, 15, 1, "DrowMage");
 		}
 

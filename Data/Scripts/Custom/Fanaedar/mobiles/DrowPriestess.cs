@@ -55,7 +55,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich, 3 );
+			AddLoot( LootPack.Rich, 2 );
 			AddLoot( LootPack.HighPotions, 2 );
 		}
 
@@ -71,6 +71,10 @@ namespace Server.Mobiles
 		public override void OnDeath(Container c)
 		{
 		    base.OnDeath(c);
+			if (Utility.RandomDouble() < 0.07)
+    		{
+    		    c.DropItem(new EssenceOfLolthsHatred());
+    		}
 		    BossLootSystem.BossEnchant(this, c, 500, 20, 1, "DrowPriestess");
 		}
 
