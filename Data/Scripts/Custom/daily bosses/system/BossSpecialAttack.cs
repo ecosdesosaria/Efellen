@@ -1287,7 +1287,315 @@ namespace Server.Custom.DailyBosses.System
             }
         }
         #endregion
+        #region demonweb ritual
+          /// <summary>
+        /// Te'els ultimate - spawns spider webs, brings forth lightning, roots and summons nasty spiders
+        /// </summary>
+        /// <param name="boss">The boss performing the attack</param>
+        /// <param name="hue">Color hue for visual effects</param>
+        public static void PerformDemonWebRitual(
+            Mobile boss,
+            int hue)
+        {
+            if (boss == null || boss.Deleted || !boss.Alive || boss.Map == null)
+                return;
+
+            BaseCreature bc = boss as BaseCreature;
+
+            boss.PublicOverheadMessage(
+                MessageType.Regular,
+                hue,
+                false,
+                "Lolth, I give thee my everything! Destroy these interlopers!"
+            );
+
+            boss.PlaySound(0x20F);
+            boss.FixedParticles(0x376A, 10, 30, 5030, hue, 0, EffectLayer.Waist);
+
+            Map map = boss.Map;
+            Point3D center = boss.Location;
+
+            Timer.DelayCall(TimeSpan.FromSeconds(4.0), delegate
+            {
+                if (boss == null || boss.Deleted || !boss.Alive || boss.Map == null)
+                    return;
+
+                List<DemonWebTile> webs = new List<DemonWebTile>();
+
+                for (int i = 0; i < 16; i++)
+                {
+                    Point3D p = GetRandomEmptyTileNear(center, map, 6);
+
+                    if (p == Point3D.Zero)
+                        continue;
+
+                    DemonWebTile web = new DemonWebTile(p, map, boss, hue);
+                    web.MoveToWorld(p, map);
+                    webs.Add(web);
+                }
+
+                Timer.DelayCall(TimeSpan.FromSeconds(6.0), delegate
+                {
+                    if (boss == null || boss.Deleted || !boss.Alive || boss.Map == null)
+                        return;
+
+                    IPooledEnumerable eable = map.GetMobilesInRange(center, 6);
+
+                    foreach (Mobile m in eable)
+                    {
+                        if (m == null || m.Deleted || !m.Alive || !m.Player)
+                            continue;
+
+                        for (int i = 0; i < 2; i++)
+                        {
+                            Point3D spawn = FindAdjacentTile(m, map);
+                            if (spawn == Point3D.Zero)
+                                continue;
+                            BaseCreature s = new DemonwebSpinner();
+				            Point3D loc = GetSpawnLocation( bc,boss.Map );
+				            s.IsTempEnemy = true;
+				            s.MoveToWorld( loc, boss.Map );
+				         }
+                    }
+
+                    eable.Free();
+                });
+            });
+        }
+
+        #endregion
+        #region perform pull
+         /// <summary>
+        /// Pulls players close to the boss, paralyzes and optionally poisons them
+        /// </summary>
+        /// <param name="boss">The boss performing the attack</param>
+        /// <param name="warcry">Message displayed overhead when activated</param>
+        /// <param name="hue">Color hue for visual effects</param>
+        /// <param name="rage">Boss rage level, determines paralyze duration</param>
+        /// <param name="applyPoison">if true, deadly poison is applied</param>
+        public static void PerformPull(
+            Mobile boss,
+            string warcry,
+            int hue,
+            int rage,
+            bool applyPoison)
+        {
+            if (boss == null || boss.Deleted || !boss.Alive || boss.Map == null)
+                return;
+
+            boss.PublicOverheadMessage(MessageType.Regular, hue, false, warcry);
+            boss.PlaySound(0x1F3);
+            boss.FixedParticles(0x376A, 9, 32, 5030, hue, 0, EffectLayer.Waist);
+
+            Map map = boss.Map;
+            Point3D center = boss.Location;
+
+            Timer.DelayCall(TimeSpan.FromSeconds(4.0), delegate
+            {
+                if (boss == null || boss.Deleted || !boss.Alive || boss.Map == null)
+                    return;
+
+                IPooledEnumerable eable = map.GetMobilesInRange(center, 6);
+
+                foreach (Mobile m in eable)
+                {
+                    if (m == null || m.Deleted || !m.Alive)
+                        continue;
+
+                    if (!m.Player)
+                        continue;
+
+                    if (!boss.CanBeHarmful(m))
+                        continue;
+
+                    Point3D dest = FindAdjacentTile(boss, map);
+
+                    if (dest == Point3D.Zero)
+                        continue;
+
+                    Effects.SendMovingEffect(
+                        m,
+                        boss,
+                        0x3728,
+                        10,
+                        0,
+                        false,
+                        false,
+                        hue,
+                        0
+                    );
+
+                    m.MoveToWorld(dest, map);
+                    m.Paralyze(TimeSpan.FromSeconds(rage * 3));
+
+                    if (applyPoison)
+                        m.ApplyPoison(boss, Poison.Deadly);
+
+                    m.FixedParticles(0x3728, 10, 15, 5044, hue, 0, EffectLayer.Waist);
+                    m.PlaySound(0x204);
+                }
+                eable.Free();
+            });
+        }
+
+        #endregion
         #region helpers
+        private static Point3D GetRandomEmptyTileNear(Point3D center, Map map, int range)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                int x = center.X + Utility.RandomMinMax(-range, range);
+                int y = center.Y + Utility.RandomMinMax(-range, range);
+                int z = center.Z;
+
+                Point3D p = new Point3D(x, y, z);
+
+                if (map.CanFit(p, 16, false, false))
+                    return p;
+            }
+
+            return Point3D.Zero;
+        }
+
+        public class DemonWebTile : Item
+        {
+            private Mobile m_Boss;
+            private int m_Hue;
+            private Timer m_LightningTimer;
+
+            public DemonWebTile(Point3D loc, Map map, Mobile boss, int hue)
+                : base(0x10D3)
+            {
+                Movable = false;
+                Hue = hue;
+
+                m_Boss = boss;
+                m_Hue = hue;
+
+                MoveToWorld(loc, map);
+
+                m_LightningTimer = Timer.DelayCall(
+                    TimeSpan.FromSeconds(3.0),
+                    TimeSpan.FromSeconds(3.0),
+                    StrikeLightning
+                );
+                Timer.DelayCall(TimeSpan.FromSeconds(12.0), Delete);
+            }
+
+            public override bool OnMoveOver(Mobile m)
+            {
+                if (m == null || m.Deleted || !m.Alive || !m.Player)
+                    return true;
+
+                m.Paralyze(TimeSpan.FromSeconds(1));
+                return true;
+            }
+
+            private void StrikeLightning()
+            {
+                if (Deleted || Map == null)
+                {
+                    StopTimer();
+                    return;
+                }
+
+                IPooledEnumerable eable = GetMobilesInRange(0);
+
+                foreach (Mobile m in eable)
+                {
+                    if (m == null || m.Deleted || !m.Alive || !m.Player)
+                        continue;
+
+                    Effects.SendBoltEffect(m, true, m_Hue);
+
+                    int damage = Utility.RandomMinMax(75, 95);
+                    AOS.Damage(m, m_Boss, damage, 0, 0, 0, 50, 50);
+                }
+
+                eable.Free();
+            }
+
+            private void StopTimer()
+            {
+                if (m_LightningTimer != null)
+                {
+                    m_LightningTimer.Stop();
+                    m_LightningTimer = null;
+                }
+            }
+
+            public override void OnDelete()
+            {
+                StopTimer();
+                base.OnDelete();
+            }
+
+            public DemonWebTile(Serial serial) : base(serial)
+            {
+            }
+
+            public override void Serialize(GenericWriter writer)
+            {
+                base.Serialize(writer);
+                writer.Write((int)1); // version
+
+                writer.Write(m_Boss);
+                writer.Write(m_Hue);
+            }
+
+            public override void Deserialize(GenericReader reader)
+            {
+                base.Deserialize(reader);
+                int version = reader.ReadInt();
+
+                if (version >= 1)
+                {
+                    m_Boss = reader.ReadMobile();
+                    m_Hue = reader.ReadInt();
+                }
+
+                m_LightningTimer = Timer.DelayCall(
+                    TimeSpan.FromSeconds(3.0),
+                    TimeSpan.FromSeconds(3.0),
+                    StrikeLightning
+                );
+
+                Timer.DelayCall(TimeSpan.FromSeconds(12.0), Delete);
+            }
+        }
+
+
+        private static Point3D FindAdjacentTile(Mobile boss, Map map)
+        {
+            int x = boss.X;
+            int y = boss.Y;
+            int z = boss.Z;
+
+            for (int i = 0; i < 8; i++)
+            {
+                int dx = 0, dy = 0;
+
+                switch (i)
+                {
+                    case 0: dx = 1; break;
+                    case 1: dx = -1; break;
+                    case 2: dy = 1; break;
+                    case 3: dy = -1; break;
+                    case 4: dx = 1; dy = 1; break;
+                    case 5: dx = -1; dy = 1; break;
+                    case 6: dx = 1; dy = -1; break;
+                    case 7: dx = -1; dy = -1; break;
+                }
+
+                Point3D p = new Point3D(x + dx, y + dy, z);
+
+                if (map.CanFit(p, 16, false, false))
+                    return p;
+            }
+
+            return Point3D.Zero;
+        }
+
         /// <summary>
         /// Cross shaped AoE attack
         /// </summary>

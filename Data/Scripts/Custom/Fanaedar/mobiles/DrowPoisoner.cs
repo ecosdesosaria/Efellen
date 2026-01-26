@@ -57,10 +57,8 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Average );
-			AddLoot( LootPack.MedPotions );
-			AddLoot( LootPack.MedPotions );
-			AddLoot( LootPack.MedPotions );
+			AddLoot( LootPack.Rich, 2 );
+			AddLoot( LootPack.MedPotions, 2 );
 		}
 
 		public override bool ClickTitle{ get{ return false; } }

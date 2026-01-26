@@ -142,8 +142,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich );
-			AddLoot( LootPack.Rich );
+			AddLoot( LootPack.Rich, 3 );
 		}
 
 		public DrowGuard( Serial serial ) : base( serial )

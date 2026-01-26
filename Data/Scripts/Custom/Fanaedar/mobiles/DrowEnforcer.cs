@@ -69,7 +69,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich );
+			AddLoot( LootPack.Rich, 2 );
 			AddLoot( LootPack.Songs );
 		}
 
