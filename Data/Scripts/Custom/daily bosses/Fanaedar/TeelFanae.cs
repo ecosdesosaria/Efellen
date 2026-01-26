@@ -124,6 +124,15 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 8 );
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			if (Utility.RandomDouble() < 0.75 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
+			base.OnDamage( amount, from, willKill );
+		}
+
 		private void MakeSpellChanneling(Item item)
 		{
 		    if (item == null)
@@ -297,6 +306,8 @@ namespace Server.Mobiles
 
 		public override void OnDeath( Container c )
 		{
+
+		    BossLootSystem.BossEnchant(this, c, 650, 100, 4, "DrowPriestess");
 			BossLootSystem.AwardBossSpecial( this, BossDrops, 15 );
 			for ( int i = 0; i < 5; i++ )
 			{

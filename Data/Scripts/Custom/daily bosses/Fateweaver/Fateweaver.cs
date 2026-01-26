@@ -63,7 +63,7 @@ namespace Server.Mobiles
 			BaseSoundID = 0x388;
 			NameHue = 0x22;
 			Hue = 2498;
-            Title = "The Talon of Lolth";
+            Title = "The Mirrorbreaker";
 			
 			SetStr( 796, 1085 );
 			SetDex( 275 );
@@ -141,6 +141,16 @@ namespace Server.Mobiles
 		    }
 
 		    m_LastTarget = combatant;
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			//higher chance than average from her tier because the weaver is jumpy
+			if (Utility.RandomDouble() < 0.85 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
+			base.OnDamage( amount, from, willKill );
 		}
 
       	private void PerformRageAttack( Mobile target )
@@ -260,7 +270,7 @@ namespace Server.Mobiles
 				Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma > 0)
             	{
-            	    int marks = Utility.RandomMinMax(21, 47);
+            	    int marks = Utility.RandomMinMax(156, 223);
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
             	}
 			}

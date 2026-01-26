@@ -143,6 +143,15 @@ namespace Server.Mobiles
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
+		
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			if (Utility.RandomDouble() < 0.50 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
+			base.OnDamage( amount, from, willKill );
+		}
 
 		public override void OnThink()
 		{
@@ -358,7 +367,7 @@ namespace Server.Mobiles
 				Mobile killer = this.LastKiller;
 				if ( killer != null && killer.Player && killer.Karma > 0 )
             	{
-            	    int marks = Utility.RandomMinMax( 21, 47 );
+            	    int marks = Utility.RandomMinMax( 156, 223 );
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks( killer, 1, marks );
             	}
 			}
@@ -380,15 +389,7 @@ namespace Server.Mobiles
 
 		public override void OnDeath( Container c )
 		{
-			Item weapon = new Whips();
-			BossLootSystem.BossEnchant(this, 550, weapon, 100);
-			weapon.Hue = Utility.RandomDrowHue();
-			c.DropItem(weapon);
-
-			Item shield = new DarkShield();
-			BossLootSystem.BossEnchant(this, 550, shield, 100);
-			shield.Hue = Utility.RandomDrowHue();
-			c.DropItem(shield);
+		    BossLootSystem.BossEnchant(this, c, 550, 100, 3, "DrowPriestess");
 
 			BossLootSystem.AwardBossSpecial( this, BossDrops, 15 );
 			for ( int i = 0; i < 4; i++ )

@@ -5,6 +5,7 @@ using Server.ContextMenus;
 using Server.Misc;
 using Server.Network;
 using Server.Regions;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -14,7 +15,7 @@ namespace Server.Mobiles
 		public DrowGuard() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			SpeechHue = Utility.RandomTalkHue();
-			Title = "the Drow Guard";
+			Title = "the Drow Blackguard";
 			Hue = 1316;
 			Body = 605;
 			Name = NameList.RandomName( "dark_elf_prefix_male" )  +" "+  NameList.RandomName( "dark_elf_suffix_male" );
@@ -38,6 +39,12 @@ namespace Server.Mobiles
 
 			Fame = 16000;
 			Karma = -16000;
+		}
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+		    BossLootSystem.BossEnchant(this, c, 500, 10, 1, "DrowBlackGuard");
 		}
 
 		public override bool ClickTitle{ get{ return false; } }

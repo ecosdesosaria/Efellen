@@ -272,7 +272,7 @@ namespace Server.Mobiles
 				Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma > 0)
             	{
-            	    int marks = Utility.RandomMinMax(31, 71);
+            	    int marks = Utility.RandomMinMax(70, 90);
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
             	}
 			}
@@ -288,6 +288,15 @@ namespace Server.Mobiles
 		        m_Summons = null;
 		    }
 		    base.OnDelete();
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			if (Utility.RandomDouble() < 0.30 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+			
+			base.OnDamage( amount, from, willKill );
 		}
 
 		public override void OnDeath( Container c )

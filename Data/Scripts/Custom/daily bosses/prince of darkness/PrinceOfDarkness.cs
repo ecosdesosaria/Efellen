@@ -115,7 +115,7 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.5 )
+			if (Utility.RandomDouble() < 0.75 )
 				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
 			base.OnDamage( amount, from, willKill );
