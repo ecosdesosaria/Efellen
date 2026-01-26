@@ -19,31 +19,29 @@ using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Annath's Corpse" )]
-	public class Annath : BaseSpellCaster
+	[CorpseName( "TeelFanae's Corpse" )]
+	public class TeelFanae : BaseSpellCaster
 	{		
 		private static readonly Type[] SummonTypes = new Type[] 
-		{ 
-			typeof(LolthsBrood), 
-			typeof(LolthsChampion), 
-			typeof(LolthsChosen)
+		{  
+			typeof(Succubus), 
+			typeof(LolthsChosen),
+			typeof(DemonwebSpinner)
 		};
 
 		private static readonly string[] SummonWarcries = new string[]
 		{
-			"Lolth, I call thee!",
-			"Webspinner, bring forth thy ruin!",
-			"Fanaedar shall be thy grave eternal!",
-			"To the Demonweb with thee!"
+			"Lolth guides my hand!",
+			"The hosts of the demomweb come for thee!",
+			"Long shall be thy suffering!",
+			"Lolth, answer thy daughter!"
 		};
 
 		private static readonly List<Type> BossDrops = new List<Type>
     	{
-            typeof(Artifact_LolthsCaressingChoker),
-            typeof(Artifact_LolthsEnduringApathy),
-			typeof(Artifact_LolthsObstination),
-			typeof(Artifact_LolthsDomination),
-			typeof(Artifact_LolthsHunger)
+            typeof(Artifact_BookOfVileDarkness),
+            typeof(Artifact_LolthsAbsoluteWill),
+			typeof(Artifact_WebOfDominion)
     	};
 
 		private int m_Rage;
@@ -53,48 +51,54 @@ namespace Server.Mobiles
 		private List<BaseCreature> m_Summons;
 
 		[Constructable]
-		public Annath () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
+		public TeelFanae () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "Annath";
+			Name = "Te'el Fanae";
             Body = 606; 
 			Utility.AssignRandomHair( this );
 			NameHue = 0x22;
-			Title = "The Shroud of the Lightless";
+			Title = "The Voice of Lolth";
             HairHue = 1150;
 			Hue = 1316;
 			EmoteHue = 11;
 			
-			SetStr( 596, 785 );
-			SetDex( 165, 225 );
-			SetInt( 556, 655 );
-			SetHits( 10000 );
-			SetDamage( 11, 15 );
+			SetStr( 896, 985 );
+			SetDex( 125, 175 );
+			SetInt( 586, 675 );
+
+			SetHits( 19000 );
+			SetDamage( 11, 16 );
+
 			SetDamageType( ResistanceType.Physical, 50 );
 			SetDamageType( ResistanceType.Poison, 50 );
-			SetResistance( ResistanceType.Physical, 45 );
+			SetResistance( ResistanceType.Physical, 55 );
 			SetResistance( ResistanceType.Fire, 70 );
 			SetResistance( ResistanceType.Cold, 70 );
 			SetResistance( ResistanceType.Poison, 70 );
 			SetResistance( ResistanceType.Energy, 70 );
-			SetSkill( SkillName.Meditation, 102.5, 125.0 );
-			SetSkill( SkillName.MagicResist, 125.5, 145.0 );
-			SetSkill( SkillName.Tactics, 101.0, 110.0 );
-			SetSkill( SkillName.FistFighting, 91.0 );
-			SetSkill( SkillName.Bludgeoning, 101.0, 111.0 );
-			SetSkill( SkillName.Magery, 101.0, 110.0 );
-			SetSkill( SkillName.Psychology, 101.0, 110.0 );
 
-			Fame = 30000;
-			Karma = -30000;
-			VirtualArmor = 50;
+			SetSkill( SkillName.Meditation, 112.5, 125.0 );
+			SetSkill( SkillName.MagicResist, 155.0 );
+			SetSkill( SkillName.Tactics, 110.0 );
+			SetSkill( SkillName.FistFighting, 115.0 );
+			SetSkill( SkillName.Bludgeoning, 115.0 );
+			SetSkill( SkillName.Magery, 120.0 );
+			SetSkill( SkillName.Psychology, 120.0 );
+
+			Fame = 35000;
+			Karma = -35000;
+			VirtualArmor = 60;
             int drowhue = Utility.RandomDrowHue();
+
+			if ( Backpack == null )
+				AddItem( new Backpack() );
 
             AddItem( new SpiderRobe{ Hue = drowhue } );
             AddItem( new Sandals{ Hue = drowhue } );
 
 			Item weapon = null;
 		    Item shield = null;
-			weapon = new Whips();
+			weapon = new Scepter();
 			shield = new DarkShield();
 		    if (weapon != null)
 		    {
@@ -117,7 +121,16 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.UltraRich, 6 );
+			AddLoot( LootPack.UltraRich, 8 );
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			if (Utility.RandomDouble() < 0.75 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
+			base.OnDamage( amount, from, willKill );
 		}
 
 		private void MakeSpellChanneling(Item item)
@@ -136,22 +149,13 @@ namespace Server.Mobiles
 		}
 
         public override bool AlwaysAttackable{ get{ return true; } }
-		public override int TreasureMapLevel{ get{ return 4; } }
+		public override int TreasureMapLevel{ get{ return 5; } }
 		public override bool CanRummageCorpses{ get{ return false; } }
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
-		
-		public override void OnDamage( int amount, Mobile from, bool willKill )
-		{
-			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.50 )
-				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
-
-			base.OnDamage( amount, from, willKill );
-		}
 
 		public override void OnThink()
 		{
@@ -172,13 +176,13 @@ namespace Server.Mobiles
 		        m_Summons,
 		        1316,
 		        GetMaxSummons(),
-		        35
+		        30
 		    );
 
 		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(35 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(30 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -194,133 +198,46 @@ namespace Server.Mobiles
 			switch ( attackChoice )
 			{
 				case 1:
-					RallyMinions();
-					break;
+					BossSpecialAttack.PerformPull(
+                        this,
+                        "Spider Queen, I offer thee a sacrifice!",
+                        1316,
+                        m_Rage,
+                        true
+                    );
+            	break;
 				case 2:
-					BossSpecialAttack.PerformDegenAura( this, "By my goddess and by church, thou shall perish!", 8, m_Rage, 16, 29, "health", 1316 );
+					BossSpecialAttack.SummonHonorGuard(
+                        boss: this,
+                        target: target,
+                        warcry: "Come hither, Lolth's favored!",
+                        amount: 4+m_Rage,
+                        creatureType: typeof(DemonwebSpinner),
+                        hue: 0x845
+                    );
 					break;
 				case 3:
-					BossSpecialAttack.PerformSlam(
+					BossSpecialAttack.PerformDemonWebRitual(
                        boss: this,
-                       warcry: "Lolth smites thee!",
-                       hue: 1316,
-                       rage: m_Rage,
-                       range: 6,
-                       physicalDmg: 100
-                   );
+                       hue: 1316
+                    );
 					break;
 			}
 		}
-		public void RallyMinions()
-		{
-		    if (Combatant == null)
-		        return;
-
-			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth, nurture thy children!" );
-
-		    PlaySound(0x1FB);
-		    PlaySound(0x5C3);
-
-		    FixedEffect(0x37C4, 10, 30, 0x496, 0);
-		    Effects.SendLocationEffect(Location, Map, 0x3709, 20, 10, 0x496, 0);
-
-		    for(int i = 0; i < 8; i++)
-		    {
-		        int xOffset = 0;
-		        int yOffset = 0;
-
-		        switch(i)
-		        {
-		            case 0: xOffset = 6; yOffset = 0; break;
-		            case 1: xOffset = -6; yOffset = 0; break;
-		            case 2: xOffset = 0; yOffset = 6; break;
-		            case 3: xOffset = 0; yOffset = -6; break;
-		            case 4: xOffset = 4; yOffset = 4; break;
-		            case 5: xOffset = -4; yOffset = 4; break;
-		            case 6: xOffset = 4; yOffset = -4; break;
-		            case 7: xOffset = -4; yOffset = -4; break;
-		        }
-
-		        Point3D waveLoc = new Point3D(X + xOffset, Y + yOffset, Z);
-		        Effects.SendLocationEffect(waveLoc, Map, 0x3728, 15, 10, 0x496, 0);
-		    }
-
-		    IPooledEnumerable eable = Map.GetMobilesInRange(Location, 8);
-
-		    foreach (Mobile m in eable)
-		    {
-		        if (m == null || m == this || m.Deleted)
-		            continue;
-
-		        bool isMinion = false;
-		        Type mType = m.GetType();
-
-		        for(int i = 0; i < SummonTypes.Length; i++)
-		        {
-		            if (mType == SummonTypes[i])
-		            {
-		                isMinion = true;
-		                break;
-		            }
-		        }
-
-		        if (!isMinion)
-		            continue;
-
-		        Effects.SendMovingEffect(this, m, 0x374A, 10, 0, false, false, 0x496, 0);
-
-		        Timer.DelayCall(TimeSpan.FromSeconds(0.3), new TimerStateCallback(HealMinion), m);
-		    }
-
-		    eable.Free();
-
-		    int healAmount = m_Rage * 150;
-		    Hits = Math.Min(HitsMax, Hits + healAmount);
-
-		    FixedEffect(0x376A, 10, 16, 0x496, 0);
-		    PlaySound(0x202);
-		}
-
-		private void HealMinion(object state)
-		{
-		    if (Deleted)
-		        return;
-
-		    Mobile m = state as Mobile;
-
-		    if (m == null || m.Deleted)
-		        return;
-
-		    m.Hits = m.HitsMax;
-
-		    m.FixedEffect(0x376A, 10, 16, 0x496, 0);
-		    m.FixedEffect(0x3779, 10, 20, 0x496, 0);
-		    m.PlaySound(0x202);
-
-		    if (Combatant != null && !Combatant.Deleted)
-		        m.Combatant = Combatant;
-
-		    for(int i = 0; i < 4; i++)
-		    {
-		        int xOffset = Utility.RandomMinMax(-1, 1);
-		        int yOffset = Utility.RandomMinMax(-1, 1);
-		        Point3D energyLoc = new Point3D(m.X + xOffset, m.Y + yOffset, m.Z);
-		        Effects.SendLocationEffect(energyLoc, m.Map, 0x3709, 10, 10, 0x496, 0);
-		    }
-		}
+		
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
-			reflect = ( Utility.Random( 100 ) < m_Rage * 16 );
+			reflect = ( Utility.Random( 100 ) < m_Rage * 20 );
 		}
 
 		private int GetMaxSummons()
 		{
 			switch ( m_Rage )
 			{
-				case 1: return 12;
-				case 2: return 10;
-				case 3: return 8;
-				default: return 8;
+				case 1: return 10;
+				case 2: return 8;
+				case 3: return 6;
+				default: return 6;
 			}
 		}
 
@@ -328,7 +245,7 @@ namespace Server.Mobiles
 		{
 			if ( m_Rage == 0 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth, bring me hatred!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Delightful guest, have a taste of Lolth's hospitality!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -339,7 +256,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 1 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth, bring me ruin!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "This is my city, my house! In here my will is supreme!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -350,7 +267,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 2 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth, bring me vengeance!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth, prepare for the feast!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -363,11 +280,11 @@ namespace Server.Mobiles
 			{
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth will be the end of you!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth will have you answer for this insolence!" );
 				Mobile killer = this.LastKiller;
 				if ( killer != null && killer.Player && killer.Karma > 0 )
             	{
-            	    int marks = Utility.RandomMinMax( 156, 223 );
+            	    int marks = Utility.RandomMinMax( 231, 347 );
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks( killer, 1, marks );
             	}
 			}
@@ -389,16 +306,20 @@ namespace Server.Mobiles
 
 		public override void OnDeath( Container c )
 		{
-		    BossLootSystem.BossEnchant(this, c, 550, 100, 3, "DrowPriestess");
 
+		    BossLootSystem.BossEnchant(this, c, 650, 100, 4, "DrowPriestess");
 			BossLootSystem.AwardBossSpecial( this, BossDrops, 15 );
-			for ( int i = 0; i < 4; i++ )
+			for ( int i = 0; i < 5; i++ )
 			{
  	           	c.DropItem( Loot.RandomArty() );				
 				c.DropItem( new EtherealPowerScroll() );
 			}
+			if ( Utility.RandomDouble() < 0.25 )
+			{
+				c.DropItem( new EternalPowerScroll() );
+			}
 
-			RichesSystem.SpawnRiches( m_LastTarget, 4 );
+			RichesSystem.SpawnRiches( m_LastTarget, 5 );
 
 			base.OnDeath( c );
 		}
@@ -406,11 +327,11 @@ namespace Server.Mobiles
 		public override void OnAfterSpawn()
 		{
 			base.OnAfterSpawn();
-			this.MobileMagics(7, SpellType.Cleric, 1316);
+			this.MobileMagics(8, SpellType.Cleric, 1316);
 			LeechImmune = true;
 		}
 
-		public Annath( Serial serial ) : base( serial )
+		public TeelFanae( Serial serial ) : base( serial )
 		{
 		}
 
@@ -436,7 +357,7 @@ namespace Server.Mobiles
 			}
 			if(version>=2)
 			{
-				this.MobileMagics(7, SpellType.Cleric, 1316);
+				this.MobileMagics(8, SpellType.Cleric, 1316);
 			}
 			LeechImmune = true;
 

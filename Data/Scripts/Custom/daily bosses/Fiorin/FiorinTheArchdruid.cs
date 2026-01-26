@@ -187,7 +187,9 @@ namespace Server.Mobiles
 		{
 			if (from != null && from.Player && !from.Criminal) 
 				from.Criminal = true;	
-			
+			if (Utility.RandomDouble() < 0.30 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
 			base.OnDamage( amount, from, willKill );
 		}
 
@@ -341,7 +343,7 @@ namespace Server.Mobiles
 				Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma > 0)
             	{
-            	    int marks = Utility.RandomMinMax(31, 71);
+            	    int marks = Utility.RandomMinMax(70, 90);
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 0, marks);
 					Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 3, marks);
             	}

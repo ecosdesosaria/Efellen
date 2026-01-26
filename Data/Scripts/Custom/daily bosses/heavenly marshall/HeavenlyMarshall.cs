@@ -210,6 +210,9 @@ namespace Server.Mobiles
 			m_LastTarget = from;
 			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
+			if (Utility.RandomDouble() < 0.75 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+			
 			if (from.Player && from.Kills < 5 && !from.Criminal) 
 				from.Criminal = true;		
 		

@@ -16,7 +16,7 @@ namespace Server.SpellEffects
 
             Item hand = caster.FindItemOnLayer(Layer.TwoHanded);
             
-            if (!(hand is Artifact_StaffOfTheMagi) || !(hand is Artifact_StaffOfPower))
+            if (!(hand is Artifact_StaffOfTheMagi) || !(hand is Artifact_StaffOfPower) || !(hand is Artifact_XyrtaxisBlackReach))
                 return;
 
             double magery = caster.Skills.Magery.Value;

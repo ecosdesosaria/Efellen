@@ -19,49 +19,31 @@ using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Kamina's Corpse" )]
-	public class BalTsareth : BaseSpellCaster
+	[CorpseName( "Xyrtaxis's Corpse" )]
+	public class Xyrtaxis : BaseSpellCaster
 	{		
-		private static readonly Type[] SummonTypes = new Type[] 
-		{ 
-			typeof(Imp), 
-			typeof(AnyElemental), 
-			typeof(AnyGemElemental) 
-		};
-
-		private static readonly string[] SummonWarcries = new string[]
-		{
-			"The weave answers to me!",
-			"My magic has outlasted civilizations, taste it!",
-			"This is MY HOME! MINE!",
-			"I've forgotten magic that your civilization is yet to learn!"
-		};
-
 		private static readonly List<Type> BossDrops = new List<Type>
     	{
-    	    typeof(Artifact_PrismaticRobeOfBalTsareth),
-    	    typeof(Artifact_PrismaticGlassesOfBalTsareth),
-    	    typeof(Artifact_PrismaticCapeOfBalTsareth),
-    	    typeof(Artifact_PrismaticBootsOfBalTsareth),
-            typeof(Artifact_PrismaticRingOfBalTsareth)
+    	    typeof(Artifact_GrimoireOfTheDemonweb),
+            typeof(Artifact_LolthsUnendingFlow),
+            typeof(Artifact_XyrtaxisBlackReach)
     	};
 
 		private int m_Rage;
 		private Mobile m_LastTarget;
-		private DateTime m_NextSummonTime;
 		private DateTime m_NextSpecialAttack;
-		private List<BaseCreature> m_Summons;
-
+		
 		[Constructable]
-		public BalTsareth () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
+		public Xyrtaxis () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "Bal Tsareth";
-            Body = 401; 
+			SpeechHue = Utility.RandomTalkHue();
+			Hue = 1316;
+			Body = 605;
+			Name = "Xyrtaxis";
 			Utility.AssignRandomHair( this );
-			HairHue = Utility.RandomHairHue();
-            Hue = Utility.RandomSkinHue(); 
+			HairHue = 1150;
 			NameHue = 0x22;
-			Title = "The Ancient Lorekeeper";
+			Title = "The Dean of the Black Arts";
 			
 			SetStr( 596, 785 );
 			SetDex( 165, 225 );
@@ -84,21 +66,20 @@ namespace Server.Mobiles
 			SetSkill( SkillName.FistFighting, 91.0 );
 			SetSkill( SkillName.Bludgeoning, 101.0, 111.0 );
 			SetSkill( SkillName.Magery, 101.0, 110.0 );
+			SetSkill( SkillName.Necromancy, 101.0, 110.0 );
+			SetSkill( SkillName.Spiritualism, 101.0, 110.0 );
 			SetSkill( SkillName.Psychology, 101.0, 110.0 );
 
 			Fame = 30000;
 			Karma = -30000;
 			VirtualArmor = 50;
 
-			PackItem( new EerieIdol(Utility.Random(12,26)) );
-            AddItem( new ScholarRobe{ Hue = 0x0213 } );
+		    AddItem( new ScholarRobe{ Hue = 0x0213 } );
             AddItem( new Sandals{ Hue = 0x0213 } );
             AddItem( new BlackStaff{ Hue = 0x0213 } );
 
-            m_NextSummonTime = DateTime.MinValue;
-			m_NextSpecialAttack = DateTime.MinValue;
-			m_Summons = new List<BaseCreature>();
-          }
+        	m_NextSpecialAttack = DateTime.MinValue;
+		  }
 
 		public override void GenerateLoot()
 		{
@@ -114,25 +95,11 @@ namespace Server.Mobiles
 		    if (combatant == null || combatant.Deleted || !combatant.Alive)
 		        return;
 
-		    BossSummonSystem.TrySummonCreature(
-		        this,
-		        combatant,
-		        SummonTypes,
-		        m_Rage,
-		        ref m_NextSummonTime,
-		        SummonWarcries,
-		        m_Summons,
-		        1316,
-		        GetMaxSummons(),
-		        35
-		    );
-
 		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(35 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(15 - (m_Rage * 2));
 		    }
-
 		    m_LastTarget = combatant;
 		}
 
@@ -148,7 +115,7 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.25 )
+			if (Utility.RandomDouble() < 0.35 )
 				TryWeaveStep();
 
 			base.OnDamage( amount, from, willKill );
@@ -189,27 +156,31 @@ namespace Server.Mobiles
 			switch ( attackChoice )
 			{
 				case 1:
-					BossSpecialAttack.PerformSlam( this, "MINE! ALL OF THESE SECRETS ARE MINE!", 0x0213, m_Rage, 6, 20, 20, 20, 20, 20 );
+                    BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						m_Rage,
+						"You will regret this interruption!",
+						1316,  // hue
+						20,     // physical
+						20,   // fire
+						20,     // cold
+						20,     // poison
+						20      // energy
+					);
 					break;
 				case 2:
-					BossSpecialAttack.PerformDegenAura( this, "You dare to attack me? ME? IN MY HOME?", 8, m_Rage, 16, 29, "mana", 0x0213 );
+					BossSpecialAttack.PerformDegenAura( this, "I shall unravel you!", 8, m_Rage, 16, 29, "mana", 0x0213 );
 					break;
 				case 3:
-					Type summonType;
-					switch ( Utility.Random( 3 ) )
-					{
-						case 0:
-							summonType = typeof( IceGiant );
-							break;
-						case 1:
-							summonType = typeof( StormGiant );
-							break;
-						default:
-							summonType = typeof( LavaGiant );
-							break;
-					}
-
-					BossSpecialAttack.SummonHonorGuard( this, target, "The elements are mine! I unravelled their secrets before your kingdom was born!", m_Rage, summonType, 0x0213 );
+                    BossSpecialAttack.PerformEntangle(
+        			    boss: this,
+        			    warcry: "Bleed for Lolth!",
+        			    hue: 1316,
+        			    rage: m_Rage,
+        			    range: 8,
+        			    bleedLevel: 10  // 20-30 damage per tick
+        			);
 					break;
 			}
 		}
@@ -219,22 +190,11 @@ namespace Server.Mobiles
 			reflect = ( Utility.Random( 100 ) < m_Rage * 16 );
 		}
 
-		private int GetMaxSummons()
-		{
-			switch ( m_Rage )
-			{
-				case 1: return 8;
-				case 2: return 7;
-				case 3: return 6;
-				default: return 6;
-			}
-		}
-
 		public override bool OnBeforeDeath()
 		{
 			if ( m_Rage == 0 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "You will forever guard my tomb!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Must I be interrupted at every time?!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -245,7 +205,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 1 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Surrender your mind to me!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Your optimism is so touching!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -256,7 +216,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 2 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "I WILL DESTROY YOU!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "This is beyond my attention!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -269,7 +229,7 @@ namespace Server.Mobiles
 			{
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "I shall rise again...in another thousand years..." );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "You...You killed...me?" );
 				Mobile killer = this.LastKiller;
 				if ( killer != null && killer.Player && killer.Karma > 0 )
             	{
@@ -281,40 +241,27 @@ namespace Server.Mobiles
 			return base.OnBeforeDeath();
 		}
 
-		public override void OnDelete()
-		{
-		    if (m_Summons != null)
-		    {
-		        BossSummonSystem.CleanupSummons(m_Summons);
-		        m_Summons.Clear();
-		        m_Summons = null;
-		    }
-
-		    base.OnDelete();
-		}
-
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
-
+            BossLootSystem.BossEnchant(this, c, 550, 100, 3, "DrowMage");
 			BossLootSystem.AwardBossSpecial( this, BossDrops, 15 );
 			for ( int i = 0; i < 4; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );
 				c.DropItem( new EtherealPowerScroll() );
 			}
-
 			RichesSystem.SpawnRiches( m_LastTarget, 4 );
 		}
 
 		public override void OnAfterSpawn()
 		{
 			base.OnAfterSpawn();
-			this.MobileMagics(7, SpellType.Wizard, 0x0213);
+			this.MobileMagics(8, SpellType.Wizard, 0x0213);
 			LeechImmune = true;
 		}
 
-		public BalTsareth( Serial serial ) : base( serial )
+		public Xyrtaxis( Serial serial ) : base( serial )
 		{
 		}
 
@@ -323,7 +270,6 @@ namespace Server.Mobiles
 			base.Serialize( writer );
 			writer.Write( (int) 2 );
 			writer.Write( m_Rage );
-			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
        }
 
@@ -335,17 +281,13 @@ namespace Server.Mobiles
 			if ( version >= 1 )
 			{
 				m_Rage = reader.ReadInt();
-				m_NextSummonTime = reader.ReadDateTime();
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 			if(version>=2)
 			{
-				this.MobileMagics(7, SpellType.Wizard, 0x0213);
+				this.MobileMagics(8, SpellType.Wizard, 0x0213);
 			}
 			LeechImmune = true;
-
-			if ( m_Summons == null )
-				m_Summons = new List<BaseCreature>();
 		}
 	}
 }

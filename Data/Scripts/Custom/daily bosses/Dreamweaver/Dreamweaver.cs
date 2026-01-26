@@ -359,7 +359,7 @@ namespace Server.Mobiles
 				Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma > 0)
             	{
-            	    int marks = Utility.RandomMinMax(21, 47);
+            	    int marks = Utility.RandomMinMax(156, 223);
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
             	}
 			}

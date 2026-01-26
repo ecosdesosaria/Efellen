@@ -3,6 +3,7 @@ using Server;
 using Server.Misc;
 using Server.Items;
 using Server.CustomSpells;
+using Server.Custom;
 
 namespace Server.Mobiles 
 { 
@@ -77,10 +78,9 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Average );
-			AddLoot( LootPack.HighScrolls, 2 );
+			AddLoot( LootPack.Rich, 2 );
+			AddLoot( LootPack.HighScrolls, 1 );
 			AddLoot( LootPack.MedScrolls, 2 );
-			AddLoot( LootPack.MedPotions );
 		}
 
 		public override bool ClickTitle{ get{ return false; } }
@@ -88,7 +88,7 @@ namespace Server.Mobiles
 		public override bool CanRummageCorpses{ get{ return true; } }
 		public override bool AlwaysAttackable{ get{ return true; } }
 		public override int Meat{ get{ return 1; } }
-		public override int TreasureMapLevel{ get{ return Core.AOS ? 2 : 0; } }
+		public override int TreasureMapLevel{ get{ return 4; } }
 		public override int Skeletal{ get{ return Utility.Random(8); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Drow; } }
 
@@ -97,6 +97,12 @@ namespace Server.Mobiles
 			Server.Misc.IntelligentAction.BeforeMyBirth( this );
 			this.MobileMagics(Utility.Random(5,7), SpellType.Wizard | SpellType.Sorcerer, 0);
 			base.OnAfterSpawn();
+		}
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+		    BossLootSystem.BossEnchant(this, c, 500, 15, 1, "DrowMage");
 		}
 
 		public override void OnGotMeleeAttack( Mobile attacker )

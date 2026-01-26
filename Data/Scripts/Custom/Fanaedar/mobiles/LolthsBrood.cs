@@ -71,7 +71,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Average );
+			AddLoot( LootPack.Rich );
 		}
 
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }

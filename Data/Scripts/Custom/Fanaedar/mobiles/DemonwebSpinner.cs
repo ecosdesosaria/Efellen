@@ -7,7 +7,7 @@ using Server.Custom;
 namespace Server.Mobiles
 {
 	[CorpseName( "a spider corpse" )]
-	public class LolthsChosen : BaseCreature
+	public class DemonwebSpinner : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
 		public override int BreathFireDamage{ get{ return 0; } }
@@ -25,22 +25,22 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public LolthsChosen() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
+		public DemonwebSpinner() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "Lolth's Chosen";
+			Name = "Demonweb Spinner";
 			Body = Utility.RandomList( 173, 460 );
 			BaseSoundID = 0x388;
-            Hue = 1316;
-			SetStr( 476, 520 );
-			SetDex( 436, 525 );
-			SetInt( 336, 360 );
+            Hue = 0x0672;
+			SetStr( 576, 620 );
+			SetDex( 636 );
+			SetInt( 336 );
 
-			SetHits( 446, 860 );
+			SetHits( 860 );
 			SetMana( 0 );
 
-			SetDamage( 26, 32 );
+			SetDamage( 28, 34 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
+			SetDamageType( ResistanceType.Poison, 100 );
 
 			SetResistance( ResistanceType.Physical, 80 );
 			SetResistance( ResistanceType.Poison, 100 );
@@ -53,12 +53,10 @@ namespace Server.Mobiles
 			SetSkill( SkillName.Tactics, 100.0 );
 			SetSkill( SkillName.FistFighting, 100.0 );
 
-			Fame = 16000;
-			Karma = -16000;
+			Fame = 21000;
+			Karma = -21000;
 
 			VirtualArmor = 50;
-
-			PackItem( new SpidersSilk( 100 ) );
 
 			Item Venom = new VenomSack();
 				Venom.Name = "lethal venom sack";
@@ -67,7 +65,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich, 3 );
+			AddLoot( LootPack.Rich, 4 );
 		}
 		
 		public override void OnDeath(Container c)
@@ -81,19 +79,19 @@ namespace Server.Mobiles
 		        this,
 		        "Monstrous Spider",
 		        120.0,
-		        0.45
+		        0.75
 		    );
 		}
 
 		public override PackInstinct PackInstinct{ get{ return PackInstinct.Arachnid; } }
 		public override Poison PoisonImmune{ get{ return Poison.Deadly; } }
-		public override Poison HitPoison{ get{ return Poison.Lethal; } }
+		public override Poison HitPoison{ get{ return Poison.Deadly; } }
 
 		public override int GetAttackSound(){ return 0x601; }	// A
 		public override int GetDeathSound(){ return 0x602; }	// D
 		public override int GetHurtSound(){ return 0x603; }		// H
 
-		public LolthsChosen( Serial serial ) : base( serial )
+		public DemonwebSpinner( Serial serial ) : base( serial )
 		{
 		}
 

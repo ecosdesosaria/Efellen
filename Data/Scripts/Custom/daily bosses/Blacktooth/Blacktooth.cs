@@ -204,7 +204,7 @@ namespace Server.Mobiles
                 Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma < 0)
             	{
-            	    int marks = Utility.RandomMinMax(51, 74);
+            	    int marks = Utility.RandomMinMax(40, 75);
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
             	}
 			}
@@ -220,6 +220,15 @@ namespace Server.Mobiles
 			c.DropItem( new EtherealPowerScroll() );
 			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 1 );
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			if (Utility.RandomDouble() < 0.45 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
+			base.OnDamage( amount, from, willKill );
 		}
 
 		public override void OnAfterSpawn()

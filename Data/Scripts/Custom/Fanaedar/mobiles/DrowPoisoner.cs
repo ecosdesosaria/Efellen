@@ -3,6 +3,7 @@ using Server;
 using Server.Misc;
 using Server.Items;
 using Server.CustomSpells;
+using Server.Custom;
 
 namespace Server.Mobiles 
 { 
@@ -55,12 +56,16 @@ namespace Server.Mobiles
 		
 		}
 
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+		    BossLootSystem.BossEnchant(this, c, 450, 10, 1, "DrowMage");
+		}
+
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Average );
-			AddLoot( LootPack.MedPotions );
-			AddLoot( LootPack.MedPotions );
-			AddLoot( LootPack.MedPotions );
+			AddLoot( LootPack.Rich, 2 );
+			AddLoot( LootPack.MedPotions, 2 );
 		}
 
 		public override bool ClickTitle{ get{ return false; } }
@@ -68,7 +73,7 @@ namespace Server.Mobiles
 		public override bool CanRummageCorpses{ get{ return true; } }
 		public override bool AlwaysAttackable{ get{ return true; } }
 		public override int Meat{ get{ return 1; } }
-		public override int TreasureMapLevel{ get{ return Core.AOS ? 1 : 0; } }
+		public override int TreasureMapLevel{ get{ return 3; } }
 		public override int Skeletal{ get{ return Utility.Random(3); } }
 		public override SkeletalType SkeletalType{ get{ return SkeletalType.Drow; } }
 

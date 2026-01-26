@@ -310,7 +310,7 @@ namespace Server.Mobiles
 				Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma > 0)
             	{
-            	    int marks = Utility.RandomMinMax(81, 137);
+            	    int marks = Utility.RandomMinMax(103, 110);
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
             	}
 			}
@@ -352,6 +352,15 @@ namespace Server.Mobiles
 
 		public DaughterOfFire( Serial serial ) : base( serial )
 		{
+		}
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			if (Utility.RandomDouble() < 0.40 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
+			base.OnDamage( amount, from, willKill );
 		}
 
 		public override void Serialize( GenericWriter writer )

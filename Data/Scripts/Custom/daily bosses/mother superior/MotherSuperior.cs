@@ -209,7 +209,9 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			
+			if (Utility.RandomDouble() < 0.20 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
 			if (from.Player && from.Kills < 5 && !from.Criminal) 
 				from.Criminal = true;	
 			
@@ -304,7 +306,7 @@ namespace Server.Mobiles
                 Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma < 0)
             	{
-            	    int marks = Utility.RandomMinMax(51, 74);
+            	    int marks = Utility.RandomMinMax(40, 75);
             	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 0, marks);
             	}
 			}

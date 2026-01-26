@@ -7,6 +7,7 @@ using Server.Misc;
 using Server.Network;
 using System.Collections.Generic;
 using Server.CustomSpells;
+using Server.Custom;
 
 namespace Server.Mobiles
 {
@@ -50,7 +51,13 @@ namespace Server.Mobiles
 				case 2: AddItem( new StrawHat( Utility.RandomColor(0) ) ); break;
 				case 3: AddItem( new SkullCap( Utility.RandomColor(0) ) ); break;
 			}
-			AddItem( new Crossbow() );
+
+			switch( Utility.Random( 3))
+			{
+				case 0: AddItem( new Crossbow()); break;
+				case 1: AddItem( new HeavyCrossbow()); break;
+				case 2: AddItem( new RepeatingCrossbow()); break;
+			}
 
 			PackItem( new Bolt( Utility.RandomMinMax( 25, 35 ) ) );
 
@@ -67,9 +74,15 @@ namespace Server.Mobiles
 			Server.Misc.IntelligentAction.GiveAdventureGear( this );
 		}
 
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+		    BossLootSystem.BossEnchant(this, c, 500, 10, 1, "DrowBard");
+		}
+
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.Rich );
+			AddLoot( LootPack.Rich, 2 );
 			AddLoot( LootPack.Songs );
 		}
 
