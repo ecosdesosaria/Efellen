@@ -155,7 +155,7 @@ namespace Server.Items
                             minDam = 17;
                         if (maxDam < 20)
                             maxDam = 20;
-
+                        
                         if (minDam >= 17)
                             minDam += Utility.RandomMinMax(1, 3);
 
@@ -164,6 +164,11 @@ namespace Server.Items
                             maxDam += Utility.RandomMinMax(1, 3);
                             if (maxDam <= minDam + 1)
                                 maxDam = minDam + 2;
+                        }
+                        if(minDam >= 25 || maxDam >= 30)
+                        {
+                            minDam = 25;                            
+                            minDam = 30;
                         }
 
                         weapon.MinDamage = minDam;
