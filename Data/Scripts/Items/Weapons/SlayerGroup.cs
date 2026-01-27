@@ -76,6 +76,9 @@ namespace Server.Items
 			humanoid.Opposition = new SlayerGroup[]{ };
 			humanoid.FoundOn = new Type[]{ };
 			humanoid.Super = new SlayerEntry( SlayerName.Repond, 
+				typeof(MetalHead),
+				typeof(SkyKnight),
+				typeof( FiorinTheArchdruid),
 				typeof( BelakTheOutcast ),
 				typeof( SirBradford ),
 				typeof( Sharwyn ),
@@ -304,6 +307,7 @@ namespace Server.Items
 				typeof( PirateLichLord ), 
 				typeof( PirateSkeleton ), 
 				typeof( WereWolf ), 
+				typeof(Ozzy_WereWolf),
 				typeof( NecroticHound ), 
 				typeof( IceGhoul ), 
 				typeof( DiseasedMummy ), 
@@ -364,6 +368,7 @@ namespace Server.Items
 				typeof( Zombie ) ,
 				typeof( RottingMinotaur ),
 				typeof( HellKnight), 
+				typeof( UndeadButcher),
 				typeof( SkeletonKing));
 			undead.Entries = new SlayerEntry[0];
 
@@ -372,6 +377,7 @@ namespace Server.Items
 			fey.Super = new SlayerEntry( SlayerName.Fey, 
 				typeof( Centaur ), 
 				typeof( EtherealWarrior ), 
+				typeof( EtherealWarriorGeneral ), 
 				typeof( Kirin ), 
 				typeof( Pixie ), 
 				typeof( Fairy ), 
@@ -407,6 +413,8 @@ namespace Server.Items
 				typeof( DrowPoisoner),
 				typeof( DrowMageLord),
 				typeof( Annath ),
+				typeof( TeelFanae ),
+				typeof( Xyrtaxis ),
 				typeof( Satyr ) );
 			fey.Entries = new SlayerEntry[0];
 
@@ -477,6 +485,9 @@ namespace Server.Items
 			avian.Opposition = new SlayerGroup[]{ };
 			avian.FoundOn = new Type[]{ };
 			avian.Super = new SlayerEntry( SlayerName.AvianHunter, 
+				typeof( HeavenlyMarshall),
+				typeof( Angel),
+				typeof( Archangel),
 				typeof( Bird ), 
 				typeof( Chicken ), 
 				typeof( Turkey ), 
@@ -489,6 +500,7 @@ namespace Server.Items
 				typeof( GiantRaven ), 
 				typeof( HarpyElder ), 
 				typeof( GriffonRiding ), 
+				typeof( WarGriffon),
 				typeof( HippogriffRiding ), 
 				typeof( Pegasus ), 
 				typeof( Ostrich ), 
@@ -526,6 +538,7 @@ namespace Server.Items
 			animal.Opposition = new SlayerGroup[]{ };
 			animal.FoundOn = new Type[]{ };
 			animal.Super = new SlayerEntry( SlayerName.AnimalHunter, 
+				typeof(GuardianPanda),
 				typeof( SummonDireBear ),
 				typeof( MysticalFox ), 
 				typeof( BlackBear ), 
@@ -756,6 +769,7 @@ namespace Server.Items
 			weed.Opposition = new SlayerGroup[]{ };
 			weed.FoundOn = new Type[]{ };
 			weed.Super = new SlayerEntry( SlayerName.WeedRuin, 
+				typeof( SporeMother),
 				typeof( Bogling ), 
 				typeof( KelpElemental ), 
 				typeof( WeedElemental ), 
@@ -965,6 +979,7 @@ namespace Server.Items
 						typeof( BloodDemigod ), 
 						typeof( BloodDemon ), 
 						typeof( Succubus ), 
+						typeof(Sharon),
 						typeof( BloodSnake ), 
 						typeof( BloodWorm ), 
 						typeof( Stirge ), 
@@ -1030,6 +1045,7 @@ namespace Server.Items
 						typeof( SewageElemental ) ),
 					new SlayerEntry( SlayerName.FlameDousing, 
 						typeof( DaughterOfFire),
+						typeof(Penitent),
 						typeof( Vulcrum ), 
 						typeof( FireElemental ), 
 						typeof( ElementalCalledFire ),
@@ -1100,6 +1116,13 @@ namespace Server.Items
 						typeof( ElementalCalledAir ), 
 						typeof( TitanStratos ), 
 						typeof( Typhoon ), 
+						typeof(Dreamweaver),
+						typeof(Beholder),
+						typeof(ElderEye),
+						typeof(EyeOfTheDeep),
+						typeof(FloatingEye),
+						typeof(Gazer),
+						typeof(Seeker),
 						typeof( SummonedAirElementalGreater ), 
 						typeof( SummonedAirElemental ) ),
 					new SlayerEntry( SlayerName.WaterDissipation, 
@@ -1264,6 +1287,10 @@ namespace Server.Items
 			arachnid.FoundOn = new Type[]{ };
 			arachnid.Super = new SlayerEntry( SlayerName.ArachnidDoom, 
 				typeof( Fateweaver ),
+				typeof(LolthsChampion),
+				typeof(LolthsChosen),
+				typeof(LolthsBrood),
+				typeof(DemonwebSpinner),
 				typeof( DreadSpider ), 
 				typeof( ShadowRecluse ), 
 				typeof( ZombieSpider ), 
@@ -1293,6 +1320,10 @@ namespace Server.Items
 						typeof( DeadlyScorpion ) ), 
 					new SlayerEntry( SlayerName.SpidersDeath, 
 						typeof( Fateweaver ),
+						typeof(LolthsChampion),
+						typeof(LolthsChosen),
+						typeof(LolthsBrood),
+						typeof(DemonwebSpinner),
 						typeof( DreadSpider ), 
 						typeof( ShadowRecluse ), 
 						typeof( ZombieSpider ), 
