@@ -100,7 +100,7 @@ namespace Server.Mobiles
 		{
 		    base.OnDeath(c);
 		    BossLootSystem.BossEnchant(this, c, 400, 10, 1, "DrowMage");
-			if (Utility.RandomDouble() < 0.04)
+			if (Utility.RandomDouble() < 0.07)
     		{
     		    c.DropItem(new EssenceOfLolthsHatred());
     		}

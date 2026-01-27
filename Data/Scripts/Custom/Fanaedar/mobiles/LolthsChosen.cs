@@ -76,7 +76,7 @@ namespace Server.Mobiles
 
 		    Mobile killer = this.LastKiller;
 
-			if (Utility.RandomDouble() < 0.05)
+			if (Utility.RandomDouble() < 0.07)
     		{
     		    c.DropItem(new EssenceOfLolthsHatred());
     		}

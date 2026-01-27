@@ -60,7 +60,7 @@ namespace Server.Items
                 totalEssense += items[i].Amount;
             }
 
-            if (totalEssense < 50)
+            if (totalEssense < 20)
             {
                 from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "You have not done enough to warrant Lolth's attention");
                 return;
@@ -180,7 +180,7 @@ namespace Server.Items
                             newKarma = -15000;
                         from.Karma = newKarma;
 
-                        int toConsume = 50;
+                        int toConsume = 20;
                         Item[] Essenses = from.Backpack.FindItemsByType(typeof(EssenceOfLolthsHatred));
                         for (int i = 0; i < Essenses.Length && toConsume > 0; i++)
                         {

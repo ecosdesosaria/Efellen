@@ -22,7 +22,7 @@ namespace Server.Items
             Attributes.SpellDamage = 10;
             Attributes.WeaponSpeed = 10;
 			ArtifactLevel = 2;
-			Server.Misc.Arty.ArtySetup( this, "Holds arrows dripping with venom" );
+			Server.Misc.Arty.ArtySetup( this, "Holds bolts dripping with venom" );
 		}
 
         public override void OnHit( Mobile attacker, Mobile defender, double damageBonus )
@@ -60,8 +60,8 @@ namespace Server.Items
     		}
     		else
     		{
-    		    if (roll < 0.44) chosen = Poison.Deadly;
-    		    else chosen = Poison.Greater;
+    		    if (roll < 0.44) chosen = Poison.Lethal;
+    		    else chosen = Poison.Deadly;
     		}
 
     		if (chosen != null)

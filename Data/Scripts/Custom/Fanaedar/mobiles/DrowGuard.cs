@@ -45,7 +45,7 @@ namespace Server.Mobiles
 		{
 		    base.OnDeath(c);
 		    BossLootSystem.BossEnchant(this, c, 500, 10, 1, "DrowBlackGuard");
-			if (Utility.RandomDouble() < 0.02)
+			if (Utility.RandomDouble() < 0.05)
     		{
     		    c.DropItem(new EssenceOfLolthsHatred());
     		}

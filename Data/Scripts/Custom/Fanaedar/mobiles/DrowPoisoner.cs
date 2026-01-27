@@ -59,7 +59,7 @@ namespace Server.Mobiles
 		public override void OnDeath(Container c)
 		{
 		    base.OnDeath(c);
-			if (Utility.RandomDouble() < 0.04)
+			if (Utility.RandomDouble() < 0.07)
     		{
     		    c.DropItem(new EssenceOfLolthsHatred());
     		}
