@@ -30,7 +30,7 @@ archetypes have been enhanced, providing new ways to play and enjoy the game.
 The landscape has been changed to provide players a huge area to explore.
 
 This version is an altered version of the makers original game. It is branded as
-the "Efellen" to pay homage to the creator's old ttrpg setting. It takes place
+the "Efellen" to pay homage to the current creator's old ttrpg setting. It takes place
 in an alternate universe to Garriott's games, shortly after the events of his
 third game called Exodus. You can create a character that tries to make their
 way through many lands. You will have to find a way to feed yourself, and
@@ -40,15 +40,15 @@ the citizens of the land, or you may find a book or scroll with clues and other
 information. There are also some commands you can use to bring up additional
 information.
 
-The game is designed for characters to adventure alone. You can even craft items
-from your home, and have them purchased by the Merchants Guild if you choose to
-make your living that way. Your default health, mana, and stamina are valued
-equally to the associated attribute. So if you have a strength of 50, your
-health will be 50. You can change this behavior in the settings file if you
-wish. You can also obtain the title of grandmaster in 10 different skills (1,000
-skill points), which should allow you to create a character archetype of your
-choice (like a wizard, fighter, thief, assassin, etc.). There are other play
-options that have different skill levels, benefits, and detriments as well.
+The game is designed for characters to adventure alone or in a small group. 
+You can even craft items from your home, and have them purchased by the 
+Merchants Guild if you choose to make your living that way. Your default health, 
+mana, and stamina are valued equally to the associated attribute. 
+So if you have a strength of 50, your health will be 50. You can also obtain the title 
+of grandmaster in 10 different skills (1,000 skill points), which should allow you to 
+create a character archetype of your choice (like a wizard, fighter, thief, assassin, etc.). 
+There are other play options that have different skill levels, benefits, 
+and detriments as well.
 
 This is built around older MUD methodologies and rules based on early 1970's
 Dungeons & Dragons games. There is also an abundance of randomness inspired by
@@ -129,7 +129,7 @@ goal of the game is what you set for yourself.
 ## Server Setup
 
 Efellen was created using RunUO emulation technology, and thus needs
-a server to play whether single or multi-player. This requires a Windows
+a server to play whether single or multi-player. This requires an
 operating system with the .NET Framework installed. To begin setting up the
 server, download the server package. The server is in a folder labeled `World`.
 Extract the folder using a zip program and place it wherever you want. Once that
