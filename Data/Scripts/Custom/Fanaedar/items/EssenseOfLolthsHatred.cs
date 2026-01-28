@@ -120,7 +120,7 @@ namespace Server.Items
                     int minDam = weapon.MinDamage;
                     int maxDam = weapon.MaxDamage;
 
-                    if (minDam > 25 || maxDam > 30)
+                    if (minDam >= 25 || maxDam >= 30)
                     {
                         weapon.MinDamage = 25;
                         weapon.MaxDamage = 30;
