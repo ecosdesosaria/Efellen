@@ -10,7 +10,7 @@ namespace Server.Items
 		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.BleedAttack; } }
 		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.DeathBlow; } }
 		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ElementalStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.SpinAttack; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
 
 		public override int AosStrengthReq{ get{ return 80; } }
 		public override int AosMinDamage{ get{ return 16; } }
