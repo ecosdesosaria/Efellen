@@ -29,85 +29,84 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
-			base.OnHit(attacker, defender, damageBonus);
-			if (attacker == null || defender == null)
-				return;
-			
-			if (attacker.Skills[SkillName.Bludgeoning].Value <= 105.0 || attacker.Str <= 111)
-				return;
+		    base.OnHit(attacker, defender, damageBonus);
 
-			if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
-				return;
+		    if (attacker == null || defender == null)
+		        return;
 
-			double skill = attacker.Skills[SkillName.Bludgeoning].Value;
-			double chance = 0.05 + (skill / 125.0) * 0.20;
+		    if (attacker.Skills[SkillName.Bludgeoning].Value <= 105.0 || attacker.Str <= 111)
+		        return;
 
-			if (Utility.RandomDouble() > chance)
-				return;
-			
-			double seconds = 120.0 - (skill * (90.0 / 125.0));
-			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
+		    if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
+		        return;
 
-			int minDmg = attacker.Str / 12;
+		    double skill = attacker.Skills[SkillName.Bludgeoning].Value;
+		    double chance = 0.05 + (skill / 125.0) * 0.20;
+
+		    if (Utility.RandomDouble() > chance)
+		        return;
+
+		    double seconds = 120.0 - (skill * (90.0 / 125.0));
+		    m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
+
+		    int minDmg = attacker.Str / 12;
 			int maxDmg = attacker.Str / 5;
 			
 			if (minDmg < 0) minDmg = 0;
 			if (maxDmg < minDmg) maxDmg = minDmg;
 
-			Party attackerParty = Party.Get(attacker);
-			BaseGuild attackerGuild = attacker.Guild;
+		    Party attackerParty = Party.Get(attacker);
+		    Guild attackerGuild = attacker.Guild as Guild;
+		    IPooledEnumerable eable = defender.GetMobilesInRange(5);
+		    try
+		    {
+		        foreach (Mobile mob in eable)
+		        {
+		            if (mob == null || mob == attacker || mob == defender)
+		                continue;
 
-			IPooledEnumerable eable = defender.GetMobilesInRange(8);
+		            if (mob is BaseCreature)
+		            {
+		                BaseCreature bc = (BaseCreature)mob;
+		                if ((bc.Controlled && bc.ControlMaster == attacker) || 
+		                    (bc.Summoned && bc.SummonMaster == attacker))
+		                    continue;
+		            }
 
-			foreach (Mobile mob in eable)
-    	    {
-    	        if (mob == null || mob == attacker || mob == defender)
-					continue;
+		            if (attackerParty != null && Party.Get(mob) == attackerParty)
+		                continue;
 
-				if (mob is BaseCreature)
-				{
-					BaseCreature bc = (BaseCreature)mob;
-					if ((bc.Controlled && bc.ControlMaster == attacker) || (bc.Summoned && bc.SummonMaster == attacker))
-						continue;
-				}
+		            if (attackerGuild != null && mob.Guild != null && attackerGuild == mob.Guild)
+		                continue;
 
-				if (attackerParty != null)
-				{
-					Party mobParty = Party.Get(mob);
-					if (mobParty != null && attackerParty == mobParty)
-						continue;
-				}
+		            int distance = (int)attacker.GetDistanceToSqrt(mob);
 
-				if (attackerGuild != null && mob.Guild != null && attackerGuild == mob.Guild)
-					continue;
-				// slams targets that are closer harder
-				int distance = (int)(attacker.GetDistanceToSqrt(mob));
-				int bonus;
+		            int bonus;
+		            if (distance <= 1)
+		                bonus = 7;
+		            else if (distance <= 3)
+		                bonus = 5;
+		            else if (distance <= 5)
+		                bonus = 1;
+		            else
+		                continue;
 
-				if (distance <= 1)
-					bonus = 5;
-				else if (distance <= 3)
-					bonus = 4;
-				else if (distance <= 5)
-					bonus = 3;
-				else if (distance <= 7)
-					bonus = 1;
-				else
-					bonus = 0;
+		            int dmg = Utility.RandomMinMax(minDmg + bonus, maxDmg + bonus);
 
-				int dmg = Utility.RandomMinMax(minDmg + bonus, maxDmg + bonus);
-				
-				if (dmg > 0)
-				{
-					AOS.Damage(mob, attacker, dmg, 0, 100, 0, 0, 0);
-					mob.PlaySound(0x208);
-				}
-    	    }
+		            if (dmg > 0)
+		            {
+		               AOS.Damage(mob, attacker, dmg, 100, 0, 0, 0, 0);
+						mob.PlaySound(0x208);
+		            }
+		        }
+		    }
+		    finally
+		    {
+		        eable.Free();
+		    }
 			attacker.SendMessage("Your Maul of the titans shatters the ground!");
-			SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 0x455);
-    	}
-
-
+			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x455);
+		}
 		public Artifact_MaulOfTheTitans( Serial serial ) : base( serial )
 		{
 		}
