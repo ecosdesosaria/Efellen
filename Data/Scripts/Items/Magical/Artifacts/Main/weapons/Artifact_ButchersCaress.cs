@@ -20,6 +20,8 @@ namespace Server.Items
             Slayer = SlayerName.Repond;
             WeaponAttributes.HitLeechMana = 30;
             Attributes.AttackChance = 10;
+            MinDamage = MinDamage + 1;
+			MaxDamage = MaxDamage + 1;
             ArtifactLevel = 2;
             Server.Misc.Arty.ArtySetup( this, "Chops limbs" );
             m_NextParalyze = DateTime.MinValue;

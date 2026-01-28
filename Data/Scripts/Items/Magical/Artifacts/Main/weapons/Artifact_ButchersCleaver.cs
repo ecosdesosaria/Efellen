@@ -17,6 +17,8 @@ namespace Server.Items
 			Name = "Butcher's Cleaver";
 			Attributes.WeaponSpeed = 30;
 			Attributes.BonusHits = 10;
+            MinDamage = MinDamage + 1;
+			MaxDamage = MaxDamage + 1;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Feasts on the fallen" );
 		}

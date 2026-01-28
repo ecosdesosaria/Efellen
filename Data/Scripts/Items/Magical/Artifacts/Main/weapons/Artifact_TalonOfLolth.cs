@@ -24,6 +24,8 @@ namespace Server.Items
             Attributes.SpellChanneling = 1;
 			WeaponAttributes.SelfRepair = 10;
 			WeaponAttributes.HitLeechMana = 30;
+			MinDamage = MinDamage + 4;
+			MaxDamage = MaxDamage + 4;
             Attributes.BonusDex = 10;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Spreads Virulence" );
@@ -32,80 +34,82 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
+		    base.OnHit(attacker, defender, damageBonus);
 
-			base.OnHit(attacker, defender, damageBonus);
+		    if (attacker == null || defender == null)
+		        return;
 
-			if (attacker == null || defender == null)
-				return;
+		    if (attacker.Skills[SkillName.Poisoning].Value > 75.0 && attacker.Karma >= -7777)
+		        return;
 
-			if (attacker.Skills[SkillName.Poisoning].Value <= 75.0 || attacker.Karma >= -7777)
-				return;
+		    if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
+		        return;
 
-			if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
-				return;
+		    double skill = attacker.Skills[SkillName.Poisoning].Value;
+		    double chance = 0.05 + (skill / 125.0) * 0.20;
 
-			double skill = attacker.Skills[SkillName.Poisoning].Value;
-			double chance = 0.05 + (skill / 125.0) * 0.20;
+		    if (Utility.RandomDouble() > chance)
+		        return;
 
-			if (Utility.RandomDouble() > chance)
-				return;
+		    double seconds = 115.0 - (skill * (90.0 / 125.0));
+		    m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
 
-			double seconds = 120.0 - (skill * (90.0 / 125.0));
-			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
+			int minDmg = (-attacker.Karma) / 777; 
+            int maxDmg = (-attacker.Karma) / 555;
+		    if (minDmg < 0) minDmg = 0;
+		    if (maxDmg < 0) maxDmg = 0;
+		    if (maxDmg < minDmg) maxDmg = minDmg;
+    
 
-			int minDmg = (-attacker.Karma) / 777; // 19 at -15k
-            int maxDmg = (-attacker.Karma) / 555; // 27 at -15k
+		    Party attackerParty = Party.Get(attacker);
+		    Guild attackerGuild = attacker.Guild as Guild;
 
-			if (minDmg < 0) minDmg = 0;
-			if (maxDmg < minDmg) maxDmg = minDmg;
+		    IPooledEnumerable eable = defender.GetMobilesInRange(5);
 
-			Party attackerParty = Party.Get(attacker);
-			BaseGuild attackerGuild = attacker.Guild;
+		    try
+		    {
+		        foreach (Mobile mob in eable)
+		        {
+		            if (mob == null || mob == attacker || mob == defender)
+		                continue;
 
-			IPooledEnumerable eable = defender.GetMobilesInRange(8);
+		            if (mob is BaseCreature)
+		            {
+		                BaseCreature bc = (BaseCreature)mob;
+		                if ((bc.Controlled && bc.ControlMaster == attacker) || 
+		                    (bc.Summoned && bc.SummonMaster == attacker))
+		                    continue;
+		            }
 
-			foreach (Mobile mob in eable)
-    	    {
-    	        if (mob == null || mob == attacker || mob == defender)
-					continue;
+        
+		            if (attackerParty != null && Party.Get(mob) == attackerParty)
+		                continue;
 
-				if (mob is BaseCreature)
-				{
-					BaseCreature bc = (BaseCreature)mob;
-					if ((bc.Controlled && bc.ControlMaster == attacker) || (bc.Summoned && bc.SummonMaster == attacker))
-						continue;
-				}
+		            if (attackerGuild != null && mob.Guild != null && attackerGuild == mob.Guild)
+		                continue;
 
-				if (attackerParty != null)
-				{
-					Party mobParty = Party.Get(mob);
-					if (mobParty != null && attackerParty == mobParty)
-						continue;
-				}
-
-				if (attackerGuild != null && mob.Guild != null && attackerGuild == mob.Guild)
-					continue;
-
-				int bonus = 0;
-				if (mob.Karma > 0)
-				{
-					int scaled = 1 + ((mob.Karma) * 24 / 15000);
-					if (scaled < 1) scaled = 0;
-					if (scaled > 25) scaled = 25;
-					bonus = scaled;
-				}
-
-				int dmg = Utility.RandomMinMax(minDmg, maxDmg) + bonus;
-
-				if (dmg > 0)
-				{
-					AOS.Damage(mob, attacker, dmg, 0, 0, 0, 100, 0);
-					mob.PlaySound(0x208);
-				}
-    	    }
-    		attacker.SendMessage("Your Nightmarish weapon unleashes a burst of ghostly poison fumes!");
-			SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 0x4F6);
-    	}
+		            int bonus = 0;
+                    if (mob.Karma > 0)
+                    {
+                        int scaled = 1 + ((mob.Karma) * 24 / 15000);
+                        if (scaled < 1) scaled = 0;
+                        if (scaled > 25) scaled = 25;
+                        bonus = scaled;
+                    }
+		            int dmg = Utility.RandomMinMax(minDmg, maxDmg) + bonus;
+					if (dmg > 0)
+					{
+						AOS.Damage(mob, attacker, dmg, 0, 0, 0, 100, 0);
+       				}
+		        }
+		    }
+		    finally
+		    {
+		        eable.Free();
+		    }
+			attacker.SendMessage("Your Nightmarish weapon unleashes a burst of ghostly poison fumes!");
+			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x4F6);
+		}
 
 		public override bool OnEquip(Mobile from)
         {

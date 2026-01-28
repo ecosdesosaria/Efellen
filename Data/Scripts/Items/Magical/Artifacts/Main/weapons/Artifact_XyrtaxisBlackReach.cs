@@ -18,6 +18,8 @@ namespace Server.Items
 			Attributes.SpellDamage = 40;
 			Attributes.CastRecovery = 3;
 			Attributes.CastSpeed = 3;
+			MinDamage = MinDamage + 4;
+			MaxDamage = MaxDamage + 4;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Shivers with arcane power" );
 		}

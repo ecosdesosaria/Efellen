@@ -28,92 +28,94 @@ namespace Server.Items
 			Attributes.BonusStr = 10;
 			Attributes.AttackChance = 10;
 			ArtifactLevel = 2;
+			MinDamage = MinDamage + 5;
+			MaxDamage = MaxDamage + 5;
 			Server.Misc.Arty.ArtySetup( this, "Sets the ground ablaze" );
 			m_NextArtifactAttackAllowed = DateTime.MinValue;
 		}
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
-			base.OnHit(attacker, defender, damageBonus);
+		    base.OnHit(attacker, defender, damageBonus);
 
-			if (attacker == null || defender == null)
-				return;
+		    if (attacker == null || defender == null)
+		        return;
 
-			if (attacker.Skills[SkillName.Bludgeoning].Value <= 105.0 || attacker.Str <= 111)
-				return;
+		    if (attacker.Skills[SkillName.Bludgeoning].Value <= 105.0 || attacker.Str <= 111)
+		        return;
 
-			if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
-				return;
+		    if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
+		        return;
 
-			double skill = attacker.Skills[SkillName.Bludgeoning].Value;
-			double chance = 0.05 + (skill / 125.0) * 0.20;
+		    double skill = attacker.Skills[SkillName.Bludgeoning].Value;
+		    double chance = 0.05 + (skill / 125.0) * 0.20;
 
-			if (Utility.RandomDouble() > chance)
-				return;
+		    if (Utility.RandomDouble() > chance)
+		        return;
 
-			double seconds = 120.0 - (skill * (90.0 / 125.0));
-			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
+		    double seconds = 105.0 - (skill * (90.0 / 125.0));
+		    m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
 
-			int minDmg = attacker.Str / 12;
-			int maxDmg = attacker.Str / 5;
-			
-			if (minDmg < 0) minDmg = 0;
-			if (maxDmg < minDmg) maxDmg = minDmg;
+		    int minDmg = attacker.Str / 12;
+		    int maxDmg = attacker.Str / 5;
 
-			Party attackerParty = Party.Get(attacker);
-			BaseGuild attackerGuild = attacker.Guild;
+		    if (minDmg < 0) minDmg = 0;
+		    if (maxDmg < minDmg) maxDmg = minDmg;
 
-			IPooledEnumerable eable = defender.GetMobilesInRange(8);
-			
-			foreach (Mobile mob in eable)
-			{
-				if (mob == null || mob == attacker || mob == defender)
-					continue;
+		    Party attackerParty = Party.Get(attacker);
+		    Guild attackerGuild = attacker.Guild as Guild;
 
-				if (mob is BaseCreature)
-				{
-					BaseCreature bc = (BaseCreature)mob;
-					if ((bc.Controlled && bc.ControlMaster == attacker) || (bc.Summoned && bc.SummonMaster == attacker))
-						continue;
-				}
+		    IPooledEnumerable eable = defender.GetMobilesInRange(5);
 
-				if (attackerParty != null)
-				{
-					Party mobParty = Party.Get(mob);
-					if (mobParty != null && attackerParty == mobParty)
-						continue;
-				}
+		    try
+		    {
+		        foreach (Mobile mob in eable)
+		        {
+		            if (mob == null || mob == attacker || mob == defender)
+		                continue;
 
-				if (attackerGuild != null && mob.Guild != null && attackerGuild == mob.Guild)
-					continue;
+		            if (mob is BaseCreature)
+		            {
+		                BaseCreature bc = (BaseCreature)mob;
+		                if ((bc.Controlled && bc.ControlMaster == attacker) || 
+		                    (bc.Summoned && bc.SummonMaster == attacker))
+		                    continue;
+		            }
 
-				int distance = (int)(attacker.GetDistanceToSqrt(mob));
-				int bonus;
+		            if (attackerParty != null && Party.Get(mob) == attackerParty)
+		                continue;
 
-				if (distance <= 1)
-					bonus = 5;
-				else if (distance <= 3)
-					bonus = 4;
-				else if (distance <= 5)
-					bonus = 3;
-				else if (distance <= 7)
-					bonus = 1;
-				else
-					bonus = 0;
+		            if (attackerGuild != null && mob.Guild != null && attackerGuild == mob.Guild)
+		                continue;
 
-				int dmg = Utility.RandomMinMax(minDmg + bonus, maxDmg + bonus);
-				
-				if (dmg > 0)
-				{
-					AOS.Damage(mob, attacker, dmg, 0, 100, 0, 0, 0);
-					mob.PlaySound(0x208);
-				}
-			}
-			
-			eable.Free();
+		            int distance = (int)attacker.GetDistanceToSqrt(mob);
 
-			attacker.SendMessage("Your Maul sets the ground ablaze!");
-			SlamVisuals.SlamVisual(attacker, 8, 0x36B0, 1160);
+		            int bonus;
+		            if (distance <= 1)
+		                bonus = 11;
+		            else if (distance <= 3)
+		                bonus = 9;
+		            else if (distance <= 5)
+		                bonus = 7;
+		            else
+		                continue;
+
+		            int dmg = Utility.RandomMinMax(minDmg + bonus, maxDmg + bonus);
+
+		            if (dmg > 0)
+		            {
+		                AOS.Damage(mob, attacker, dmg, 0, 100, 0, 0, 0);
+		                mob.PlaySound(0x208);
+		            }
+		        }
+		    }
+		    finally
+		    {
+		        eable.Free();
+		    }
+
+		    attacker.SendMessage("Your Maul sets the ground ablaze!");
+		    SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 1160);
 		}
 
 		public Artifact_CinderForgedMaul( Serial serial ) : base( serial )

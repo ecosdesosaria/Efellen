@@ -22,6 +22,8 @@ namespace Server.Items
 			WeaponAttributes.HitLeechHits = 20;
 			WeaponAttributes.HitLeechStam = 20;
 			WeaponAttributes.HitLowerDefend = 20;
+			MinDamage = MinDamage + 3;
+			MaxDamage = MaxDamage + 3;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "" );
 		}

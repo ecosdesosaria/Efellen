@@ -19,6 +19,8 @@ namespace Server.Items
 			Attributes.WeaponSpeed = 20;
 			WeaponAttributes.HitLeechHits = 50;
 			Attributes.WeaponDamage = 10;
+			MinDamage = MinDamage + 1;
+			MaxDamage = MaxDamage + 1;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Vicious criticals" );
 		}
