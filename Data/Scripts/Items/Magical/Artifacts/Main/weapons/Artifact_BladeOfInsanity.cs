@@ -5,6 +5,7 @@ using Server.Targeting;
 using Server.Mobiles;
 using Server.Engines.PartySystem;
 using Server.EffectsUtil;
+using Server.Guilds;
 
 namespace Server.Items
 {
