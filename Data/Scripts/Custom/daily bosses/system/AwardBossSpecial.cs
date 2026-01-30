@@ -73,10 +73,18 @@ namespace Server.Custom
                 
                 if (item != null)
                 {
-                    item.Hue = Utility.RandomDrowHue();
                     ItemEnchant(from, power, item);
-                    /* when this system is expanded, add type check to cycle between different enchant types */
-                    ApplyDrowEnhancements(item);
+                    if (type == "scorched")
+                    {
+                        item.Hue = 2931;
+                        ApplyScorchedEnhancements(item);
+                    }
+                    else
+                    {
+                        item.Hue = Utility.RandomDrowHue();
+                        ApplyDrowEnhancements(item);
+                    }
+
                     c.DropItem(item);
                 }
             }
@@ -100,14 +108,55 @@ namespace Server.Custom
                 case "DrowPriestess":
                     item = GenerateDrowPriestessItem();
                     break;
+                case "scorched":
+                    item = GenerateScorchedItem();
+                    break;
                 default:
                     Console.WriteLine("BossEnchant: Unknown type '" + type + "'");
                     break;
+                
             }
 
             return item;
         }
-
+        
+        public static Item GenerateScorchedItem()
+        {
+            switch(Utility.Random(28))
+            {
+                case 0: return new Longsword();
+                case 1: return new Broadsword();
+                case 2: return new Claymore();
+                case 3: return new Kryss();
+                case 4: return new RoyalSword();
+                case 5: return new VikingSword();
+                case 6: return new WarFork();
+                case 7: return new Spear();
+                case 8: return new Pike();
+                case 9: return new BladedStaff();
+                case 10: return new Bardiche();
+                case 11: return new Halberd();
+                case 12: return new Scythe();
+                case 13: return new WarMace();
+                case 14: return new WarHammer();
+                case 15: return new SpikedClub();
+                case 16: return new Maul();
+                case 17: return new Mace();
+                case 18: return new DiamondMace();
+                case 19: return new Cleaver();
+                case 20: return new Dagger();
+                case 21: return new WarCleaver();
+                case 22: return new HeavyCrossbow();
+                case 23: return new RepeatingCrossbow();
+                case 24: return new Crossbow();
+                case 25: return new WarAxe();
+                case 26: return new TwoHandedAxe();
+                case 27: return new OrnateAxe();
+                case 28: return new ExecutionersAxe();
+                case 29: return new DoubleAxe();
+                default: return null;
+            }
+        }
         private static Item GenerateDrowBardItem()
         {
             switch (Utility.Random(19))
@@ -272,6 +321,29 @@ namespace Server.Custom
                 case 48: return new JewelryNecklace();
                 case 49: return new JewelryEarrings();
                 default: return null;
+            }
+        }
+
+        private static void ApplyScorchedEnhancements(Item item)
+        {
+            if (item == null || item.Deleted)
+                return;
+
+            if (item is BaseWeapon)
+            {
+                BaseWeapon weapon = (BaseWeapon)item;
+                weapon.Attributes.Luck += 25;
+                weapon.WeaponAttributes.ResistPhysicalBonus = 0;
+                weapon.AosElementDamages.Physical = 50;
+                weapon.AosElementDamages.Fire = 50;
+                weapon.AosElementDamages.Cold = 0;
+                weapon.AosElementDamages.Poison = 0;
+                weapon.AosElementDamages.Energy = 0;
+                weapon.MinDamage = weapon.MinDamage+3;
+                weapon.MaxDamage = weapon.MaxDamage+3;
+                int fireResist = Utility.RandomMinMax(8, 12);
+                weapon.WeaponAttributes.ResistFireBonus += fireResist;
+            
             }
         }
 
