@@ -7,6 +7,8 @@ using Server.Network;
 using Server.Misc;
 using System.Collections.Generic;
 using Server.Items;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 /* 
 
@@ -4642,6 +4644,69 @@ namespace Server.CustomSpells
         public SummonNatureAllyVISpell()
             : base("Summon Nature's Ally VI", 0x2156, 6, typeof(AnyGemElemental))
         {
+        }
+    }
+
+    public class MissileStormSpell: CustomSpell
+    {
+        public MissileStormSpell(): base("Missile Storm", 0x36E4)
+        {
+            AddLevel(SpellType.Wizard, 6);
+            AddLevel(SpellType.Sorcerer,6);
+            AddTag(SpellTag.SingleTarget);
+            AddTag(SpellTag.Offensive);
+        }
+        public override void Cast(Mobile caster, int hue, int level)
+        {
+            Mobile target = caster.Combatant as Mobile;
+            if(!SpellHelpers.isValidHostileTarget(caster,target))
+                return;
+
+            caster.DoHarmful(target);
+            
+            int missiles = (level == 9) ? 10 : (level == 8) ? 8 : (level == 7) ? 7 : 6;
+
+            for (int i = 0; i < missiles; i++)
+            {
+                Timer.DelayCall(TimeSpan.FromSeconds(i * 0.3), delegate ()
+                {
+                    if (target == null || !target.Alive || target.Deleted)
+                        return;
+
+                    Effects.SendMovingEffect(
+                        caster, 
+                        target, 
+                        0x379F, 
+                        7, 
+                        0, 
+                        false, 
+                        false, 
+                        hue != 0 ? hue : 0x0213, 
+                        0
+                    );
+                    Effects.PlaySound(caster.Location, caster.Map, 0x1F5);
+
+                    Timer.DelayCall(TimeSpan.FromSeconds(0.5), delegate ()
+                    {
+                        if (target == null || !target.Alive || target.Deleted)
+                            return;
+
+                        int damage = Utility.RandomMinMax(6, 9) + level;
+                        AOS.Damage(target, caster, damage, 0, 0, 0, 0, 100);
+                        
+                        Effects.SendLocationEffect(
+                            target.Location, 
+                            target.Map, 
+                            0x3709, 
+                            10, 
+                            30, 
+                            hue != 0 ? hue : 0x0213, 
+                            0
+                        );
+                        target.FixedParticles(0x36BD, 6, 10, 5044, hue != 0 ? hue : 0x0213, 0, EffectLayer.Waist);
+                    });
+                });
+            }
         }
     }
 

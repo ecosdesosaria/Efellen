@@ -516,6 +516,7 @@ namespace Server.CustomSpells
             RegisterSpell(new GoodHopeSpell());
             RegisterSpell(new HarmonicChorusSpell());
             RegisterSpell(new HealSpell());
+            RegisterSpell(new MissileStormSpell());
             RegisterSpell(new HoldPersonMassSpell());
             RegisterSpell(new HoldPersonSpell());
             RegisterSpell(new HorridWiltingSpell());
