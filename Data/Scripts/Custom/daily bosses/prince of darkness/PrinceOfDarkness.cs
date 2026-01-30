@@ -46,6 +46,7 @@ namespace Server.Mobiles
     	    typeof(Artifact_LeggingsOfTheBlackSabbath),
     	    typeof(Artifact_GlovesOfTheBlackSabbath),
 			typeof(Artifact_CoatOfTheBlackSabbath),
+			typeof(Artifact_ShadowBlade)
     	};
 
 		private int m_Rage = 0;

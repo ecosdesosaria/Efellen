@@ -38,7 +38,7 @@ namespace Server.Mobiles
 			SetHits( 860 );
 			SetMana( 0 );
 
-			SetDamage( 28, 34 );
+			SetDamage( 18, 24 );
 
 			SetDamageType( ResistanceType.Poison, 100 );
 

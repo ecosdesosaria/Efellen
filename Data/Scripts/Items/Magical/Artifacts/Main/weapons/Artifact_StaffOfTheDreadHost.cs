@@ -16,6 +16,8 @@ namespace Server.Items
 			Hue = 1109;
 			SkillBonuses.SetValues( 0, SkillName.Necromancy, 15);
 			SkillBonuses.SetValues( 1, SkillName.MagicResist, 15);
+			MinDamage = MinDamage + 2;
+			MaxDamage = MaxDamage + 2;
 			Attributes.SpellChanneling = 1;
 			Attributes.SpellDamage = 60;
 			ArtifactLevel = 2;

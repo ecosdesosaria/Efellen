@@ -2271,11 +2271,6 @@ public virtual int BreathComputeDamage()
 				}
 			}
 
-			if ( reg.IsPartOf( "The Howling Grove" ) && (this is BlackWolf || this is WereWolf) )
-			{
-				FightMode = FightMode.Evil;
-			}
-
 			if ( reg.IsPartOf( "Castle Griffin Roost" ) && this is GriffonRiding )
 			{
 				FightMode = FightMode.Evil;

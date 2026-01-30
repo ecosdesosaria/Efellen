@@ -20,6 +20,8 @@ namespace Server.Items
 			Attributes.SpellChanneling = 1;
 			WeaponAttributes.HitLowerDefend = 20;
 			WeaponAttributes.HitLowerAttack = 20;
+			MinDamage = MinDamage + 2;
+			MaxDamage = MaxDamage + 2;
 			Attributes.WeaponSpeed = 30;
 			MinDamage = 15;
 			MaxDamage = 20;

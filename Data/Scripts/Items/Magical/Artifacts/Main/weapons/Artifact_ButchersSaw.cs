@@ -19,6 +19,8 @@ namespace Server.Items
             SkillBonuses.SetValues(0, SkillName.Anatomy, 20);
             WeaponAttributes.HitLeechHits = 80;
             Slayer = SlayerName.Repond;
+            MinDamage = MinDamage + 1;
+			MaxDamage = MaxDamage + 1;
             Attributes.SpellChanneling = 1;
             ArtifactLevel = 2;
             Server.Misc.Arty.ArtySetup( this, "Feeds on Flesh" );

@@ -21,6 +21,8 @@ namespace Server.Items
             WeaponAttributes.HitLeechStam = 40;
             Slayer = SlayerName.Repond;
             Attributes.SpellChanneling = 1;
+            MinDamage = MinDamage + 1;
+			MaxDamage = MaxDamage + 1;
             ArtifactLevel = 2;
             Server.Misc.Arty.ArtySetup( this, "Feeds on Flesh" );
             m_NextArtifactBuff = DateTime.MinValue;

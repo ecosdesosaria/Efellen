@@ -22,6 +22,8 @@ namespace Server.Items
 			Attributes.WeaponDamage = 50;
 			WeaponAttributes.HitLowerAttack = 50;
 			Attributes.RegenStam = 10;
+			MinDamage = MinDamage + 5;
+			MaxDamage = MaxDamage + 5;
 			ArtifactLevel = 2;
 			m_NextSlayTime = DateTime.MinValue;
 			Server.Misc.Arty.ArtySetup( this, "The will of Lolth" );
@@ -29,7 +31,7 @@ namespace Server.Items
 
 		public override bool OnEquip(Mobile from)
 		{
-			if (from.Karma >= -11999)
+			if (from.Karma >= -14999)
 			{
 				from.SendMessage("This vile implement judges you unworthy!");
 				from.ApplyPoison(from, Poison.Deadly);

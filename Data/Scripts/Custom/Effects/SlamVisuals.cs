@@ -13,10 +13,7 @@ namespace Server.EffectsUtil
             if (from == null || from.Deleted || from.Map == null)
                 return;
 
-            Map map = from.Map;
-            Point3D center = from.Location;
-
-            SlamRing(from, center, radius, effectID, hue);
+            SlamRing(from, from.Location, radius, effectID, hue);
         }
 
         public static void SlamRing(Mobile from, Point3D center, int radius, int effectID, int hue)
@@ -25,7 +22,7 @@ namespace Server.EffectsUtil
                 return;
 
             Map map = from.Map;
-
+            int centerZ = center.Z;
             int delayMS = 90;
 
             for (int r = 1; r <= radius; r++)
@@ -33,29 +30,34 @@ namespace Server.EffectsUtil
                 int ringRadius = r;
                 Timer.DelayCall(TimeSpan.FromMilliseconds(r * delayMS), delegate
                 {
-                    DoRing(from, center, ringRadius, effectID, hue, map);
+                    DoRing(center, ringRadius, effectID, hue, map, centerZ);
                 });
             }
         }
 
-        private static void DoRing(Mobile from, Point3D center, int radius, int effectID, int hue, Map map)
+        private static void DoRing(Point3D center, int radius, int effectID, int hue, Map map, int z)
         {
             int x0 = center.X;
             int y0 = center.Y;
-
             for (int x = -radius; x <= radius; x++)
             {
-                for (int y = -radius; y <= radius; y++)
+                int yRange = radius - Math.Abs(x);
+                if (yRange >= 0)
                 {
-                    if (Math.Abs((Math.Abs(x) + Math.Abs(y)) - radius) <= 1)
+                    int y = yRange;
+                    if (Math.Abs(Math.Abs(x) + Math.Abs(y) - radius) <= 1)
                     {
-                        int px = x0 + x;
-                        int py = y0 + y;
-                        int pz = map.GetAverageZ(px, py);
-
-                        Point3D target = new Point3D(px, py, pz);
-
+                        Point3D target = new Point3D(x0 + x, y0 + y, z);
                         Effects.SendLocationEffect(target, map, effectID, 15, hue, 0);
+                    }
+                    if (y != 0)
+                    {
+                        y = -yRange;
+                        if (Math.Abs(Math.Abs(x) + Math.Abs(y) - radius) <= 1)
+                        {
+                            Point3D target = new Point3D(x0 + x, y0 + y, z);
+                            Effects.SendLocationEffect(target, map, effectID, 15, hue, 0);
+                        }
                     }
                 }
             }

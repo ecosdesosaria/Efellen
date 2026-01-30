@@ -15,7 +15,7 @@ namespace Server.Mobiles
 		public OrxWarrior() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = NameList.RandomName( "orc" );
-			Title = "the orx warlord";
+			Title = "the orog warlord";
 			Body = 107;
 			BaseSoundID = 0x45A;
 

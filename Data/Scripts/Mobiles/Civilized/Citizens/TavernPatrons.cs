@@ -531,7 +531,7 @@ namespace Server.Misc
 			string relics = QuestCharacters.QuestItems( false );
 				if ( Utility.RandomBool() ){ relics = QuestCharacters.ArtyItems( false ); }
 
-			int max = 193; if ( !useAll ){ max = max + 40; }
+			int max = 196; if ( !useAll ){ max = max + 40; }
 			switch( Utility.RandomMinMax( 0, max ) )
 			{
 				case 0: sWords = "a bright white shrine in Sosaria that leads to the moon"; break;	
@@ -877,6 +877,9 @@ namespace Server.Misc
 				case 191: sWords = "I've seen the druids of the Howling Order transform into wolves!"; break;
 				case 192: sWords = "They said that the Daughter of Fire attracts adventurers to the bowels of the Fires of Hell, and they are never seen again."; break;
 				case 193: sWords = "Hrimah has claimed the frozen crown and proclamed himself to the Fist of the North in the Glacial Scar."; break;				
+				case 194: sWords = "The elf said that dread house Fanae had rose in the favor of their evil goddess."; break;
+				case 195: sWords = "That strange elf spoke some evil goddess demanding sacrifice in the dark corners of the world."; break;
+				case 196: sWords = "After milemnia, the Scorching legion has been seen in Sosaria again, deep into the fires of hell"; break;
 			}
 			return sWords;	
 		}

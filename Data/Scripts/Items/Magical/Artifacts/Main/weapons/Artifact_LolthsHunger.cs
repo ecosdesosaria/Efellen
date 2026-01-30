@@ -21,6 +21,8 @@ namespace Server.Items
             Attributes.WeaponSpeed = 20;
 			Attributes.BonusDex = 10;
 			Attributes.AttackChance = 15;
+			MinDamage = MinDamage + 4;
+			MaxDamage = MaxDamage + 4;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "Immobilizes and delivers unending pain" );
 			m_NextArtifactAttackAllowed = DateTime.MinValue;
