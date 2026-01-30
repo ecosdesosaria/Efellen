@@ -24,6 +24,9 @@ namespace Server.Items
 			Attributes.NightSight = 1;
             Attributes.DefendChance = 45;
             Attributes.AttackChance = 45;
+			Attributes.BonusStr = 150;
+			Attributes.BonusDex = 150;
+			Attributes.BonusInt = 150;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "" );
 		}
