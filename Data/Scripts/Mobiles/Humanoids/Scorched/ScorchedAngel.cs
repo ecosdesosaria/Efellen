@@ -4,14 +4,16 @@ using Server.Items;
 using Server.Misc;
 using Server.CustomSpells;
 using Server.Custom;
+using Server.Targeting;
+using System.Collections;
+
 
 namespace Server.Mobiles
 {
 	[CorpseName( "a Scorched Angel corpse" )]
 	public class ScorchedAngel : BaseCreature
 	{
-		public override double DispelDifficulty{ get{ return 125.0; } }
-		public override double DispelFocus{ get{ return 45.0; } }
+		private static Hashtable m_BurningSkinTable = new Hashtable();
 
 		[Constructable]
 		public ScorchedAngel () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -49,6 +51,41 @@ namespace Server.Mobiles
 
 			VirtualArmor = 58;
 		}
+
+		public override void OnGaveMeleeAttack(Mobile defender)
+		{
+		    base.OnGaveMeleeAttack(defender);
+
+		    if (defender == null || defender.Deleted || !defender.Alive)
+		        return;
+
+		    if (Utility.Random(100) < 15)
+		        ApplyBurningSkin(defender);
+		}
+
+
+		private static void ApplyBurningSkin(Mobile m)
+		{
+		    if (m == null || m.Deleted)
+		        return;
+
+		    BurningSkinDebuff debuff = (BurningSkinDebuff)m_BurningSkinTable[m];
+
+		    if (debuff != null)
+		    {
+		        debuff.Refresh();
+		    }
+		    else
+		    {
+		        debuff = new BurningSkinDebuff(m);
+		        m_BurningSkinTable[m] = debuff;
+		        debuff.Start();
+		    }
+
+		    m.SendMessage(33, "*your skin burns!*");
+		}
+
+
 
         public override void OnAfterSpawn()
 		{
@@ -94,5 +131,55 @@ namespace Server.Mobiles
 			int version = reader.ReadInt();
             this.MobileMagics(Utility.Random(3,6), SpellType.Cleric, 2931);
 		}
+
+		private class BurningSkinDebuff : Timer
+		{
+		    private Mobile m_Mobile;
+		    private DateTime m_End;
+		    private ResistanceMod m_Mod;
+
+		    public BurningSkinDebuff(Mobile m)
+		        : base(TimeSpan.Zero, TimeSpan.FromSeconds(1.0))
+		    {
+		        m_Mobile = m;
+		        m_End = DateTime.UtcNow + TimeSpan.FromSeconds(12);
+
+		        m_Mod = new ResistanceMod(ResistanceType.Fire, -12);
+		        Priority = TimerPriority.TwoFiftyMS;
+
+		        if (m_Mobile != null)
+		            m_Mobile.AddResistanceMod(m_Mod);
+		    }
+
+		    public void Refresh()
+		    {
+		        m_End = DateTime.UtcNow + TimeSpan.FromSeconds(12);
+		    }
+
+		    protected override void OnTick()
+		    {
+		        if (m_Mobile == null || m_Mobile.Deleted || !m_Mobile.Alive)
+		        {
+		            Remove();
+		            Stop();
+		            return;
+		        }
+
+		        if (DateTime.UtcNow >= m_End)
+		        {
+		            Remove();
+		            Stop();
+		        }
+		    }
+
+		    private void Remove()
+		    {
+		        if (m_Mobile != null)
+		            m_Mobile.RemoveResistanceMod(m_Mod);
+
+		        m_BurningSkinTable.Remove(m_Mobile);
+		    }
+		}
+
 	}
 }
