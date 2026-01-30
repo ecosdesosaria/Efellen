@@ -123,7 +123,8 @@ namespace Server.Misc
 		+"  • Added a new Arena to Destard. It can be accessed by collecting a key from a Draconic Cultist. Enemy spawns in Destard have also been rebalanced, and Destard has been promoved from 'challenging' to 'hard'.<BR>"
 		+"	• All easy dungeons now have one extra room with slightly more challenging monsters. They also had their spawn pool rebuilt to be more consize.<br>"
 		+"	• Mage apprentices can now be found in most newbie dungeons to help new characters get their spellbooks started and to teach them how to fight casters.<br>"
-		+"	• The ancient pyramid had a major makeover and is more pyramid shaped now. It also has many nasty new inhabitants and encounters.<br>"
+		+"	• The fires of hell roughly doubled in size, has many new inhabitants and said inhabitants have a chance of dropping special flaming weapons. It also has two minibosses.<br>"
+		+"	• The ancient pyramid had a major makeover and is more pyramid shaped now. It also has many nasty new inhabitants and a miniboss.<br>"
         +"  • The Library of Bal Tsareth (formerly known as 'Clues') had its mobpool, encounters and lore rebuilt. There's a new quest related to it, accessible by talking to the expedition leader at its entrance.<br>"
 		+" <br>"
         + sepLine()
