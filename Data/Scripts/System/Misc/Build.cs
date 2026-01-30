@@ -5808,6 +5808,7 @@ namespace Server.Misc
     {
 		public static Item ChooseType()
 		{
+			// are you fucking kidding me
 			Item item = null;
 
 			item = new StealBase();
@@ -5886,6 +5887,8 @@ namespace Server.Misc
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5262, 347, 0), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5608, 1456, 0), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5239, 1381, 0), Map.Sosaria);
+			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5390, 1322, 0), Map.Sosaria);
+			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5729, 1322, 0), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(4232, 3289, 0), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5234, 2934, 0), Map.Sosaria);
 			stealPedestal = ChooseType();			stealPedestal.MoveToWorld (new Point3D(5418, 2957, 0), Map.Sosaria);
