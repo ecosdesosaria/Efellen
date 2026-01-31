@@ -88,6 +88,7 @@ namespace Server.Misc
 		+"  • Most spellcasting enemies no longer have a chance to heal to full upon being defeated.<br>"
 		+" <br>"
 		+" * Progression,  archetypes & system changes:<br>"
+		+"  • A new item called Tome of Power has been added to all mark vendors. It can store an unlimited amount of Ethereal Power Scrolls and costs 2000 marks.<br>"
 		+"  • Added a new endgame weapon enchanting system to Fanaedar. Drow enemies and bosses will drop an item called Essense of Lolth's Hatred, and 20 of those can be taken to a sacrificial pit in the drow city to enhance an artifact weapon with increased damage and enchantment points.<br>"
 		+"  • Marks of Devotion:<BR>"
 		+"  	• Marks of Devotion can be aqquired by members of the healer's guild as they face fearsome undead and heal the sick at the House of Holy Mercy.<BR>"

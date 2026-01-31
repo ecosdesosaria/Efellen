@@ -24,7 +24,8 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(EtherealHorse), 250, 0x20DD, "Ethereal Horse",true,0),
             new RewardInfo(typeof(EtherealLlama), 250, 0x20F6, "Ethereal Llama",true,0),
             new RewardInfo(typeof(ArcaneDust), 50, 12265, "100 Arcane Dust",false,33,100),
-            new RewardInfo(typeof(ArcaneDust), 500, 12265, "1000 Arcane Dust",false,33,1000)
+            new RewardInfo(typeof(ArcaneDust), 500, 12265, "1000 Arcane Dust",false,33,1000),
+            new RewardInfo(typeof(TomeOfPower), 2000, 0x2259, "Tome of Power", false,23)
         };
 
         public static RewardInfo[] DefenderRewards = new RewardInfo[]
