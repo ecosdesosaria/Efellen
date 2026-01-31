@@ -1128,6 +1128,8 @@
 		</region>
 		<region type="OutDoorBadRegion" priority="50" name="the Orc Fort">
 			<rect x="559" y="475" width="29" height="27" />
+		</region>
+		<region type="OutDoorBadRegion" priority="50" name="Bloodstone Keep">
 			<rect x="2279" y="1772" width="74" height="64" />
 		</region>
 		<region type="OutDoorBadRegion" priority="50" name="the Ratmen Fort">
