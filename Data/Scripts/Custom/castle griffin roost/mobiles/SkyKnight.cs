@@ -28,8 +28,8 @@ namespace Server.Mobiles
 			SetDex( 200 );
 			SetInt( 200 );
 			SetHits( 800 );
-			SetDamage( 20, 30 );
-			VirtualArmor = 60;
+			SetDamage( 18, 24 );
+			VirtualArmor = 50;
 			Fame = 10000;
 			Karma = 10000;
 			Team = 777;
