@@ -332,7 +332,7 @@ namespace Server.Items
             private TomeOfPower m_Tome;
 
             public OrganizeScrollsEntry(Mobile from, TomeOfPower tome)
-                : base(6276) // Organize
+                : base(0097)
             {
                 m_From = from;
                 m_Tome = tome;
