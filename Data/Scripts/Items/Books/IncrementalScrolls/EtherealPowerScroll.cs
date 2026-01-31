@@ -70,6 +70,13 @@ namespace Server.Items
         public static SkillName[] Skills { get { return m_Skills; } }
         private SkillName m_Skill;
 
+        [CommandProperty(AccessLevel.GameMaster)]
+        public SkillName Skill
+        {
+            get { return m_Skill; }
+            set { m_Skill = value; }
+        }
+
         [Constructable]
         public EtherealPowerScroll()
             : this(GetRandomSkill())
@@ -83,7 +90,7 @@ namespace Server.Items
             m_Skill = skill;
             Weight = 1.0;
             Hue = 23;
-            Name = "Ethereal Power Scroll of " +m_Skill;
+            Name = "Ethereal Power Scroll of " + m_Skill;
         }
 
         public EtherealPowerScroll(Serial serial) : base(serial) { }
