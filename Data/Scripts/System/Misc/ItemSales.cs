@@ -700,7 +700,7 @@ namespace Server
 			if ( price < 1 )
 				price = 1;
 			// gold cut rate
-			price = (int)(price / 2);
+			price = (int)(price - ( price * 50 / 100 ));
 			if ( price < 1 )
 			    price = 1;
 
