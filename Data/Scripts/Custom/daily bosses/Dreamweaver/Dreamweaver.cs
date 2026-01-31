@@ -145,10 +145,10 @@ namespace Server.Mobiles
 		        35
 		    );
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(35 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(25 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -167,8 +167,8 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int availableAttacks = m_Rage;
-			int attackChoice = Utility.RandomMinMax( 1, availableAttacks );
+			
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice  )
 			{
@@ -178,7 +178,7 @@ namespace Server.Mobiles
                        boss: this,
                        warcry: "*Stares fiercely in all directions*",
                        hue: 0x36B0,
-                       rage: m_Rage,
+                       rage: m_Rage+1,
                        range: 6,
 					   physicalDmg:0,
                        energyDmg: 100

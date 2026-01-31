@@ -135,10 +135,10 @@ namespace Server.Mobiles
 		        40
 		    );
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(40 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(25 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -149,8 +149,8 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int availableAttacks = m_Rage;
-			int attackChoice = Utility.RandomMinMax( 1, availableAttacks );
+			
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
             Map map = this.Map;
 
 			switch ( attackChoice  )
@@ -161,7 +161,7 @@ namespace Server.Mobiles
                        boss: this,
                        warcry: "BURN!",
                        hue: 0xb73,
-                       rage: m_Rage,
+                       rage: m_Rage+1,
                        range: 6,
                        fireDmg: 100
                    );

@@ -145,7 +145,7 @@ namespace Server.Mobiles
 		        this,
 		        combatant,
 		        SummonTypes,
-		        m_Rage,
+		        m_Rage+1,
 		        ref m_NextSummonTime,
 		        SummonWarcries,
 		        m_Summons,
@@ -154,10 +154,10 @@ namespace Server.Mobiles
 		        45
 		    );
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(45 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(30 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -168,8 +168,8 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int availableAttacks = m_Rage;
-			int attackChoice = Utility.RandomMinMax( 1, availableAttacks );
+			
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice  )
 			{
@@ -179,7 +179,7 @@ namespace Server.Mobiles
                        boss: this,
                        warcry: "*Releases a burst of crippling poison!*",
                        hue: 267,
-                       rage: m_Rage,
+                       rage: m_Rage+1,
                        range: 6,
 					   physicalDmg:0,
                        poisonDmg: 100
@@ -193,7 +193,7 @@ namespace Server.Mobiles
     				    boss: this,
     				    warcry: "*calls forth piercing vines*",
     				    hue: 0x4F6,
-    				    rage: m_Rage,
+    				    rage: m_Rage+1,
     				    range: 6,
     				    bleedLevel: 5  // 10-15 damage per tick
     				);
@@ -206,7 +206,7 @@ namespace Server.Mobiles
 				       target: target,
 				       warcry: "*Spores burst and explode!*",
 				       hue: 0x4F6,
-				       rage: m_Rage,
+				       rage: m_Rage+1,
 					   physicalDmg:0,
 				       poisonDmg: 100
 				   );

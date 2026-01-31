@@ -23,12 +23,12 @@ namespace Server.Mobiles
 		private const int MAGMA_DURATION = 12;
 		
 		private static readonly Type[] SummonTypes = new Type[] 
-		{ 
-			typeof(BabyDragon), 
-			typeof(YoungDragon), 
+		{  
 			typeof(Drake), 
 			typeof(Wyrm), 
-			typeof(AncientDrake) 
+			typeof(Dragons),
+			typeof(AncientDrake),
+			typeof(AncientWyrm) 
 		};
 
 		private static readonly string[] SummonWarcries = new string[]
@@ -158,7 +158,7 @@ namespace Server.Mobiles
 		        30
 		    );
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
 		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(30 - (m_Rage * 2));
@@ -180,7 +180,7 @@ namespace Server.Mobiles
 				    target: from,
 				    warcry: "*exhales devastating flames!*",
 				    hue: 1160,
-				    rage: m_Rage,
+				    rage: m_Rage+1,
 				    range: 5,
 					physicalDmg:0,
 				    fireDmg: 100
@@ -195,8 +195,8 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int availableAttacks = m_Rage;
-			int attackChoice = Utility.RandomMinMax( 1, availableAttacks );
+			
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice )
 			{
@@ -207,7 +207,7 @@ namespace Server.Mobiles
 				    	    target: target,
 				    	    warcry: "*exhales devastating flames!*",
 				    	    hue: 1160,
-				    	    rage: m_Rage,
+				    	    rage: m_Rage+1,
 				    	    range: 8,
 							physicalDmg:0,
 				    	    fireDmg: 100
@@ -219,7 +219,7 @@ namespace Server.Mobiles
 						BossSpecialAttack.PerformTargettedAoE(
 							this,
 							target,
-							m_Rage,
+							m_Rage+1,
 							"We are fire eternal!",
 							1160,  // hue
 							0,     // physical

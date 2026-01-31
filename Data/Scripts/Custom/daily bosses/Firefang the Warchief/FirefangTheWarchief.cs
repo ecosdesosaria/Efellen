@@ -154,10 +154,10 @@ namespace Server.Mobiles
 		        45
 		    );
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(45 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(30 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -168,8 +168,8 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int availableAttacks = m_Rage;
-			int attackChoice = Utility.RandomMinMax( 1, availableAttacks );
+			
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice )
 			{
@@ -178,7 +178,7 @@ namespace Server.Mobiles
 					BossSpecialAttack.PerformTargettedAoE(
 						this,
 						target,
-						m_Rage,
+						m_Rage+1,
 						"*BOOM TIME!*",
 						348,  // hue
 						0,     // physical
@@ -196,7 +196,7 @@ namespace Server.Mobiles
 					    "*LIGHT DA FUSES BOYS!*",
 					    348,   // hue
 					    8,     // radius
-					    m_Rage,
+					    m_Rage+1,
 					    0,     // physical
 					    100,   // fire
 					    0,     // cold
@@ -212,7 +212,7 @@ namespace Server.Mobiles
 		                "*LIGHT DA FUSES BOYS!*",
 		                348,   // hue
 		                16,    // radius
-		                m_Rage,
+		                m_Rage+2,
 		                0,     // physical
 		                100,   // fire
 		                0,     // cold

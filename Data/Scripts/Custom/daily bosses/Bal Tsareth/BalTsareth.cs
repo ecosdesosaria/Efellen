@@ -127,10 +127,10 @@ namespace Server.Mobiles
 		        35
 		    );
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(35 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(25 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -184,15 +184,15 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int attackChoice = Utility.RandomMinMax( 1, m_Rage );
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice )
 			{
 				case 1:
-					BossSpecialAttack.PerformSlam( this, "MINE! ALL OF THESE SECRETS ARE MINE!", 0x0213, m_Rage, 6, 20, 20, 20, 20, 20 );
+					BossSpecialAttack.PerformSlam( this, "MINE! ALL OF THESE SECRETS ARE MINE!", 0x0213, m_Rage+1, 6, 20, 20, 20, 20, 20 );
 					break;
 				case 2:
-					BossSpecialAttack.PerformDegenAura( this, "You dare to attack me? ME? IN MY HOME?", 8, m_Rage, 16, 29, "mana", 0x0213 );
+					BossSpecialAttack.PerformDegenAura( this, "You dare to attack me? ME? IN MY HOME?", 8, m_Rage+1, 16, 29, "mana", 0x0213 );
 					break;
 				case 3:
 					Type summonType;
@@ -209,7 +209,7 @@ namespace Server.Mobiles
 							break;
 					}
 
-					BossSpecialAttack.SummonHonorGuard( this, target, "The elements are mine! I unravelled their secrets before your kingdom was born!", m_Rage, summonType, 0x0213 );
+					BossSpecialAttack.SummonHonorGuard( this, target, "The elements are mine! I unravelled their secrets before your kingdom was born!", m_Rage+1, summonType, 0x0213 );
 					break;
 			}
 		}

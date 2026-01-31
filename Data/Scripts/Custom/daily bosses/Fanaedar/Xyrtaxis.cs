@@ -95,7 +95,7 @@ namespace Server.Mobiles
 		    if (combatant == null || combatant.Deleted || !combatant.Alive)
 		        return;
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
 		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(15 - (m_Rage * 2));
@@ -122,36 +122,53 @@ namespace Server.Mobiles
 		}
 
         private void TryWeaveStep()
-        {
-            Map map = Map;
+		{
+		    Map map = Map;
+		    if ( map == null )
+		        return;
 
-            if ( map == null )
-                return;
+		    int currentZ = Z;
 
-            for ( int i = 0; i < 10; i++ )
-            {
-                int x = X + Utility.RandomMinMax( -6, 6 );
-                int y = Y + Utility.RandomMinMax( -6, 6 );
-                int z = map.GetAverageZ( x, y );
-                Point3D p = new Point3D( x, y, z );
+		    for ( int i = 0; i < 10; i++ )
+		    {
+		        int x = X + Utility.RandomMinMax( -6, 6 );
+		        int y = Y + Utility.RandomMinMax( -6, 6 );
+		        Point3D p = new Point3D( x, y, currentZ );
 
-                if ( map.CanSpawnMobile( p ) )
-                {
-                    Location = p;
-                    PublicOverheadMessage( MessageType.Emote, 0x3B2, false, "*Steps into the weave*" );
-                    Effects.SendLocationEffect( p, map, 0x3728, 13, 10, 0, 0 );
-                    Effects.PlaySound( p, map, 0x1FE );
-                    break;
-                }
-            }
-        }
+		        if ( map.CanSpawnMobile( p ) )
+		        {
+		            Location = p;
+		            PublicOverheadMessage( MessageType.Emote, 0x3B2, false, "*Steps into the weave*" );
+		            Effects.SendLocationEffect( p, map, 0x3728, 13, 10, 0, 0 );
+		            Effects.PlaySound( p, map, 0x1FE );
+		            return;
+		        }
+		    }
+
+		    for ( int i = 0; i < 10; i++ )
+		    {
+		        int x = X + Utility.RandomMinMax( -6, 6 );
+		        int y = Y + Utility.RandomMinMax( -6, 6 );
+		        int z = map.GetAverageZ( x, y );
+		        Point3D p = new Point3D( x, y, z );
+
+		        if ( map.CanSpawnMobile( p ) )
+		        {
+		            Location = p;
+		            PublicOverheadMessage( MessageType.Emote, 0x3B2, false, "*Steps into the weave*" );
+		            Effects.SendLocationEffect( p, map, 0x3728, 13, 10, 0, 0 );
+		            Effects.PlaySound( p, map, 0x1FE );
+		            return;
+		        }
+		    }
+		}
 
 		private void PerformRageAttack( Mobile target )
 		{
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int attackChoice = Utility.RandomMinMax( 1, m_Rage );
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice )
 			{
@@ -159,7 +176,7 @@ namespace Server.Mobiles
                     BossSpecialAttack.PerformTargettedAoE(
 						this,
 						target,
-						m_Rage,
+						m_Rage+1,
 						"You will regret this interruption!",
 						1316,  // hue
 						20,     // physical
@@ -170,14 +187,14 @@ namespace Server.Mobiles
 					);
 					break;
 				case 2:
-					BossSpecialAttack.PerformDegenAura( this, "I shall unravel you!", 8, m_Rage, 16, 29, "mana", 0x0213 );
+					BossSpecialAttack.PerformDegenAura( this, "I shall unravel you!", 8, m_Rage+1, 16, 29, "mana", 0x0213 );
 					break;
 				case 3:
                     BossSpecialAttack.PerformEntangle(
         			    boss: this,
         			    warcry: "Bleed for Lolth!",
         			    hue: 1316,
-        			    rage: m_Rage,
+        			    rage: m_Rage+1,
         			    range: 8,
         			    bleedLevel: 10  // 20-30 damage per tick
         			);

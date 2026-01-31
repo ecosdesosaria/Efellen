@@ -96,10 +96,10 @@ namespace Server.Mobiles
 		    if (combatant == null || combatant.Deleted || !combatant.Alive)
 		        return;
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(50 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(25 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -110,14 +110,15 @@ namespace Server.Mobiles
             if (target == null || target.Deleted || !target.Alive)
                 return;
 
-            switch (m_Rage)
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
+            switch (attackChoice)
             {
                 case 0:
                      BossSpecialAttack.PerformRampage(
                        boss: this,
                        warcry: "FRESH MEAT!",
                        hue: 0x845,
-                       rage: m_Rage,
+                       rage: m_Rage+1,
                        stunDuration: 4.0
                    );
                    break;
@@ -127,8 +128,8 @@ namespace Server.Mobiles
 				      boss: this,
 				      warcry: "FRESH MEAT!",
 				      range: 6,
-				      rage: m_Rage,
-				      terror: 70  // Knightship 70+ saves from fear
+				      rage: m_Rage+1,
+				      terror: 90  // Knightship 70+ saves from fear
 				  );
 				  break;
 
@@ -137,7 +138,7 @@ namespace Server.Mobiles
 		                this,
 		                "*spreads its innards around!*",
 		                8,          // radius
-		                m_Rage,     // rage level
+		                m_Rage+1,     // rage level
 		                12,         // duration - 12 + rage*2 seconds, damage happens every 2 seconds 
 		                26,         // intensity - 20 + rage damage per tick
 		                "health",   // target attribute
