@@ -127,8 +127,8 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int availableAttacks = m_Rage;
-			int attackChoice = Utility.RandomMinMax( 1, availableAttacks );
+			
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice  )
 			{
@@ -138,7 +138,7 @@ namespace Server.Mobiles
                     boss: this,
                     warcry: "The blizzard of Ozz!",
                     hue: 0x25,
-                    rage: m_Rage,
+                    rage: m_Rage+1,
                     range: 6,
 					physicalDmg:0,
                     coldDmg: 100
@@ -152,7 +152,7 @@ namespace Server.Mobiles
     			    boss: this,
     			    warcry: "I just want you!",
     			    hue: 0x25,
-    			    rage: m_Rage,
+    			    rage: m_Rage+1,
     			    range: 6,
     			    bleedLevel: 12  // 24-36 damage per tick
     			);
@@ -166,7 +166,7 @@ namespace Server.Mobiles
 				    target: target,
 				    warcry: "The sun, the moon and the stars all bear my seal!",
 				    hue: 0x25,
-				    rage: m_Rage,
+				    rage: m_Rage+1,
 				    coldDmg: 20,
 				    fireDmg: 20,
 				    energyDmg: 20,
@@ -205,7 +205,7 @@ namespace Server.Mobiles
 		        30
 		    );
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
 		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(30 - (m_Rage * 2));

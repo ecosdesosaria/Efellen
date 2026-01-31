@@ -175,10 +175,10 @@ namespace Server.Mobiles
 		        35
 		    );
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(35 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(25 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -189,7 +189,7 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int attackChoice = Utility.RandomMinMax( 1, m_Rage );
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice )
 			{
@@ -197,14 +197,14 @@ namespace Server.Mobiles
 					RallyMinions();
 					break;
 				case 2:
-					BossSpecialAttack.PerformDegenAura( this, "By my goddess and by church, thou shall perish!", 8, m_Rage, 16, 29, "health", 1316 );
+					BossSpecialAttack.PerformDegenAura( this, "By my goddess and by church, thou shall perish!", 8, m_Rage+1, 16, 29, "health", 1316 );
 					break;
 				case 3:
 					BossSpecialAttack.PerformSlam(
                        boss: this,
                        warcry: "Lolth smites thee!",
                        hue: 1316,
-                       rage: m_Rage,
+                       rage: m_Rage+1,
                        range: 6,
                        physicalDmg: 100
                    );

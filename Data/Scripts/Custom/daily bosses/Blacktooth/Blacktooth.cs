@@ -100,10 +100,10 @@ namespace Server.Mobiles
 		    if (combatant == null || combatant.Deleted || !combatant.Alive)
 		        return;
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(50 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(20 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -115,12 +115,7 @@ namespace Server.Mobiles
             if (target == null || target.Deleted || !target.Alive)
                 return;
 
-            int roll;
-
-            if (m_Rage <= 1)
-                roll = Utility.Random(2); // 0–1
-            else 
-                roll = Utility.Random(4); // 0–3
+            int roll = Utility.Random(4);
 
             switch (roll)
             {
@@ -129,7 +124,7 @@ namespace Server.Mobiles
                        boss: this,
                        warcry: "*Screeches and charges forward!*",
                        hue: 660,
-                       rage: m_Rage,
+                       rage: m_Rage+1,
                        stunDuration: 4.0
                    );
                    break;
@@ -139,7 +134,7 @@ namespace Server.Mobiles
 				      boss: this,
 				      warcry: "*Unleashes a bestial roar!*",
 				      range: 6,
-				      rage: m_Rage,
+				      rage: m_Rage+1,
 				      terror: 70  // Knightship 70+ saves from fear
 				  );
 				  break;
@@ -149,7 +144,7 @@ namespace Server.Mobiles
                         boss: this,
                         target: target,
                         warcry: "Ancestors! Aid me!",
-                        amount: 1,
+                        amount: m_Rage>1?m_Rage:1,
                         creatureType: typeof(SummonDireBear),
                         hue: 660
                     );
@@ -160,7 +155,7 @@ namespace Server.Mobiles
                        boss: this,
                        warcry: "The ground shakes!",
                        hue: 660,
-                       rage: m_Rage,
+                       rage: m_Rage+1,
                        range: 6,
                        physicalDmg: 100
                    );

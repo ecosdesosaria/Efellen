@@ -179,10 +179,10 @@ namespace Server.Mobiles
 		        30
 		    );
 
-		    if (m_Rage >= 1 && DateTime.UtcNow >= m_NextSpecialAttack)
+		    if (DateTime.UtcNow >= m_NextSpecialAttack)
 		    {
 		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(30 - (m_Rage * 2));
+		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(25 - (m_Rage * 2));
 		    }
 
 		    m_LastTarget = combatant;
@@ -193,7 +193,7 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			int attackChoice = Utility.RandomMinMax( 1, m_Rage );
+			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice )
 			{
@@ -202,7 +202,7 @@ namespace Server.Mobiles
                         this,
                         "Spider Queen, I offer thee a sacrifice!",
                         1316,
-                        m_Rage,
+                        m_Rage+1,
                         true
                     );
             	break;
