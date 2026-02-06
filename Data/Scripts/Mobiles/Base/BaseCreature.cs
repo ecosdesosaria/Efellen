@@ -9344,10 +9344,7 @@ public virtual int BreathComputeDamage()
 		{
 			BardProvoked = true;
 
-			if ( !Core.ML )
-			{
-				this.PublicOverheadMessage( MessageType.Emote, EmoteHue, false, "*looks furious*" );
-			}
+			this.PublicOverheadMessage( MessageType.Emote, EmoteHue, false, "*looks furious*" );
 
 			if ( bSuccess )
 			{
