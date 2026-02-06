@@ -64,6 +64,7 @@ namespace Server.Mobiles
 			PackItem( new Gold( Utility.RandomMinMax( 105, 385 ) ) );
             m_NextRageAllowed = DateTime.UtcNow;
 			m_IsRaging = false;
+			InitializeEquipment();
 		}
 
 		public override void GenerateLoot()
@@ -173,10 +174,17 @@ namespace Server.Mobiles
 		public override void OnAfterSpawn()
 		{
 		    base.OnAfterSpawn();		
+			InitializeEquipment();
+		}	
 
+		private void InitializeEquipment()
+		{
+		    if (FindItemOnLayer(Layer.OneHanded) != null)
+		        return;
+		
 		    AddEquipment();
 		    ColorKnight();
-		}		
+		}	
 
 		private void AddEquipment()
 		{
@@ -187,7 +195,7 @@ namespace Server.Mobiles
 		    AddItem(new RoyalGorget { Hue = 0x0AA5 });
 		    AddItem(new RoyalGloves { Hue = 0x0AA5 });
 		    AddItem(new Boots { Hue = 0x0AA5 });
-		    AddItem(new RoyalHelm { Hue = 0x0AA5 });
+		    AddItem(new DreadHelm { Hue = 0x0AA5 });
 		    AddItem(new RoyalShield { Hue = 0x0AA5 });		
 		    AddItem(new Cloak { Hue = 0x0AA5 });
 		}		

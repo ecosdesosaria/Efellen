@@ -531,7 +531,7 @@ namespace Server.Misc
 			string relics = QuestCharacters.QuestItems( false );
 				if ( Utility.RandomBool() ){ relics = QuestCharacters.ArtyItems( false ); }
 
-			int max = 196; if ( !useAll ){ max = max + 40; }
+			int max = 198; if ( !useAll ){ max = max + 40; }
 			switch( Utility.RandomMinMax( 0, max ) )
 			{
 				case 0: sWords = "a bright white shrine in Sosaria that leads to the moon"; break;	
@@ -880,6 +880,8 @@ namespace Server.Misc
 				case 194: sWords = "The elf said that dread house Fanae had rose in the favor of their evil goddess."; break;
 				case 195: sWords = "That strange elf spoke some evil goddess demanding sacrifice in the dark corners of the world."; break;
 				case 196: sWords = "After milemnia, the Scorching legion has been seen in Sosaria again, deep into the fires of hell"; break;
+				case 197: sWords = "A band of brigands led by an Ettin named Dardin has been terrorizing the northern coast";break;
+				case 198: sWords = "A group of fallen knights has built a keep red as blood in central Sosaria, they are led by a vile man named Caelan.";break;
 			}
 			return sWords;	
 		}
