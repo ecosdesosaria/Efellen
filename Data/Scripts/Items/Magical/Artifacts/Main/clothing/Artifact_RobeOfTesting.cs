@@ -19,14 +19,15 @@ namespace Server.Items
 			Attributes.CastRecovery = 6;
 			Attributes.CastSpeed = 6;
 			Attributes.LowerManaCost = 40;
-			Attributes.BonusHits = 1000;
-			Attributes.BonusStam = 1000;
+			Attributes.BonusHits = 500;
+			Attributes.BonusStam = 500;
 			Attributes.NightSight = 1;
             Attributes.DefendChance = 45;
             Attributes.AttackChance = 45;
 			Attributes.BonusStr = 150;
 			Attributes.BonusDex = 150;
 			Attributes.BonusInt = 150;
+			Attributes.Luck = 2000;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "" );
 		}
