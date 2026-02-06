@@ -118,6 +118,8 @@ namespace Server.Mobiles
 		{
 			return 	m is HeavenlyMarshall || 
 					m is SkyKnight || 
+					m is Angel || 
+					m is Archangel ||
 					m is GriffonRiding || 
 					m is WarGriffon || 
 					m is EtherealWarriorGeneral;

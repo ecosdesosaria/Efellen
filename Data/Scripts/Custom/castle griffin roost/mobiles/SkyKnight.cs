@@ -297,13 +297,13 @@ namespace Server.Mobiles
 		}
 		private bool IsFriendlyCreature(Mobile m)
 		{
-			Region reg = Region.Find( this.Location, this.Map );
-			return (reg.IsPartOf( "Castle Griffin Roost" ) && (
-					m is HeavenlyMarshall || 
+			return 	m is HeavenlyMarshall || 
 					m is SkyKnight || 
+					m is Angel || 
+					m is Archangel ||
 					m is GriffonRiding || 
 					m is WarGriffon || 
-					m is EtherealWarriorGeneral));
+					m is EtherealWarriorGeneral;
 		}
 
 		public override bool IsEnemy( Mobile m )
