@@ -7,7 +7,7 @@ using Server.Misc;
 
 namespace Server.Mobiles 
 { 
-	[CorpseName( "an ethereal warrior corpse" )] 
+	[CorpseName( "a Seraph's corpse" )] 
 	public class EtherealWarriorGeneral : BaseCreature 
 	{ 
 		public override bool InitialInnocent{ get{ return true; } }
@@ -15,10 +15,11 @@ namespace Server.Mobiles
 		[Constructable] 
 		public EtherealWarriorGeneral() : base( AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4 ) 
 		{ 
-			Name = NameList.RandomName( "Elite ethereal warrior" );
-			Body = 65;
+			Name = "Seraph";
 			NameHue = 0x0672;
 			Hue = 0x0672;
+			Body = 0x9e;
+			BaseSoundID = 466;
 
 			SetStr( 586, 785 );
 			SetDex( 177, 255 );
@@ -47,7 +48,7 @@ namespace Server.Mobiles
 			Fame = 7000;
 			Karma = 7000;
 
-			VirtualArmor = 120;
+			VirtualArmor = 70;
 		}
 
 		public override int TreasureMapLevel{ get{ return Core.AOS ? 5 : 0; } }
@@ -60,28 +61,6 @@ namespace Server.Mobiles
 
 		private DateTime m_NextResurrect;
 		private static TimeSpan ResurrectDelay = TimeSpan.FromSeconds(2.0);
-
-		public override void OnMovement(Mobile from, Point3D oldLocation)
-		{
-			if (!from.Alive && (from is PlayerMobile))
-			{
-				if (!from.Frozen && (DateTime.Now >= m_NextResurrect) && InRange(from, 4) && !InRange(oldLocation, 4) && InLOS(from))
-				{
-					m_NextResurrect = DateTime.Now + ResurrectDelay;
-					if (!from.Criminal && (from.Kills < 5) && (from.Karma > 0))
-					{
-						if (from.Map != null && from.Map.CanFit(from.Location, 16, false, false))
-						{
-							Direction = GetDirectionTo(from);
-							from.PlaySound(0x1F2);
-							from.FixedEffect(0x376A, 10, 16);
-							from.CloseGump(typeof(ResurrectGump));
-							from.SendGump(new ResurrectGump(from, ResurrectMessage.Healer));
-						}
-					}
-				}
-			}
-		}
 
 		public override int Feathers{ get{ return 100; } }
 
@@ -137,6 +116,8 @@ namespace Server.Mobiles
 			Region reg = Region.Find( this.Location, this.Map );
 			return (reg.IsPartOf( "Castle Griffin Roost" ) && (
 					m is HeavenlyMarshall || 
+					m is Angel || 
+					m is Archangel ||
 					m is SkyKnight || 
 					m is GriffonRiding || 
 					m is WarGriffon || 
