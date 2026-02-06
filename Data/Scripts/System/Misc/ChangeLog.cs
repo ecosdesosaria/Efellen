@@ -113,6 +113,7 @@ namespace Server.Misc
 		+"    • There's now a chance (capping at 25%) that a poison charge will not be consumed based on the user's poisoning skill with every hit.<BR>"
 		+"  • A character now fully logs out after 30 seconds, down from 5 minutes.<BR>"
 		+"	• Rewards from taming contracts have been rebalanced to be more fitting of the current game's design and to no longer generate very ugly pets.<br>"
+		+"  • Mark vendors now offer a 'rewards' context menu entry for players that meet their requirements.<br>"
 		+ "<br>"
 		+"* Locations:<br>"
 		+"  • A new point of interest called Bloodstone Keep has replaced one of the Orc Camps in Sosaria. Many powerful enemies await in there.<br>"
