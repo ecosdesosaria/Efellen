@@ -1956,7 +1956,15 @@ namespace Server.Mobiles
 							amount = resp.Item.Amount;
 
 						// Calculate the price for this item
-						int itemPrice = ssi.GetSellPriceFor( resp.Item, SoldBarter ) * amount;
+						int barter = (int)seller.Skills[SkillName.Mercantile].Value;
+						if ( barter < 100 && this.NpcGuild != NpcGuild.None && this.NpcGuild == pm.NpcGuild ){ barter = 100; GuildMember = 1; } // FOR GUILD MEMBERS
+
+						if ( isBegging && GuildMember == 0 )
+						{
+							barter = (int)seller.Skills[SkillName.Begging].Value;
+						}
+
+						int itemPrice = ssi.GetSellPriceFor( resp.Item, barter ) * amount;
 
 						// Check if this item would exceed the affordable limit
 						if ( GiveGold + itemPrice > maxAffordableGold )
@@ -1967,7 +1975,7 @@ namespace Server.Mobiles
 								
 							// Calculate how much we can afford of this item
 							int remainingGold = maxAffordableGold - GiveGold;
-							int unitPrice = ssi.GetSellPriceFor( resp.Item, SoldBarter );
+							int unitPrice = ssi.GetSellPriceFor( resp.Item, barter );
 							
 							if ( unitPrice <= 0 )
 								break;

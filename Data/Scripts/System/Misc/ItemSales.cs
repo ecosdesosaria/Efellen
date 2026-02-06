@@ -699,11 +699,9 @@ namespace Server
 
 			if ( price < 1 )
 				price = 1;
-			// gold cut rate
-			price = (int)(price - ( price * 50 ));
+			price = (int)(price - ( price * MyServerSettings.SellGoldCutRate() ));
 			if ( price < 1 )
-			    price = 1;
-
+				price = 1;			
 			return price;
 		}
 

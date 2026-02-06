@@ -24,7 +24,7 @@ namespace Server.Mobiles
 			int price = 0;
 			m_Table.TryGetValue( item.GetType(), out price );
 
-			price = ItemInformation.AddUpBenefits( item, price, false, false );
+			price = ItemInformation.AddUpBenefits( item, price, false, true );
 
 			price = (int)(price / 2);
 				if ( barter > 0 )
