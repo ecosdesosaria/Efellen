@@ -9,7 +9,6 @@ using Server.ContextMenus;
 using Server.Items;
 using Server.Network;
 using Server.Multis;
-using Server.Prompts;
 
 namespace Server.Items
 {
@@ -54,7 +53,7 @@ namespace Server.Items
         public override void OnSingleClick(Mobile from)
         {
             base.OnSingleClick(from);
-            
+
             if (this.Weight > 1.0)
             {
                 LabelTo(from, "Single Click to Organize");
@@ -132,7 +131,7 @@ namespace Server.Items
                 from.SendSound(0x42, GetWorldLocation());
                 from.SendMessage("You have organized {0} power scroll{1} into the tome.", totalAdded, totalAdded != 1 ? "s" : "");
                 InvalidateProperties();
-                
+
                 if (from is PlayerMobile)
                 {
                     from.SendGump(new TomeOfPowerGump((PlayerMobile)from, this));
@@ -276,22 +275,22 @@ namespace Server.Items
             switch (version)
             {
                 case 0:
-                {
-                    m_Level = (SecureLevel)reader.ReadInt();
-                    m_BookName = reader.ReadString();
-
-                    int count = reader.ReadEncodedInt();
-                    m_Entries = new Dictionary<SkillName, int>();
-
-                    for (int i = 0; i < count; ++i)
                     {
-                        SkillName skill = (SkillName)reader.ReadInt();
-                        int amount = reader.ReadInt();
-                        m_Entries[skill] = amount;
-                    }
+                        m_Level = (SecureLevel)reader.ReadInt();
+                        m_BookName = reader.ReadString();
 
-                    break;
-                }
+                        int count = reader.ReadEncodedInt();
+                        m_Entries = new Dictionary<SkillName, int>();
+
+                        for (int i = 0; i < count; ++i)
+                        {
+                            SkillName skill = (SkillName)reader.ReadInt();
+                            int amount = reader.ReadInt();
+                            m_Entries[skill] = amount;
+                        }
+
+                        break;
+                    }
             }
         }
 
@@ -410,7 +409,7 @@ namespace Server.Items
 
             // Sort entries by skill name
             m_SortedEntries = new List<KeyValuePair<SkillName, int>>(tome.Entries);
-            m_SortedEntries.Sort(delegate(KeyValuePair<SkillName, int> a, KeyValuePair<SkillName, int> b)
+            m_SortedEntries.Sort(delegate (KeyValuePair<SkillName, int> a, KeyValuePair<SkillName, int> b)
             {
                 return a.Key.ToString().CompareTo(b.Key.ToString());
             });
@@ -464,7 +463,7 @@ namespace Server.Items
                 }
 
                 KeyValuePair<SkillName, int> entry = m_SortedEntries[i];
-                
+
                 AddLabel(30, yPos, 0x480, entry.Key.ToString());
                 AddLabel(250, yPos, 0x480, String.Format("Amount: {0}", entry.Value));
                 AddButton(330, yPos, 4005, 4007, i + 1, GumpButtonType.Reply, 0);
@@ -500,7 +499,7 @@ namespace Server.Items
             if (index >= 0 && index < m_SortedEntries.Count)
             {
                 KeyValuePair<SkillName, int> entry = m_SortedEntries[index];
-                
+
                 if (entry.Value == 1)
                 {
                     // Only one scroll, withdraw it directly
@@ -538,10 +537,10 @@ namespace Server.Items
             AddPage(0);
             AddBackground(0, 0, 350, 200, 9270);
             AddLabel(20, 20, 1152, "Withdraw Scrolls");
-            
-            string message = String.Format("You have {0} {1} scroll{2}.<br>How many would you like to withdraw?", 
+
+            string message = String.Format("You have {0} {1} scroll{2}.<br>How many would you like to withdraw?",
                 available, skill.ToString(), available != 1 ? "s" : "");
-            
+
             AddHtml(20, 50, 310, 60, message, true, true);
 
             AddLabel(20, 120, 0x480, "Amount:");

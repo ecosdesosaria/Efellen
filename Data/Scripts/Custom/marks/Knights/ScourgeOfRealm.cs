@@ -4,9 +4,9 @@ using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Misc;
-using Server.Gumps; 
-using Server.Network; 
-using Server.Targeting; 
+using Server.Gumps;
+using Server.Network;
+using Server.Targeting;
 using Server.ContextMenus;
 using Server.Custom.DefenderOfTheRealm.Vow.VowOfTheScourge;
 
@@ -18,35 +18,35 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
         [Constructable]
         public ScourgeOfRealm() : base(AIType.AI_Thief, FightMode.None, 10, 1, 0.4, 1.6)
         {
-            InitStats( 125, 55, 65 ); 
-			Name = this.Female ? NameList.RandomName( "female" ) : NameList.RandomName( "male" );
-			Title = "Scourge of the Realm";
-            HairHue = Utility.RandomHairHue(); 
-			Body = this.Female? 0x191: 0x190;
+            InitStats(125, 55, 65);
+            Name = this.Female ? NameList.RandomName("female") : NameList.RandomName("male");
+            Title = "Scourge of the Realm";
+            HairHue = Utility.RandomHairHue();
+            Body = this.Female ? 0x191 : 0x190;
             SpeechHue = Utility.RandomTalkHue();
-			Hue = Utility.RandomSkinHue(); 
-			Utility.AssignRandomHair( this );
-			if(( !this.Female ))
+            Hue = Utility.RandomSkinHue();
+            Utility.AssignRandomHair(this);
+            if ((!this.Female))
             {
-                FacialHairItemID = Utility.RandomList( 0, 8254, 8255, 8256, 8257, 8267, 8268, 8269 );
+                FacialHairItemID = Utility.RandomList(0, 8254, 8255, 8256, 8257, 8267, 8268, 8269);
             }
-            AddItem( new Boots( Utility.RandomBirdHue() ) );
-            AddItem( new Cloak( Utility.RandomBirdHue() ) );
-            AddItem( new Artifact_ScourgeOfTheRealmArms());
-            AddItem( new Artifact_ScourgeOfTheRealmChestpiece());
-            AddItem( new Artifact_ScourgeOfTheRealmGloves());
-            AddItem( new Artifact_ScourgeOfTheRealmGorget());
-            AddItem( new Artifact_ScourgeOfTheRealmHelmet());
-            AddItem( new Artifact_ScourgeOfTheRealmLeggings());
+            AddItem(new Boots(Utility.RandomBirdHue()));
+            AddItem(new Cloak(Utility.RandomBirdHue()));
+            AddItem(new Artifact_ScourgeOfTheRealmArms());
+            AddItem(new Artifact_ScourgeOfTheRealmChestpiece());
+            AddItem(new Artifact_ScourgeOfTheRealmGloves());
+            AddItem(new Artifact_ScourgeOfTheRealmGorget());
+            AddItem(new Artifact_ScourgeOfTheRealmHelmet());
+            AddItem(new Artifact_ScourgeOfTheRealmLeggings());
         }
 
-        public override void OnMovement( Mobile m, Point3D oldLocation )
+        public override void OnMovement(Mobile m, Point3D oldLocation)
         {
-            if ( InRange( m, 6 ) && !InRange( oldLocation, 2 ) )
+            if (InRange(m, 6) && !InRange(oldLocation, 2))
             {
-                if ( m is PlayerMobile && !m.Hidden ) 
+                if (m is PlayerMobile && !m.Hidden)
                 {
-                    if ( DateTime.UtcNow >= m_NextSpeechTime )
+                    if (DateTime.UtcNow >= m_NextSpeechTime)
                     {
                         switch (Utility.Random(11))
                         {
@@ -72,7 +72,28 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
         public override void GetContextMenuEntries(Mobile from, List<ContextMenuEntry> list)
         {
             base.GetContextMenuEntries(from, list);
-            list.Add(new GiveVowEntry(from, this));
+            if (from is PlayerMobile)
+            {
+                list.Add(new GiveVowEntry(from, this));
+                list.Add(new RewardsEntry(from, this));
+            }
+        }
+
+        private class RewardsEntry : ContextMenuEntry
+        {
+            private ScourgeOfRealm m_Npc;
+            private Mobile m_From;
+
+            public RewardsEntry(Mobile from, ScourgeOfRealm npc) : base(6093, 3)
+            {
+                m_From = from;
+                m_Npc = npc;
+            }
+
+            public override void OnClick()
+            {
+                m_Npc.MaybeShowScourgeOfTheRealmRewardsGump(m_From as PlayerMobile);
+            }
         }
 
         private class GiveVowEntry : ContextMenuEntry
@@ -80,7 +101,7 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
             private Mobile m_From;
             private ScourgeOfRealm m_Npc;
             private static TimeSpan Delay = TimeSpan.FromHours(6);
-			private static Dictionary<PlayerMobile,DateTime> LastUsers = new Dictionary<PlayerMobile,DateTime>();
+            private static Dictionary<PlayerMobile, DateTime> LastUsers = new Dictionary<PlayerMobile, DateTime>();
 
             public GiveVowEntry(Mobile from, ScourgeOfRealm npc) : base(6146)
             {
@@ -90,13 +111,13 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
 
             public override void OnClick()
             {
-                if( !( m_From is PlayerMobile ) )
-					return;
-				
-				if (m_From == null || m_From.Deleted || m_Npc == null || m_Npc.Deleted)
+                if (!(m_From is PlayerMobile))
                     return;
 
-                PlayerMobile mobile = (PlayerMobile) m_From;
+                if (m_From == null || m_From.Deleted || m_Npc == null || m_Npc.Deleted)
+                    return;
+
+                PlayerMobile mobile = (PlayerMobile)m_From;
                 DateTime lastUse;
 
                 if (!mobile.CheckAlive())
@@ -126,49 +147,49 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
                     return;
                 }
                 if (CanGetVow(mobile))
-                    {
-                        LastUsers[mobile] = DateTime.UtcNow;
-                        VowOfTheScourge vow = new VowOfTheScourge(mobile);
-                        m_From.Backpack.DropItem(vow);
+                {
+                    LastUsers[mobile] = DateTime.UtcNow;
+                    VowOfTheScourge vow = new VowOfTheScourge(mobile);
+                    m_From.Backpack.DropItem(vow);
 
-                        if (vow.Parent == mobile.Backpack)
-                        {
-                            mobile.SendGump(new SpeechGump(mobile, "Scourge of the Realm", SpeechFunctions.SpeechText(m_Npc, mobile, "Scourge of the Realm")));
-                            mobile.SendMessage("You receive a Vow of the Scourge.");
-                        }
-                        else
-                        {
-                            vow.Delete();
-                            mobile.SendMessage("You do not have enough inventory space to receive a Vow of the Scourge.");
-                        }
+                    if (vow.Parent == mobile.Backpack)
+                    {
+                        mobile.SendGump(new SpeechGump(mobile, "Scourge of the Realm", SpeechFunctions.SpeechText(m_Npc, mobile, "Scourge of the Realm")));
+                        mobile.SendMessage("You receive a Vow of the Scourge.");
                     }
+                    else
+                    {
+                        vow.Delete();
+                        mobile.SendMessage("You do not have enough inventory space to receive a Vow of the Scourge.");
+                    }
+                }
             }
             private bool CanGetVow(PlayerMobile asker)
-			{
-				if(!LastUsers.ContainsKey(asker))
-				{
-					LastUsers.Add(asker,DateTime.UtcNow);
-					return true;
-				}
-				else
-				{
-					if(DateTime.UtcNow-LastUsers[asker] < Delay)
-					{
-						return false;
-					}
-					else
-					{
-						LastUsers[asker]=DateTime.UtcNow;
-						return true;
-					}
-				}
-			}
+            {
+                if (!LastUsers.ContainsKey(asker))
+                {
+                    LastUsers.Add(asker, DateTime.UtcNow);
+                    return true;
+                }
+                else
+                {
+                    if (DateTime.UtcNow - LastUsers[asker] < Delay)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        LastUsers[asker] = DateTime.UtcNow;
+                        return true;
+                    }
+                }
+            }
         }
-        
-        public override bool HandlesOnSpeech( Mobile from ) 
-		{ 
-			return true; 
-		} 
+
+        public override bool HandlesOnSpeech(Mobile from)
+        {
+            return true;
+        }
 
         public override void OnSpeech(SpeechEventArgs e)
         {
@@ -176,29 +197,31 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
 
             if (from == null || !(from is PlayerMobile))
                 return;
-          
-            if( e.Mobile.InRange( this, 4 ))
-			{
-			    if ( e.Speech.IndexOf("reward") >= 0 )
-			    {
-			        if (from.Karma < 0)
-                    {
-                        if (from.Karma < 0)
-                        {
-                            from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(from, 2, 0));
-                            Say("These are the rewards I can offer thee.");
-                        }
-                        else
-                        {
-                            Say("I shall not offer my services to slaves of Virtue!");
-                        }
-                    }
-			    }
-			    else 
-			    { 
-			        base.OnSpeech( e ); 
-			    }
-			}
+
+            if (e.Mobile.InRange(this, 4))
+            {
+                if (e.Speech.IndexOf("reward") >= 0)
+                {
+                    MaybeShowScourgeOfTheRealmRewardsGump(from as PlayerMobile);
+                }
+                else
+                {
+                    base.OnSpeech(e);
+                }
+            }
+        }
+
+        public void MaybeShowScourgeOfTheRealmRewardsGump(PlayerMobile from)
+        {
+            if (from.Karma < 0)
+            {
+                from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(from, 2, 0));
+                Say("These are the rewards I can offer thee.");
+            }
+            else
+            {
+                Say("I shall not offer my services to slaves of Virtue!");
+            }
         }
 
         public ScourgeOfRealm(Serial serial) : base(serial) { }
