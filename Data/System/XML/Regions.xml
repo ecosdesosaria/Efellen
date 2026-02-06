@@ -985,7 +985,7 @@
 				</spawning>
 		</region>
 		<region type="DungeonRegion" priority="50" name="the Fires of Hell">
-			<rect x="5217" y="1320" width="221" height="146" />
+			<rect x="5217" y="1320" width="221" height="154" />
 			<rect x="5856" y="1886" width="251" height="180" />
 			<rect x="5437" y="1168" width="315" height="220" />
 				<spawning>
