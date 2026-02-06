@@ -11,138 +11,171 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	public class HealerGuildmaster : BaseGuildmaster
-	{
-		public override NpcGuild NpcGuild{ get{ return NpcGuild.HealersGuild; } }
+    public class HealerGuildmaster : BaseGuildmaster
+    {
+        public override NpcGuild NpcGuild { get { return NpcGuild.HealersGuild; } }
 
-		[Constructable]
-		public HealerGuildmaster() : base( "healer" )
-		{
-			SetSkill( SkillName.Anatomy, 85.0, 100.0 );
-			SetSkill( SkillName.Healing, 90.0, 100.0 );
-			SetSkill( SkillName.Forensics, 75.0, 98.0 );
-			SetSkill( SkillName.MagicResist, 75.0, 98.0 );
-			SetSkill( SkillName.Spiritualism, 65.0, 88.0 );
-		}
+        [Constructable]
+        public HealerGuildmaster() : base("healer")
+        {
+            SetSkill(SkillName.Anatomy, 85.0, 100.0);
+            SetSkill(SkillName.Healing, 90.0, 100.0);
+            SetSkill(SkillName.Forensics, 75.0, 98.0);
+            SetSkill(SkillName.MagicResist, 75.0, 98.0);
+            SetSkill(SkillName.Spiritualism, 65.0, 88.0);
+        }
 
-		public override void InitSBInfo( Mobile m )
-		{
-			m_Merchant = m;
-			SBInfos.Add( new MyStock() );
-		}
+        public override void InitSBInfo(Mobile m)
+        {
+            m_Merchant = m;
+            SBInfos.Add(new MyStock());
+        }
 
-		public class MyStock: SBInfo
-		{
-			private List<GenericBuyInfo> m_BuyInfo = new InternalBuyInfo();
-			private IShopSellInfo m_SellInfo = new InternalSellInfo();
+        public class MyStock : SBInfo
+        {
+            private List<GenericBuyInfo> m_BuyInfo = new InternalBuyInfo();
+            private IShopSellInfo m_SellInfo = new InternalSellInfo();
 
-			public MyStock()
-			{
-			}
+            public MyStock()
+            {
+            }
 
-			public override IShopSellInfo SellInfo { get { return m_SellInfo; } }
-			public override List<GenericBuyInfo> BuyInfo { get { return m_BuyInfo; } }
+            public override IShopSellInfo SellInfo { get { return m_SellInfo; } }
+            public override List<GenericBuyInfo> BuyInfo { get { return m_BuyInfo; } }
 
-			public class InternalBuyInfo : List<GenericBuyInfo>
-			{
-				public InternalBuyInfo()
-				{
-					ItemInformation.GetSellList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.None,		ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	null	 );
-					ItemInformation.GetSellList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( LesserHealPotion )	 );
-					ItemInformation.GetSellList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( Ginseng )	 );
-					ItemInformation.GetSellList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( Garlic )	 );
-					ItemInformation.GetSellList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( RefreshPotion )	 );
-					ItemInformation.GetSellList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( HealPotion )	 );
-				}
-			}
+            public class InternalBuyInfo : List<GenericBuyInfo>
+            {
+                public InternalBuyInfo()
+                {
+                    ItemInformation.GetSellList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.None, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, null);
+                    ItemInformation.GetSellList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(LesserHealPotion));
+                    ItemInformation.GetSellList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(Ginseng));
+                    ItemInformation.GetSellList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(Garlic));
+                    ItemInformation.GetSellList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(RefreshPotion));
+                    ItemInformation.GetSellList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(HealPotion));
+                }
+            }
 
-			public class InternalSellInfo : GenericSellInfo
-			{
-				public InternalSellInfo()
-				{
-					ItemInformation.GetBuysList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.None,		ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	null	 );
-					ItemInformation.GetBuysList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( LesserHealPotion )	 );
-					ItemInformation.GetBuysList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( Ginseng )	 );
-					ItemInformation.GetBuysList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( Garlic )	 );
-					ItemInformation.GetBuysList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( RefreshPotion )	 );
-					ItemInformation.GetBuysList( m_Merchant, this, 	ItemSalesInfo.Category.All,			ItemSalesInfo.Material.All,			ItemSalesInfo.Market.Healer,	ItemSalesInfo.World.None,	typeof( HealPotion )	 );
-				}
-			}
-		}
+            public class InternalSellInfo : GenericSellInfo
+            {
+                public InternalSellInfo()
+                {
+                    ItemInformation.GetBuysList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.None, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, null);
+                    ItemInformation.GetBuysList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(LesserHealPotion));
+                    ItemInformation.GetBuysList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(Ginseng));
+                    ItemInformation.GetBuysList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(Garlic));
+                    ItemInformation.GetBuysList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(RefreshPotion));
+                    ItemInformation.GetBuysList(m_Merchant, this, ItemSalesInfo.Category.All, ItemSalesInfo.Material.All, ItemSalesInfo.Market.Healer, ItemSalesInfo.World.None, typeof(HealPotion));
+                }
+            }
+        }
 
-		public override void InitOutfit()
-		{
-			base.InitOutfit();
+        public override void InitOutfit()
+        {
+            base.InitOutfit();
 
-			switch ( Utility.RandomMinMax( 0, 4 ) )
-			{
-				case 1: AddItem( new Server.Items.GnarledStaff() ); break;
-				case 2: AddItem( new Server.Items.BlackStaff() ); break;
-				case 3: AddItem( new Server.Items.WildStaff() ); break;
-				case 4: AddItem( new Server.Items.QuarterStaff() ); break;
-			}
-		}
-		public override bool HandlesOnSpeech(Mobile from)
-		{
-		    if (from is PlayerMobile && from.InRange(this, 4))
-		        return true;
+            switch (Utility.RandomMinMax(0, 4))
+            {
+                case 1: AddItem(new Server.Items.GnarledStaff()); break;
+                case 2: AddItem(new Server.Items.BlackStaff()); break;
+                case 3: AddItem(new Server.Items.WildStaff()); break;
+                case 4: AddItem(new Server.Items.QuarterStaff()); break;
+            }
+        }
+        public override bool HandlesOnSpeech(Mobile from)
+        {
+            if (from is PlayerMobile && from.InRange(this, 4))
+                return true;
 
-		    return base.HandlesOnSpeech(from);
-		}
+            return base.HandlesOnSpeech(from);
+        }
 
-		public override void OnSpeech(SpeechEventArgs e)
-		{
-		    Mobile from = e.Mobile;
+        private class RewardsEntry : ContextMenuEntry
+        {
+            private HealerGuildmaster m_HealerGuildmaster;
+            private Mobile m_From;
 
-		    if (from == null || !(from is PlayerMobile))
-		    {
-		        base.OnSpeech(e);
-		        return;
-		    }
+            public RewardsEntry(HealerGuildmaster HealerGuildmaster, Mobile from) : base(6093, 3)
+            {
+                m_HealerGuildmaster = HealerGuildmaster;
+                m_From = from;
+                Enabled = m_HealerGuildmaster.CheckVendorAccess(from);
+            }
 
-		   
-		    if (!from.InRange(this, 4))
-		    {
-		        base.OnSpeech(e);
-		        return;
-		    }
+            public override void OnClick()
+            {
+                m_HealerGuildmaster.MaybeShowClericRewardsGump(m_From as PlayerMobile);
+            }
+        }
 
-		    if (e.Speech.ToLower().IndexOf("reward") >= 0)
-		    {
-		        PlayerMobile healer = from as PlayerMobile;
+        public override void AddCustomContextEntries(Mobile from, List<ContextMenuEntry> list)
+        {
+            if (from.Alive)
+            {
+                list.Add(new RewardsEntry(this, from));
+            }
 
-		        if (healer.NpcGuild == NpcGuild.HealersGuild)
-		        {
-		            from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(healer, 5, 0));
-		            Say("These are the gifts I can bestow thee, " + (from.Female ? "sister." : "brother."));
-		        }
-		        else
-		        {
-		            Say("I only trust those that are in good standing with our order, friend.");
-		        }
-		        e.Handled = true;
-		        return;
-		    }
+            base.AddCustomContextEntries(from, list);
+        }
 
-		    base.OnSpeech(e);
-		}
+        public override void OnSpeech(SpeechEventArgs e)
+        {
+            Mobile from = e.Mobile;
 
-		public HealerGuildmaster( Serial serial ) : base( serial )
-		{
-		}
+            if (from == null || !(from is PlayerMobile))
+            {
+                base.OnSpeech(e);
+                return;
+            }
 
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
 
-			writer.Write( (int) 0 ); // version
-		}
+            if (!from.InRange(this, 4))
+            {
+                base.OnSpeech(e);
+                return;
+            }
 
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
+            if (e.Speech.ToLower().IndexOf("reward") >= 0)
+            {
+                MaybeShowClericRewardsGump(from as PlayerMobile);
+                e.Handled = true;
+                return;
+            }
 
-			int version = reader.ReadInt();
-		}
-	}
+            base.OnSpeech(e);
+        }
+
+        public void MaybeShowClericRewardsGump(PlayerMobile from)
+        {
+            PlayerMobile healer = from as PlayerMobile;
+
+            if (healer.NpcGuild == NpcGuild.HealersGuild)
+            {
+                from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(healer, 5, 0));
+                Say("These are the gifts I can bestow thee, " + (from.Female ? "sister." : "brother."));
+            }
+            else
+            {
+                Say("I only trust those that are in good standing with our order, friend.");
+            }
+        }
+
+        public HealerGuildmaster(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
 }

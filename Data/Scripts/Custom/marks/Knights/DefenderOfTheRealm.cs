@@ -5,9 +5,9 @@ using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Misc;
-using Server.Gumps; 
-using Server.Network; 
-using Server.Targeting; 
+using Server.Gumps;
+using Server.Network;
+using Server.Targeting;
 using Server.Custom.DefenderOfTheRealm.Vow;
 
 namespace Server.Custom.DefenderOfTheRealm.Knight
@@ -18,49 +18,49 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
         [Constructable]
         public DefenderOfRealm() : base(AIType.AI_Thief, FightMode.None, 10, 1, 0.4, 1.6)
         {
-            InitStats( 125, 55, 65 ); 
-			Name = this.Female ? NameList.RandomName( "female" ) : NameList.RandomName( "male" );
-			Title = "Defender of the Realm";
-            HairHue = Utility.RandomHairHue(); 
-			Body = this.Female? 0x191: 0x190;
+            InitStats(125, 55, 65);
+            Name = this.Female ? NameList.RandomName("female") : NameList.RandomName("male");
+            Title = "Defender of the Realm";
+            HairHue = Utility.RandomHairHue();
+            Body = this.Female ? 0x191 : 0x190;
             SpeechHue = Utility.RandomTalkHue();
-			Hue = Utility.RandomSkinHue(); 
-			Utility.AssignRandomHair( this );
-			if(( !this.Female ))
+            Hue = Utility.RandomSkinHue();
+            Utility.AssignRandomHair(this);
+            if ((!this.Female))
             {
-                FacialHairItemID = Utility.RandomList( 0, 8254, 8255, 8256, 8257, 8267, 8268, 8269 );
+                FacialHairItemID = Utility.RandomList(0, 8254, 8255, 8256, 8257, 8267, 8268, 8269);
             }
-            AddItem( new Boots( Utility.RandomBirdHue() ) );
-            AddItem( new Cloak( Utility.RandomBirdHue() ) );
-            AddItem( new Artifact_DefenderOfTheRealmArms());
-            AddItem( new Artifact_DefenderOfTheRealmChestpiece());
-            AddItem( new Artifact_DefenderOfTheRealmGloves());
-            AddItem( new Artifact_DefenderOfTheRealmGorget());
-            AddItem( new Artifact_DefenderOfTheRealmHelmet());
-            AddItem( new Artifact_DefenderOfTheRealmLeggings());
+            AddItem(new Boots(Utility.RandomBirdHue()));
+            AddItem(new Cloak(Utility.RandomBirdHue()));
+            AddItem(new Artifact_DefenderOfTheRealmArms());
+            AddItem(new Artifact_DefenderOfTheRealmChestpiece());
+            AddItem(new Artifact_DefenderOfTheRealmGloves());
+            AddItem(new Artifact_DefenderOfTheRealmGorget());
+            AddItem(new Artifact_DefenderOfTheRealmHelmet());
+            AddItem(new Artifact_DefenderOfTheRealmLeggings());
         }
 
-        public override void OnMovement( Mobile m, Point3D oldLocation )
+        public override void OnMovement(Mobile m, Point3D oldLocation)
         {
-            if ( InRange( m, 6 ) && !InRange( oldLocation, 2 ) )
+            if (InRange(m, 6) && !InRange(oldLocation, 2))
             {
-                if ( m is PlayerMobile && !m.Hidden ) 
+                if (m is PlayerMobile && !m.Hidden)
                 {
-                    if ( DateTime.UtcNow >= m_NextSpeechTime )
+                    if (DateTime.UtcNow >= m_NextSpeechTime)
                     {
                         switch (Utility.Random(11))
                         {
                             case 0: Say("The Defenders of the Realm are in need of reinforcements!"); break;
-						    case 1: Say("Slay many a foul beast and make our land safer!"); break;
-						    case 2: Say("By decree of the king, we shall rid this land of evil!"); break;
-						    case 3: Say("Stand tall, mighty warriors of the realm! Our loved ones count on thy courage!"); break;
-						    case 4: Say("Steel your heart, for restless darkness roams these lands!"); break;
-						    case 5: Say("Prove thy valor in the name of our king!"); break;
-                            case 6: Say("Honor is it's own reward for the worthy!");break;
-                            case 7: Say("Raise thy blade in the name of virtue!");break;
-                            case 8: Say("Beware! Many dangers lie ahead!");break;
-                            case 9: Say("The foul hordes shall be made headless by the culling of their generals!");break;
-                            case 10: Say("Many have we lost in our struggle against darkness, but we shall not give it rest!");break;
+                            case 1: Say("Slay many a foul beast and make our land safer!"); break;
+                            case 2: Say("By decree of the king, we shall rid this land of evil!"); break;
+                            case 3: Say("Stand tall, mighty warriors of the realm! Our loved ones count on thy courage!"); break;
+                            case 4: Say("Steel your heart, for restless darkness roams these lands!"); break;
+                            case 5: Say("Prove thy valor in the name of our king!"); break;
+                            case 6: Say("Honor is it's own reward for the worthy!"); break;
+                            case 7: Say("Raise thy blade in the name of virtue!"); break;
+                            case 8: Say("Beware! Many dangers lie ahead!"); break;
+                            case 9: Say("The foul hordes shall be made headless by the culling of their generals!"); break;
+                            case 10: Say("Many have we lost in our struggle against darkness, but we shall not give it rest!"); break;
                         }
                         m_NextSpeechTime = DateTime.UtcNow + TimeSpan.FromSeconds(10);
                     }
@@ -68,10 +68,10 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
             }
         }
 
-        public override bool HandlesOnSpeech( Mobile from ) 
-		{ 
-			return true; 
-		} 
+        public override bool HandlesOnSpeech(Mobile from)
+        {
+            return true;
+        }
 
         public override void OnSpeech(SpeechEventArgs e)
         {
@@ -79,29 +79,31 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
 
             if (from == null || !(from is PlayerMobile))
                 return;
-          
-            if( e.Mobile.InRange( this, 4 ))
-			{
-			    if ( e.Speech.IndexOf("reward") >= 0 )
-			    {
-			        if (from.Karma > 0)
-                    {
-                        if (from.Karma > 0)
-                        {
-                            from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(from, 1, 0));
-                            Say("These are the rewards I can offer thee.");
-                        }
-                        else
-                        {
-                            Say("I shall not offer my services to servants of evil! Redeem thyself!");
-                        }
-                    }
-			    }
-			    else 
-			    { 
-			        base.OnSpeech( e ); 
-			    }
-			}
+
+            if (e.Mobile.InRange(this, 4))
+            {
+                if (e.Speech.IndexOf("reward") >= 0)
+                {
+                    MaybeShowDefenderOfTheRealmRewardsGump(from as PlayerMobile);
+                }
+                else
+                {
+                    base.OnSpeech(e);
+                }
+            }
+        }
+
+        public void MaybeShowDefenderOfTheRealmRewardsGump(PlayerMobile from)
+        {
+            if (from.Karma > 0)
+            {
+                from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(from, 1, 0));
+                Say("These are the rewards I can offer thee.");
+            }
+            else
+            {
+                Say("I shall not offer my services to servants of evil! Redeem thyself!");
+            }
         }
 
         public override void GetContextMenuEntries(Mobile from, List<ContextMenuEntry> list)
@@ -110,6 +112,24 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
             if (from is PlayerMobile)
             {
                 list.Add(new GiveVowEntry(from, this));
+                list.Add(new RewardsEntry(from, this));
+            }
+        }
+
+        private class RewardsEntry : ContextMenuEntry
+        {
+            private DefenderOfRealm m_Npc;
+            private Mobile m_From;
+
+            public RewardsEntry(Mobile from, DefenderOfRealm npc) : base(6093, 3)
+            {
+                m_From = from;
+                m_Npc = npc;
+            }
+
+            public override void OnClick()
+            {
+                m_Npc.MaybeShowDefenderOfTheRealmRewardsGump(m_From as PlayerMobile);
             }
         }
 
@@ -118,7 +138,7 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
             private Mobile m_From;
             private DefenderOfRealm m_Npc;
             private static TimeSpan Delay = TimeSpan.FromHours(6);
-			private static Dictionary<PlayerMobile,DateTime> LastUsers = new Dictionary<PlayerMobile,DateTime>();
+            private static Dictionary<PlayerMobile, DateTime> LastUsers = new Dictionary<PlayerMobile, DateTime>();
 
             public GiveVowEntry(Mobile from, DefenderOfRealm npc) : base(6146)
             {
@@ -128,13 +148,13 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
 
             public override void OnClick()
             {
-                if( !( m_From is PlayerMobile ) )
-					return;
-				
-				if (m_From == null || m_From.Deleted || m_Npc == null || m_Npc.Deleted)
+                if (!(m_From is PlayerMobile))
                     return;
 
-                PlayerMobile mobile = (PlayerMobile) m_From;
+                if (m_From == null || m_From.Deleted || m_Npc == null || m_Npc.Deleted)
+                    return;
+
+                PlayerMobile mobile = (PlayerMobile)m_From;
                 DateTime lastUse;
 
                 if (!mobile.CheckAlive())
@@ -164,43 +184,43 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
                     return;
                 }
                 if (CanGetVow(mobile))
-                    {
-                        LastUsers[mobile] = DateTime.UtcNow;
-                        VowOfHonor vow = new VowOfHonor(mobile);
-                        m_From.Backpack.DropItem(vow);
+                {
+                    LastUsers[mobile] = DateTime.UtcNow;
+                    VowOfHonor vow = new VowOfHonor(mobile);
+                    m_From.Backpack.DropItem(vow);
 
-                        if (vow.Parent == mobile.Backpack)
-                        {
-                            mobile.SendGump(new SpeechGump(mobile, "Defender of the Realm", SpeechFunctions.SpeechText(m_Npc, mobile, "Defender of the Realm")));
-                            mobile.SendMessage("You receive a Vow of Honor.");
-                        }
-                        else
-                        {
-                            vow.Delete();
-                            mobile.SendMessage("You do not have enough inventory space to receive a Vow of Honor.");
-                        }
+                    if (vow.Parent == mobile.Backpack)
+                    {
+                        mobile.SendGump(new SpeechGump(mobile, "Defender of the Realm", SpeechFunctions.SpeechText(m_Npc, mobile, "Defender of the Realm")));
+                        mobile.SendMessage("You receive a Vow of Honor.");
                     }
+                    else
+                    {
+                        vow.Delete();
+                        mobile.SendMessage("You do not have enough inventory space to receive a Vow of Honor.");
+                    }
+                }
             }
             private bool CanGetVow(PlayerMobile asker)
-			{
-				if(!LastUsers.ContainsKey(asker))
-				{
-					LastUsers.Add(asker,DateTime.UtcNow);
-					return true;
-				}
-				else
-				{
-					if(DateTime.UtcNow-LastUsers[asker] < Delay)
-					{
-						return false;
-					}
-					else
-					{
-						LastUsers[asker]=DateTime.UtcNow;
-						return true;
-					}
-				}
-			}
+            {
+                if (!LastUsers.ContainsKey(asker))
+                {
+                    LastUsers.Add(asker, DateTime.UtcNow);
+                    return true;
+                }
+                else
+                {
+                    if (DateTime.UtcNow - LastUsers[asker] < Delay)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        LastUsers[asker] = DateTime.UtcNow;
+                        return true;
+                    }
+                }
+            }
         }
 
         public DefenderOfRealm(Serial serial) : base(serial) { }
