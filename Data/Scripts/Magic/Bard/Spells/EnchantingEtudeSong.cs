@@ -27,44 +27,50 @@ namespace Server.Spells.Song
 		}
 
         public override void OnCast()
-        {
+		{
 			base.OnCast();
-
 			bool sings = false;
- 
+
 			if( CheckSequence() )
 			{
 				sings = true;
- 
-				ArrayList targets = new ArrayList();
 
+				ArrayList targets = new ArrayList();
 				foreach ( Mobile m in Caster.GetMobilesInRange( 10 ) )
 				{
 					if ( isFriendly( Caster, m ) )
 						targets.Add( m );
 				}
-
 				for ( int i = 0; i < targets.Count; ++i )
 				{
 					Mobile m = (Mobile)targets[i];
-					
-                    int amount = MyServerSettings.PlayerLevelMod( (int)(MusicSkill( Caster ) / 16), Caster );
-					string intt = "int";
-						
-					double duration = (double)(MusicSkill( Caster ) * 2);
-						
-					StatMod mod = new StatMod( StatType.Int, intt, + amount, TimeSpan.FromSeconds( duration ) );
-						
-					m.AddStatMod( mod );
-						
-					m.FixedParticles( 0x375A, 10, 15, 5017, 0x1F8, 3, EffectLayer.Waist );
 
+					int amount = MyServerSettings.PlayerLevelMod( (int)(MusicSkill( Caster ) / 16), Caster );
+					string intt = "int";
+
+					if ( m is PlayerMobile )
+					{
+						int currentInt = m.RawInt;
+
+						if ( currentInt >= 150 )
+							continue;
+
+						if ( currentInt + amount > 150 )
+							amount = 150 - currentInt;
+					}
+
+					double duration = (double)(MusicSkill( Caster ) * 2);
+
+					StatMod mod = new StatMod( StatType.Int, intt, + amount, TimeSpan.FromSeconds( duration ) );
+
+					m.AddStatMod( mod );
+
+					m.FixedParticles( 0x375A, 10, 15, 5017, 0x1F8, 3, EffectLayer.Waist );
 					string args = String.Format("{0}", amount);
 					BuffInfo.RemoveBuff( m, BuffIcon.EnchantingEtude );
 					BuffInfo.AddBuff( m, new BuffInfo( BuffIcon.EnchantingEtude, 1063563, 1063564, TimeSpan.FromSeconds( duration ), m, args.ToString(), true));
 				}
 			}
-
 			BardFunctions.UseBardInstrument( m_Book.Instrument, sings, Caster );
 			FinishSequence();
 		}

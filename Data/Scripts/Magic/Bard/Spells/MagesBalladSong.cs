@@ -17,7 +17,7 @@ namespace Server.Spells.Song
             "Mage's Ballad", "*plays a mage's ballad*",
             -1);
 
-        public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds(6); } }
+        public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds(4); } }
         public override double RequiredSkill { get { return 55; } }
         public override int RequiredMana { get { return 15; } }
 

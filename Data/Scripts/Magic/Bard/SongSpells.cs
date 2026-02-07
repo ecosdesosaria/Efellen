@@ -89,13 +89,6 @@ namespace Server.Spells.Song
                 Caster.SendMessage("You seem to be missing your book of songs.");
                 return false;
             }
-
-            if ( m_Book.Instrument == null || m_Book.Instrument.Parent != Caster )
-            {
-                Caster.SendMessage("Your instrument is not equipped!");
-                return false;
-            }
-
 			return true;
 		}
 

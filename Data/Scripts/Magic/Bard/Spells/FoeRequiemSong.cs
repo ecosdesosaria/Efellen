@@ -73,7 +73,7 @@ namespace Server.Spells.Song
 					bool IsSlayer = false;
 					if ( m is BaseCreature ){ IsSlayer = CheckSlayer( m_Book.Instrument, m ); }
 
-					double damage = (double)( MusicSkill( Caster ) / 15 );
+					double damage = (double)( MusicSkill( Caster ) / 12 );
 
 					if ( IsSlayer )
 					{

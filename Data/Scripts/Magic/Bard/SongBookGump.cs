@@ -326,10 +326,6 @@ namespace Server.Gumps
 				if ( page > 9 ){ page = 1; }
 				from.SendGump( new SongBookGump( from, m_Book, page ) );
 			}
-			else if ( m_Book.Instrument != null && m_Book.Instrument.Parent != from )
-			{
-				from.SendMessage( "Your chosen instrument must be equipped!" );
-			}
 			else if ( info.ButtonID > 300 )
 			{
 				if ( m_Book.Instrument == null && HasSpell(from, info.ButtonID) )
