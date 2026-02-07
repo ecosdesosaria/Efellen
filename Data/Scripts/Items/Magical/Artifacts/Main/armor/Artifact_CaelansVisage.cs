@@ -15,8 +15,8 @@ namespace Server.Items
 		{
 			Name = "Caelan's Visage";
 			Hue = 0x0AA5;
-			SkillBonuses.SetValues( 1, SkillName.Knightship, 10);
-			SkillBonuses.SetValues( 2, SkillName.Focus, 10);
+			SkillBonuses.SetValues( 0, SkillName.Focus, 15);
+			SkillBonuses.SetValues( 1, SkillName.MagicResist, 15);
 			Attributes.BonusStr = 10;
 			Attributes.WeaponDamage = 30;
 			ArtifactLevel = 2;
