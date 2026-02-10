@@ -4075,7 +4075,20 @@ namespace Server
 			new ItemSalesInfo( typeof(	StarSapphire	),	120	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Jeweler	),
 			new ItemSalesInfo( typeof(	Tourmaline	),	80	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Jeweler	),
 			new ItemSalesInfo( typeof(	LesserWandOfDisenchanting	),	1000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Mage	),
-			new ItemSalesInfo( typeof(	ArcaneDust	),	150	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Mage	)
+			new ItemSalesInfo( typeof(	ArcaneDust	),	150	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Mage	),
+			new ItemSalesInfo( typeof(	Artifact_CrownOfBrillance	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_BeltofHaste	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_WidowsWhistle	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_BeltofGiantsStrength	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_MemoryOfFrost	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_ChainBreaker	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),
+			new ItemSalesInfo( typeof(	Artifact_EarringsOfAllurement	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),		
+			new ItemSalesInfo( typeof(	Artifact_RingOfAllurement	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_NecklaceOfAllurement	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_SenseisWalkingStick	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_StaffOfBlasting	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_ScepterOfBlasting	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+
 		};
 	}
 }

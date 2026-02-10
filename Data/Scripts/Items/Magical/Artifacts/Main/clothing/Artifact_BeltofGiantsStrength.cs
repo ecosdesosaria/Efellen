@@ -1,0 +1,36 @@
+using System;
+using Server;
+
+namespace Server.Items
+{
+	public class Artifact_BeltofGiantsStrength : GiftBelt
+	{
+		[Constructable]
+		public Artifact_BeltofGiantsStrength()
+		{
+			Hue = 0xB89;
+			ItemID = 0x2790;
+			Name = "Belt of Giant's Strength";
+			Attributes.BonusStr = 30;
+			ArtifactLevel = 2;
+			Server.Misc.Arty.ArtySetup( this, "" );
+		}
+
+		public Artifact_BeltofGiantsStrength( Serial serial ) : base( serial )
+		{
+		}
+
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+			writer.Write( (int) 0 ); // version
+		}
+
+		public override void Deserialize( GenericReader reader )
+		{
+			base.Deserialize( reader );
+			ArtifactLevel = 2;
+			int version = reader.ReadInt();
+		}
+	}
+}
