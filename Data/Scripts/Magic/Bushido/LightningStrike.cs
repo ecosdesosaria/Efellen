@@ -7,69 +7,100 @@ using Server.Targeting;
 
 namespace Server.Spells.Bushido
 {
-	public class LightningStrike : SamuraiMove
-	{
-		public LightningStrike()
-		{
-		}
+    public class LightningStrike : SamuraiMove
+    {
+        public LightningStrike()
+        {
+        }
 
-		public override int BaseMana{ get{ return 5; } }
-		public override double RequiredSkill{ get{ return 50.0; } }
+        public override int BaseMana{ get{ return 5; } }
+        public override double RequiredSkill{ get{ return 50.0; } }
+        public override TextDefinition AbilityMessage{ get{ return new TextDefinition( 1063167 ); } } // You prepare to strike quickly.
+        public override bool DelayedContext{ get{ return true; } }
 
-		public override TextDefinition AbilityMessage{ get{ return new TextDefinition( 1063167 ); } } // You prepare to strike quickly.
+        public override int GetAccuracyBonus( Mobile attacker )
+        {
+            return 50;
+        }
 
-		public override bool DelayedContext{ get{ return true; } }
+        public override bool Validate(Mobile from)
+        {
+            bool isValid=base.Validate(from);
 
-		public override int GetAccuracyBonus( Mobile attacker )
-		{
-			return 50;
-		}
+            if (isValid)
+            {
+                PlayerMobile ThePlayer = from as PlayerMobile;
+                ThePlayer.ExecutesLightningStrike = BaseMana;
+            }
 
-		public override bool Validate(Mobile from)
-		{
-			bool isValid=base.Validate(from);
-			if (isValid)
+            return isValid;
+        }
+
+        public override bool IgnoreArmor( Mobile attacker )
+        {
+            double bushido = attacker.Skills[SkillName.Bushido].Value;
+            double criticalChance = (bushido * bushido) / 72000.0;
+
+            return ( criticalChance >= Utility.RandomDouble() );
+        }
+
+        public override bool OnBeforeSwing( Mobile attacker, Mobile defender )
+        {
+            bool enoughMana = CheckMana(attacker, false);
+            return Validate(attacker);
+        }
+
+        public override bool ValidatesDuringHit { get { return false; } }
+
+        public override void OnHit( Mobile attacker, Mobile defender, int damage )
+        {
+            ClearCurrentMove(attacker);
+
+            if (CheckMana(attacker, true))
+            {
+                attacker.SendLocalizedMessage(1063168); // You attack with lightning precision!
+                defender.SendLocalizedMessage(1063169); // Your opponent's quick strike causes extra damage!
+                defender.FixedParticles(0x3818, 1, 11, 0x13A8, 0, 0, EffectLayer.Waist);
+                defender.PlaySound(0x51D);
+
+                CheckGain(attacker);
+
+                SetContext(attacker);
+            }
+        }
+
+        public override void CheckGain( Mobile m )
+        {
+            double bushidoSkill = m.Skills[SkillName.Bushido].Value;
+            
+            double gainChance;
+            
+            if (bushidoSkill >= 125.0)
+            {
+                gainChance = 0.0;
+            }
+            else if (bushidoSkill >= 124.9)
+            {
+                gainChance = 0.01;
+            }
+            else if (bushidoSkill >= 50.0)
+            {
+                gainChance = 0.25 - ((bushidoSkill - 50.0) / 74.9) * 0.24;
+            }
+            else
 			{
-				PlayerMobile ThePlayer = from as PlayerMobile;
-				ThePlayer.ExecutesLightningStrike = BaseMana;
+				gainChance = 0;
 			}
-			return isValid;
-		}
+            if (Utility.RandomDouble() < gainChance)
+            {
+                m.CheckSkill(SkillName.Bushido, RequiredSkill, RequiredSkill + 37.5);
+            }
+        }
 
-		public override bool IgnoreArmor( Mobile attacker )
-		{
-			double bushido = attacker.Skills[SkillName.Bushido].Value;
-			double criticalChance = (bushido * bushido) / 72000.0;
-			return ( criticalChance >= Utility.RandomDouble() );
-		}
-
-		public override bool OnBeforeSwing( Mobile attacker, Mobile defender )
-		{
-			/* no mana drain before actual hit */
-			bool enoughMana = CheckMana(attacker, false);
-			return Validate(attacker);
-		}
-
-		public override bool ValidatesDuringHit { get { return false; } }
-
-		public override void OnHit( Mobile attacker, Mobile defender, int damage )
-		{
-			ClearCurrentMove(attacker);
-			if (CheckMana(attacker, true))
-			{
-				attacker.SendLocalizedMessage(1063168); // You attack with lightning precision!
-				defender.SendLocalizedMessage(1063169); // Your opponent's quick strike causes extra damage!
-				defender.FixedParticles(0x3818, 1, 11, 0x13A8, 0, 0, EffectLayer.Waist);
-				defender.PlaySound(0x51D);
-				CheckGain(attacker);
-				SetContext(attacker);
-			}
-		}
-
-		public override void OnClearMove( Mobile attacker )
-		{
-			PlayerMobile ThePlayer = attacker as PlayerMobile; // this can be deletet if the PlayerMobile parts are moved to Server.Mobile 
-			ThePlayer.ExecutesLightningStrike = 0;
-		}
-	}
+        public override void OnClearMove( Mobile attacker )
+        {
+            PlayerMobile ThePlayer = attacker as PlayerMobile;
+            ThePlayer.ExecutesLightningStrike = 0;
+        }
+    }
 }
