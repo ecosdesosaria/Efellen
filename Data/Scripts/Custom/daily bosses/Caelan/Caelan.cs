@@ -248,7 +248,7 @@ namespace Server.Mobiles
 				c.DropItem( Loot.RandomArty() );
 				c.DropItem( new EtherealPowerScroll() );
 			}
-			BossLootSystem.BossEnchant(this, c, 400, 55, 3, "deathknight");
+			BossLootSystem.BossEnchant(this, c, 400, 100, 2, "deathknight");
 			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 3 );
 		}
