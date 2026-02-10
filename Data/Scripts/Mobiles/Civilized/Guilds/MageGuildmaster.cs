@@ -109,14 +109,6 @@ namespace Server.Mobiles
 			}
 		}
 
-		public override void AddCustomContextEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			if ( CheckChattingAccess( from ) )
-				list.Add( new FixEntry( this, from ) );
-
-			base.AddCustomContextEntries( from, list );
-		}
-
         public void BeginServices(Mobile from)
         {
             if ( Deleted || !from.Alive )
@@ -260,6 +252,86 @@ namespace Server.Mobiles
 			}
 			return base.OnDragDrop( from, dropped );
 		}
+
+		public override bool HandlesOnSpeech(Mobile from)
+        {
+            if (from is PlayerMobile && from.InRange(this, 4))
+                return true;
+
+            return base.HandlesOnSpeech(from);
+        }
+
+		private class RewardsEntry : ContextMenuEntry
+        {
+            private MageGuildmaster m_MageGuildmaster;
+            private Mobile m_From;
+
+            public RewardsEntry(MageGuildmaster MageGuildmaster, Mobile from) : base(6093, 3)
+            {
+                m_MageGuildmaster = MageGuildmaster;
+                m_From = from;
+                Enabled = m_MageGuildmaster.CheckVendorAccess(from);
+            }
+
+            public override void OnClick()
+            {
+                m_MageGuildmaster.MaybeShowMageRewardsGump(m_From as PlayerMobile);
+            }
+        }
+
+		public override void AddCustomContextEntries(Mobile from, List<ContextMenuEntry> list)
+        {
+            if (from.Alive)
+            {
+                list.Add(new RewardsEntry(this, from));
+            }
+			if ( CheckChattingAccess( from ) )
+				list.Add( new FixEntry( this, from ) );
+
+            base.AddCustomContextEntries(from, list);
+        }
+
+		public override void OnSpeech(SpeechEventArgs e)
+        {
+            Mobile from = e.Mobile;
+
+            if (from == null || !(from is PlayerMobile))
+            {
+                base.OnSpeech(e);
+                return;
+            }
+
+
+            if (!from.InRange(this, 4))
+            {
+                base.OnSpeech(e);
+                return;
+            }
+
+            if (e.Speech.ToLower().IndexOf("reward") >= 0)
+            {
+                MaybeShowMageRewardsGump(from as PlayerMobile);
+                e.Handled = true;
+                return;
+            }
+
+            base.OnSpeech(e);
+        }
+
+        public void MaybeShowMageRewardsGump(PlayerMobile from)
+        {
+            PlayerMobile mage = from as PlayerMobile;
+
+            if (mage.NpcGuild == NpcGuild.MagesGuild)
+            {
+                from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(mage, 6, 0));
+                Say("These are the gifts I can bestow thee, student.");
+            }
+            else
+            {
+                Say("I shall not conduct business with those that are not part of the guild.");
+            }
+        }
 
 		public MageGuildmaster( Serial serial ) : base( serial )
 		{

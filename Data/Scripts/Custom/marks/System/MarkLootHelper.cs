@@ -64,6 +64,7 @@ namespace Server.Custom.DefenderOfTheRealm
                     case 2: marks = new MarksOfTheShadowbroker(amount); str = "Shadowbroker"; break;
                     case 3: marks = new MarksOfTheWilds(amount); str = "Wilds"; break;
                     case 4: marks = new MarksOfDevotion(amount); str = "Devotion"; break;
+                    case 5: marks = new MarksOfTheWeave(amount); str = "Weave"; break;
                     default:
                         return;
                 }

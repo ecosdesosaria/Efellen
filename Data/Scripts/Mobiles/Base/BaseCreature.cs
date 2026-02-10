@@ -8006,6 +8006,29 @@ public virtual int BreathComputeDamage()
 				}
 			}
 
+
+			///////////////////////////////////////////////////////////////////////////////////////
+			SlayerEntry wizard = SlayerGroup.GetEntryByName( SlayerName.WizardSlayer);
+			Mobile mage = this.LastKiller;
+			if((wizard.Slays(this)) && mage != null)
+			{
+				if ( mage is BaseCreature )
+					mage = ((BaseCreature)mage).GetMaster();
+
+				if ( mage is PlayerMobile )
+				{
+					// add psychology check for awarding marks, checks for guild membership
+					double psychology = mage.Skills[SkillName.Psychology].Value;
+					
+					if(((PlayerMobile)mage).NpcGuild == NpcGuild.MagesGuild && psychology > Utility.RandomMinMax(50, 150 ) 
+					 && Utility.RandomDouble() < 0.65)
+					{
+						int markAmount = Utility.RandomMinMax(3,11);
+						mage.AddToBackpack( new MarksOfTheWeave( markAmount ) );
+						mage.SendMessage( "You aqquired" + " " + markAmount + " " + "Marks of the weave!" );
+					}
+				}
+			}
 			///////////////////////////////////////////////////////////////////////////////////////
 
 			SlayerEntry holyundead = SlayerGroup.GetEntryByName( SlayerName.Silver );
