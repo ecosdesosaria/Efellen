@@ -61,7 +61,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "Where do you want to dump the poison?" );
+				from.SendMessage( "Where do you want to dump the liquid?" );
 				ThrowTarget targ = from.Target as ThrowTarget;
 
 				if ( targ != null && targ.Potion == this )
@@ -69,7 +69,6 @@ namespace Server.Items
 
 				from.RevealingAction();
 				from.Target = new ThrowTarget( this );
-				Misc.Titles.AwardKarma( from, -40, true );
 			}
 		}
 
