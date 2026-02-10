@@ -58,8 +58,8 @@ namespace Server.Items
 				Attributes.SpellDamage = 50;
 				Attributes.CastRecovery = 2;
 				Attributes.CastSpeed = 2;
-				Attributes.LowerManaCost = 40;
-				Attributes.LowerRegCost = 100;
+				Attributes.LowerManaCost = 20;
+				Attributes.LowerRegCost = 20;
 				LootType = LootType.Blessed;
 				WeaponAttributes.LowerStatReq = 50;
 				AccuracyLevel = WeaponAccuracyLevel.Supremely;
