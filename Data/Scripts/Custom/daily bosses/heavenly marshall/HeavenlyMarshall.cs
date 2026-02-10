@@ -421,6 +421,7 @@ namespace Server.Mobiles
 			{
 				c.DropItem( new EternalPowerScroll() );
 			}
+			BossLootSystem.BossEnchant(this, c, 500, 75, 3, "skyknight");
 
 			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 5 );

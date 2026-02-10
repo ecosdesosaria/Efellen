@@ -10,6 +10,7 @@ using Server.Gumps;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Regions;
+using Server.Custom;
 
 namespace Server.Mobiles 
 { 
@@ -155,7 +156,7 @@ namespace Server.Mobiles
 		private void ColorKnight()
 		{
 		    MorphingTime.ColorMyClothes(this, 0x0672, 0);
-		    MorphingTime.ColorMyArms(this, 0, 0);
+		    MorphingTime.ColorMyArms(this, 0x0672, 0);
 		    Server.Misc.MorphingTime.CheckMorph(this);
 		}		
 
@@ -270,6 +271,12 @@ namespace Server.Mobiles
 		    defender.Paralyze(TimeSpan.FromSeconds(duration));
 
 		    defender.FixedEffect(0x376A, 10, 16, 0x481, 0);
+		}
+
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+		    BossLootSystem.BossEnchant(this, c, 300, 15, 1, "skyknight");
 		}
 
 		private void DoMountedArmorIgnore(Mobile defender)
