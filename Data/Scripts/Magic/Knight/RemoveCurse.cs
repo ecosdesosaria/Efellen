@@ -53,6 +53,42 @@ namespace Server.Spells.Chivalry
 				if ( mod != null && mod.Offset < 0 )
 					m.RemoveStatMod( "[Magic] Int Offset" );
 
+				mod = m.GetStatMod("ContagionStr");
+				if (mod != null && mod.Offset < 0);
+					m.RemoveStatMod("ContagionStr");
+				
+				mod = m.GetStatMod("BestowCurse");
+				if (mod != null && mod.Offset < 0);
+					m.RemoveStatMod("BestowCurse");
+				
+				mod = m.GetStatMod("DirgeDex");
+				if (mod != null && mod.Offset < 0);
+					m.RemoveStatMod("DirgeDex");
+
+				mod = m.GetStatMod("DirgeStr");
+				if (mod != null && mod.Offset < 0);
+					m.RemoveStatMod("DirgeStr");
+
+				mod = m.GetStatMod("PrayerStrDebuff");
+				if (mod != null && mod.Offset < 0);
+					m.RemoveStatMod("PrayerStrDebuff");
+
+				mod = m.GetStatMod("PrayerDexDebuff");
+				if (mod != null && mod.Offset < 0);
+					m.RemoveStatMod("PrayerDexDebuff");
+
+				mod = m.GetStatMod("GreaterBestowCurse");
+				if (mod != null && mod.Offset < 0);
+					m.RemoveStatMod("GreaterBestowCurse");
+
+				mod = m.GetStatMod("PlagueStr");
+				if (mod != null && mod.Offset < 0);
+					m.RemoveStatMod("PlagueStr");
+
+				mod = m.GetStatMod("EnervationStr");
+				if (mod != null && mod.Offset < 0);
+					m.RemoveStatMod("EnervationStr");
+
 				m.Paralyzed = false;
 				BuffInfo.CleanupIcons( m, false );
 

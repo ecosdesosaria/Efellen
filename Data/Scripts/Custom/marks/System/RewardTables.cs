@@ -72,7 +72,9 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(Artifact_NatureMasterCoat), 1000, 0x13CC, "Coat of the Nature's Master",true,0),
             new RewardInfo(typeof(Artifact_NatureMasterGloves), 1000, 0x13C6, "Gloves of the Nature's Master",true,0),
             new RewardInfo(typeof(Artifact_NatureMasterHeaddress), 1000, 0x1DB9, "Nature's Master Headdress",true,0),
-            new RewardInfo(typeof(Artifact_NatureMasterLeggings), 1000, 0x13D2, "Nature's Master Leggings",true,0)
+            new RewardInfo(typeof(Artifact_NatureMasterLeggings), 1000, 0x13D2, "Nature's Master Leggings",true,0),
+            new RewardInfo(typeof(Artifact_NatureMasterGorget), 1000, 0x13C7, "Nature's Master Gorget",true,0)
+            
         };
         public static RewardInfo[] HealerRewards = new RewardInfo[]
         {
@@ -83,6 +85,18 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(Artifact_GauntletsOfDevotion), 1000, 0x13C6, "Gauntlets of Devotion",true,0),
             new RewardInfo(typeof(Artifact_CoifOfDevotion), 1000, 0x1DB9, "Coif of Devotion",true,0),
             new RewardInfo(typeof(Artifact_LeggingsOfDevotion), 1000, 0x13D2, "Leggings of Devotion",true,0)
+        };
+
+        public static RewardInfo[] WeaveRewards = new RewardInfo[]
+        {
+            new RewardInfo(typeof(PotionOfWisdom),20,0x2827,"Potion of Wisdom",false,0xB9E),
+            new RewardInfo(typeof(EtherealKirin), 500, 0x25A0, "Ethereal Kirin",true,0),
+            new RewardInfo(typeof(Artifact_ArcaneCap), 1000, 0x1DB9, "Arcane Cap",true,0),
+            new RewardInfo(typeof(Artifact_ArcaneArms), 1000, 0x13CD, "Arcane Arm",true,0),
+            new RewardInfo(typeof(Artifact_ArcaneTunic), 1000, 0x13CC, "Arcane Tunic",true,0),
+            new RewardInfo(typeof(Artifact_ArcaneGloves), 1000, 0x13C6, "Arcane Gloves",true,0),
+            new RewardInfo(typeof(Artifact_ArcaneGorget), 1000, 0x13C7, "Arcane Gorget",true,0),
+            new RewardInfo(typeof(Artifact_ArcaneLeggings), 1000, 0x13cb, "Arcane Leggings",true,0)
         };
     }
 }

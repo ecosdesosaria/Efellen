@@ -12,7 +12,7 @@ namespace Server.Items
 		public Artifact_ArcaneArms()
 		{
 			Name = "Arcane Arms";
-			Hue = 0x556;
+			Hue = 0x0213;
 			ItemID = 0x13cd;
 			Attributes.DefendChance = 10;
 			Attributes.CastSpeed = 1;

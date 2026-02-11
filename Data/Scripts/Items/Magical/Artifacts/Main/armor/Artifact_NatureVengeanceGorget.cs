@@ -3,7 +3,7 @@ using Server;
 
 namespace Server.Items
 {
-	public class Artifact_NatureVengeanceGloves : GiftLeatherGloves
+	public class Artifact_NatureVengeanceGorget : GiftLeatherGorget
 	{
 		public override int InitMinHits{ get{ return 80; } }
 		public override int InitMaxHits{ get{ return 160; } }
@@ -15,23 +15,21 @@ namespace Server.Items
 		public override int BaseEnergyResistance{ get{ return 4; } }
 
 		[Constructable]
-		public Artifact_NatureVengeanceGloves()
+		public Artifact_NatureVengeanceGorget()
 		{
-			Name = "Gloves of Natural Vengeance";
+			Name = "Gorget of Natural Vengeance";
 			Hue = 0x592;
             SkillBonuses.SetValues( 0, SkillName.Elementalism, 10);
 			SkillBonuses.SetValues( 1, SkillName.Taming, 10);
 			SkillBonuses.SetValues( 2, SkillName.Druidism, 10);
-			Attributes.SpellDamage = 10;
+			Attributes.SpellDamage = 20;
 			ArmorAttributes.MageArmor = 1;
-			Attributes.BonusInt = 6;
-			Attributes.CastRecovery	= 2;
-			Attributes.CastSpeed = 2;
+			Attributes.LowerManaCost = 20;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "" );
 		}
 
-		public Artifact_NatureVengeanceGloves( Serial serial ) : base( serial )
+		public Artifact_NatureVengeanceGorget( Serial serial ) : base( serial )
 		{
 		}
 		

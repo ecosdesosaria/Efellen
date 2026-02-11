@@ -51,6 +51,10 @@ namespace Server.Custom.DefenderOfTheRealm
                 {
                     item.Hue = 0x9C2;
                 }
+                else if (type == 6)
+                {
+                    item.Hue = 0x0213;
+                }
             }
             return item;
         }

@@ -10,6 +10,7 @@ using Server.Gumps;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Regions;
+using Server.Custom;
 
 namespace Server.Mobiles 
 { 
@@ -127,6 +128,12 @@ namespace Server.Mobiles
 			m_NextRageAllowed = DateTime.UtcNow + TimeSpan.FromMinutes( 2 );
 		}
 
+		public override void OnDeath(Container c)
+		{
+		    base.OnDeath(c);
+		    BossLootSystem.BossEnchant(this, c, 300, 15, 1, "deathknight");
+		}
+
 		public override void OnDelete()
 		{
 			if ( m_RageTimer != null )
@@ -203,7 +210,7 @@ namespace Server.Mobiles
 		private void ColorKnight()
 		{
 		    MorphingTime.ColorMyClothes(this, 0x0AA5, 0);
-		    MorphingTime.ColorMyArms(this, 0, 0);
+		    MorphingTime.ColorMyArms(this, 0x0AA5, 0);
 		    Server.Misc.MorphingTime.CheckMorph(this);
 		}		
 

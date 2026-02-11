@@ -50,7 +50,7 @@ namespace Server.Items
                 for (int i = 0; i < m_User.Skills.Length; i++)
                 {
                     Skill sk = m_User.Skills[i];
-                    if (sk != null && sk.Cap < 125.0)
+                    if (sk != null && sk.Cap < 125.0 && !IsIgnoredSkill(sk.Name))
                         allSkills[count++] = sk;
                 }
 
@@ -99,6 +99,11 @@ namespace Server.Items
                 }
             }
 
+            private bool IsIgnoredSkill(string skillName)
+            {
+                return skillName == "Imbuing" || skillName == "Throwing" || skillName == "Mysticism";
+            }
+
             public override void OnResponse(NetState sender, RelayInfo info)
             {
                 Skill[] allSkills = new Skill[m_User.Skills.Length];
@@ -107,7 +112,7 @@ namespace Server.Items
                 for (int i = 0; i < m_User.Skills.Length; i++)
                 {
                     Skill sk = m_User.Skills[i];
-                    if (sk != null && sk.Cap < 125.0)
+                    if (sk != null && sk.Cap < 125.0 && !IsIgnoredSkill(sk.Name))
                         allSkills[count++] = sk;
                 }
 

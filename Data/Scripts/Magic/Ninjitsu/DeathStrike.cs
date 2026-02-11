@@ -44,6 +44,8 @@ namespace Server.Spells.Ninjitsu
 			else
 				chance = 63 + (ninjitsu - 100) * 1.1;
 
+			CheckGain( attacker );
+
 			if( (chance / 100) < Utility.RandomDouble() )
 			{
 				attacker.SendLocalizedMessage( 1070779 ); // You missed your opponent with a Death Strike.
@@ -83,7 +85,6 @@ namespace Server.Spells.Ninjitsu
 
 			m_Table[defender] = info;
 
-			CheckGain( attacker );
 		}
 
 		private static Hashtable m_Table = new Hashtable();
@@ -113,7 +114,7 @@ namespace Server.Spells.Ninjitsu
 			if( info == null )
 				return;
 
-			if( ++info.m_Steps >= 5 )
+			if( ++info.m_Steps >= 3 )
 				ProcessDeathStrike( m );
 		}
 
@@ -139,7 +140,7 @@ namespace Server.Spells.Ninjitsu
 					scalar = 1;
 
 				// New formula doesn't apply DamageBonus anymore, caps must be, directly, 60/30.
-				if ( info.m_Steps >= 5 )
+				if ( info.m_Steps >= 3 )
 					damage = (int)Math.Floor( Math.Min( 60, ( ninjitsu / 3 ) * ( 0.3 + 0.7 * scalar ) + stalkingBonus ) );
 				else
 					damage = (int)Math.Floor( Math.Min( 30, ( ninjitsu / 9 ) * ( 0.3 + 0.7 * scalar ) + stalkingBonus ) );
@@ -149,10 +150,10 @@ namespace Server.Spells.Ninjitsu
 			}
 			else
 			{
-				int divisor = (info.m_Steps >= 5) ? 30 : 80;
+				int divisor = (info.m_Steps >= 3) ? 30 : 80;
                         	double baseDamage = ninjitsu / divisor * 10;
 
-				maxDamage = (info.m_Steps >= 5) ? 62 : 22; // DamageBonus is 8 at most. That brings the cap up to 70/30.
+				maxDamage = (info.m_Steps >= 3) ? 62 : 22; // DamageBonus is 8 at most. That brings the cap up to 70/30.
 				damage = Math.Max( 0, Math.Min( maxDamage, (int)( baseDamage + stalkingBonus ) ) ) + info.m_DamageBonus;
 			}
 

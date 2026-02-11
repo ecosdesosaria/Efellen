@@ -116,7 +116,7 @@ namespace Server.SkillHandlers
 					{
 						from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 10.0 );
 
-						double diff = ((m_Instrument.GetDifficultyFor( m_Creature ) + m_Instrument.GetDifficultyFor( creature )) * 0.5) - 5.0;
+						double diff = Math.Max( m_Instrument.GetDifficultyFor( m_Creature ), m_Instrument.GetDifficultyFor( creature ) ) - 10.0;
 						double music = from.Skills[SkillName.Musicianship].Value;
 
 						if ( music > 100.0 )

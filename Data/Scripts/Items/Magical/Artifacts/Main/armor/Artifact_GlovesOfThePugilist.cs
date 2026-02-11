@@ -16,12 +16,14 @@ namespace Server.Items
 			Hue = 0x6D1;
 			SkillBonuses.SetValues( 0, SkillName.FistFighting, 15.0 );
 			Attributes.BonusDex = 10;
-			Attributes.WeaponDamage = 19;
-			WeaponAttributes.ResistPhysicalBonus = 18;
-			WeaponAttributes.ResistColdBonus = 3;
-			WeaponAttributes.ResistEnergyBonus = 3;
-			WeaponAttributes.ResistFireBonus = 3;
-			WeaponAttributes.ResistPoisonBonus = 3;
+			Attributes.WeaponDamage = 20;
+			WeaponAttributes.ResistPhysicalBonus = 20;
+			WeaponAttributes.ResistColdBonus = 5;
+			WeaponAttributes.ResistEnergyBonus = 5;
+			WeaponAttributes.ResistFireBonus = 5;
+			WeaponAttributes.ResistPoisonBonus = 5;
+			MinDamage = MinDamage + 2;
+			MaxDamage = MaxDamage + 2;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "" );
 		}

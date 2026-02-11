@@ -814,14 +814,8 @@ namespace Server.Items
 					}
 					else if ( nTrapType == 25 && m.Karma != 0 && SavingThrow( m, "Magic", true, this ) == false ) // ALIGNMENT TRAP
 					{
-						int KarmaToChange = m.Karma;
-						if (KarmaToChange> 0){
-							KarmaToChange = (int)(KarmaToChange - (KarmaToChange *(0.20)));
-						} else {
-							KarmaToChange = (int)(KarmaToChange + (KarmaToChange *(0.20)));
-						}
-						m.Karma = KarmaToChange;
-						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "A trap triggered, making your mind warp your morality!");
+						m.Karma = 0;
+						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "A trap triggered, warping your morality back to a blank slate!");
 						m.FixedParticles( 0x374A, 10, 15, 5028, EffectLayer.Waist );
 						m.PlaySound( 0x1E1  );
 						sTrapType = "a mind warping trap";

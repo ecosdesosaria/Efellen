@@ -203,6 +203,10 @@ namespace Server.Engines.Harvest
 			Point3D loc = from.Location;
 
 			HarvestResource res = vein.PrimaryResource;
+			// award marks on successful res collection
+			int markAmount = Utility.RandomMinMax(4,8);
+			from.AddToBackpack( new MarksOfTheWeave( markAmount ) );
+			from.SendMessage( "you found " + markAmount + " marks of the weave!" );
 
 			if ( harvested is StaticTarget )
 			{
