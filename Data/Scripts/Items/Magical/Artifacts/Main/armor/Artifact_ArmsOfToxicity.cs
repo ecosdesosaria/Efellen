@@ -16,13 +16,12 @@ namespace Server.Items
 			Name = "Arms Of Toxicity";
 			Hue = 1272;
 			ItemID = 0x13cd;
-			ArmorAttributes.SelfRepair = 5;
+			SkillBonuses.SetValues( 0, SkillName.Poisoning, 15);
 			Attributes.BonusStam = 5;
-			Attributes.BonusDex = 4;
+			Attributes.BonusDex = 5;
 			Attributes.AttackChance = 5;
 			Attributes.DefendChance = 10;
-			Attributes.ReflectPhysical = 10;
-			PoisonBonus = 15;
+			PoisonBonus = 10;
 			PhysicalBonus = 2;
 			FireBonus = 2;
 			ColdBonus = 2;
