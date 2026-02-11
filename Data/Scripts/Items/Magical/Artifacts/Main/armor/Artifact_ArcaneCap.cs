@@ -12,7 +12,7 @@ namespace Server.Items
 		public Artifact_ArcaneCap()
 		{
 			Name = "Arcane Cap";
-			Hue = 0x556;
+			Hue = 0x0213;
 			Attributes.DefendChance = 10;
 			Attributes.CastSpeed = 1;
 			Attributes.LowerManaCost = 5;

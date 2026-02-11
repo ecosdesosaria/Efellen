@@ -12,7 +12,7 @@ namespace Server.Items
 		public Artifact_ArcaneTunic()
 		{
 			Name = "Arcane Tunic";
-			Hue = 0x556;
+			Hue = 0x0213;
 			ItemID = 0x13CC;
 			Attributes.DefendChance = 15;
 			Attributes.CastSpeed = 2;

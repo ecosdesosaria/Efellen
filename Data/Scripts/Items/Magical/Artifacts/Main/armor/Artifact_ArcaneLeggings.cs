@@ -12,7 +12,7 @@ namespace Server.Items
 		public Artifact_ArcaneLeggings()
 		{
 			Name = "Arcane Leggings";
-			Hue = 0x556;
+			Hue = 0x0213;
 			ItemID = 0x13cb;
 			Attributes.DefendChance = 14;
 			Attributes.CastSpeed = 1;

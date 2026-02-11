@@ -10,7 +10,7 @@ namespace Server.Items
 		{
 			Name = "Arcane Shield";
 			ItemID = 0x1B78;
-			Hue = 0x556;
+			Hue = 0x0213;
 			SkillBonuses.SetValues( 0, SkillName.Parry, 20 );
 			Attributes.SpellChanneling = 1;
 			Attributes.CastRecovery = 1;

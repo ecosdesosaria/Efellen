@@ -12,7 +12,7 @@ namespace Server.Items
 		public Artifact_ArcaneGorget()
 		{
 			Name = "Arcane Gorget";
-			Hue = 0x556;
+			Hue = 0x0213;
 			ItemID = 0x13C7;
 			Attributes.DefendChance = 8;
 			Attributes.CastSpeed = 1;
