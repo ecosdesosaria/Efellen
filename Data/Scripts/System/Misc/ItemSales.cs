@@ -4088,7 +4088,14 @@ namespace Server
 			new ItemSalesInfo( typeof(	Artifact_SenseisWalkingStick	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
 			new ItemSalesInfo( typeof(	Artifact_StaffOfBlasting	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
 			new ItemSalesInfo( typeof(	Artifact_ScepterOfBlasting	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
-
+			new ItemSalesInfo( typeof(	Artifact_SilksOfAllurement	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_TemptationOfSune	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_ShacklesOfBhaal	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_ProtectoroftheWildsGorget	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_NatureMasterGorget	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_NatureVengeanceGorget	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_ShieldOfAmaunator	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
+			new ItemSalesInfo( typeof(	Artifact_StormKingsShield	),	5000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Artifact	,	Material.None	,	Market.None	),	
 		};
 	}
 }
