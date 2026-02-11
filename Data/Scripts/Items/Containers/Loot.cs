@@ -541,7 +541,10 @@ namespace Server
 				typeof ( Artifact_ProtectoroftheWildsHelmet ), typeof ( Artifact_ProwleroftheWildsHelmet ), typeof ( Artifact_ProwleroftheWildsLegging ), typeof ( Artifact_ProwleroftheWildsGloves ), typeof(Artifact_TalismanOfTheAlbatroz),typeof(Artifact_ReachOfTheDepths),
 				typeof ( Artifact_ProwleroftheWildsTunic ), typeof ( Artifact_ProwleroftheWildsArms ), typeof ( Artifact_RobeOfWilds ), typeof ( Artifact_RobeOfWildLegion ), typeof ( Artifact_StaffoftheWoodlands ), typeof ( Artifact_BowOfTheProwler ), typeof ( Artifact_BladeOfTheWilds ), typeof ( Artifact_WhistleofthePiper ),
 				typeof( Artifact_CrownOfBrillance), typeof( Artifact_BeltofHaste ), typeof( Artifact_WidowsWhistle), typeof(Artifact_BeltofGiantsStrength), typeof( Artifact_MemoryOfFrost ), typeof( Artifact_ChainBreaker ), typeof( Artifact_EarringsOfAllurement ), typeof (Artifact_RingOfAllurement), typeof ( Artifact_NecklaceOfAllurement ),
-				typeof( Artifact_SenseisWalkingStick), typeof( Artifact_StaffOfBlasting), typeof (Artifact_ScepterOfBlasting)
+				typeof( Artifact_SenseisWalkingStick), typeof( Artifact_StaffOfBlasting), typeof (Artifact_ScepterOfBlasting), typeof( Artifact_SilksOfAllurement ), typeof ( Artifact_TemptationOfSune ),
+				typeof( Artifact_ShacklesOfBhaal ), typeof( Artifact_ProtectoroftheWildsGorget ), typeof( Artifact_NatureMasterGorget ), typeof( Artifact_NatureVengeanceGorget ), 
+				typeof( Artifact_ShieldOfAmaunator ), typeof( Artifact_StormKingsShield )
+				
 			};
 		public static Type[] ArtyTypes{ get{ return m_ArtyTypes; } }
 

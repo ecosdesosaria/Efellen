@@ -67,7 +67,7 @@ namespace Server.Items
 				m_Book = wikipedia;
 				string color = "#d6c382";
 
-				int NumberOfArtifacts = 352; // SEE LISTING BELOW AND MAKE SURE IT MATCHES THE AMOUNT
+				int NumberOfArtifacts = 365; // SEE LISTING BELOW AND MAKE SURE IT MATCHES THE AMOUNT
 				decimal PageCount = NumberOfArtifacts / 16;
 				int TotalBookPages = ( 100000 ) + ( (int)Math.Ceiling( PageCount ) );
 
@@ -614,14 +614,21 @@ namespace Server.Items
 			if ( artifact == arty) { name="Artifact_WidowsWhistle"; item="Widow's Whistle"; } arty++;
 			if ( artifact == arty) { name="Artifact_BeltofGiantsStrength"; item="Belt of Giant's Strength"; } arty++;
 			if ( artifact == arty) { name="Artifact_MemoryOfFrost"; item="Memory of Frost"; } arty++;
-			
 			if ( artifact == arty) { name="Artifact_ChainBreaker"; item="Chain Breaker"; } arty++;
 			if ( artifact == arty) { name="Artifact_EarringsOfAllurement"; item="Earrings of Allurement"; } arty++;
 			if ( artifact == arty) { name="Artifact_RingOfAllurement"; item="Ring of Allurement"; } arty++;
-			if ( artifact == arty) { name="Artifact_NecklaceOfAllurement"; item="Ring of Allurement"; } arty++;
+			if ( artifact == arty) { name="Artifact_NecklaceOfAllurement"; item="Necklace of Allurement"; } arty++;
 			if ( artifact == arty) { name="Artifact_SenseisWalkingStick"; item="Sensei's Walking Stick"; } arty++;
 			if ( artifact == arty) { name="Artifact_StaffOfBlasting"; item="Staff of Blasting"; } arty++;
 			if ( artifact == arty) { name="Artifact_ScepterOfBlasting"; item="Scepter of Blasting"; } arty++;
+			if ( artifact == arty) { name="Artifact_SilksOfAllurement"; item="Silks of Allurement"; } arty++;
+			if ( artifact == arty) { name="Artifact_TemptationOfSune"; item="Temptation of Sune"; } arty++;
+			if ( artifact == arty) { name="Artifact_ShacklesOfBhaal"; item="Shackles of Bhaal"; } arty++;
+			if ( artifact == arty) { name="Artifact_ProtectoroftheWildsGorget"; item="Gorget of the Protector of the Wilds"; } arty++;
+			if ( artifact == arty) { name="Artifact_NatureMasterGorget"; item="Nature Master's Gorget"; } arty++;
+			if ( artifact == arty) { name="Artifact_NatureVengeanceGorget"; item="Nature's Vengeance Gorget"; } arty++;
+			if ( artifact == arty) { name="Artifact_ShieldOfAmaunator"; item="Shield of Amaunator"; } arty++;
+			if ( artifact == arty) { name="Artifact_StormKingsShield"; item="Storm King's Shield"; } arty++;
 
 
 			if ( part == 2 ){ item = name; }

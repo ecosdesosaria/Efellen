@@ -72,7 +72,9 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(Artifact_NatureMasterCoat), 1000, 0x13CC, "Coat of the Nature's Master",true,0),
             new RewardInfo(typeof(Artifact_NatureMasterGloves), 1000, 0x13C6, "Gloves of the Nature's Master",true,0),
             new RewardInfo(typeof(Artifact_NatureMasterHeaddress), 1000, 0x1DB9, "Nature's Master Headdress",true,0),
-            new RewardInfo(typeof(Artifact_NatureMasterLeggings), 1000, 0x13D2, "Nature's Master Leggings",true,0)
+            new RewardInfo(typeof(Artifact_NatureMasterLeggings), 1000, 0x13D2, "Nature's Master Leggings",true,0),
+            new RewardInfo(typeof(Artifact_NatureMasterGorget), 1000, 0x13C7, "Nature's Master Gorget",true,0)
+            
         };
         public static RewardInfo[] HealerRewards = new RewardInfo[]
         {
