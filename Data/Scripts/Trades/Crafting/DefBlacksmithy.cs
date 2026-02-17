@@ -388,7 +388,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( Mace ), "Bashing", 1023932, 14.5, 64.5, typeof( IronIngot ), 1044036, 6, 1044037 );
 			AddCraft( typeof( Maul ), "Bashing", 1025179, 19.4, 69.4, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddCraft( typeof( Scepter ), "Bashing", 1029916, 21.4, 71.4, typeof( IronIngot ), 1044036, 10, 1044037 );
-			AddCraft( typeof( SpikedClub ), "Bashing", "spiked mace", 14.5, 64.5, typeof( IronIngot ), 1044036, 6, 1044037 );
+			AddCraft( typeof( SpikedClub ), "Bashing", "spiked club", 14.5, 64.5, typeof( IronIngot ), 1044036, 6, 1044037 );
 			AddCraft( typeof( WarMace ), "Bashing", 1025127, 28.0, 78.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( WarHammer ), "Bashing", 1025177, 34.2, 84.2, typeof( IronIngot ), 1044036, 16, 1044037 );
 			index = AddCraft( typeof( Tessen ), "Bashing", 1030222, 85.0, 135.0, typeof( IronIngot ), 1044036, 16, 1044037 );

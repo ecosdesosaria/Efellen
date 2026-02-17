@@ -92,6 +92,8 @@ namespace Server.Mobiles
 			Karma = -15000;
 
 			VirtualArmor = 58;
+			if ( 0.7 > Utility.RandomDouble() )
+				PackItem( new WandOfDisenchanting() );
 		}
 
 		public override bool DeleteCorpseOnDeath{ get{ return true; } }

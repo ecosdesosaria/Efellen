@@ -23,7 +23,7 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public WarGriffon() : this( "a trained griffon" )
+		public WarGriffon() : this( "a Celestial Griffon" )
 		{
 		}
 
@@ -73,7 +73,6 @@ namespace Server.Mobiles
 					m is SkyKnight || 
 					m is Angel || 
 					m is Archangel ||
-					m is GriffonRiding || 
 					m is WarGriffon || 
 					m is EtherealWarriorGeneral;
 		}

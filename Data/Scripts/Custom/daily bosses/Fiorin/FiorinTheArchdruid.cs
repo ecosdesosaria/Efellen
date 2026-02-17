@@ -27,7 +27,7 @@ namespace Server.Mobiles
 			typeof(GuardianWolf), 
 			typeof(DeepWoodSniper),
 			typeof(DruidOfTheHowlingOrder),
-			typeof(WereWolf)
+			typeof(KeeperOfTheGrove)
 		};
 
 		private static readonly string[] SummonWarcries = new string[]
@@ -129,7 +129,7 @@ namespace Server.Mobiles
 			       m is BlackWolf || 
 			       m is DeepWoodSniper || 
 			       m is DruidOfTheHowlingOrder || 
-			       m is WereWolf;
+			       m is KeeperOfTheGrove;
 		}
 
 		public override bool IsEnemy( Mobile m )

@@ -49,6 +49,8 @@ namespace Server.Mobiles
 
 			VirtualArmor = 60;
 			PackReg( 30, 275 );
+			if ( 0.6 > Utility.RandomDouble() )
+				PackItem( new WandOfDisenchanting() );
 		}
 
 		public override void OnDeath( Container c )

@@ -703,7 +703,7 @@ namespace Server.Scripts.Custom
         #region Setup (Mounts & Appearance)
         private void EnforceMountState(bool shouldBeMounted)
         {
-            if (shouldBeMounted)
+            if (shouldBeMounted &&  Server.Mobiles.AnimalTrainer.IsNoMountRegion( this, this.Region ))
             {
                 if (this.Mount == null)
                     new Horse().Rider = this;
@@ -737,7 +737,7 @@ namespace Server.Scripts.Custom
             {
                 Title = TavernPatrons.GetEvilTitle();
                 Hue = Utility.RandomList(0x995, 0x8A4, 0x8B0, 0x8AC);
-                FightMode = FightMode.Good;
+                FightMode = FightMode.Closest;
             }
             else
             {

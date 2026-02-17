@@ -669,6 +669,7 @@ namespace Server.Items
 				typeof( VorpalBunny ), 
 				typeof( Walrus ), 
 				typeof( WereWolf ), 
+				typeof( KeeperOfTheGrove ),
 				typeof( WolfMan ), 
 				typeof( DarkHound ), 
 				typeof( DiseasedRat ), 

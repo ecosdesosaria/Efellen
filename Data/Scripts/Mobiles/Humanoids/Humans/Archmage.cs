@@ -85,6 +85,8 @@ namespace Server.Mobiles
 			VirtualArmor = 90;
 
 			PackReg( 30, 275 );
+			if ( 0.8 > Utility.RandomDouble() )
+				PackItem( new GreaterWandOfDisenchanting() );
 		}
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )

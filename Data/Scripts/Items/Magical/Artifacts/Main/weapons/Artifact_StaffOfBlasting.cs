@@ -38,39 +38,59 @@ namespace Server.Items
 
 			if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
 		    	return;
-
+			double magery = attacker.Skills[SkillName.Magery].Value;
+			double necromancy = attacker.Skills[SkillName.Necromancy].Value;
+			double elementalism = attacker.Skills[SkillName.Elementalism].Value;
 			double focus = attacker.Skills[SkillName.Focus].Value;
 			double psychology = attacker.Skills[SkillName.Psychology].Value;
-			
-			double avgSkill = (focus + psychology) / 2.0;
+			double spiritualism = attacker.Skills[SkillName.Spiritualism].Value;
+
+			double mainSkill = 0.0;
+			double secondary = 0.0;
+			if(magery > necromancy && magery > elementalism)
+			{
+				mainSkill = magery;
+				secondary = psychology;				
+			}
+			else if (necromancy > magery && necromancy > elementalism)
+			{
+				mainSkill = necromancy;
+				secondary = spiritualism;				
+			}
+			else
+			{
+				mainSkill = elementalism;
+				secondary = focus;				
+			}
+
+
+			double avgSkill = (mainSkill + secondary) / 2.0;
 			double chance = (avgSkill / 125.0) * 0.12;
 			
-		
-
 			if (Utility.RandomDouble() > chance)
 				return;
 
 			double seconds = 120.0 - (avgSkill * (90.0 / 125.0));
 		    m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromSeconds(seconds);
 			
-			int missiles = GetMissileCount(psychology);
+			int missiles = GetMissileCount(secondary);
 			
 			FireEnergyMissiles(attacker, defender, missiles);
 		}
 		
-		private int GetMissileCount(double psychology)
+		private int GetMissileCount(double secondary)
 		{
-			if (psychology >= 125.0)
+			if (secondary >= 125.0)
 				return 7;
-			else if (psychology >= 115.0)
+			else if (secondary >= 115.0)
 				return 6;
-			else if (psychology >= 105.0)
+			else if (secondary >= 105.0)
 				return 5;
-			else if (psychology >= 95.0)
+			else if (secondary >= 95.0)
 				return 4;
-			else if (psychology >= 85.0)
+			else if (secondary >= 85.0)
 				return 3;
-			else if (psychology >= 75.0)
+			else if (secondary >= 75.0)
 				return 2;
 			else
 				return 1;

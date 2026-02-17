@@ -74,6 +74,8 @@ namespace Server.Mobiles
 			PackReg( Utility.RandomMinMax( 6, 15 ) );
 			PackReg( Utility.RandomMinMax( 6, 15 ) );
 			PackItem( new ArcaneGem() );
+			if ( 0.6 > Utility.RandomDouble() )
+				PackItem( new WandOfDisenchanting() );
 		}
 
 		public override void GenerateLoot()

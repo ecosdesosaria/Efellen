@@ -111,7 +111,7 @@ namespace Server.Items
 				switch (Utility.Random(17))
 				{
 					case 0:
-						if (Utility.RandomDouble() < 0.44)
+						if (Utility.RandomDouble() < 0.33)
    						{
    						    item = Loot.RandomArty();
    						}
@@ -143,9 +143,9 @@ namespace Server.Items
 						item = Loot.RandomBooks(Utility.RandomMinMax(6, 12));
 						break;
 					case 6:
-						item = Loot.RandomScroll(Utility.Random(12) + 1);
-						break;
 					case 7:
+					case 8:
+					case 9:
 						int luckMod = from.Luck; if (luckMod > 2000) { luckMod = 2000; }
 
 						if ((Region.Find(from.Location, from.Map)).IsPartOf("the Mines of Morinia"))
@@ -156,8 +156,6 @@ namespace Server.Items
 							item = new Gold((luckMod + Utility.RandomMinMax(1000, 2000)));
 
 						break;
-					case 8:
-					case 9:
 					case 10:
 					case 11:
 					case 12:
@@ -208,7 +206,7 @@ namespace Server.Items
 
 						LootPackChange.AddGoldToContainer(xTraCash, (LootChest)item, from, chestLevel);
 						int artychance = GetPlayerInfo.LuckyPlayerArtifacts(from.Luck) + 10;
-						if (Utility.RandomMinMax(0, 100) < artychance) { Item artys = Loot.RandomArty(); ((LootChest)item).DropItem(artys); }
+						if (Utility.RandomMinMax(0, 90) < artychance) { Item artys = Loot.RandomArty(); ((LootChest)item).DropItem(artys); }
 						break;
 				}
 
