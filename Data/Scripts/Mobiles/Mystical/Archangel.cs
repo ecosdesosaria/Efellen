@@ -159,7 +159,6 @@ namespace Server.Mobiles
 					m is Angel || 
 					m is Archangel ||
 					m is SkyKnight || 
-					m is GriffonRiding || 
 					m is WarGriffon || 
 					m is EtherealWarriorGeneral));
 		}

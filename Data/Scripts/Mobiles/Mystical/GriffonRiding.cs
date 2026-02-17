@@ -86,68 +86,6 @@ namespace Server.Mobiles
 		{
 		}
 
-		private bool IsFriendlyCreature(Mobile m)
-		{
-			return 	m is HeavenlyMarshall || 
-					m is SkyKnight || 
-					m is Angel || 
-					m is Archangel ||
-					m is GriffonRiding || 
-					m is WarGriffon || 
-					m is EtherealWarriorGeneral;
-		}
-
-		public override bool IsEnemy( Mobile m )
-	    {
-			if (m == null || m.Deleted)
-	        	return false;
-			
-			if (IsFriendlyCreature(m))
-		    	return false;
-			
-			if (m.Player && m.Karma >= 0 && m.Combatant != this)
-				return false;
-			
-			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
-				return false;
-			
-			if ( m.Region != this.Region )
-				return false;
-			
-			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
-			{
-				this.Location = m.Location;
-				this.Combatant = m;
-				this.Warmode = true;
-			}
-			
-			return true;
-	    }
-
-		public override void AggressiveAction(Mobile m, bool criminal)
-		{
-		    if (IsFriendlyCreature(m))
-				return;
-
-		    base.AggressiveAction(m, criminal);
-		}
-
-		public override bool CanBeHarmful(Mobile m, bool message, bool ignoreOurBlessedness)
-		{
-		    if (IsFriendlyCreature(m))
-		        return false;
-
-		    return base.CanBeHarmful(m, message, ignoreOurBlessedness);
-		}
-
-		public override bool CanBeBeneficial(Mobile m, bool message, bool allowDead)
-		{
-		    if (IsFriendlyCreature(m))
-		        return true;
-
-		    return base.CanBeBeneficial(m, message, allowDead);
-		}
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );

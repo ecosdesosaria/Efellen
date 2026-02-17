@@ -25,7 +25,7 @@ namespace Server.Mobiles
 		
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
-			typeof(GriffonRiding), 
+			typeof(WarGriffon), 
 			typeof(WarGriffon), 
 			typeof(Angel), 
 			typeof(Archangel), 
@@ -120,7 +120,6 @@ namespace Server.Mobiles
 					m is SkyKnight || 
 					m is Angel || 
 					m is Archangel ||
-					m is GriffonRiding || 
 					m is WarGriffon || 
 					m is EtherealWarriorGeneral;
 		}
