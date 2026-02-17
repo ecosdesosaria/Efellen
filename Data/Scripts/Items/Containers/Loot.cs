@@ -675,7 +675,6 @@ namespace Server
 			{
 				typeof( SkeletonsKey ),			typeof( MagicalDyes ),
 				typeof( HeavyEnhancementStone ),typeof( ConsecratedEnhancementStone ),	typeof( MyCircusTentEastAddonDeed ),
-				typeof( ManyArrows100 ),		typeof( MyTentSouthAddonDeed ),			typeof( MagicalWand ),
 				typeof( RoughEnhancementStone ),typeof( DenseEnhancementStone ),		typeof( ElementalEnhancementStone ),
 				typeof( ArtifactManual ),		typeof( light_dragon_brazier ), 		typeof( MoonStone ),
 				typeof( CrystallineJar ),		typeof( TrophyBase ),					typeof( EtherealPowerScroll),
