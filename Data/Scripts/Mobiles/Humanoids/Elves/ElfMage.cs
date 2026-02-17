@@ -98,6 +98,9 @@ namespace Server.Mobiles
 
 			if ( 0.7 > Utility.RandomDouble() )
 				PackItem( new ArcaneGem() );
+
+			if ( 0.6 > Utility.RandomDouble() )
+				PackItem( new LesserWandOfDisenchanting() );
 		}
 
 		public override void GenerateLoot()

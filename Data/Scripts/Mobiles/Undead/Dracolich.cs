@@ -63,6 +63,8 @@ namespace Server.Mobiles
 
 			PackReg( 12, 40 );
 			PackReg( 12, 40 );
+			if ( 0.8 > Utility.RandomDouble() )
+				PackItem( new GreaterWandOfDisenchanting() );
 		}
 
 		public override void GenerateLoot()

@@ -67,6 +67,9 @@ namespace Server.Mobiles
 			PackReg( Utility.RandomMinMax( 2, 10 ) );
 			PackReg( Utility.RandomMinMax( 2, 10 ) );
 
+			if ( 0.8 > Utility.RandomDouble() )
+				PackItem( new LesserWandOfDisenchanting() );
+
 			if ( 0.5 > Utility.RandomDouble() )
 				PackItem( new ArcaneGem() );
 		}

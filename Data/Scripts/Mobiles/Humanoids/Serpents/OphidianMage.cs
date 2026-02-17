@@ -50,6 +50,8 @@ namespace Server.Mobiles
 			VirtualArmor = 30;
 
 			PackReg( 10 );
+			if ( 0.8 > Utility.RandomDouble() )
+				PackItem( new LesserWandOfDisenchanting() );
 		}
 
 		public override void GenerateLoot()

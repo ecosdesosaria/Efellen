@@ -68,6 +68,8 @@ namespace Server.Mobiles
 			PackReg( 17, 24 );
 
 			AddItem( new LightSource() );
+			if ( 0.7 > Utility.RandomDouble() )
+				PackItem( new WandOfDisenchanting() );
 		}
 
 		public override void GenerateLoot()

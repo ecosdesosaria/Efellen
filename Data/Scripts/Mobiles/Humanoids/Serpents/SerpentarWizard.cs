@@ -49,6 +49,8 @@ namespace Server.Mobiles
 			Item Venom = new VenomSack();
 				Venom.Name = "lethal venom sack";
 				AddItem( Venom );
+			if ( 0.7 > Utility.RandomDouble() )
+				PackItem( new LesserWandOfDisenchanting() );
 		}
 
 		public override void GenerateLoot()

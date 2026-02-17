@@ -44,6 +44,8 @@ namespace Server.Mobiles
 			Karma = -11500;
 
 			VirtualArmor = 40;
+			if ( 0.8 > Utility.RandomDouble() )
+				PackItem( new LesserWandOfDisenchanting() );
 		}
 
 		public override void GenerateLoot()
