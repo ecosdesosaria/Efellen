@@ -16,7 +16,7 @@ namespace Server.Items
 		[Constructable]
 		public VampiricEmbraceScroll( int amount ) : base( 112, 0x226C, amount )
 		{
-			Name = "vampric embrace scroll";
+			Name = "vampiric embrace scroll";
 		}
 
 		public VampiricEmbraceScroll( Serial serial ) : base( serial )
