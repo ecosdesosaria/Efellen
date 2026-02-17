@@ -159,7 +159,7 @@ namespace Server.Mobiles
 			       	m is BlackWolf || 
 			       	m is DeepWoodSniper || 
 			       	m is DruidOfTheHowlingOrder || 
-			       	m is WereWolf));
+			       	m is KeeperOfTheGrove));
 		}
 
 		public override bool IsEnemy( Mobile m )

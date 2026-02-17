@@ -46,7 +46,7 @@ namespace Server.Items
             if( c is BlackWolf || c is GreyWolf || c is TimberWolf )
                 return new DruidismFormMapping("Worg", 105.0, 0.02);
        
-            if( c is WereWolf || c is WhiteWolf || c is WinterWolf || c is WolfDire || c is WolfMan)
+            if( c is WereWolf || c is WhiteWolf || c is WinterWolf || c is WolfDire || c is WolfMan || c is KeeperOfTheGrove)
                 return new DruidismFormMapping("Worg", 105.0, 0.04);
        
             if (c is Worg)
