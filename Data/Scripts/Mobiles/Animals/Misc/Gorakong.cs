@@ -5,13 +5,13 @@ using Server.Custom;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an ape corpse" )]
+	[CorpseName( "um cadáver de macaco" )]
 	public class Gorakong : BaseCreature
 	{
 		[Constructable]
 		public Gorakong () : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a gorakong";
+			Name = "um gorakong";
 			Body = 464;
 			BaseSoundID = 0x9E;
 

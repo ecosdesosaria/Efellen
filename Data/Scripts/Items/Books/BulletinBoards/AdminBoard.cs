@@ -58,8 +58,8 @@ namespace Server.Items
 				AddImage(8, 8, 1127);
 				AddImage(8, 8, face);
 				AddHtml( 130, 13, 424, 20, @"<BODY><BASEFONT Color=" + color + ">" + title + "</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 130, 43, 424, 20, @"<BODY><BASEFONT Color=" + color + ">Recent Messages from Throughout the Land</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 130, 73, 424, 20, @"<BODY><BASEFONT Color=" + color + ">Select an Article Below to Read</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 130, 43, 424, 20, @"<BODY><BASEFONT Color=" + color + ">Mensagens Recentes de todo o Reino</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 130, 73, 424, 20, @"<BODY><BASEFONT Color=" + color + ">Selecione um Artigo Abaixo para Ler</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int i = 115;
 

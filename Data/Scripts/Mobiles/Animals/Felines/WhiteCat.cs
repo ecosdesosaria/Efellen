@@ -4,13 +4,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a cat corpse" )]
+	[CorpseName( "um cadáver de gato" )]
 	public class WhiteCat : BaseCreature
 	{
 		[Constructable]
 		public WhiteCat () : base( AIType.AI_Mage, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a cat";
+			Name = "um gato";
 			Body = 0xC9;
 			BaseSoundID = 0x69;
 			Hue = 0x47E;

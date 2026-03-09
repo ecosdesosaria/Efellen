@@ -23,29 +23,29 @@ namespace Server.Spells.Mystic
 
 		public static string SpellDescription( int spell )
 		{
-			string txt = "This parchment holds the knowledge of the mystics: ";
+			string txt = "Este pergaminho contém o conhecimento dos místicos: ";
 			string skl = "0";
 
-			if ( spell == 250 ){ 			skl = "80";	txt += "Enter the astral plane where your soul is immune to harm. While you are in this state, you can freely travel but your interraction with the world is minimal. The better your skill, the longer it lasts. Monks use this ability to safely travel through dangerous areas."; }
-			else if ( spell == 251 ){ 		skl = "50";	txt += "Travel through the astral plane to another location with the use of a magical recall rune. The rune must be marked by other magical means before you can travel to that location. If you wish to travel using a rune book, then set your rune book's default location and then you can target the book while using this ability."; }
-			else if ( spell == 252 ){ 		skl = "25";	txt += "Creates a robe that you will need in order to use the other abilities in this tome. The robe will have power based on your overall skill as a monk, and no one else may wear the robe. You can only have one such robe at a time, so creating a new robe will cause any others you own to go back to the astral plane. After creation, single click the robe and select the 'Enchant' option to spend the points on attributes you want the robe to have."; }
-			else if ( spell == 253 ){ 		skl = "30";	txt += "Perform a soothing touch, healing damage sustained. The higher your skill, the more damage you will heal with your touch."; }
-			else if ( spell == 254 ){ 		skl = "35";	txt += "Allows you to leap over a long distance. This is a quick action and can allow a monk to leap toward an opponent, leap away to safety, or leap over some obstacles like rivers and streams."; }
-			else if ( spell == 255 ){ 		skl = "30";	txt += "Summon your Ki to perform a mental attack that deals an amount of energy damage based upon your fist fighting and intelligence values. Elemental Resistances may reduce damage done by this attack."; }
-			else if ( spell == 256 ){ 		skl = "60";	txt += "You sheer force of will creates a barrier around you, deflecting magical attacks. This does not work against odd magics like necromancy. Affected spells will often bounce back onto the caster."; }
-			else if ( spell == 257 ){ 		skl = "40";	txt += "You can cleanse your body of poisons with this ability due to your physical discipline, and as such, it cannot be used to aid anyone else."; }
-			else if ( spell == 258 ){ 		skl = "20";	txt += "You must be wearing some sort of pugilist gloves for this ability to work. It temporarily enhances the kind of damage the gloves do. The type of damage inflicted when hitting a target will be converted to the target's worst resistance type. The duration of the effect is affected by your fist fighting skill."; }
+			if ( spell == 250 ){             skl = "80"; txt += "Entre no plano astral onde sua alma é imune a danos. Enquanto estiver nesse estado, você pode viajar livremente, mas sua interação com o mundo é mínima. Quanto maior sua habilidade, maior a duração. Monges usam essa habilidade para viajar com segurança por áreas perigosas."; }
+			else if ( spell == 251 ){        skl = "50"; txt += "Viaje pelo plano astral para outro local usando uma runa de recall mágica. A runa deve ser marcada por outros meios mágicos antes que você possa viajar para esse local. Se desejar viajar usando um livro de runas, defina a localização padrão do seu livro de runas e então você poderá mirar no livro ao usar esta habilidade."; }
+			else if ( spell == 252 ){        skl = "25"; txt += "Cria uma vestimenta que você precisará para usar as outras habilidades deste tomo. A vestimenta terá poder baseado na sua habilidade geral como monge, e ninguém mais poderá usá-la. Você só pode ter uma vestimenta dessas por vez, então criar uma nova fará com que quaisquer outras que você possua retornem ao plano astral. Após a criação, clique uma vez na vestimenta e selecione a opção 'Encantar' para gastar os pontos nos atributos que deseja que a vestimenta tenha."; }
+			else if ( spell == 253 ){        skl = "30"; txt += "Execute um toque suave, curando danos sofridos. Quanto maior sua habilidade, mais dano você curará com seu toque."; }
+			else if ( spell == 254 ){        skl = "35"; txt += "Permite que você salte uma longa distância. Esta é uma ação rápida e pode permitir que um monge salte em direção a um oponente, salte para um lugar seguro ou salte sobre alguns obstáculos como rios e riachos."; }
+			else if ( spell == 255 ){        skl = "30"; txt += "Invoca seu Ki para realizar um ataque mental que causa uma quantidade de dano energético baseada em seus valores de luta com punhos e inteligência. Resistências Elementais podem reduzir o dano causado por este ataque."; }
+			else if ( spell == 256 ){        skl = "60"; txt += "Sua pura força de vontade cria uma barreira ao seu redor, desviando ataques mágicos. Isto não funciona contra magias incomuns como a necromancia. Feitiços afetados frequentemente ricocheteiam de volta para o conjurador."; }
+			else if ( spell == 257 ){        skl = "40"; txt += "Você pode purificar seu corpo de venenos com esta habilidade devido à sua disciplina física e, como tal, não pode ser usada para ajudar qualquer outra pessoa."; }
+			else if ( spell == 258 ){        skl = "20"; txt += "Você deve estar usando algum tipo de luvas de pugilista para esta habilidade funcionar. Ela aprimora temporariamente o tipo de dano que as luvas causam. O tipo de dano infligido ao acertar um alvo será convertido para o tipo de resistência mais baixa do alvo. A duração do efeito é afetada por sua habilidade de luta com punhos."; }
 			else if ( spell == 259 )
 			{
-				skl = "70";	txt += "This ability allows the monk to run as fast as a steed. This ability should be avoided if you already have a mount you are riding, or perhaps you have magical boots that allow you to run at this speed. using this ability in such conditions may cause unusual travel speeds, so be leery.";
+				skl = "70"; txt += "Esta habilidade permite ao monge correr tão rápido quanto uma montaria. Esta habilidade deve ser evitada se você já estiver montado em uma montaria, ou talvez tenha botas mágicas que permitam correr nessa velocidade. Usar esta habilidade nessas condições pode causar velocidades de deslocamento incomuns, então tome cuidado.";
 				if ( MySettings.S_NoMountsInCertainRegions )
-					txt += " Be aware when exploring the land, that there are some areas you cannot use this ability in. These are areas such as dungeons, caves, and some indoor areas. If you enter such an area, this ability will be hindered.";
+					txt += " Esteja ciente, ao explorar a terra, de que há algumas áreas onde você não pode usar esta habilidade. Estas são áreas como masmorras, cavernas e alguns locais internos. Se você entrar em tal área, esta habilidade será prejudicada.";
 			}
 
 			if ( skl == "0" )
 				return txt;
 
-			return txt + " It requires a Mystic to be at least a " + skl + " in ability to use it.";
+			return txt + " Requer que um Místico tenha pelo menos " + skl + " de habilidade para usá-la.";
 		}
 
 		public override bool CheckCast()
@@ -62,12 +62,12 @@ namespace Server.Spells.Mystic
 			}
 			else if ( !MonkNotIllegal( Caster ) && !( this is CreateRobe ) )
 			{
-				Caster.SendMessage( "Your equipment or skills are not commensurate to that of a true monk." );
+				Caster.SendMessage( "Seu equipamento ou habilidades não são compatíveis com as de um verdadeiro monge." );
 				return false;
 			}
 			else if ( this is WindRunner && MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( Caster, Region.Find( Caster.Location, Caster.Map ) ) )
 			{
-				Caster.SendMessage( "This ability doesn't seem to work in this place." );
+				Caster.SendMessage( "Esta habilidade não parece funcionar neste lugar." );
 				return false;
 			}
 			else if ( Caster.Mana < mana )
@@ -141,12 +141,12 @@ namespace Server.Spells.Mystic
 			}
 			else if ( !MonkNotIllegal( Caster ) && !( this is CreateRobe ) )
 			{
-				Caster.SendMessage( "Your equipment or skills are not commensurate to that of a true monk." );
+				Caster.SendMessage( "Seu equipamento ou habilidades não são compatíveis com as de um verdadeiro monge." );
 				return false;
 			}
 			else if ( this is WindRunner && MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( Caster, Region.Find( Caster.Location, Caster.Map ) ) )
 			{
-				Caster.SendMessage( "This ability doesn't seem to work in this place." );
+				Caster.SendMessage( "Esta habilidade não parece funcionar neste lugar." );
 				return false;
 			}
 			else if ( Caster.Mana < mana )

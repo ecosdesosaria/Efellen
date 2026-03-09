@@ -127,18 +127,18 @@ namespace Server.Mobiles
 
 			if ( pm.Fugitive == 1 )
 			{
-				SayTo(from, "You are a bit too famous in the land to pursuade the guards to forget your crimes.");
+				SayTo(from, "Você é um pouco famoso demais nas terras para persuadir os guardas a esquecerem seus crimes.");
 				paid = true;
 			}
 			else if ( from.Kills < 1 )
 			{
-				SayTo(from, "You are not guilty of any murders.");
+				SayTo(from, "Você não é culpado de nenhum assassinato.");
 				paid = true;
 			}
 			else if ( packs.ConsumeTotal(typeof(Gold), cost) )
 			{
-				SayTo(from, "I will use your " + cost.ToString() + " gold to pursuade the guards to look the other way.");
-				from.SendMessage(String.Format("You pay {0} gold.", cost));
+				SayTo(from, "Vou usar seus " + cost.ToString() + " de ouro para persuadir os guardas a olharem para o outro lado.");
+				from.SendMessage(String.Format("Você paga {0} de ouro.", cost));
 				from.Kills = from.Kills - 1;
 				paid = true;
 			}
@@ -147,8 +147,8 @@ namespace Server.Mobiles
 				Container cont = from.FindBankNoCreate();
 				if ( cont != null && cont.ConsumeTotal( typeof( Gold ), cost ) )
 				{
-					SayTo(from, "I will use  " + cost.ToString() + " gold from your bank box to pursuade the guards to look the other way.");
-					from.SendMessage(String.Format("You pay {0} gold from your bank box.", cost));
+					SayTo(from, "Vou usar " + cost.ToString() + " de ouro de seu banco para persuadir os guardas a olharem para o outro lado.");
+					from.SendMessage(String.Format("Você paga {0} de ouro de seu banco.", cost));
 					from.Kills = from.Kills - 1;
 					paid = true;
 				}
@@ -156,7 +156,7 @@ namespace Server.Mobiles
 
 			if ( !paid )
 			{
-				SayTo(from, "I would require " + cost.ToString() + " gold to bribe the guards.");
+				SayTo(from, "Eu precisaria de " + cost.ToString() + " de ouro para subornar os guardas.");
 			}
         }
 

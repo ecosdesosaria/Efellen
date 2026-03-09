@@ -7,13 +7,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a beetle corpse" )]
+	[CorpseName( "um cadáver de besouro" )]
 	public class DuneBeetle : BaseCreature
 	{
 		[Constructable]
 		public DuneBeetle() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a dune beetle";
+			Name = "um besouro da duna";
 			Body = 898;
 			BaseSoundID = 268;
 

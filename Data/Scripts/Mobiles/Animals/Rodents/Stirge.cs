@@ -6,13 +6,13 @@ using System.Collections;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a stirge corpse" )]
+	[CorpseName( "um cadáver de stirge" )]
 	public class Stirge : BaseCreature
 	{
 		[Constructable]
 		public Stirge() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a stirge";
+			Name = "uma stirge";
 			Body = 109;
 			BaseSoundID = 0x270;
 
@@ -95,7 +95,7 @@ namespace Server.Mobiles
 					m.PlaySound( 0x133 );
 					m.FixedParticles( 0x377A, 244, 25, 9950, 31, 0, EffectLayer.Waist );
 
-					m.SendMessage( "You feel the blood draining from you!" );
+					m.SendMessage( "Você sente o sangue sendo drenado de você!" );
 
 					int toDrain = Utility.RandomMinMax( 15, 30 );
 

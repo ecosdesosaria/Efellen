@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a feline corpse" )]
+	[CorpseName( "um cadáver felino" )]
 	public class CragCat : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -15,7 +15,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public CragCat() : base( AIType.AI_Melee,FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a crag cat";
+			Name = "um gato-do-deserto";
 			Body = 118;
 			BaseSoundID = 0x462;
 

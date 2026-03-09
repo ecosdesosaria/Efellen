@@ -3,7 +3,7 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a rodent corpse" )]
+	[CorpseName( "um cadáver de roedor" )]
 	public class Mouse : BaseCreature
 	{
 		[Constructable]
@@ -11,8 +11,8 @@ namespace Server.Mobiles
 		{
 			switch ( Utility.RandomMinMax( 0, 1 ) )
 			{
-				case 0: Name = "a mouse"; break;
-				case 1: Name = "a rat"; break;
+				case 0: Name = "um rato"; break;
+				case 1: Name = "uma ratazana"; break;
 			}
 			Body = 238;
 			BaseSoundID = 0xCC;

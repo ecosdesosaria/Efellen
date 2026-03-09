@@ -63,25 +63,25 @@ namespace Server.Items
 
 				if ( page == 1 )
 				{
-					AddHtml( 107, 46, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>DRUIDIC HERBALISM</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
-					AddHtml( 398, 48, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>DRUIDIC HERBALISM</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 107, 46, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>HERBALISMO DRUIDICO</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 398, 48, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>HERBALISMO DRUIDICO</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 
-					AddHtml( 78, 75, 248, 318, @"<BODY><BASEFONT Color=" + color + ">Druidic Herbalism is the art of taking natural reagents and creating mixtures that druids can use. You would use your druidism skill to create and use the potions, but some veterinary is needed to help create them and make them more effective in some cases. This book explains the various potions you can make, as well as additional information to manage these mixtures effectively. Unlike other potions, these require jars as the liquid needs a thicker glass to store as it is acidic enough to dissolve bottle glass and even the wood of a keg.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 78, 75, 248, 318, @"<BODY><BASEFONT Color=" + color + ">Herbalismo Druídico é a arte de tomar reagentes naturais e criar misturas que druidas podem usar. Você usaria sua habilidade de druidismo para criar e usar as poções, mas alguma veterinária é necessária para ajudar a criá-las e torná-las mais eficazes em alguns casos. Este livro explica as várias poções que você pode fazer, bem como informações adicionais para gerenciar essas misturas efetivamente. Diferente de outras poções, estas requerem frascos pois o líquido precisa de um vidro mais grosso para armazenar, pois é ácido o suficiente para dissolver vidro de garrafa e até mesmo a madeira de um barril.</BASEFONT></BODY>", (bool)false, (bool)false);
 
-					AddHtml( 372, 75, 248, 318, @"<BODY><BASEFONT Color=" + color + ">You will need a small cauldron to brew these potions. You can also get a belt pouch to store the ingredients, cauldrons, jars, potions, and this book to make them easier to carry. Single click this bag to organize it for easier use of the potions.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 372, 75, 248, 318, @"<BODY><BASEFONT Color=" + color + ">Você precisará de um pequeno caldeirão para preparar estas poções. Você também pode obter uma bolsa de cinto para armazenar os ingredientes, caldeirões, frascos, poções e este livro para facilitar o transporte. Clique uma vez nesta bolsa para organizá-la para um uso mais fácil das poções.</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else
 				{
 					AddHtml( 107, 46, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>" + potionInfo( potion, 1 ) + "</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 
-					AddHtml( 73, 72, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Druidism:</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 73, 72, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Druidismo:</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 267, 72, 47, 20, @"<BODY><BASEFONT Color=" + color + ">" + potionInfo( potion, 4 ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
-					AddHtml( 73, 98, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Veterinary:</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 73, 98, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Veterinária:</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 267, 98, 47, 20, @"<BODY><BASEFONT Color=" + color + ">" + potionInfo( potion, 5 ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
 					AddImage(77, 128, Int32.Parse( potionInfo( potion, 2 ) ) );
-					AddHtml( 133, 139, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Ingredients</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 133, 139, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Ingredientes</BASEFONT></BODY>", (bool)false, (bool)false);
 
 					AddHtml( 73, 180, 246, 20, @"<BODY><BASEFONT Color=" + color + ">" + potionInfo( potion, 6 ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 73, 206, 246, 20, @"<BODY><BASEFONT Color=" + color + ">" + potionInfo( potion, 7 ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
@@ -95,14 +95,14 @@ namespace Server.Items
 
 					AddHtml( 398, 48, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>" + potionInfo( potion, 1 ) + "</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 
-					AddHtml( 366, 72, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Druidism:</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 366, 72, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Druidismo:</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 560, 72, 47, 20, @"<BODY><BASEFONT Color=" + color + ">" + potionInfo( potion, 4 ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
-					AddHtml( 366, 98, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Veterinary:</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 366, 98, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Veterinária:</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 560, 98, 47, 20, @"<BODY><BASEFONT Color=" + color + ">" + potionInfo( potion, 5 ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
 					AddImage(366, 128, Int32.Parse( potionInfo( potion, 2 ) ) );
-					AddHtml( 422, 139, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Ingredients</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 422, 139, 187, 20, @"<BODY><BASEFONT Color=" + color + ">Ingredientes</BASEFONT></BODY>", (bool)false, (bool)false);
 
 					AddHtml( 366, 180, 246, 20, @"<BODY><BASEFONT Color=" + color + ">" + potionInfo( potion, 6 ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 366, 206, 246, 20, @"<BODY><BASEFONT Color=" + color + ">" + potionInfo( potion, 7 ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
@@ -131,7 +131,7 @@ namespace Server.Items
 			{
 				string txt = "";
 
-				txt = "This is created from druidic herbalism: " + potionInfo( potion, 3 ) + " To use it, one should have a " + potionInfo( potion, 4 ) + " in Druidism and a " + potionInfo( potion, 5 ) + " in Veterinary.";
+				txt = "Isto é criado a partir do herbalismo druídico: " + potionInfo( potion, 3 ) + " Para usá-lo, deve-se ter " + potionInfo( potion, 4 ) + " em Druidismo e " + potionInfo( potion, 5 ) + " em Veterinária.";
 
 				return txt;
 			}
@@ -147,23 +147,22 @@ namespace Server.Items
 				string txtIngB = "";
 				string txtIngC = "";
 
-				if ( page == 2 ){ txtName = "Stone in a Jar"; txtIcon = "11446"; txtInfo = "Dumps out a magical stone that draws all nearby animals to it."; txtSklA = "10"; txtSklB = "5"; txtIngA = "Moon Crystal"; txtIngB = "Silver Widow"; txtIngC = ""; }
-				else if ( page == 3 ){ txtName = "Nature Passage Mixture"; txtIcon = "11449"; txtInfo = "Turns one into flower petals and carries them on the wind to a magic rune location."; txtSklA = "15"; txtSklB = "10"; txtIngA = "Sea Salt"; txtIngB = "Fairy Egg"; txtIngC = ""; }
-				else if ( page == 4 ){ txtName = "Shield of Earth Liquid"; txtIcon = "11450"; txtInfo = "Causes a wall of foliage to grow, blocking the way of others."; txtSklA = "20"; txtSklB = "15"; txtIngA = "Ginseng"; txtIngB = "Black Pearl"; txtIngC = ""; }
-				else if ( page == 5 ){ txtName = "Woodland Protection Oil"; txtIcon = "11454"; txtInfo = "Increases your protection by making your skin like bark from an ancient tree."; txtSklA = "25"; txtSklB = "20"; txtIngA = "Garlic"; txtIngB = "Swamp Berries"; txtIngC = ""; }
-				else if ( page == 6 ){ txtName = "Stone Rising Concoction"; txtIcon = "11451"; txtInfo = "Causes stones to push up from the ground, trapping your foes."; txtSklA = "30"; txtSklB = "25"; txtIngA = "Beetle Shell"; txtIngB = "Sea Salt"; txtIngC = ""; }
-				else if ( page == 7 ){ txtName = "Grasping Roots Mixture"; txtIcon = "11443"; txtInfo = "Releases roots from the ground to entangle a foe."; txtSklA = "35"; txtSklB = "30"; txtIngA = "Mandrake Root"; txtIngB = "Ginseng"; txtIngC = ""; }
-				else if ( page == 8 ){ txtName = "Druidic Marking Oil"; txtIcon = "11439"; txtInfo = "Marks a magic rune with your location, that you can use recalling magics to transport to later."; txtSklA = "40"; txtSklB = "35"; txtIngA = "Black Pearl"; txtIngB = "Eye of Toad"; txtIngC = ""; }
-				else if ( page == 9 ){ txtName = "Herbal Healing Elixir"; txtIcon = "11444"; txtInfo = "Heals the target of all ailments."; txtSklA = "45"; txtSklB = "40"; txtIngA = "Red Lotus"; txtIngB = "Garlic"; txtIngC = ""; }
-				else if ( page == 10 ){ txtName = "Forest Blending Oil"; txtIcon = "11442"; txtInfo = "Allows one to blend seamlessly with the forest, causing foes to lose sight of them."; txtSklA = "50"; txtSklB = "45"; txtIngA = "Silver Widow"; txtIngB = "Nightshade"; txtIngC = ""; }
-				else if ( page == 11 ){ txtName = "Jar of Fireflies"; txtIcon = "11445"; txtInfo = "Releases fireflies to distract a foe from battle."; txtSklA = "55"; txtSklB = "50"; txtIngA = "Spider Silk"; txtIngB = "Butterfly Wings"; txtIngC = ""; }
-				else if ( page == 12 ){ txtName = "Mushroom Gateway Growth"; txtIcon = "11448"; txtInfo = "using a magical rune, this liquid causes magical mushrooms to grow a portal to the runic location."; txtSklA = "60"; txtSklB = "55"; txtIngA = "Bloodmoss"; txtIngB = "Eye of Toad"; txtIngC = ""; }
-				else if ( page == 13 ){ txtName = "Jar of Insects"; txtIcon = "11441"; txtInfo = "Releases a swarm of insects from the jar that bite and sting nearby foes."; txtSklA = "65"; txtSklB = "60"; txtIngA = "Butterfly Wings"; txtIngB = "Beetle Shell"; txtIngC = ""; }
-				else if ( page == 14 ){ txtName = "Fairy in a Jar"; txtIcon = "11440"; txtInfo = "Releases a fairy from the jar to a help the adventurer on their journey."; txtSklA = "70"; txtSklB = "65"; txtIngA = "Fairy Egg"; txtIngB = "Moon Crystal"; txtIngC = ""; }
-				else if ( page == 15 ){ txtName = "Treant Fertilizer"; txtIcon = "11452"; txtInfo = "Causes a living tree to grow and attack nearby enemies."; txtSklA = "75"; txtSklB = "70"; txtIngA = "Swamp Berries"; txtIngB = "Mandrake Root"; txtIngC = ""; }
-				else if ( page == 16 ){ txtName = "Volcanic Fluid"; txtIcon = "11453"; txtInfo = "Causes molten lava to burst from the ground, hitting every foe nearby."; txtSklA = "80"; txtSklB = "75"; txtIngA = "Brimstone"; txtIngB = "Sulfurous Ash"; txtIngC = ""; }
-				else if ( page == 17 ){ txtName = "Jar of Magical Mud"; txtIcon = "11447"; txtInfo = "Dumps mystical mud in your pack, that will resurrect you a few moments after losing your life. You can also directly resurrect others."; txtSklA = "85"; txtSklB = "80"; txtIngA = "Nightshade"; txtIngB = "Red Lotus"; txtIngC = ""; }
-
+				if ( page == 2 ){ txtName = "Pedra em um Frasco"; txtIcon = "11446"; txtInfo = "Despeja uma pedra mágica que atrai todos os animais próximos para ela."; txtSklA = "10"; txtSklB = "5"; txtIngA = "Cristal da Lua"; txtIngB = "Viúva Prateada"; txtIngC = ""; }
+				else if ( page == 3 ){ txtName = "Mistura de Passagem da Natureza"; txtIcon = "11449"; txtInfo = "Transforma alguém em pétalas de flor e as carrega no vento para uma localização de runa mágica."; txtSklA = "15"; txtSklB = "10"; txtIngA = "Sal Marinho"; txtIngB = "Ovo de Fada"; txtIngC = ""; }
+				else if ( page == 4 ){ txtName = "Líquido do Escudo da Terra"; txtIcon = "11450"; txtInfo = "Faz uma parede de folhagem crescer, bloqueando o caminho de outros."; txtSklA = "20"; txtSklB = "15"; txtIngA = "Ginseng"; txtIngB = "Pérola Negra"; txtIngC = ""; }
+				else if ( page == 5 ){ txtName = "Óleo de Proteção da Floresta"; txtIcon = "11454"; txtInfo = "Aumenta sua proteção tornando sua pele como a casca de uma árvore antiga."; txtSklA = "25"; txtSklB = "20"; txtIngA = "Alho"; txtIngB = "Bagas do Pântano"; txtIngC = ""; }
+				else if ( page == 6 ){ txtName = "Poção da Ascensão da Pedra"; txtIcon = "11451"; txtInfo = "Faz pedras emergirem do chão, prendendo seus inimigos."; txtSklA = "30"; txtSklB = "25"; txtIngA = "Casco de Besouro"; txtIngB = "Sal Marinho"; txtIngC = ""; }
+				else if ( page == 7 ){ txtName = "Mistura de Raízes Agarrantes"; txtIcon = "11443"; txtInfo = "Libera raízes do chão para emaranhar um inimigo."; txtSklA = "35"; txtSklB = "30"; txtIngA = "Raiz de Mandrágora"; txtIngB = "Ginseng"; txtIngC = ""; }
+				else if ( page == 8 ){ txtName = "Óleo de Marcação Druídica"; txtIcon = "11439"; txtInfo = "Marca uma runa mágica com sua localização, que você pode usar magias de recall para transportar posteriormente."; txtSklA = "40"; txtSklB = "35"; txtIngA = "Pérola Negra"; txtIngB = "Olho de Sapo"; txtIngC = ""; }
+				else if ( page == 9 ){ txtName = "Elixir de Cura Herbácea"; txtIcon = "11444"; txtInfo = "Cura o alvo de todas as enfermidades."; txtSklA = "45"; txtSklB = "40"; txtIngA = "Lótus Vermelho"; txtIngB = "Alho"; txtIngC = ""; }
+				else if ( page == 10 ){ txtName = "Óleo de Camuflagem da Floresta"; txtIcon = "11442"; txtInfo = "Permite que alguém se misture perfeitamente com a floresta, fazendo os inimigos perderem sua visão."; txtSklA = "50"; txtSklB = "45"; txtIngA = "Viúva Prateada"; txtIngB = "Meimendro"; txtIngC = ""; }
+				else if ( page == 11 ){ txtName = "Frasco de Vaga-lumes"; txtIcon = "11445"; txtInfo = "Libera vaga-lumes para distrair um inimigo da batalha."; txtSklA = "55"; txtSklB = "50"; txtIngA = "Seda de Aranha"; txtIngB = "Asas de Borboleta"; txtIngC = ""; }
+				else if ( page == 12 ){ txtName = "Crescimento de Portal de Cogumelos"; txtIcon = "11448"; txtInfo = "Usando uma runa mágica, este líquido faz cogumelos mágicos crescerem um portal para a localização rúnica."; txtSklA = "60"; txtSklB = "55"; txtIngA = "Musgo Sangrento"; txtIngB = "Olho de Sapo"; txtIngC = ""; }
+				else if ( page == 13 ){ txtName = "Frasco de Insetos"; txtIcon = "11441"; txtInfo = "Libera um enxame de insetos do frasco que mordem e picam inimigos próximos."; txtSklA = "65"; txtSklB = "60"; txtIngA = "Asas de Borboleta"; txtIngB = "Casco de Besouro"; txtIngC = ""; }
+				else if ( page == 14 ){ txtName = "Fada em um Frasco"; txtIcon = "11440"; txtInfo = "Libera uma fada do frasco para ajudar o aventureiro em sua jornada."; txtSklA = "70"; txtSklB = "65"; txtIngA = "Ovo de Fada"; txtIngB = "Cristal da Lua"; txtIngC = ""; }
+				else if ( page == 15 ){ txtName = "Fertilizante de Treant"; txtIcon = "11452"; txtInfo = "Faz uma árvore viva crescer e atacar inimigos próximos."; txtSklA = "75"; txtSklB = "70"; txtIngA = "Bagas do Pântano"; txtIngB = "Raiz de Mandrágora"; txtIngC = ""; }
+				else if ( page == 16 ){ txtName = "Fluido Vulcânico"; txtIcon = "11453"; txtInfo = "Faz lava derretida irromper do chão, atingindo todos os inimigos próximos."; txtSklA = "80"; txtSklB = "75"; txtIngA = "Enxofre"; txtIngB = "Cinza Sulfúrea"; txtIngC = ""; }
+				else if ( page == 17 ){ txtName = "Frasco de Lama Mágica"; txtIcon = "11447"; txtInfo = "Despeja lama mística em sua mochila, que irá ressuscitá-lo alguns momentos após perder sua vida. Você também pode ressuscitar outros diretamente."; txtSklA = "85"; txtSklB = "80"; txtIngA = "Meimendro"; txtIngB = "Lótus Vermelho"; txtIngC = ""; }
 				if ( val == 1 )
 					return txtName;
 				else if ( val == 2 )

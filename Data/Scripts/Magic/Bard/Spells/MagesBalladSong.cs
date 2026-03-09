@@ -106,7 +106,7 @@ namespace Server.Spells.Song
 
                     if (m_Round >= m_Totalrounds)
                     {
-                        m_Mobile.SendMessage("The effect of mage's ballad wears off.");
+                        m_Mobile.SendMessage("O efeito da mage's ballad desaparece.");
 						BuffInfo.RemoveBuff( m_Mobile, BuffIcon.MagesBallad );
 					}
                     else
@@ -140,7 +140,7 @@ namespace Server.Spells.Song
 
                     if (m_Round >= m_Totalrounds)
                     {
-                        m_Mobile.SendMessage("The effect of mage's ballad wears off.");
+                        m_Mobile.SendMessage("O efeito da mage's ballad desaparece.");
  						BuffInfo.RemoveBuff( m_Mobile, BuffIcon.MagesBallad );
 					}
                     else
@@ -174,7 +174,7 @@ namespace Server.Spells.Song
 
                     if (m_Round >= m_Totalrounds)
                     {
-                        m_Mobile.SendMessage("The effect of mage's ballad wears off.");
+                        m_Mobile.SendMessage("O efeito da mage's ballad desaparece.");
 						BuffInfo.RemoveBuff( m_Mobile, BuffIcon.MagesBallad );
 					}
                     else
@@ -208,7 +208,7 @@ namespace Server.Spells.Song
 
                     if (m_Round >= m_Totalrounds)
                     {
-                        m_Mobile.SendMessage("The effect of mage's ballad wears off.");
+                        m_Mobile.SendMessage("O efeito da mage's ballad desaparece.");
 						BuffInfo.RemoveBuff( m_Mobile, BuffIcon.MagesBallad );
 					}
                     else
@@ -242,7 +242,7 @@ namespace Server.Spells.Song
 
                     if (m_Round >= m_Totalrounds)
                     {
-                        m_Mobile.SendMessage("The effect of mage's ballad wears off.");
+                        m_Mobile.SendMessage("O efeito da mage's ballad desaparece.");
 						BuffInfo.RemoveBuff( m_Mobile, BuffIcon.MagesBallad );
 					}
                     else

@@ -1487,36 +1487,36 @@ namespace Server.Mobiles
 					{
 						switch( Utility.RandomMinMax( 0, 5 ) )
 						{
-							case 0: sMessage = "Thank you for bringing this to me."; 			break;
-							case 1: sMessage = "I knew you could do it."; 						break;
-							case 2: sMessage = "This is a great help to us all."; 				break;
-							case 3: sMessage = "Good work! I am glad to see you arrive well."; 	break;
-							case 4: sMessage = "Your valor will be remembered."; 				break;
-							case 5: sMessage = "You have done what most others could not."; 	break;
+							case 0: sMessage = "Obrigado por trazer isso até mim."; break;
+							case 1: sMessage = "Sabia que você conseguiria."; break;
+							case 2: sMessage = "Isso é uma grande ajuda para todos nós."; break;
+							case 3: sMessage = "Bom trabalho! Fico feliz em vê-lo chegar bem."; break;
+							case 4: sMessage = "Sua bravura será lembrada."; break;
+							case 5: sMessage = "Você fez o que a maioria dos outros não pôde."; break;
 						}
 					}
 					else if ( scroll.ForAlignment == "evil" )
 					{
 						switch( Utility.RandomMinMax( 0, 5 ) )
 						{
-							case 0: sMessage = "It is good that you did not fail me."; 				break;
-							case 1: sMessage = "I trust you eliminated any troubles for this?"; 	break;
-							case 2: sMessage = "Ahhh...another step closer to my plan."; 			break;
-							case 3: sMessage = "You may prove to be useful yet."; 					break;
-							case 4: sMessage = "You took long enough."; 							break;
-							case 5: sMessage = "I was about to send someone to deal with you."; 	break;
+							case 0: sMessage = "É bom que você não tenha me decepcionado."; break;
+							case 1: sMessage = "Espero que você tenha eliminado quaisquer problemas por isso?"; break;
+							case 2: sMessage = "Ahhh... mais um passo perto do meu plano."; break;
+							case 3: sMessage = "Você ainda pode se mostrar útil."; break;
+							case 4: sMessage = "Você demorou o suficiente."; break;
+							case 5: sMessage = "Estava prestes a mandar alguém cuidar de você."; break;
 						}
 					}
 					else
 					{
 						switch( Utility.RandomMinMax( 0, 5 ) )
 						{
-							case 0: sMessage = "Hmmm...I see you found it."; 						break;
-							case 1: sMessage = "I trust you had little difficulty?";			 	break;
-							case 2: sMessage = "Good! I thought for sure you were lost."; 			break;
-							case 3: sMessage = "I guess my trust was well placed."; 				break;
-							case 4: sMessage = "I thought you perished in the attempt."; 			break;
-							case 5: sMessage = "I wasn't sure it really existed."; 					break;
+							case 0: sMessage = "Hmmm... vejo que você encontrou."; break;
+							case 1: sMessage = "Espero que você tenha tido pouca dificuldade?"; break;
+							case 2: sMessage = "Bom! Pensei que você estivesse perdido."; break;
+							case 3: sMessage = "Acho que minha confiança foi bem colocada."; break;
+							case 4: sMessage = "Pensei que você tivesse perecido na tentativa."; break;
+							case 5: sMessage = "Não tinha certeza se realmente existia."; break;
 						}
 					}
 
@@ -1549,11 +1549,11 @@ namespace Server.Mobiles
 
 						if ( this.MyAlignment == "good" )
 						{
-							sMessage = "Ahhh...you found it and perhaps saved us all! Choose your reward.";
+							sMessage = "Ahhh... você encontrou e talvez tenha salvado a todos nós! Escolha sua recompensa.";
 						}
 						else if ( this.MyAlignment == "evil" )
 						{
-							sMessage = "Good! Everything is going to plan. Choose your reward.";
+							sMessage = "Bom! Tudo está indo de acordo com o plano. Escolha sua recompensa.";
 						}
 
 						if ( !from.HasGump( typeof( EpicBookGump ) ) )
@@ -1567,11 +1567,11 @@ namespace Server.Mobiles
 					{
 						if ( this.MyAlignment == "good" )
 						{
-							sMessage = "Return to me when you find it.";
+							sMessage = "Volte para mim quando encontrar.";
 						}
 						else if ( this.MyAlignment == "evil" )
 						{
-							sMessage = "Do not fail me in this task.";
+							sMessage = "Não me decepcione nesta tarefa.";
 						}
 					}
 

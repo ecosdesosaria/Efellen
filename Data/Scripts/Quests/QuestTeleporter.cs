@@ -86,12 +86,12 @@ namespace Server.Items
 					if ( MySettings.S_WarnSkaraBrae && m is PlayerMobile && !((PlayerMobile)m).WarnedSkaraBrae && this.X == 2830 && this.Y == 1875 )
 					{
 						((PlayerMobile)m).WarnedSkaraBrae = true;
-						m.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You feel that touching this again may trap you somewhere that you need to escape from.", m.NetState);
+						m.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você sente que tocar isso novamente pode prendê-lo em algum lugar do qual você precise escapar.", m.NetState);
 					}
 					else if ( MySettings.S_WarnBottleCity && !PlayerSettings.GetDiscovered( m, "the Bottle World of Kuldar" ) && m is PlayerMobile && !((PlayerMobile)m).WarnedBottleCity && this.X == 6376 && this.Y == 302 )
 					{
 						((PlayerMobile)m).WarnedBottleCity = true;
-						m.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You feel that touching this again may trap you somewhere that you need to escape from.", m.NetState);
+						m.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você sente que tocar isso novamente pode prendê-lo em algum lugar do qual você precise escapar.", m.NetState);
 					}
 					else
 					{

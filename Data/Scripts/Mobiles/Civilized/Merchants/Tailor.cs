@@ -120,9 +120,9 @@ namespace Server.Mobiles
 			{
 				nCost = nCost - (int)( ( from.Skills[SkillName.Begging].Value * 0.005 ) * nCost ); if ( nCost < 1 ){ nCost = 1; }
 				nCostH = nCostH - (int)( ( from.Skills[SkillName.Begging].Value * 0.005 ) * nCostH ); if ( nCostH < 1 ){ nCostH = 1; }
-				SayTo(from, "Since you are begging, do you still want me to tailor your robe or cloak to look normal, it will only cost you " + nCost.ToString() + " gold? Maybe repair a hat for at least " + nCostH.ToString() + " gold per durability?");
+				SayTo(from, "Já que está implorando, ainda quer que eu ajuste sua vestimenta ou capa para parecer normal, custará apenas " + nCost.ToString() + " moedas de ouro? Ou talvez reparar um chapéu por pelo menos " + nCostH.ToString() + " moedas de ouro por durabilidade?");
 			}
-			else { SayTo(from, "If you want me to tailor your robe or cloak to look normal, it will cost you " + nCost.ToString() + " gold. Maybe repair a hat at " + nCostH.ToString() + " gold per durability?"); }
+			else { SayTo(from, "Se quer que eu ajuste sua vestimenta ou capa para parecer normal, custará " + nCost.ToString() + " moedas de ouro. Ou talvez reparar um chapéu por " + nCostH.ToString() + " moedas de ouro por durabilidade?"); }
 
             from.Target = new RepairTarget(this);
         }
@@ -157,7 +157,7 @@ namespace Server.Mobiles
                     }
                     else
                     {
-						m_Tailor.SayTo(from, "That does not need my services.");
+						m_Tailor.SayTo(from, "Isso não precisa dos meus serviços.");
                     }
 
                     if (toConsume == 0)
@@ -166,16 +166,16 @@ namespace Server.Mobiles
                     if (pack.ConsumeTotal(typeof(Gold), toConsume))
                     {
 						if ( BeggingPose(from) > 0 ){ Titles.AwardKarma( from, -BeggingKarma( from ), true ); } // DO ANY KARMA LOSS
-                        m_Tailor.SayTo(from, "Here is your robe.");
-                        from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+                        m_Tailor.SayTo(from, "Aqui está sua vestimenta.");
+                        from.SendMessage(String.Format("Você paga {0} moedas de ouro.", toConsume));
                         Effects.PlaySound(from.Location, from.Map, 0x248);
 						ba.ItemID = 0x1F03;
 						ba.Name = "robe";
                     }
                     else
                     {
-                        m_Tailor.SayTo(from, "It would cost you {0} gold to have that done.", toConsume);
-                        from.SendMessage("You do not have enough gold.");
+                        m_Tailor.SayTo(from, "Custaria {0} moedas de ouro para fazer isso.", toConsume);
+						from.SendMessage("Você não tem ouro suficiente.");
                     }
                 }
 				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -197,7 +197,7 @@ namespace Server.Mobiles
                     }
                     else
                     {
-						m_Tailor.SayTo(from, "That does not need my services.");
+						m_Tailor.SayTo(from, "Isso não precisa dos meus serviços.");
                     }
 
                     if (toConsume == 0)
@@ -206,16 +206,16 @@ namespace Server.Mobiles
                     if (pack.ConsumeTotal(typeof(Gold), toConsume))
                     {
 						if ( BeggingPose(from) > 0 ){ Titles.AwardKarma( from, -BeggingKarma( from ), true ); } // DO ANY KARMA LOSS
-                        m_Tailor.SayTo(from, "Here is your cloak.");
-                        from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+                        m_Tailor.SayTo(from, "Aqui está sua capa.");
+                        from.SendMessage(String.Format("Você paga {0} moedas de ouro.", toConsume));
                         Effects.PlaySound(from.Location, from.Map, 0x248);
 						ba.ItemID = 0x1515;
 						ba.Name = "cloak";
                     }
                     else
                     {
-                        m_Tailor.SayTo(from, "It would cost you {0} gold to have that done.", toConsume);
-                        from.SendMessage("You do not have enough gold.");
+                        m_Tailor.SayTo(from, "Custaria {0} moedas de ouro para fazer isso.", toConsume);
+                        from.SendMessage("Você não tem ouro suficiente.");
                     }
                 }
 				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -238,11 +238,11 @@ namespace Server.Mobiles
                     }
                     else if (ba.HitPoints >= ba.MaxHitPoints)
                     {
-						m_Tailor.SayTo(from, "That does not need to be repaired.");
+						m_Tailor.SayTo(from, "Isso não precisa ser reparado.");
                     }
 					else
 					{
-						m_Tailor.SayTo(from, "I cannot repair that.");
+						m_Tailor.SayTo(from, "Eu não posso reparar isso.");
 					}
 
                     if (toConsume == 0)
@@ -251,20 +251,20 @@ namespace Server.Mobiles
                     if (pack.ConsumeTotal(typeof(Gold), toConsume))
                     {
 						if ( BeggingPose(from) > 0 ){ Titles.AwardKarma( from, -BeggingKarma( from ), true ); } // DO ANY KARMA LOSS
-                        m_Tailor.SayTo(from, "Here is your hat.");
-                        from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+                        m_Tailor.SayTo(from, "Aqui está seu chapéu.");
+                        from.SendMessage(String.Format("Você paga {0} moedas de ouro.", toConsume));
                         Effects.PlaySound(from.Location, from.Map, 0x248);
                         ba.MaxHitPoints -= 1;
                         ba.HitPoints = ba.MaxHitPoints;
                     }
                     else
                     {
-                        m_Tailor.SayTo(from, "It would cost you {0} gold to have that repaired.", toConsume);
-                        from.SendMessage("You do not have enough gold.");
+                        m_Tailor.SayTo(from, "Custaria {0} moedas de ouro para fazer isso.", toConsume);
+                        from.SendMessage("Você não tem ouro suficiente.");
                     }
                 }
 				else
-					m_Tailor.SayTo(from, "That does not need my services.");
+					m_Tailor.SayTo(from, "Isso não precisa dos meus serviços.");
             }
         }
 

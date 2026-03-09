@@ -62,15 +62,15 @@ namespace Server.Mobiles
 
 						if ( action == 1 )
 						{
-							this.Say( "*meditating*" );
+							this.Say( "*meditando*" );
 							this.PlaySound( 0xF9 );
 							this.Animate( 269, 5, 1, true, false, 0 );
 						}
 						else if ( action == 2 )
 						{
 							this.Animate( 269, 5, 1, true, false, 0 );
-							string plead = "Oh Great Spirits";
-							string resurrect = ", please resurrect";
+							string plead = "Oh Grandes Espíritos";
+							string resurrect = ", por favor ressuscitem";
 							string who = NameList.RandomName( "male" ); 
 								if ( Utility.RandomBool() ){ who = NameList.RandomName( "female" ); }
 								if ( Utility.RandomBool() ){ who = who + " " + TavernPatrons.GetTitle(); }
@@ -78,44 +78,44 @@ namespace Server.Mobiles
 							string dungeon = QuestCharacters.SomePlace( "tavern" );	
 								if ( Utility.RandomBool() ){ dungeon = RandomThings.MadeUpDungeon(); }
 
-							string died = "was killed";
+							string died = "foi morto";
 							switch( Utility.RandomMinMax( 0, 5 ) )
 							{
-								case 1: died = "was slain";				break;
-								case 2: died = "was bested";			break;
-								case 3: died = "was murdered";			break;
-								case 4: died = "has perished";			break;
-								case 5: died = "has met their end";		break;
+								case 1: died = "foi abatido";				break;
+								case 2: died = "foi derrotado";			break;
+								case 3: died = "foi assassinado";			break;
+								case 4: died = "pereceu";			break;
+								case 5: died = "encontrou seu fim";		break;
 							}
 
 							switch ( Utility.Random( 8 ) )
 							{
-								case 0: resurrect = ", please resurrect";				break;
-								case 1: resurrect = ", please bring back";				break;
-								case 2: resurrect = ", I humbly ask you to resurrect";	break;
-								case 3: resurrect = ", I beg you to resurrect";			break;
-								case 4: resurrect = ", I humbly ask you to bring back";	break;
-								case 5: resurrect = ", I beg you to bring back";		break;
-								case 6: resurrect = ", please give life back to";		break;
-								case 7: resurrect = ", give life back to";				break;
+								case 0: resurrect = ", por favor ressuscitem";				break;
+								case 1: resurrect = ", por favor tragam de volta";				break;
+								case 2: resurrect = ", humildemente peço que ressuscitem";	break;
+								case 3: resurrect = ", imploro que ressuscitem";			break;
+								case 4: resurrect = ", humildemente peço que tragam de volta";	break;
+								case 5: resurrect = ", imploro que tragam de volta";		break;
+								case 6: resurrect = ", por favor devolvam a vida a";		break;
+								case 7: resurrect = ", devolvam a vida a";				break;
 							}
 
 							switch ( Utility.Random( 7 ) )
 							{
 								case 0: plead = "Oh " + name + "";				break;
-								case 1: plead = "Oh Great " + name + "";		break;
-								case 2: plead = "Please " + name + "";			break;
-								case 3: plead = "Please Great " + name + "";	break;
+								case 1: plead = "Oh Grande " + name + "";		break;
+								case 2: plead = "Por favor " + name + "";			break;
+								case 3: plead = "Por favor Grande " + name + "";	break;
 								case 4: plead = "" + name + "";					break;
-								case 5: plead = "Great " + name + "";			break;
-								case 6: plead = "Oh Great " + name + "";		break;
+								case 5: plead = "Grande " + name + "";			break;
+								case 6: plead = "Oh Grande " + name + "";		break;
 							}
 
 							switch ( Utility.Random( 3 ) )
 							{
 								case 0: plead = plead + resurrect + " " + who + ".";											break;
-								case 1: plead = plead + resurrect + " " + who + ", that " + died + ".";							break;
-								case 2: plead = plead + resurrect + " " + who + ", that " + died + " in " + dungeon + ".";		break;
+								case 1: plead = plead + resurrect + " " + who + ", que " + died + ".";							break;
+								case 2: plead = plead + resurrect + " " + who + ", que " + died + " em " + dungeon + ".";		break;
 							}
 
 							this.Say( plead );
@@ -124,41 +124,41 @@ namespace Server.Mobiles
 						{
 							this.Animate( 230, 5, 1, true, false, 0 );
 							this.PlaySound( 0x2E6 );
-							string praise = "Oh Great Spirits";
-							string gold = ", accept this gold as my";
-							string give = " tribute.";
+							string praise = "Oh Grandes Espíritos";
+							string gold = ", aceitem este ouro como meu";
+							string give = " tributo.";
 
 							switch ( Utility.Random( 6 ) )
 							{
-								case 0: give = " tribute.";		break;
-								case 1: give = " gift.";		break;
-								case 2: give = " praise.";		break;
-								case 3: give = " devotion.";	break;
-								case 4: give = " honor.";		break;
-								case 5: give = " respect.";		break;
+								case 0: give = " tributo.";		break;
+								case 1: give = " presente.";		break;
+								case 2: give = " louvor.";		break;
+								case 3: give = " devoção.";	break;
+								case 4: give = " honra.";		break;
+								case 5: give = " respeito.";		break;
 							}
 
 							switch ( Utility.Random( 8 ) )
 							{
-								case 0: gold = ", accept this gold as my";				break;
-								case 1: gold = ", I give this gold as my";				break;
-								case 2: gold = ", I humbly offer this gold as my";		break;
-								case 3: gold = ", I offer this gold as my";				break;
-								case 4: gold = ", take this gold as my";				break;
-								case 5: gold = ", I part with this gold as my";			break;
-								case 6: gold = ", I humbly sacrifice this gold as my";	break;
-								case 7: gold = ", I sacrifice this gold as my";			break;
+								case 0: gold = ", aceitem este ouro como meu";				break;
+								case 1: gold = ", eu dou este ouro como meu";				break;
+								case 2: gold = ", humildemente ofereço este ouro como meu";		break;
+								case 3: gold = ", ofereço este ouro como meu";				break;
+								case 4: gold = ", tomem este ouro como meu";				break;
+								case 5: gold = ", eu me desfaço deste ouro como meu";			break;
+								case 6: gold = ", humildemente sacrifico este ouro como meu";	break;
+								case 7: gold = ", sacrifico este ouro como meu";			break;
 							}
 
 							switch ( Utility.Random( 7 ) )
 							{
 								case 0: praise = "Oh " + name + "";		break;
-								case 1: praise = "Oh Great " + name + "";	break;
-								case 2: praise = "Please " + name + "";	break;
-								case 3: praise = "Please Great " + name + "";	break;
+								case 1: praise = "Oh Grande " + name + "";	break;
+								case 2: praise = "Por favor " + name + "";	break;
+								case 3: praise = "Por favor Grande " + name + "";	break;
 								case 4: praise = "" + name + "";	break;
-								case 5: praise = "Great " + name + "";	break;
-								case 6: praise = "Oh Great " + name + "";	break;
+								case 5: praise = "Grande " + name + "";	break;
+								case 6: praise = "Oh Grande " + name + "";	break;
 							}
 
 							praise = praise + gold + give;

@@ -4,13 +4,13 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a hawk corpse" )]
+	[CorpseName( "um cadáver de gavião" )]
 	public class Hawk : BaseCreature
 	{
 		[Constructable]
 		public Hawk() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a hawk";
+			Name = "um gavião";
 			Body = 5;
 			Hue = Utility.RandomNeutralHue();
 			BaseSoundID = 0x2EE;

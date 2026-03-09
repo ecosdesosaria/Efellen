@@ -14,7 +14,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This large stone door is covered in strange runes." );
+			from.SendMessage( "Esta grande porta de pedra está coberta com runas estranhas." );
 		}
 
 		public RuneStoneGate(Serial serial) : base(serial)

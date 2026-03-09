@@ -5,7 +5,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a bird corpse" )]
+	[CorpseName( "um cadáver de pássaro" )]
 	public class SwampBird : BaseCreature
 	{
 		[Constructable]
@@ -13,10 +13,10 @@ namespace Server.Mobiles
 		{
 			switch ( Utility.Random( 4 ) )
 			{
-				case 0: Name = "a heron"; 		Hue = Utility.RandomBlueHue();		break;
-				case 1: Name = "a spoonbill"; 	Hue = Utility.RandomRedHue();		break;
-				case 2: Name = "a flycatcher"; 	Hue = Utility.RandomGreenHue();		break;
-				case 3: Name = "a bittern"; 	Hue = Utility.RandomNeutralHue();	break;
+				case 0: Name = "uma garça"; 		Hue = Utility.RandomBlueHue();		break;
+				case 1: Name = "uma colhereira"; 	Hue = Utility.RandomRedHue();		break;
+				case 2: Name = "um papa-moscas"; 	Hue = Utility.RandomGreenHue();		break;
+				case 3: Name = "um abetouro"; 	Hue = Utility.RandomNeutralHue();	break;
 			}
 
 			Body = 6;

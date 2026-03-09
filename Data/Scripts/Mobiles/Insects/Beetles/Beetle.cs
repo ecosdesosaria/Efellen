@@ -8,7 +8,7 @@ using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a beetle corpse" )]
+	[CorpseName( "um cadáver de besouro" )]
 	public class Beetle : BaseMount
 	{
 		public virtual double BoostedSpeed{ get{ return 0.1; } }

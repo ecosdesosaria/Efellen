@@ -75,7 +75,7 @@ namespace Server.Mobiles
 				LegendaryArtifactRename brand = new LegendaryArtifactRename( from );
 				from.AddToBackpack ( brand );
 
-				string sMessage = "Mark your legendary artefact so others will tell tales of it one day.";
+				string sMessage = "Marque seu artefato lendário para que outros contem histórias sobre ele um dia.";
 
 				this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
 			}

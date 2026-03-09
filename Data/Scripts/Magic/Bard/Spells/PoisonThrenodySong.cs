@@ -78,7 +78,7 @@ namespace Server.Spells.Song
 					duration = TimeSpan.FromSeconds( (double)(MusicSkill( Caster ) * 2) );
 				}
 
-				m.SendMessage( "Your resistance to poison has decreased." );
+				m.SendMessage( "Sua resistência a veneno diminuiu." );
 				ResistanceMod mod1 = new ResistanceMod( ResistanceType.Poison, - amount );
 				
 				m.AddResistanceMod( mod1 );
@@ -118,7 +118,7 @@ namespace Server.Spells.Song
 			{
 				if ( m_Mobile != null )
 				{
-					m_Mobile.SendMessage( "The effect of the poison threnody wears off." );
+					m_Mobile.SendMessage( "O efeito da poison threnody desaparece." );
 					DoExpire();
 				}
 			}

@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a deep sea serpents corpse" )]
+	[CorpseName( "um cadáver de serpente do mar profundo" )]
 	public class DeepSeaSerpent : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 0; } }
@@ -23,7 +23,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public DeepSeaSerpent() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a deep sea serpent";
+			Name = "uma serpente do mar profundo";
 			Body = Utility.RandomList( 150, 874 );
 			Hue = 1332;
 			BaseSoundID = 447;

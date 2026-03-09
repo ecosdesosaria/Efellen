@@ -188,34 +188,34 @@ namespace Server.Mobiles
 
 			switch ( topic )
 			{
-				case 0:	CitizenRumor = "I heard that " + item + " can be obtained in " + locale + "."; break;
-				case 1:	CitizenRumor = "I heard something about " + item + " and " + locale + "."; break;
-				case 2:	CitizenRumor = "Someone told me that " + locale + " is where you would look for " + item + "."; break;
-				case 3:	CitizenRumor = "I heard many tales of adventurers going to " + locale + " and seeing " + item + "."; break;
-				case 4:	CitizenRumor = QuestCharacters.RandomWords() + " was in the tavern talking about " + item + " and " + locale + "."; break;
-				case 5:	CitizenRumor = "I was talking with the local " + RandomThings.GetRandomJob() + ", and they mentioned " + item + " and " + locale + "."; break;
-				case 6:	CitizenRumor = "I met with " + QuestCharacters.RandomWords() + " and they told me to bring back " + item + " from " + locale + "."; break;
-				case 7:	CitizenRumor = "I heard that " + item + " can be found in " + locale + "."; break;
-				case 8:	CitizenRumor = "Someone from " + RandomThings.GetRandomCity() + " died in " + locale + " searching for " + item + "."; break;
+				case 0:	CitizenRumor = "Ouvi dizer que " + item + " pode ser obtido em " + locale + "."; break;
+				case 1:	CitizenRumor = "Ouvi algo sobre " + item + " e " + locale + "."; break;
+				case 2:	CitizenRumor = "Alguém me disse que " + locale + " é onde você procuraria por " + item + "."; break;
+				case 3:	CitizenRumor = "Ouvi muitos contos de aventureiros indo para " + locale + " e vendo " + item + "."; break;
+				case 4:	CitizenRumor = QuestCharacters.RandomWords() + " estava na taverna falando sobre " + item + " e " + locale + "."; break;
+				case 5:	CitizenRumor = "Eu estava conversando com o " + RandomThings.GetRandomJob() + " local, e ele mencionou " + item + " e " + locale + "."; break;
+				case 6:	CitizenRumor = "Encontrei " + QuestCharacters.RandomWords() + " e ele me disse para trazer " + item + " de " + locale + "."; break;
+				case 7:	CitizenRumor = "Ouvi dizer que " + item + " pode ser encontrado em " + locale + "."; break;
+				case 8:	CitizenRumor = "Alguém de " + RandomThings.GetRandomCity() + " morreu em " + locale + " procurando por " + item + "."; break;
 				case 9:	CitizenRumor = Server.Misc.TavernPatrons.GetRareLocation( this, true, false );		break;
 			}
 
 			switch( Utility.RandomMinMax( 0, 13 ) )
 			{
-				case 0: preface = "I found"; 											break;
-				case 1: preface = "I heard rumours about"; 								break;
-				case 2: preface = "I heard a story about"; 								break;
-				case 3: preface = "I overheard someone tell of"; 						break;
-				case 4: preface = "Some " + adventurer + " found"; 						break;
-				case 5: preface = "Some " + adventurer + " heard rumours about"; 		break;
-				case 6: preface = "Some " + adventurer + " heard a story about"; 		break;
-				case 7: preface = "Some " + adventurer + " overheard another tell of"; 	break;
-				case 8: preface = "Some " + adventurer + " is spreading rumors about"; 	break;
-				case 9: preface = "Some " + adventurer + " is telling tales about"; 	break;
-				case 10: preface = "We found"; 											break;
-				case 11: preface = "We heard rumours about"; 							break;
-				case 12: preface = "We heard a story about"; 							break;
-				case 13: preface = "We overheard someone tell of"; 						break;
+				case 0: preface = "Eu encontrei"; 											break;
+				case 1: preface = "Ouvi rumores sobre"; 								break;
+				case 2: preface = "Ouvi uma história sobre"; 								break;
+				case 3: preface = "Ouvi alguém contar sobre"; 						break;
+				case 4: preface = "Algum " + adventurer + " encontrou"; 						break;
+				case 5: preface = "Algum " + adventurer + " ouviu rumores sobre"; 		break;
+				case 6: preface = "Algum " + adventurer + " ouviu uma história sobre"; 		break;
+				case 7: preface = "Algum " + adventurer + " ouviu outro contar sobre"; 	break;
+				case 8: preface = "Algum " + adventurer + " está espalhando rumores sobre"; 	break;
+				case 9: preface = "Algum " + adventurer + " está contando histórias sobre"; 	break;
+				case 10: preface = "Nós encontramos"; 											break;
+				case 11: preface = "Nós ouvimos rumores sobre"; 							break;
+				case 12: preface = "Nós ouvimos uma história sobre"; 							break;
+				case 13: preface = "Nós ouvimos alguém contar sobre"; 						break;
 			}
 
 			if ( CitizenRumor == null ){ CitizenRumor = preface + " " + Server.Misc.TavernPatrons.CommonTalk( "", city, dungeon, this, adventurer, true ) + "."; }
@@ -352,52 +352,52 @@ namespace Server.Mobiles
 
 			switch ( initPhrase )
 			{
-				case 0:	phrase = "Greetings, Z~Z~Z~Z~Z."; break;
-				case 1:	phrase = "Hail, Z~Z~Z~Z~Z."; break;
-				case 2:	phrase = "Good day to you, Z~Z~Z~Z~Z."; break;
-				case 3:	phrase = "Hello, Z~Z~Z~Z~Z."; break;
-				case 4:	phrase = "We are just here to rest after exploring " + dungeon + "."; break;
-				case 5:	phrase = "This is the first time I have been to Y~Y~Y~Y~Y."; break;
-				case 6:	phrase = "Hail, Z~Z~Z~Z~Z. Welcome to Y~Y~Y~Y~Y."; break;
+				case 0:	phrase = "Saudações, Z~Z~Z~Z~Z."; break;
+				case 1:	phrase = "Salve, Z~Z~Z~Z~Z."; break;
+				case 2:	phrase = "Bom dia para você, Z~Z~Z~Z~Z."; break;
+				case 3:	phrase = "Olá, Z~Z~Z~Z~Z."; break;
+				case 4:	phrase = "Estamos aqui apenas para descansar depois de explorar " + dungeon + "."; break;
+				case 5:	phrase = "Esta é a primeira vez que venho a Y~Y~Y~Y~Y."; break;
+				case 6:	phrase = "Salve, Z~Z~Z~Z~Z. Bem-vindo a Y~Y~Y~Y~Y."; break;
 			}
 
 			if ( CitizenService == 1 )
 			{
-				if ( CitizenType == 1 ){ CitizenPhrase = phrase + " I can recharge any magic items you may have. Such items have a magical spell imbued in it, and allows you to cast such spell. I can only recharge such items if they have a minimum and maximum amount of uses, as those without a maximum amount can never be recharged by any wizard. If you want my help, then simply hand me your wand so I can perform the ritual needed."; }
-				else if ( CitizenType == 2 ){ CitizenPhrase = phrase + " I am quite a skilled blacksmith, so if you need any metal armor repaired I can do it for you. Just hand me the armor and I will see what I can do."; }
-				else { CitizenPhrase = phrase + " If you need a chest or box unlocked, I can help you with that. Just hand me the container and I will see what I can do. I promise to give it back."; }
+				if ( CitizenType == 1 ){ CitizenPhrase = phrase + " Posso recarregar quaisquer itens mágicos que você tenha. Tais itens possuem um feitiço mágico imbuído neles, e permitem que você lance tal feitiço. Só posso recarregar tais itens se eles tiverem uma quantidade mínima e máxima de usos, pois aqueles sem uma quantidade máxima nunca podem ser recarregados por nenhum mago. Se você quiser minha ajuda, então simplesmente me entregue sua varinha para que eu possa realizar o ritual necessário."; }
+				else if ( CitizenType == 2 ){ CitizenPhrase = phrase + " Sou um ferreiro bastante habilidoso, então se você precisar de qualquer armadura de metal reparada, posso fazer isso para você. Apenas me entregue a armadura e verei o que posso fazer."; }
+				else { CitizenPhrase = phrase + " Se você precisa de um baú ou caixa destrancados, posso ajudá-lo com isso. Apenas me entregue o contêiner e verei o que posso fazer. Prometo devolvê-lo."; }
 			}
 			else if ( CitizenService == 2 )
 			{
-				if ( CitizenType == 2 ){ CitizenPhrase = phrase + " I am quite a skilled blacksmith, so if you need any metal weapons repaired I can do it for you. Just hand me the weapon and I will see what I can do."; }
-				else { CitizenPhrase = phrase + " I am quite a skilled leather worker, so if you need any leather item repaired I can do it for you. Just hand me the item and I will see what I can do."; }
+				if ( CitizenType == 2 ){ CitizenPhrase = phrase + " Sou um ferreiro bastante habilidoso, então se você precisar de qualquer arma de metal reparada, posso fazer isso para você. Apenas me entregue a arma e verei o que posso fazer."; }
+				else { CitizenPhrase = phrase + " Sou um coureiro bastante habilidoso, então se você precisar de qualquer item de couro reparado, posso fazer isso para você. Apenas me entregue o item e verei o que posso fazer."; }
 			}
 			else if ( CitizenService == 3 )
 			{
-				if ( CitizenType == 2 ){ CitizenPhrase = phrase + " I am quite a skilled wood worker, so if you need any wooden weapons repaired I can do it for you. Just hand me the weapon and I will see what I can do."; }
-				else { CitizenPhrase = phrase + " I am quite a skilled wood worker, so if you need any wooden weapons repaired I can do it for you. Just hand me the weapon and I will see what I can do."; }
+				if ( CitizenType == 2 ){ CitizenPhrase = phrase + " Sou um carpinteiro bastante habilidoso, então se você precisar de qualquer arma de madeira reparada, posso fazer isso para você. Apenas me entregue a arma e verei o que posso fazer."; }
+				else { CitizenPhrase = phrase + " Sou um carpinteiro bastante habilidoso, então se você precisar de qualquer arma de madeira reparada, posso fazer isso para você. Apenas me entregue a arma e verei o que posso fazer."; }
 			}
 			else if ( CitizenService == 4 )
 			{
-				if ( CitizenType == 2 ){ CitizenPhrase = phrase + " I am quite a skilled wood worker, so if you need any wooden armor repaired I can do it for you. Just hand me the armor and I will see what I can do."; }
-				else { CitizenPhrase = phrase + " I am quite a skilled wood worker, so if you need any wooden armor repaired I can do it for you. Just hand me the armor and I will see what I can do."; }
+				if ( CitizenType == 2 ){ CitizenPhrase = phrase + " Sou um carpinteiro bastante habilidoso, então se você precisar de qualquer armadura de madeira reparada, posso fazer isso para você. Apenas me entregue a armadura e verei o que posso fazer."; }
+				else { CitizenPhrase = phrase + " Sou um carpinteiro bastante habilidoso, então se você precisar de qualquer armadura de madeira reparada, posso fazer isso para você. Apenas me entregue a armadura e verei o que posso fazer."; }
 			}
 			else if ( CitizenService == 5 )
 			{
-				string aty1 = "a magic item"; if (Utility.RandomBool() ){ aty1 = "an enchanted item"; } else if (Utility.RandomBool() ){ aty1 = "a special item"; }
-				string aty2 = "found"; if (Utility.RandomBool() ){ aty2 = "discovered"; }
-				string aty3 = "willing to part with"; if (Utility.RandomBool() ){ aty3 = "willing to trade"; } else if (Utility.RandomBool() ){ aty3 = "willing to sell"; }
+				string aty1 = "um item mágico"; if (Utility.RandomBool() ){ aty1 = "um item encantado"; } else if (Utility.RandomBool() ){ aty1 = "um item especial"; }
+				string aty2 = "encontrei"; if (Utility.RandomBool() ){ aty2 = "descobri"; }
+				string aty3 = "disposto a me desfazer"; if (Utility.RandomBool() ){ aty3 = "disposto a trocar"; } else if (Utility.RandomBool() ){ aty3 = "disposto a vender"; }
 
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	CitizenPhrase = phrase + " I have " + aty1 + " I " + aty2 + " while exploring " + Clues + " that I am " + aty3 + " for G~G~G~G~G gold."; break;
-					case 1:	CitizenPhrase = phrase + " I won " + aty1 + " from a card game in " + city + " that I am " + aty3 + " for G~G~G~G~G gold."; break;
-					case 2:	CitizenPhrase = phrase + " I have " + aty1 + " I " + aty2 + " on the remains of some " + adventurer + " that I am " + aty3 + " for G~G~G~G~G gold."; break;
-					case 3:	CitizenPhrase = phrase + " I have " + aty1 + " I " + aty2 + " from a chest in " + Clues + " that I am " + aty3 + " for G~G~G~G~G gold."; break;
-					case 4:	CitizenPhrase = phrase + " I have " + aty1 + " I " + aty2 + " on a beast I killed in " + Clues + " that I am " + aty3 + " for G~G~G~G~G gold."; break;
-					case 5:	CitizenPhrase = phrase + " I have " + aty1 + " I " + aty2 + " on some " + adventurer + " in " + Clues + " that I am " + aty3 + " for G~G~G~G~G gold."; break;
+					case 0:	CitizenPhrase = phrase + " Tenho " + aty1 + " que " + aty2 + " enquanto explorava " + Clues + " e estou " + aty3 + " por G~G~G~G~G de ouro."; break;
+					case 1:	CitizenPhrase = phrase + " Ganhei " + aty1 + " em um jogo de cartas em " + city + " e estou " + aty3 + " por G~G~G~G~G de ouro."; break;
+					case 2:	CitizenPhrase = phrase + " Tenho " + aty1 + " que " + aty2 + " nos restos de algum " + adventurer + " e estou " + aty3 + " por G~G~G~G~G de ouro."; break;
+					case 3:	CitizenPhrase = phrase + " Tenho " + aty1 + " que " + aty2 + " em um baú em " + Clues + " e estou " + aty3 + " por G~G~G~G~G de ouro."; break;
+					case 4:	CitizenPhrase = phrase + " Tenho " + aty1 + " que " + aty2 + " em uma besta que matei em " + Clues + " e estou " + aty3 + " por G~G~G~G~G de ouro."; break;
+					case 5:	CitizenPhrase = phrase + " Tenho " + aty1 + " que " + aty2 + " em algum " + adventurer + " em " + Clues + " e estou " + aty3 + " por G~G~G~G~G de ouro."; break;
 				}
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the item if you wish. If you want to trade, then hand me the gold and I will give you the item.";
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar o item se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei o item.";
 			}
 			else if ( CitizenType == 20 && CitizenService == 20 )
 			{
@@ -409,30 +409,30 @@ namespace Server.Mobiles
 				((CrateOfMetal)crate).Fill();
 				CitizenCost = (int)(crate.Limits * ( 2 * CraftResources.GetGold( crate.Resource ) ));
 
-				string dug = "smelted";
+				string dug = "fundi";
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	dug = "mined"; break;
-					case 1:	dug = "smelted"; break;
-					case 2:	dug = "forged"; break;
-					case 3:	dug = "dug up"; break;
-					case 4:	dug = "excavated"; break;
-					case 5:	dug = "formed"; break;
+					case 0:	dug = "minerei"; break;
+					case 1:	dug = "fundi"; break;
+					case 2:	dug = "forgei"; break;
+					case 3:	dug = "desenterrei"; break;
+					case 4:	dug = "escavei"; break;
+					case 5:	dug = "formei"; break;
 				}
 
-				string sell = "willing to part with"; if (Utility.RandomBool() ){ sell = "willing to trade"; } else if (Utility.RandomBool() ){ sell = "willing to sell"; }
-				string cave = "cave"; if (Utility.RandomBool() ){ cave = "mine"; }
+				string sell = "disposto a me desfazer"; if (Utility.RandomBool() ){ sell = "disposto a trocar"; } else if (Utility.RandomBool() ){ sell = "disposto a vender"; }
+				string cave = "caverna"; if (Utility.RandomBool() ){ cave = "mina"; }
 
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " near " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 1:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " outside of " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 2:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " by " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 3:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " near " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 4:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " by " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 5:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " outside of " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
+					case 0:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " perto de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 1:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " nos arredores de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 2:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " próximo a " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 3:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " perto de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 4:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " próximo a " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 5:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " nos arredores de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
 				}
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the ingots if you wish. If you want to trade, then hand me the gold and I will give you the ingots.";
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar os lingotes se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei os lingotes.";
 
 				PackItem( crate );
 			}
@@ -460,28 +460,27 @@ namespace Server.Mobiles
 				else
 					((CrateOfWood)crate).Fill();
 				
-				string chop = "chopped";
+				string chop = "cortei";
 				switch ( Utility.RandomMinMax( 0, 2 ) )
 				{
-					case 0:	chop = "chopped"; break;
-					case 1:	chop = "cut"; break;
-					case 2:	chop = "logged"; break;
+					case 0:	chop = "cortei"; break;
+					case 1:	chop = "cortei"; break;
+					case 2:	chop = "desmatei"; break;
 				}
 
-				string sell = "willing to part with"; if (Utility.RandomBool() ){ sell = "willing to trade"; } else if (Utility.RandomBool() ){ sell = "willing to sell"; }
-				string forest = "woods"; if (Utility.RandomBool() ){ forest = "forest"; }
+				string sell = "disposto a me desfazer"; if (Utility.RandomBool() ){ sell = "disposto a trocar"; } else if (Utility.RandomBool() ){ sell = "disposto a vender"; }
+				string forest = "bosque"; if (Utility.RandomBool() ){ forest = "floresta"; }
 
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + chop + " in the " + forest + " near " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 1:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + chop + " in the " + forest + " outside of " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 2:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + chop + " in the " + forest + " by " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 3:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + chop + " in the " + forest + " near " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 4:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + chop + " in the " + forest + " by " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 5:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + chop + " in the " + forest + " outside of " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
+					case 0:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + chop + " no " + forest + " perto de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 1:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + chop + " no " + forest + " nos arredores de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 2:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + chop + " no " + forest + " próximo a " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 3:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + chop + " no " + forest + " perto de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 4:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + chop + " no " + forest + " próximo a " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 5:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + chop + " no " + forest + " nos arredores de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
 				}
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the " + contents + " if you wish. If you want to trade, then hand me the gold and I will give you the " + contents + ".";
-
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar os " + contents + " se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei os " + contents + ".";
 				PackItem( crate );
 			}
 			else if ( CitizenType == 22 && CitizenService == 22 )
@@ -494,27 +493,26 @@ namespace Server.Mobiles
 				((CrateOfLeather)crate).Fill();
 				CitizenCost = (int)(crate.Limits * ( 2 * CraftResources.GetGold( crate.Resource ) ));
 
-				string carve = "skinned";
+				string carve = "esfolei";
 				switch ( Utility.RandomMinMax( 0, 2 ) )
 				{
-					case 0:	carve = "skinned"; break;
-					case 1:	carve = "tanned"; break;
-					case 2:	carve = "gathered"; break;
+					case 0:	carve = "esfolei"; break;
+					case 1:	carve = "curti"; break;
+					case 2:	carve = "coletei"; break;
 				}
 
-				string sell = "willing to part with"; if (Utility.RandomBool() ){ sell = "willing to trade"; } else if (Utility.RandomBool() ){ sell = "willing to sell"; }
+				string sell = "disposto a me desfazer"; if (Utility.RandomBool() ){ sell = "disposto a trocar"; } else if (Utility.RandomBool() ){ sell = "disposto a vender"; }
 
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + carve + " near " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 1:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + carve + " outside of " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 2:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + carve + " by " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 3:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + carve + " near " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 4:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + carve + " by " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 5:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + carve + " outside of " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
+					case 0:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + carve + " perto de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 1:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + carve + " nos arredores de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 2:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + carve + " próximo a " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 3:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + carve + " perto de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 4:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + carve + " próximo a " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 5:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + carve + " nos arredores de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
 				}
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the leather if you wish. If you want to trade, then hand me the gold and I will give you the leather.";
-
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar o couro se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei o couro.";
 				PackItem( crate );
 			}
 			else if ( CitizenType == 23 && CitizenService == 23 )
@@ -527,28 +525,27 @@ namespace Server.Mobiles
 				((CrateOfOre)crate).Fill();
 				CitizenCost = (int)(crate.Limits * ( 2 * CraftResources.GetGold( crate.Resource ) ));
 
-				string dug = "mined";
+				string dug = "minerei";
 				switch ( Utility.RandomMinMax( 0, 2 ) )
 				{
-					case 0:	dug = "mined"; break;
-					case 1:	dug = "dug up"; break;
-					case 2:	dug = "excavated"; break;
+					case 0:	dug = "minerei"; break;
+					case 1:	dug = "desenterrei"; break;
+					case 2:	dug = "escavei"; break;
 				}
 
-				string sell = "willing to part with"; if (Utility.RandomBool() ){ sell = "willing to trade"; } else if (Utility.RandomBool() ){ sell = "willing to sell"; }
-				string cave = "cave"; if (Utility.RandomBool() ){ cave = "mine"; }
+				string sell = "disposto a me desfazer"; if (Utility.RandomBool() ){ sell = "disposto a trocar"; } else if (Utility.RandomBool() ){ sell = "disposto a vender"; }
+				string cave = "caverna"; if (Utility.RandomBool() ){ cave = "mina"; }
 
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " near " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 1:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " outside of " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 2:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " by " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 3:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " near " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 4:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " by " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 5:	CitizenPhrase = phrase + " I have a " + crate.Name + " with " + crate.Limits + " in it, that I " + dug + " in a " + cave + " outside of " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
+					case 0:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " perto de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 1:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " nos arredores de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 2:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " próximo a " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 3:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " perto de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 4:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " próximo a " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 5:	CitizenPhrase = phrase + " Tenho uma " + crate.Name + " com " + crate.Limits + " dentro, que " + dug + " em uma " + cave + " nos arredores de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
 				}
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the ore if you wish. If you want to trade, then hand me the gold and I will give you the ore.";
-
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar o minério se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei o minério.";
 				PackItem( crate );
 			}
 			else if ( CitizenType == 24 && CitizenService == 24 )
@@ -606,34 +603,33 @@ namespace Server.Mobiles
 				crate.Weight = crate.CrateQty * 0.1;
 				CitizenCost = crate.CrateQty * 5;
 
-				string bought = "bought";
+				string bought = "comprei";
 				switch ( Utility.RandomMinMax( 0, 2 ) )
 				{
-					case 0:	bought = "acquired"; break;
-					case 1:	bought = "purchased"; break;
-					case 2:	bought = "bought"; break;
+					case 0:	bought = "adquiri"; break;
+					case 1:	bought = "comprei"; break;
+					case 2:	bought = "comprei"; break;
 				}
-				string found = "found";
+				string found = "encontrei";
 				switch ( Utility.RandomMinMax( 0, 2 ) )
 				{
-					case 0:	found = "found"; break;
-					case 1:	found = "discovered"; break;
-					case 2:	found = "came upon"; break;
+					case 0:	found = "encontrei"; break;
+					case 1:	found = "descobri"; break;
+					case 2:	found = "deparei-me com"; break;
 				}
 
-				string sell = "willing to part with"; if (Utility.RandomBool() ){ sell = "willing to trade"; } else if (Utility.RandomBool() ){ sell = "willing to sell"; }
+				string sell = "disposto a me desfazer"; if (Utility.RandomBool() ){ sell = "disposto a trocar"; } else if (Utility.RandomBool() ){ sell = "disposto a vender"; }
 
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + reagent + " I " + found + " in " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 1:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + reagent + " I " + found + " deep within " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 2:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + reagent + " I " + found + " somewhere in " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 3:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + reagent + " I " + bought + " in " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 4:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + reagent + " I " + bought + " near " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 5:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + reagent + " I " + bought + " somewhere in " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
+					case 0:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + reagent + " que " + found + " em " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 1:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + reagent + " que " + found + " nas profundezas de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 2:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + reagent + " que " + found + " em algum lugar de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 3:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + reagent + " que " + bought + " em " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 4:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + reagent + " que " + bought + " perto de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 5:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + reagent + " que " + bought + " em algum lugar de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
 				}
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the reagents if you wish. If you want to trade, then hand me the gold and I will give you the reagents.";
-
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar os reagentes se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei os reagentes.";
 				PackItem( crate );
 			}
 			else if ( CitizenType == 25 && CitizenService == 25 )
@@ -696,37 +692,36 @@ namespace Server.Mobiles
 				crate.Weight = crate.CrateQty * 0.1;
 				CitizenCost = crate.CrateQty * coins;
 
-				string bought = "bought";
+				string bought = "comprei";
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	bought = "acquired"; break;
-					case 1:	bought = "purchased"; break;
-					case 2:	bought = "bought"; break;
-					case 3:	bought = "brewed"; break;
-					case 4:	bought = "concocted"; break;
-					case 5:	bought = "prepared"; break;
+					case 0:	bought = "adquiri"; break;
+					case 1:	bought = "comprei"; break;
+					case 2:	bought = "comprei"; break;
+					case 3:	bought = "preparei"; break;
+					case 4:	bought = "concebi"; break;
+					case 5:	bought = "preparei"; break;
 				}
-				string found = "found";
+				string found = "encontrei";
 				switch ( Utility.RandomMinMax( 0, 2 ) )
 				{
-					case 0:	found = "found"; break;
-					case 1:	found = "discovered"; break;
-					case 2:	found = "came upon"; break;
+					case 0:	found = "encontrei"; break;
+					case 1:	found = "descobri"; break;
+					case 2:	found = "deparei-me com"; break;
 				}
 
-				string sell = "willing to part with"; if (Utility.RandomBool() ){ sell = "willing to trade"; } else if (Utility.RandomBool() ){ sell = "willing to sell"; }
+				string sell = "disposto a me desfazer"; if (Utility.RandomBool() ){ sell = "disposto a trocar"; } else if (Utility.RandomBool() ){ sell = "disposto a vender"; }
 
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + potion + " I " + found + " in " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 1:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + potion + " I " + found + " deep within " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 2:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + potion + " I " + found + " somewhere in " + dungeon + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 3:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + potion + " I " + bought + " in " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 4:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + potion + " I " + bought + " near " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 5:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + potion + " I " + bought + " somewhere in " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
+					case 0:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + potion + " que " + found + " em " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 1:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + potion + " que " + found + " nas profundezas de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 2:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + potion + " que " + found + " em algum lugar de " + dungeon + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 3:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + potion + " que " + bought + " em " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 4:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + potion + " que " + bought + " perto de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 5:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + potion + " que " + bought + " em algum lugar de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
 				}
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the potions if you wish. If you want to trade, then hand me the gold and I will give you the potions.";
-
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar as poções se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei as poções.";
 				PackItem( crate );
 			}
 
@@ -860,26 +855,26 @@ namespace Server.Mobiles
 				crate.Weight = crate.CrateQty * 0.1;
 				CitizenCost = crate.CrateQty * cost;
 
-				string bought = "bought";
+				string bought = "comprei";
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	bought = "acquired"; break;
-					case 1:	bought = "purchased"; break;
-					case 2:	bought = "bought"; break;
-					case 3:	bought = "cooked"; break;
-					case 4:	bought = "baked"; break;
-					case 5:	bought = "prepared"; break;
+					case 0:	bought = "adquiri"; break;
+					case 1:	bought = "comprei"; break;
+					case 2:	bought = "comprei"; break;
+					case 3:	bought = "cozinhei"; break;
+					case 4:	bought = "assei"; break;
+					case 5:	bought = "preparei"; break;
 				}
 
-				string sell = "willing to part with"; if (Utility.RandomBool() ){ sell = "willing to trade"; } else if (Utility.RandomBool() ){ sell = "willing to sell"; }
+				string sell = "disposto a me desfazer"; if (Utility.RandomBool() ){ sell = "disposto a trocar"; } else if (Utility.RandomBool() ){ sell = "disposto a vender"; }
 
 				switch ( Utility.RandomMinMax( 0, 2 ) )
 				{
-					case 0:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + food + " I " + bought + " in " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 1:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + food + " I " + bought + " near " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 2:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + food + " I " + bought + " somewhere in " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
+					case 0:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + food + " que " + bought + " em " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 1:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + food + " que " + bought + " perto de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 2:	CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + food + " que " + bought + " em algum lugar de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
 				}
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the " + food + " if you wish. If you want to trade, then hand me the gold and I will give you the " + food + ".";
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar os " + food + " se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei os " + food + ".";
 
 				PackItem( crate );
 			}
@@ -907,26 +902,26 @@ namespace Server.Mobiles
 				crate.Weight = crate.CrateQty * 0.1;
 				CitizenCost = crate.CrateQty * cost;
 
-				string bought = "bought";
+				string bought = "comprei";
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	bought = "acquired"; break;
-					case 1:	bought = "purchased"; break;
-					case 2:	bought = "bought"; break;
-					case 3:	bought = "cooked"; break;
-					case 4:	bought = "baked"; break;
-					case 5:	bought = "prepared"; break;
+					case 0: bought = "adquiri"; break;
+					case 1: bought = "comprei"; break;
+					case 2: bought = "comprei"; break;
+					case 3: bought = "cozinhei"; break;
+					case 4: bought = "assei"; break;
+					case 5: bought = "preparei"; break;
 				}
 
-				string sell = "willing to part with"; if (Utility.RandomBool() ){ sell = "willing to trade"; } else if (Utility.RandomBool() ){ sell = "willing to sell"; }
+				string sell = "disposto a me desfazer"; if (Utility.RandomBool() ){ sell = "disposto a trocar"; } else if (Utility.RandomBool() ){ sell = "disposto a vender"; }
 
 				switch ( Utility.RandomMinMax( 0, 2 ) )
 				{
-					case 0:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + food + " I " + bought + " in " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 1:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + food + " I " + bought + " near " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
-					case 2:	CitizenPhrase = phrase + " I have " + crate.CrateQty + " " + food + " I " + bought + " somewhere in " + city + " that I am " + sell + " for G~G~G~G~G gold."; break;
+					case 0: CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + food + " que " + bought + " em " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 1: CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + food + " que " + bought + " perto de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
+					case 2: CitizenPhrase = phrase + " Tenho " + crate.CrateQty + " " + food + " que " + bought + " em algum lugar de " + city + " e estou " + sell + " por G~G~G~G~G de ouro."; break;
 				}
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the " + food + " if you wish. If you want to trade, then hand me the gold and I will give you the " + food + ".";
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar os " + food + " se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei os " + food + ".";
 
 				PackItem( crate );
 			}
@@ -940,10 +935,10 @@ namespace Server.Mobiles
 					else if ( CitizenService == 7 ){ aty1 = "a scroll"; }
 					else if ( CitizenService == 8 ){ aty1 = "a wand"; }
 
-				string aty3 = "willing to part with"; if (Utility.RandomBool() ){ aty3 = "willing to trade"; } else if (Utility.RandomBool() ){ aty3 = "willing to sell"; }
+				string aty3 = "disposto a me desfazer"; if (Utility.RandomBool() ){ aty3 = "disposto a trocar"; } else if (Utility.RandomBool() ){ aty3 = "disposto a vender"; }
 
-				CitizenPhrase = phrase + " I have " + aty1 + " that I am " + aty3 + " for G~G~G~G~G gold.";
-				CitizenPhrase = CitizenPhrase + " You can look in my backpack to examine the item if you wish. If you want to trade, then hand me the gold and I will give you the item.";
+				CitizenPhrase = phrase + " Tenho " + aty1 + " que estou " + aty3 + " por G~G~G~G~G de ouro.";
+				CitizenPhrase = CitizenPhrase + " Você pode olhar na minha mochila para examinar o item se desejar. Se quiser trocar, então me entregue o ouro e eu lhe darei o item.";
 			}
 
 			string holding = "";
@@ -1724,7 +1719,7 @@ namespace Server.Mobiles
             		{
 						dropped.Delete();
 						sound = 0x2E6;
-						say = "That is a fair trade.";
+						say = "Essa é uma troca justa.";
 		    		    give.Movable = true;
             		    give.InvalidateProperties();
             		    from.AddToBackpack(give);
@@ -1732,7 +1727,7 @@ namespace Server.Mobiles
             		}
             		else
             		{
-            		    say = "I have nothing left to give you.";
+            		    say = "Não tenho mais nada para lhe dar.";
             		}
 				}
 			}
@@ -1743,10 +1738,10 @@ namespace Server.Mobiles
                     if ( dropped.EnchantUses < dropped.EnchantUsesMax && dropped.EnchantUsesMax > 0 )
                     {
 						dropped.EnchantUses = dropped.EnchantUsesMax;
-                        say = "Your item is charged.";
+                        say = "Seu item está carregado.";
                         sound = 0x5C1;
                     }
-                    else { say = "That has too many charges already."; }
+                    else { say = "Isso já tem muitas cargas."; }
 				}
 			}
 			else if ( CitizenService == 1 )
@@ -1755,7 +1750,7 @@ namespace Server.Mobiles
 				else if ( CitizenType == 3 && dropped is LockableContainer )
 				{
 					LockableContainer box = (LockableContainer)dropped;
-					say = "I unlocked it for you.";
+					say = "Eu abri para você.";
 					sound = 0x241;
 					box.Locked = false;
 					box.TrapPower = 0;
@@ -1785,14 +1780,14 @@ namespace Server.Mobiles
 
 			if ( fixArmor && dropped is BaseArmor )
 			{
-				say = "This is repaired and ready for battle.";
+				say = "Isso está reparado e pronto para batalha.";
 				BaseArmor ba = (BaseArmor)dropped;
 				ba.MaxHitPoints -= 1;
 				ba.HitPoints = ba.MaxHitPoints;
 			}
 			else if ( fixWeapon && dropped is BaseWeapon )
 			{
-				say = "This is repaired and is ready for battle.";
+				say = "Isso está reparado e pronto para batalha.";
 				BaseWeapon bw = (BaseWeapon)dropped;
 				bw.MaxHitPoints -= 1;
 				bw.HitPoints = bw.MaxHitPoints;

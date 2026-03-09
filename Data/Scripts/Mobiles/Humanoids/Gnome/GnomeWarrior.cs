@@ -6,13 +6,13 @@ using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a gnome corpse" )]
+	[CorpseName( "um cadáver de gnomo" )]
 	public class GnomeWarrior : BaseCreature
 	{
 		[Constructable]
 		public GnomeWarrior() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a gnome warrior";
+			Name = "um gnomo guerreiro";
 			Body = 361;
 			BaseSoundID = 422;
 

@@ -2,14 +2,12 @@ using System;
 using System.Collections;
 using Server.Items;
 using Server.Targeting;
-using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
 	[CorpseName( "an antaur corpse" )] // TODO: Corpse name?
 	public class AntaurKing : BaseCreature
 	{
-		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		[Constructable]
 		public AntaurKing() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -26,17 +24,17 @@ namespace Server.Mobiles
 
 			SetDamage( 16, 22 );
 
-			SetDamageType( ResistanceType.Physical, 50 );
-			SetDamageType( ResistanceType.Poison, 50 );
+			SetDamageType( ResistanceType.Physical, 70 );
+			SetDamageType( ResistanceType.Poison, 30 );
 
-			SetResistance( ResistanceType.Physical, 75 );
+			SetResistance( ResistanceType.Physical, 55, 65 );
 			SetResistance( ResistanceType.Fire, 60, 70 );
-			SetResistance( ResistanceType.Cold, 35 );
-			SetResistance( ResistanceType.Poison, 50 );
-			SetResistance( ResistanceType.Energy, 35 );
+			SetResistance( ResistanceType.Cold, 30, 40 );
+			SetResistance( ResistanceType.Poison, 35, 40 );
+			SetResistance( ResistanceType.Energy, 35, 45 );
 
-			SetSkill( SkillName.Psychology, 50.0 );
-			SetSkill( SkillName.Magery, 70.0 );
+			SetSkill( SkillName.Psychology, 30.1, 40.0 );
+			SetSkill( SkillName.Magery, 30.1, 40.0 );
 			SetSkill( SkillName.MagicResist, 99.1, 100.0 );
 			SetSkill( SkillName.Tactics, 97.6, 100.0 );
 			SetSkill( SkillName.FistFighting, 90.1, 92.5 );
@@ -49,75 +47,6 @@ namespace Server.Mobiles
 			Item Venom = new VenomSack();
 				Venom.Name = "deadly venom sack";
 				AddItem( Venom );
-		}
-
-		public override void OnDamage( int amount, Mobile from, bool willKill )
-		{
-			if ( DateTime.UtcNow >= m_NextSpecialAttack )
-			{
-				PerformRageAttack( from );
-				m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds( 45 );
-			}
-			
-			base.OnDamage( amount, from, willKill );
-		}
-
-		private void PerformRageAttack( Mobile target )
-		{
-			if ( target == null || target.Deleted || !target.Alive )
-				return;
-
-			int attackChoice = Utility.RandomMinMax( 1, 3 );
-            Map map = this.Map;
-
-			switch ( attackChoice  )
-			{
-				case 1:
-				{
-					BossSpecialAttack.PerformTargettedAoE(
-						this,
-						target,
-						1,
-						"*Screeches violently*",
-						267,  // hue
-						0,     // physical
-						0,   // fire
-						0,     // cold
-						100,     // poison
-						0      // energy
-					);
-					break;
-				}
-				case 2: 
-				{
-					BossSpecialAttack.PerformCrossExplosion(
-					    boss: this,
-					    target: target,
-                	    warcry: "*Screeches violently*",
-					    hue: 267,
-					    rage: 2,
-					    coldDmg: 0,
-					    fireDmg: 0,
-					    energyDmg: 0,
-					    poisonDmg: 100,
-					    physicalDmg: 0
-					);
-                	break;
-			    }
-				case 3: 
-				{
-					BossSpecialAttack.PerformSlam(
-                	    boss: this,
-                	    warcry: "*Screeches violently*",
-                	    hue: 267,
-                	    rage: 2,
-                	    range: 6,
-                	    physicalDmg: 0,
-						poisonDmg: 100
-                	);
-                	break;
-			    }
-			}
 		}
 
 		public override void OnGotMeleeAttack( Mobile attacker )
@@ -210,21 +139,13 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 );
-			writer.Write( m_NextSpecialAttack );
+			writer.Write( (int) 0 );
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
-			if ( version >= 1 )
-			{
-				m_NextSpecialAttack = reader.ReadDateTime();
-			}
-
-			if ( BaseSoundID == 274 )
-				BaseSoundID = 838;
 		}
 	}
 }

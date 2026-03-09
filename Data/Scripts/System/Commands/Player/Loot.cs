@@ -127,41 +127,41 @@ namespace Server.Gumps
 				nLine++;
 			}
 
-			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Coins & Nuggets</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Moedas & Pepitas</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b1, b1, 99, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Gems & Jewels</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Gemas & Joias</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b2, b2, 1, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Arrows & Bolts</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Flechas & Virote</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b3, b3, 2, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Bandages</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Bandagens</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b4, b4, 4, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Elemental Scrolls</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Pergaminhos Elementais</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b5, b5, 3, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Magery Scrolls</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Pergaminhos de Magia</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b6, b6, 5, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Necromancer Scrolls</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Pergaminhos de Necromancia</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b7, b7, 6, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Unknown Scrolls</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Pergaminhos Desconhecidos</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b8, b8, 13, GumpButtonType.Reply, 0); g=266;
 
-			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Bard Songs</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Canções de Bardo</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(381, g, b9, b9, 12, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Alchemic Reagents</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Reagentes Alquímicos</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(381, g, b10, b10, 14, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Herbalist Reagents</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Reagentes de Herbalista</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(381, g, b11, b11, 15, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Magery Reagents</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Reagentes de Magia</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(381, g, b12, b12, 7, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Necromancy Reagents</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Reagentes de Necromancia</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(381, g, b13, b13, 8, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Unknown Reagents</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Reagentes Desconhecidos</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(381, g, b14, b14, 9, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Potions</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Poções</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(381, g, b15, b15, 10, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Unknown Potions</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 236, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Poções Desconhecidas</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(381, g, b16, b16, 11, GumpButtonType.Reply, 0); g=g+26;
 
-			AddHtml( 15, 44, 394, 210, @"<BODY><BASEFONT Color=" + color + ">Check the categories of items to automatically take from common dungeon chests or corpses and put them in your backpack. Magery and necromancer reagents are those used specifically by those characters, where witches brew reagents fall into the necromancer category. Alchemic reagents are unique to alchemy only. Herbalist reagents are plants that one may find, used in druidic herbalism. You can set a container the loot will go into, but this container must remain in your main pack and not within another container.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 15, 44, 394, 210, @"<BODY><BASEFONT Color=" + color + ">Marca as categorias de itens para automaticamente recolher de baús de masmorras ou cadáveres e colocá-los em tua mochila. Reagentes de magia e necromancia são aqueles usados especificamente por esses personagens, onde os reagentes de bruxaria caem na categoria de necromancia. Reagentes alquímicos são exclusivos para alquimia. Reagentes de herbalista são plantas que se pode encontrar, usadas no herbalismo druídico. Podes definir um recipiente onde o saque irá, mas este recipiente deve permanecer em tua mochila principal e não dentro de outro recipiente.</BASEFONT></BODY>", (bool)false, (bool)false);
         }
     
 		public override void OnResponse( NetState sender, RelayInfo info )

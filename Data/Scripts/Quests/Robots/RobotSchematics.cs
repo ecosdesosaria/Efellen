@@ -328,7 +328,7 @@ namespace Server.Items
 
 				AddHtml( 55, 256, 660, 321, @"<BODY><BASEFONT Color=#00FF06>" + sText + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 
-				AddHtml( 55, 593, 653, 20, @"<BODY><BASEFONT Color=#00FF06>Bring Gathered Materials to the Tinker in " + gBook.TinkerLocation + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 55, 593, 653, 20, @"<BODY><BASEFONT Color=#00FF06>Leva os Materiais Recolhidos ao Funileiro em " + gBook.TinkerLocation + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 			}
 
 			public override void OnResponse( NetState state, RelayInfo info )

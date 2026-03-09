@@ -4,13 +4,13 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a giant snake corpse" )]
+	[CorpseName( "um cadáver de cobra gigante" )]
 	public class JadeSerpent : BaseCreature
 	{
 		[Constructable]
 		public JadeSerpent() : base( AIType.AI_Mage, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a jade serpent";
+			Name = "uma serpente jade";
 			Body = 0x15;
 			Hue = Utility.RandomList( 0xB83,0xB93,0xB94,0xB95,0xB96 );
 

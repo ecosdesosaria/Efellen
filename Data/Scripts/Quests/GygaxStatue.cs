@@ -50,7 +50,7 @@ namespace Server.Items
 				AddHtml( 13, 13, 308, 20, @"<BODY><BASEFONT Color=" + color + ">THE STATUE OF GYGAX</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddButton(349, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
-				AddHtml( 13, 44, 361, 197, @"<BODY><BASEFONT Color=" + color + "><BR><BR>The Black Knight has stolen the Statue of Gygax, but you can claim it as your own if you can find it within his vault. You must first collect the items shown below and have those when you are near the it. While standing there, read this scroll to take the statue for yourself.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 13, 44, 361, 197, @"<BODY><BASEFONT Color=" + color + "><BR><BR>O Cavaleiro Negro roubou a Estátua de Gygax, mas você pode reivindicá-la como sua se conseguir encontrá-la dentro de seu cofre. Primeiro você deve coletar os itens mostrados abaixo e tê-los com você quando estiver perto dela. Enquanto estiver lá, leia este pergaminho para tomar a estátua para si.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddItem(4, 248, 12358);
 				AddItem(4, 281, 12319);
@@ -128,7 +128,7 @@ namespace Server.Items
 
 				PlayerSettings.SetKeys( e, "Gygax", true );
 
-				e.LocalOverheadMessage(MessageType.Emote, 1150, true, "You claim the Statue of Gygax!");
+				e.LocalOverheadMessage(MessageType.Emote, 1150, true, "Você reivindica a Estátua de Gygax!");
 				e.SendSound( 0x3D );
 
 				this.Delete();

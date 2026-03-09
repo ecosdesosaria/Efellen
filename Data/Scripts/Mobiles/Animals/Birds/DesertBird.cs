@@ -5,7 +5,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a bird corpse" )]
+	[CorpseName( "um cadáver de pássaro" )]
 	public class DesertBird : BaseCreature
 	{
 		[Constructable]
@@ -16,10 +16,10 @@ namespace Server.Mobiles
 
 			switch ( Utility.Random( 4 ) )
 			{
-				case 0: Name = "a roadrunner"; 		Hue = Utility.RandomNeutralHue();	Body = 254;		break;
-				case 1: Name = "a gnatcatcher"; 	Hue = Utility.RandomNeutralHue();	break;
-				case 2: Name = "a flicker"; 		Hue = Utility.RandomNeutralHue();	break;
-				case 3: Name = "a sandgrouse"; 		Hue = Utility.RandomNeutralHue();	break;
+				case 0: Name = "um pássaro corredor"; 		Hue = Utility.RandomNeutralHue();	Body = 254;		break;
+				case 1: Name = "um pássaro papa-moscas"; 	Hue = Utility.RandomNeutralHue();	break;
+				case 2: Name = "um pica-pau"; 		Hue = Utility.RandomNeutralHue();	break;
+				case 3: Name = "uma perdiz"; 		Hue = Utility.RandomNeutralHue();	break;
 			}
 
 			VirtualArmor = Utility.RandomMinMax( 0, 6 );

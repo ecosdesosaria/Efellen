@@ -40,7 +40,7 @@ namespace Server.Spells.Song
 
 				foreach ( Mobile m in Caster.GetMobilesInRange( 10 ) )
 				{
-					if ( isFriendly( Caster, m ) && m.FireResistance < 70 )
+					if ( isFriendly( Caster, m ) && m.FireResistance < MySettings.S_MaxResistance )
 						targets.Add( m );
 				}
 
@@ -51,10 +51,10 @@ namespace Server.Spells.Song
 					TimeSpan duration = TimeSpan.FromSeconds( (double)(MusicSkill( Caster ) * 2) );
                     int amount = MyServerSettings.PlayerLevelMod( (int)(MusicSkill( Caster ) / 16), Caster );
 
-					if ( ( amount + m.FireResistance ) > 70 )
-						amount = 70 - m.FireResistance;
+					if ( ( amount + m.FireResistance ) > MySettings.S_MaxResistance )
+						amount = MySettings.S_MaxResistance - m.FireResistance;
 
-					m.SendMessage( "Your resistance to fire has increased." );
+					m.SendMessage( "Sua resistência ao fogo aumentou." );
 					ResistanceMod mod1 = new ResistanceMod( ResistanceType.Fire, + amount );
 						
 					m.AddResistanceMod( mod1 );
@@ -97,7 +97,7 @@ namespace Server.Spells.Song
 			{
 				if ( m_Mobile != null )
 				{
-					m_Mobile.SendMessage( "The effect of the fire carol wears off." );
+					m_Mobile.SendMessage( "O efeito do fire carol desaparece." );
 					DoExpire();
 				}
 			}

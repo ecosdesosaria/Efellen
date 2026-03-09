@@ -14,7 +14,7 @@ namespace Server.Items
 { 
 	public class StableStone : Item
 	{ 
-		public override string DefaultDescription{ get{ return "Hitching posts can only be used by grandmasters in camping. Once you place it in your home, you can use it to stable your pets instead of doing so at the stable master."; } }
+		public override string DefaultDescription{ get{ return "Postes de amarração só podem ser usados por grão-mestres em acampamento. Depois de colocá-lo em sua casa, você pode usá-lo para estabular seus animais de estimação em vez de fazê-lo no estábulo."; } }
 
 		[Constructable] 
 		public StableStone() : base( 0x14E7 ) 
@@ -88,8 +88,8 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Stable Your Pets At Your Home");
-			list.Add( 1049644, "For Grandmasters In Camping");
+			list.Add( 1070722, "Estabule Seus Animais Em Sua Casa");
+			list.Add( 1049644, "Para Grão-Mestres Em Acampamento");
         } 
 
 		private class StableTarget : Target
@@ -106,7 +106,7 @@ namespace Server.Items
 				if ( targeted is BaseCreature )
 					m_Trainer.EndStable( from, (BaseCreature)targeted );
 				else
-					from.SendMessage ("You can't stable that!");
+					from.SendMessage ("Você não pode estabular isso!");
 			}
 		}
 
@@ -117,21 +117,21 @@ namespace Server.Items
 
             if (this.Movable)
 			{
-                from.SendMessage("This must be locked down in a house to use!");
+				from.SendMessage("Isso deve estar travado em uma casa para usar!");
 			}
 			else if ( from.Skills[SkillName.Camping].Base < 100 )
 			{
-				from.SendMessage ("Only grandmasters in camping may stable pets at home!");
+				from.SendMessage ("Somente grão-mestres em acampamento podem estabular animais em casa!");
 			}
 			else if ( from.Stabled.Count >= Server.Mobiles.AnimalTrainer.GetMaxStabled( from ) )
 			{
-				from.SendMessage ("You can't stable that! You have too many pets stabled, you have reached your max amount");
+				from.SendMessage ("Você não pode estabular isso! Você tem muitos animais estabulados, atingiu sua quantidade máxima");
 			}
 			else
 			{
-				from.SendMessage ("The hitching post requires 30 gold per pet for each real world week for maintenance!");
-				from.SendMessage ("the gold is automatically withdrawn from your bank account");
-				from.SendMessage ("Target the animal you wish to stable!");
+				from.SendMessage ("O poste de amarração requer 30 moedas de ouro por animal para cada semana do mundo real para manutenção!");
+				from.SendMessage ("o ouro é automaticamente retirado de sua conta bancária");
+				from.SendMessage ("Mire no animal que deseja estabular!");
 				from.Target = new StableTarget( this );
 			}
 		}
@@ -143,31 +143,31 @@ namespace Server.Items
 
 			if ( !pet.Controlled || pet.ControlMaster != from )
 			{
-				from.SendMessage ("That is not your pet!");
+				from.SendMessage ("Esse não é seu animal de estimação!");
 			}
 			else if ( pet.IsDeadPet )
 			{
-				from.SendMessage ("That pet is dead and cannot be stabled!");
+				from.SendMessage ("Esse animal está morto e não pode ser estabulado!");
 			}
 			else if ( pet.Summoned )
 			{
-				from.SendMessage ("You can not stable summoned creatures");
+				from.SendMessage ("Você não pode estabular criaturas invocadas");
 			}
 			else if ( pet.Body.IsHuman )
 			{
-				from.SendMessage ("That is not your pet!");
+				from.SendMessage ("Esse não é seu animal de estimação!");
 			}
 			else if ( (pet is PackLlama || pet is PackHorse || pet is Beetle) && (pet.Backpack != null && pet.Backpack.Items.Count > 0) )
 			{
-				from.SendMessage ("You need to unload the pack animal before you can stable it!");
+				from.SendMessage ("Você precisa descarregar o animal de carga antes de estabulá-lo!");
 			}
 			else if ( pet.Combatant != null && pet.InRange( pet.Combatant, 12 ) && pet.Map == pet.Combatant.Map )
 			{
-				from.SendMessage ("Your pet seems to be busy at the moment, try again when its not!");
+				from.SendMessage ("Seu animal parece estar ocupado no momento, tente novamente quando não estiver!");
 			}
 			else if ( from.Stabled.Count >= Server.Mobiles.AnimalTrainer.GetMaxStabled( from ) )
 			{
-				from.SendMessage ("You have too many pets in the stables!");
+				from.SendMessage ("Você tem muitos animais no estábulo!");
 			}
 			else
 			{
@@ -185,12 +185,12 @@ namespace Server.Items
 
 					pet.IsStabled = true;
 					from.Stabled.Add( pet );
-					from.SendMessage ("Your pet is stabled. You may recover it by saying 'claim'. In one real world week,");
-					from.SendMessage ("if your pet is not claimed by then, it will vanish if it is not claimed!");
+					from.SendMessage ("Seu animal foi estabulado. Você pode recuperá-lo dizendo 'claim'. Em uma semana do mundo real,");
+					from.SendMessage ("se seu animal não for reclamado até lá, ele desaparecerá se não for reclamado!");
 				}
 				else
 				{
-					from.SendMessage ("You lack The necessary bank funds to do this!");
+					from.SendMessage ("Você não tem os fundos bancários necessários para fazer isso!");
 				}
 			}
 		}
@@ -219,7 +219,7 @@ namespace Server.Items
 
 				AddPage(0);
 				AddImage(0, 0, 9590, Server.Misc.PlayerSettings.GetGumpHue( from ));
-				AddHtml( 12, 12, 376, 20, @"<BODY><BASEFONT Color=" + color + ">PETS IN THE STABLE</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 12, 376, 20, @"<BODY><BASEFONT Color=" + color + ">ANIMAIS NO ESTÁBULO</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddButton(410, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
 				int y = 15;
@@ -271,13 +271,13 @@ namespace Server.Items
 			}
 
             if (this.Movable)
-                from.SendMessage("This must be locked down in a house to use!");
+				from.SendMessage("Isso deve estar travado em uma casa para usar!");
 			else if ( from.Skills[SkillName.Camping].Base < 100 )
-				from.SendMessage ("Only grandmasters in camping may stable pets at home!");
+				from.SendMessage ("Somente grão-mestres em acampamento podem estabular animais em casa!");
 			else if ( list.Count > 0 )
 				from.SendGump( new ClaimListGump( this, from, list ) );
 			else
-				from.SendMessage ("But I have no animals stabled with me at the moment!");
+				from.SendMessage ("Mas não tenho nenhum animal estabulado comigo no momento!");
 		}
 
 		public void EndClaimList( Mobile from, BaseCreature pet )
@@ -299,11 +299,11 @@ namespace Server.Items
 
 				pet.IsStabled = false;
 				from.Stabled.Remove( pet );
-				from.SendMessage ("Here you go...");
+				from.SendMessage ("Aqui está...");
 			}
 			else
 			{
-				from.SendMessage ( "That Pet remained in the stables because you have too many followers");
+				from.SendMessage ( "Esse animal permaneceu no estábulo porque você tem muitos seguidores");
 			}
 		}
       	
@@ -391,14 +391,14 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage ("That pet remained in the stables because you have too many followers");
+					from.SendMessage ("Esse animal permaneceu no estábulo porque você tem muitos seguidores");
 				}
 			}
 
 			if ( claimed )
-				from.SendMessage ("Here you go...");
+				from.SendMessage ("Aqui está...");
 			else if ( stabled == 0 )
-				from.SendMessage ("But I have no animals stabled with me at the moment!");
+				from.SendMessage ("Mas não tenho nenhum animal estabulado comigo no momento!");
 			else if ( claimByName )
 				BeginClaimList( from );
 		}

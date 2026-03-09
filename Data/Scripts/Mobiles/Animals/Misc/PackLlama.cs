@@ -6,13 +6,13 @@ using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a llama corpse")]
+	[CorpseName("um cadáver de lhama")]
 	public class PackLlama : BaseCreature
 	{
 		[Constructable]
 		public PackLlama() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a pack llama";
+			Name = "uma lhama de carga";
 			Body = 292;
 			BaseSoundID = 0x3F3;
 

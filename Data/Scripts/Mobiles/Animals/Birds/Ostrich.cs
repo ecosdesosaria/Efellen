@@ -4,13 +4,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an ostrich corpse" )]
+	[CorpseName( "um cadáver de avestruz" )]
 	public class Ostrich : BaseCreature
 	{
 		[Constructable]
 		public Ostrich() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an ostrich";
+			Name = "um avestruz";
 			Body = 890;
 			BaseSoundID = 0x8F;
 

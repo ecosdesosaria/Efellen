@@ -54,7 +54,7 @@ namespace Server.Spells.HolyMan
 				}
 				else if ( !weapon.IsChildOf( Caster.Backpack ) )
 				{
-					Caster.SendMessage( "The weapon must be in your pack to enchant." );
+					Caster.SendMessage( "A arma deve estar em sua mochila para ser encantada." );
 				}
 				else if (CheckSequence())
 				{
@@ -95,7 +95,7 @@ namespace Server.Spells.HolyMan
 			}
 			else
 			{
-				Caster.SendMessage( "You can only enchant weapons with this spell." );
+				Caster.SendMessage( "Você só pode encantar armas com esta magia." );
 			}
             FinishSequence();
         }
@@ -117,7 +117,7 @@ namespace Server.Spells.HolyMan
                 }
                 else
                 {
-                    from.SendMessage("That cannot be enchanted.");
+                    from.SendMessage("Isso não pode ser encantado.");
                 }
             }
 

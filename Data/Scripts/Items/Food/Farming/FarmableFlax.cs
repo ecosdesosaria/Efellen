@@ -26,7 +26,7 @@ namespace Server.Items
 		[Constructable]
 		public FarmableFlax() : base( GetCropID() )
 		{
-			Name = "flax";
+			Name = "linho";
 		}
 
 		public FarmableFlax( Serial serial ) : base( serial )

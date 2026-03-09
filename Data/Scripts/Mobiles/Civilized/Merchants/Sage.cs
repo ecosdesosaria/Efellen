@@ -97,7 +97,7 @@ namespace Server.Mobiles
 					}
 					else
 					{
-						sMessage = "You need to be a neophyte scribe before I sell that to you.";
+						sMessage = "Você precisa ser um escriba neófito antes que eu venda isso para você.";
 						from.AddToBackpack ( dropped );
 					}
 				}
@@ -116,12 +116,12 @@ namespace Server.Mobiles
 										t.Hours, 
 										t.Minutes);
 
-						sMessage = "I have no artifact encyclopedias at the moment. Check back in " + wait + ".";
+						sMessage = "Não tenho enciclopédias de artefatos no momento. Volte em " + wait + ".";
 						from.AddToBackpack ( dropped );
 					}
 					else
 					{
-						sMessage = "Good luck in your quest.";
+						sMessage = "Boa sorte em sua missão.";
 
 						ArrayList targets = new ArrayList();
 						foreach ( Item item in World.Items.Values )
@@ -155,7 +155,7 @@ namespace Server.Mobiles
 				}
 				else
 				{
-					sMessage = "You look like you need this more than I do.";
+					sMessage = "Parece que você precisa disso mais do que eu.";
 					from.AddToBackpack ( dropped );
 				}
 

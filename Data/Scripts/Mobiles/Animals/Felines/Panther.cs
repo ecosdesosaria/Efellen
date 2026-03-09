@@ -3,7 +3,7 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a feline corpse" )]
+	[CorpseName( "um cadáver felino" )]
 	public class Panther : BaseCreature
 	{
 		[Constructable]
@@ -13,7 +13,7 @@ namespace Server.Mobiles
 
 			if ( cat > 2 )
 			{
-				Name = "a panther";
+				Name = "uma pantera";
 				Body = 885;
 				BaseSoundID = 0x3EE;
 				Hue = 0x96C;
@@ -49,7 +49,7 @@ namespace Server.Mobiles
 			}
 			else
 			{
-				Name = "a panther";
+				Name = "uma pantera";
 				Body = 0xD6;
 				Hue = 0x901;
 				BaseSoundID = 0x462;

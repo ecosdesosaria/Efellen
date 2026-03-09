@@ -263,45 +263,45 @@ namespace Server.Mobiles
             {
                 return new string[]
                 {
-                    "We will be rich my friend, rich beyond our wildest dreams!",
-                    "I can't believe you managed to snatch one of those! You did the guild a great favor, my friend!",
-                    "They'll be telling stories about this one in every tavern for years to come!",
-                    "This is the score of a lifetime, friend!"
+		"Vamos ficar ricos meu amigo, ricos além dos nossos sonhos mais loucos!",
+		"Não acredito que você conseguiu pegar um desses! Você fez um grande favor à guilda, meu amigo!",
+		"Vão contar histórias sobre este em cada taverna por anos a fio!",
+		"Este é o golpe de uma vida, amigo!"
                 };
             }
             else if (box is ExtremelyRareContrabandBox)
             {
                 return new string[]
                 {
-                    "This will take all my kids through college!",
-                    "I might be looking to retire after I pass this one along.",
-                    "Careful with that one—it might be a lot of trouble. I hope no one can trace this back to us",
-                    "Top-tier stuff, I'll need to make some calls. You focus on celebrating. You earned it.",
-                    "This is worth its weight in platinum.",
-                    "You might just be the best thief in the realm!"
+		"Isto vai pagar a faculdade de todos os meus filhos!",
+		"Talvez eu pense em me aposentar depois de passar este adiante.",
+		"Cuidado com esse—pode dar muita confusão. Espero que ninguém consiga rastrear isso até nós",
+		"Material de primeira, vou precisar fazer umas ligações. Você foca em comemorar. Você merece.",
+		"Isto vale o peso em platina.",
+		"Você pode muito bem ser o melhor ladrão do reino!"
                 };
             }
             else if (box is VeryRareContrabandBox || box is RareContrabandBox)
             {
                 return new string[]
                 {
-                    "You make the guild proud, my friend.",
-                    "Ah...This will fetch a nice price.",
-                    "It's not often you see these around... I know someone that will be very happy to receive this.",
-                    "A find like this doesn't come around often.",
-                    "I'm sure that this one will a some noble sweat...",
-                    "It's got that special shine to it...Doesn't it?"
+			"Você orgulha a guilda, meu amigo.",
+			"Ah... Isso vai render um bom preço.",
+			"Não é sempre que se vê algo assim por aí... Conheço alguém que vai ficar muito feliz em receber isto.",
+			"Um achado como este não aparece sempre.",
+			"Aposto que este vai fazer algum nobre suar frio...",
+			"Tem um brilho especial... Não tem?"
                 };
             }
             else if (box is UncommonContrabandBox || box is CommonContrabandBox)
             {
                 return new string[]
                 {
-                    "A day's work for a day's pay, eh?",
-                    "I think I know someone that might be interested in this.",
-                    "Not bad for an honest day's crime.",
-                    "Keeps the network running, these little ones.",
-                    "I don't think that this one will be missed too much."
+			"Um dia de trabalho por um dia de pagamento, né?",
+			"Acho que conheço alguém que pode se interessar por isso.",
+			"Nada mal para um dia honesto de crime.",
+			"Mantém a rede funcionando, esses pequenos.",
+			"Acho que não vão sentir muita falta deste."
                 };
             }
 

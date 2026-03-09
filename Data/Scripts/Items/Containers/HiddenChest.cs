@@ -157,14 +157,14 @@ namespace Server.Items
 			int version = reader.ReadInt();
 		}
 
-		public override bool HandlesOnMovement{ get{ return true; } }
+		public override bool HandlesOnMovement{ get{ return MySettings.S_EnableDungeonSoundEffects; } }
 
 		private DateTime m_NextSound;	
 		public DateTime NextSound{ get{ return m_NextSound; } set{ m_NextSound = value; } }
 
 		public override void OnMovement( Mobile m, Point3D oldLocation )
 		{
-			if( m is PlayerMobile )
+			if( m is PlayerMobile && MySettings.S_EnableDungeonSoundEffects )
 			{
 				if ( DateTime.Now >= m_NextSound && Utility.InRange( m.Location, this.Location, 10 ) )
 				{

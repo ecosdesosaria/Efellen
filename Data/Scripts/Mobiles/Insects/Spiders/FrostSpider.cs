@@ -7,7 +7,7 @@ using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a spider corpse" )]
+	[CorpseName( "um cadáver de aranha" )]
 	public class FrostSpider : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
@@ -28,7 +28,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public FrostSpider() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a frost spider";
+			Name = "uma aranha de gelo";
 			Body = 68;
 			BaseSoundID = 0x388;
 

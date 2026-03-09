@@ -30,7 +30,7 @@ namespace Server.Mobiles
 
 		public virtual void SayWelcomeTo( Mobile m )
 		{
-			SayTo( m, "Welcome to the guild! Thou shalt find it beneficial to your future endeavors." );
+			SayTo( m, "Bem-vindo à guilda! Acharás benéfico para teus futuros empreendimentos." );
 		}
 
 		public static void SayPriceTo( Mobile m, Mobile guildmaster )
@@ -109,9 +109,9 @@ namespace Server.Mobiles
 			PlayerMobile pm = (PlayerMobile)player;
 
 			if ( player.Blessed )
-				guildmaster.SayTo( player, "Speak to me when that strange effect has worn off." );
+				guildmaster.SayTo( player, "Fale comigo quando aquele efeito estranho tiver passado." );
 			else if ( ((PlayerMobile)player).Fugitive == 1 && ((BaseVendor)guildmaster).NpcGuild != NpcGuild.AssassinsGuild && ((BaseVendor)guildmaster).NpcGuild != NpcGuild.NecromancersGuild && ((BaseVendor)guildmaster).NpcGuild != NpcGuild.ThievesGuild )
-				guildmaster.SayTo( player, "I don't think we could let someone like you join." );
+				guildmaster.SayTo( player, "Não acho que poderíamos deixar alguém como você entrar." );
 			else if ( pm.NpcGuild == ((BaseVendor)guildmaster).NpcGuild )
 				guildmaster.SayTo( player, 501047 ); // Thou art already a member of our guild.
 			else if ( pm.NpcGuild != NpcGuild.None )
@@ -131,7 +131,7 @@ namespace Server.Mobiles
 			else
 			{
 				if ( guildmaster == null )
-					player.SendMessage(0x22, "You have resigned from the local guild.");
+					player.SendMessage(0x22, "Você renunciou à guilda local.");
 				else
 					guildmaster.SayTo( player, 501054 ); // I accept thy resignation.
 
@@ -290,7 +290,7 @@ namespace Server.Mobiles
 				else if ( this.NpcGuild == NpcGuild.ElementalGuild ){ GuildType = 22; }
 
 
-				Say( "Here is your replacement ring." );
+				Say( "Aqui está seu anel de reposição." );
 				from.AddToBackpack( new GuildRing( from, GuildType ) );
 			}
 		}

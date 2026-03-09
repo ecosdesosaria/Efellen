@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a spider corpse" )]
+	[CorpseName( "um cadáver de aranha" )]
 	public class ShadowRecluse : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
@@ -25,7 +25,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public ShadowRecluse () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a shadow recluse";
+			Name = "uma reclusa das sombras";
 			Body = 437;
 			BaseSoundID = 1170;
 

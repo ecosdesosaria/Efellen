@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a lion corpse" )]
+	[CorpseName( "um cadáver de leão" )]
 	public class PredatorHellCatRiding : BaseMount
 	{
 		public override bool HasBreath{ get{ return true; } }
@@ -21,7 +21,7 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public PredatorHellCatRiding() : this( "a hell lion" )
+		public PredatorHellCatRiding() : this( "um leão infernal" )
 		{
 		}
 

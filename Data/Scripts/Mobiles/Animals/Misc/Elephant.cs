@@ -10,13 +10,13 @@ using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an elephant corpse" )]
+	[CorpseName( "um cadáver de elefante" )]
 	public class Elephant : BaseCreature
 	{
 		[Constructable]
 		public Elephant() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an elephant";
+			Name = "um elefante";
 			Body = 337;
 			BaseSoundID = 0x560;
 

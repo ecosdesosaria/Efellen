@@ -66,7 +66,7 @@ namespace Server.Mobiles
 		{
 			if ( dropped is Gold && dropped.Amount == 10000 && from.Karma <= -5000 && from.Skills[SkillName.Knightship].Base >= 100 )
 			{
-				this.Say( "Take your steed and fill the world with dread." );
+				this.Say( "Pegue seu corcel e encha o mundo de pavor." );
 				from.AddToBackpack ( new DeathKnightWarhorse() );
 				dropped.Delete();
 			}
@@ -79,9 +79,9 @@ namespace Server.Mobiles
 
                     if (pack.ConsumeTotal(typeof(Gold), cost))
                     {
-                        from.SendMessage(String.Format("You pay {0} gold.", cost));
+                        from.SendMessage(String.Format("Você paga {0} de ouro.", cost));
 						dropped.ItemID = Utility.RandomList( 0x2FC5, 0x317B );
-                        this.SayTo(from, "Here are your wings you so desire.");
+						this.SayTo(from, "Aqui estão as asas que você tanto deseja.");
 						dropped.Name = "demon wings";
                         Effects.PlaySound(from.Location, from.Map, 0x241);
 						switch ( Utility.RandomMinMax( 0, 4 ) )
@@ -95,14 +95,14 @@ namespace Server.Mobiles
 					}
 					else
 					{
-                        this.SayTo(from, "It would cost you {0} gold for demon wings you fool!", cost);
-                        from.SendMessage("You do not have enough gold.");
+                        this.SayTo(from, "Custaria {0} de ouro pelas asas demoníacas, seu tolo!", cost);
+						from.SendMessage("Você não tem ouro suficiente.");
 					}
 				}
 				else if ( dropped.Layer == Layer.Cloak && ( dropped.ItemID == 0x2FC5 || dropped.ItemID == 0x317B ) )
 				{
 					dropped.ItemID = Utility.RandomList( 0x1515, 0x1530 );
-					this.SayTo(from, "Here is the cloak you so desire.");
+					this.SayTo(from, "Aqui está a capa que você tanto deseja.");
 					dropped.Name = "cloak";
 
 				}

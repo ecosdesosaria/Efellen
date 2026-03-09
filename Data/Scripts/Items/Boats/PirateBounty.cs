@@ -63,10 +63,10 @@ namespace Server.Items
 
 				AddHtml( 13, 13, 466, 20, @"<BODY><BASEFONT Color=" + color + ">" + bounty.BountyWho + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddButton(492, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-				AddHtml( 14, 106, 246, 234, @"<BODY><BASEFONT Color=" + color + ">Bounties are often placed on famous pirates that sail the high seas and create havoc in their pursuit for booty. Giving this bounty contract to a town guard will reward you with the listed gold.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 14, 106, 246, 234, @"<BODY><BASEFONT Color=" + color + ">Recompensas são frequentemente colocadas em piratas famosos que navegam pelos mares e causam estragos em sua busca por saque. Entregar este contrato de recompensa a um guarda da cidade irá recompensá-lo com o ouro listado.</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddImage(269, 42, 10888);
-				AddHtml( 18, 57, 65, 20, @"<BODY><BASEFONT Color=" + color + ">Bounty:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 94, 56, 161, 20, @"<BODY><BASEFONT Color=" + value + ">" + bounty.BountyValue + " Gold</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 18, 57, 65, 20, @"<BODY><BASEFONT Color=" + color + ">Recompensa:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 94, 56, 161, 20, @"<BODY><BASEFONT Color=" + value + ">" + bounty.BountyValue + " Ouro</BASEFONT></BODY>", (bool)false, (bool)false);
 			}
 
 			public override void OnResponse( NetState state, RelayInfo info ) 

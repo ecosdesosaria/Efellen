@@ -4,14 +4,14 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a giant snake corpse")]
+	[CorpseName("um cadáver de cobra gigante")]
 	public class JungleViper : BaseCreature
 	{
 		[Constructable]
 		public JungleViper() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Body = 21;
-			Name = "a jungle viper";
+			Name = "uma víbora da selva";
 			BaseSoundID = 219;
 			Hue = 0x84E;
 

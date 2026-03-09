@@ -276,21 +276,20 @@ namespace Server.Items
 					else if ( m_Jail.PrisonerType == 98 ){ FullName = FullName + " (Archer)"; }
 					else if ( m_Jail.PrisonerType == 99 ){ FullName = FullName + " (Wizard)"; }
 
-				string paragraph = "" + m_Jail.PrisonerName + " " + m_Jail.PrisonerTitle + " has been locked in this cage and is begging to be freed. You can choose to leave them to their fate, or they will give you " + m_Jail.PrisonerReward + " gold if you release them. Another choice you can make is to offer them " + m_Jail.PrisonerJoin + " gold to join you on your journey. If you decide to do this, they will be released from this cage and become your henchman. A henchman item will appear in your backpack. Continue reading on if you need an explanation on how henchman work.";
+				string paragraph = "" + m_Jail.PrisonerName + " " + m_Jail.PrisonerTitle + " foi trancado nesta cela e está implorando para ser libertado. Você pode escolher deixá-los com seu destino, ou eles lhe darão " + m_Jail.PrisonerReward + " de ouro se você libertá-los. Outra escolha que você pode fazer é oferecer a eles " + m_Jail.PrisonerJoin + " de ouro para se juntarem a você em sua jornada. Se você decidir fazer isso, eles serão libertados desta cela e se tornarão seu ajudante. Um item de ajudante aparecerá em sua mochila. Continue lendo se precisar de uma explicação sobre como os ajudantes funcionam.";
 
-				paragraph = paragraph + "<br><br>Henchman are followers that can join you on adventures so you do not have to traverse the dangerous dungeons alone. These henchman use a similar system for tamed animals, with a few exceptions. First, you can heal your henchmen with your healing skill. Second, you cannot transfer an active henchman to another player. Third, you cannot stable your henchmen. Lastly, you cannot be bonded to your henchmen. Although you cannot transfer your henchman, you can give the 'henchman item' to another person where they will then have possession of the henchman. Along those lines, if someone else manages to get your 'henchman item' from you, the henchman is then theirs.<br><br>You must be in an area such as an inn, tavern, or home to call your henchman. Once you call them, they will take possession of the 'henchman item' and keep it until one of the following occur...they are killed, you release them, or they get annoyed with the lack of treasure being found. For every 5 gold you give them, they will travel with you for 1 minute. This equals to 300 gold per hour, where the maximum they will take from you is enough for 6 hours of adventuring. You can pay your henchman in a few different ways. You can give them many types of treasure like coins, gems, or rare items for payment. Rare items are those unique items you may find that you can give to merchants in towns for a high price. Each time you pay them, you will get a message indicating how many minutes they will be traveling with you. When they have about 5 minutes left, they will begin to express their annoyance for the lack of treasure. This is a warning to find some treasure quickly, or your henchman will leave. If your henchman does depart, the 'henchman item' will appear in your backpack. The next time you call upon your henchman, make sure you have something to give them so they will travel with you. A henchman always remembers how much treasure you have given them. This means if a henchman has about 4 hours left of travel, and you 'release' them, they will remember that they have 4 hours of travel when you call upon them again. Keep in mind that this 'adventuring time' does not count down when you are in an area like a tavern, home, inn, bank, or camping tent.<br><br>Each henchman will have a unique name and title. As mentioned earlier, you do not stable henchmen. You instead 'release' them and their 'henchman item' will appear in your backpack and you can call the henchman later. You can release henchman anywhere you are. If a henchman is slain, the 'henchman item' will appear in your backpack. The name of the 'henchman item' will indicate that the henchman is dead. You will have to seek out a healer and 'hire' them to resurrect your henchman. When you 'hire' a healer to do this, it will cost an amount of gold indicated on the item...and you must select the 'henchman item' when the targeting cursor comes up. The 'dead' indicator will vanish and you can then return to an area like an inn, tavern, bank, or home and call your henchman again.<br><br>If you ever mount a creature or magically enhance your travel speed, your henchman will increase their speed so they can keep up with you. Henchman are only as able of an adventurer as you are. Their skill level is an average value of your total skills. Their stats are a distribution of your total non-magically-enhanced stats. So basically, the better you are...the better your henchmen will be. These henchmen only help you in your battles. They do not pick locks or remove traps. That is up to you to manage. You can give them bandages and they will use them as they need them to cure their poison or heal their wounds. You can give them potions though and they will drink them...giving you an empty bottle back. The potions they can make use of are heal, cure, rejuvenate, refresh, and mana potions. You are only able to take two henchman with you at any one time.";
+				paragraph = paragraph + "<br><br>Ajudantes são seguidores que podem se juntar a você em aventuras para que você não tenha que atravessar as masmorras perigosas sozinho. Estes ajudantes usam um sistema similar ao dos animais domesticados, com algumas exceções. Primeiro, você pode curar seus ajudantes com sua habilidade de cura. Segundo, você não pode transferir um ajudante ativo para outro jogador. Terceiro, você não pode estabular seus ajudantes. Por último, você não pode ter vínculo com seus ajudantes. Embora você não possa transferir seu ajudante, você pode dar o 'item de ajudante' para outra pessoa, que então terá a posse do ajudante. Seguindo essa linha, se alguém conseguir pegar seu 'item de ajudante' de você, o ajudante será então deles.<br><br>Você deve estar em uma área como uma estalagem, taverna ou casa para chamar seu ajudante. Uma vez que você os chamar, eles tomarão posse do 'item de ajudante' e o manterão até que um dos seguintes ocorra... eles forem mortos, você os libertar, ou eles ficarem irritados com a falta de tesouro sendo encontrado. Para cada 5 de ouro que você lhes der, eles viajarão com você por 1 minuto. Isso equivale a 300 de ouro por hora, onde o máximo que eles aceitarão de você é o suficiente para 6 horas de aventura. Você pode pagar seu ajudante de algumas maneiras diferentes. Você pode dar a eles muitos tipos de tesouro como moedas, gemas ou itens raros como pagamento. Itens raros são aqueles itens únicos que você pode encontrar e dar aos comerciantes nas cidades por um alto preço. Cada vez que você pagá-los, receberá uma mensagem indicando quantos minutos eles viajarão com você. Quando eles tiverem cerca de 5 minutos restantes, começarão a expressar sua irritação pela falta de tesouro. Este é um aviso para encontrar algum tesouro rapidamente, ou seu ajudante irá embora. Se seu ajudante partir, o 'item de ajudante' aparecerá em sua mochila. Na próxima vez que você chamar seu ajudante, certifique-se de ter algo para dar a eles para que viajem com você. Um ajudante sempre se lembra de quanto tesouro você lhes deu. Isso significa que se um ajudante tiver cerca de 4 horas restantes de viagem, e você 'liberar' eles, eles se lembrarão que têm 4 horas de viagem quando você os chamar novamente. Tenha em mente que este 'tempo de aventura' não conta quando você está em uma área como uma taverna, casa, estalagem, banco ou barraca de acampamento.<br><br>Cada ajudante terá um nome e título único. Como mencionado anteriormente, você não estabula ajudantes. Em vez disso, você 'liberta' eles e seu 'item de ajudante' aparecerá em sua mochila e você pode chamar o ajudante mais tarde. Você pode libertar ajudantes em qualquer lugar onde estiver. Se um ajudante for morto, o 'item de ajudante' aparecerá em sua mochila. O nome do 'item de ajudante' indicará que o ajudante está morto. Você terá que procurar um curandeiro e 'contratá-lo' para ressuscitar seu ajudante. Quando você 'contratar' um curandeiro para fazer isso, custará uma quantia de ouro indicada no item... e você deve selecionar o 'item de ajudante' quando o cursor de mira aparecer. O indicador de 'morto' desaparecerá e você poderá então retornar a uma área como uma estalagem, taverna, banco ou casa e chamar seu ajudante novamente.<br><br>Se você montar em uma criatura ou aumentar magicamente sua velocidade de viagem, seu ajudante aumentará sua velocidade para que possam acompanhá-lo. Ajudantes são apenas tão capazes quanto aventureiros quanto você é. Seu nível de habilidade é um valor médio de suas habilidades totais. Seus atributos são uma distribuição de seus atributos totais não magicamente aprimorados. Então, basicamente, quanto melhor você for... melhor seus ajudantes serão. Estes ajudantes apenas o ajudam em suas batalhas. Eles não arrombam fechaduras ou removem armadilhas. Isso é com você para administrar. Você pode dar ataduras a eles e eles as usarão conforme necessário para curar seu veneno ou curar suas feridas. Você pode dar poções a eles e eles as beberão... devolvendo a você uma garrafa vazia. As poções que eles podem usar são as de cura, antídoto, rejuvenescimento, refrescante e mana. Você só pode levar dois ajudantes com você a qualquer momento.";
 
-
-				AddHtml( 12, 12, 346, 20, @"<BODY><BASEFONT Color=" + color + ">PRISONER - " + FullName + "</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 12, 346, 20, @"<BODY><BASEFONT Color=" + color + ">PRISIONEIRO - " + FullName + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddHtml( 12, 44, 382, 361, @"<BODY><BASEFONT Color=" + color + ">" + paragraph + "</BASEFONT></BODY>", (bool)false, (bool)true);
 
 				AddButton(9, 417, 4005, 4005, 1, GumpButtonType.Reply, 0);
 				AddButton(9, 450, 4008, 4008, 2, GumpButtonType.Reply, 0);
 				AddButton(9, 483, 4020, 4020, 3, GumpButtonType.Reply, 0);
-				AddHtml( 48, 417, 346, 20, @"<BODY><BASEFONT Color=" + color + ">Set Them Free & Earn " + m_Jail.PrisonerReward + " Gold</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 48, 450, 346, 20, @"<BODY><BASEFONT Color=" + color + ">Give Them " + m_Jail.PrisonerJoin + " Gold to Join You</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 48, 483, 346, 20, @"<BODY><BASEFONT Color=" + color + ">Leave Them to Their Fate</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 48, 417, 346, 20, @"<BODY><BASEFONT Color=" + color + ">Liberte-os & Ganhe " + m_Jail.PrisonerReward + " de Ouro</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 48, 450, 346, 20, @"<BODY><BASEFONT Color=" + color + ">Dê a Eles " + m_Jail.PrisonerJoin + " de Ouro para se Juntarem a Você</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 48, 483, 346, 20, @"<BODY><BASEFONT Color=" + color + ">Deixe-os com Seu Destino</BASEFONT></BODY>", (bool)false, (bool)false);
 			}
 
 			public override void OnResponse( NetState sender, RelayInfo info )
@@ -301,9 +300,8 @@ namespace Server.Items
 				if ( info.ButtonID == 1 )
 				{
 					from.AddToBackpack ( new Gold( m_Jail.PrisonerReward ) );
-					from.SendMessage( "You free " + m_Jail.PrisonerName + " from their prison." );
-					LoggingFunctions.LogStandard( from, "has freed " + m_Jail.PrisonerName + " " + m_Jail.PrisonerTitle + "." );
-
+					from.SendMessage( "Você liberta " + m_Jail.PrisonerName + " de sua prisão." );
+					LoggingFunctions.LogStandard( from, "libertou " + m_Jail.PrisonerName + " " + m_Jail.PrisonerTitle + "." );
 					Titles.AwardFame( from, ((int)((m_Jail.PrisonerReward)/100)), true );
 					if ( ((PlayerMobile)from).KarmaLocked == true ){ Titles.AwardKarma( from, -((int)((m_Jail.PrisonerReward)/100)), true ); }
 					else { Titles.AwardKarma( from, ((int)((m_Jail.PrisonerReward)/100)), true ); }
@@ -330,10 +328,9 @@ namespace Server.Items
 						cont.ConsumeTotal( typeof( Gold ), join );
 
 						if ( begging )
-							from.SendMessage( "You beg " + m_Jail.PrisonerName + " to join you as a henchman for only " + join + " gold." );
+							from.SendMessage( "Você implora para " + m_Jail.PrisonerName + " se juntar a você como ajudante por apenas " + join + " de ouro." );
 						else
-							from.SendMessage( "" + m_Jail.PrisonerName + " has joined you as a henchman." );
-
+							from.SendMessage( "" + m_Jail.PrisonerName + " se juntou a você como ajudante." );
 						if ( m_Jail.PrisonerType == 97 )
 						{
 							HenchmanFighterItem fighter = new HenchmanFighterItem();
@@ -390,18 +387,18 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage( "You do not have enough gold to convince them to join you." );
+						from.SendMessage( "Você não tem ouro suficiente para convencê-los a se juntar a você." );
 					}
 				}
 				else if ( info.ButtonID == 3 )
 				{
 					switch ( Utility.RandomMinMax( 0, 4 ) )
 					{
-						case 0: from.Say("I will leave you to your fate, " + m_Jail.PrisonerName + "!"); break;
-						case 1: from.Say("" + m_Jail.PrisonerName + ", stay here and rot!"); break;
-						case 2: from.Say("" + m_Jail.PrisonerName + ", the world is better with you in here!"); break;
-						case 3: from.Say("You are not the sort I wish to free, " + m_Jail.PrisonerName + "."); break;
-						case 4: from.Say("You must be here for a reason, " + m_Jail.PrisonerName + "."); break;
+						case 0: from.Say("Vou deixá-lo com seu destino, " + m_Jail.PrisonerName + "!"); break;
+						case 1: from.Say("" + m_Jail.PrisonerName + ", fique aqui e apodreça!"); break;
+						case 2: from.Say("" + m_Jail.PrisonerName + ", o mundo é melhor com você aqui dentro!"); break;
+						case 3: from.Say("Você não é do tipo que desejo libertar, " + m_Jail.PrisonerName + "."); break;
+						case 4: from.Say("Você deve estar aqui por uma razão, " + m_Jail.PrisonerName + "."); break;
 					}
 				}
 			}

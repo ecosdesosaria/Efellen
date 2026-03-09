@@ -7,13 +7,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a mammoth corpse" )]
+	[CorpseName( "um cadáver de mamute" )]
 	public class Mammoth : Elephant
 	{
 		[Constructable]
 		public Mammoth()
 		{
-			Name = "a mammoth";
+			Name = "um mamute";
 			Body = 997;
 			Hue = 0xB3A;
 

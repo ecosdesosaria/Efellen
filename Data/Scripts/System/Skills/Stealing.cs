@@ -92,7 +92,7 @@ namespace Server.SkillHandlers
 					else if ( (si.Item).GetType() == typeof( LeatherTunicArtifact ) ){ 		rogue = 22; }
 					else if ( (si.Item).GetType() == typeof( RuinedPaintingArtifact ) ){ 	rogue = 23; }
 
-					if ( PlayerSettings.GetArtyConfig( m_Thief, rogue ) )
+					if ( PlayerSettings.GetArtyConfig( m_Thief, rogue ) && !MySettings.S_DecoArtySteal )
 					{
 						si = null;
 						m_Thief.PrivateOverheadMessage(MessageType.Regular, 1150, false, "I have already stolen that item!", m_Thief.NetState);
@@ -434,8 +434,6 @@ namespace Server.SkillHandlers
 				        {
 				            Gold stolenGold = new Gold(gold);
 							int marks = gold/35 >= 1 ? gold/35 : 0;
-							if( marks > 10 )
-								marks = 10;
 				            from.AddToBackpack(stolenGold);
 							from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, string.Format("You successfully stole {0} gold.", gold));
 							from.SendMessage(string.Format("You successfully stole {0} gold.", gold));
@@ -445,7 +443,8 @@ namespace Server.SkillHandlers
 								from.SendMessage(string.Format("You gained {0} Marks of the Shadowbroker.", marks));
 							}
 							Titles.AwardKarma(from, -60, true);
-				            from.PlaySound(0x2E6); // Coin sound
+				            from.PlaySound(0x2E6); // Coin sound		
+
 				            // Contraband check
 				            ContrabandSystem.TryGiveContraband(from, victim);
 				        }

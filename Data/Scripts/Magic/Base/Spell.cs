@@ -558,7 +558,7 @@ namespace Server.Spells
 			}
 			/* else if (!CheckWildShapeCasting())
 			{
-				m_Caster.SendMessage( "You cannot cast that spell while in wild shape." );
+				m_Caster.SendMessage( "Você não pode lançar esse feitiço enquanto está em forma selvagem." );
 				return false;
 			} */
 			else if ( ( m_Caster.Paralyzed || m_Caster.Frozen ) && !( this is FerretFlee ) )
@@ -709,7 +709,7 @@ namespace Server.Spells
 
 		    
 
-		    m.SendMessage("You cannot cast that spell while in wild shape.");
+		    m.SendMessage("Você não pode soltar esse feitiço enquanto estiver em forma selvagem.");
 		    return false;
 		}
 

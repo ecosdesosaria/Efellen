@@ -269,16 +269,16 @@ namespace Server.Items
 		{
 			int skills = scroll.CheetahPaws + scroll.Deception + scroll.EagleEye + scroll.Espionage + scroll.FerretFlee + scroll.MonkeyLeap + scroll.MysticShuriken + scroll.TigerStrength;
 
-			string text = "Ninjas are the exotic assassins, thieves, and spies of the land. They prefer stealth and sneak attacks above most other forms of conflict, and they have a series of mystical maneuvers they can perform. These abilities are the way of the shinobi. ";
+			string text = "Ninjas são os assassinos, ladrões e espiões exóticos da terra. Eles preferem furtividade e ataques sorrateiros acima da maioria das outras formas de conflito, e possuem uma série de manobras místicas que podem realizar. Essas habilidades são o caminho do shinobi. ";
 
 			if ( skills < 8 )
 			{
-				text = text + "To prove yourself of being worthy of these abilities, you will have to overcome a series of trials. Each ability will list the item you must seek and the place where it can be sought. The ninja has a choice of trial to undertake, as each ability provides two choices. One is in the land of Sosaria and the other is in the land of Lodoria. Slay the beasts and get the items. Place them on this scroll and the shinobi secrets will be revealed to you. ";
+				text = text + "Para provar que é digno dessas habilidades, você terá que superar uma série de provações. Cada habilidade listará o item que você deve buscar e o lugar onde pode ser procurado. O ninja tem a escolha da provação a ser realizada, pois cada habilidade oferece duas opções. Uma é na terra de Sosaria e a outra é na terra de Lodoria. Mate as bestas e obtenha os itens. Coloque-os neste pergaminho e os segredos shinobi serão revelados para você. ";
 			}
 
-			text = text + "<br><br>Each ability will display the description as well as the skill required, the tithing gold needed, along with the mana necessary. To tithe gold to the spirits, find a Shrine of Durama where you can select it and then offer the gold you wish to part with. You can usually find these shrines in a dojo, and some ninjas tithe gold to almost any other deity. There are choices for having a horizontal or vertical menu bar to use these abilities quickly, but you can also select the icon within this scroll to use the skill.";
+			text = text + "<br><br>Cada habilidade exibirá a descrição, bem como a habilidade necessária, o ouro de dízimo necessário, junto com a mana necessária. Para dizimar ouro aos espíritos, encontre um Santuário de Durama onde você pode selecioná-lo e então oferecer o ouro que deseja doar. Você geralmente pode encontrar esses santuários em um dojo, e alguns ninjas dizimam ouro para quase qualquer outra divindade. Existem opções para ter uma barra de menu horizontal ou vertical para usar essas habilidades rapidamente, mas você também pode selecionar o ícone dentro deste pergaminho para usar a habilidade.";
 
-			text = text + "<br><br>There are some commands you can type to use your shinobi abilities: <br><br>[CheetahPaws <br><br>[Deception <br><br>[EagleEye <br><br>[Espionage <br><br>[FerretFlee <br><br>[MonkeyLeap <br><br>[MysticShuriken <br><br>[TigerStrength <br><br>";
+			text = text + "<br><br>Há alguns comandos que você pode digitar para usar suas habilidades shinobi: <br><br>[CheetahPaws <br><br>[Deception <br><br>[EagleEye <br><br>[Espionage <br><br>[FerretFlee <br><br>[MonkeyLeap <br><br>[MysticShuriken <br><br>[TigerStrength <br><br>";
 
 			return text;
 		}
@@ -300,7 +300,7 @@ namespace Server.Items
 				else if ( type == "where2" ){	str = "Dungeon Covetous"; }
 				else
 				{ 
-					str = "This increases the running speed of the Ninja for about 10-25 minutes, making them run as fast as a cheetah. This power cannot be called upon within certain areas and will often cease to function when entering those areas.";
+					str = "Isso aumenta a velocidade de corrida do Ninja por cerca de 10-25 minutos, fazendo-o correr tão rápido quanto um guepardo. Este poder não pode ser invocado em certas áreas e frequentemente deixará de funcionar ao entrar nessas áreas.";
 				}
 			}
 			else if ( ability == 291 )
@@ -316,7 +316,7 @@ namespace Server.Items
 				else if ( type == "where2" ){	str = "the Lodoria Catacombs"; }
 				else
 				{ 
-					str = "The ninja can disguise themselves, where others would not recognize them and some guards may look the other way.";
+					str = "O ninja pode se disfarçar, onde outros não o reconheceriam e alguns guardas podem olhar para o outro lado.";
 				}
 			}
 			else if ( ability == 292 )
@@ -332,7 +332,7 @@ namespace Server.Items
 				else if ( type == "where2" ){	str = "Dungeon Deceit"; }
 				else
 				{ 
-					str = "The eyes of the ninja are focused where they can perhaps spot hidden creatures, traps, or treasure.";
+					str = "Os olhos do ninja são focados onde podem talvez detectar criaturas ocultas, armadilhas ou tesouros.";
 				}
 			}
 			else if ( ability == 293 )
@@ -348,7 +348,7 @@ namespace Server.Items
 				else if ( type == "where2" ){	str = "Dungeon Despise"; }
 				else
 				{ 
-					str = "Some of the more minor locks can be manipulated with this ability, but not all of them as master thieves can.";
+					str = "Algumas das fechaduras mais simples podem ser manipuladas com esta habilidade, mas não todas como ladrões mestres podem.";
 				}
 			}
 			else if ( ability == 294 )
@@ -364,7 +364,7 @@ namespace Server.Items
 				else if ( type == "where2" ){	str = "the City of Embers"; }
 				else
 				{ 
-					str = "If held in place by things such as paralysis magic, spider webbing, or nets the ninja can attempt to free themselves from such holds and escape.";
+					str = "Se contido por coisas como magia de paralisia, teias de aranha ou redes, o ninja pode tentar se libertar de tais contenções e escapar.";
 				}
 			}
 			else if ( ability == 295 )
@@ -380,7 +380,7 @@ namespace Server.Items
 				else if ( type == "where2" ){	str = "Dungeon Hythloth"; }
 				else
 				{ 
-					str = "Allows the ninja to leap toward or away from a location very quickly.";
+					str = "Permite que o ninja salte em direção ou para longe de um local muito rapidamente.";
 				}
 			}
 			else if ( ability == 296 )
@@ -396,7 +396,7 @@ namespace Server.Items
 				else if ( type == "where2" ){	str = "the Ice Fiend Lair"; }
 				else
 				{ 
-					str = "Summons a shuriken out of thin air and hurdles it toward your opponent, causing much damage from afar.";
+					str = "Invoca um shuriken do nada e o arremessa em direção ao seu oponente, causando muito dano à distância.";
 				}
 			}
 			else if ( ability == 297 )
@@ -412,7 +412,7 @@ namespace Server.Items
 				else if ( type == "where2" ){	str = "Dungeon Shame"; }
 				else
 				{ 
-					str = "Calls forth a mystical tiger from the realm of Durama to fight with the ninja during their journey.";
+					str = "Invoca um tigre místico do reino de Durama para lutar com o ninja durante sua jornada.";
 				}
 			}
 
@@ -466,7 +466,7 @@ namespace Server.Items
 					else
 					{
 						AddImage(47, 57, Int32.Parse( Server.Items.ShinobiScroll.ShinobiInfo( ability, "icon" ) ));
-						clue = "To be worthy of this ability, you need to either get the " + ShinobiInfo( ability, "prize1" ) + " at " + ShinobiInfo( ability, "where1" ) + " in the Land of Sosaria or the " + ShinobiInfo( ability, "prize2" ) + " at " + ShinobiInfo( ability, "where2" ) + " in the Land of Lodoria.";
+						clue = "Para ser digno desta habilidade, você precisa obter o " + ShinobiInfo( ability, "prize1" ) + " em " + ShinobiInfo( ability, "where1" ) + " na Terra de Sosaria ou a " + ShinobiInfo( ability, "prize2" ) + " em " + ShinobiInfo( ability, "where2" ) + " na Terra de Lodoria.";
 					}
 
 					AddHtml( 56, 109, 414, 92, @"<BODY><BASEFONT Color=#111111><BIG>" + clue + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);

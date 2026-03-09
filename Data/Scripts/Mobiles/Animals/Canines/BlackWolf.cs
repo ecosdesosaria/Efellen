@@ -6,7 +6,7 @@ using Server.Regions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a wolf corpse" )]
+	[CorpseName( "um cadáver de lobo" )]
 	[TypeAlias( "Server.Mobiles.BlackWolf" )]
 	public class BlackWolf : BaseMount
 	{
@@ -18,7 +18,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public BlackWolf( string name ) : base( name, 277, 16017, AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a black wolf";
+			Name = "um lobo preto";
 			BaseSoundID = 0xE5;
 			Hue = 0xB3A;
 

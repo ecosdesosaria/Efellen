@@ -51,8 +51,8 @@ namespace Server.Gumps
 			if ( page == 1 )
 			{
 				AddButton(392, 46, 7048, 7048, 99, GumpButtonType.Reply, 0);
-				AddHtml( 107, 46, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>BARDIC SONGS</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 422, 51, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Assign Instrument</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 107, 46, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>MUSICAS DE BARDO</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 422, 51, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Selecionar Instrumento</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int x = 95;
 				int y = 100;
@@ -161,14 +161,14 @@ namespace Server.Gumps
 				if ( page == 2 )
 				{
 					s12 = "Army's Paeon";
-					s13 = "An area of effect that regenerates your party's health slowly.";
+					s13 = "Uma área de efeito que regenera lentamente a saúde do seu grupo.";
 					s14 = "55";
 					s15 = "15";
 					s16 = "ArmysPaeon";
 					s11 = 0x404;
 
 					s22 = "Enchanting Etude";
-					s23 = "An area of effect that raises the intelligence of your party.";
+					s23 = "Uma área de efeito que aumenta a inteligência do seu grupo.";
 					s24 = "60";
 					s25 = "20";
 					s26 = "EnchantingEtude";
@@ -177,14 +177,14 @@ namespace Server.Gumps
 				else if ( page == 3 )
 				{
 					s12 = "Energy Carol";
-					s13 = "An area of effect that raises the energy resistance of your party.";
+					s13 = "Uma área de efeito que aumenta a resistência à energia do seu grupo.";
 					s14 = "50";
 					s15 = "12";
 					s16 = "EnergyCarol";
 					s11 = 0x406;
 
 					s22 = "Energy Threnody";
-					s23 = "Lowers the energy resistance of your target.";
+					s23 = "Reduz a resistência à energia do seu alvo.";
 					s24 = "70";
 					s25 = "25";
 					s26 = "EnergyThrenody";
@@ -193,14 +193,14 @@ namespace Server.Gumps
 				else if ( page == 4 )
 				{
 					s12 = "Fire Carol";
-					s13 = "An area of effect that raises the fire resistance of your party.";
+					s13 = "Uma área de efeito que aumenta a resistência ao fogo do seu grupo.";
 					s14 = "50";
 					s15 = "12";
 					s16 = "FireCarol";
 					s11 = 0x408;
 
 					s22 = "Fire Threnody";
-					s23 = "Lowers the fire resistance of your target.";
+					s23 = "Reduz a resistência ao fogo do seu alvo.";
 					s24 = "70";
 					s25 = "25";
 					s26 = "FireThrenody";
@@ -209,14 +209,14 @@ namespace Server.Gumps
 				else if ( page == 5 )
 				{
 					s12 = "Foe Requiem";
-					s13 = "Damages your target with a burst of sonic energy.";
+					s13 = "Dano seu alvo com uma explosão de energia sonora.";
 					s14 = "80";
 					s15 = "30";
 					s16 = "FoeRequiem";
 					s11 = 0x40A;
 
 					s22 = "Ice Carol";
-					s23 = "An area of effect that raises the cold resistance of your party.";
+					s23 = "Uma área de efeito que aumenta a resistência ao frio do seu grupo.";
 					s24 = "50";
 					s25 = "12";
 					s26 = "IceCarol";
@@ -225,14 +225,14 @@ namespace Server.Gumps
 				else if ( page == 6 )
 				{
 					s12 = "Ice Threnody";
-					s13 = "Lowers the ice resistance of your target.";
+					s13 = "Reduz a resistência ao frio do seu alvo.";
 					s14 = "70";
 					s15 = "25";
 					s16 = "IceThrenody";
 					s11 = 0x40C;
 
 					s22 = "Knight's Minne";
-					s23 = "An area of effect that raises the physical resist of your party.";
+					s23 = "Uma área de efeito que aumenta a resistência física do seu grupo.";
 					s24 = "50";
 					s25 = "12";
 					s26 = "KnightsMinne";
@@ -241,14 +241,14 @@ namespace Server.Gumps
 				else if ( page == 7 )
 				{
 					s12 = "Mage's Ballad";
-					s13 = "An area of effect that regenerates your party's mana slowly.";
+					s13 = "Uma área de efeito que regenera lentamente a mana do seu grupo.";
 					s14 = "55";
 					s15 = "15";
 					s16 = "MagesBallad";
 					s11 = 0x40E;
 
 					s22 = "Magic Finale";
-					s23 = "An area of effect that dispels all summoned creatures around you.";
+					s23 = "Uma área de efeito que dispersa todas as criaturas invocadas ao redor de você.";
 					s24 = "90";
 					s25 = "35";
 					s26 = "MagicFinale";
@@ -257,14 +257,14 @@ namespace Server.Gumps
 				else if ( page == 8 )
 				{
 					s12 = "Poison Carol";
-					s13 = "An area of effect that raises the poison resistance of your party.";
+					s13 = "Uma área de efeito que aumenta a resistência ao veneno do seu grupo.";
 					s14 = "50";
 					s15 = "12";
 					s16 = "PoisonCarol";
 					s11 = 0x411;
 
 					s22 = "Poison Threnody";
-					s23 = "Lowers the poison resistance of your target.";
+					s23 = "Reduz a resistência a veneno do seu alvo.";
 					s24 = "70";
 					s25 = "25";
 					s26 = "PoisonThrenody";
@@ -273,14 +273,14 @@ namespace Server.Gumps
 				else if ( page == 9 )
 				{
 					s12 = "Shepherd's Dance";
-					s13 = "An area of effect that raises the dexterity of your party.";
+					s13 = "Uma área de efeito que aumenta a destreza do seu grupo.";
 					s14 = "60";
 					s15 = "20";
 					s16 = "ShephardsDance";
 					s11 = 0x413;
 
 					s22 = "Sinewy Etude";
-					s23 = "An area of effect that raises the strength of your party.";
+					s23 = "Uma área de efeito que aumenta a força do seu grupo.";
 					s24 = "60";
 					s25 = "20";
 					s26 = "SinewyEtude";
@@ -315,7 +315,7 @@ namespace Server.Gumps
 
 			if ( info.ButtonID == 99 )
 			{
-				from.SendMessage( "Click your instrument of bardic choice." );
+				from.SendMessage( "Selecione seu instrumento de escolha." );
 				from.Target = new InternalTarget( m_Book );
 			}
 			else if ( info.ButtonID < 300 && info.ButtonID > 0 )
@@ -330,8 +330,8 @@ namespace Server.Gumps
 			{
 				if ( m_Book.Instrument == null && HasSpell(from, info.ButtonID) )
 				{
-					from.SendMessage( "You need an instrument to play that song!" );
-					from.SendMessage( "Select your instrument of bardic choice." );
+					from.SendMessage( "Você precisa de um instrumento para tocar essa música!" );
+					from.SendMessage( "Selecione seu instrumento de escolha." );
 					from.Target = new InternalTarget( m_Book );
 				}
 				else if ( info.ButtonID == 351 ){ new ArmysPaeonSong( from, null ).Cast(); }
@@ -369,11 +369,11 @@ namespace Server.Gumps
 				if ( target is BaseInstrument )
 				{
 					Book.Instrument = (BaseInstrument)target;
-					from.SendMessage( "You set your instrument to play for these songs." );
+					from.SendMessage( "Você definiu seu instrumento para tocar essas músicas." );
 				}
 				else
 				{
-					from.SendMessage( "That is not an instrument you can play!" );
+					from.SendMessage( "Esse não é um instrumento que você pode tocar!" );
 				}
 			}
 		}

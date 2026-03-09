@@ -75,8 +75,8 @@ namespace Server.Mobiles
 
 				AddImage(0, 0, 20767);
 				AddButton(968, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-				AddHtml( 13, 578, 981, 20, @"<BODY><BASEFONT Color=" + color + ">If you see any creature that looks like these here, regardless of color, they can be used as mounts to travel with if tamed or purchased.</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 13, 618, 981, 20, @"<BODY><BASEFONT Color=" + color + ">* Dragons must learn to be ridden, while Dragyns can be ridden if the Zuluu legends are true.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 13, 578, 981, 20, @"<BODY><BASEFONT Color=" + color + ">Se vires qualquer criatura que se assemelhe a estas aqui, independente da cor, elas podem ser usadas como montarias para viajar, se domadas ou compradas.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 13, 618, 981, 20, @"<BODY><BASEFONT Color=" + color + ">* Dragões devem aprender a ser montados, enquanto Dragyns podem ser montados se as lendas Zuluu forem verdadeiras.</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 670, 134, 27, 20, @"<BODY><BASEFONT Color=" + color + "><BIG>*</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 			}
 

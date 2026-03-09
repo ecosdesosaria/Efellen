@@ -42,11 +42,11 @@ namespace Server.Items
 				AddItem(509, 74, 577);
 				AddItem(530, 96, 579);
 				AddItem(288, 90, 5360, 0xB98);
-				AddHtml( 11, 11, 243, 20, @"<BODY><BASEFONT Color=" + color + ">WANTED: Mangar the Dark</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 316, 17, 115, 20, @"<BODY><BASEFONT Color=" + color + ">Magic Mouth</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 496, 34, 115, 20, @"<BODY><BASEFONT Color=" + color + ">Secret Doors</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 339, 94, 115, 20, @"<BODY><BASEFONT Color=" + color + ">Clues</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 10, 169, 563, 160, @"<BODY><BASEFONT Color=" + color + ">You are trapped in Skara Brae, regardless of the rumors that it was destroyed in Sosaria. It seems that Mangar has moved this village into the void for his own nefarious purposes. You can only assume that if you can find Mangar and defeat him, then you may find a way to escape this void. To do that, you will need to explore and talk to any unusual citizens. Searching the dungeons for clues, secret doors, or magic mouths may prove helpful in your quest. You may slay powerful creatures that will drop chests on the floor you can use to acquire more clues or treasure. Keep an eye on your quest log, as it will show you the steps you accomplished. You feel a bit thirsty now, however, so you may want to get some wine in the cellar behind the tavern of the Scarlet Bard.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 11, 11, 243, 20, @"<BODY><BASEFONT Color=" + color + ">PROCURADO: Mangar, o Sombrio</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 316, 17, 115, 20, @"<BODY><BASEFONT Color=" + color + ">Boca Mágica</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 496, 34, 115, 20, @"<BODY><BASEFONT Color=" + color + ">Portas Secretas</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 339, 94, 115, 20, @"<BODY><BASEFONT Color=" + color + ">Pistas</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 10, 169, 563, 160, @"<BODY><BASEFONT Color=" + color + ">Você está preso em Skara Brae, independentemente dos rumores de que foi destruída em Sosaria. Parece que Mangar moveu esta vila para o vazio para seus próprios propósitos nefastos. Você só pode assumir que se conseguir encontrar Mangar e derrotá-lo, então poderá encontrar uma maneira de escapar deste vazio. Para fazer isso, você precisará explorar e conversar com quaisquer cidadãos incomuns. Procurar por pistas, portas secretas ou bocas mágicas nas masmorras pode ser útil em sua missão. Você pode matar criaturas poderosas que deixarão baús no chão que você pode usar para adquirir mais pistas ou tesouro. Fique de olho no seu registro de missões, pois ele mostrará os passos que você realizou. Você está sentindo um pouco de sede agora, no entanto, então pode querer pegar um pouco de vinho na adega atrás da taverna do Bardo Escarlate.</BASEFONT></BODY>", (bool)false, (bool)false);
 			}
 
 			public override void OnResponse(NetState state, RelayInfo info)

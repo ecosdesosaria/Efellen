@@ -85,14 +85,14 @@ namespace Server.Mobiles
 				killer.Kills = killer.Kills + 1;
 			}
 
-			string bSay = "Help!";
+			string bSay = "Socorro!";
 
 				switch ( Utility.Random( 5 ))		   
 				{
-					case 0: bSay = "Guards!"; break;
-					case 1: bSay = "There will be no place for you to hide!"; break;
-					case 2: bSay = "Noooo!"; break;
-					case 3: bSay = "Vile rogue!"; break;
+					case 0: bSay = "Guardas!"; break;
+					case 1: bSay = "Não haverá lugar para você se esconder!"; break;
+					case 2: bSay = "Nããão!"; break;
+					case 3: bSay = "Patife vil!"; break;
 					case 4: bSay = "Aarrgh!"; break;
 				};
 

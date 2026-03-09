@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a beetle corpse" )]
+	[CorpseName( "um cadáver de besouro" )]
 	public class PoisonBeetleRiding : BaseMount
 	{
 		[Constructable]

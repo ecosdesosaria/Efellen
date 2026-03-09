@@ -112,7 +112,7 @@ namespace Server.Misc
 			{
 				for (int i = 0; i < level; i++)
 				{
-					if (Utility.Random(4) == 0)
+					if (Utility.Random(4) == 0 && MySettings.S_LootChance > Utility.Random(100))
 					{
 						Item item = Loot.RandomItem(from, level);
 						item = LootPackChange.ChangeItem(item, from, level);
@@ -122,7 +122,7 @@ namespace Server.Misc
 				}
 			}
 
-			if (Utility.Random(24) < level)
+			if (Utility.Random(24) < level && MySettings.S_LootChance > Utility.Random(100))
 			{
 				Item treasure = Loot.RandomTreasure(from, level);
 				treasure = LootPackChange.ChangeItem(treasure, from, level);

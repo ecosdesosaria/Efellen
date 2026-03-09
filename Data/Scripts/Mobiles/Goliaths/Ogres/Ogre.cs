@@ -7,7 +7,7 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an ogre corpse" )]
+	[CorpseName( "um cadáver de ogro" )]
 	public class Ogre : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 100; } }
@@ -29,7 +29,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Ogre () : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an ogre";
+			Name = "um ogro";
 			Body = 1;
 			BaseSoundID = 427;
 

@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an ice toad corpse" )]
+	[CorpseName( "um cadáver de sapo de gelo" )]
 	[TypeAlias( "Server.Mobiles.IceToad" )]
 	public class IceToad : BaseCreature
 	{
@@ -13,7 +13,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public IceToad() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an ice toad";
+			Name = "um sapo de gelo";
 			Body = 270;
 			BaseSoundID = 0x26B;
 			Hue = 0xB78;

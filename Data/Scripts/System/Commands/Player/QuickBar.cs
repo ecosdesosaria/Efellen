@@ -566,16 +566,16 @@ namespace Server.Gumps
 			AddPage(0);
 
 			AddImage(0, 0, 9548, PlayerSettings.GetGumpHue( from ));
-			AddHtml( 12, 12, 300, 20, @"<BODY><BASEFONT Color=" + color + ">CONFIGURE QUICK BAR</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 12, 12, 300, 20, @"<BODY><BASEFONT Color=" + color + ">CONFIGURAR BARRA RÁPIDA</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(967, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
-			AddHtml( 14, 55, 981, 94, @"<BODY><BASEFONT Color=" + color + ">This toolbar provides a quick and convenient way to keep an eye on certain inventory items, invoke commands, and access information. Images are used to represent the function of the various buttons. You must choose what icons will appear on your quick bar, and you can select those here. The icons for spells, songs, or abilities will open or close the bar for those categories.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 14, 55, 981, 94, @"<BODY><BASEFONT Color=" + color + ">Esta barra de ferramentas oferece uma maneira rápida e conveniente de vigiar certos itens do inventário, invocar comandos e aceder a informações. Imagens são usadas para representar a função dos vários botões. Deves escolher quais ícones aparecerão em tua barra rápida, e podes selecioná-los aqui. Os ícones para feitiços, canções ou habilidades abrirão ou fecharão a barra para essas categorias.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(277, 151, btn1, btn1, 1, GumpButtonType.Reply, 0);
-			AddHtml( 316, 151, 223, 20, @"<BODY><BASEFONT Color=" + color + ">Horizontal Bar</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 316, 151, 223, 20, @"<BODY><BASEFONT Color=" + color + ">Barra Horizontal</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(580, 151, btn2, btn2, 2, GumpButtonType.Reply, 0);
-			AddHtml( 619, 151, 223, 20, @"<BODY><BASEFONT Color=" + color + ">Open At Login</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 619, 151, 223, 20, @"<BODY><BASEFONT Color=" + color + ">Abrir ao Entrar</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			int icons = 2;
 			int count = 2;

@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a spider corpse" )]
+	[CorpseName( "um cadáver de aranha" )]
 	public class GiantSpider : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
@@ -26,7 +26,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public GiantSpider() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a giant spider";
+			Name = "uma aranha gigante";
 			Body = Utility.RandomList( 28, 140, 964 );
 			BaseSoundID = 0x388;
 

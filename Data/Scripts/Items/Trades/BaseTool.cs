@@ -208,7 +208,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			bool canUseBackpackCraftTool = this.IsChildOf(from.Backpack);
+			bool canUseBackpackCraftTool = MySettings.S_AllowBackpackCraftTool && this.IsChildOf(from.Backpack);
 
 			if ( !MySettings.S_AllowMacroResources )
 			{ 
@@ -235,7 +235,10 @@ namespace Server.Items
 			}
 			else
 			{
-				int localizedMessageId =1042004; // That must be equipped or in your pack to use it.
+				int localizedMessageId = MySettings.S_AllowBackpackCraftTool
+					? 1042004 // That must be equipped or in your pack to use it.
+					: 502641; // You must equip this item to use it.
+				
 				from.SendLocalizedMessage( localizedMessageId );
 			}
 		}
@@ -247,7 +250,7 @@ namespace Server.Items
 
 			BaseTool tool = (BaseTool)o;
 
-			bool canUseBackpackCraftTool = tool.IsChildOf(from.Backpack);
+			bool canUseBackpackCraftTool = MySettings.S_AllowBackpackCraftTool && tool.IsChildOf(from.Backpack);
 
 			if ( tool.Parent == from || canUseBackpackCraftTool )
 			{
@@ -268,7 +271,9 @@ namespace Server.Items
 			}
 			else
 			{
-				int localizedMessageId =1042004; // That must be equipped or in your pack to use it.
+				int localizedMessageId = MySettings.S_AllowBackpackCraftTool
+					? 1042004 // That must be equipped or in your pack to use it.
+					: 502641; // You must equip this item to use it.
 				
 				from.SendLocalizedMessage( localizedMessageId );
 			}

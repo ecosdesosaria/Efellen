@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a giant snake corpse")]
+	[CorpseName("um cadáver de serpente gigante")]
 	[TypeAlias( "Server.Mobiles.Silverserpant" )]
 	public class SilverSerpent : BaseCreature
 	{
@@ -12,7 +12,7 @@ namespace Server.Mobiles
 		public SilverSerpent() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Body = 877;
-			Name = "a silver serpent";
+			Name = "uma serpente prateada";
 			BaseSoundID = 219;
 
 			SetStr( 161, 360 );

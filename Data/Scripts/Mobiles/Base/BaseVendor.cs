@@ -267,7 +267,7 @@ namespace Server.Mobiles
 			if ( typeof( PlayerVendor ) == this.GetType() || typeof( PlayerBarkeeper ) == this.GetType() )
 				return;
 
-			this.CoinPurse = Utility.RandomMinMax( 500, 2000 );
+			this.CoinPurse = Utility.RandomMinMax( MySettings.S_MinMerchant, MySettings.S_MaxMerchant );
 
 			if ( this is BaseGuildmaster )
 				this.CoinPurse = this.CoinPurse * 3;
@@ -302,15 +302,15 @@ namespace Server.Mobiles
 
 		public static string BeggingWords() // LET US SEE IF THEY ARE BEGGING
 		{
-			string sSpeak = "Please give me a good price as I am so poor.";
+			string sSpeak = "Por favor, me dê um bom preço, pois sou muito pobre.";
 			switch( Utility.RandomMinMax( 0, 5 ) )
 			{
-				case 0: sSpeak = "Please give me a good price as I am so poor."; break;
-				case 1: sSpeak = "I have very little gold so whatever you can give..."; break;
-				case 2: sSpeak = "I have not eaten in days so your gold will surely help."; break;
-				case 3: sSpeak = "Will thou give a poor soul more for these?"; break;
-				case 4: sSpeak = "I have fallen on hard times, will thou be kind?"; break;
-				case 5: sSpeak = "Whatever you can give for these will surely help."; break;
+				case 0: sSpeak = "Por favor, me dê um bom preço, pois sou muito pobre."; break;
+				case 1: sSpeak = "Tenho muito pouco ouro, então qualquer coisa que você possa dar..."; break;
+				case 2: sSpeak = "Não como há dias, então seu ouro certamente ajudará."; break;
+				case 3: sSpeak = "Dará a uma alma pobre mais por isto?"; break;
+				case 4: sSpeak = "Passei por tempos difíceis, será gentil?"; break;
+				case 5: sSpeak = "O que você puder dar por isto certamente ajudará."; break;
 			}
 			return sSpeak;
 		}
@@ -475,34 +475,34 @@ namespace Server.Mobiles
 			if ( m is PlayerMobile ){ act = Utility.Random( 22 ); }
 			switch ( act )
 			{
-				case 0: m.Say("Why did the king go to the dentist? To get his teeth crowned."); break;
-				case 1: m.Say("When a knight in armor was killed in battle, what sign did they put on his grave? Rust in peace!"); break;
-				case 2: m.Say("What do you call a mosquito in a tin suit? A bite in shining armor."); break;
-				case 3: m.Say("There are many castles in the world, but who is strong enough to move one? Any chess player"); break;
-				case 4: m.Say("What king was famous because he spent so many nights at his Round Table writing books? King Author!"); break;
-				case 5: m.Say("How do you find a princess? You follow the foot prince."); break;
-				case 6: m.Say("Why were the early days called the dark ages? Because there were so many knights!"); break;
-				case 7: m.Say("Why did Arthur have a round table? So no one could corner him!"); break;
-				case 8: m.Say("Who invented King Arthur's round table? Sir Cumference!"); break;
-				case 9: m.Say("Why did the knight run about shouting for a tin opener? He had a bee in his suit of armor!"); break;
-				case 10: m.Say("What was Camelot famous for? It's knight life!"); break;
-				case 11: m.Say("What did the toad say when the princess would not kiss him? Warts the matter with you?"); break;
-				case 12: m.Say("What do you call the young royal who keeps falling down? Prince Harming!"); break;
-				case 13: m.Say("What do you call a cat that flies over the castle wall? A cat-a-pult!"); break;
-				case 14: m.Say("What game do the fish play in the moat? Trout or dare!"); break;
-				case 15: m.Say("What did the fish say to the other when the horse fell in the moat? See horse!"); break;
-				case 16: m.Say("What do you call an angry princess just awakened from a long sleep? Slapping beauty!"); break;
-				case 17: m.Say("How did the prince get into the castle when the drawbridge was broken? He used a rowmoat!"); break;
-				case 18: m.Say("How did the girl dragon win the beauty contest? She was the beast of the show!"); break;
-				case 19: m.Say("Why did the dinosaur live longer than the dragon? Because it didn’t smoke!"); break;
-				case 20: m.Say("What did the dragon say when it saw the Knight? 'Not more tinned food!'"); break;
-				case 21: m.Say("What do you do with a green dragon? Wait until it ripens!"); break;
-				case 22: m.PlaySound( m.Female ? 780 : 1051 ); m.Say( "*claps*" ); break;
-				case 23: m.Say( "*bows*" ); m.Animate( 32, 5, 1, true, false, 0 ); break;
-				case 24: m.PlaySound( m.Female ? 794 : 1066 ); m.Say( "*giggles*" ); break;
-				case 25: m.PlaySound( m.Female ? 801 : 1073 ); m.Say( "*laughs*" ); break;
-				case 26: m.PlaySound( 792 ); m.Say( "*sticks out tongue*" ); break;
-				case 27: m.PlaySound( m.Female ? 783 : 1054 ); m.Say( "*woohoo!*" ); break;
+				case 0: m.Say("Por que o rei foi ao dentista? Para coroar seus dentes."); break;
+				case 1: m.Say("Quando um cavaleiro de armadura era morto em batalha, que sinal colocavam em seu túmulo? Ferre em paz!"); break;
+				case 2: m.Say("Como você chama um mosquito em uma armadura? Uma picada em armadura brilhante."); break;
+				case 3: m.Say("Há muitos castelos no mundo, mas quem é forte o suficiente para mover um? Qualquer jogador de xadrez"); break;
+				case 4: m.Say("Qual rei era famoso porque passou tantas noites em sua Mesa Redonda escrevendo livros? Rei Artur!"); break;
+				case 5: m.Say("Como você encontra uma princesa? Você segue o príncipe pé."); break;
+				case 6: m.Say("Por que os primeiros dias eram chamados de idade das trevas? Porque havia tantos cavaleiros!"); break;
+				case 7: m.Say("Por que Artur tinha uma mesa redonda? Para que ninguém pudesse encurralá-lo!"); break;
+				case 8: m.Say("Quem inventou a mesa redonda do Rei Artur? Sir Cumferência!"); break;
+				case 9: m.Say("Por que o cavaleiro correu gritando por um abridor de latas? Ele tinha uma abelha em sua armadura!"); break;
+				case 10: m.Say("Pelo que Camelot era famosa? Por sua vida de cavaleiro!"); break;
+				case 11: m.Say("O que o sapo disse quando a princesa não quis beijá-lo? O que há de verruga com você?"); break;
+				case 12: m.Say("Como você chama o jovem nobre que não para de cair? Príncipe de Queda!"); break;
+				case 13: m.Say("Como você chama um gato que voa sobre o muro do castelo? Um gato-apulto!"); break;
+				case 14: m.Say("Que jogo os peixes jogam no fosso? Verdade ou truta!"); break;
+				case 15: m.Say("O que o peixe disse para o outro quando o cavalo caiu no fosso? Cavalo marinho!"); break;
+				case 16: m.Say("Como você chama uma princesa brava recém-acordada de um longo sono? Bela adormecida à tapas!"); break;
+				case 17: m.Say("Como o príncipe entrou no castelo quando a ponte levadiça quebrou? Ele usou um remosso!"); break;
+				case 18: m.Say("Como a dragão ganhou o concurso de beleza? Ela era a fera do show!"); break;
+				case 19: m.Say("Por que o dinossauro viveu mais que o dragão? Porque não fumava!"); break;
+				case 20: m.Say("O que o dragão disse quando viu o Cavaleiro? 'Não mais comida enlatada!'"); break;
+				case 21: m.Say("O que você faz com um dragão verde? Espera até ele amadurecer!"); break;
+				case 22: m.PlaySound( m.Female ? 780 : 1051 ); m.Say( "*bate palmas*" ); break;
+				case 23: m.Say( "*faz uma reverência*" ); m.Animate( 32, 5, 1, true, false, 0 ); break;
+				case 24: m.PlaySound( m.Female ? 794 : 1066 ); m.Say( "*risadinha*" ); break;
+				case 25: m.PlaySound( m.Female ? 801 : 1073 ); m.Say( "*risos*" ); break;
+				case 26: m.PlaySound( 792 ); m.Say( "*mostra a língua*" ); break;
+				case 27: m.PlaySound( m.Female ? 783 : 1054 ); m.Say( "*uuhu!*" ); break;
 			};
 
 			if ( act < 22 && Utility.RandomBool() )
@@ -791,10 +791,10 @@ namespace Server.Mobiles
 		{
 			switch ( Utility.Random( 4 ))		   
 			{
-				case 0: Say("Leave this place!"); break;
-				case 1: Say("" + defender.Name + ", we have heard of you!"); break;
-				case 2: Say("We have been told to watch for you, " + defender.Name + "!"); break;
-				case 3: Say("Guards, " + defender.Name + " is here!"); break;
+				case 0: Say("Saia deste lugar!"); break;
+				case 1: Say("" + defender.Name + ", nós ouvimos falar de você!"); break;
+				case 2: Say("Nos disseram para ficar de olho em você, " + defender.Name + "!"); break;
+				case 3: Say("Guardas, " + defender.Name + " está aqui!"); break;
 			};
 		}
 
@@ -810,7 +810,7 @@ namespace Server.Mobiles
 
 			if ( !CheckVendorAccess( from ) )
 			{
-				this.Say( "I have no business with you." );
+				this.Say( "Não tenho negócios com você." );
 				return;
 			}
 
@@ -949,13 +949,13 @@ namespace Server.Mobiles
 				}
 
 				if ( this is Sage )
-					SayTo( from, "Have a look, but you cannot buy the priceless research items!" );
+					SayTo( from, "Dê uma olhada, mas não pode comprar os itens de pesquisa inestimáveis!" );
 				else
 					SayTo( from, 500186 ); // Greetings.  Have a look around.
 			}
 
 			if ( inventory < 1 )
-				SayTo( from, "Sorry, but I have nothing for sale right now." );
+				SayTo( from, "Desculpe, mas não tenho nada à venda no momento." );
 		}
 
 		public virtual void SendPacksTo( Mobile from )
@@ -1008,7 +1008,7 @@ namespace Server.Mobiles
 			if ( !CheckVendorAccess( from ) )
 			{
 				//Say( 501522 ); // I shall not treat with scum like thee!
-				this.Say( "I have no business with you." );
+				this.Say( "Não tenho negócios com você." );
 				return;
 			}
 
@@ -1065,7 +1065,7 @@ namespace Server.Mobiles
 				}
 				else
 				{
-					Say( true, "You have nothing I would be interested in." );
+					Say( true, "Voce nao tem nada que eu esteja interessado." );
 				}
 			}
 		}
@@ -1074,13 +1074,13 @@ namespace Server.Mobiles
 		{
 			if ( from.Blessed )
 			{
-				string sSay = "I cannot deal with you while you are in that state.";
+				string sSay = "Não posso negociar com você enquanto estiver nesse estado.";
 				this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sSay, from.NetState);
 				return false;
 			}
 			else if ( IntelligentAction.GetMyEnemies( from, this, false ) )
 			{
-				string sSay = "I don't think I should accept that from you.";
+				string sSay = "Não acho que deveria aceitar isso de você.";
 				this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sSay, from.NetState);
 				return false;
 			}
@@ -1099,7 +1099,7 @@ namespace Server.Mobiles
 						dropped.ItemID = 0x5770;
 					}
 
-					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Let me fix that quiver for you.", from.NetState);
+					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Deixe-me consertar essa aljava para você.", from.NetState);
 					Effects.PlaySound(from.Location, from.Map, 0x55);
 					return false;
 				}
@@ -1164,7 +1164,7 @@ namespace Server.Mobiles
 					dropped.Delete();
 					carpet.Hue = dropped.Hue;
 					from.AddToBackpack( carpet );
-					SayTo(from, "I altered your magic carpet.");
+					SayTo(from, "Eu alterei seu tapete mágico.");
 					Effects.PlaySound(from.Location, from.Map, 0x248);
 				}
 				else if ( dropped is Gold && dropped.Amount == 1000 && ( this is Mapmaker || this is CartographersGuildmaster ) )
@@ -1188,7 +1188,7 @@ namespace Server.Mobiles
 
 					this.CoinPurse += 1000;
 					this.InvalidateProperties();
-					string sMessage = "Thank you. Here is your world map.";
+					string sMessage = "Obrigado. Aqui está seu mapa mundial.";
 					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
 					dropped.Delete();
 					return true;
@@ -1197,23 +1197,23 @@ namespace Server.Mobiles
 							( this is Minter || this is Banker )	)
 				{
 					int nRate = 5;
-					string sCoin = "silver";
-					if ( dropped is DDCopper ){ nRate = 10; sCoin = "copper";}
+					string sCoin = "prata";
+					if ( dropped is DDCopper ){ nRate = 10; sCoin = "cobre";}
 
 					int nCoins = dropped.Amount;
 					int nGold = (int)Math.Floor((decimal)(dropped.Amount / nRate));
 					int nChange = dropped.Amount - ( nGold * nRate );
 
-					string sMessage = "Sorry, you do not have enough here to exchange for even a single gold coin.";
+					string sMessage = "Desculpe, você não tem o suficiente aqui para trocar por uma única moeda de ouro.";
 
 					if ( ( nGold > 0 ) && ( nChange > 0 ) )
 					{
-						sMessage = "Here is " + nGold.ToString() + " gold for you, and " + nChange.ToString() + " " + sCoin + " back in change.";
+						sMessage = "Aqui estão " + nGold.ToString() + " de ouro para você, e " + nChange.ToString() + " " + sCoin + " de troco.";
 						from.AddToBackpack ( new Gold( nGold ) );
 					}
 					else if ( nGold > 0 )
 					{
-						sMessage = "Here is " + nGold.ToString() + " gold for you.";
+						sMessage = "Aqui estão " + nGold.ToString() + " de ouro para você.";
 						from.AddToBackpack ( new Gold( nGold ) );
 					}
 
@@ -1229,7 +1229,7 @@ namespace Server.Mobiles
 				{
 					int nGold = dropped.Amount * 3;
 
-					string sMessage = "Here is " + nGold.ToString() + " gold for you.";
+					string sMessage = "Aqui estão " + nGold.ToString() + " de ouro para você.";
 					from.AddToBackpack ( new Gold( nGold ) );
 
 					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
@@ -1241,7 +1241,7 @@ namespace Server.Mobiles
 				{
 					int nGold = dropped.Amount * 5;
 
-					string sMessage = "Here is " + nGold.ToString() + " gold for you.";
+					string sMessage = "Aqui estão " + nGold.ToString() + " de ouro para você.";
 					from.AddToBackpack ( new Gold( nGold ) );
 
 					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
@@ -1253,7 +1253,7 @@ namespace Server.Mobiles
 				{
 					int nGold = dropped.Amount * 2;
 
-					string sMessage = "Here is " + nGold.ToString() + " gold for you.";
+					string sMessage = "Aqui estão " + nGold.ToString() + " de ouro para você.";
 					from.AddToBackpack ( new Gold( nGold ) );
 
 					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
@@ -1265,7 +1265,7 @@ namespace Server.Mobiles
 				{
 					int nGold = dropped.Amount * 2;
 
-					string sMessage = "Here is " + nGold.ToString() + " gold for you.";
+					string sMessage = "Aqui estão " + nGold.ToString() + " de ouro para você.";
 					from.AddToBackpack ( new Gold( nGold ) );
 
 					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
@@ -1277,7 +1277,7 @@ namespace Server.Mobiles
 				{
 					int nGold = dropped.Amount;
 
-					string sMessage = "Here is " + nGold.ToString() + " gold for you.";
+					string sMessage = "Aqui estão " + nGold.ToString() + " de ouro para você.";
 					from.AddToBackpack ( new Gold( nGold ) );
 
 					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
@@ -1291,14 +1291,14 @@ namespace Server.Mobiles
 					string sMessage = "";
 					switch ( Utility.RandomMinMax( 0, 7 ) )
 					{
-						case 0:	sMessage = "So, this follower is not working out for you?"; break;
-						case 1:	sMessage = "Looking for a replacement henchman eh?"; break;
-						case 2:	sMessage = "Well...this one is looking for fame and fortune."; break;
-						case 3:	sMessage = "Maybe this one will be a better fit in your group."; break;
-						case 4:	sMessage = "Not all relationships work out."; break;
-						case 5:	sMessage = "At you least you parted ways amiably."; break;
-						case 6:	sMessage = "This one has been hanging out around here."; break;
-						case 7:	sMessage = "This one also seeks great treasure.";		break;
+						case 0:	sMessage = "Então, este seguidor não está dando certo para você?"; break;
+						case 1:	sMessage = "Procurando um ajudante substituto, hein?"; break;
+						case 2:	sMessage = "Bem... este aqui está procurando fama e fortuna."; break;
+						case 3:	sMessage = "Talvez este seja mais adequado para o seu grupo."; break;
+						case 4:	sMessage = "Nem todos os relacionamentos dão certo."; break;
+						case 5:	sMessage = "Pelo menos vocês se separaram amigavelmente."; break;
+						case 6:	sMessage = "Este tem ficado por aqui."; break;
+						case 7:	sMessage = "Este também busca grandes tesouros.";		break;
 					}
 					if ( dropped is HenchmanFighterItem )
 					{
@@ -1339,7 +1339,7 @@ namespace Server.Mobiles
 						dropped.Delete();
 						return true;
 					}
-					else { this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "This is not a graveyard! Bury them somewhere else!", from.NetState); }
+					else { this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Isto não é um cemitério! Enterre-os em outro lugar!", from.NetState); }
 				}
 				else if ( dropped is BookBox && ( this is Mage || this is KeeperOfChivalry || this is Witches || this is Necromancer || this is MageGuildmaster ) )
 				{
@@ -1353,7 +1353,7 @@ namespace Server.Mobiles
 						{
 							from.AddToBackpack ( item );
 						}
-					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "The curse has been lifted from the books.", from.NetState);
+					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "A maldição foi removida dos livros.", from.NetState);
 					dropped.Delete();
 					return true;
 				}
@@ -1371,7 +1371,7 @@ namespace Server.Mobiles
 						}
 					string curseName = dropped.Name;
 						if ( curseName == ""){ curseName = "item"; }
-					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "The curse has been lifted from the " + curseName + ".", from.NetState);
+					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "A maldição foi removida do(a) " + curseName + ".", from.NetState);
 					dropped.Delete();
 					return true;
 				}
@@ -1387,7 +1387,7 @@ namespace Server.Mobiles
 						{
 							from.AddToBackpack ( item );
 						}
-					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "The item has been cleaned.", from.NetState);
+					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "O item foi limpo.", from.NetState);
 					dropped.Delete();
 					return true;
 				}
@@ -1403,7 +1403,7 @@ namespace Server.Mobiles
 						{
 							from.AddToBackpack ( item );
 						}
-					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "The weeds have been removed.", from.NetState);
+					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "As ervas daninhas foram removidas.", from.NetState);
 					dropped.Delete();
 					return true;
 				}
@@ -1598,7 +1598,7 @@ namespace Server.Mobiles
 		
 		if (!IsActiveSeller || !buyer.CheckAlive() || !CheckVendorAccess(buyer))
 		{
-			Say("I have no business with you.");
+			Say("Não tenho negócios com você.");
 			return false;
 		}
 
@@ -1672,7 +1672,7 @@ namespace Server.Mobiles
 
 		if (tryGettingArty)
 		{
-			SayTo(buyer, true, "No! Those are research items and not actual artifacts!");
+			SayTo(buyer, true, "Não! Esses são itens de pesquisa e não artefatos reais!");
 			PlaySound(Female ? 802 : 1074);
 			return false;
 		}
@@ -1791,30 +1791,30 @@ namespace Server.Mobiles
 		if (buyer.AccessLevel >= AccessLevel.GameMaster)
 		{
 			SayTo(buyer, true, fullPurchase
-				? "I would not presume to charge thee anything. Here are the goods you requested."
-				: "I would not presume to charge thee anything. Unfortunately, I could not sell you all the goods you requested.");
+				? "Eu não me atreveria a cobrar nada de ti. Aqui estão os bens que solicitaste."
+				: "Eu não me atreveria a cobrar nada de ti. Infelizmente, não pude vender todos os bens que solicitaste.");
 		}
 		else
 		{
 			if (fromPack > 0 && fromBankAmount > 0)
 			{
 				SayTo(buyer, true, fullPurchase
-					? "The total of thy purchase is {0} gold. {1} taken from your backpack and {2} from your bank. My thanks for the patronage."
-					: "The total of thy purchase is {0} gold. {1} taken from your backpack and {2} from your bank. My thanks for the patronage. Unfortunately, I could not sell you all the goods you requested.",
+					? "O total de tua compra é {0} de ouro. {1} retirados da tua mochila e {2} do teu banco. Meus agradecimentos pelo patrocínio."
+					: "O total de tua compra é {0} de ouro. {1} retirados da tua mochila e {2} do teu banco. Meus agradecimentos pelo patrocínio. Infelizmente, não pude vender todos os bens que solicitaste.",
 					totalCost, fromPack, fromBankAmount);
 			}
 			else if (fromBankAmount > 0)
 			{
 				SayTo(buyer, true, fullPurchase
-					? "The total of thy purchase is {0} gold, withdrawn from your bank. My thanks for the patronage."
-					: "The total of thy purchase is {0} gold, withdrawn from your bank. My thanks for the patronage. Unfortunately, I could not sell you all the goods you requested.",
+					? "O total de tua compra é {0} de ouro, retirados do teu banco. Meus agradecimentos pelo patrocínio."
+					: "O total de tua compra é {0} de ouro, retirados do teu banco. Meus agradecimentos pelo patrocínio. Infelizmente, não pude vender todos os bens que solicitaste.",
 					totalCost);
 			}
 			else
 			{
 				SayTo(buyer, true, fullPurchase
-					? "The total of thy purchase is {0} gold, taken from your backpack. My thanks for the patronage."
-					: "The total of thy purchase is {0} gold, taken from your backpack. My thanks for the patronage. Unfortunately, I could not sell you all the goods you requested.",
+					? "O total de tua compra é {0} de ouro, retirados da tua mochila. Meus agradecimentos pelo patrocínio."
+					: "O total de tua compra é {0} de ouro, retirados da tua mochila. Meus agradecimentos pelo patrocínio. Infelizmente, não pude vender todos os bens que solicitaste.",
 					totalCost);
 			}
 		}
@@ -1875,7 +1875,7 @@ namespace Server.Mobiles
 
 			if ( !CheckVendorAccess( seller ) )
 			{
-				this.Say( "I have no business with you." );
+				this.Say( "Não tenho negócios com você." );
 				return false;
 			}
 
@@ -1911,12 +1911,12 @@ namespace Server.Mobiles
 
 			if ( Sold > MaxSell )
 			{
-				SayTo( seller, true, "You may only sell {0} items at a time!", MaxSell );
+				SayTo( seller, true, "Você pode vender apenas {0} itens por vez!", MaxSell );
 				return false;
 			}
-			else if ( SoldPrice > this.CoinPurse )
+			else if ( !MySettings.S_RichMerchants && SoldPrice > this.CoinPurse && !MySettings.S_UseRemainingGold )
 			{
-				SayTo( seller, true, "Sorry, but I only have {0} gold to barter with.", this.CoinPurse );
+				SayTo( seller, true, "Desculpe, mas só tenho {0} de ouro para negociar.", this.CoinPurse );
 				return false;
 			}
 			else if ( Sold == 0 )
@@ -1928,10 +1928,10 @@ namespace Server.Mobiles
 
 			// Calculate maximum affordable amount if using remaining gold
 			int maxAffordableGold = SoldPrice;
-			if ( SoldPrice > this.CoinPurse )
+			if ( !MySettings.S_RichMerchants && SoldPrice > this.CoinPurse && MySettings.S_UseRemainingGold )
 			{
 				maxAffordableGold = this.CoinPurse;
-				SayTo( seller, true, "I give you my remaining {0} gold.", this.CoinPurse );
+				SayTo( seller, true, "Eu lhe dou meu {0} de ouro restante.", this.CoinPurse );
 			}
 
 			bool isBegging = BeggingPose(seller) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType());
@@ -2087,7 +2087,7 @@ namespace Server.Mobiles
 			if ( GetPlayerInfo.GetNPCGuild( this ) != null )
 				list.Add( 1072172, "{0}\t{1}", "51C273", GetPlayerInfo.GetNPCGuild( this ) );
 
-			if ( IsActiveBuyer && CoinPurse > 0 )
+			if ( IsActiveBuyer && CoinPurse > 0 && !MySettings.S_RichMerchants )
 				list.Add( 1072173, "{0}\t{1}", "FBFF00", "" + CoinPurse + " Gold" );
 		}
 
@@ -2145,7 +2145,7 @@ namespace Server.Mobiles
 			{
 				bool buysThings = true;
 
-				if ( CoinPurse < 1 )
+				if ( CoinPurse < 1 && !MySettings.S_RichMerchants )
 					buysThings = false;
 				else if ( !IsActiveBuyer )
 					buysThings = false;
@@ -2259,14 +2259,14 @@ namespace Server.Mobiles
 
 			int cost = 20;
 
-			if ( BeggingPose(from) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) ) // LET US SEE IF THEY ARE BEGGING
+			if ( BeggingPose(from) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) ) // VAMOS VER SE ESTÃO IMPLORANDO
 			{
 				cost = cost - (int)( ( from.Skills[SkillName.Begging].Value * 0.005 ) * cost ); if ( cost < 1 ){ cost = 1; }
-				SayTo(from, "Since you are begging, which item shall I recharge, for " + cost.ToString() + " gold per circle charge?");
+				SayTo(from, "Já que você está implorando, qual item devo recarregar, por " + cost.ToString() + " de ouro por carga de círculo?");
 			}
-			else { SayTo(from, "Which item shall I recharge, for " + cost.ToString() + " gold per circle charge?"); }
+			else { SayTo(from, "Qual item devo recarregar, por " + cost.ToString() + " de ouro por carga de círculo?"); }
 
-			from.SendMessage( "" + cost + " gold per charge for first circle and " + cost*8 + " gold per charge for eighth circle." );
+			from.SendMessage( "" + cost + " de ouro por carga para o primeiro círculo e " + cost*8 + " de ouro por carga para o oitavo círculo." );
 
             from.Target = new ChargeTarget( this, cost );
         }
@@ -2278,12 +2278,12 @@ namespace Server.Mobiles
 
 			int idCost = 200;
 
-			if ( BeggingPose(from) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) ) // LET US SEE IF THEY ARE BEGGING
+			if ( BeggingPose(from) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) ) // VAMOS VER SE ESTÃO IMPLORANDO
 			{
 				idCost = idCost - (int)( ( from.Skills[SkillName.Begging].Value * 0.005 ) * idCost ); if ( idCost < 1 ){ idCost = 1; }
-				SayTo(from, "Since you are begging, which item shall I examine, for " + idCost.ToString() + " gold?");
+				SayTo(from, "Já que você está implorando, qual item devo examinar, por " + idCost.ToString() + " de ouro?");
 			}
-			else { SayTo(from, "Which item shall I examine, for " + idCost.ToString() + " gold?"); }
+			else { SayTo(from, "Qual item devo examinar, por " + idCost.ToString() + " de ouro?"); }
 
             from.Target = new IDTarget(this);
         }
@@ -2295,16 +2295,16 @@ namespace Server.Mobiles
 
 			int cost = 10;
 
-			string pnt = "durablity";
+			string pnt = "durabilidade";
 			if ( this is Bard || this is BardGuildmaster )
-				pnt = "use";
+				pnt = "uso";
 
-			if ( BeggingPose(from) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) ) // LET US SEE IF THEY ARE BEGGING
+			if ( BeggingPose(from) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) ) // VAMOS VER SE ESTÃO IMPLORANDO
 			{
 				cost = cost - (int)( ( from.Skills[SkillName.Begging].Value * 0.005 ) * cost ); if ( cost < 1 ){ cost = 1; }
-				SayTo(from, "Since you are begging, do you still want to hire me to repair something...at least " + cost.ToString() + " gold per " + pnt + "?");
+				SayTo(from, "Já que você está implorando, você ainda quer me contratar para consertar algo...pelo menos " + cost.ToString() + " de ouro por " + pnt + "?");
 			}
-			else { SayTo(from, "You want to hire me to repair what at " + cost.ToString() + " gold per " + pnt + "?"); }
+			else { SayTo(from, "Você quer me contratar para consertar o quê por " + cost.ToString() + " de ouro por " + pnt + "?"); }
 
             from.Target = new RepairTarget( this, cost );
         }
@@ -2345,7 +2345,7 @@ namespace Server.Mobiles
 
 					if ( worn < 1 )
 					{
-						m_Vendor.SayTo( from, "That does not need to be repaired." );
+						m_Vendor.SayTo( from, "Isso não precisa ser consertado." );
 						return;
 					}
 
@@ -2363,20 +2363,20 @@ namespace Server.Mobiles
 
 					if ( spent < 1 )
 					{
-						m_Vendor.SayTo( from, "You will need to bring more gold if you want me to repair that." );
+						m_Vendor.SayTo( from, "Você precisará trazer mais ouro se quiser que eu conserte isso." );
 					}
 					else
 					{
 						if ( repaired < 1 )
 						{
-							m_Vendor.SayTo( from, "I cannot repair that." );
+							m_Vendor.SayTo( from, "Não posso consertar isso." );
 							return;
 						}
 
 						if ( repaired == 1 )
-							m_Vendor.SayTo( from, "I repaired it 1 time for " + spent + " gold." );
+							m_Vendor.SayTo( from, "Consertei 1 vez por " + spent + " de ouro." );
 						else
-							m_Vendor.SayTo( from, "I repaired it " + repaired + " times for " + spent + " gold." );
+							m_Vendor.SayTo( from, "Consertei " + repaired + " vezes por " + spent + " de ouro." );
 
 						if ( rep is BaseWeapon )
 						{
@@ -2400,7 +2400,7 @@ namespace Server.Mobiles
 
 						m_Vendor.CoinPurse += spent;
 						m_Vendor.InvalidateProperties();
-						from.SendMessage( String.Format( "You pay {0} gold.", spent ) );
+						from.SendMessage( String.Format( "Você pagou {0} de ouro.", spent ) );
 						if ( BeggingPose( from ) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) )
 							Titles.AwardKarma( from, -BeggingKarma( from ), true );
 							// DO ANY KARMA LOSS
@@ -2408,7 +2408,7 @@ namespace Server.Mobiles
 
 				}
 				else
-					m_Vendor.SayTo( from, "I cannot repair that." );
+					m_Vendor.SayTo( from, "Não posso consertar isso." );
             }
         }
 
@@ -2422,7 +2422,7 @@ namespace Server.Mobiles
 				( item is BaseInstrument && ((BaseInstrument)item).UsesRemaining >= ((BaseInstrument)item).InitMinUses ) 
 			)
 			{
-				m.SayTo( from, "That does not need to be repaired." );
+				m.SayTo( from, "Isso não precisa de reparos." );
 				return false;
 			}
 
@@ -2469,7 +2469,7 @@ namespace Server.Mobiles
 				repair = true;
 
 			if ( !repair )
-				m.SayTo( from, "I cannot repair that." );
+				m.SayTo( from, "Não posso consertar isso." );
 
 			return repair;
 		}
@@ -2502,43 +2502,43 @@ namespace Server.Mobiles
 
 						if ( WhatIsIt.ScrollIntelligence == 0 )
 						{
-							m_Vendor.SayTo( from, "That was already deciphered by someone." );
+							m_Vendor.SayTo( from, "Isso já foi decifrado por alguém." );
 						}
 						else if (packs.ConsumeTotal(typeof(Gold), toConsume))
 						{
-							if ( WhatIsIt.ScrollIntelligence >= 80 ){ WhatIsIt.Name = "diabolically coded parchment"; }
-							else if ( WhatIsIt.ScrollIntelligence >= 70 ){ WhatIsIt.Name = "ingeniously coded parchment"; }
-							else if ( WhatIsIt.ScrollIntelligence >= 60 ){ WhatIsIt.Name = "deviously coded parchment"; }
-							else if ( WhatIsIt.ScrollIntelligence >= 50 ){ WhatIsIt.Name = "cleverly coded parchment"; }
-							else if ( WhatIsIt.ScrollIntelligence >= 40 ){ WhatIsIt.Name = "adeptly coded parchment"; }
-							else if ( WhatIsIt.ScrollIntelligence >= 30 ){ WhatIsIt.Name = "expertly coded parchment"; }
-							else { WhatIsIt.Name = "plainly coded parchment"; }
+							if ( WhatIsIt.ScrollIntelligence >= 80 ){ WhatIsIt.Name = "pergaminho codificado diabolicamente"; }
+							else if ( WhatIsIt.ScrollIntelligence >= 70 ){ WhatIsIt.Name = "pergaminho codificado genialmente"; }
+							else if ( WhatIsIt.ScrollIntelligence >= 60 ){ WhatIsIt.Name = "pergaminho codificado traiçoeiramente"; }
+							else if ( WhatIsIt.ScrollIntelligence >= 50 ){ WhatIsIt.Name = "pergaminho codificado inteligentemente"; }
+							else if ( WhatIsIt.ScrollIntelligence >= 40 ){ WhatIsIt.Name = "pergaminho codificado habilmente"; }
+							else if ( WhatIsIt.ScrollIntelligence >= 30 ){ WhatIsIt.Name = "pergaminho codificado especializadamente"; }
+							else { WhatIsIt.Name = "pergaminho codificado simplesmente"; }
 
 							WhatIsIt.ScrollIntelligence = 0;
 							WhatIsIt.InvalidateProperties();
-							from.SendMessage(String.Format("You pay {0} gold.", toConsume));
-							m_Vendor.SayTo(from, "Let me show you what this reads...");
-							WhatIsIt.ScrollSolved = "Deciphered by " + m_Vendor.Name + " the Scribe";
+							from.SendMessage(String.Format("Você pagou {0} de ouro.", toConsume));
+							m_Vendor.SayTo(from, "Deixe-me mostrar-lhe o que isto diz...");
+							WhatIsIt.ScrollSolved = "Decifrado por " + m_Vendor.Name + " o Escriba";
 							from.PlaySound( 0x249 );
 							WhatIsIt.InvalidateProperties();
 						}
 						else
 						{
-							m_Vendor.SayTo(from, "It would cost you {0} gold to have that deciphered.", toConsume);
-							from.SendMessage("You do not have enough gold.");
+							m_Vendor.SayTo(from, "Custaria {0} de ouro para ter isso decifrado.", toConsume);
+							from.SendMessage("Você não tem ouro suficiente.");
 						}
 					}
 					else if ( examine.CoinPrice > 0 && examine.NotIdentified && RelicFunctions.VendorCanID( examine.NotIDSource, m_Vendor ) )
 					{
 						if ( examine.NotIDSource == Identity.None )
 						{
-							m_Vendor.SayTo(from, "I cannot really tell you much about that." );
+							m_Vendor.SayTo(from, "Não posso realmente dizer muito sobre isso." );
 							return;
 						}
 
 						Container packs = from.Backpack;
 
-						if ( BeggingPose(from) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) ) // LET US SEE IF THEY ARE BEGGING
+						if ( BeggingPose(from) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) ) // VAMOS VER SE ESTÃO IMPLORANDO
 							nCost = nCost - (int)( ( from.Skills[SkillName.Begging].Value * 0.005 ) * nCost ); if ( nCost < 1 ){ nCost = 1; }
 
 						int toConsume = nCost;
@@ -2549,9 +2549,9 @@ namespace Server.Mobiles
 								RelicFunctions.IDItem( m_Vendor, from, examine, SkillName.Alchemy );
 							else
 							{
-								from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+								from.SendMessage(String.Format("Você pagou {0} de ouro.", toConsume));
 								examine.NotIdentified = false;
-								m_Vendor.SayTo(from, "That is worth about " + examine.CoinPrice + " gold." );
+								m_Vendor.SayTo(from, "Isso vale cerca de " + examine.CoinPrice + " de ouro." );
 							}
 
 							m_Vendor.CoinPurse += toConsume;
@@ -2563,17 +2563,17 @@ namespace Server.Mobiles
 						}
 						else
 						{
-							m_Vendor.SayTo(from, "It would cost you {0} gold for me to examine that.", toConsume);
-							from.SendMessage("You do not have enough gold.");
+							m_Vendor.SayTo(from, "Custaria {0} de ouro para eu examinar isso.", toConsume);
+							from.SendMessage("Você não tem ouro suficiente.");
 						}
 					}
 					else
 					{
-						m_Vendor.SayTo(from, "I cannot identify that.");
+						m_Vendor.SayTo(from, "Não posso identificar isso.");
 					}
 				}
 				else
-					m_Vendor.SayTo(from, "I cannot identify that.");
+					m_Vendor.SayTo(from, "Não posso identificar isso.");
             }
         }
 
@@ -2592,7 +2592,7 @@ namespace Server.Mobiles
 			{
 				if ( targeted is MagicRuneBag )
 				{
-					m_Vendor.SayTo( from, "Place some gold in the bag and I will charge it by that amount." );
+					m_Vendor.SayTo( from, "Coloque algum ouro na bolsa e eu a recarregarei por esse valor." );
 					return;
 				}
 				else if ( targeted is Item && ((Item)targeted).Enchanted != MagicSpell.None && ((Item)targeted).EnchantUsesMax > 0 )
@@ -2608,7 +2608,7 @@ namespace Server.Mobiles
 
 					if ( worn < 1 )
 					{
-						m_Vendor.SayTo( from, "That does not require my services." );
+						m_Vendor.SayTo( from, "Isso não requer meus serviços." );
 						return;
 					}
 
@@ -2629,20 +2629,20 @@ namespace Server.Mobiles
 
 					if ( spent < 1 )
 					{
-						m_Vendor.SayTo( from, "You will need to bring more gold if you want me to recharge that." );
+						m_Vendor.SayTo( from, "Você precisará trazer mais ouro se quiser que eu recarregue isso." );
 					}
 					else
 					{
 						if ( repaired < 1 )
 						{
-							m_Vendor.SayTo( from, "I cannot recharge that." );
+							m_Vendor.SayTo( from, "Não posso recarregar isso." );
 							return;
 						}
 
 						if ( repaired == 1 )
-							m_Vendor.SayTo( from, "I recharged it 1 time for " + spent + " gold." );
+							m_Vendor.SayTo( from, "Recarreguei 1 vez por " + spent + " de ouro." );
 						else
-							m_Vendor.SayTo( from, "I recharged it " + repaired + " times for " + spent + " gold." );
+							m_Vendor.SayTo( from, "Recarreguei " + repaired + " vezes por " + spent + " de ouro." );
 
 						rep.EnchantUses += repaired;
                         Effects.PlaySound(from.Location, from.Map, 0x5C1);
@@ -2650,14 +2650,14 @@ namespace Server.Mobiles
 						m_Vendor.CoinPurse += spent;
 						m_Vendor.InvalidateProperties();
 
-						from.SendMessage( String.Format( "You pay {0} gold.", spent ) );
+						from.SendMessage( String.Format( "Você pagou {0} de ouro.", spent ) );
 						if ( BeggingPose( from ) > 0 && !(typeof( PlayerVendor ) == this.GetType()) && !(typeof( PlayerBarkeeper ) == this.GetType()) )
 							Titles.AwardKarma( from, -BeggingKarma( from ), true );
 							// DO ANY KARMA LOSS
 					}
 				}
 				else
-					m_Vendor.SayTo(from, "That does not require my services.");
+					m_Vendor.SayTo(from, "Isso não requer meus serviços.");
             }
         }
 	}
@@ -2791,10 +2791,10 @@ namespace Server.ContextMenus
 			if ( m_Vendor.BankBox.TotalItems > 0 )
 			{
 				m_From.SendGump( new BlackMarketGump( m_Vendor, m_From, null, 1, 0 ) );
-				m_Vendor.SayTo( m_From, "Here are some special items I have." );
+				m_Vendor.SayTo( m_From, "Aqui estão alguns itens especiais que tenho." );
 			}
 			else
-				m_Vendor.SayTo( m_From, "Sorry, but I have nothing available." );
+				m_Vendor.SayTo( m_From, "Desculpe, mas não tenho nada disponível." );
 
 		}
 	}

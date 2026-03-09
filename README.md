@@ -1,16 +1,54 @@
-# Efellen
+# Secrets of Sosaria
 
 For instructions, see the [manual](Docs/Manual.md).
 
-This is a rewrite of Secrets of Sosaria, focused on medieval fantasy and a general increase in difficulty. There are many new dungeons and perils, and many new systems to master. 
+## Vision Statement
 
-All artifact weapons have unique and interesting abilities, many enemies have been tweaked and made more dangerous, and the land itself is more hostile to adventurers that dare to brave it. 
+Secrets of Sosaria is an enhanced fork of the Ruins & Riches (later continued
+as Adventurers of Akalabeth) project. We aim to continue the tradition of this
+project while also introducing improvements and additional content where we
+feel it would enhance the experience. Our main goals are as follows:
 
-It was build for experienced rnr/aoa/sos players, or to those brave enough to face it. Virtually every aspect of the game has been touched in some way, some systems have been retired, some have been altered for a more streamlined experience. It's a constant work in progress that aims to create a less bloated and more dnd-focused and internaly consistent experience. 
+### Short-Term Goals
 
-To play, you will need the Client [found here](https://drive.google.com/file/d/1cMoSQilGKJOanFro-OonOFza1m482lTx/view). The client comes with the default IP of our dedicated multiplayer setting. If you want to play offline, you need to open the settings file and change the ip to 127.0.0.1 (or whatever you are using locally).
+- Preservation and continuation of the core Ruins & Riches/Adventurers of
+  Akalabeth experience. The "core experience" includes basic gameplay, game
+  world setting, and lore.
+- Fixing long-standing bugs.
+- Fixing inconsistencies with how parts of the game function, especially when
+  that affects player experience.
+- Improvements to game systems, especially where we can increase the appeal of
+  interacting with ones that weren't fully fleshed out, or which were made to
+  feel redundant by other aspects of the game.
+- Identifying and reworking instances of "hostile design" that only provide
+  tedium to the player instead of a sense of accomplishment.
 
-To host your own server, you will need to download the server files found in this repository. Click the green 'Code' button in this page and download the zip.  Once the download finishes, unzip it in your C drive root and run the world.exe file. The first run will build the entire world, so it might take a while depending on your system. It will also prompt you to create the admin account. Take note of the credentials you provide to it. 
+### Long-Term Goals
 
-Once the world has been generated, login with the admin account and run [buildworld once to populate the game world. 
+- The introduction of new content that fits the aesthetic and themes of the
+  game world.
 
+### Target Audience
+
+The target audience is new players who are interested in an experience that
+takes its inspiration from tabletop roleplaying games as well as classic
+computer RPGs of the 1980s and 1990s. Additionally, it is intended for former
+players of Ruins & Riches and any of its previous forks who would like to play
+something further refined as a more streamlined, player-friendly, bugfixed and,
+eventually, more content-rich version of the game that they've come to love.
+
+### Why Choose Secrets of Sosaria?
+
+The source for our world package is freely available on GitHub and we are open
+to taking suggestions from the community and potentially implementing them, so
+long as they align with our vision. We frequently update the game, and we have
+a friendly and growing community of players both on our live server
+(Multiverset) as well as those who play their own personal solo servers.
+
+### Conclusion
+
+We seek to honor the legacy of the original developers and caretakers of this
+game while also making it a more engaging, cohesive, and most importantly fun
+experience for all. While we are just one fork among many of this project, we
+wish to provide the best possible user experience through utilizing the methods
+outlined in our goals.

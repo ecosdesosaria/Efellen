@@ -51,9 +51,9 @@ namespace Server.Misc
             string time = ((int)(henchman.Fame/5)).ToString();
             string bandages = henchman.Hunger.ToString();
             if (henchman is HenchmanMonster)
-                henchman.Say("Have " + bandages + " bandages. Will stay for " + time + " minutes.");
+		henchman.Say("Tenho " + bandages + " bandagens. Ficarei por " + time + " minutos.");
             else
-                henchman.Say("I have " + bandages + " bandages. I will travel with thee for " + time + " minutes.");
+		henchman.Say("Tenho " + bandages + " bandagens. Viajarei contigo por " + time + " minutos.");
         }
 
 		public static void DismountHenchman( Mobile from )
@@ -160,19 +160,19 @@ namespace Server.Misc
 						{
 							switch ( Utility.Random( 2 ) )		   
 							{
-								case 0: from.Say("There is not enough reward in this for me."); break;
-								case 1: from.Say("If you hear stories of riches, come and get me."); break;
+								case 0: from.Say("Não há recompensa suficiente nisso para mim."); break;
+								case 1: from.Say("Se você ouvir histórias de riquezas, venha me buscar."); break;
 							}
 						}
 						else
 						{
 							switch ( Utility.Random( 5 ) )		   
 							{
-								case 0: from.Say("Sorry, but there is not enough reward on this journey for me."); break;
-								case 1: from.Say("I think I will head back to town and get a drink."); break;
-								case 2: from.Say("The risk is not worth the little reward I am getting."); break;
-								case 3: from.Say("Come and find me later when you have a quest for riches."); break;
-								case 4: from.Say("If you hear of any rumors of gold, come and get me."); break;
+								case 0: from.Say("Desculpe, mas não há recompensa suficiente nesta jornada para mim."); break;
+								case 1: from.Say("Acho que vou voltar para a cidade e tomar uma bebida."); break;
+								case 2: from.Say("O risco não vale a pequena recompensa que estou recebendo."); break;
+								case 3: from.Say("Venha me encontrar mais tarde quando tiver uma missão por riquezas."); break;
+								case 4: from.Say("Se você ouvir qualquer rumor de ouro, venha me buscar."); break;
 							}
 						}
 						GoAway = true;
@@ -183,19 +183,19 @@ namespace Server.Misc
 						{
 							switch ( Utility.Random( 2 ) )		   
 							{
-								case 0: from.Say("I will leave soon if we don't find treasure."); break;
-								case 1: from.Say("You said there were riches, but I don't see it."); break;
+								case 0: from.Say("Vou embora em breve se não encontrarmos tesouro."); break;
+								case 1: from.Say("Você disse que havia riquezas, mas não estou vendo."); break;
 							}
 						}
 						else
 						{
 							switch ( Utility.Random( 5 ))		   
 							{
-								case 0: from.Say("I will have to leave soon if we don't find some treasure."); break;
-								case 1: from.Say("I feel this quest is a dead end and may leave soon."); break;
-								case 2: from.Say("This lack of treasure is not what I came along for."); break;
-								case 3: from.Say("You promised riches, but I fear there is none."); break;
-								case 4: from.Say("What are we looking for? It is obviously not treasure."); break;
+									case 0: from.Say("Vou ter que ir embora em breve se não encontrarmos algum tesouro."); break;
+									case 1: from.Say("Sinto que esta missão é um beco sem saída e posso ir embora em breve."); break;
+									case 2: from.Say("Esta falta de tesouro não é pelo que eu vim."); break;
+									case 3: from.Say("Você prometeu riquezas, mas receio que não haja nenhuma."); break;
+									case 4: from.Say("O que estamos procurando? Obviamente não é tesouro."); break;
 							}
 						}
 					}
@@ -254,41 +254,41 @@ namespace Server.Misc
 			{
 				switch ( Utility.Random( 74 ))		   
 				{
-					case 0: from.Say("Time to die!"); break;
-					case 1: from.Say("I will send you to hell!"); break;
-					case 2: from.Say("Your life ends here!"); break;
-					case 3: from.Say("You are no match for me!"); break;
-					case 4: from.Say("Prepare to die fool!"); break;
-					case 5: from.Say("Taste my wrath and my blade!"); break;
-					case 6: from.Say("Yield to me!"); break;
-					case 7: from.Say("I sentence you to death!"); break;
-					case 8: from.PlaySound( from.Female ? 793 : 1065 ); from.Say( "*gasp*" ); break;
-					case 9: from.PlaySound( from.Female ? 0x338 : 0x44A ); from.Say( "*growls*" ); break;
-					case 10: from.PlaySound( from.Female ? 797 : 1069 ); from.Say( "Hey!" ); break;
-					case 11: from.PlaySound( from.Female ? 821 : 1095 ); from.Say( "*whistles*" ); break;
-					case 12: from.PlaySound( from.Female ? 783 : 1054 ); from.Say( "Woohoo!" ); break;
-					case 13: from.PlaySound( from.Female ? 823 : 1097 ); from.Say( "Yea!" ); break;
-					case 14: from.PlaySound( from.Female ? 0x31C : 0x42C ); from.Say( "*yells*" ); break;
-					case 15: from.Say("I'll skin you alive!"); break;
-					case 16: from.Say("You won't leave this place alive!"); break;
-					case 17: from.Say("You've made your last mistake!"); break;
-					case 18: from.Say("This is where your journey ends!"); break;
-					case 19: from.Say("I was born for this moment!"); break;
-					case 20: from.Say("I hope you are at peace with your gods!"); break;
-					case 21: from.Say("Your screams will echo in the void!"); break;
-					case 22: from.Say("I shall not falter!"); break;
-					case 23: from.Say("I will not be the one to turn away."); break;
-					case 24: from.Say("You should have run when you had the chance!"); break;
-					case 28: from.Say("You're just another corpse to me!"); break;
-					case 29: from.Say("I'll bathe in your blood!"); break;
-					case 30: from.Say("Is that all you've got?"); break;
-					case 31: from.Say("To the Underworld with you!"); break;
-					case 32: from.Say("Come on then, let's dance!"); break;
-					case 33: from.Say("One swing, one corpse."); break;
-					case 34: from.Say("You picked the wrong fight!"); break;
-					case 35: from.Say("Yield... Of fall!"); break;
-					case 36: from.Say("Die with some dignity, will you?"); break;
-					case 37: from.Say("Steel answers only to courage!"); break;
+					case 0: from.Say("Hora de morrer!"); break;
+					case 1: from.Say("Vou te mandar para o inferno!"); break;
+					case 2: from.Say("Sua vida termina aqui!"); break;
+					case 3: from.Say("Você não é páreo para mim!"); break;
+					case 4: from.Say("Prepare-se para morrer, tolo!"); break;
+					case 5: from.Say("Sinta minha ira e minha lâmina!"); break;
+					case 6: from.Say("Renda-se a mim!"); break;
+					case 7: from.Say("Eu te sentencio à morte!"); break;
+					case 8: from.PlaySound( from.Female ? 793 : 1065 ); from.Say( "*suspiro*" ); break;
+					case 9: from.PlaySound( from.Female ? 0x338 : 0x44A ); from.Say( "*rosna*" ); break;
+					case 10: from.PlaySound( from.Female ? 797 : 1069 ); from.Say( "Ei!" ); break;
+					case 11: from.PlaySound( from.Female ? 821 : 1095 ); from.Say( "*assobia*" ); break;
+					case 12: from.PlaySound( from.Female ? 783 : 1054 ); from.Say( "Uhuu!" ); break;
+					case 13: from.PlaySound( from.Female ? 823 : 1097 ); from.Say( "Isso!" ); break;
+					case 14: from.PlaySound( from.Female ? 0x31C : 0x42C ); from.Say( "*grita*" ); break;
+					case 15: from.Say("Vou te esfolar vivo!"); break;
+					case 16: from.Say("Você não sairá daqui vivo!"); break;
+					case 17: from.Say("Você cometeu seu último erro!"); break;
+					case 18: from.Say("Aqui é onde sua jornada termina!"); break;
+					case 19: from.Say("Eu nasci para este momento!"); break;
+					case 20: from.Say("Espero que esteja em paz com seus deuses!"); break;
+					case 21: from.Say("Seus gritos ecoarão no vazio!"); break;
+					case 22: from.Say("Não vacilarei!"); break;
+					case 23: from.Say("Não serei eu quem vai recuar."); break;
+					case 24: from.Say("Você deveria ter fugido quando teve chance!"); break;
+					case 28: from.Say("Você é só mais um cadáver para mim!"); break;
+					case 29: from.Say("Vou me banhar em seu sangue!"); break;
+					case 30: from.Say("Isso é tudo que você tem?"); break;
+					case 31: from.Say("Para o Mundo Inferior com você!"); break;
+					case 32: from.Say("Venha então, vamos dançar!"); break;
+					case 33: from.Say("Um golpe, um cadáver."); break;
+					case 34: from.Say("Você escolheu a briga errada!"); break;
+					case 35: from.Say("Renda-se... Ou caia!"); break;
+					case 36: from.Say("Morra com alguma dignidade, pode ser?"); break;
+					case 37: from.Say("O aço só responde à coragem!"); break;
 				}
 			}
 			((BaseCreature)from).Loyalty = 100;
@@ -301,41 +301,41 @@ namespace Server.Misc
 			{
 				switch ( Utility.Random( 68 ))		   
 				{
-					case 0: from.Say("Time to die!"); break;
-					case 1: from.Say("I will send you to hell!"); break;
-					case 2: from.Say("Your life ends here!"); break;
-					case 3: from.Say("You are no match for me!"); break;
-					case 4: from.Say("Prepare to die fool!"); break;
-					case 5: from.Say("Taste my wrath and my blade!"); break;
-					case 6: from.Say("Yield to me!"); break;
-					case 7: from.Say("I sentence you to death!"); break;
-					case 8: from.PlaySound( from.Female ? 793 : 1065 ); from.Say( "*gasp*" ); break;
-					case 9: from.PlaySound( from.Female ? 0x338 : 0x44A ); from.Say( "*growls*" ); break;
-					case 10: from.PlaySound( from.Female ? 797 : 1069 ); from.Say( "Hey!" ); break;
-					case 11: from.PlaySound( from.Female ? 821 : 1095 ); from.Say( "*whistles*" ); break;
-					case 12: from.PlaySound( from.Female ? 783 : 1054 ); from.Say( "Woohoo!" ); break;
-					case 13: from.PlaySound( from.Female ? 823 : 1097 ); from.Say( "Yea!" ); break;
-					case 14: from.PlaySound( from.Female ? 0x31C : 0x42C ); from.Say( "*yells*" ); break;
-					case 15: from.Say("Nice trick. Got another one?"); break;
-					case 16: from.Say("I've taken bigger spells."); break;
-					case 17: from.Say("Is that the best your magic can do?"); break;
-					case 18: from.Say("Parlor tricks won't win this fight."); break;
-					case 19: from.Say("You will regret throwing your spells at me!"); break;
-					case 20: from.Say("You dare cast at me?"); break;
-					case 21: from.Say("That spell... almost impressive."); break;
-					case 22: from.Say("A spell? You'll need more than that."); break;
-					case 23: from.Say("That tickled more than it hurt."); break;
-					case 24: from.Say("Try again, conjurer."); break;
-					case 25: from.Say("I'll rip through your wards and glyphs."); break;
-					case 26: from.Say("Nice trick. Got another one?"); break;
-					case 27: from.Say("Spells won't save you from my wrath."); break;
-					case 28: from.Say("Magic... I hate magic."); break;
-					case 29: from.Say("Keep casting, I'll keep swinging."); break;
-					case 30: from.Say("You'll need a stronger spell than that."); break;
-					case 31: from.Say("Is that the best your magic can do?"); break;
-					case 32: from.Say("A spark and a puff of smoke. Impressive."); break;
-					case 33: from.Say("I smell burnt hair. You better pray is not mine."); break;
-					case 34: from.Say("A little zap won'’'t stop me."); break;
+					case 0: from.Say("Hora de morrer!"); break;
+					case 1: from.Say("Vou te mandar para o inferno!"); break;
+					case 2: from.Say("Sua vida termina aqui!"); break;
+					case 3: from.Say("Você não é páreo para mim!"); break;
+					case 4: from.Say("Prepare-se para morrer, tolo!"); break;
+					case 5: from.Say("Sinta minha ira e minha lâmina!"); break;
+					case 6: from.Say("Renda-se a mim!"); break;
+					case 7: from.Say("Eu te sentencio à morte!"); break;
+					case 8: from.PlaySound( from.Female ? 793 : 1065 ); from.Say( "*suspiro*" ); break;
+					case 9: from.PlaySound( from.Female ? 0x338 : 0x44A ); from.Say( "*rosna*" ); break;
+					case 10: from.PlaySound( from.Female ? 797 : 1069 ); from.Say( "Ei!" ); break;
+					case 11: from.PlaySound( from.Female ? 821 : 1095 ); from.Say( "*assobia*" ); break;
+					case 12: from.PlaySound( from.Female ? 783 : 1054 ); from.Say( "Uhuu!" ); break;
+					case 13: from.PlaySound( from.Female ? 823 : 1097 ); from.Say( "Isso!" ); break;
+					case 14: from.PlaySound( from.Female ? 0x31C : 0x42C ); from.Say( "*grita*" ); break;
+					case 15: from.Say("Belo truque. Tem outro?"); break;
+					case 16: from.Say("Já levei feitiços maiores."); break;
+					case 17: from.Say("Isso é o melhor que sua magia pode fazer?"); break;
+					case 18: from.Say("Truques de salão não vencerão esta luta."); break;
+					case 19: from.Say("Você se arrependerá de lançar feitiços em mim!"); break;
+					case 20: from.Say("Você ousa conjurar em mim?"); break;
+					case 21: from.Say("Aquele feitiço... quase impressionante."); break;
+					case 22: from.Say("Um feitiço? Você precisará de mais que isso."); break;
+					case 23: from.Say("Isso fez mais cócegas do que doeu."); break;
+					case 24: from.Say("Tente novamente, conjurador."); break;
+					case 25: from.Say("Vou atravessar suas barreiras e glifos."); break;
+					case 26: from.Say("Belo truque. Tem outro?"); break;
+					case 27: from.Say("Feitiços não te salvarão da minha ira."); break;
+					case 28: from.Say("Magia... Eu odeio magia."); break;
+					case 29: from.Say("Continue conjurando, eu continuarei atacando."); break;
+					case 30: from.Say("Você precisará de um feitiço mais forte que esse."); break;
+					case 31: from.Say("Isso é o melhor que sua magia pode fazer?"); break;
+					case 32: from.Say("Uma faísca e uma baforada de fumaça. Impressionante."); break;
+					case 33: from.Say("Sinto cheiro de cabelo queimado. É melhor rezar para não ser o meu."); break;
+					case 34: from.Say("Um pequeno choque não vai me parar."); break;
 				}
 			}
 			((BaseCreature)from).Loyalty = 100;
@@ -350,48 +350,48 @@ namespace Server.Misc
 
 				switch ( Utility.Random( 82 ))		   
 				{
-					case 0: from.Say("Is that all you got?"); break;
-					case 1: from.Say("Tis but a scratch!"); break;
-					case 2: from.Say("I've had worse!"); break;
-					case 3: from.Say("You will have to do better than that!"); break;
-					case 4: from.Say("You'll pay for that!"); break;
-					case 5: from.Say("No one does that and lives!"); break;
-					case 6: from.Say("It is your turn!"); break;
-					case 7: from.Say("Not enough to bring me down!"); break;
-					case 8: from.PlaySound( from.Female ? 793 : 1065 ); from.Say( "*gasp*" ); break;
-					case 9: from.PlaySound( from.Female ? 0x338 : 0x44A ); from.Say( "*growls*" ); break;
-					case 10: from.PlaySound( from.Female ? 797 : 1069 ); from.Say( "Hey!" ); break;
-					case 11: from.PlaySound( from.Female ? 0x31C : 0x42C ); from.Say( "*yells*" ); break;
-					case 12: from.Say("You dare strike me?"); break;
-					case 13: from.Say("You'll regret that!"); break;
-					case 14: from.Say("Is that all you've got?"); break;
-					case 15: from.Say("You'll pay for that, cur!"); break;
-					case 16: from.Say("You've drawn blood - now I draw vengeance."); break;
-					case 17: from.Say("You won't get me so easily next time."); break;
-					case 18: from.Say("You scratch like a kitten."); break;
-					case 19: from.Say("That was a mistake."); break;
-					case 20: from.Say("Now you've made it personal!"); break;
-					case 21: from.Say("This wound only fuels me."); break;
-					case 22: from.Say("You'll have to do better than that."); break;
-					case 23: from.Say("Hah! I was starting to get bored."); break;
-					case 24: from.Say("You're going to wish you missed."); break;
-					case 25: from.Say("Strike again, and see what happens."); break;
-					case 26: from.Say("I didn't come all this way to fall to the likes of you."); break;
-					case 27: from.Say("You picked the wrong warrior to anger."); break;
-					case 28: from.Say("That tickled."); break;
-					case 29: from.Say("You'll have to hit harder to stop me."); break;
-					case 30: from.Say("Ah, so it's a fight you want!"); break;
-					case 31: from.Say("Finally, some excitement!"); break;
-					case 32: from.Say("Your strike lacks conviction."); break;
-					case 33: from.Say("Is this your best effort?"); break;
-					case 34: from.Say("I felt worse from a cold wind."); break;
-					case 35: from.Say("You've sealed your fate."); break;
-					case 36: from.Say("A poor choice of target."); break;
-					case 37: from.Say("You just earned my full attention."); break;
-					case 38: from.Say("I'll make you regret that blow."); break;
-					case 39: from.Say("Striking from the shadows? Coward!"); break;
-					case 40: from.Say("You'll have to finish what you started."); break;
-					case 41: from.Say("You forget I'm not alone here!"); break;
+					case 0: from.Say("Isso é tudo que você tem?"); break;
+					case 1: from.Say("É só um arranhão!"); break;
+					case 2: from.Say("Já tive piores!"); break;
+					case 3: from.Say("Você terá que fazer melhor que isso!"); break;
+					case 4: from.Say("Você vai pagar por isso!"); break;
+					case 5: from.Say("Ninguém faz isso e vive!"); break;
+					case 6: from.Say("Agora é sua vez!"); break;
+					case 7: from.Say("Não é suficiente para me derrubar!"); break;
+					case 8: from.PlaySound( from.Female ? 793 : 1065 ); from.Say( "*suspiro*" ); break;
+					case 9: from.PlaySound( from.Female ? 0x338 : 0x44A ); from.Say( "*rosna*" ); break;
+					case 10: from.PlaySound( from.Female ? 797 : 1069 ); from.Say( "Ei!" ); break;
+					case 11: from.PlaySound( from.Female ? 0x31C : 0x42C ); from.Say( "*grita*" ); break;
+					case 12: from.Say("Você ousa me golpear?"); break;
+					case 13: from.Say("Você se arrependerá disso!"); break;
+					case 14: from.Say("Isso é tudo que você tem?"); break;
+					case 15: from.Say("Você vai pagar por isso, covarde!"); break;
+					case 16: from.Say("Você derramou sangue - agora eu derramo vingança."); break;
+					case 17: from.Say("Você não me pegará tão facilmente da próxima vez."); break;
+					case 18: from.Say("Você arranha como um gatinho."); break;
+					case 19: from.Say("Isso foi um erro."); break;
+					case 20: from.Say("Agora você tornou isso pessoal!"); break;
+					case 21: from.Say("Este ferimento só me fortalece."); break;
+					case 22: from.Say("Você terá que fazer melhor que isso."); break;
+					case 23: from.Say("Hah! Eu estava começando a ficar entediado."); break;
+					case 24: from.Say("Você vai desejar ter errado."); break;
+					case 25: from.Say("Golpeie novamente e veja o que acontece."); break;
+					case 26: from.Say("Não vim até aqui para cair para alguém como você."); break;
+					case 27: from.Say("Você escolheu o guerreiro errado para irritar."); break;
+					case 28: from.Say("Isso fez cócegas."); break;
+					case 29: from.Say("Você terá que acertar mais forte para me parar."); break;
+					case 30: from.Say("Ah, então é uma luta que você quer!"); break;
+					case 31: from.Say("Finalmente, alguma emoção!"); break;
+					case 32: from.Say("Seu golpe falta convicção."); break;
+					case 33: from.Say("Esse é seu melhor esforço?"); break;
+					case 34: from.Say("Senti pior com um vento frio."); break;
+					case 35: from.Say("Você selou seu destino."); break;
+					case 36: from.Say("Uma pobre escolha de alvo."); break;
+					case 37: from.Say("Você acabou de ganhar minha atenção total."); break;
+					case 38: from.Say("Vou fazer você se arrepender desse golpe."); break;
+					case 39: from.Say("Atacando das sombras? Covarde!"); break;
+					case 40: from.Say("Você terá que terminar o que começou."); break;
+					case 41: from.Say("Você esquece que não estou sozinho aqui!"); break;
 				}
 			}
 			((BaseCreature)from).Loyalty = 100;
@@ -448,14 +448,14 @@ namespace Server.Misc
 			if ( dropped is Bandage )
 			{
 				henchman.Hunger = henchman.Hunger + dropped.Amount;
-				if ( henchman is HenchmanMonster ){ henchman.Say("I could use these bandages. I have " + henchman.Hunger.ToString() + " of them now."); }
-				else { henchman.Say("Ahhh...bandages can be of great use. I have " + henchman.Hunger.ToString() + " of them now."); }
+				if ( henchman is HenchmanMonster ){ henchman.Say("Posso usar estas bandagens. Tenho " + henchman.Hunger.ToString() + " delas agora."); }
+				else { henchman.Say("Ahhh... bandagens podem ser muito úteis. Tenho " + henchman.Hunger.ToString() + " delas agora."); }
 				dropped.Delete();
 			}
 			else if ( dropped is LesserCurePotion || dropped is CurePotion || dropped is GreaterCurePotion )
 			{
-				if ( henchman is HenchmanMonster ){ henchman.Say("Good, " + from.Name + "."); }
-				else { henchman.Say("Thank you, " + from.Name + "."); }
+				if ( henchman is HenchmanMonster ){ henchman.Say("Bom, " + from.Name + "."); }
+				else { henchman.Say("Obrigado, " + from.Name + "."); }
 
 				henchman.CurePoison( henchman );
 				henchman.RevealingAction();
@@ -467,8 +467,8 @@ namespace Server.Misc
 			}
 			else if ( dropped is RefreshPotion || dropped is TotalRefreshPotion )
 			{
-				if ( henchman is HenchmanMonster ){ henchman.Say("Good, " + from.Name + "."); }
-				else { henchman.Say("Thank you, " + from.Name + "."); }
+				if ( henchman is HenchmanMonster ){ henchman.Say("Bom, " + from.Name + "."); }
+				else { henchman.Say("Obrigado, " + from.Name + "."); }
 
 				henchman.Stam = henchman.StamMax;
 				henchman.RevealingAction();
@@ -480,8 +480,8 @@ namespace Server.Misc
 			}
 			else if ( dropped is LesserHealPotion || dropped is HealPotion || dropped is GreaterHealPotion )
 			{
-				if ( henchman is HenchmanMonster ){ henchman.Say("Good, " + from.Name + "."); }
-				else { henchman.Say("Thank you, " + from.Name + "."); }
+				if ( henchman is HenchmanMonster ){ henchman.Say("Bom, " + from.Name + "."); }
+				else { henchman.Say("Obrigado, " + from.Name + "."); }
 
 				henchman.Hits = henchman.HitsMax;
 				henchman.RevealingAction();
@@ -493,8 +493,8 @@ namespace Server.Misc
 			}
 			else if ( dropped is LesserRejuvenatePotion || dropped is RejuvenatePotion || dropped is GreaterRejuvenatePotion )
 			{
-				if ( henchman is HenchmanMonster ){ henchman.Say("Good, " + from.Name + "."); }
-				else { henchman.Say("Thank you, " + from.Name + "."); }
+				if ( henchman is HenchmanMonster ){ henchman.Say("Bom, " + from.Name + "."); }
+				else { henchman.Say("Obrigado, " + from.Name + "."); }
 
 				henchman.Hits = henchman.HitsMax;
 				henchman.Stam = henchman.StamMax;
@@ -508,8 +508,8 @@ namespace Server.Misc
 			}
 			else if ( dropped is LesserManaPotion || dropped is ManaPotion || dropped is GreaterManaPotion )
 			{
-				if ( henchman is HenchmanMonster ){ henchman.Say("Good, " + from.Name + "."); }
-				else { henchman.Say("Thank you, " + from.Name + "."); }
+				if ( henchman is HenchmanMonster ){ henchman.Say("Bom, " + from.Name + "."); }
+				else { henchman.Say("Obrigado, " + from.Name + "."); }
 
 				henchman.Mana = henchman.ManaMax;
 				henchman.RevealingAction();
@@ -553,35 +553,35 @@ namespace Server.Misc
 				{
 					if ( henchman.Fame >= 1800 )
 					{
-						if ( henchman is HenchmanMonster ){ henchman.Say("Sorry, " + from.Name + "...but my bag is full."); }
-						else { henchman.Say("Thank you, " + from.Name + "...but my treasure bag is full."); }
+						if ( henchman is HenchmanMonster ){ henchman.Say("Desculpe, " + from.Name + "... mas minha bolsa está cheia."); }
+						else { henchman.Say("Obrigado, " + from.Name + "... mas minha bolsa de tesouro está cheia."); }
 					}
 					else
 					{
 						switch ( Utility.Random( 15 ) )
 						{
-						    case 0: henchman.Say("Good... more treasure for me."); break;
-						    case 1: henchman.Say("Ahh... a cut of the treasure. This journey is worth the risk."); break;
-						    case 2: henchman.Say("Gold buys loyalty."); break;
-						    case 3: henchman.Say("Well, well... looks like I'm appreciated."); break;
-						    case 4: henchman.Say("Good. I was in dire need of a new pair of shoes"); break;
-						    case 5: henchman.Say("A generous gift. Let's keep the riches coming."); break;
-						    case 6: henchman.Say("Now *this* is the kind of leadership I follow."); break;
-						    case 7: henchman.Say("Looks like this enterprise was worth it, after all."); break;
-						    case 8: henchman.Say("Hmm... not bad. I might stick around after all."); break;
-						    case 9: henchman.Say("Treasure shared is treasure earned."); break;
-						    case 10: henchman.Say("My purse grows heavier. I like this arrangement."); break;
-						    case 11: henchman.Say("Coin in hand, and blood yet to spill. A fine day."); break;
-						    case 12: henchman.Say("Keep the gold coming, and I'll keep the enemies away."); break;
-						    case 13: henchman.Say("A fair share for a fair fight."); break;
-						    case 14: henchman.Say("The kids I got at home will appreciate this, "+from.Name+"."); break;
+							case 0: henchman.Say("Bom... mais tesouro para mim."); break;
+							case 1: henchman.Say("Ahh... uma parte do tesouro. Esta jornada vale o risco."); break;
+							case 2: henchman.Say("Ouro compra lealdade."); break;
+							case 3: henchman.Say("Ora, ora... parece que sou apreciado."); break;
+							case 4: henchman.Say("Bom. Eu estava precisando urgentemente de um novo par de sapatos"); break;
+							case 5: henchman.Say("Um presente generoso. Vamos manter as riquezas vindo."); break;
+							case 6: henchman.Say("Agora *isso* é o tipo de liderança que eu sigo."); break;
+							case 7: henchman.Say("Parece que este empreendimento valeu a pena, afinal."); break;
+							case 8: henchman.Say("Hmm... nada mal. Talvez eu fique por aqui mesmo."); break;
+							case 9: henchman.Say("Tesouro compartilhado é tesouro ganho."); break;
+							case 10: henchman.Say("Minha bolsa fica mais pesada. Gosto deste acordo."); break;
+							case 11: henchman.Say("Moeda na mão, e sangue ainda para derramar. Um bom dia."); break;
+							case 12: henchman.Say("Continue trazendo o ouro, e eu continuarei mantendo os inimigos longe."); break;
+							case 13: henchman.Say("Uma parte justa por uma luta justa."); break;
+							case 14: henchman.Say("As crianças que tenho em casa vão apreciar isso, "+from.Name+"."); break;
 						}
 
 
 						if ( (henchman.Fame + nGold) > 1800 ){ henchman.Fame = 1800; }
 						else { henchman.Fame = henchman.Fame + nGold; }
 						int nTime = (int)(henchman.Fame/5);
-						from.SendMessage("" + henchman.Name + " will probably adventure with you for another " + nTime.ToString() + " minutes.");
+						from.SendMessage("" + henchman.Name + " provavelmente aventurará com você por mais " + nTime.ToString() + " minutos.");
 						dropped.Delete();
 					}
 				}
@@ -589,21 +589,21 @@ namespace Server.Misc
 				{
 					switch ( Utility.Random( 15 ) )
 					{
-					    case 0: henchman.Say("Sorry, " + from.Name + "... but I am not sworn to carry your burdens."); break;
-					    case 1: henchman.Say("No, " + from.Name + "... that is useless to me."); break;
-					    case 2: henchman.Say("What am I supposed to do with *that*?"); break;
-					    case 3: henchman.Say("I'm here to fight, not to sort your junk."); break;
-					    case 4: henchman.Say("Unless it's gold or glory, keep it."); break;
-					    case 5: henchman.Say("My pockets aren't for your clutter, " + from.Name + "."); break;
-					    case 6: henchman.Say("Is this a joke? I am no beast of burden."); break;
-					    case 7: henchman.Say("Try the mule, not me."); break;
-					    case 8: henchman.Say("Unless it glitters or guts, I'm not interested."); break;
-					    case 9: henchman.Say("I don't take hand-me-downs, " + from.Name + "."); break;
-					    case 10: henchman.Say("Gold is what we agreed on."); break;
-					    case 11: henchman.Say("Is this cursed? Looks cursed."); break;
-					    case 12: henchman.Say("No thanks. I've got enough weight to carry."); break;
-					    case 13: henchman.Say("I'm no pack mule, " + from.Name + "."); break;
-					    case 14: henchman.Say("Can't pay the alimony with that, " + from.Name + "."); break;
+						case 0: henchman.Say("Desculpe, " + from.Name + "... mas não jurei carregar seus fardos."); break;
+						case 1: henchman.Say("Não, " + from.Name + "... isso é inútil para mim."); break;
+						case 2: henchman.Say("O que eu devo fazer com *isso*?"); break;
+						case 3: henchman.Say("Estou aqui para lutar, não para organizar suas tralhas."); break;
+						case 4: henchman.Say("A menos que seja ouro ou glória, guarde."); break;
+						case 5: henchman.Say("Meus bolsos não são para sua bagunça, " + from.Name + "."); break;
+						case 6: henchman.Say("Isso é uma piada? Não sou um animal de carga."); break;
+						case 7: henchman.Say("Tente a mula, não eu."); break;
+						case 8: henchman.Say("A menos que brilhe ou sangre, não estou interessado."); break;
+						case 9: henchman.Say("Não aceito coisas de segunda mão, " + from.Name + "."); break;
+						case 10: henchman.Say("Ouro foi o que combinamos."); break;
+						case 11: henchman.Say("Isso está amaldiçoado? Parece amaldiçoado."); break;
+						case 12: henchman.Say("Não, obrigado. Já tenho peso suficiente para carregar."); break;
+						case 13: henchman.Say("Não sou uma mula de carga, " + from.Name + "."); break;
+						case 14: henchman.Say("Não posso pagar a pensão alimentícia com isso, " + from.Name + "."); break;
 					}
 				}
 			}

@@ -7,14 +7,14 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an ettin corpse" )]
+	[CorpseName( "um cadáver de ettin" )]
 	public class AncientEttin : BaseCreature
 	{
 		[Constructable]
 		public AncientEttin() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = NameList.RandomName( "giant" );
-			Title = "the ancient ettin";
+			Title = "o ettin ancestral";
 			Body = 732;
 			BaseSoundID = 0x59D;
 

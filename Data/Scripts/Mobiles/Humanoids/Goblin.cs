@@ -6,13 +6,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a goblin corpse" )]
+	[CorpseName( "um cadáver de goblin" )]
 	public class Goblin : BaseCreature
 	{
 		[Constructable]
 		public Goblin() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a goblin";
+			Name = "um goblin";
 			Body = 632;
 
 			if ( Utility.Random(20) == 0 )

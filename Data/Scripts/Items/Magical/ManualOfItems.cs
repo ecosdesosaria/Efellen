@@ -317,7 +317,7 @@ namespace Server.Items
 						GiveItemBonus( reward, m_Book.m_Skill_1, m_Book.m_Skill_2, m_Book.m_Skill_3, m_Book.m_Skill_4, m_Book.m_Skill_5, m_Book.m_Value_1, m_Book.m_Value_2, m_Book.m_Value_3, m_Book.m_Value_4, m_Book.m_Value_5, m_Book.m_Slayer_1, m_Book.m_Slayer_2 );
 
 						from.AddToBackpack ( reward );
-						string sMessage = "You now have the " + sArty + ".";
+						string sMessage = "Você agora tem o " + sArty + ".";
 						from.SendMessage( sMessage );
 						from.PlaySound( 0x1FA );
 

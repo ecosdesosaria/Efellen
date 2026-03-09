@@ -5,7 +5,7 @@ using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a lavapede corpse" )]
+	[CorpseName( "um cadáver de lavapede" )]
 	public class Lavapede : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -16,7 +16,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Lavapede() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a lavapede";
+			Name = "uma lavapede";
 			Body = 735;
 			BaseSoundID = 1006;
 

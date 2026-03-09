@@ -6,7 +6,7 @@ using Server.Custom;
 
 namespace Server.Mobiles
 {
-	[CorpseName("an anaconda corpse")]
+	[CorpseName("um cadáver de anaconda")]
 	public class RandomSerpent : BaseCreature
 	{
 		public static Poison m_Poison;
@@ -17,7 +17,7 @@ namespace Server.Mobiles
 		{
 			Body = 21;
 			BaseSoundID = 219;
-			Name = "an anaconda";
+			Name = "uma anaconda";
 
 			int difficulty = 0;
 

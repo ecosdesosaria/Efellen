@@ -52,16 +52,16 @@ namespace Server.Items
 
 						item.Delete();
 					}
-					from.Say( "In the name of Almric, open the gate to the Underworld!" );
+					from.Say( "Em nome de Almric, abra o portão para o Submundo!" );
 				}
 				else
 				{
-					from.SendMessage( "The gate to the Underworld is already open." );
+					from.SendMessage( "O portão para o Submundo já está aberto." );
 				}
 			}
 			else
 			{
-				from.SendMessage( "This is the skull of the long dead Baron Almric." );
+				from.SendMessage( "Esta é a caveira do falecido Barão Almric." );
 			}
 		}
 

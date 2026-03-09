@@ -8,7 +8,7 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a wolf man corpse" )]
+	[CorpseName( "um cadáver de homem-lobo" )]
 	public class WolfMan : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -19,7 +19,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public WolfMan() : base( AIType.AI_Melee,FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a wolf man";
+			Name = "um homem-lobo";
 			Body = Utility.RandomList( 708, 94 );
 			BaseSoundID = 0x4F5;
 

@@ -122,7 +122,7 @@ namespace Server.Mobiles
 			}
 			else if ( ( this is PaladinWarhorse ) && ( from.Skills[SkillName.Knightship].Base < 100 || from.Karma < 0 ) )
 			{
-				from.SendMessage("Only grandmaster knights may ride this holy steed.");
+				from.SendMessage("Somente cavaleiros grão-mestres podem cavalgar este corcel sagrado.");
 				return false;
 			}
 			else if ( this is Warhorse && (
@@ -133,22 +133,22 @@ namespace Server.Mobiles
 				from.Skills[SkillName.Fencing].Base < 100 
 			))
 			{
-				from.SendMessage("Only grandmaster warriors may ride this warhorse.");
+				from.SendMessage("Somente guerreiros grão-mestres podem cavalgar este corcel de guerra.");
 				return false;
 			}
 			else if ( ( this is DeathKnightWarhorse ) && ( from.Skills[SkillName.Knightship].Base < 100 || from.Karma > 0 ) )
 			{
-				from.SendMessage("Only grandmaster death knights may ride this evil steed.");
+				from.SendMessage("Somente cavaleiros grão-mestres podem cavalgar este corcel de guerra.");
 				return false;
 			}
 			else if ( ( this is NecroHorse ) && ( from.Skills[SkillName.Necromancy].Base < 100 ) )
 			{
-				from.SendMessage("Only a grandmaster in necromancy may ride this undead steed.");
+				from.SendMessage("Somente um grão-mestre em necromancia pode cavalgar este corcel morto-vivo.");
 				return false;
 			}
 			else if ( ( this is DaemonMount ) && ( from.Skills[SkillName.Necromancy].Base < 100 ) && ( from.Skills[SkillName.Magery].Base < 100 ) )
 			{
-				from.SendMessage("Only a grandmaster in necromancy and magery may ride this evil being.");
+				from.SendMessage("Somente um grãomestre em necromancia e magia pode cavalgar este ser maligno.");
 				return false;
 			}
 			else if( !BaseMount.CheckMountAllowed( from, true ) )
@@ -189,15 +189,15 @@ namespace Server.Mobiles
 		{
 			if ( from.IsBodyMod && !from.Body.IsHuman )
 			{
-				from.SendMessage( "You cannot ride a mount in your current form." );
+				from.SendMessage( "Você não pode montar um animal em sua forma atual." );
 			}
 			if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, from.Region ) )
 			{
-				from.SendMessage( "You cannot mount that while you are in this place." );
+				from.SendMessage( "Você não pode montar isso enquanto estiver neste lugar." );
 			}
 			else if ( ( MySettings.S_NoMountBuilding && Server.Misc.Worlds.InBuilding( from ) ) || ( from.Region is HouseRegion && MySettings.S_NoMountsInHouses ) )
 			{
-				from.SendMessage( "You cannot mount that while you are in here." );
+				from.SendMessage( "Você não pode montar isso enquanto estiver aqui." );
 			}
 			else
 			{
@@ -505,7 +505,7 @@ namespace Server.Mobiles
 			public override void OnDisturb( DisturbType type, bool message )
 			{
 				if( message && !m_Stop )
-					Caster.SendMessage("You have been disrupted while attempting to summon your mount!");
+					Caster.SendMessage("Você foi interrompido ao tentar invocar seu animal de montaria!");
 			}
 
 			public override void OnCast()

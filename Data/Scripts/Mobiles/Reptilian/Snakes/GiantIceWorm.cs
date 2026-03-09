@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an arcticonda corpse" )]
+	[CorpseName( "um cadáver de arcticonda" )]
 	public class GiantIceWorm : BaseCreature
 	{
 		public override bool SubdueBeforeTame { get { return true; } }
@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		{
 			Body = 21;
 			Hue = Utility.RandomList( 0xB33,0xB34,0xB35,0xB36,0xB37 );
-			Name = "an arcticonda";
+			Name = "uma arcticonda";
 			BaseSoundID = 0xDC;
 
 			SetStr( 161, 360 );

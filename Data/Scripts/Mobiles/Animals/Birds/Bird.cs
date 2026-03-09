@@ -5,7 +5,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a bird corpse" )]
+	[CorpseName( "um cadáver de pássaro" )]
 	public class Bird : BaseCreature
 	{
 		[Constructable]
@@ -59,26 +59,26 @@ namespace Server.Mobiles
 			if ( Server.Misc.Worlds.TestOcean ( this.Map, this.X, this.Y, 15 ) )
 			{
 				this.Hue = 0xB78;
-				this.Name =	"a seagull";
+				this.Name =	"um gavião";
 			}
 			else if ( Utility.RandomMinMax( 1, 10 ) == 1 )
 			{
 				this.Hue = 0x901;
 				switch ( Utility.Random( 2 ) )
 				{
-					case 0: this.Name = "a crow"; break;
-					case 1: this.Name = "a raven"; break;
+					case 0: this.Name = "uma gralha"; break;
+					case 1: this.Name = "um corvo"; break;
 				}
 			}
 			else if ( Utility.RandomMinMax( 1, 10 ) == 1 )
 			{
 				this.Hue = 0xBB4;
-				this.Name = "a dove";
+				this.Name = "uma pomba";
 			}
 			if ( Utility.RandomMinMax( 1, 100 ) == 1 )
 			{
 				this.Hue = 0xB7A;
-				this.Name = "a carrier pigeon";
+				this.Name = "uma pomba-mensageira";
 				PackItem( new SomeRandomNote() );
 			}
 

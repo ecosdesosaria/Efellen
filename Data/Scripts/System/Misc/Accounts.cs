@@ -321,7 +321,7 @@ namespace Server.Misc
 
 	public class AccountHandler
 	{
-		private static int MaxAccountsPerIP = 10;
+		private static int MaxAccountsPerIP = 3;
 
 		private static TimeSpan DeleteDelay = TimeSpan.FromDays( MyServerSettings.DeleteDelay() );
 
@@ -1358,7 +1358,7 @@ namespace Server.Accounting
 			m_Created = m_LastLogin = DateTime.Now;
 			m_TotalGameTime = TimeSpan.Zero;
 
-			m_Mobiles = new Mobile[7];
+			m_Mobiles = new Mobile[3];
 
 			m_IPRestrictions = new string[0];
 			m_LoginIPs = new IPAddress[0];

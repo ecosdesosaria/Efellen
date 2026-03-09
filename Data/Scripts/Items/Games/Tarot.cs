@@ -15,28 +15,28 @@ namespace Server.Items
 			switch ( MyFortune )
 			{
 				default:
-				case 0: phrase = "the Fool! They should watch their step and use their head."; break;
-				case 1: phrase = "the Magician! They exhibit increased control of their destiny."; break;
-				case 2: phrase = "the High Priestess! Their path will become clear to them."; break;
-				case 3: phrase = "the Empress! Life is running smoothly."; break;
-				case 4: phrase = "the Emperor! They must fight for what is theirs."; break;
-				case 5: phrase = "the Hierophant! They must acknowledge their fallibility."; break;
-				case 6: phrase = "the Lovers! They will be faced with an important choice."; break;
-				case 7: phrase = "the Chariot! They are in a position to defeat their enemies. Strike now!"; break;
-				case 8: phrase = "Justice! They will get what they deserve."; break;
-				case 9: phrase = "the Hermit! They will discover a great truth."; break;
-				case 10: phrase = "the Wheel of Fortune! Their fate is based on the caprice of the gods."; break;
-				case 11: phrase = "Strength! They will face a great test of their endurance."; break;
-				case 12: phrase = "the Hanged Man! They must sacrifice to attain their goal."; break;
-				case 13: phrase = "Death! Their life will change completely...soon."; break;
-				case 14: phrase = "Temperance! They must be patient!"; break;
-				case 15: phrase = "the Devil! They shouldn't take the easy way out, it could mean destruction!"; break;
-				case 16: phrase = "the Tower! They have overstepped their bounds."; break;
-				case 17: phrase = "the Star! What they seek is within their grasp."; break;
-				case 18: phrase = "the Moon! They should be wary of forces beyond their control lest they control them!"; break;
-				case 19: phrase = "the Sun! They have worked hard. Now they can enjoy the fruits of their labor."; break;
-				case 20: phrase = "Judgment! Their success is assured. They should strike while the iron is hot!"; break;
-				case 21: phrase = "the World! They have achieved a complete success in their endeavor."; break;
+				case 0: phrase = "o Tolo! Eles devem tomar cuidado e usar a cabeça."; break;
+				case 1: phrase = "o Mago! Eles exibem maior controle sobre seu destino."; break;
+				case 2: phrase = "a Alta Sacerdotisa! Seu caminho se tornará claro para eles."; break;
+				case 3: phrase = "a Imperatriz! A vida está correndo suavemente."; break;
+				case 4: phrase = "o Imperador! Eles devem lutar pelo que é seu."; break;
+				case 5: phrase = "o Hierofante! Eles devem reconhecer sua falibilidade."; break;
+				case 6: phrase = "os Amantes! Eles serão confrontados com uma escolha importante."; break;
+				case 7: phrase = "a Carruagem! Eles estão em posição de derrotar seus inimigos. Ataquem agora!"; break;
+				case 8: phrase = "a Justiça! Eles receberão o que merecem."; break;
+				case 9: phrase = "o Eremita! Eles descobrirão uma grande verdade."; break;
+				case 10: phrase = "a Roda da Fortuna! Seu destino está baseado no capricho dos deuses."; break;
+				case 11: phrase = "a Força! Eles enfrentarão um grande teste de sua resistência."; break;
+				case 12: phrase = "o Enforcado! Eles devem sacrificar para atingir seu objetivo."; break;
+				case 13: phrase = "a Morte! Sua vida mudará completamente... em breve."; break;
+				case 14: phrase = "a Temperança! Eles devem ser pacientes!"; break;
+				case 15: phrase = "o Diabo! Eles não devem tomar o caminho mais fácil, isso pode significar destruição!"; break;
+				case 16: phrase = "a Torre! Eles ultrapassaram seus limites."; break;
+				case 17: phrase = "a Estrela! O que eles buscam está ao seu alcance."; break;
+				case 18: phrase = "a Lua! Eles devem ter cuidado com forças além de seu controle, para que não os controlem!"; break;
+				case 19: phrase = "o Sol! Eles trabalharam duro. Agora podem desfrutar os frutos de seu trabalho."; break;
+				case 20: phrase = "o Julgamento! Seu sucesso é garantido. Eles devem atacar enquanto o ferro está quente!"; break;
+				case 21: phrase = "o Mundo! Eles alcançaram um sucesso completo em seu empreendimento."; break;
 			}
 			return phrase;
 		}

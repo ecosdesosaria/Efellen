@@ -63,7 +63,7 @@ namespace Server.Spells.Research
 
 					if ( scroll.ScrollIntelligence > 0 )
 					{
-						from.SendMessage("That parchment hasn't been deciphered yet.");
+						from.SendMessage("Esse pergaminho ainda não foi decifrado.");
 					}
 					else
 					{
@@ -71,19 +71,19 @@ namespace Server.Spells.Research
 
 						switch ( Utility.RandomMinMax( 0, 3 ) ) 
 						{
-							case 0: WillSay = "The spirits tell you that this parchment is"; break;
-							case 1: WillSay = "Your mind is showing you that this parchment is"; break;
-							case 2: WillSay = "The voices all speak that this parchment is"; break;
-							case 3: WillSay = "You can see beyond that this parchment is"; break;
+							case 0: WillSay = "Os espíritos lhe dizem que este pergaminho está"; break;
+							case 1: WillSay = "Sua mente está mostrando que este pergaminho está"; break;
+							case 2: WillSay = "As vozes todas falam que este pergaminho está"; break;
+							case 3: WillSay = "Você pode ver além que este pergaminho está"; break;
 						}
 
 						if ( scroll.ScrollTrue == 1 )
 						{
-							from.SendMessage(WillSay + " truthfully written.");
+							from.SendMessage(WillSay + " escrito com a verdade.");
 						}
 						else
 						{
-							from.SendMessage(WillSay + " falsely written.");
+							from.SendMessage(WillSay + " escrito falsamente.");
 						}
 					}
 				}
@@ -98,19 +98,19 @@ namespace Server.Spells.Research
 
 					switch ( Utility.RandomMinMax( 0, 3 ) ) 
 					{
-						case 0: WillSay = "The spirits tell you that this legend "; break;
-						case 1: WillSay = "Your mind is showing you that this legend "; break;
-						case 2: WillSay = "The voices all speak that this legend "; break;
-						case 3: WillSay = "You can see beyond that this legend "; break;
+						case 0: WillSay = "Os espíritos lhe dizem que esta lenda "; break;
+						case 1: WillSay = "Sua mente está mostrando que esta lenda "; break;
+						case 2: WillSay = "As vozes todas falam que esta lenda "; break;
+						case 3: WillSay = "Você pode ver além que esta lenda "; break;
 					}
 
 					if ( scroll.LegendReal == 1 )
 					{
-						from.SendMessage(WillSay + " really happened.");
+						from.SendMessage(WillSay + " realmente aconteceu.");
 					}
 					else
 					{
-						from.SendMessage(WillSay + " never happened.");
+						from.SendMessage(WillSay + " nunca aconteceu.");
 					}
 				}
 				///////////////////////////////////////////////////////////////////////////////////
@@ -124,19 +124,19 @@ namespace Server.Spells.Research
 
 					switch ( Utility.RandomMinMax( 0, 3 ) ) 
 					{
-						case 0: WillSay = "The spirits tell you that this book "; break;
-						case 1: WillSay = "Your mind is showing you that this book "; break;
-						case 2: WillSay = "The voices all speak that this book "; break;
-						case 3: WillSay = "You can see beyond that this book "; break;
+						case 0: WillSay = "Os espíritos lhe dizem que este livro "; break;
+						case 1: WillSay = "Sua mente está mostrando que este livro "; break;
+						case 2: WillSay = "As vozes todas falam que este livro "; break;
+						case 3: WillSay = "Você pode ver além que este livro "; break;
 					}
 
 					if ( scroll.BookTrue > 0 )
 					{
-						from.SendMessage(WillSay + " contains the truth.");
+						from.SendMessage(WillSay + " contém a verdade.");
 					}
 					else
 					{
-						from.SendMessage(WillSay + " contains falsehoods.");
+						from.SendMessage(WillSay + " contém falsidades.");
 					}
 				}
 				///////////////////////////////////////////////////////////////////////////////////
@@ -150,26 +150,26 @@ namespace Server.Spells.Research
 
 					switch ( Utility.RandomMinMax( 0, 3 ) ) 
 					{
-						case 0: WillSay = "The spirits tell you that this parchment is"; break;
-						case 1: WillSay = "Your mind is showing you that this parchment is"; break;
-						case 2: WillSay = "The voices all speak that this parchment is"; break;
-						case 3: WillSay = "You can see beyond that this parchment is"; break;
+						case 0: WillSay = "Os espíritos lhe dizem que este pergaminho está"; break;
+						case 1: WillSay = "Sua mente está mostrando que este pergaminho está"; break;
+						case 2: WillSay = "As vozes todas falam que este pergaminho está"; break;
+						case 3: WillSay = "Você pode ver além que este pergaminho está"; break;
 					}
 
 					if ( scroll.ScrollTrue == 1 )
 					{
-						from.SendMessage(WillSay + " truthfully written.");
+						from.SendMessage(WillSay + " escrito com a verdade.");
 					}
 					else
 					{
-						from.SendMessage(WillSay + " falsely written.");
+						from.SendMessage(WillSay + " escrito falsamente.");
 					}
 				}
 				
 				///////////////////////////////////////////////////////////////////////////////////
 				else
 				{
-					from.SendMessage("That is not a book or parchment.");
+					from.SendMessage("Isso não é um livro ou pergaminho.");
 				}
 
 				if ( consume ){ Server.Misc.Research.ConsumeScroll( from, true, m_SpellIndex, m_alwaysConsume, m_fromBook ); }

@@ -156,7 +156,7 @@ namespace Server.Items
 					
 					if ( difficulty > 50.0 && difficulty > from.Skills[SkillName.Lumberjacking].Value )
 					{
-						from.SendMessage( "You have no idea how to best cut this type of wood!" );
+						from.SendMessage( "Você não tem ideia de como melhor cortar este tipo de madeira!" );
 						return;
 					}
 
@@ -164,7 +164,7 @@ namespace Server.Items
 					{
 						if ( m_Log.Amount <= 0 )
 						{
-							from.SendMessage( "There is not enough wood in this pile to make a board." );
+							from.SendMessage( "Não há madeira suficiente nesta pilha para fazer uma tábua." );
 						}
 						else
 						{
@@ -174,7 +174,7 @@ namespace Server.Items
 							wood.Amount = amount;
 							from.AddToBackpack( wood );
 							from.PlaySound( 0x21C );
-							from.SendMessage( "You cut the logs and put some boards in your backpack." );
+							from.SendMessage( "Você corta as toras e coloca algumas tábuas em sua mochila." );
 						}
 					}
 					else
@@ -185,12 +185,12 @@ namespace Server.Items
 						if ( amount < 2 || lose == amount )
 						{
 							m_Log.Delete();
-							from.SendMessage( "You try to cut the logs but ruin all of the wood." );
+							from.SendMessage( "Você tenta cortar as toras mas estraga toda a madeira." );
 						}
 						else
 						{
 							m_Log.Amount = amount - lose;
-							from.SendMessage( "You try to cut the logs but ruin some of the wood." );
+							from.SendMessage( "Você tenta cortar as toras mas estraga parte da madeira." );
 						}
 
 						from.PlaySound( 0x21C );
@@ -198,7 +198,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "That is not a saw mill." );
+					from.SendMessage( "Isso não é uma serraria." );
 				}
 			}
 		}

@@ -140,11 +140,11 @@ namespace Server.Items
 				{
 					SetInstrument( from, this );
 
-					string[] part1 = new string[] { "I written this", "I learned this", "I heard this", "I was taught this", "Here is a", "This is a" };
-					string[] part2 = new string[] { "ballad", "song", "tune", "melody" };
-					string[] part4 = new string[] { "death", "fate", "exploits", "courage", "adventures", "journey", "demise", "victories", "legend", "conquests" };
-					string[] part5 = new string[] { "battle", "rise", "destruction", "legend", "secret", "lore", "savior", "champion", "fall", "conquest" };
-					string[] part6 = new string[] { "horrors", "terror", "treasure", "riches", "creatures", "monsters", "depths", "conquest", "discovery" };
+					string[] part1 = new string[] { "Eu escrevi esta", "Eu aprendi esta", "Eu ouvi esta", "Me ensinaram esta", "Aqui está uma", "Esta é uma" };
+					string[] part2 = new string[] { "balada", "canção", "melodia", "música" };
+					string[] part4 = new string[] { "morte", "destino", "feitos", "coragem", "aventuras", "jornada", "queda", "vitórias", "lenda", "conquistas" };
+					string[] part5 = new string[] { "batalha", "ascensão", "destruição", "lenda", "segredo", "sabedoria", "salvador", "campeão", "queda", "conquista" };
+					string[] part6 = new string[] { "horrores", "terror", "tesouro", "riquezas", "criaturas", "monstros", "profundezas", "conquista", "descoberta" };
 
 					string ext1 = part1[Utility.RandomMinMax( 0, (part1.Length-1) )] + " ";
 					string ext2 = part2[Utility.RandomMinMax( 0, (part2.Length-1) )] + " ";
@@ -157,21 +157,21 @@ namespace Server.Items
 					switch ( Utility.RandomMinMax( 1, 10 ) )
 					{
 						case 1:
-							if ( ext1 == "Here is a " || ext1 == "This is a " ){ ext3 = "from " + RandomThings.GetRandomCity() + "."; }
-							else { ext3 = "while I was in " + RandomThings.GetRandomCity() + "."; }
+							if ( ext1 == "Aqui está uma " || ext1 == "Esta é uma " ){ ext3 = "de " + RandomThings.GetRandomCity() + "."; }
+							else { ext3 = "enquanto eu estava em " + RandomThings.GetRandomCity() + "."; }
 						break;
-						case 2:		ext3 = "about " + RandomThings.GetRandomJobTitle(0) + " and the " + RandomThings.GetRandomThing(0) + "."; break;
-						case 3:		ext3 = "about " + RandomThings.GetRandomJobTitle(0) + " and the " + RandomThings.GetRandomCreature() + "."; break;
-						case 4:		ext3 = "called " + RandomThings.GetSongTitle() + "."; break;
-						case 5:		ext3 = "I call " + RandomThings.GetSongTitle() + "."; break;
+						case 2:		ext3 = "sobre " + RandomThings.GetRandomJobTitle(0) + " e o " + RandomThings.GetRandomThing(0) + "."; break;
+						case 3:		ext3 = "sobre " + RandomThings.GetRandomJobTitle(0) + " e a " + RandomThings.GetRandomCreature() + "."; break;
+						case 4:		ext3 = "chamada " + RandomThings.GetSongTitle() + "."; break;
+						case 5:		ext3 = "que eu chamo de " + RandomThings.GetSongTitle() + "."; break;
 						case 6:
-							if ( ext1 == "Here is a " || ext1 == "This is a " ){ ext3 = "from the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; }
-							else { ext3 = "while travelling through the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; }
+							if ( ext1 == "Aqui está uma " || ext1 == "Esta é uma " ){ ext3 = "do " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; }
+							else { ext3 = "enquanto viajava pelo " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; }
 						break;
-						case 7:		ext3 = "about the " + ext4 + " of " + NameList.RandomName( "female" ) + " the " + RandomThings.GetBoyGirlJob( 1 ) + "."; break;
-						case 8:		ext3 = "about the " + ext4 + " of " + NameList.RandomName( "male" ) + " the " + RandomThings.GetBoyGirlJob( 0 ) + "."; break;
-						case 9:		ext3 = "about the " + ext5 + " of " + RandomThings.GetRandomCity() + "."; break;
-						case 10:	ext3 = "about the " + ext6 + " of " + RandomThings.MadeUpDungeon() + "."; break;
+						case 7:		ext3 = "sobre a " + ext4 + " de " + NameList.RandomName( "female" ) + " a " + RandomThings.GetBoyGirlJob( 1 ) + "."; break;
+						case 8:		ext3 = "sobre a " + ext4 + " de " + NameList.RandomName( "male" ) + " o " + RandomThings.GetBoyGirlJob( 0 ) + "."; break;
+						case 9:		ext3 = "sobre a " + ext5 + " de " + RandomThings.GetRandomCity() + "."; break;
+						case 10:	ext3 = "sobre os " + ext6 + " de " + RandomThings.MadeUpDungeon() + "."; break;
 					}
 
 					string say = ext1 + ext2 + ext3;
@@ -182,11 +182,11 @@ namespace Server.Items
 							if ( Utility.RandomBool() ){ job = RandomThings.GetBoyGirlJob(1); }
 
 						string name = RandomThings.GetRandomBoyName();
-						string title = " the " + RandomThings.GetBoyGirlJob(0);
+						string title = " o " + RandomThings.GetBoyGirlJob(0);
 						if ( Utility.RandomBool() )
 						{
 							name = RandomThings.GetRandomGirlName();
-							title = " the " + RandomThings.GetBoyGirlJob(1);
+							title = " a " + RandomThings.GetBoyGirlJob(1);
 						}
 						if ( Utility.RandomBool() )
 						{
@@ -199,41 +199,41 @@ namespace Server.Items
 						string city = RandomThings.GetRandomCity();	
 							if ( Utility.RandomBool() ){ city = RandomThings.MadeUpCity(); }
 
-						string singer = "written";	
+						string singer = "escrita";	
 						switch( Utility.RandomMinMax( 0, 3 ) )
 						{
-							case 1: singer = "created"; break;
-							case 2: singer = "sung"; break;
-							case 3: singer = "composed"; break;
+							case 1: singer = "criada"; break;
+							case 2: singer = "cantada"; break;
+							case 3: singer = "composta"; break;
 						}
 
-						string book = "written on a scroll";	
+						string book = "escrita em um pergaminho";	
 						switch( Utility.RandomMinMax( 0, 3 ) )
 						{
-							case 1: book = "carved on a tablet"; break;
-							case 2: book = "written in a book"; break;
-							case 3: book = "scrawled on a wall"; break;
+							case 1: book = "entalhada em uma tabuleta"; break;
+							case 2: book = "escrita em um livro"; break;
+							case 3: book = "rabiscada em uma parede"; break;
 						}
 
-						string verb = "found";	
+						string verb = "encontrada";	
 						switch( Utility.RandomMinMax( 0, 3 ) )
 						{
-							case 1: verb = "discovered"; break;
-							case 2: verb = "said to be"; break;
-							case 3: verb = "seen"; break;
+							case 1: verb = "descoberta"; break;
+							case 2: verb = "dita para ser"; break;
+							case 3: verb = "vista"; break;
 						}
 
 						switch( Utility.RandomMinMax( 1, 9 ) )
 						{
-							case 1: say = "This " + ext2 + "was " + singer + " by " + name + title + "."; break;
-							case 2: say = "This " + ext2 + "was " + singer + " by " + name + " from " + city + "."; break;
-							case 3: say = "This " + ext2 + "was " + singer + " by a " + job + "."; break;
-							case 4: say = "This " + ext2 + "was " + singer + " by a " + job + " in " + city + "."; break;
-							case 5: say = "This " + ext2 + "was " + book + " " + verb + " in " + dungeon + "."; break;
-							case 6: say = "While exploring " + dungeon + ", this " + ext2 + "was found " + book + "."; break;
-							case 7: say = name + title + " taught me this " + ext2 + "when I was in " + city + "."; break;
-							case 8: say = "A " + job + " taught me this " + ext2 + "when I was in " + city + "."; break;
-							case 9: say = "A " + job + " taught me this " + ext7 + "."; break;
+							case 1: say = "Esta " + ext2 + "foi " + singer + " por " + name + title + "."; break;
+							case 2: say = "Esta " + ext2 + "foi " + singer + " por " + name + " de " + city + "."; break;
+							case 3: say = "Esta " + ext2 + "foi " + singer + " por um " + job + "."; break;
+							case 4: say = "Esta " + ext2 + "foi " + singer + " por um " + job + " em " + city + "."; break;
+							case 5: say = "Esta " + ext2 + "foi " + book + " " + verb + " em " + dungeon + "."; break;
+							case 6: say = "Enquanto explorava " + dungeon + ", esta " + ext2 + "foi " + verb + " " + book + "."; break;
+							case 7: say = name + title + " me ensinou esta " + ext2 + "quando eu estava em " + city + "."; break;
+							case 8: say = "Um " + job + " me ensinou esta " + ext2 + "quando eu estava em " + city + "."; break;
+							case 9: say = "Um " + job + " me ensinou esta " + ext7 + "."; break;
 						}
 					}
 

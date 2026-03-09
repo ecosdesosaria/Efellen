@@ -117,9 +117,8 @@ namespace Server.Items
 					AddItem(75, 232, 3999);
 					AddItem(371, 138, 8899);
 
-					string leather = "There are various types of hides you may acquire from skinning creatures throughout the land. Some leathers are listed on the next page, that a tailor can use. Hides can be obtained from skinning certain creatures by double clicking a bladed weapon and then selecting a corpse. These hides can then be cut with scissors and turned into leather. Then tanning tools can be used to craft various armor and bags.";
-					string bone = "There are various types of bones you may acquire from carving creatures throughout the land. Some bones are listed on the page after the next, that an undertaker can use. Bones can be obtained from carving certain creatures by double clicking a bladed weapon and then selecting a corpse. These bones can then be used by an undertaker kit to craft various types of armor.";
-
+					string leather = "Existem vários tipos de couro que você pode adquirir ao esfolar criaturas por toda a terra. Alguns couros estão listados na próxima página, que um alfaiate pode usar. Peles podem ser obtidas ao esfolar certas criaturas clicando duas vezes em uma arma cortante e depois selecionando um cadáver. Essas peles podem então ser cortadas com tesouras e transformadas em couro. Depois, ferramentas de curtimento podem ser usadas para criar várias armaduras e bolsas.";
+					string bone = "Existem vários tipos de ossos que você pode adquirir ao desossar criaturas por toda a terra. Alguns ossos estão listados na página seguinte, que um agente funerário pode usar. Ossos podem ser obtidos ao desossar certas criaturas clicando duas vezes em uma arma cortante e depois selecionando um cadáver. Esses ossos podem então ser usados por um kit de agente funerário para criar vários tipos de armaduras.";
 					AddHtml( 122, 80, 200, 300, @"<BODY><BASEFONT Color=" + color + ">" + leather + "</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 415, 80, 200, 300, @"<BODY><BASEFONT Color=" + color + ">" + bone + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				}

@@ -61,7 +61,7 @@ namespace Server.Items
 		{
 			if (m_Owner != null && m_Owner.Length > 0 && from.Name != m_Owner && from.Karma < 0)
 			{
-				from.SendMessage("You are not worthy of the Masamune.");
+				from.SendMessage("Você não é digno da Masamune.");
 				return false;
 			}
 

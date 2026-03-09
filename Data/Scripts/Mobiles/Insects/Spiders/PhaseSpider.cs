@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a spider corpse" )]
+	[CorpseName( "um cadáver de aranha" )]
 	public class PhaseSpider : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
@@ -25,7 +25,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public PhaseSpider () : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.4, 0.8 )
 		{
-			Name = "a phase spider";
+			Name = "uma aranha de fase";
 			Body = 180;
 			BaseSoundID = 1170;
 

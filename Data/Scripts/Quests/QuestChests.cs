@@ -32,16 +32,16 @@ namespace Server.Items
 
 				if ( PlayerSettings.GetBardsTaleQuest( from, "BardsTaleSilverSquare" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You find nothing of interest.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você não encontra nada de interesse.", from.NetState);
 				}
 				else
 				{
 					PlayerSettings.SetBardsTaleQuest( from, "BardsTaleSilverSquare", true );
 					PlayerSettings.SetBardsTaleQuest( from, "BardsTaleCrystalSword", true );
 					from.SendSound( 0x3D );
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You found a silver square and a crystal sword.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você encontrou um quadrado de prata e uma espada de cristal.", from.NetState);
 					from.CloseGump( typeof(Server.Gumps.ClueGump) );
-					from.SendGump(new Server.Gumps.ClueGump( from, "You found a silver square and a crystal sword. You will need all three silver shapes to obtain the silver key to Mangar's chamber door. When you have all three, seek the golden skull and use it to place the shapes upon it. The sword looks strong enough to shatter crystal sculptures.", "The Silver Square" ) );
+					from.SendGump(new Server.Gumps.ClueGump( from, "Você encontrou um quadrado de prata e uma espada de cristal. Você precisará das três formas de prata para obter a chave de prata para a porta da câmara de Mangar. Quando tiver as três, procure a caveira dourada e use-a para posicionar as formas sobre ela. A espada parece forte o suficiente para quebrar esculturas de cristal.", "O Quadrado de Prata" ) );
 				}
 			}
 			else
@@ -83,15 +83,15 @@ namespace Server.Items
 			{
 				if ( PlayerSettings.GetBardsTaleQuest( from, "BardsTaleSilverTriangle" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You find nothing of interest.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você não encontra nada de interesse.", from.NetState);
 				}
 				else
 				{
 					PlayerSettings.SetBardsTaleQuest( from, "BardsTaleSilverTriangle", true );
 					from.SendSound( 0x3D );
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You found a silver triangle.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você encontrou um triângulo de prata.", from.NetState);
 					from.CloseGump( typeof(Server.Gumps.ClueGump) );
-					from.SendGump(new Server.Gumps.ClueGump( from, "You found a silver triangle. You will need all three silver shapes to obtain the silver key to Mangar's chamber door. When you have all three, seek the golden skull and use it to place the shapes upon it.", "The Silver Triangle" ) );
+					from.SendGump(new Server.Gumps.ClueGump( from, "Você encontrou um triângulo de prata. Você precisará das três formas de prata para obter a chave de prata para a porta da câmara de Mangar. Quando tiver as três, procure a caveira dourada e use-a para posicionar as formas sobre ela.", "O Triângulo de Prata" ) );
 				}
 			}
 			else
@@ -135,15 +135,15 @@ namespace Server.Items
 
 				if ( PlayerSettings.GetBardsTaleQuest( from, "BardsTaleSilverCircle" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You find nothing of interest.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você não encontra nada de interesse.", from.NetState);
 				}
 				else
 				{
 					PlayerSettings.SetBardsTaleQuest( from, "BardsTaleSilverCircle", true );
 					from.SendSound( 0x3D );
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You found a silver circle.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você encontrou um círculo de prata.", from.NetState);
 					from.CloseGump( typeof(Server.Gumps.ClueGump) );
-					from.SendGump(new Server.Gumps.ClueGump( from, "You found a silver circle. You will need all three silver shapes to obtain the silver key to Mangar's chamber door. When you have all three, seek the golden skull and use it to place the shapes upon it.", "The Silver Circle" ) );
+					from.SendGump(new Server.Gumps.ClueGump( from, "Você encontrou um círculo de prata. Você precisará das três formas de prata para obter a chave de prata para a porta da câmara de Mangar. Quando tiver as três, procure a caveira dourada e use-a para posicionar as formas sobre ela.", "O Círculo de Prata" ) );
 				}
 			}
 			else
@@ -187,7 +187,7 @@ namespace Server.Items
 
 				if ( PlayerSettings.GetBardsTaleQuest( from, "BardsTaleMangarKey" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "This golden skull has an eerie glow.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Esta caveira dourada tem um brilho sinistro.", from.NetState);
 				}
 				else if ( PlayerSettings.GetBardsTaleQuest( from, "BardsTaleSilverSquare" ) && 
 					PlayerSettings.GetBardsTaleQuest( from, "BardsTaleSilverTriangle" ) && 
@@ -195,13 +195,13 @@ namespace Server.Items
 				{
 					PlayerSettings.SetBardsTaleQuest( from, "BardsTaleMangarKey", true );
 					from.SendSound( 0x3D );
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Placing the 3 silver shapes on the skull, the mouth opens to reveal a silver key.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Ao colocar as 3 formas de prata na caveira, a boca se abre revelando uma chave de prata.", from.NetState);
 					from.CloseGump( typeof(Server.Gumps.ClueGump) );
-					from.SendGump(new Server.Gumps.ClueGump( from, "You have obtained the silver key from the golden skull. Perhaps it works on that dark door to the west of you.", "The Silver Key" ) );
+					from.SendGump(new Server.Gumps.ClueGump( from, "Você obteve a chave de prata da caveira dourada. Talvez ela funcione naquela porta escura a oeste.", "A Chave de Prata" ) );
 				}
 				else
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "This golden skull has an eerie glow, and there seems to be 3 different shapes carved on it.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Esta caveira dourada tem um brilho sinistro, e parece haver 3 formas diferentes entalhadas nela.", from.NetState);
 				}
 			}
 			else
@@ -245,15 +245,15 @@ namespace Server.Items
 			{
 				if ( PlayerSettings.GetBardsTaleQuest( from, "BardsTaleBedroomKey" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You find nothing of interest.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você não encontra nada de interesse.", from.NetState);
 				}
 				else
 				{
 					PlayerSettings.SetBardsTaleQuest( from, "BardsTaleBedroomKey", true );
 					from.SendSound( 0x3D );
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You found a key with a symbol of a tree on it.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você encontrou uma chave com um símbolo de árvore.", from.NetState);
 					from.CloseGump( typeof(Server.Gumps.ClueGump) );
-					from.SendGump(new Server.Gumps.ClueGump( from, "You found a key with a symbol of a tree on it.", "The Forest Key" ) );
+					from.SendGump(new Server.Gumps.ClueGump( from, "Você encontrou uma chave com um símbolo de árvore.", "A Chave da Floresta" ) );
 				}
 			}
 			else
@@ -321,11 +321,11 @@ namespace Server.Items
 			{
 				if ( PlayerSettings.GetBardsTaleQuest( from, "BardsTaleBedroomKey" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "This crystal statue looks beautiful.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Esta estátua de cristal parece linda.", from.NetState);
 				}
 				else if ( PlayerSettings.GetBardsTaleQuest( from, "BardsTaleCrystalSword" ) && !( PlayerSettings.GetBardsTaleQuest( from, "BardsTaleBedroomKey" ) ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You hit the statue with the crystal sword, shattering both the statue and the sword.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você golpeia a estátua com a espada de cristal, estilhaçando ambas.", from.NetState);
 					from.PlaySound( 0x040 );
 
 					CrystalStatueBoxKyl MyChest = new CrystalStatueBoxKyl();
@@ -353,7 +353,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You can make out a small jade box within the crystal statue.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você consegue ver uma pequena caixa de jade dentro da estátua de cristal.", from.NetState);
 				}
 			}
 			else
@@ -394,13 +394,13 @@ namespace Server.Items
 			{
 				if ( PlayerSettings.GetKeys( from, "UndermountainKey" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You find nothing of interest.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você não encontra nada de interesse.", from.NetState);
 				}
 				else
 				{
 					PlayerSettings.SetKeys( from, "UndermountainKey", true );
 					from.SendSound( 0x3D );
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You found a dwarven key.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você encontrou uma chave anã.", from.NetState);
 				}
 			}
 			else
@@ -442,19 +442,19 @@ namespace Server.Items
 			{
 				if ( from is PlayerMobile && Server.Items.BaseRace.IsEvilDeadCreature( from ) && !PlayerSettings.GetDiscovered( from, "the Land of Sosaria" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "This book would make more sense if you ever find a way to Sosaria.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Este livro faria mais sentido se você encontrasse um caminho para Sosaria.", from.NetState);
 				}
 				else if ( PlayerSettings.GetKeys( from, "SkullGate" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You already learned this book's secrets.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você já aprendeu os segredos deste livro.", from.NetState);
 				}
 				else
 				{
 					PlayerSettings.SetKeys( from, "SkullGate", true );
 					from.SendSound( 0x3D );
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You learned the secrets of the Skull Gate.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você aprendeu os segredos do Portão da Caveira.", from.NetState);
 				}
-				from.SendMessage( "Check your quest log for details on the locations." );
+				from.SendMessage( "Verifique seu registro de missões para detalhes sobre as localizações." );
 			}
 			else
 			{
@@ -495,15 +495,15 @@ namespace Server.Items
 			{
 				if ( PlayerSettings.GetKeys( from, "SerpentPillars" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You already learned this book's secrets.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você já aprendeu os segredos deste livro.", from.NetState);
 				}
 				else
 				{
 					PlayerSettings.SetKeys( from, "SerpentPillars", true );
 					from.SendSound( 0x3D );
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You learned the secrets of the Serpent Pillars.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você aprendeu os segredos dos Pilares da Serpente.", from.NetState);
 				}
-				from.SendMessage( "Check your quest log for details on the locations." );
+				from.SendMessage( "Verifique seu registro de missões para detalhes sobre as localizações." );
 			}
 			else
 			{
@@ -542,14 +542,14 @@ namespace Server.Items
 			{
 				if ( PlayerSettings.GetKeys( from, "DragonRiding" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You already learned these secrets so you toss it out.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você já aprendeu estes segredos então você joga fora.", from.NetState);
 					this.Delete();
 				}
 				else
 				{
 					PlayerSettings.SetKeys( from, "DragonRiding", true );
 					from.SendSound( 0x3D );
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "You learned the secrets of dragon riding.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "Você aprendeu os segredos de como montar dragões.", from.NetState);
 					this.Delete();
 				}
 			}

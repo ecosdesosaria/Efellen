@@ -5,7 +5,7 @@ using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an ettin corpse" )]
+	[CorpseName( "um cadáver de ettin" )]
 	public class Ettin : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 100; } }
@@ -27,7 +27,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Ettin() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an ettin";
+			Name = "um ettin";
 			Body = Utility.RandomList( 18, 2, 729, 730 );
 			BaseSoundID = 367;
 

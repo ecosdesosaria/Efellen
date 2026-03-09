@@ -109,13 +109,13 @@ namespace Server.Mobiles
 					}
 					else
 					{
-						sMessage = "You need to discover the nine lands before I share this with you.";
+						sMessage = "Você precisa descobrir as nove terras antes que eu compartilhe isso com você.";
 						from.AddToBackpack ( dropped );
 					}
 				}
 				else
 				{
-					sMessage = "You look like you need this more than I do.";
+					sMessage = "Parece que você precisa disso mais do que eu.";
 					from.AddToBackpack ( dropped );
 				}
 
@@ -127,7 +127,7 @@ namespace Server.Mobiles
 				string sMessage = "";
 				if ( book.ArtOwner != from )
 				{
-					sMessage = "This book doesn't belong to you so I will just get rid of it.";
+					sMessage = "Este livro não pertence a você, então vou me livrar dele.";
 					bool remove = true;
 					foreach ( Account a in Accounts.GetAccounts() )
 					{
@@ -162,14 +162,14 @@ namespace Server.Mobiles
 					PlayerSettings.SetKeys( from, "Museums", true );
 					from.SendSound( 0x3D );
 					from.AddToBackpack ( new BankCheck( MuseumBook.QuestValue() ) );
-					sMessage = "You have done the museum a great service. Here is " + MuseumBook.QuestValue() + " gold we promised.";
+					sMessage = "Você prestou um grande serviço ao museu. Aqui estão " + MuseumBook.QuestValue() + " de ouro que prometemos.";
 					from.Fame = 15000;
-					from.SendMessage( "You have gained a really large amount of fame." );
+					from.SendMessage( "Você ganhou uma quantidade realmente grande de fama." );
 					dropped.Delete();
 				}
 				else
 				{
-					sMessage = "You have not finished your search yet.";
+					sMessage = "Você ainda não terminou sua busca.";
 				}
 				this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
 			}

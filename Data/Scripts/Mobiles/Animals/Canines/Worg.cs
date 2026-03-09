@@ -6,13 +6,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a wolf corpse" )]
+	[CorpseName( "um cadáver de lobo" )]
 	public class Worg : BaseCreature
 	{
 		[Constructable]
 		public Worg() : base( AIType.AI_Animal, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a worg";
+			Name = "um worg";
 			Body = 967;
 			BaseSoundID = 0xE5;
 

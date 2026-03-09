@@ -41,7 +41,7 @@ namespace Server.Spells.Song
 
 				foreach ( Mobile m in Caster.GetMobilesInRange( 10 ) )
 				{
-					if ( isFriendly( Caster, m ) && m.PoisonResistance < 70 )
+					if ( isFriendly( Caster, m ) && m.PoisonResistance < MySettings.S_MaxResistance )
 						targets.Add( m );
 				}
 				
@@ -53,10 +53,10 @@ namespace Server.Spells.Song
 					TimeSpan duration = TimeSpan.FromSeconds( (double)(MusicSkill( Caster ) * 2) );
                     int amount = MyServerSettings.PlayerLevelMod( (int)(MusicSkill( Caster ) / 16), Caster );
 	
-					if ( ( amount + m.PoisonResistance ) > 70 )
-						amount = 70 - m.PoisonResistance;
+					if ( ( amount + m.PoisonResistance ) > MySettings.S_MaxResistance )
+						amount = MySettings.S_MaxResistance - m.PoisonResistance;
 
-					m.SendMessage( "Your resistance to poison has increased." );
+					m.SendMessage( "Sua resistência a veneno aumentou." );
 					ResistanceMod mod1 = new ResistanceMod( ResistanceType.Poison, + amount );
 						
 					m.AddResistanceMod( mod1 );
@@ -98,7 +98,7 @@ namespace Server.Spells.Song
 			{
 				if ( m_Mobile != null )
 				{
-					m_Mobile.SendMessage( "The effect of the poison carol wears off." );
+					m_Mobile.SendMessage( "O efeito da poison carol desaparece." );
 					DoExpire();
 				}
 			}

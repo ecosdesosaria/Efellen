@@ -313,148 +313,148 @@ namespace Server.Engines.Harvest
 								int nepturiteOre = item.Amount;
 								item.Delete();
 								item = new NepturiteOre( nepturiteOre );
-								from.SendMessage( "You dig up some nepturite ore.");
+								from.SendMessage( "Você extrai algum minério de nepturita.");
 							}
 							else if ( ( Worlds.IsExploringSeaAreas( from ) || reg.IsPartOf( "Shipwreck Grotto" ) || reg.IsPartOf( "Barnacled Cavern" ) ) && FindSeaLog && item is BaseLog )
 							{
 								int driftWood = item.Amount;
 								item.Delete();
 								item = new DriftwoodLog( driftWood );
-								from.SendMessage( "You chop some driftwood logs.");
+								from.SendMessage( "Você corta algumas toras de madeira à deriva.");
 							}
 							else if ( ( Worlds.IsExploringSeaAreas( from ) || reg.IsPartOf( "Shipwreck Grotto" ) || reg.IsPartOf( "Barnacled Cavern" ) || Server.Misc.Worlds.IsSeaTown( from.Location, from.Map ) ) && FindSeaGranite && item is BaseGranite )
 							{
 								int nepturiteGranite = item.Amount;
 								item.Delete();
 								item = new NepturiteGranite( nepturiteGranite );
-								from.SendMessage( "You dig up nepturite granite.");
+								from.SendMessage( "Você extrai granito de nepturita.");
 							}
 							else if ( from.Land == Land.Underworld && FindSpecialOre && item is BaseOre && from.Map == Map.SavagedEmpire )
 							{
 								int xormiteOre = item.Amount;
 								item.Delete();
 								item = new XormiteOre( xormiteOre );
-								from.SendMessage( "You dig up some xormite ore.");
+								from.SendMessage( "Você extrai algum minério de xormita.");
 							}
 							else if ( from.Land == Land.Underworld && FindSpecialOre && item is BaseOre )
 							{
 								int mithrilOre = item.Amount;
 								item.Delete();
 								item = new MithrilOre( mithrilOre );
-								from.SendMessage( "You dig up some mithril ore.");
+								from.SendMessage( "Você extrai algum minério de mithril.");
 							}
 							else if ( from.Land == Land.Savaged && FindSpecialOre && item is BaseOre )
 							{
 								int steelOre = item.Amount;
 								item.Delete();
 								item = new SteelOre( steelOre );
-								from.SendMessage( "You dig up some steel ore.");
+								from.SendMessage( "Você extrai algum minério de aço.");
 							}
 							else if ( from.Land == Land.UmberVeil && FindSpecialOre && item is BaseOre )
 							{
 								int brassOre = item.Amount;
 								item.Delete();
 								item = new BrassOre( brassOre );
-								from.SendMessage( "You dig up some brass ore.");
+								from.SendMessage( "Você extrai algum minério de latão.");
 							}
 							else if ( from.Land == Land.Serpent && FindSpecialOre && item is BaseOre )
 							{
 								int obsidianOre = item.Amount;
 								item.Delete();
 								item = new ObsidianOre( obsidianOre );
-								from.SendMessage( "You dig up some obsidian ore.");
+								from.SendMessage( "Você extrai algum minério de obsidiana.");
 							}
 							else if ( from.Land == Land.Underworld && FindSpecialGranite && item is BaseGranite && from.Map == Map.SavagedEmpire )
 							{
 								int xormiteGranite = item.Amount;
 								item.Delete();
 								item = new XormiteGranite( xormiteGranite );
-								from.SendMessage( "You dig up xormite granite.");
+								from.SendMessage( "Você extrai granito de xormita.");
 							}
 							else if ( from.Land == Land.Underworld && FindSpecialGranite && item is BaseGranite )
 							{
 								int mithrilGranite = item.Amount;
 								item.Delete();
 								item = new MithrilGranite( mithrilGranite );
-								from.SendMessage( "You dig up mithril granite.");
+								from.SendMessage( "Você extrai granito de mithril.");
 							}
 							else if ( from.Land == Land.Savaged && FindSpecialGranite && item is BaseGranite )
 							{
 								int steelGranite = item.Amount;
 								item.Delete();
 								item = new SteelGranite( steelGranite );
-								from.SendMessage( "You dig up steel granite.");
+								from.SendMessage( "Você extrai granito de aço.");
 							}
 							else if ( from.Land == Land.UmberVeil && FindSpecialGranite && item is BaseGranite )
 							{
 								int brassGranite = item.Amount;
 								item.Delete();
 								item = new BrassGranite( brassGranite );
-								from.SendMessage( "You dig up brass granite.");
+								from.SendMessage( "Você extrai granito de latão.");
 							}
 							else if ( from.Land == Land.Serpent && FindSpecialGranite && item is BaseGranite )
 							{
 								int obsidianGranite = item.Amount;
 								item.Delete();
 								item = new ObsidianGranite( obsidianGranite );
-								from.SendMessage( "You dig up obsidian granite.");
+								from.SendMessage( "Você extrai granito de obsidiana.");
 							}
 							else if ( reg.IsPartOf( typeof( NecromancerRegion ) ) && FindBlackLog && item is BaseLog )
 							{
 								int blackLog = item.Amount;
 								item.Delete();
 								item = new EbonyLog( blackLog );
-								from.SendMessage( "You chop some ebony logs.");
+								from.SendMessage( "Você corta algumas toras de ébano.");
 							}
 							else if ( reg.IsPartOf( typeof( NecromancerRegion ) ) && FindGhostLog && item is BaseLog )
 							{
 								int ghostLog = item.Amount;
 								item.Delete();
 								item = new GhostLog( ghostLog );
-								from.SendMessage( "You chop some ghost logs.");
+								from.SendMessage( "Você corta algumas toras fantasma.");
 							}
 							else if ( from.Land == Land.Underworld && FindToughLog )
 							{
 								int toughLog = item.Amount;
 								item.Delete();
 								item = new PetrifiedLog( toughLog );
-								from.SendMessage( "You chop some petrified logs.");
+								from.SendMessage( "Você corta algumas toras petrificadas.");
 							}
 
-							else if ( item is IronOre ){ from.SendMessage( "You dig up some ore."); }
-							else if ( item is DullCopperOre ){ from.SendMessage( "You dig up some dull copper ore."); }
-							else if ( item is ShadowIronOre ){ from.SendMessage( "You dig up some shadow iron ore."); }
-							else if ( item is CopperOre ){ from.SendMessage( "You dig up some copper ore."); }
-							else if ( item is BronzeOre ){ from.SendMessage( "You dig up some bronze ore."); }
-							else if ( item is GoldOre ){ from.SendMessage( "You dig up some golden ore."); }
-							else if ( item is AgapiteOre ){ from.SendMessage( "You dig up some agapite ore."); }
-							else if ( item is VeriteOre ){ from.SendMessage( "You dig up some verite ore."); }
-							else if ( item is ValoriteOre ){ from.SendMessage( "You dig up some valorite ore."); }
-							else if ( item is DwarvenOre ){ from.SendMessage( "You dig up some dwarven ore."); }
+							else if ( item is IronOre ){ from.SendMessage( "Você extrai algum minério."); }
+							else if ( item is DullCopperOre ){ from.SendMessage( "Você extrai algum minério de cobre baço."); }
+							else if ( item is ShadowIronOre ){ from.SendMessage( "Você extrai algum minério de ferro sombrio."); }
+							else if ( item is CopperOre ){ from.SendMessage( "Você extrai algum minério de cobre."); }
+							else if ( item is BronzeOre ){ from.SendMessage( "Você extrai algum minério de bronze."); }
+							else if ( item is GoldOre ){ from.SendMessage( "Você extrai algum minério de ouro."); }
+							else if ( item is AgapiteOre ){ from.SendMessage( "Você extrai algum minério de agapita."); }
+							else if ( item is VeriteOre ){ from.SendMessage( "Você extrai algum minério de verita."); }
+							else if ( item is ValoriteOre ){ from.SendMessage( "Você extrai algum minério de valorita."); }
+							else if ( item is DwarvenOre ){ from.SendMessage( "Você extrai algum minério anão."); }
 
-							else if ( item is Granite ){ from.SendMessage( "You dig up granite."); }
-							else if ( item is DullCopperGranite ){ from.SendMessage( "You dig up dull copper granite."); }
-							else if ( item is ShadowIronGranite ){ from.SendMessage( "You dig up shadow iron granite."); }
-							else if ( item is CopperGranite ){ from.SendMessage( "You dig up copper granite."); }
-							else if ( item is BronzeGranite ){ from.SendMessage( "You dig up bronze granite."); }
-							else if ( item is GoldGranite ){ from.SendMessage( "You dig up golden granite."); }
-							else if ( item is AgapiteGranite ){ from.SendMessage( "You dig up agapite granite."); }
-							else if ( item is VeriteGranite ){ from.SendMessage( "You dig up verite granite."); }
-							else if ( item is ValoriteGranite ){ from.SendMessage( "You dig up valorite granite."); }
-							else if ( item is DwarvenGranite ){ from.SendMessage( "You dig up dwarven granite."); }
+							else if ( item is Granite ){ from.SendMessage( "Você extrai granito."); }
+							else if ( item is DullCopperGranite ){ from.SendMessage( "Você extrai granito de cobre baço."); }
+							else if ( item is ShadowIronGranite ){ from.SendMessage( "Você extrai granito de ferro sombrio."); }
+							else if ( item is CopperGranite ){ from.SendMessage( "Você extrai granito de cobre."); }
+							else if ( item is BronzeGranite ){ from.SendMessage( "Você extrai granito de bronze."); }
+							else if ( item is GoldGranite ){ from.SendMessage( "Você extrai granito de ouro."); }
+							else if ( item is AgapiteGranite ){ from.SendMessage( "Você extrai granito de agapita."); }
+							else if ( item is VeriteGranite ){ from.SendMessage( "Você extrai granito de verita."); }
+							else if ( item is ValoriteGranite ){ from.SendMessage( "Você extrai granito de valorita."); }
+							else if ( item is DwarvenGranite ){ from.SendMessage( "Você extrai granito anão."); }
 
-							else if ( item is Log ){ from.SendMessage( "You chop some logs."); }
-							else if ( item is AshLog ){ from.SendMessage( "You chop some ash logs."); }
-							else if ( item is CherryLog ){ from.SendMessage( "You chop some cherry logs."); }
-							else if ( item is EbonyLog ){ from.SendMessage( "You chop some ebony logs."); }
-							else if ( item is GoldenOakLog ){ from.SendMessage( "You chop some golden oak logs."); }
-							else if ( item is HickoryLog ){ from.SendMessage( "You chop some hickory logs."); }
-							else if ( item is MahoganyLog ){ from.SendMessage( "You chop some mahogany logs."); }
-							else if ( item is OakLog ){ from.SendMessage( "You chop some oak logs."); }
-							else if ( item is PineLog ){ from.SendMessage( "You chop some pine logs."); }
-							else if ( item is RosewoodLog ){ from.SendMessage( "You chop some rosewood logs."); }
-							else if ( item is WalnutLog ){ from.SendMessage( "You chop some walnut logs."); }
-							else if ( item is ElvenLog ){ from.SendMessage( "You chop some elven logs."); }
+							else if ( item is Log ){ from.SendMessage( "Você corta algumas toras."); }
+							else if ( item is AshLog ){ from.SendMessage( "Você corta algumas toras de freixo."); }
+							else if ( item is CherryLog ){ from.SendMessage( "Você corta algumas toras de cerejeira."); }
+							else if ( item is EbonyLog ){ from.SendMessage( "Você corta algumas toras de ébano."); }
+							else if ( item is GoldenOakLog ){ from.SendMessage( "Você corta algumas toras de carvalho dourado."); }
+							else if ( item is HickoryLog ){ from.SendMessage( "Você corta algumas toras de nogueira americana."); }
+							else if ( item is MahoganyLog ){ from.SendMessage( "Você corta algumas toras de mogno."); }
+							else if ( item is OakLog ){ from.SendMessage( "Você corta algumas toras de carvalho."); }
+							else if ( item is PineLog ){ from.SendMessage( "Você corta algumas toras de pinheiro."); }
+							else if ( item is RosewoodLog ){ from.SendMessage( "Você corta algumas toras de pau-rosa."); }
+							else if ( item is WalnutLog ){ from.SendMessage( "Você corta algumas toras de nogueira."); }
+							else if ( item is ElvenLog ){ from.SendMessage( "Você corta algumas toras élficas."); }
 
 							if ( tool is FishingPole && Server.Engines.Harvest.Fishing.IsNearHugeShipWreck( from ) && from.Skills[SkillName.Seafaring].Value >= Utility.RandomMinMax( 1, 250 ) )
 							{
@@ -467,7 +467,7 @@ namespace Server.Engines.Harvest
 						}
 						else if ( item is WritingBook || item is LoreBook || item is DDRelicBook || item is Spellbook || item is ArtifactManual )
 						{
-							from.SendMessage( "You find a book.");
+							from.SendMessage( "Você encontra um livro.");
 							if ( item is DDRelicBook ){ item.CoinPrice = item.CoinPrice + Utility.RandomMinMax( 1, (int)(from.Skills[SkillName.Inscribe].Value*2) ); }
 							else if ( item is WritingBook ){ item.Name = "Book"; item.ItemID = RandomThings.GetRandomBookItemID(); }
 							else if ( item is Spellbook ){ item.Delete(); item = Spellbook.MagicBook(); }
@@ -481,7 +481,7 @@ namespace Server.Engines.Harvest
 							else if ( item is ParalyzeScroll ){ item.Delete(); item = Loot.RandomScroll( Utility.RandomMinMax(8,9) ); }
 							else if ( item is ExplosionScroll ){ item.Delete(); item = Loot.RandomScroll( Utility.RandomMinMax(10,12) ); }
 
-							from.SendMessage( "You find a scroll.");
+							from.SendMessage( "Você encontra um pergaminho.");
 							if ( item is DDRelicScrolls ){ item.CoinPrice = item.CoinPrice + Utility.RandomMinMax( 1, (int)(from.Skills[SkillName.Inscribe].Value*2) ); }
 						}
 

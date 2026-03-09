@@ -37,7 +37,7 @@ namespace Server.Gumps
 
 			AddHtml( 10, 10, 300, 20, @"<BODY><BASEFONT Color=" + color + ">JOIN A GROUP OF ADVENTURERS</BASEFONT></BODY>", (bool)false, (bool)false);
 
-			AddHtml( 12, 40, 340, 130, @"<BODY><BASEFONT Color=" + color + ">" + m_Leader.Name + " is asking you to join their party! If you wish to accompany them, select the appropriate button. Otherwise, you can simply cancel the request and continue on your own journey.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 12, 40, 340, 130, @"<BODY><BASEFONT Color=" + color + ">" + m_Leader.Name + " está a convidar-te para te juntares ao seu grupo! Se desejares acompanhá-los, seleciona o botão apropriado. Caso contrário, podes simplesmente recusar o pedido e continuar tua própria jornada.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(9, 176, 4023, 4023, 1, GumpButtonType.Reply, 0);
 			AddButton(324, 176, 4020, 4020, 2, GumpButtonType.Reply, 0);

@@ -4,13 +4,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a fire bat corpse" )]
+	[CorpseName( "um cadáver de morcego de fogo" )]
 	public class FireBat : BaseCreature
 	{
 		[Constructable]
 		public FireBat() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{
-			Name = "a fire bat";
+			Name = "um morcego de fogo";
 			Body = 258;
 			BaseSoundID = 0x270;
 			Hue = 0xB73;

@@ -93,11 +93,10 @@ namespace Server.Items
 					AddItem(365, 259, 7153);
 					AddItem(367, 111, 3717);
 
-					string smithing = "Smithing is the art of taking ingots of metal, and creating armor and weapons. You will need a blacksmith hammer and materials. The better the metal, the better the item.";
-					string tinkering = "Tinkering allows one to make intricate items like tools. You can also make other items like jewelry as well. Better metals make better tools and jewelry. Jewelry can be further enhanced with gems.";
-					string mining = "To get metal ingots, you need to find ore. Ore can be mined in caves or along mountain sides. Using the ore on a forge will smelt it into ingots. The better your mining skill, the better ore you can find and smelt.";
-					string crafting = "Other than the tools required to craft, you may need to be near an anvil and forge to create items. Some examples of metals you can find are listed on the next page.";
-
+					string smithing = "Ferraria é a arte de pegar lingotes de metal e criar armaduras e armas. Você precisará de um martelo de ferreiro e materiais. Quanto melhor o metal, melhor o item.";
+					string tinkering = "Funilaria permite criar itens intrincados como ferramentas. Você também pode fazer outros itens como joias. Metais melhores fazem ferramentas e joias melhores. Joias podem ser aprimoradas com gemas.";
+					string mining = "Para obter lingotes de metal, você precisa encontrar minério. O minério pode ser extraído em cavernas ou ao longo de encostas de montanhas. Usar o minério em uma forja o fundirá em lingotes. Quanto melhor sua habilidade de mineração, melhor minério você pode encontrar e fundir.";
+					string crafting = "Além das ferramentas necessárias para criar, você pode precisar estar perto de uma bigorna e forja para fabricar itens. Alguns exemplos de metais que você pode encontrar estão listados na próxima página.";
 					AddHtml( 122, 80, 200, 130, @"<BODY><BASEFONT Color=" + color + ">" + smithing + "</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 122, 255, 200, 130, @"<BODY><BASEFONT Color=" + color + ">" + tinkering + "</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 415, 80, 200, 130, @"<BODY><BASEFONT Color=" + color + ">" + mining + "</BASEFONT></BODY>", (bool)false, (bool)false);

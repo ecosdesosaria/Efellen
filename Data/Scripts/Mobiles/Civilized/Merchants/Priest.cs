@@ -114,7 +114,7 @@ namespace Server.Mobiles
 				{
 					from.AddToBackpack( new Gold( reward ) );
 
-					string sMessage = "Thank you. Here is " + reward + " gold for your bravery.";
+					string sMessage = "Obrigado. Aqui estão " + reward + " de ouro pela sua bravura.";
 
 					if ( reward >= 250 && from.Karma >= 2500 && from.Skills[SkillName.Spiritualism].Base > 0 && from.Skills[SkillName.Healing].Base > 0 )
 					{
@@ -143,7 +143,7 @@ namespace Server.Mobiles
 						if ( hasSymbol == 0 ){ from.AddToBackpack ( new HolySymbol( from ) ); }
 						if ( hasBook == 0 ){ HolyManSpellbook tome = new HolyManSpellbook( (ulong)0, from ); from.AddToBackpack ( tome ); }
 
-						from.SendMessage( "You have been given your holy symbol and prayer book." );
+						from.SendMessage( "Você recebeu seu símbolo sagrado e livro de orações." );
 
 						if ( hasSymbol + hasBook == 0 )
 						{
@@ -151,7 +151,7 @@ namespace Server.Mobiles
 							LoggingFunctions.LogGenericQuest( from, "has become a priest" );
 							from.FixedParticles( 0x373A, 10, 15, 5018, EffectLayer.Waist );
 							from.PlaySound( 0x1EA );
-							sMessage = from.Name + ", take the gold and these as well. You may be a good priest one day.";
+							sMessage = from.Name + ", leve o ouro e isso também. Você pode ser um bom sacerdote um dia.";
 						}
 					}
 

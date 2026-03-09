@@ -5,7 +5,7 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a trollbear corpse" )]
+	[CorpseName( "um cadáver de urso-troll" )]
 	public class Trollbear : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -16,7 +16,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Trollbear() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a trollbear";
+			Name = "um urso-troll";
 			Body = 736;
 			BaseSoundID = 0xA3;
 

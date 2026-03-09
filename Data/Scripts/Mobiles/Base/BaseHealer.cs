@@ -185,7 +185,7 @@ namespace Server.Mobiles
             if ( Deleted || !from.Alive )
                 return;
 
-			SayTo(from, "Did one of your henchman suffer a deathly fate? I can resurrect them for you.");
+			SayTo(from, "Um dos seus ajudantes sofreu um destino mortal? Posso ressuscitá-lo para você.");
 
             from.Target = new HealingTarget(this);
         }
@@ -218,21 +218,21 @@ namespace Server.Mobiles
 
                     if ( nCost < 1 )
                     {
-                        m_BaseHealer.SayTo( from, "Your friend is not dead." );
+                        m_BaseHealer.SayTo( from, "Seu amigo não está morto." );
                     }
                     else if (pack.ConsumeTotal(typeof(Gold), toConsume))
                     {
 						thing.Name = "fighter henchman";
 						thing.HenchDead = 0;
 						thing.InvalidateProperties();
-                        from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+                        from.SendMessage(String.Format("Você paga {0} moedas de ouro.", toConsume));
 						from.PlaySound( 0x214 );
-						m_BaseHealer.SayTo(from, "Your henchman is back in the land of the living.");
+						m_BaseHealer.SayTo(from, "Seu ajudante está de volta à terra dos vivos.");
                     }
                     else
                     {
-                        m_BaseHealer.SayTo(from, "It would cost you {0} gold to have them resurrected.", toConsume);
-                        from.SendMessage("You do not have enough gold.");
+                        m_BaseHealer.SayTo(from, "Custaria {0} moedas de ouro para ressuscitá-lo.", toConsume);
+                        from.SendMessage("Você não tem ouro suficiente.");
                     }
                 }
                 else if (targeted is HenchmanWizardItem && from.Backpack != null)
@@ -251,21 +251,21 @@ namespace Server.Mobiles
 
                     if ( nCost < 1 )
                     {
-                        m_BaseHealer.SayTo( from, "Your friend is not dead." );
+                        m_BaseHealer.SayTo( from, "Seu amigo não está morto." );
                     }
                     else if (pack.ConsumeTotal(typeof(Gold), toConsume))
                     {
 						thing.Name = "wizard henchman";
 						thing.HenchDead = 0;
 						thing.InvalidateProperties();
-                        from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+                        from.SendMessage(String.Format("Você paga {0} moedas de ouro.", toConsume));
 						from.PlaySound( 0x214 );
-						m_BaseHealer.SayTo(from, "Your henchman is back in the land of the living.");
+						m_BaseHealer.SayTo(from, "Seu ajudante está de volta à terra dos vivos.");
                     }
                     else
                     {
-                        m_BaseHealer.SayTo(from, "It would cost you {0} gold to have them resurrected.", toConsume);
-                        from.SendMessage("You do not have enough gold.");
+                        m_BaseHealer.SayTo(from, "Custaria {0} moedas de ouro para ressuscitá-lo.", toConsume);
+                        from.SendMessage("Você não tem ouro suficiente.");
                     }
                 }
                 else if (targeted is HenchmanArcherItem && from.Backpack != null)
@@ -284,21 +284,21 @@ namespace Server.Mobiles
 
                     if ( nCost < 1 )
                     {
-                        m_BaseHealer.SayTo( from, "Your friend is not dead." );
+                        m_BaseHealer.SayTo( from, "Seu amigo não está morto." );
                     }
                     else if (pack.ConsumeTotal(typeof(Gold), toConsume))
                     {
 						thing.Name = "archer henchman";
 						thing.HenchDead = 0;
 						thing.InvalidateProperties();
-                        from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+                        from.SendMessage(String.Format("Você paga {0} moedas de ouro.", toConsume));
 						from.PlaySound( 0x214 );
-						m_BaseHealer.SayTo(from, "Your henchman is back in the land of the living.");
+						m_BaseHealer.SayTo(from, "Seu ajudante está de volta à terra dos vivos.");
                     }
                     else
                     {
-                        m_BaseHealer.SayTo(from, "It would cost you {0} gold to have them resurrected.", toConsume);
-                        from.SendMessage("You do not have enough gold.");
+                        m_BaseHealer.SayTo(from, "Custaria {0} moedas de ouro para ressuscitá-lo.", toConsume);
+                        from.SendMessage("Você não tem ouro suficiente.");
                     }
                 }
                 else if (targeted is HenchmanMonsterItem && from.Backpack != null)
@@ -317,26 +317,26 @@ namespace Server.Mobiles
 
                     if ( nCost < 1 )
                     {
-                        m_BaseHealer.SayTo( from, "Your friend is not dead." );
+                        m_BaseHealer.SayTo( from, "Seu amigo não está morto." );
                     }
                     else if (pack.ConsumeTotal(typeof(Gold), toConsume))
                     {
 						thing.Name = "creature henchman";
 						thing.HenchDead = 0;
 						thing.InvalidateProperties();
-                        from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+                        from.SendMessage(String.Format("Você paga {0} moedas de ouro.", toConsume));
 						from.PlaySound( 0x214 );
-						m_BaseHealer.SayTo(from, "Your henchman is back in the land of the living.");
+						m_BaseHealer.SayTo(from, "Seu ajudante está de volta à terra dos vivos.");
                     }
                     else
                     {
-                        m_BaseHealer.SayTo(from, "It would cost you {0} gold to have them resurrected.", toConsume);
-                        from.SendMessage("You do not have enough gold.");
+                        m_BaseHealer.SayTo(from, "Custaria {0} moedas de ouro para ressuscitá-lo.", toConsume);
+                        from.SendMessage("Você não tem ouro suficiente.");
                     }
                 }
 				else
 				{
-					m_BaseHealer.SayTo(from, "That does not need my services.");
+					m_BaseHealer.SayTo(from, "Isso não precisa dos meus serviços.");
 				}
             }
         }

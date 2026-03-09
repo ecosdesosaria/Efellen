@@ -3,13 +3,13 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an animal corpse" )]
+	[CorpseName( "um cadáver de animal" )]
 	public class EvilMount : BaseMount
 	{
 		public override bool DeleteCorpseOnDeath { get { return true; } }
 
 		[Constructable]
-		public EvilMount() : this( "an animal" )
+		public EvilMount() : this( "um animal" )
 		{
 		}
 

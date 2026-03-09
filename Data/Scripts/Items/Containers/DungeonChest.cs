@@ -299,15 +299,15 @@ namespace Server.Items
 						string sSaying = "";
 						switch ( Utility.Random( 9 ))
 						{
-							case 0: sSaying = "Who has disturbed me!"; break;
-							case 1: sSaying = "You dare steal from my grave?"; break;
-							case 2: sSaying = "Those that take from me will join me!"; break;
-							case 3: sSaying = "Your soul is now mine for the taking!"; break;
-							case 4: sSaying = "Who dares waken me?"; break;
-							case 5: sSaying = "Your life will be extinguished!"; break;
-							case 6: sSaying = "Do you have no respect for the dead?"; break;
-							case 7: sSaying = "I have been waiting to feast off the living!"; break;
-							case 8: sSaying = "Soon you will join my legion of the dead!"; break;
+							case 0: sSaying = "Quem me perturbou!"; break;
+							case 1: sSaying = "Você ousa roubar de minha sepultura?"; break;
+							case 2: sSaying = "Aqueles que tiram de mim se juntarão a mim!"; break;
+							case 3: sSaying = "Sua alma agora é minha para tomar!"; break;
+							case 4: sSaying = "Quem ousa me despertar?"; break;
+							case 5: sSaying = "Sua vida será extinta!"; break;
+							case 6: sSaying = "Você não tem respeito pelos mortos?"; break;
+							case 7: sSaying = "Estive esperando para me banquetear com os vivos!"; break;
+							case 8: sSaying = "Logo você se juntará à minha legião dos mortos!"; break;
 						}
 
 						spawned.OnBeforeSpawn( from.Location, from.Map );

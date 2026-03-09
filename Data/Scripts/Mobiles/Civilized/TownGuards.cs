@@ -36,8 +36,11 @@ namespace Server.Mobiles
 
 			AddItem( new LightCitizen( true ) );
 
-			ActiveSpeed = 0.15;
-			PassiveSpeed = 0.25;
+			if ( MySettings.S_GuardsSprint )
+			{
+				ActiveSpeed = 0.15;
+				PassiveSpeed = 0.25;
+			}
 
 			if ( Backpack != null ){ Backpack.Delete(); }
 			Container pack = new Backpack();
@@ -56,7 +59,7 @@ namespace Server.Mobiles
 			{
 				if ( IntelligentAction.GetMyEnemies( from, this, false ) )
 				{
-					string sSay = "You shouldn't be carrying that around with you.";
+					string sSay = "Você não deveria estar carregando isso por aí.";
 					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sSay, from.NetState);
 				}
 				else
@@ -67,20 +70,20 @@ namespace Server.Mobiles
 					int gold = bounty.BountyValue;
 					Server.Engines.Harvest.Fishing.SailorSkill( from, (int)( gold / 100 ) );
 					string sMessage = "";
-					string sReward = "Here is " + gold.ToString() + " gold for you.";
+					string sReward = "Aqui está " + gold.ToString() + " de ouro para você.";
 
 					switch ( Utility.RandomMinMax( 0, 9 ) )
 					{
-						case 0:	sReward = "Here is " + gold.ToString() + " gold for you.";							break;
-						case 1:	sReward = "Take this " + gold.ToString() + " gold for your trouble.";				break;
-						case 2:	sReward = "The reward is " + gold.ToString() + " gold.";							break;
-						case 3:	sReward = "Here is " + gold.ToString() + " gold for the bounty.";					break;
-						case 4:	sReward = "The bounty is " + gold.ToString() + " gold for this one.";				break;
-						case 5:	sReward = "Here is your reward of " + gold.ToString() + " gold";					break;
-						case 6:	sReward = "You can have this " + gold.ToString() + " gold for the bounty.";			break;
-						case 7:	sReward = "There is a reward of " + gold.ToString() + " gold for this one.";		break;
-						case 8:	sReward = "This one was worth " + gold.ToString() + " gold for their crimes.";		break;
-						case 9:	sReward = "Their crimes called for a bounty of " + gold.ToString() + " gold.";		break;
+						case 0:	sReward = "Aqui está " + gold.ToString() + " de ouro para você.";							break;
+						case 1:	sReward = "Pegue estes " + gold.ToString() + " de ouro pelo seu incômodo.";				break;
+						case 2:	sReward = "A recompensa é " + gold.ToString() + " de ouro.";							break;
+						case 3:	sReward = "Aqui está " + gold.ToString() + " de ouro pela recompensa.";					break;
+						case 4:	sReward = "A recompensa é " + gold.ToString() + " de ouro por este.";				break;
+						case 5:	sReward = "Aqui está sua recompensa de " + gold.ToString() + " de ouro";					break;
+						case 6:	sReward = "Você pode ficar com estes " + gold.ToString() + " de ouro pela recompensa.";			break;
+						case 7:	sReward = "Há uma recompensa de " + gold.ToString() + " de ouro por este.";		break;
+						case 8:	sReward = "Este valia " + gold.ToString() + " de ouro por seus crimes.";		break;
+						case 9:	sReward = "Seus crimes exigiam uma recompensa de " + gold.ToString() + " de ouro.";		break;
 					}
 
 					Titles.AwardKarma( from, karma, true );
@@ -90,16 +93,16 @@ namespace Server.Mobiles
 
 					switch ( Utility.RandomMinMax( 0, 9 ) )
 					{
-						case 0:	sMessage = "We have been looking for this pirate. " + sReward;	break;
-						case 1:	sMessage = "I have heard of this pirate before. " + sReward;	break;
-						case 2:	sMessage = "I never thought I would see this pirate brought to justice. " + sReward;	break;
-						case 3:	sMessage = "This pirate will plunder no more. " + sReward;	break;
-						case 4:	sMessage = "Our galleons are safer now. " + sReward;	break;
-						case 5:	sMessage = "The sea is safer because of you. " + sReward;	break;
-						case 6:	sMessage = "The sailors at the docks will not believe this. " + sReward;	break;
-						case 7:	sMessage = "I have only heard stories about this pirate. " + sReward;	break;
-						case 8:	sMessage = "How did you come across this pirate? " + sReward;	break;
-						case 9:	sMessage = "Where did you find this pirate? " + sReward;	break;
+						case 0:	sMessage = "Estávamos procurando por este pirata. " + sReward;	break;
+						case 1:	sMessage = "Já ouvi falar deste pirata antes. " + sReward;	break;
+						case 2:	sMessage = "Nunca pensei que veria este pirata ser trazido à justiça. " + sReward;	break;
+						case 3:	sMessage = "Este pirata não saqueará mais. " + sReward;	break;
+						case 4:	sMessage = "Nossos galeões estão mais seguros agora. " + sReward;	break;
+						case 5:	sMessage = "O mar está mais seguro por sua causa. " + sReward;	break;
+						case 6:	sMessage = "Os marinheiros nos cais não vão acreditar nisso. " + sReward;	break;
+						case 7:	sMessage = "Só ouvi histórias sobre este pirata. " + sReward;	break;
+						case 8:	sMessage = "Como você encontrou este pirata? " + sReward;	break;
+						case 9:	sMessage = "Onde você encontrou este pirata? " + sReward;	break;
 					}
 					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
 					dropped.Delete();
@@ -110,7 +113,7 @@ namespace Server.Mobiles
 			{
 				if ( IntelligentAction.GetMyEnemies( from, this, false ) )
 				{
-					string sSay = "You shouldn't be carrying that around with you.";
+					string sSay = "Você não deveria estar carregando isso por aí.";
 					this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sSay, from.NetState);
 				}
 				else
@@ -119,7 +122,7 @@ namespace Server.Mobiles
 					int karma = 0;
 					int gold = 0;
 					string sMessage = "";
-					string sReward = "Here is " + gold.ToString() + " gold for you.";
+					string sReward = "Aqui está " + gold.ToString() + " de ouro para você.";
 
 					if ( head.m_Job == "Thief" )
 					{
@@ -149,16 +152,16 @@ namespace Server.Mobiles
 
 					switch ( Utility.RandomMinMax( 0, 9 ) )
 					{
-						case 0:	sReward = "Here is " + gold.ToString() + " gold for you.";							break;
-						case 1:	sReward = "Take this " + gold.ToString() + " gold for your trouble.";				break;
-						case 2:	sReward = "The reward is " + gold.ToString() + " gold.";							break;
-						case 3:	sReward = "Here is " + gold.ToString() + " gold for the bounty.";					break;
-						case 4:	sReward = "The bounty is " + gold.ToString() + " gold for this one.";				break;
-						case 5:	sReward = "Here is your reward of " + gold.ToString() + " gold";					break;
-						case 6:	sReward = "You can have this " + gold.ToString() + " gold for the bounty.";			break;
-						case 7:	sReward = "There is a reward of " + gold.ToString() + " gold for this one.";		break;
-						case 8:	sReward = "This one was worth " + gold.ToString() + " gold for their crimes.";		break;
-						case 9:	sReward = "Their crimes called for a bounty of " + gold.ToString() + " gold.";		break;
+						case 0:	sReward = "Aqui está " + gold.ToString() + " de ouro para você.";							break;
+						case 1:	sReward = "Pegue estes " + gold.ToString() + " de ouro pelo seu incômodo.";				break;
+						case 2:	sReward = "A recompensa é " + gold.ToString() + " de ouro.";							break;
+						case 3:	sReward = "Aqui está " + gold.ToString() + " de ouro pela recompensa.";					break;
+						case 4:	sReward = "A recompensa é " + gold.ToString() + " de ouro por este.";				break;
+						case 5:	sReward = "Aqui está sua recompensa de " + gold.ToString() + " de ouro";					break;
+						case 6:	sReward = "Você pode ficar com estes " + gold.ToString() + " de ouro pela recompensa.";			break;
+						case 7:	sReward = "Há uma recompensa de " + gold.ToString() + " de ouro por este.";		break;
+						case 8:	sReward = "Este valia " + gold.ToString() + " de ouro por seus crimes.";		break;
+						case 9:	sReward = "Seus crimes exigiam uma recompensa de " + gold.ToString() + " de ouro.";		break;
 					}
 
 					if ( head.m_Job == "Thief" || head.m_Job == "Bandit" || head.m_Job == "Brigand" )
@@ -169,16 +172,16 @@ namespace Server.Mobiles
 
 						switch ( Utility.RandomMinMax( 0, 9 ) )
 						{
-							case 0:	sMessage = "We have been looking for this rogue. " + sReward;	break;
-							case 1:	sMessage = "I have heard of this thief before. " + sReward;	break;
-							case 2:	sMessage = "I never thought I would see this bandit brought to justice. " + sReward;	break;
-							case 3:	sMessage = "This rouge will steal no more. " + sReward;	break;
-							case 4:	sMessage = "Our gold purses are safer now. " + sReward;	break;
-							case 5:	sMessage = "The land is safer because of you. " + sReward;	break;
-							case 6:	sMessage = "The others at the guard house will not believe this. " + sReward;	break;
-							case 7:	sMessage = "I have only heard stories about this rogue. " + sReward;	break;
-							case 8:	sMessage = "How did you come across this thief? " + sReward;	break;
-							case 9:	sMessage = "Where did you find this sneak? " + sReward;	break;
+							case 0:	sMessage = "Estávamos procurando por este patife. " + sReward;	break;
+							case 1:	sMessage = "Já ouvi falar deste ladrão antes. " + sReward;	break;
+							case 2:	sMessage = "Nunca pensei que veria este bandido ser trazido à justiça. " + sReward;	break;
+							case 3:	sMessage = "Este patife não roubará mais. " + sReward;	break;
+							case 4:	sMessage = "Nossas bolsas de ouro estão mais seguras agora. " + sReward;	break;
+							case 5:	sMessage = "A terra está mais segura por sua causa. " + sReward;	break;
+							case 6:	sMessage = "Os outros no quartel da guarda não vão acreditar nisso. " + sReward;	break;
+							case 7:	sMessage = "Só ouvi histórias sobre este patife. " + sReward;	break;
+							case 8:	sMessage = "Como você encontrou este ladrão? " + sReward;	break;
+							case 9:	sMessage = "Onde você encontrou este sorrateiro? " + sReward;	break;
 						}
 						this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
 						dropped.Delete();
@@ -192,16 +195,16 @@ namespace Server.Mobiles
 
 						switch ( Utility.RandomMinMax( 0, 9 ) )
 						{
-							case 0:	sMessage = "We have been looking for this pirate. " + sReward;	break;
-							case 1:	sMessage = "I have heard of this pirate before. " + sReward;	break;
-							case 2:	sMessage = "I never thought I would see this pirate brought to justice. " + sReward;	break;
-							case 3:	sMessage = "This pirate will plunder no more. " + sReward;	break;
-							case 4:	sMessage = "Our galleons are safer now. " + sReward;	break;
-							case 5:	sMessage = "The sea is safer because of you. " + sReward;	break;
-							case 6:	sMessage = "The sailors at the docks will not believe this. " + sReward;	break;
-							case 7:	sMessage = "I have only heard stories about this pirate. " + sReward;	break;
-							case 8:	sMessage = "How did you come across this pirate? " + sReward;	break;
-							case 9:	sMessage = "Where did you find this pirate? " + sReward;	break;
+							case 0:	sMessage = "Estávamos procurando por este pirata. " + sReward;	break;
+							case 1:	sMessage = "Já ouvi falar deste pirata antes. " + sReward;	break;
+							case 2:	sMessage = "Nunca pensei que veria este pirata ser trazido à justiça. " + sReward;	break;
+							case 3:	sMessage = "Este pirata não saqueará mais. " + sReward;	break;
+							case 4:	sMessage = "Nossos galeões estão mais seguros agora. " + sReward;	break;
+							case 5:	sMessage = "O mar está mais seguro por sua causa. " + sReward;	break;
+							case 6:	sMessage = "Os marinheiros nos cais não vão acreditar nisso. " + sReward;	break;
+							case 7:	sMessage = "Só ouvi histórias sobre este pirata. " + sReward;	break;
+							case 8:	sMessage = "Como você encontrou este pirata? " + sReward;	break;
+							case 9:	sMessage = "Onde você encontrou este pirata? " + sReward;	break;
 						}
 						this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
 						dropped.Delete();
@@ -215,16 +218,16 @@ namespace Server.Mobiles
 
 						switch ( Utility.RandomMinMax( 0, 9 ) )
 						{
-							case 0:	sMessage = "We have been living in fear of this one. " + sReward;	break;
-							case 1:	sMessage = "I have heard others speak of this assassin. " + sReward;	break;
-							case 2:	sMessage = "I never thought this assassin existed. " + sReward;	break;
-							case 3:	sMessage = "This assassin will kill no more. " + sReward;	break;
-							case 4:	sMessage = "Our nobles are safer now. " + sReward;	break;
-							case 5:	sMessage = "The shadows are less feared because of you. " + sReward;	break;
-							case 6:	sMessage = "Those in the tavern will not believe this. " + sReward;	break;
-							case 7:	sMessage = "I have only heard rumors about this assassin. " + sReward;	break;
-							case 8:	sMessage = "It is good to see this assassin did not best you. " + sReward;	break;
-							case 9:	sMessage = "How did you survive this assassin? " + sReward;	break;
+							case 0:	sMessage = "Estávamos vivendo com medo deste. " + sReward;	break;
+							case 1:	sMessage = "Ouvi outros falarem deste assassino. " + sReward;	break;
+							case 2:	sMessage = "Nunca pensei que este assassino existisse. " + sReward;	break;
+							case 3:	sMessage = "Este assassino não matará mais. " + sReward;	break;
+							case 4:	sMessage = "Nossos nobres estão mais seguros agora. " + sReward;	break;
+							case 5:	sMessage = "As sombras são menos temidas por sua causa. " + sReward;	break;
+							case 6:	sMessage = "Aqueles na taverna não vão acreditar nisso. " + sReward;	break;
+							case 7:	sMessage = "Só ouvi rumores sobre este assassino. " + sReward;	break;
+							case 8:	sMessage = "É bom ver que este assassino não o superou. " + sReward;	break;
+							case 9:	sMessage = "Como você sobreviveu a este assassino? " + sReward;	break;
 						}
 						this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);
 						dropped.Delete();
@@ -232,7 +235,7 @@ namespace Server.Mobiles
 					}
 					else
 					{
-						this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "I assume they done you harm. Let me rid you of this thing.", from.NetState);
+						this.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Presumo que eles lhe fizeram mal. Deixe-me livrá-lo desta coisa.", from.NetState);
 						dropped.Delete();
 						return true;
 					}
@@ -492,14 +495,14 @@ namespace Server.Mobiles
 		{
 			switch ( Utility.Random( 8 ))		   
 			{
-				case 0: Say("Die villian!"); break;
-				case 1: Say("I will bring you justice!"); break;
-				case 2: Say("So, " + defender.Name + "? Your evil ends here!"); break;
-				case 3: Say("We have been told to watch for " + defender.Name + "!"); break;
-				case 4: Say("Fellow guardsmen, " + defender.Name + " is here!"); break;
-				case 5: Say("We have ways of dealing with the likes of " + defender.Name + "!"); break;
-				case 6: Say("Give up! We do not fear " + defender.Name + "!"); break;
-				case 7: Say("So, " + defender.Name + "? I sentence you to death!"); break;
+				case 0: Say("Morra, vilão!"); break;
+				case 1: Say("Eu lhe trarei justiça!"); break;
+				case 2: Say("Então, " + defender.Name + "? Seu mal acaba aqui!"); break;
+				case 3: Say("Nos disseram para ficar atentos a " + defender.Name + "!"); break;
+				case 4: Say("Camaradas guardas, " + defender.Name + " está aqui!"); break;
+				case 5: Say("Temos maneiras de lidar com os como " + defender.Name + "!"); break;
+				case 6: Say("Renda-se! Não tememos " + defender.Name + "!"); break;
+				case 7: Say("Então, " + defender.Name + "? Eu o sentencio à morte!"); break;
 			};
 		}
 
@@ -508,10 +511,10 @@ namespace Server.Mobiles
 			if ( !IntelligentAction.GetMyEnemies( m, this, true ) )
 				return false;
 
-			if ( m.Region != this.Region )
+			if ( m.Region != this.Region && !MySettings.S_GuardsPatrolOutside )
 				return false;
 
-			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
+			if ( MySettings.S_GuardsSentenceDeath || ( m is BaseCreature && ((BaseCreature)m).ControlMaster == null ) )
 			{
 				this.Location = m.Location;
 				this.Combatant = m;
@@ -578,7 +581,7 @@ namespace Server.Mobiles
 						GuardNote note = new GuardNote();
 						note.ScrollText = ((PlayerMobile)m).CharacterWanted;
 						m_Mobile.AddToBackpack( note );
-						m_Giver.Say("Here is a note citizen. Be on the lookout.");
+						m_Giver.Say("Aqui está um aviso, cidadão. Fique atento.");
 					}
 				}
             }

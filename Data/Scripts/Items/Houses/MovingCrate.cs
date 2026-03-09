@@ -151,10 +151,10 @@ namespace Server.Multis
 
 		public override bool CheckHold( Mobile m, Item item, bool message, bool checkItems, int plusItems, int plusWeight )
 		{
-		    if (!m.InRange(this.GetWorldLocation(), 3))
+			if (!m.InRange(this.GetWorldLocation(), 3))
 		    {
 		        if (message)
-		            m.SendMessage("You are too far away to deposit items into that.");
+		            m.SendMessage("Você está muito longe para depositar itens nisso.");
 
 		        return false;
 		    }

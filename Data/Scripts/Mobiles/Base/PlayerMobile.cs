@@ -119,14 +119,14 @@ namespace Server.Mobiles
 			PlayerMobile pm = (PlayerMobile)from;
 
 			if ( pm.CraftSuccess > 1 )
-				pm.SendMessage( "You created " + pm.CraftSuccess + " items." );
+				pm.SendMessage( "Você criou " + pm.CraftSuccess + " itens." );
 			else if ( pm.CraftSuccess == 1 )
-				pm.SendMessage( "You created 1 item." );
+				pm.SendMessage( "Você criou 1 item." );
 
 			if ( pm.CraftExceptional > 1 )
-				pm.SendMessage( "You created " + pm.CraftExceptional + " exceptional items." );
+				pm.SendMessage( "Você criou " + pm.CraftExceptional + " itens excepcionais." );
 			else if ( pm.CraftExceptional == 1)
-				pm.SendMessage( "You created 1 exceptional item." );
+				pm.SendMessage( "Você criou 1 item excepcional." );
 
 			pm.PlaySound( CraftSound );
 
@@ -812,10 +812,10 @@ namespace Server.Mobiles
 
 		private int CalculateFollowersMax()
 		{
-			double herding = this.Skills[SkillName.Herding].Value;
-			double veterinary = this.Skills[SkillName.Veterinary].Value;
-			double druidism = this.Skills[SkillName.Druidism].Value;
-			double taming = this.Skills[SkillName.Taming].Value;
+			double herding = MySettings.S_ItemInfluencedTamingSlots ? this.Skills[SkillName.Herding].Value : this.Skills[SkillName.Herding].Base;
+			double veterinary = MySettings.S_ItemInfluencedTamingSlots ? this.Skills[SkillName.Veterinary].Value : this.Skills[SkillName.Veterinary].Base;
+			double druidism = MySettings.S_ItemInfluencedTamingSlots ? this.Skills[SkillName.Druidism].Value : this.Skills[SkillName.Druidism].Base;
+			double taming = MySettings.S_ItemInfluencedTamingSlots ? this.Skills[SkillName.Taming].Value : this.Skills[SkillName.Taming].Base;
 
 			if (herding >= 120 && veterinary >= 120 && druidism >= 120 && taming >= 120)
 				return 8;
@@ -831,8 +831,8 @@ namespace Server.Mobiles
 		{
 			int max = base.GetMaxResistance( type );
 
-			if ( 70 > 39 && 70 < 91 )
-				max = 70;
+			if ( MySettings.S_MaxResistance > 39 && MySettings.S_MaxResistance < 91 )
+				max = MySettings.S_MaxResistance;
 
 			if ( type != ResistanceType.Physical && Spells.Fourth.CurseSpell.UnderEffect( this ) )
 				max = max - 10;
@@ -2285,13 +2285,13 @@ namespace Server.Mobiles
 
 			switch( Utility.Random( 7 ) )
 			{
-				case 0: LoggingFunctions.LogStandard( this, "has returned from the realm of the dead" );		break;
-				case 1: LoggingFunctions.LogStandard( this, "was brought back to the world of the living" );	break;
-				case 2: LoggingFunctions.LogStandard( this, "has been restored to life" );					break;
-				case 3: LoggingFunctions.LogStandard( this, "has been brought back from the grave" );		break;
-				case 4: LoggingFunctions.LogStandard( this, "has been resurrected to this world" );			break;
-				case 5: LoggingFunctions.LogStandard( this, "has returned to life after death" );			break;
-				case 6: LoggingFunctions.LogStandard( this, "was resurrected for another chance at life" );	break;
+				case 0: LoggingFunctions.LogStandard( this, "retornou do reino dos mortos" );        break;
+				case 1: LoggingFunctions.LogStandard( this, "foi trazido de volta ao mundo dos vivos" ); break;
+				case 2: LoggingFunctions.LogStandard( this, "foi restaurado à vida" );                 break;
+				case 3: LoggingFunctions.LogStandard( this, "foi trazido de volta da sepultura" );     break;
+				case 4: LoggingFunctions.LogStandard( this, "foi ressuscitado para este mundo" );      break;
+				case 5: LoggingFunctions.LogStandard( this, "retornou à vida após a morte" );          break;
+				case 6: LoggingFunctions.LogStandard( this, "foi ressuscitado para outra chance de vida" ); break;
 			}
 
 			if ( this.QuestArrow != null ){ this.QuestArrow.Stop(); }
@@ -2350,7 +2350,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( this.LastKiller is TownGuards || ( this.LastKiller is BaseVendor && this.LastKiller.WhisperHue != 999 && !(this.LastKiller is PlayerVendor) && !(this.LastKiller is PlayerBarkeeper) ) )
+			if ( !MySettings.S_GuardsSentenceDeath && ( this.LastKiller is TownGuards || ( this.LastKiller is BaseVendor && this.LastKiller.WhisperHue != 999 && !(this.LastKiller is PlayerVendor) && !(this.LastKiller is PlayerBarkeeper) ) ) )
 			{
 				Land world = Server.Lands.GetLand( Map, Location, X, Y );
 				Point3D p = new Point3D( 1956, 1328, 0 );
@@ -2396,7 +2396,7 @@ namespace Server.Mobiles
 					sJail = "Cimmeran Prison";
 				}
 
-				this.SendMessage("You have been sent to the " + sJail + "!"); 
+				this.SendMessage("Você foi enviado para a " + sJail + "!"); 
 				Server.Mobiles.BaseCreature.TeleportPets( this, p, map );
 				this.MoveToWorld( p, map );
 				LoggingFunctions.LogPrison( this, sJail );

@@ -141,21 +141,20 @@ namespace Server.Items
 
 					ITEM = "" + cultInfo.ToTitleCase( ITEM ) + "";
 
-					AddHtml( 12, 42, 247, 20, @"<BODY><BASEFONT Color=" + value + ">Contains " + cargo.CargoQty + " " + ITEM + "</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 12, 42, 247, 20, @"<BODY><BASEFONT Color=" + value + ">Contém " + cargo.CargoQty + " " + ITEM + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 
-				string karma = "<BODY><BASEFONT Color=#ff0000>Bad</BASEFONT></BODY>"; if ( cargo.CargoKarma > 0 ){ karma = "<BODY><BASEFONT Color=#2cdb51>Good</BASEFONT></BODY>"; }
-				AddHtml( 12, 72, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Delivery Karma:</BASEFONT></BODY>", (bool)false, (bool)false);
+				string karma = "<BODY><BASEFONT Color=#ff0000>Ruim</BASEFONT></BODY>"; if ( cargo.CargoKarma > 0 ){ karma = "<BODY><BASEFONT Color=#2cdb51>Bom</BASEFONT></BODY>"; }
+				AddHtml( 12, 72, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Karma de Entrega:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 158, 72, 87, 20, @"" + karma + "", (bool)false, (bool)false);
 
-				AddHtml( 12, 102, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Base Value:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 12, 132, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Sailing Bonus:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 12, 162, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Merchant Bonus:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 12, 192, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Begging Bonus:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 12, 222, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Guild Bonus:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 12, 252, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Port Bonus:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 12, 282, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Total Value:</BASEFONT></BODY>", (bool)false, (bool)false);
-
+				AddHtml( 12, 102, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Valor Base:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 132, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Bônus de Navegação:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 162, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Bônus de Mercador:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 192, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Bônus de Mendicância:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 222, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Bônus de Guilda:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 252, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Bônus Portuário:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 282, 131, 20, @"<BODY><BASEFONT Color=" + color + ">Valor Total:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 158, 102, 87, 20, @"<BODY><BASEFONT Color=" + value + ">" + cargo.CargoValue + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 158, 132, 87, 20, @"<BODY><BASEFONT Color=" + value + ">" + CargoFishingGold( cargo, from ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 158, 162, 87, 20, @"<BODY><BASEFONT Color=" + value + ">" + CargoMerchantGold( cargo, from ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
@@ -164,19 +163,19 @@ namespace Server.Items
 				AddHtml( 158, 252, 87, 20, @"<BODY><BASEFONT Color=" + value + ">" + CargoPortGold( cargo, from ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 158, 282, 87, 20, @"<BODY><BASEFONT Color=" + value + ">" + CargoTotalValue( cargo, from ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
-				string gotten = "pirated"; if ( cargo.CargoKarma > 0 ){ gotten = "seized"; }
-				string boat = "the hold of a small boat"; if ( cargo.CargoShip != null && cargo.CargoShip != "" ){ boat = "the galleon called " + cargo.CargoShip; }
+				string gotten = "pirateada"; if ( cargo.CargoKarma > 0 ){ gotten = "apreendida"; }
+				string boat = "o porão de um pequeno barco"; if ( cargo.CargoShip != null && cargo.CargoShip != "" ){ boat = "o galeão chamado " + cargo.CargoShip; }
 				if ( cargo.CargoQty > 0 )
 				{
-					AddHtml( 273, 12, 246, 334, @"<BODY><BASEFONT Color=" + value + "><BR><BR><BR>This cargo was " + gotten + " from " + boat + ". You can either keep the container and contents for yourself or you can give it to the " + cargo.CargoVendor + " for a payment. Karma for delivering it to someone is based on whether it was pirated from sailors or seized from criminals. You will only get a port bonus if you deliver it to someone in a port settlement, where pirates and sailors frequent. Only members of the Mariners Guild get the guild bonus for payment.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 273, 12, 246, 334, @"<BODY><BASEFONT Color=" + value + "><BR><BR><BR>Esta carga foi " + gotten + " de " + boat + ". Você pode ficar com o recipiente e o conteúdo para si mesmo ou pode entregá-la ao " + cargo.CargoVendor + " por um pagamento. O karma por entregá-la a alguém é baseado em se foi pirateada de marinheiros ou apreendida de criminosos. Você só receberá um bônus portuário se entregá-la a alguém em um assentamento portuário, onde piratas e marinheiros frequentam. Apenas membros da Guilda dos Marinheiros recebem o bônus da guilda pelo pagamento.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 					AddButton(12, 325, 4023, 4023, 1, GumpButtonType.Reply, 0);
-					AddHtml( 48, 325, 97, 20, @"<BODY><BASEFONT Color=" + value + ">Keep</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 48, 325, 97, 20, @"<BODY><BASEFONT Color=" + value + ">Ficar</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddButton(233, 325, 4020, 4020, 0, GumpButtonType.Reply, 0);
 				}
 				else
 				{
-					AddHtml( 273, 12, 246, 334, @"<BODY><BASEFONT Color=" + value + "><BR><BR><BR>This cargo was " + gotten + " from " + boat + ". You can give it to the " + cargo.CargoVendor + " for a payment. Karma for delivering it to someone is based on whether it was pirated from sailors or seized from criminals. You will only get a port bonus if you deliver it to someone in a port settlement, where pirates and sailors frequent. Only members of the Mariners Guild get the guild bonus for payment.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 273, 12, 246, 334, @"<BODY><BASEFONT Color=" + value + "><BR><BR><BR>Esta carga foi " + gotten + " de " + boat + ". Você pode entregá-la ao " + cargo.CargoVendor + " por um pagamento. O karma por entregá-la a alguém é baseado em se foi pirateada de marinheiros ou apreendida de criminosos. Você só receberá um bônus portuário se entregá-la a alguém em um assentamento portuário, onde piratas e marinheiros frequentam. Apenas membros da Guilda dos Marinheiros recebem o bônus da guilda pelo pagamento.</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 			}
 
@@ -708,8 +707,9 @@ namespace Server.Items
 			{
 				CargoVendor = "Leatherworker or Tanner"; 
 				ItemID = 0x5093;
-				int rare = Utility.RandomMinMax( 2, 2048 );
-				if ( rare <= 2 ){ CargoMaterial = 11; Name = "crate of dinosaur hides"; Hue = CraftResources.GetHue( CraftResource.DinosaurLeather );		CargoContains = "DinosaurHides"; 	CargoQty = (int)(CargoValue/14);	}
+				int rare = Utility.RandomMinMax( 1, 2048 );
+				if ( rare <= 1 ){ CargoMaterial = 12; Name = "crate of alien hides"; Hue = CraftResources.GetHue( CraftResource.AlienLeather );					CargoContains = "AlienHides"; 		CargoQty = (int)(CargoValue/14);	}
+				else if ( rare <= 2 ){ CargoMaterial = 11; Name = "crate of dinosaur hides"; Hue = CraftResources.GetHue( CraftResource.DinosaurLeather );		CargoContains = "DinosaurHides"; 	CargoQty = (int)(CargoValue/14);	}
 				else if ( rare <= 4 ){ CargoMaterial = 10; Name = "crate of hellish hides"; Hue = CraftResources.GetHue( CraftResource.HellishLeather );		CargoContains = "HellishHides"; 	CargoQty = (int)(CargoValue/14);	}
 				else if ( rare <= 8 ){ CargoMaterial = 9; Name = "crate of draconic hides"; Hue = CraftResources.GetHue( CraftResource.DraconicLeather );		CargoContains = "DraconicHides"; 	CargoQty = (int)(CargoValue/12);	}
 				else if ( rare <= 16 ){ CargoMaterial = 8; Name = "crate of goliath hides"; Hue = CraftResources.GetHue( CraftResource.GoliathLeather );		CargoContains = "GoliathHides"; 	CargoQty = (int)(CargoValue/12);	}
@@ -774,19 +774,19 @@ namespace Server.Items
 		{
 			if ( VendorTest( cargo, vendor ) )
 			{
-				string say = "Thank you!";
+				string say = "Obrigado!";
 				if ( cargo.CargoKarma < 0 )
 				{
 					switch( Utility.RandomMinMax( 1, 8 ) )
 					{
-						case 1: say = "Do I want to know where you got this?";	break;
-						case 2: say = "This has some blood on it.";	break;
-						case 3: say = "I thought this was pirated?";	break;
-						case 4:	say = "I won't even ask.";	break;
-						case 5: say = "Let's keep this between us.";	break;
-						case 6: say = "Hurry, before someone sees us.";	break;
-						case 7: say = "I'll stash this away for now.";	break;
-						case 8: say = "Smuggled more goods did ya?";	break;
+						case 1: say = "Eu quero saber onde você conseguiu isso?"; break;
+						case 2: say = "Isso tem um pouco de sangue."; break;
+						case 3: say = "Achei que isso era pirata?"; break;
+						case 4: say = "Nem vou perguntar."; break;
+						case 5: say = "Vamos manter isso entre nós."; break;
+						case 6: say = "Rápido, antes que alguém nos veja."; break;
+						case 7: say = "Vou esconder isso por enquanto."; break;
+						case 8: say = "Contrabandeou mais mercadorias, hein?"; break;
 					}
 					player.SendSound( 0x5B3 );
 				}
@@ -794,14 +794,14 @@ namespace Server.Items
 				{
 					switch( Utility.RandomMinMax( 1, 8 ) )
 					{
-						case 1: say = "Thank you for returning this.";	break;
-						case 2: say = "I hope the pirates paid with their lives.";	break;
-						case 3: say = "This will surely save my shop.";	break;
-						case 4:	say = "I thought this was lost forever.";	break;
-						case 5: say = "I never thought I would get this back.";	break;
-						case 6: say = "Did you know this was stolen from me?";	break;
-						case 7: say = "Damn pirates stole this from me.";	break;
-						case 8: say = "You make the shipping lanes safer for the rest of us.";	break;
+						case 1: say = "Obrigado por devolver isso."; break;
+						case 2: say = "Espero que os piratas tenham pago com as próprias vidas."; break;
+						case 3: say = "Isso certamente salvará minha loja."; break;
+						case 4: say = "Achei que isso estava perdido para sempre."; break;
+						case 5: say = "Nunca pensei que recuperaria isso."; break;
+						case 6: say = "Você sabia que isso foi roubado de mim?"; break;
+						case 7: say = "Malditos piratas roubaram isso de mim."; break;
+						case 8: say = "Você torna as rotas de navegação mais seguras para o resto de nós."; break;
 					}
 					player.SendSound( 0x5B4 );
 				}
@@ -810,7 +810,7 @@ namespace Server.Items
 
 				Server.Engines.Harvest.Fishing.SailorSkill( player, (int)( gold / 100 ) );
 
-				player.SendMessage( "You receive " + gold + " gold." );
+				player.SendMessage( "Você recebe " + gold + " de ouro." );
 				player.AddToBackpack ( new Gold( gold ) );
 				cargo.Delete();
 				Misc.Titles.AwardKarma( player, cargo.CargoKarma, true );
@@ -821,7 +821,7 @@ namespace Server.Items
 			}
 			else
 			{
-				vendor.PrivateOverheadMessage(MessageType.Regular, 1153, false, "I think the " + cargo.CargoVendor + " might be interested in that.", player.NetState);
+				vendor.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Acho que o " + cargo.CargoVendor + " pode estar interessado nisso.", player.NetState);
 			}
 		}
 

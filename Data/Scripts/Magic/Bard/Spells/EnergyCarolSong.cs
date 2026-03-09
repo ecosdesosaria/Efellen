@@ -40,7 +40,7 @@ namespace Server.Spells.Song
 
 				foreach ( Mobile m in Caster.GetMobilesInRange( 10 ) )
 				{
-					if ( isFriendly( Caster, m ) && m.EnergyResistance < 70 )
+					if ( isFriendly( Caster, m ) && m.EnergyResistance < MySettings.S_MaxResistance )
 						targets.Add( m );
 				}
 				
@@ -51,10 +51,10 @@ namespace Server.Spells.Song
 					TimeSpan duration = TimeSpan.FromSeconds( (double)(MusicSkill( Caster ) * 2) );
                     int amount = MyServerSettings.PlayerLevelMod( (int)(MusicSkill( Caster ) / 16), Caster );
 
-					if ( ( amount + m.EnergyResistance ) > 70 )
-						amount = 70 - m.EnergyResistance;
+					if ( ( amount + m.EnergyResistance ) > MySettings.S_MaxResistance )
+						amount = MySettings.S_MaxResistance - m.EnergyResistance;
 						
-					m.SendMessage( "Your resistance to energy has increased." );
+					m.SendMessage( "Sua resistência à energia aumentou." );
 					ResistanceMod mod1 = new ResistanceMod( ResistanceType.Energy, + amount );
 						
 					m.FixedParticles( 0x373A, 10, 15, 5012, 0x14, 3, EffectLayer.Waist );
@@ -95,7 +95,7 @@ namespace Server.Spells.Song
 			{
 				if ( m_Mobile != null )
 				{
-					m_Mobile.SendMessage( "The effect of energy carol wears off." );
+					m_Mobile.SendMessage( "O efeito do energy carol desaparece." );
 					DoExpire();
 				}
 			}

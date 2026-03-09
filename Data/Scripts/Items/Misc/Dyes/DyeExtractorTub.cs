@@ -34,19 +34,19 @@ namespace Server.Items
         public DyeExtractorTub(Serial serial) : base(serial)
         {
         }
-        public override string DefaultDescription{ get{ return "This item can consume a piece of clothing to extract the color from it, which can then be transfered to another dye tub."; } }
+        public override string DefaultDescription{ get{ return "Esse item pode consumir uma peça de roupa para extrair a cor dela, que pode então ser transferida para outro recipiente de tintura."; } }
 
         public override void AddNameProperties(ObjectPropertyList list)
         {
             base.AddNameProperties(list);
-            
+
             if (m_ExtractedHue > 0)
             {
-                list.Add(1060658, "Extracted Color\t{0}", m_ExtractedHue.ToString());
+                list.Add(1060658, "Cor extraída\t{0}", m_ExtractedHue.ToString());
             }
             else
             {
-                list.Add(1070722, "Empty - Ready to Extract");
+                list.Add(1070722, "Vazio - Pronto para Extrair");
             }
         }
 
@@ -56,12 +56,12 @@ namespace Server.Items
             {
                 if (m_ExtractedHue > 0)
                 {
-                    from.SendMessage("Select another dye tub to transfer the extracted color to.");
+                    from.SendMessage("Selecione outro recipiente de tintura para transferir a cor extraída.");
                     from.Target = new TransferTarget(this);
                 }
                 else
                 {
-                    from.SendMessage("Select an item to extract color from. The item will be destroyed.");
+                    from.SendMessage("Selecione um item para extrair a cor. O item será destruído.");
                     from.Target = new ExtractTarget(this);
                 }
             }
@@ -87,7 +87,7 @@ namespace Server.Items
 
                 if (m_Tub.ExtractedHue > 0)
                 {
-                    from.SendMessage("This tub already contains an extracted color. Transfer it first.");
+                    from.SendMessage("Este recipiente já contém uma cor extraída. Transfira-a primeiro.");
                     return;
                 }
 
@@ -95,7 +95,7 @@ namespace Server.Items
 
                 if (item == null)
                 {
-                    from.SendMessage("You can only extract color from an item.");
+                    from.SendMessage("Você só pode extrair cor de um item.");
                     return;
                 }
 
@@ -107,13 +107,13 @@ namespace Server.Items
 
                 if (item.Hue == 0)
                 {
-                    from.SendMessage("This item has no color to extract.");
+                    from.SendMessage("Este item não tem cor para extrair.");
                     return;
                 }
 
                 if (item is DyeTub || item is DyeExtractorTub)
                 {
-                    from.SendMessage("You cannot extract color from a dye tub.");
+                    from.SendMessage("Você não pode extrair cor de um recipiente de tintura.");
                     return;
                 }
 
@@ -123,8 +123,8 @@ namespace Server.Items
 
                 m_Tub.ExtractedHue = extractedHue;
 
-                from.SendMessage("Color extracted successfully! The item has been consumed.");
-                from.SendMessage("Now select another dye tub to apply this color.");
+                from.SendMessage("Cor extraída com sucesso! O item foi consumido.");
+                from.SendMessage("Agora selecione outro recipiente de tintura para aplicar esta cor.");
             }
         }
 
@@ -144,7 +144,7 @@ namespace Server.Items
 
                 if (m_SourceTub.ExtractedHue == 0)
                 {
-                    from.SendMessage("This tub does not contain any extracted color.");
+                    from.SendMessage("Este recipiente não contém nenhuma cor extraída.");
                     return;
                 }
 
@@ -152,7 +152,7 @@ namespace Server.Items
 
                 if (targetTub == null)
                 {
-                    from.SendMessage("You must select a dye tub.");
+                    from.SendMessage("Você deve selecionar um recipiente de tintura.");
                     return;
                 }
 
@@ -164,7 +164,7 @@ namespace Server.Items
 
                 if (targetTub is DyeExtractorTub)
                 {
-                    from.SendMessage("You cannot transfer color to another extractor tub.");
+                    from.SendMessage("Você não pode transferir cor para outro recipiente de extração.");
                     return;
                 }
 
@@ -175,7 +175,7 @@ namespace Server.Items
 
                 m_SourceTub.ExtractedHue = 0;
 
-                from.SendMessage("Color successfully transferred!");
+                from.SendMessage("Cor transferida com sucesso!");
                 from.PlaySound(0x23E);
             }
         }

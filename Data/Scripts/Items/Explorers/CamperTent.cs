@@ -21,7 +21,7 @@ namespace Server.Items
 
 	public class CampersTent : Item
 	{
-		public override string DefaultDescription{ get{ return "This is a camping tent that you can use to get away from the dangers of the land and rest. You can only use these tents if you have at least a 40 in the camping skill and they eventually wear out from use. If you double click the tent while it is in your pack, you will setup the tent for yourself. No one will be able to follow you in the tent unless they have a tent and the appropriate skill. If you set the tent down and double click it, then others will be able to use the tent to rest as they can double click the tent to follow you in. The original rolled tent will be put back into your pack, while the standing tent is left behind and will only remain for about 30 seconds so your comrades should make haste and follow you in. If anyone wants to leave the tent, then simply double click the tent flap you came in by. Anyone can stay in the tent as long as they want, but they will return to the spot where they used the tent when they leave."; } }
+		public override string DefaultDescription{ get{ return "Esta é uma barraca de acampamento que você pode usar para escapar dos perigos da terra e descansar. Você só pode usar essas barracas se tiver pelo menos 40 na habilidade de acampamento, e elas eventualmente se desgastam com o uso. Se clicar duas vezes na barraca enquanto ela estiver em sua mochila, você montará a barraca para si mesmo. Ninguém poderá segui-lo para dentro da barraca a menos que tenha uma barraca e a habilidade apropriada. Se você colocar a barraca no chão e clicar duas vezes nela, então outros poderão usar a barraca para descansar, pois poderão clicar duas vezes na barraca para segui-lo para dentro. A barraca enrolada original será colocada de volta em sua mochila, enquanto a barraca montada será deixada para trás e permanecerá por apenas cerca de 30 segundos, então seus companheiros devem se apressar e segui-lo para dentro. Se alguém quiser sair da barraca, basta clicar duas vezes na entrada por onde entrou. Qualquer um pode ficar na barraca o tempo que quiser, mas retornará ao local onde usou a barraca quando sair."; } }
 
 		private CamperTentEffect m_CamperTentEffect;
 		private int m_Charges;
@@ -43,7 +43,7 @@ namespace Server.Items
 		[Constructable]
 		public CampersTent() : base( 0x0A59 )
 		{
-			Name = "camping tent";
+			Name = "barraca de acampamento";
 			Weight = 5.0; 
 			Charges = 10;
 			Hue = Utility.RandomList( 0x96D, 0x96E, 0x96F, 0x970, 0x971, 0x972, 0x973, 0x974, 0x975, 0x976, 0x977, 0x978, 0x979, 0x97A, 0x97B, 0x97C, 0x97D, 0x97E );		
@@ -52,8 +52,8 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Setup A Safe Tent In Which To Rest");
-			list.Add( 1049644, "Usable By Those Skilled In Camping");
+			list.Add( 1070722, "Monte uma barraca segura onde descansar");
+			list.Add( 1049644, "Usável por quem tem habilidade em acampamento");
         }
 
 		public override void OnDoubleClick( Mobile from )
@@ -64,22 +64,22 @@ namespace Server.Items
 
 			if ( from.Skills[SkillName.Camping].Value < 40 )
 			{
-				from.SendMessage( "You must be a novice explorer to use this tent." );
+				from.SendMessage( "Você deve ser um explorador novato para usar esta barraca." );
 				return;
 			}
 			else if ( from.Region.IsPartOf( typeof( PublicRegion ) ) )
 			{
-				from.SendMessage( "This is a really nice camping tent." ); 
+				from.SendMessage( "Esta é uma barraca de acampamento muito bonita." ); 
 				return;
 			}
 			else if ( Server.Misc.Worlds.IsOnBoat( from ) )
 			{
-				from.SendMessage( "You cannot setup this tent near a boat." );
+				from.SendMessage( "Você não pode montar esta barraca perto de um barco." );
 				return;
 			}
 			else if ( inCombat )
 			{
-				from.SendMessage( "You cannot setup a tent while in combat." );
+				from.SendMessage( "Você não pode montar uma barraca enquanto está em combate." );
 				return;
 			}
 			else if ( ( from.Region.IsPartOf( typeof( BardDungeonRegion ) ) || from.Region.IsPartOf( typeof( DungeonRegion ) ) ) && from.Skills[SkillName.Camping].Value >= 90 )
@@ -92,7 +92,7 @@ namespace Server.Items
 						!from.Region.IsPartOf( typeof( OutDoorBadRegion ) ) && 
 						!from.Region.IsPartOf( typeof( VillageRegion ) ) )
 			{
-				from.SendMessage( "You are only skilled enough to use this tent outdoors." ); 
+				from.SendMessage( "Você está apenas habilidoso o suficiente para usar esta barraca ao ar livre." ); 
 				return;
 			}
 			else if (	from.Skills[SkillName.Camping].Value >= 90 && 
@@ -103,7 +103,7 @@ namespace Server.Items
 						!from.Region.IsPartOf( typeof( OutDoorBadRegion ) ) && 
 						!from.Region.IsPartOf( typeof( VillageRegion ) ) )
 			{
-				from.SendMessage( "You can only use this tent outdoors or in dungeons." ); 
+				from.SendMessage( "Você só pode usar esta barraca ao ar livre ou em masmorras." ); 
 				return;
 			}
 			else
@@ -178,20 +178,20 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "This tent is too worn from over use, and is no longer of any good." );
+					from.SendMessage( "Esta barraca está muito desgastada pelo uso excessivo e não serve mais para nada." );
 					this.Delete();
 					return;
 				}
 			}
 			else if ( CanUseTent > 0 )
 			{
-				from.SendMessage( "Your tent is a bit more worn out as you fail to set it up properly." );
+				from.SendMessage( "Sua barraca está um pouco mais desgastada por você falhar ao montá-la corretamente." );
 				Server.Items.Kindling.RaiseCamping( from );
 				ConsumeCharge( from );
 
 				if ( Charges < 1 )
 				{
-					from.SendMessage( "This tent is too worn from over use, and is no longer of any good." );
+					from.SendMessage( "Esta barraca está muito desgastada pelo uso excessivo e não serve mais para nada." );
 					this.Delete();
 					return;
 				}

@@ -15,9 +15,9 @@ namespace Server.Items
 			get
 			{
 				if ( Technology )
-					return "Sleeping bags can be used by adventurers, to recovery health and stamina much quicker. There cannot be any enemies nearby and only the one who places the sleeping bag will benefit from the effects. It requires someone proficient in camping.";
+					return "Sacos de dormir podem ser usados por aventureiros, para recuperar saúde e vigor muito mais rapidamente. Não pode haver inimigos por perto e apenas quem coloca o saco de dormir se beneficiará dos efeitos. Requer alguém proficiente em acampamento.";
 
-				return "Bedrolls can be used by adventurers, to recovery health and stamina much quicker. There cannot be any enemies nearby and only the one who places the bedroll will benefit from the effects. It requires someone proficient in camping.";
+				return "Sacos de dormir podem ser usados por aventureiros, para recuperar saúde e vigor muito mais rapidamente. Não pode haver inimigos por perto e apenas quem coloca o saco de dormir se beneficiará dos efeitos. Requer alguém proficiente em acampamento.";
 			}
 		}
 
@@ -67,16 +67,16 @@ namespace Server.Items
 				PlayerMobile pm = (PlayerMobile)from;
 
                 if ( from.Region is PublicRegion || from.Region is ProtectedRegion || from.Region is SafeRegion )
-                {
-                    from.SendMessage("You don't need to use a bedroll here!");
-                }
-                else if ( BedsNearby( from ) )
 				{
-					from.SendMessage( "You already have a bedroll laid out!" );
+					from.SendMessage("Você não precisa usar um saco de dormir aqui!");
+				}
+				else if ( BedsNearby( from ) )
+				{
+					from.SendMessage( "Você já tem um saco de dormir estendido!" );
 				}
 				else if ( Server.Items.Kindling.EnemiesNearby( from ) )
 				{
-					from.SendMessage( "It is not safe enough to setup camp!" );
+					from.SendMessage( "Não está seguro o suficiente para montar acampamento!" );
 				}
 				else if ( DateTime.Now >= pm.Bedroll )
 				{
@@ -101,7 +101,7 @@ namespace Server.Items
 
 						if ( bedLocation == Point3D.Zero )
 						{
-							from.SendMessage( "There is no spot nearby to place your bedroll." );
+							from.SendMessage( "Não há um local próximo para colocar seu saco de dormir." );
 						}
 						else
 						{
@@ -116,7 +116,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "You can only lay out a bedroll every 10 minutes!" );
+					from.SendMessage( "Você só pode estender um saco de dormir a cada 10 minutos!" );
 				}
 			}
 		}

@@ -4,14 +4,14 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a timber wolf corpse" )]
+	[CorpseName( "um cadáver de lobo-da-floresta" )]
 	[TypeAlias( "Server.Mobiles.Timberwolf" )]
 	public class TimberWolf : BaseCreature
 	{
 		[Constructable]
 		public TimberWolf() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a timber wolf";
+			Name = "um lobo-da-floresta";
 			Body = 225;
 			BaseSoundID = 0xE5;
 

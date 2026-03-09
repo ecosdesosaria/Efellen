@@ -6,7 +6,7 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a minotaur corpse" )]
+	[CorpseName( "um cadáver de minotauro" )]
 	public class MinotaurSmall : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -17,7 +17,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public MinotaurSmall() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 ) // NEED TO CHECK
 		{
-			Name = "a minotaur";
+			Name = "um minotauro";
 			Body = Utility.RandomList( 78, 357 );
 			BaseSoundID = 0x54E;
 

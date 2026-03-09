@@ -119,17 +119,17 @@ namespace Server.Engines.Harvest
 
 			if ( !(from.Region is DungeonRegion || from.Region is DeadRegion || from.Region is CaveRegion || from.Region is BardDungeonRegion || from.Region is OutDoorBadRegion) )
 			{
-				from.SendMessage("There is nothing here of interest.");
+				from.SendMessage("Não há nada de interessante aqui.");
 				return false;
 			}
 			else if ( from.Mounted )
 			{
-				from.SendMessage("You cannot examine these books while riding.");
+				from.SendMessage("Você não pode examinar estes livros enquanto está montado.");
 				return false;
 			}
 			else if ( from.IsBodyMod && !from.Body.IsHuman && from.RaceID < 1 )
 			{
-				from.SendMessage("You cannot examine these books while polymorphed.");
+				from.SendMessage("Você não pode examinar estes livros enquanto estiver polimorfado.");
 				return false;
 			}
 
@@ -146,17 +146,17 @@ namespace Server.Engines.Harvest
 
 			if ( !(from.Region is DungeonRegion || from.Region is DeadRegion || from.Region is CaveRegion || from.Region is BardDungeonRegion || from.Region is OutDoorBadRegion) )
 			{
-				from.SendMessage("There is nothing here of interest.");
+				from.SendMessage("Não há nada de interessante aqui.");
 				return false;
 			}
 			else if ( from.Mounted )
 			{
-				from.SendMessage("You cannot examine these books while riding.");
+				from.SendMessage("Você não pode examinar estes livros enquanto está montado.");
 				return false;
 			}
 			else if ( from.IsBodyMod && !from.Body.IsHuman && from.RaceID < 1 )
 			{
-				from.SendMessage("You cannot examine these books while polymorphed.");
+				from.SendMessage("Você não pode examinar estes livros enquanto estiver polimorfado.");
 				return false;
 			}
 
@@ -168,13 +168,13 @@ namespace Server.Engines.Harvest
 			if ( !base.BeginHarvesting( from, tool ) )
 				return false;
 
-			from.SendMessage("Which books do you want to look through?");
+			from.SendMessage("Quais livros você quer examinar?");
 			return true;
 		}
 
 		public override void OnBadHarvestTarget( Mobile from, Item tool, object toHarvest )
 		{
-			from.SendMessage( "That has nothing of interest." );
+			from.SendMessage( "Isso não tem nada de interessante." );
 		}
 
 		public override void OnHarvestStarted( Mobile from, Item tool, HarvestDefinition def, object toHarvest )
@@ -206,7 +206,7 @@ namespace Server.Engines.Harvest
 			// award marks on successful res collection
 			int markAmount = Utility.RandomMinMax(4,8);
 			from.AddToBackpack( new MarksOfTheWeave( markAmount ) );
-			from.SendMessage( "you found " + markAmount + " marks of the weave!" );
+			from.SendMessage( "você encontrou " + markAmount + " marcas do tecido!" );
 
 			if ( harvested is StaticTarget )
 			{
@@ -267,7 +267,7 @@ namespace Server.Engines.Harvest
 									if ( shelf != null )
 									{
 										BaseContainer.PutStuffInContainer( from, 3, shelf );
-										from.SendMessage( "you found " + name + "!" );
+										from.SendMessage( "Você encontrou " + name + "!" );
 									}
 								}
 							}

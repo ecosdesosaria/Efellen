@@ -90,9 +90,8 @@ namespace Server.Items
 					AddItem(82, 139, 3922);
 					AddItem(364, 144, 4016);
 
-					string craft = "Blacksmiths are able to use the hardened scales of reptiles, to make various types of armor and shields. These scales can vary in color and properties they enhance, for the items you can make from them. Due to the hardened nature of these scales, you would need an anvil and forge in order to heat them and hammer them into the shape required.";
-					string scales = "Use a bladed item, like a dagger or knife, on a corpse by double clicking the item and then selecting the corpse. If there are reptile scales to be taken from it, they will appear in their pack. Different types of scales can be found on many creatures like lizards, dragons and dinosaurs. You can use these scales to make different types of armor and shields by using scaling tools. Some of the types of scales you can find are listed on the next page.";
-
+					string craft = "Ferreiros podem usar as escamas endurecidas de répteis para fazer vários tipos de armaduras e escudos. Essas escamas podem variar em cor e propriedades que melhoram para os itens que você pode criar com elas. Devido à natureza endurecida dessas escamas, seria necessário uma bigorna e uma forja para aquecê-las e martelá-las na forma necessária.";
+					string scales = "Use um item cortante, como uma adaga ou faca, em um cadáver clicando duas vezes no item e depois selecionando o cadáver. Se houver escamas de réptil para serem retiradas, elas aparecerão na mochila. Diferentes tipos de escamas podem ser encontrados em muitas criaturas como lagartos, dragões e dinossauros. Você pode usar essas escamas para fazer diferentes tipos de armaduras e escudos usando ferramentas de escamação. Alguns dos tipos de escamas que você pode encontrar estão listados na próxima página.";
 					AddHtml( 122, 80, 200, 300, @"<BODY><BASEFONT Color=" + color + ">" + craft + "</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 415, 80, 200, 300, @"<BODY><BASEFONT Color=" + color + ">" + scales + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
@@ -121,7 +120,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( e.Backpack ) && this.Weight != -50.0 ) 
 			{
-				e.SendMessage( "This must be in your backpack to read." );
+				e.SendMessage( "Isto precisa estar em sua mochila para ser lido." );
 			}
 			else
 			{

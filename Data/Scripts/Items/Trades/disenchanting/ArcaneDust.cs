@@ -19,7 +19,7 @@ namespace Server.Items
             Amount = amount;
             Weight = 0.1;
         }
-        public override string DefaultDescription{ get{ return"This is the condensed magical essence used in the creation of a magical item. Skilled guild crafters can use it to enhance the properties of magical items."; } }
+        public override string DefaultDescription{ get{ return"Esta é a essência mágica condensada usada na criação de um item mágico. Artesãos de guilda qualificados podem usá-lo para aprimorar as propriedades de itens mágicos."; } }
 
         public ArcaneDust(Serial serial) : base(serial)
         {

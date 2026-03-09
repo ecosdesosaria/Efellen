@@ -364,16 +364,16 @@ namespace Server.Gumps
 			AddPage(0);
 
 			AddImage(0, 0, 9548, PlayerSettings.GetGumpHue( from ));
-			AddHtml( 12, 12, 300, 20, @"<BODY><BASEFONT Color=" + color + ">CONFIGURE REAGENT BAR</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 12, 12, 300, 20, @"<BODY><BASEFONT Color=" + color + ">CONFIGURAR BARRA DE REAGENTES</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(967, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
-			AddHtml( 14, 55, 981, 94, @"<BODY><BASEFONT Color=" + color + ">This toolbar provides a quick and convenient way to keep an eye on your reagents. You must choose what icons will appear on your quick bar, and you can select those here. The bar will display reagents by category of magery, necromancy, research/misc, and witch brewing.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 14, 55, 981, 94, @"<BODY><BASEFONT Color=" + color + ">Esta barra de ferramentas oferece uma maneira rápida e conveniente de vigiar teus reagentes. Deves escolher quais ícones aparecerão em tua barra rápida, e podes selecioná-los aqui. A barra exibirá reagentes por categoria de magia, necromancia, pesquisa/diversos e preparação de bruxaria.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(277, 151, btn1, btn1, 1, GumpButtonType.Reply, 0);
-			AddHtml( 316, 151, 223, 20, @"<BODY><BASEFONT Color=" + color + ">Horizontal Bar</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 316, 151, 223, 20, @"<BODY><BASEFONT Color=" + color + ">Barra Horizontal</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(580, 151, btn2, btn2, 2, GumpButtonType.Reply, 0);
-			AddHtml( 619, 151, 223, 20, @"<BODY><BASEFONT Color=" + color + ">Open At Login</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 619, 151, 223, 20, @"<BODY><BASEFONT Color=" + color + ">Abrir ao Entrar</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			int icons = 2;
 

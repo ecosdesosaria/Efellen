@@ -7,13 +7,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a dire boar corpse" )]
+	[CorpseName( "um cadáver de javali feroz" )]
 	public class DireBoar : BaseCreature
 	{
 		[Constructable]
 		public DireBoar() : base( AIType.AI_Melee,FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a dire boar";
+			Name = "um javali feroz";
 			Body = 0x122;
 			Hue = 0x908;
 			BaseSoundID = 0xC4;

@@ -260,7 +260,9 @@ namespace Server.Regions
 
 		public override bool OnDecay( Item item )
 		{
-			if ( (m_House.IsLockedDown( item ) || m_House.IsSecure( item )) && m_House.IsInside( item ) )
+			if ( MySettings.S_HouseStorage )
+				return false;
+			else if ( (m_House.IsLockedDown( item ) || m_House.IsSecure( item )) && m_House.IsInside( item ) )
 				return false;
 			else
 				return base.OnDecay(item );

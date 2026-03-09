@@ -111,13 +111,13 @@ namespace Server.Mobiles
 					}
 					else
 					{
-						sMessage = "You need to be a neophyte scribe before I sell that to you.";
+						sMessage = "Você precisa ser um escriba neófito antes que eu venda isso para você.";
 						from.AddToBackpack ( dropped );
 					}
 				}
 				else
 				{
-					sMessage = "You look like you need this more than I do.";
+					sMessage = "Parece que você precisa disso mais do que eu.";
 					from.AddToBackpack ( dropped );
 				}
 

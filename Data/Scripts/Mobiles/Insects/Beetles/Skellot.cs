@@ -4,13 +4,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a skellot corpse" )]
+	[CorpseName( "um cadáver de skellot" )]
 	public class Skellot : BaseCreature
 	{
 		[Constructable]
 		public Skellot () : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a skellot";
+			Name = "um skellot";
 			Body = 652;
 			BaseSoundID = 0x388;
 

@@ -1,15 +1,16 @@
-The following acts are considered illegal throughout much of the land:
+Os atos abaixo são considerados ilegais em Sosaria:
 
-- Murder
-- Theft from Others
-- Grave Robbing
-- Carving Human Corpses
-- Being a Death Knight
+- Assassinato
+- Roubo
+- Roubo de Tumbas
+- Roubo de Corpos
+- Metagaming
+- Não interpretar seu personagem
 
-These acts are considered unfavorable in the eyes of the civilized:
+Esses atos são considerados mal-vistos pelas pessoas civilizadas:
 
-- Begging
-- Necromancy
-- Eating the Hearts of Humans
-- Slaying Good Natured Creatures
-- Dealing in Poisons
+- Mendigar
+- Necromancia
+- Comer Coraçẽs Humanos
+- Matar Criaturas Pacíficas
+- Mexer com Venenos

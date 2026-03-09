@@ -102,9 +102,9 @@ namespace Server.Mobiles
 			if ( BeggingPose(from) > 0 ) // LET US SEE IF THEY ARE BEGGING
 			{
 				nCost = nCost - (int)( ( from.Skills[SkillName.Begging].Value * 0.005 ) * nCost ); if ( nCost < 1 ){ nCost = 1; }
-				SayTo(from, "Since you are begging, do you still want me to decipher a treasure map for you, it will only cost " + nCost.ToString() + " gold per level of the map?");
+				SayTo(from, "Já que você está implorando, você ainda quer que eu decifre um mapa do tesouro para você, custará apenas " + nCost.ToString() + " de ouro por nível do mapa?");
 			}
-			else { SayTo(from, "If you want me to decipher a treasure map for you, it will cost " + nCost.ToString() + " gold per level of the map"); }
+			else { SayTo(from, "Se você quiser que eu decifre um mapa do tesouro para você, custará " + nCost.ToString() + " de ouro por nível do mapa"); }
 
             from.Target = new RepairTarget(this);
         }
@@ -141,31 +141,31 @@ namespace Server.Mobiles
 
 					if ( tmap.Decoder != null )
 					{
-						m_CartographersGuildmaster.SayTo(from, "That map has already been deciphered.");
+						m_CartographersGuildmaster.SayTo(from, "Esse mapa já foi decifrado.");
 					}
                     else if (pack.ConsumeTotal(typeof(Gold), toConsume))
                     {
-						if ( BeggingPose(from) > 0 ){ Titles.AwardKarma( from, -BeggingKarma( from ), true ); } // DO ANY KARMA LOSS
-						if ( tmap.Level == 1 ){ m_CartographersGuildmaster.SayTo(from, "This map was really quite simple."); }
-						else if ( tmap.Level == 2 ){ m_CartographersGuildmaster.SayTo(from, "Seemed pretty easy...so here it is."); }
-						else if ( tmap.Level == 3 ){ m_CartographersGuildmaster.SayTo(from, "This map was a bit of a challenge."); }
-						else if ( tmap.Level == 4 ){ m_CartographersGuildmaster.SayTo(from, "Whoever drew this map, did not want it found."); }
-						else if ( tmap.Level == 5 ){ m_CartographersGuildmaster.SayTo(from, "This took more research than normal."); }
-						else { m_CartographersGuildmaster.SayTo(from, "With the ancient writings and riddles, this map should now lead you there."); }
+						if ( BeggingPose(from) > 0 ){ Titles.AwardKarma( from, -BeggingKarma( from ), true ); } // FAZER QUALQUER PERDA DE KARMA
+						if ( tmap.Level == 1 ){ m_CartographersGuildmaster.SayTo(from, "Este mapa era realmente muito simples."); }
+						else if ( tmap.Level == 2 ){ m_CartographersGuildmaster.SayTo(from, "Pareceu bem fácil... então aqui está."); }
+						else if ( tmap.Level == 3 ){ m_CartographersGuildmaster.SayTo(from, "Este mapa foi um pouco desafiador."); }
+						else if ( tmap.Level == 4 ){ m_CartographersGuildmaster.SayTo(from, "Quem quer que tenha desenhado este mapa não queria que fosse encontrado."); }
+						else if ( tmap.Level == 5 ){ m_CartographersGuildmaster.SayTo(from, "Isso exigiu mais pesquisa do que o normal."); }
+						else { m_CartographersGuildmaster.SayTo(from, "Com os escritos antigos e enigmas, este mapa agora deve levar você até lá."); }
 
-                        from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+                        from.SendMessage(String.Format("Você paga {0} de ouro.", toConsume));
                         Effects.PlaySound(from.Location, from.Map, 0x249);
 						tmap.Decoder = from;
                     }
                     else
                     {
-                        m_CartographersGuildmaster.SayTo(from, "It would cost you {0} gold for me to decipher that map.", toConsume);
-                        from.SendMessage("You do not have enough gold.");
+			m_CartographersGuildmaster.SayTo(from, "Custaria {0} de ouro para eu decifrar esse mapa.", toConsume);
+			from.SendMessage("Você não tem ouro suficiente.");
                     }
                 }
 				else
 				{
-					m_CartographersGuildmaster.SayTo(from, "That does not need my services.");
+					m_CartographersGuildmaster.SayTo(from, "Isso não precisa dos meus serviços.");
 				}
             }
         }

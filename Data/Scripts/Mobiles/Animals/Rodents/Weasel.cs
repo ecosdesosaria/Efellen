@@ -4,13 +4,13 @@ using Server.Engines.Quests;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a weasel corpse" )]
+	[CorpseName( "um cadáver de doninha" )]
 	public class Weasel : BaseCreature
 	{
 		[Constructable]
 		public Weasel() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a weasel";
+			Name = "uma doninha";
 			Body = 0x117;
 			Hue = 1705;
 

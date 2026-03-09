@@ -5,7 +5,7 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a lava serpent corpse" )]
+	[CorpseName( "um cadáver de serpente de lava" )]
 	[TypeAlias( "Server.Mobiles.Lavaserpant" )]
 	public class LavaSerpent : BaseCreature
 	{
@@ -19,7 +19,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public LavaSerpent() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a lava serpent";
+			Name = "uma serpente de lava";
 			Body = 21;
 			Hue = 0xB71;
 			BaseSoundID = 219;

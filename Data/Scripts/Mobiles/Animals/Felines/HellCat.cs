@@ -4,7 +4,7 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a hell cat corpse" )]
+	[CorpseName( "um cadáver de gata infernal" )]
 	[TypeAlias( "Server.Mobiles.Hellcat" )]
 	public class HellCat : BaseCreature
 	{
@@ -19,7 +19,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public HellCat() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a hell cat";
+			Name = "uma gata infernal";
 			Body = 214;
 			Hue = 1652;
 			BaseSoundID = 0xBA;

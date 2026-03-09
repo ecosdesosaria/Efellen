@@ -1169,7 +1169,7 @@ namespace Server.Items
 					}
 					else
 					{
-						m.SendMessage("There's a problem trying to cash a check in your backpack, this game is closed. Seek help from the gods.");
+						m.SendMessage("Há um problema ao tentar resgatar um cheque em tua mochila, este jogo está encerrado. Busca auxílio dos deuses.");
 						BlackJackOffline(9503);
 						return false;
 					}

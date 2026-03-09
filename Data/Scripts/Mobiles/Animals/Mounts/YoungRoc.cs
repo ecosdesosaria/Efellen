@@ -5,7 +5,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a roc corpse" )]
+	[CorpseName( "um cadáver de roc" )]
 	public class YoungRoc : BaseMount
 	{
 		public override WeaponAbility GetWeaponAbility()

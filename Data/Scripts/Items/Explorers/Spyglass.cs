@@ -34,9 +34,9 @@ namespace Server.Items
 			get
 			{
 				if ( Technology )
-					return "Using these binoculars will give you a bonus to tracking for a short time, allowing you to search for your targets much easier.";
+					return "Usar estes binóculos lhe dará um bônus de rastreamento por um curto período, permitindo que você procure seus alvos com muito mais facilidade.";
 
-				return "Using this spyglass will give you a bonus to tracking for a short time, allowing you to search for your targets much easier.";
+				return "Usar este telescópio lhe dará um bônus de rastreamento por um curto período, permitindo que você procure seus alvos com muito mais facilidade.";
 			}
 		}
 
@@ -85,14 +85,14 @@ namespace Server.Items
 		{
 		    if ( !m.CanBeginAction( typeof( Spyglass ) ) )
 		    {
-				m.SendMessage( "You are already using the this." );
+				m.SendMessage( "Você já está usando este item." );
 		    }
 			else if (	!Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) ) && 
 						!m.Region.IsPartOf( typeof( OutDoorRegion ) ) && 
 						!m.Region.IsPartOf( typeof( OutDoorBadRegion ) ) && 
 						!m.Region.IsPartOf( typeof( VillageRegion ) ) )
 			{
-				m.SendMessage( "You can only use this outdoors." ); 
+				m.SendMessage( "Você só pode usar isso ao ar livre." ); 
 				return;
 			}
 			else if ( Limits > 0 )

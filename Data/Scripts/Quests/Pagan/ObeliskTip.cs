@@ -172,8 +172,8 @@ namespace Server.Items
 
 				AddImage(0, 0, 7031, Server.Misc.PlayerSettings.GetGumpHue( from ));
 				AddButton(864, 9, 4017, 4017, 0, GumpButtonType.Reply, 0);
-				AddHtml( 12, 11, 665, 20, @"<BODY><BASEFONT Color=" + color + ">THE TITAN OF ETHER</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 245, 87, 632, 354, @"<BODY><BASEFONT Color=" + color + ">There are those that seek to become the Titan of Ether, but in order to do so, one must defeat the four Titans of the Underworld. Lithos, Pyros, Hydros, and Stratos all contain an elemental power that can be infused within blackrock and empower another. These Titans cannot simply be slain by normal means, as their opponent must possess a particular piece of blackrock in order to best them. These blackrock fragments are scattered throughout the lands and you will have to search far and wide to find them. If you undertake this great quest, be sure to carry the Obelisk Tip with you at all times. If you have the appropriate piece of blackrock, you can decide to face the Titan. If the Titan is slain, the blackrock will absorb their power. Once all of the Titans' power has been absorbed in the four pieces of blackrock, bring the Obelisk Tip to the Obsidian Fortress and approach the Blackrock Gate to become the Titan of Ether. Titans of Ether can become grandmasters in five additional skills, and their abilities can total 300 instead of 250.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 11, 665, 20, @"<BODY><BASEFONT Color=" + color + ">O TITÃ DO ÉTER</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 245, 87, 632, 354, @"<BODY><BASEFONT Color=" + color + ">Há aqueles que buscam se tornar o Titã do Éter, mas para isso, é preciso derrotar os quatro Titãs do Submundo. Lithos, Pyros, Hydros e Stratos contêm um poder elemental que pode ser infundido dentro da pedra negra e empoderar outro. Esses Titãs não podem simplesmente ser mortos por meios normais, pois seu oponente deve possuir um fragmento específico de pedra negra para vencê-los. Esses fragmentos de pedra negra estão espalhados por toda a terra e você terá que procurar por todos os cantos para encontrá-los. Se você aceitar esta grande missão, certifique-se de carregar a Ponta do Obelisco com você o tempo todo. Se você tiver o fragmento apropriado de pedra negra, pode decidir enfrentar o Titã. Se o Titã for morto, a pedra negra absorverá seu poder. Uma vez que todo o poder dos Titãs tenha sido absorvido nos quatro fragmentos de pedra negra, leve a Ponta do Obelisco à Fortaleza de Obsidiana e aproxime-se do Portão de Pedra Negra para se tornar o Titã do Éter. Os Titãs do Éter podem se tornar grão-mestres em cinco habilidades adicionais, e suas habilidades podem totalizar 300 em vez de 250.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddItem(42, 95, 13042);
 				AddItem(42, 165, 13042);
@@ -181,23 +181,23 @@ namespace Server.Items
 				AddItem(42, 305, 13042);
 				AddItem(42, 375, 13042);
 
-				AddHtml( 106, 102, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Obelisk Tip</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 106, 102, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Ponta do Obelisco</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 106, 125, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Khumash-Gor</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddItem(48, 95, 6239);
 
-				AddHtml( 106, 172, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Breath of Air</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 106, 172, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Sopro do Ar</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 106, 195, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Stratos</BASEFONT></BODY>", (bool)false, (bool)false);
 				if ( tip.HasAir > 0 ){ AddItem(48, 170, 6240); }
 
-				AddHtml( 106, 242, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Tongue of Flame</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 106, 242, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Língua de Chama</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 106, 265, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Pyros</BASEFONT></BODY>", (bool)false, (bool)false);
 				if ( tip.HasFire > 0 ){ AddItem(47, 238, 6241); }
 
-				AddHtml( 106, 312, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Heart of Earth</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 106, 312, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Coração da Terra</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 106, 335, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Lithos</BASEFONT></BODY>", (bool)false, (bool)false);
 				if ( tip.HasEarth > 0 ){ AddItem(48, 311, 6242); }
 
-				AddHtml( 106, 381, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Tear of the Seas</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 106, 381, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Lágrima dos Mares</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 106, 405, 150, 20, @"<BODY><BASEFONT Color=" + color + ">Hydros</BASEFONT></BODY>", (bool)false, (bool)false);
 				if ( tip.HasWater > 0 ){ AddItem(48, 376, 6243); }
 
@@ -206,22 +206,22 @@ namespace Server.Items
 				int rocks = tip.HasAir + tip.HasFire + tip.HasEarth + tip.HasWater + 1;
 				int titan = tip.WonAir + tip.WonFire + tip.WonEarth + tip.WonWater;
 
-				string stones = "1 of the Pieces of Blackrock Found!";
-				string titans = "No Titans Have Been Defeated Yet!";
+				string stones = "1 dos Fragmentos de Pedra Negra Encontrado!";
+				string titans = "Nenhum Titã Foi Derrotado Ainda!";
 
-				if ( rocks > 4 ){ stones = "All of the Pieces of Blackrock Found!"; }
-				else if ( rocks > 1 ){ stones = rocks + " Pieces of Blackrock Found!"; }
+				if ( rocks > 4 ){ stones = "Todos os Fragmentos de Pedra Negra Encontrados!"; }
+				else if ( rocks > 1 ){ stones = rocks + " Fragmentos de Pedra Negra Encontrados!"; }
 
 				if ( titan > 0 )
 				{
 					titans = "";
-					if ( titan > 3 ){ titans = "All of the Titans Have Been Defeated!"; }
+					if ( titan > 3 ){ titans = "Todos os Titãs Foram Derrotados!"; }
 					else
 					{
-						if ( tip.WonAir > 0 ){ titans = titans + "Stratos has been defeated! "; }
-						if ( tip.WonFire > 0 ){ titans = titans + "Pyros has been destroyed! "; }
-						if ( tip.WonEarth > 0 ){ titans = titans + "Lithos has been slain! "; }
-						if ( tip.WonWater > 0 ){ titans = titans + "Hydros has been vanquished! "; }
+						if ( tip.WonAir > 0 ){ titans = titans + "Stratos foi derrotado! "; }
+						if ( tip.WonFire > 0 ){ titans = titans + "Pyros foi destruído! "; }
+						if ( tip.WonEarth > 0 ){ titans = titans + "Lithos foi morto! "; }
+						if ( tip.WonWater > 0 ){ titans = titans + "Hydros foi vencido! "; }
 					}
 				}
 

@@ -4,13 +4,13 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a cave lizard corpse" )]
+	[CorpseName( "um cadáver de lagarto da caverna" )]
 	public class CaveLizard : BaseCreature
 	{
 		[Constructable]
 		public CaveLizard() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a cave lizard";
+			Name = "um lagarto da caverna";
 			Body = 206;
 			Hue = 2500;
 			BaseSoundID = 0x5A;

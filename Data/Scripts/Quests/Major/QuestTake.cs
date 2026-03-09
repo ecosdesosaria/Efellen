@@ -57,7 +57,7 @@ namespace Server.Items
 					item.Name = Name;
 					item.Hue = Hue;
 					from.AddToBackpack( item );
-					from.SendMessage( "You take possession of the book!" );
+					from.SendMessage( "Você toma posse do livro!" );
 					from.SendSound( 0x3D );
 					this.Delete();
 				}
@@ -65,7 +65,7 @@ namespace Server.Items
 				if ( !HasTome )
 				{
 					SetupBook( from );
-					from.SendMessage( "You take possession of the book!" );
+					from.SendMessage( "Você toma posse do livro!" );
 					from.SendSound( 0x3D );
 					LoggingFunctions.LogGeneric( from, "has found a Book of Questing." );
 					this.Delete();
@@ -113,61 +113,61 @@ namespace Server.Items
 				case 3:	tome.GoalItem3 = RandomMagic();										break;
 			}
 
-			string heard = "heard";
+			string heard = "ouviu";
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 1:	heard = "told";		break;
-				case 2:	heard = "known";	break;
-				case 3:	heard = "shared";	break;
+				case 1:	heard = "contou";	break;
+				case 2:	heard = "soube";	break;
+				case 3:	heard = "compartilhou";	break;
 			}
 
-			string legend = "legends";
+			string legend = "lendas";
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 1:	legend = "fables";	break;
-				case 2:	legend = "myths";	break;
-				case 3:	legend = "lore";	break;
+				case 1:	legend = "fábulas";	break;
+				case 2:	legend = "mitos";	break;
+				case 3:	legend = "conhecimento";	break;
 			}
 
-			string hush = "whispered";
+			string hush = "sussurrou";
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 1:	hush = "told";		break;
-				case 2:	hush = "sung";		break;
-				case 3:	hush = "spoken";	break;
+				case 1:	hush = "contou";		break;
+				case 2:	hush = "cantou";		break;
+				case 3:	hush = "falou";		break;
 			}
 
-			string inn = "taverns";
+			string inn = "tavernas";
 			switch ( Utility.RandomMinMax( 0, 4 ) )
 			{
-				case 1:	inn = "camps";		break;
-				case 2:	inn = "cities";		break;
-				case 3:	inn = "villages";	break;
-				case 4:	inn = "inns";		break;
+				case 1:	inn = "acampamentos";	break;
+				case 2:	inn = "cidades";		break;
+				case 3:	inn = "vilas";		break;
+				case 4:	inn = "estalagens";	break;
 			}
 
-			string takes = "seized";
+			string takes = "apoderou-se";
 			switch ( Utility.RandomMinMax( 0, 4 ) )
 			{
-				case 1:	takes = "stolen";	break;
-				case 2:	takes = "taken";	break;
-				case 3:	takes = "held";		break;
-				case 4:	takes = "guarded";	break;
+				case 1:	takes = "roubou";		break;
+				case 2:	takes = "tomou";		break;
+				case 3:	takes = "manteve";		break;
+				case 4:	takes = "guardou";		break;
 			}
 
 			tome.GoalItem4 = Server.Misc.QuestCharacters.QuestItems( false );
 
 			MakeVillain( tome );
 
-			tome.QuestTomeStoryGood = "You have found the journal of DDDDD, where they were given a quest by " + tome.QuestTomeNPCGood + " to find " + tome.GoalItem4 + " that is known to be " + takes + " by " + tome.VillainName + " " + tome.VillainTitle + ". " + tome.VillainName + " is " + tome.VillainCategory + " that has been " + heard + " in " + legend + " and " + hush + " about in " + inn + ". The goal for DDDDD was to find " + tome.GoalItem1 + ", " + tome.GoalItem2 + ", & " + tome.GoalItem3 + " to help them defeat " + tome.VillainName + " and then bring " + tome.GoalItem4 + " back to " + tome.QuestTomeNPCGood + " before " + tome.QuestTomeNPCEvil + " can use it for their nefarious plans.<br><br>This is now your quest and you will have to speak with others to find clues on the location of the relics needed, as well as where " + tome.VillainName + " dwells. Once you defeat " + tome.VillainName + " and claim " + tome.GoalItem4 + ", you can give this journal to " + tome.QuestTomeNPCGood + " in " + tome.QuestTomeWorldGood + " at the following coordinates:<br><br>" + tome.QuestTomeLocateGood + "";
+			tome.QuestTomeStoryGood = "Você encontrou o diário de DDDDD, onde receberam uma missão de " + tome.QuestTomeNPCGood + " para encontrar " + tome.GoalItem4 + " que é conhecido por estar " + takes + " por " + tome.VillainName + " " + tome.VillainTitle + ". " + tome.VillainName + " é " + tome.VillainCategory + " que tem sido " + heard + " em " + legend + " e " + hush + " sobre em " + inn + ". O objetivo de DDDDD era encontrar " + tome.GoalItem1 + ", " + tome.GoalItem2 + ", & " + tome.GoalItem3 + " para ajudá-los a derrotar " + tome.VillainName + " e então trazer " + tome.GoalItem4 + " de volta para " + tome.QuestTomeNPCGood + " antes que " + tome.QuestTomeNPCEvil + " possa usá-lo para seus planos nefastos.<br><br>Esta agora é sua missão e você terá que falar com outros para encontrar pistas sobre a localização das relíquias necessárias, bem como onde " + tome.VillainName + " habita. Uma vez que você derrote " + tome.VillainName + " e reclame " + tome.GoalItem4 + ", você pode dar este diário para " + tome.QuestTomeNPCGood + " em " + tome.QuestTomeWorldGood + " nas seguintes coordenadas:<br><br>" + tome.QuestTomeLocateGood + "";
 
-			tome.QuestTomeStoryEvil = "You have found the journal of DDDDD, where they were given a quest by " + tome.QuestTomeNPCEvil + " to find " + tome.GoalItem4 + " that is known to be " + takes + " by " + tome.VillainName + " " + tome.VillainTitle + ". " + tome.VillainName + " is " + tome.VillainCategory + " that has been " + heard + " in " + legend + " and " + hush + " about in " + inn + ". The goal for DDDDD was to find " + tome.GoalItem1 + ", " + tome.GoalItem2 + ", & " + tome.GoalItem3 + " to help them defeat " + tome.VillainName + " and then bring " + tome.GoalItem4 + " back to " + tome.QuestTomeNPCEvil + " before " + tome.QuestTomeNPCGood + " can use it for their righteous pursuits.<br><br>This is now your quest and you will have to speak with others to find clues on the location of the relics needed, as well as where " + tome.VillainName + " dwells. Once you defeat " + tome.VillainName + " and claim " + tome.GoalItem4 + ", you can give this journal to " + tome.QuestTomeNPCEvil + " in " + tome.QuestTomeWorldEvil + " at the following coordinates:<br><br>" + tome.QuestTomeLocateEvil + "";
+			tome.QuestTomeStoryEvil = "Você encontrou o diário de DDDDD, onde receberam uma missão de " + tome.QuestTomeNPCEvil + " para encontrar " + tome.GoalItem4 + " que é conhecido por estar " + takes + " por " + tome.VillainName + " " + tome.VillainTitle + ". " + tome.VillainName + " é " + tome.VillainCategory + " que tem sido " + heard + " em " + legend + " e " + hush + " sobre em " + inn + ". O objetivo de DDDDD era encontrar " + tome.GoalItem1 + ", " + tome.GoalItem2 + ", & " + tome.GoalItem3 + " para ajudá-los a derrotar " + tome.VillainName + " e então trazer " + tome.GoalItem4 + " de volta para " + tome.QuestTomeNPCEvil + " antes que " + tome.QuestTomeNPCGood + " possa usá-lo para seus empreendimentos justos.<br><br>Esta agora é sua missão e você terá que falar com outros para encontrar pistas sobre a localização das relíquias necessárias, bem como onde " + tome.VillainName + " habita. Uma vez que você derrote " + tome.VillainName + " e reclame " + tome.GoalItem4 + ", você pode dar este diário para " + tome.QuestTomeNPCEvil + " em " + tome.QuestTomeWorldEvil + " nas seguintes coordenadas:<br><br>" + tome.QuestTomeLocateEvil + "";
 
-			if ( Utility.RandomBool() ) // TWIST THE STORY AROUND
+			if ( Utility.RandomBool() ) // INVERTER A HISTÓRIA
 			{
-				tome.QuestTomeStoryGood = "You have found the journal of DDDDD, where they were given a quest by " + tome.QuestTomeNPCEvil + " to find " + tome.GoalItem4 + " that is known to be " + takes + " by " + tome.VillainName + " " + tome.VillainTitle + ". " + tome.VillainName + " is " + tome.VillainCategory + " that has been " + heard + " in " + legend + " and " + hush + " about in " + inn + ". The goal for DDDDD was to find " + tome.GoalItem1 + ", " + tome.GoalItem2 + ", & " + tome.GoalItem3 + " to help them defeat " + tome.VillainName + " and then bring " + tome.GoalItem4 + " back to " + tome.QuestTomeNPCEvil + " before " + tome.QuestTomeNPCGood + " can use it for their righteous pursuits.<br><br>It is now your quest to keep " + tome.QuestTomeNPCEvil + " from obtaining " + tome.GoalItem4 + ". To find it for " + tome.QuestTomeNPCGood + ", you will have to speak with others to find clues on the location of the relics needed, as well as where " + tome.VillainName + " dwells. Once you defeat " + tome.VillainName + " and claim " + tome.GoalItem4 + ", you can give this journal to " + tome.QuestTomeNPCGood + " in " + tome.QuestTomeWorldGood + " at the following coordinates:<br><br>" + tome.QuestTomeLocateGood + "";
+				tome.QuestTomeStoryGood = "Você encontrou o diário de DDDDD, onde receberam uma missão de " + tome.QuestTomeNPCEvil + " para encontrar " + tome.GoalItem4 + " que é conhecido por estar " + takes + " por " + tome.VillainName + " " + tome.VillainTitle + ". " + tome.VillainName + " é " + tome.VillainCategory + " que tem sido " + heard + " em " + legend + " e " + hush + " sobre em " + inn + ". O objetivo de DDDDD era encontrar " + tome.GoalItem1 + ", " + tome.GoalItem2 + ", & " + tome.GoalItem3 + " para ajudá-los a derrotar " + tome.VillainName + " e então trazer " + tome.GoalItem4 + " de volta para " + tome.QuestTomeNPCEvil + " antes que " + tome.QuestTomeNPCGood + " possa usá-lo para seus empreendimentos justos.<br><br>Agora é sua missão impedir que " + tome.QuestTomeNPCEvil + " obtenha " + tome.GoalItem4 + ". Para encontrá-lo para " + tome.QuestTomeNPCGood + ", você terá que falar com outros para encontrar pistas sobre a localização das relíquias necessárias, bem como onde " + tome.VillainName + " habita. Uma vez que você derrote " + tome.VillainName + " e reclame " + tome.GoalItem4 + ", você pode dar este diário para " + tome.QuestTomeNPCGood + " em " + tome.QuestTomeWorldGood + " nas seguintes coordenadas:<br><br>" + tome.QuestTomeLocateGood + "";
 
-				tome.QuestTomeStoryEvil = "You have found the journal of DDDDD, where they were given a quest by " + tome.QuestTomeNPCGood + " to find " + tome.GoalItem4 + " that is known to be " + takes + " by " + tome.VillainName + " " + tome.VillainTitle + ". " + tome.VillainName + " is " + tome.VillainCategory + " that has been " + heard + " in " + legend + " and " + hush + " about in " + inn + ". The goal for DDDDD was to find " + tome.GoalItem1 + ", " + tome.GoalItem2 + ", & " + tome.GoalItem3 + " to help them defeat " + tome.VillainName + " and then bring " + tome.GoalItem4 + " back to " + tome.QuestTomeNPCGood + " before " + tome.QuestTomeNPCEvil + " can use it for their nefarious plans.<br><br>It is now your quest to keep " + tome.QuestTomeNPCGood + " from obtaining " + tome.GoalItem4 + ". To find it for " + tome.QuestTomeNPCEvil + ", you will have to speak with others to find clues on the location of the relics needed, as well as where " + tome.VillainName + " dwells. Once you defeat " + tome.VillainName + " and claim " + tome.GoalItem4 + ", you can give this journal to " + tome.QuestTomeNPCEvil + " in " + tome.QuestTomeWorldEvil + " at the following coordinates:<br><br>" + tome.QuestTomeLocateEvil + "";
+				tome.QuestTomeStoryEvil = "Você encontrou o diário de DDDDD, onde receberam uma missão de " + tome.QuestTomeNPCGood + " para encontrar " + tome.GoalItem4 + " que é conhecido por estar " + takes + " por " + tome.VillainName + " " + tome.VillainTitle + ". " + tome.VillainName + " é " + tome.VillainCategory + " que tem sido " + heard + " em " + legend + " e " + hush + " sobre em " + inn + ". O objetivo de DDDDD era encontrar " + tome.GoalItem1 + ", " + tome.GoalItem2 + ", & " + tome.GoalItem3 + " para ajudá-los a derrotar " + tome.VillainName + " e então trazer " + tome.GoalItem4 + " de volta para " + tome.QuestTomeNPCGood + " antes que " + tome.QuestTomeNPCEvil + " possa usá-lo para seus planos nefastos.<br><br>Agora é sua missão impedir que " + tome.QuestTomeNPCGood + " obtenha " + tome.GoalItem4 + ". Para encontrá-lo para " + tome.QuestTomeNPCEvil + ", você terá que falar com outros para encontrar pistas sobre a localização das relíquias necessárias, bem como onde " + tome.VillainName + " habita. Uma vez que você derrote " + tome.VillainName + " e reclame " + tome.GoalItem4 + ", você pode dar este diário para " + tome.QuestTomeNPCEvil + " em " + tome.QuestTomeWorldEvil + " nas seguintes coordenadas:<br><br>" + tome.QuestTomeLocateEvil + "";
 			}
 
 			from.AddToBackpack( tome );
@@ -641,7 +641,7 @@ namespace Server.Items
 			}
 			else if ( from.InRange( this.GetWorldLocation(), 5 ) )
 			{
-				from.SendMessage( "The chest appears to be empty." );
+				from.SendMessage( "O baú parece estar vazio." );
 			}
 			else
 			{
