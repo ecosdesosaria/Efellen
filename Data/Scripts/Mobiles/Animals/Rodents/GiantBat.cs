@@ -4,13 +4,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a bat corpse" )]
+	[CorpseName( "um cadáver de morcego" )]
 	public class GiantBat : BaseCreature
 	{
 		[Constructable]
 		public GiantBat() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a giant bat";
+			Name = "um morcego gigante";
 			Body = 317;
 			BaseSoundID = 0x270;
 

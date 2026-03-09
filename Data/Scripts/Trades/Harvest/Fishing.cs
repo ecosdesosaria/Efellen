@@ -318,7 +318,7 @@ namespace Server.Engines.Harvest
 			preLoot.CoinPrice = preLoot.CoinPrice + goldBoost; preLoot.InvalidateProperties();
 
 			BaseContainer.PutStuffInContainer( from, 3, preLoot );
-			from.SendMessage("You fish up something from the ruins below.");
+			from.SendMessage("Você pesca algo dos destroços abaixo.");
 		}
 
 		public static void FishUpFromMajorWreck( Mobile from )
@@ -480,7 +480,7 @@ namespace Server.Engines.Harvest
 			}
 
 			BaseContainer.PutStuffInContainer( from, 3, preLoot );
-			from.SendMessage("You fish up something from the wreckage below.");
+			from.SendMessage("Você pesca algo dos destroços abaixo.");
 		}
 
 		public override bool CheckResources( Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, bool timed )
@@ -866,7 +866,7 @@ namespace Server.Engines.Harvest
 								break;
 						}
 
-						from.SendMessage( "Your hook got caught on a creature from the wreck below!" );
+						from.SendMessage( "Seu anzol ficou preso em uma criatura dos destroços abaixo!" );
 
 						return preLoot;
 					}
@@ -937,19 +937,19 @@ namespace Server.Engines.Harvest
 		{
 			if ( item is PearlSkull )
 			{
-				from.SendMessage("Hmmmm...someone's skull is stuck on your hook!");
+				from.SendMessage("Hmmmm... o crânio de alguém está preso no seu anzol!");
 			}
 			else if ( item is NewFish )
 			{
-				from.SendMessage("You pulled an exotic fish from these waters!");
+				from.SendMessage("Você pescou um peixe exótico destas águas!");
 			}
 			else if ( item is RustyJunk )
 			{
-				from.SendMessage("You fished up some old rusty junk!");
+				from.SendMessage("Você pescou um monte de ferro-velho enferrujado!");
 			}
 			else if ( item is HighSeasRelic )
 			{
-				from.SendMessage("You fished up something special from the wreck below!");
+				from.SendMessage("Você pescou algo especial dos destroços abaixo!");
 			}
 			else if ( item is WoodenChest || item is MetalGoldenChest || item is SunkenChest )
 			{
@@ -1056,7 +1056,7 @@ namespace Server.Engines.Harvest
 
 			if ( tool.Parent != from && !canUseBackpackHarvestTool )
 			{
-				from.SendMessage("You need to be holding your fishing pole to fish.");
+				from.SendMessage("Você precisa estar segurando sua vara de pesca para pescar.");
 				return false;
 			}
 			else if ( !base.BeginHarvesting( from, tool ) )

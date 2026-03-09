@@ -56,12 +56,12 @@ namespace Server.Mobiles
 					{
 									switch (Utility.Random(10))
 									{
-											case 0: Say("Pet Collector here, just tell me you want to sell!"); break;
-											case 1: Say("Buying rare animals of all kind, simply tell me you want to sell one"); break;
-											case 2: Say("Sell me your tamed pets, will pay well!"); break;
-											case 3: Say("If you'd like a price estimate on a pet, just tell me to appraise one"); break;
-											case 4: Say("I can appraise an animal for you, just ask me to."); break;
-											case 5: Say("I am in need of help with contracts... "); break;
+										case 0: Say("Colecionador de Mascotes aqui, apenas me diga que quer vender!"); break;
+										case 1: Say("Compro animais raros de todos os tipos, simplesmente me diga que quer vender um"); break;
+										case 2: Say("Venda-me seus mascotes domesticados, pagarei bem!"); break;
+										case 3: Say("Se quiser uma estimativa de preço para um mascote, apenas me diga para avaliar um"); break;
+										case 4: Say("Posso avaliar um animal para você, apenas me peça."); break;
+										case 5: Say("Preciso de ajuda com contratos... "); break;
 									}
 					
 					}
@@ -349,7 +349,7 @@ namespace Server.Mobiles
 
     			    if (cooldown > TimeSpan.Zero)
     			    {
-				     m_Giver.Say(String.Format("I'll have another contract for you in  {0} hour{1} and {2} minute{3}.",
+				     m_Giver.Say(String.Format("Eu terei outro contrato para ti em {0} hora{1} e {2} minuto{3}.",
   					 cooldown.Hours, cooldown.Hours == 1 ? "" : "s",
   					 cooldown.Minutes, cooldown.Minutes == 1 ? "" : "s"));
     			        return;
@@ -358,7 +358,7 @@ namespace Server.Mobiles
 				
 				if(mobile.Skills[SkillName.Taming].Value +  mobile.Skills[SkillName.Druidism].Value < 50.0)
 				{
-					m_Giver.Say( "Sorry, I don't think you have the skills to help me. Come back when you have learned more about the art of animal taming!" );
+					m_Giver.Say( "Perdoa, mas acho que não tens as habilidades para me auxiliar. Retorna quando tiveres aprendido mais sobre a arte da domesticação de animais!" );
 				}
 				else if(CanGetContract(mobile))
 				{

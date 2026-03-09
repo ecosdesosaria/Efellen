@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a giant snake corpse")]
+	[CorpseName("um cadáver de cobra gigante")]
 	[TypeAlias( "Server.Mobiles.Silverserpant" )]
 	public class GoldenSerpent : BaseCreature
 	{
@@ -13,7 +13,7 @@ namespace Server.Mobiles
 		{
 			Body = 877;
 			Hue = Utility.RandomList( 0xB54, 0xB1B, 0x99A, 0x993, 0x82B );
-			Name = "a golden serpent";
+			Name = "uma serpente dourada";
 			BaseSoundID = 219;
 
 			SetStr( 191, 400 );

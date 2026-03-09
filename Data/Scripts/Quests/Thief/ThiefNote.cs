@@ -75,15 +75,15 @@ namespace Server.Items
 		{
 			if ( ThiefAllowed( from ) != null )
 			{
-				from.SendMessage( "You need a break from the last job, so read this note in about " + ThiefAllowed( from ) + " minutes." );
+				from.SendMessage( "Você precisa descansar do último trabalho, então leia esta nota em cerca de " + ThiefAllowed( from ) + " minutos." );
 			}
 			else if ( !IsChildOf( from.Backpack ) )
 			{
-				from.SendLocalizedMessage( 1060640 ); // The item must be in your backpack to use it.
+				from.SendLocalizedMessage( 1060640 ); // O item deve estar em sua mochila para ser usado.
 			}
 			else if ( NoteOwner != from )
 			{
-				from.SendMessage( "This note is written in a code you don't understand so you throw it away!" );
+				from.SendMessage( "Esta nota está escrita em um código que você não entende, então você a joga fora!" );
 				bool remove = true;
 				foreach ( Account a in Accounts.GetAccounts() )
 				{
@@ -211,7 +211,7 @@ namespace Server.Items
 
 				AddPage(0);
 
-				string describe = "<br><br>Keep this note with you at all times if you are going to pursue this job. If you are to steal something from a dungeon, you need to find the pedestal with the bag or box that a thief would normally attempt to steal. Use the bag or box on the pedestal to see if you successfully steal the item. If a town merchant is someone you need to pilfer from, find their coffer use your stealing skill on it to see if you steal the item from that. Be warned, you may be flagged a criminal and the guards will surely dispatch of you if caught. If you manage to escape with you life, and the item sought, then bring this note to the location specified in these instructions. If you lose this secret note, then find the thief guildmaster and they will give you a copy of the message.";
+				string describe = "<br><br>Mantenha esta nota com você o tempo todo se for realizar este trabalho. Se você for roubar algo de uma masmorra, precisa encontrar o pedestal com a bolsa ou caixa que um ladrão normalmente tentaria roubar. Use a bolsa ou caixa no pedestal para ver se você rouba o item com sucesso. Se você precisar furtar de um comerciante da cidade, encontre o cofre dele e use sua habilidade de roubo para ver se consegue pegar o item. Fique avisado, você pode ser marcado como criminoso e os guardas certamente acabarão com você se for pego. Se conseguir escapar com vida e com o item procurado, então leve esta nota para o local especificado nestas instruções. Se você perder esta nota secreta, encontre o mestre da guilda dos ladrões e eles lhe darão uma cópia da mensagem.";
 
 				AddImage(0, 0, 10901, 2801);
 				AddImage(0, 0, 10899, 2378);
@@ -414,35 +414,35 @@ namespace Server.Items
 				}
 			}
 
-			string action = "recover";
+			string action = "recuperar";
 				switch( Utility.RandomMinMax( 0, 4 ) )
 				{
-					case 0: action = "recover"; break;
-					case 1: action = "steal"; break;
-					case 2: action = "acquire"; break;
-					case 3: action = "find"; break;
-					case 4: action = "get"; break;
+					case 0: action = "recuperar"; break;
+					case 1: action = "roubar"; break;
+					case 2: action = "adquirir"; break;
+					case 3: action = "encontrar"; break;
+					case 4: action = "pegar"; break;
 				}
 
-			string drop = "drop";
+			string drop = "deixar";
 				switch( Utility.RandomMinMax( 0, 4 ) )
 				{
-					case 0: drop = "leave"; break;
-					case 1: drop = "place"; break;
-					case 2: drop = "set"; break;
-					case 3: drop = "put"; break;
-					case 4: drop = "drop"; break;
+					case 0: drop = "deixar"; break;
+					case 1: drop = "colocar"; break;
+					case 2: drop = "depositar"; break;
+					case 3: drop = "pôr"; break;
+					case 4: drop = "largar"; break;
 				}
 
-			string container = "crate of hay in";
-			if ( note.NoteDeliverType == 1 ){ container = "hollow stump near"; }
+			string container = "caixa de feno em";
+			if ( note.NoteDeliverType == 1 ){ container = "tronco oco perto de"; }
 
 			string location = note.NoteItemArea;
-				if ( note.NoteItemCategory != "" && note.NoteItemCategory != null ){ location = "the " + note.NoteItemCategory + " in " + note.NoteItemArea; }
+				if ( note.NoteItemCategory != "" && note.NoteItemCategory != null ){ location = "o " + note.NoteItemCategory + " em " + note.NoteItemArea; }
 
-			note.NoteStory = note.NoteItemPerson + " wants you to " + action + " " + note.NoteItem + " from " + location + ".";
-			note.NoteStory = note.NoteStory + " Once you have it, " + drop + " it in the " + container + " " + note.NoteDeliverTo + ".";
-			note.NoteStory = note.NoteStory + " There you will also find your payment of " + note.NoteReward + " gold and instructions for your next job.";
+			note.NoteStory = note.NoteItemPerson + " quer que você " + action + " " + note.NoteItem + " de " + location + ".";
+			note.NoteStory = note.NoteStory + " Quando você tiver o item, " + drop + " ele no " + container + " " + note.NoteDeliverTo + ".";
+			note.NoteStory = note.NoteStory + " Lá você também encontrará seu pagamento de " + note.NoteReward + " moedas de ouro e instruções para seu próximo trabalho.";
 
 			note.InvalidateProperties();
 		}

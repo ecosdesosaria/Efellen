@@ -7,7 +7,7 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an infected corpse" )]
+	[CorpseName( "um cadáver de infectado" )]
 	public class Infected : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -18,7 +18,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Infected () : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an infected";
+			Name = "um infectado";
 			Body = 161;
 			BaseSoundID = 0x9E;
 			Hue = 2118;

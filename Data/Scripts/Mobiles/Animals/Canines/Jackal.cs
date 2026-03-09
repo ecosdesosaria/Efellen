@@ -3,14 +3,14 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a jackal corpse" )]
+	[CorpseName( "um cadáver de chacal" )]
 	[TypeAlias( "Server.Mobiles.Timberwolf" )]
 	public class Jackal : BaseCreature
 	{
 		[Constructable]
 		public Jackal() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a jackal";
+			Name = "um chacal";
 			Body = 225;
 			BaseSoundID = 0xE5;
 			Hue = 1705;

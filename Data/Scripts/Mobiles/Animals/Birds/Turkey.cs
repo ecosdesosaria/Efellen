@@ -4,13 +4,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a turkey corpse" )]
+	[CorpseName( "um cadáver de peru" )]
 	public class Turkey : BaseCreature
 	{
 		[Constructable]
 		public Turkey() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a turkey";
+			Name = "um peru";
 			Body = 204;
 			BaseSoundID = 0x6E;
 
@@ -58,11 +58,11 @@ namespace Server.Mobiles
 			}
 
 			Item leg1 = new RawChickenLeg();
-				leg1.Name = "raw turkey leg";
+				leg1.Name = "perna de peru crua";
 			corpse.DropItem( leg1 );
 
 			Item leg2 = new RawChickenLeg();
-				leg2.Name = "raw turkey leg";
+				leg2.Name = "perna de peru crua";
 			corpse.DropItem( leg2 );
 		}
 

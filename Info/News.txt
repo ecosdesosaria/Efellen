@@ -1,3 +1,7 @@
-[*]January 25th, 2026
+[*]01 de Janeiro, 2026
 Dungeon Master
-Welcome to Efellen! Prepare to embark on a perilous journey of sword and sorcery, foes new and old and endless adventure!
+Bem vindo aos Ecos de Sosaria! Se prepare para iniciar uma jornada de lutas e magias, demônios e dragões, mas com muitas recompensas...
+
+[*]02 de Fevereiro, 2026
+Dungeon Master
+Fique a vontade para nos seguir no Mastodon! E também entre no nosso canal de bate papo XMPP para conversar e reportar bugs!

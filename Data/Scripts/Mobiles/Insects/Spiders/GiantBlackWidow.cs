@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a spider corpse" )]
+	[CorpseName( "um cadáver de aranha" )]
 	public class GiantBlackWidow : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
@@ -26,7 +26,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public GiantBlackWidow() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a giant black widow";
+			Name = "uma viúva negra gigante";
 			Body = 140;
 			Hue = 0x497;
 			BaseSoundID = 0x388; // TODO: validate

@@ -5,7 +5,7 @@ using Server.Spells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a mantis corpse" )]
+	[CorpseName( "um cadáver de louva-a-deus" )]
 	[TypeAlias( "Server.Mobiles.Mantis" )]
 	public class Mantis : BaseCreature
 	{
@@ -16,7 +16,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Mantis() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a mantis";
+			Name = "um louva-a-deus";
 			Body = 242;
 			Hue = 0x84E;
 

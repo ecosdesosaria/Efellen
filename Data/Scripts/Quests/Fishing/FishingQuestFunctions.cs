@@ -384,7 +384,7 @@ namespace Server.Misc
 				{
 					m.SendSound( 0x3D );
 					m.AddToBackpack ( new Gold( nPCFee ) );
-					string sMessage = "Here is " + nPCFee.ToString() + " gold for you.";
+					string sMessage = "Aqui estão " + nPCFee.ToString() + " de ouro para você.";
 					m.PrivateOverheadMessage(MessageType.Regular, 1150, false, sMessage, m.NetState);
 					FishingQuestFunctions.QuestTimeAllowed( m );
 

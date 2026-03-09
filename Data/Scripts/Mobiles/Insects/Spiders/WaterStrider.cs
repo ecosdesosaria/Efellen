@@ -3,13 +3,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a spider corpse" )]
+	[CorpseName( "um cadáver de aranha" )]
 	public class WaterStrider : BaseCreature
 	{
 		[Constructable]
 		public WaterStrider() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a water strider";
+			Name = "um inseto-d'água";
 			Body = 140;
 			BaseSoundID = 0x388;
 			Hue = 0xB3D;

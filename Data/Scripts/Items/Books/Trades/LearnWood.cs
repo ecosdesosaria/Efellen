@@ -98,10 +98,10 @@ namespace Server.Items
 					AddItem(366, 174, 2903);
 					AddItem(359, 134, 7034);
 
-					string wood = "Lumberjacking allows you to us an axe to gather wood. Double click the axe, and then select a tree to begin chopping. Once you get some logs, you need to cut them into boards so you can use them for crafting. To do this, double click the logs and select a saw mill. These mills are commonly found in carpenter shops. Then you can begin crafting with a carpentry tool, or bowcrafting with bowyer tools.";
+					string wood = "Lenhador permite usar um machado para coletar madeira. Clique duas vezes no machado e depois selecione uma árvore para começar a cortar. Quando conseguir algumas toras, você precisa cortá-las em tábuas para poder usá-las na criação. Para fazer isso, clique duas vezes nas toras e selecione uma serraria. Essas serrarias são comumente encontradas em marcenarias. Depois, você pode começar a criar com uma ferramenta de carpintaria ou fazer arcos com ferramentas de arco e flecha.";
 
-					string carve = "Bowcrafters can use boards to make arrows, bows, and crossbows. A carpenter can make shelves with woodworking tools, while they can use carpenter tools to make furniture, weapons, and armor. Molding wood into armor usually requires special oils from living trees. You can also use wood to make kindling for camping, or bark to make paper. Scribes can then take the bark and make scrolls from it.";
-
+					string carve = "Arqueiros podem usar tábuas para fazer flechas, arcos e bestas. Um carpinteiro pode fazer prateleiras com ferramentas de marcenaria, enquanto pode usar ferramentas de carpinteiro para fazer móveis, armas e armaduras. Moldar madeira em armadura geralmente requer óleos especiais de árvores vivas. Você também pode usar madeira para fazer gravetos para acampar ou casca para fazer papel. Escribas podem então pegar a casca e fazer pergaminhos dela.";
+					
 					AddHtml( 122, 80, 200, 300, @"<BODY><BASEFONT Color=" + color + ">" + wood + "</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 415, 80, 200, 300, @"<BODY><BASEFONT Color=" + color + ">" + carve + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				}

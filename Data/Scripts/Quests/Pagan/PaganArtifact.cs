@@ -126,7 +126,7 @@ namespace Server.Items
 
 				AddButton(447, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
-				AddHtml( 14, 44, 460, 219, @"<BODY><BASEFONT Color=" + hue + ">This chest contains a Pagan artifact, " + arty.PaganName + ". If you take it out of this chest, it will be yours. When it is in your possession, single-click the item where a menu will be presented for you to spend points to customize this artifact to your liking. Once the points are spent, the item will be as it is forever. Do you wish to take the Pagan artifact, " + arty.PaganName + ", from the chest?</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 14, 44, 460, 219, @"<BODY><BASEFONT Color=" + hue + ">Este baú contém um artefato Pagão, " + arty.PaganName + ". Se você retirá-lo deste baú, ele será seu. Quando estiver em sua posse, clique uma vez no item onde um menu será apresentado para que você gaste pontos para personalizar este artefato ao seu gosto. Uma vez que os pontos sejam gastos, o item ficará assim para sempre. Você deseja retirar o artefato Pagão, " + arty.PaganName + ", do baú?</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddButton(10, 275, 4023, 4023, 1, GumpButtonType.Reply, 0);
 				AddButton(447, 275, 4020, 4020, 0, GumpButtonType.Reply, 0);

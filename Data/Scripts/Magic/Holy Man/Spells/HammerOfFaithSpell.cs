@@ -32,7 +32,7 @@ namespace Server.Spells.HolyMan
 				Item weap = new HammerOfFaith( Caster );
 			
 				Caster.AddToBackpack( weap );
-				Caster.SendMessage( "You create a magical hammer and place it in your backpack." );
+				Caster.SendMessage( "Você cria um martelo mágico e o coloca em sua mochila." );
 
 				Caster.PlaySound( 0x212 );
 				Caster.PlaySound( 0x206 );
@@ -99,7 +99,7 @@ namespace Server.Spells.HolyMan
 
 			public void Remove()
 			{
-				m_Owner.SendMessage( "Your hammer slowly disappears." );
+				m_Owner.SendMessage( "Seu martelo desaparece lentamente." );
 				BuffInfo.RemoveBuff( m_Owner, BuffIcon.HammerOfFaith );
 				Delete();
 			}

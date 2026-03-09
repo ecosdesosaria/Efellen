@@ -8,13 +8,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a vampire bat corpse" )]
+	[CorpseName( "um cadáver de morcego-vampiro" )]
 	public class Bat : BaseCreature
 	{
 		[Constructable]
 		public Bat() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a bat";
+			Name = "um morcego";
 			Body = 317;
 			BaseSoundID = 0x270;
 			Hue = 0x497;

@@ -6,13 +6,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a goblin corpse" )]
+	[CorpseName( "um cadáver de goblin" )]
 	public class GoblinArcher : BaseCreature
 	{
 		[Constructable]
 		public GoblinArcher() : base( AIType.AI_Archer, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a goblin archer";
+			Name = "um goblin arqueiro";
 			Body = 647;
 
 			BaseSoundID = 0x543;

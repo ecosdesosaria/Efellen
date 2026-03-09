@@ -9,7 +9,7 @@ namespace Server.Items
 {
 	public class BedrolledOut : Item
 	{
-		public override string DefaultDescription{ get{ return "Bedrolls can be used by adventurers, to recovery health and stamina much quicker. There cannot be any enemies nearby and only the one who places the bedroll will benefit from the effects. It requires someone proficient in camping."; } }
+		public override string DefaultDescription{ get{ return "Sacos de dormir podem ser usados por aventureiros, para recuperar saúde e vigor muito mais rapidamente. Não pode haver inimigos por perto e apenas quem coloca o saco de dormir se beneficiará dos efeitos. Requer alguém proficiente em acampamento."; } }
 
 		private Timer m_Timer;
 		private DateTime m_Created;

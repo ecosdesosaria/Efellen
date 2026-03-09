@@ -13,9 +13,9 @@ namespace Server.Items
 			get
 			{
 				if ( Technology )
-					return "These access cards can open many technological doors or containers. Use the access card and select locked item to see if it works.";
+					return "Estes cartões de acesso podem abrir muitas portas ou baús tecnológicos. Use o cartão de acesso e selecione o item trancado para ver se funciona.";
 
-				return "These keys can open many doors or containers. Use the key and select locked item to see if it works.";
+				return "Estas chaves podem abrir muitas portas ou baús. Use a chave e selecione o item trancado para ver se funciona.";
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "What locked container or door do you want to use the key on?" );
+				from.SendMessage( "Em qual baú ou porta trancada você quer usar a chave?" );
 				t = new UnlockTarget( this );
 				from.Target = t;
 			}
@@ -49,7 +49,7 @@ namespace Server.Items
 		public override void AddNameProperties( ObjectPropertyList list )
 		{
 			base.AddNameProperties( list );
-			list.Add( 1049644, "Open most locked containers or doors" );
+			list.Add( 1049644, "Abre quase todos os baús ou portas trancadas" );
 		}
 
 		private class UnlockTarget : Target
@@ -70,22 +70,22 @@ namespace Server.Items
 				}
 				else if ( targeted == m_Key )
 				{
-					from.SendMessage( "This key is to unlock certain containers." );
+					from.SendMessage( "Esta chave é para destrancar certos baús." );
 				}
 				else if ( targeted is BaseHouseDoor )  // house door check
 				{
-					from.SendMessage( "This key is to unlock certain containers." );
+					from.SendMessage( "Esta chave é para destrancar certos baús." );
 				}
 				else if ( targeted is Item && ((Item)targeted).VirtualContainer )
 				{
-					from.SendMessage( "This key is to unlock almost any container." );
+					from.SendMessage( "Esta chave é para destrancar quase qualquer baú." );
 				}
 				else if ( targeted is BaseDoor )
 				{
 					if ( Server.Items.DoorType.IsDungeonDoor( (BaseDoor)targeted ) && m_Key.ItemID != 0x3A75 )
 					{
 						if ( ((BaseDoor)targeted).Locked == false )
-							from.SendMessage( "That does not need to be unlocked." );
+							from.SendMessage( "Isso não precisa ser destrancado." );
 						else
 						{
 							((BaseDoor)targeted).Locked = false;
@@ -96,7 +96,7 @@ namespace Server.Items
 						}
 					}
 					else
-						from.SendMessage( "That does not need to be unlocked." );
+						from.SendMessage( "Isso não precisa ser destrancado." );
 				}
 				else if ( targeted is ILockable )
 				{
@@ -113,7 +113,7 @@ namespace Server.Items
 					{
 						if ( o is BaseDoor && !((BaseDoor)o).UseLocks() )  // this seems to check house doors also
 						{
-							from.SendMessage( "This key is to unlock certain containers." );
+							from.SendMessage( "Esta chave é para destrancar certos baús." );
 						}
 						else if ( ( cont2.RequiredSkill < 51 ) && !( targeted is TreasureMapChest ) && !( targeted is PirateChest ) && !( targeted is ParagonChest ) )
 						{
@@ -135,7 +135,7 @@ namespace Server.Items
 							if ( targeted is Item )
 							{
 								Item item = (Item)targeted;
-								from.SendMessage( "The key opens the lock, wearing the key out from further use." );
+								from.SendMessage( "A chave abre a fechadura, desgastando a chave para uso futuro." );
 							}
 
 							from.RevealingAction();
@@ -144,17 +144,17 @@ namespace Server.Items
 						}
 						else 
 						{
-							from.SendMessage( "The lock seems too complicated for this key." );
+							from.SendMessage( "A fechadura parece muito complicada para esta chave." );
 						}
 					}
 					else
 					{
-						from.SendMessage( "You don't need to use this key on that." );
+						from.SendMessage( "Você não precisa usar esta chave nisso." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "This key is to unlock certain containers." );
+					from.SendMessage( "Esta chave é para destrancar certos baús." );
 				}
 			}
 		}

@@ -9,7 +9,7 @@ namespace Server.Items
 {
 	public class Kindling : Item
 	{
-		public override string DefaultDescription{ get{ return "Kindling can be used by proficient campers to make a campfire. The fires can then be used by adventurers to recover health and stamina more quickly. There cannot be any enemies nearby for anyone to benefit from the effects."; } }
+		public override string DefaultDescription{ get{ return "Gravetos podem ser usados por campistas proficientes para fazer uma fogueira. As fogueiras podem então ser usadas por aventureiros para recuperar saúde e vigor mais rapidamente. Não pode haver inimigos por perto para que alguém se beneficie dos efeitos."; } }
 
 		[Constructable]
 		public Kindling() : this( 1 )
@@ -116,21 +116,21 @@ namespace Server.Items
 				}
 				else if ( Server.Misc.Worlds.IsOnBoat( from ) )
 				{
-					from.SendMessage( "You cannot start a campfire on a boat." );
+					from.SendMessage( "Você não pode começar uma fogueira em um barco." );
 					return;
 				}
 				else if ( inCombat )
 				{
-					from.SendMessage( "You cannot start a campfire while in combat." );
+					from.SendMessage( "Você não pode começar uma fogueira enquanto está em combate." );
 					return;
 				}
 				else if ( CampsNearby() )
 				{
-					from.SendMessage( "There is already a camp nearby!" );
+					from.SendMessage( "Já existe um acampamento por perto!" );
 				}
 				else if ( EnemiesNearby( from ) )
 				{
-					from.SendMessage( "It is not safe enough to setup camp!" );
+					from.SendMessage( "Não é seguro o suficiente para montar um acampamento!" );
 				}
 				else if ( DateTime.Now >= pm.Camp )
 				{
@@ -154,12 +154,12 @@ namespace Server.Items
 							from.PlaceInBackpack( this );
 
 						new Campfire().MoveToWorld( fireLocation, from.Map );
-						pm.Camp = DateTime.Now + TimeSpan.FromMinutes( 5.0 );
+						pm.Camp = DateTime.Now + TimeSpan.FromMinutes( 10.0 );
 					}
 				}
 				else
 				{
-					from.SendMessage( "You can only build a campfire every 5 minutes!" );
+					from.SendMessage( "Você só pode construir uma fogueira a cada 10 minutos!" );
 				}
 			}
 		}

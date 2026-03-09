@@ -25,281 +25,281 @@ namespace Server.Gumps
 			
 			string thisItem = CultureInfo.CurrentCulture.TextInfo.ToTitleCase( Server.Mobiles.EpicCharacter.GetSpecialItemRequirement( listener ) );
 
-			string sInfo = "<br><br>These items can be customized to fit your adventuring style. When you obtain one of these items tribute, single click on the item and select the 'Enchant' option. A menu will appear that will allow you to spend the points given on whatever attributes you choose. Be careful, as you cannot change an attribute once you select it. Once the points have been used up, the item will remain as it is.";
+			string sInfo = "<br><br>Estes itens podem ser personalizados para se adequar ao seu estilo de aventura. Quando você obtiver um desses itens de tributo, clique uma vez no item e selecione a opção 'Encantar'. Um menu aparecerá que permitirá que você gaste os pontos fornecidos nos atributos que escolher. Tenha cuidado, pois você não pode alterar um atributo depois de selecioná-lo. Uma vez que os pontos tenham sido usados, o item permanecerá como está.";
 
-			string sBare = "<br><br>" + myName + " will offer you an item of tribute if you retrieve a rare item...<br><br>" + thisItem + "<br><br>...and have achieved a fame of at least 7,000 points. If you accept their tribute, your fame will decrease by 7,000 points and you will have to rebuild it again. If you have achieved this amount, single click on " + myName + " and select Tribute to choose the type of item you want. " + myName + " will also need at least 5,000 gold in order to construct the item for you.";
+			string sBare = "<br><br>" + myName + " lhe oferecerá um item de tributo se você recuperar um item raro...<br><br>" + thisItem + "<br><br>...e tiver alcançado uma fama de pelo menos 7.000 pontos. Se você aceitar seu tributo, sua fama diminuirá em 7.000 pontos e você terá que reconstruí-la novamente. Se você alcançou essa quantidade, clique uma vez em " + myName + " e selecione Tributo para escolher o tipo de item que deseja. " + myName + " também precisará de pelo menos 5.000 de ouro para construir o item para você.";
 
 			if ( alignment == "good" )
 			{
-				sInfo = "<br><br>These items can be customized to fit your adventuring style. When you obtain one of these items tribute, single click on the item and select the 'Enchant' option. A menu will appear that will allow you to spend the points given on whatever attributes you choose. Be careful, as you cannot change an attribute once you select it. Once the points have been used up, the item will remain as it is.";
+				sInfo = "<br><br>Estes itens podem ser personalizados para se adequar ao seu estilo de aventura. Quando você obtiver um desses itens de tributo, clique uma vez no item e selecione a opção 'Encantar'. Um menu aparecerá que permitirá que você gaste os pontos fornecidos nos atributos que escolher. Tenha cuidado, pois você não pode alterar um atributo depois de selecioná-lo. Uma vez que os pontos tenham sido usados, o item permanecerá como está.";
 
-				sBare = "<br><br>" + myName + " will offer you an item of tribute if you retrieve a rare item...<br><br>" + thisItem + "<br><br>...and have achieved a fame of at least 4,000 points and a karma of at least 4,000 points. If you accept their tribute, your fame and karma will decrease by 4,000 points and you will have to rebuild them again. If you have achieved these amounts, single click on " + myName + " and select Tribute to choose the type of item you want. " + myName + " will also need at least 5,000 gold in order to construct the item for you.";
+				sBare = "<br><br>" + myName + " lhe oferecerá um item de tributo se você recuperar um item raro...<br><br>" + thisItem + "<br><br>...e tiver alcançado uma fama de pelo menos 4.000 pontos e um karma de pelo menos 4.000 pontos. Se você aceitar seu tributo, sua fama e karma diminuirão em 4.000 pontos e você terá que reconstruí-los novamente. Se você alcançou essas quantidades, clique uma vez em " + myName + " e selecione Tributo para escolher o tipo de item que deseja. " + myName + " também precisará de pelo menos 5.000 de ouro para construir o item para você.";
 			}
 			else if ( alignment == "evil" )
 			{
-				sInfo = "<br><br>These items can be customized to fit your adventuring style. When you obtain one of these items tribute, single click on the item and select the 'Enchant' option. A menu will appear that will allow you to spend the points given on whatever attributes you choose. Be careful, as you cannot change an attribute once you select it. Once the points have been used up, the item will remain as it is.";
+				sInfo = "<br><br>Estes itens podem ser personalizados para se adequar ao seu estilo de aventura. Quando você obtiver um desses itens de tributo, clique uma vez no item e selecione a opção 'Encantar'. Um menu aparecerá que permitirá que você gaste os pontos fornecidos nos atributos que escolher. Tenha cuidado, pois você não pode alterar um atributo depois de selecioná-lo. Uma vez que os pontos tenham sido usados, o item permanecerá como está.";
 
-				sBare = "<br><br>" + myName + " will offer you an item of tribute if you retrieve a rare item...<br><br>" + thisItem + "<br><br>...and have achieved a fame of at least 4,000 points and a karma of at least -4,000 points or lower. If you accept their tribute, your fame will decrease by 4,000 points and your karma will increase by 4,000 points. You will have to rebuild them again. If you have achieved these amounts, single click on " + myName + " and select Tribute to choose the type of item you want. " + myName + " will also need at least 5,000 gold in order to construct the item for you.";
+				sBare = "<br><br>" + myName + " lhe oferecerá um item de tributo se você recuperar um item raro...<br><br>" + thisItem + "<br><br>...e tiver alcançado uma fama de pelo menos 4.000 pontos e um karma de pelo menos -4.000 pontos ou menor. Se você aceitar seu tributo, sua fama diminuirá em 4.000 pontos e seu karma aumentará em 4.000 pontos. Você terá que reconstruí-los novamente. Se você alcançou essas quantidades, clique uma vez em " + myName + " e selecione Tributo para escolher o tipo de item que deseja. " + myName + " também precisará de pelo menos 5.000 de ouro para construir o item para você.";
 			}
 
 			if ( myName == "Lord Draxinusom" )
 			{
-				sTitle = "The Gargoyle Race";
-				sText = "Greetings, " + yourName + " and welcome to our great city. Your deeds are known throughout the land and we would like to pay tribute to you. We do have weapons that could aid in the fight against the ophidians or elements of earth, but many of our items help those that craft with ores and metals." + sInfo + sBare;
+				sTitle = "A Raça Gargula";
+				sText = "Saudações, " + yourName + " e bem-vindo à nossa grande cidade. Suas façanhas são conhecidas por toda a terra e gostaríamos de prestar tributo a você. Temos armas que poderiam ajudar na luta contra os ofidianos ou elementos da terra, mas muitos de nossos itens ajudam aqueles que trabalham com minérios e metais." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Greetings, " + yourName + " and welcome to our great city. I would offer you tribute but you are quite unknown throughout the land. Perhaps if you adventured more would your stories start to be told by others." + sBare;
+					sText = "Saudações, " + yourName + " e bem-vindo à nossa grande cidade. Eu lhe ofereceria tributo, mas você é bastante desconhecido por toda a terra. Talvez se você aventurasse mais, suas histórias começariam a ser contadas por outros." + sBare;
 				}
 			}
 			else if ( myName == "the Great Earth Serpent" )
 			{
-				sTitle = "Seeking the Balance";
-				sText = "Greetings, " + yourName + ". Your deeds have shown me that you could perhaps provide balance to the land, and thus I would like to pay tribute to you. I could summon weapons that would help you with the ophidians who attempt to destroy the balance, or aid you in dealing with my brothers or order and chaos." + sInfo + sBare;
+				sTitle = "Buscando o Equilíbrio";
+				sText = "Saudações, " + yourName + ". Suas façanhas me mostraram que você poderia talvez fornecer equilíbrio à terra, e assim eu gostaria de prestar tributo a você. Eu poderia invocar armas que o ajudariam com os ofidianos que tentam destruir o equilíbrio, ou auxiliá-lo em lidar com meus irmãos da ordem e do caos." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Greetings, " + yourName + ". I would offer you tribute to help with the order of balance, but you are quite unknown throughout the land. Perhaps you need to prove yourself, and show me that you can indeed provide balance to the land." + sBare;
+					sText = "Saudações, " + yourName + ". Eu lhe ofereceria tributo para ajudar com a ordem do equilíbrio, mas você é bastante desconhecido por toda a terra. Talvez você precise provar a si mesmo e me mostrar que pode de fato fornecer equilíbrio à terra." + sBare;
 				}
 			}
 			else if ( myName == "Morphius" )
 			{
-				sTitle = "The Necrotic Hand";
-				sText = "Well, well, well. I see that " + yourName + " has come to seek power in the realm of the dead. You have been quite busy, aiding to my plans like a worthy puppet. I suppose a tribute to your efforts are in order. I can offer items that would help those that explore death and molest the graves of others." + sInfo + sBare;
+				sTitle = "A Mão Necrótica";
+				sText = "Ora, ora, ora. Vejo que " + yourName + " veio buscar poder no reino dos mortos. Você tem estado bastante ocupado, auxiliando meus planos como um fantoche digno. Suponho que um tributo aos seus esforços seja apropriado. Posso oferecer itens que ajudariam aqueles que exploram a morte e molestam os túmulos de outros." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Well, well, well. I see that " + yourName + " has come to seek power in the realm of the dead. But alas you have failed to further my efforts against the living. Go forth, and return when you have seen to my will." + sBare;
+					sText = "Ora, ora, ora. Vejo que " + yourName + " veio buscar poder no reino dos mortos. Mas, infelizmente, você falhou em promover meus esforços contra os vivos. Siga em frente e retorne quando tiver atendido à minha vontade." + sBare;
 				}
 			}
 			else if ( myName == "Mondain" )
 			{
-				sTitle = "The Shards of Time";
-				sText = "Greetings, " + yourName + ". I see you managed to find me here. I know what you are thinking. The Stranger had slain me years ago. Although that may be the tale told within the shadows of taverns, it is far from true. The gem of immortality saved me from the Stranger's attack, as the shattered gem unleashed a power that returned me to life shortly thereafter. My efforts have been furthered by some of the exploits you undertook. For that, I would like to give you tribute to help you further in my pursuits. These items add great power to even the most novice of wizards." + sInfo + sBare;
+				sTitle = "Os Fragmentos do Tempo";
+				sText = "Saudações, " + yourName + ". Vejo que você conseguiu me encontrar aqui. Eu sei o que você está pensando. O Estranho me matou anos atrás. Embora essa possa ser a história contada nas sombras das tavernas, está longe de ser verdade. A gema da imortalidade me salvou do ataque do Estranho, pois a gema estilhaçada liberou um poder que me trouxe de volta à vida pouco tempo depois. Meus esforços foram promovidos por algumas das façanhas que você realizou. Por isso, eu gostaria de dar a você um tributo para ajudá-lo ainda mais em minhas buscas. Esses itens acrescentam grande poder até mesmo aos magos mais novatos." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Greetings, " + yourName + ". I see you managed to find me here. I know what you are thinking. The Stranger had slain me years ago. Although that may be true, it isn't who they slain but when. They may one day slay me again but the ripples of time have helped me escape to this place. If you can prove that you are worthy of my tribute, then go forth and bring havoc to the land. If not, perhaps you should not return." + sBare;
+					sText = "Saudações, " + yourName + ". Vejo que você conseguiu me encontrar aqui. Eu sei o que você está pensando. O Estranho me matou anos atrás. Embora isso possa ser verdade, não é quem eles mataram, mas quando. Eles podem um dia me matar novamente, mas as ondulações do tempo me ajudaram a escapar para este lugar. Se você puder provar que é digno de meu tributo, então vá em frente e traga o caos à terra. Se não, talvez você não deva retornar." + sBare;
 				}
 			}
 			else if ( myName == "Tyball" )
 			{
-				sTitle = "The Demon Unbound";
-				sText = "Hail, " + yourName + ". It is not often I find someone that could brave the halls of this dungeon. I am currently practicing the art of alchemic reactions toward demon control. So far, I have been successful as you see with my little friend over there. I do find myself leaving from time to time, where I have to acquire items to concoct these mixtures. Although some try to stop me, you have done many things to help me avoid these inconveniences. For that, I can offer you an item that would help you brew potions as good as I." + sInfo + sBare;
+				sTitle = "O Demônio Desatado";
+				sText = "Salve, " + yourName + ". Não é frequentemente que encontro alguém que possa enfrentar os salões desta masmorra. Atualmente, estou praticando a arte das reações alquímicas para o controle de demônios. Até agora, tenho tido sucesso, como você vê com meu pequeno amigo ali. Eu acabo saindo de vez em quando, onde tenho que adquirir itens para preparar essas misturas. Embora alguns tentem me impedir, você fez muitas coisas para me ajudar a evitar esses inconvenientes. Por isso, posso oferecer a você um item que o ajudaria a preparar poções tão boas quanto eu." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Hail, " + yourName + ". It is not often I find someone that could brave the halls of this dungeon. I am currently practicing the art of alchemic reactions toward demon control. So far, I have been successful as you see with my little friend over there. I do find myself leaving from time to time, where I have to acquire items to concoct these mixtures. Many try to stop me, and you have done nothing to reduce these inconveniences I often face. Maybe the next time we meet, you will have tales of those that once opposed me." + sBare;
+					sText = "Salve, " + yourName + ". Não é frequentemente que encontro alguém que possa enfrentar os salões desta masmorra. Atualmente, estou praticando a arte das reações alquímicas para o controle de demônios. Até agora, tenho tido sucesso, como você vê com meu pequeno amigo ali. Eu acabo saindo de vez em quando, onde tenho que adquirir itens para preparar essas misturas. Muitos tentam me impedir, e você não fez nada para reduzir esses inconvenientes que frequentemente enfrento. Talvez da próxima vez que nos encontrarmos, você terá histórias daqueles que antes se opunham a mim." + sBare;
 				}
 			}
 			else if ( myName == "Arcadion" )
 			{
-				sTitle = "The Fires of Purgatory";
-				sText = "Well, well, well. If it isn't the soul of " + yourName + ", perhaps surrending to my chains? No matter. You are more useful to me out there, as you have delivered many souls to my lair. I want you to continue your efforts, but I do feel you need an item that aids in your wretched ways." + sInfo + sBare;
+				sTitle = "Os Fogos do Purgatório";
+				sText = "Ora, ora, ora. Se não é a alma de " + yourName + ", talvez se rendendo às minhas correntes? Não importa. Você é mais útil para mim lá fora, pois você entregou muitas almas ao meu covil. Quero que você continue seus esforços, mas sinto que você precisa de um item que ajude em seus caminhos miseráveis." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Well, well, well. If it isn't the soul of " + yourName + ", perhaps surrending to my chains? No matter. You may be more useful to me out there, as you can deliver many souls to my lair. Spread havoc throughout the land and return to me. There are matters we can further discuss." + sBare;
+					sText = "Ora, ora, ora. Se não é a alma de " + yourName + ", talvez se rendendo às minhas correntes? Não importa. Você pode ser mais útil para mim lá fora, pois pode entregar muitas almas ao meu covil. Espalhe o caos por toda a terra e retorne a mim. Há assuntos que podemos discutir mais adiante." + sBare;
 				}
 			}
 			else if ( myName == "Samhayne" )
 			{
-				sTitle = "The Glory of Poseidon";
-				sText = "Greetings, " + yourName + ". I have heard much about you and your deeds throughout the many lands. If you have interest in sailing the high seas, I am willing to offer you items that will help you traverse the waves and face the creatures of the deep." + sInfo + sBare;
+				sTitle = "A Glória de Poseidon";
+				sText = "Saudações, " + yourName + ". Ouvi muito sobre você e suas façanhas por muitas terras. Se você tem interesse em navegar pelos altos mares, estou disposto a oferecer itens que o ajudarão a atravessar as ondas e enfrentar as criaturas das profundezas." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Greetings, " + yourName + ". Do you plan on sailing the high seas? If so, there is much glory to gain. Return to me if you have tales of bravery and courage. I would like to offer something to such a person." + sBare;
+					sText = "Saudações, " + yourName + ". Você planeja navegar pelos altos mares? Se sim, há muita glória a ser ganha. Retorne a mim se tiver histórias de bravura e coragem. Eu gostaria de oferecer algo a tal pessoa." + sBare;
 				}
 			}
 			else if ( myName == "Seggallion" )
 			{
-				sTitle = "The Life of a Pirate";
-				sText = "Hail, " + yourName + ". I have heard many stories of your travels. You take what you want and let no one stand in your way. I like that. If you have interest in sailing the high seas, I am willing to offer you items that will help you traverse the waves and face the creatures of the deep. There are many ships out there that could be easily loosed of their cargo." + sInfo + sBare;
+				sTitle = "A Vida de um Pirata";
+				sText = "Salve, " + yourName + ". Ouvi muitas histórias de suas viagens. Você pega o que quer e não deixa ninguém ficar em seu caminho. Eu gosto disso. Se você tem interesse em navegar pelos altos mares, estou disposto a oferecer itens que o ajudarão a atravessar as ondas e enfrentar as criaturas das profundezas. Há muitos navios por aí que poderiam ser facilmente aliviados de sua carga." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Hail, " + yourName + ". I have heard very little of your travels. You should go out there and take what you want and let no one stand in your way. Maybe if you have what it takes to draw from the riches of others, then we could talk a bit further. I may be able to help you." + sBare;
+					sText = "Salve, " + yourName + ". Ouvi muito pouco sobre suas viagens. Você deveria sair por aí e pegar o que quer e não deixar ninguém ficar em seu caminho. Talvez se você tiver o que é preciso para extrair as riquezas dos outros, então poderíamos conversar um pouco mais. Eu posso ser capaz de ajudá-lo." + sBare;
 				}
 			}
 			else if ( myName == "Minax" )
 			{
-				sTitle = "The Mother of Evil";
-				sText = "It appears that " + yourName + " has found my little lair wrapped in time. You may have heard that the Stranger had defeated me years ago. Although they did foil my plans, they unknowingly created a time paradox and allowed another version of me to exist onward. This brings me to your arrival. It seems that you have done some things throughout the land that have hindered my adversaries. For this, I offer you something for your actions. These items add great power to even the most novice of sorcerers." + sInfo + sBare;
+				sTitle = "A Mãe do Mal";
+				sText = "Parece que " + yourName + " encontrou meu pequeno covil envolto no tempo. Você pode ter ouvido que o Estranho me derrotou anos atrás. Embora eles tenham frustrado meus planos, eles inadvertidamente criaram um paradoxo temporal e permitiram que outra versão de mim continuasse existindo. Isso me traz à sua chegada. Parece que você fez algumas coisas por toda a terra que atrapalharam meus adversários. Por isso, eu ofereço a você algo por suas ações. Esses itens acrescentam grande poder até mesmo aos feiticeiros mais novatos." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "It appears that " + yourName + " has found my little lair wrapped in time. You may have heard that the Stranger had defeated me years ago. Although they did foil my plans, my prodigy Exodus has returned me to Sosaria to further my efforts. This brings me to question your arrival. If you have come here to seek tribute, you best look elsewhere as you have not done anything to cause my enemies to fall." + sBare;
+					sText = "Parece que " + yourName + " encontrou meu pequeno covil envolto no tempo. Você pode ter ouvido que o Estranho me derrotou anos atrás. Embora eles tenham frustrado meus planos, minha progênie Exodus me trouxe de volta a Sosaria para promover meus esforços. Isso me traz a questionar sua chegada. Se você veio aqui para buscar tributo, é melhor procurar em outro lugar, pois você não fez nada para fazer meus inimigos caírem." + sBare;
 				}
 			}
 			else if ( myName == "Nystal" )
 			{
-				sTitle = "The Watchful Eye";
-				sText = "Greetings, " + yourName + " and welcome to the castle of Lord British. Forgive my room but I have not the time to clean as I have been very busy with my studies. I am always looking to help others explore the properties of magic, and from what I hear you are the trustworthy sort. Would you perhaps like a tribute for your good deeds? I have items that would help a wizard in their practice of magic." + sInfo + sBare;
+				sTitle = "O Olho Atento";
+				sText = "Saudações, " + yourName + " e bem-vindo ao castelo de Lord British. Perdoe meu quarto, mas não tive tempo de limpar, pois tenho estado muito ocupado com meus estudos. Estou sempre procurando ajudar outros a explorar as propriedades da magia, e pelo que ouvi, você é do tipo confiável. Você gostaria talvez de um tributo por suas boas ações? Tenho itens que ajudariam um mago em sua prática de magia." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Greetings, " + yourName + " and welcome to the castle of Lord British. Forgive my room but I have not the time to clean as I have been very busy with my studies. I am always looking to help others explore the properties of magic, but I am not sure you are a trustworthy sort. Maybe come back later when you have helped your fellow citizens more." + sBare;
+					sText = "Saudações, " + yourName + " e bem-vindo ao castelo de Lord British. Perdoe meu quarto, mas não tive tempo de limpar, pois tenho estado muito ocupado com meus estudos. Estou sempre procurando ajudar outros a explorar as propriedades da magia, mas não tenho certeza se você é do tipo confiável. Talvez volte mais tarde quando tiver ajudado mais seus concidadãos." + sBare;
 				}
 			}
 			else if ( myName == "Lord British" )
 			{
-				sTitle = "Knights of Sosaria";
-				sText = "Greetings, " + yourName + ". Your recent actions have been noted by my court and I would like to offer you an item that would show my personal gratitude. These items embrace the qualities of my knightship and I feel that you may one day be one of them." + sInfo + sBare;
+				sTitle = "Cavaleiros de Sosaria";
+				sText = "Saudações, " + yourName + ". Suas ações recentes foram notadas por minha corte e eu gostaria de oferecer a você um item que mostraria minha gratidão pessoal. Esses itens abraçam as qualidades da minha cavalaria e sinto que você pode um dia ser um deles." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Greetings, " + yourName + ". I must admit that I have not heard much about you in these lands. Perhaps if you venture into the world and vanquish evil, then my knights my take notice. Return to me if your valor outweighs your greed and I will greatly reward you." + sBare;
+					sText = "Saudações, " + yourName + ". Devo admitir que não ouvi muito sobre você nestas terras. Talvez se você se aventurar pelo mundo e derrotar o mal, então meus cavaleiros possam notar. Retorne a mim se seu valor superar sua ganância e eu o recompensarei grandemente." + sBare;
 				}
 			}
 			else if ( myName == "Lord Blackthorne" )
 			{
-				sTitle = "Price to Pay";
-				sText = "Well if it isn't " + yourName + ". I have been trapped in this bottle for years and there are many that I want to thank personally, but I cannot do much within this glass prison. I have many agents seeking items for me, and I have some enemies that need to be dispatched. You seem to have taken care of some of these issues without even knowing it. I would like to give you something that an assassin would appreciate, if your trade moves in that direction." + sInfo + sBare;
+				sTitle = "Preço a Pagar";
+				sText = "Ora, se não é " + yourName + ". Estou preso nesta garrafa há anos e há muitos que eu gostaria de agradecer pessoalmente, mas não posso fazer muito dentro desta prisão de vidro. Tenho muitos agentes procurando itens para mim, e tenho alguns inimigos que precisam ser eliminados. Você parece ter resolvido algumas dessas questões sem nem mesmo saber. Eu gostaria de dar a você algo que um assassino apreciaria, se seu ofício seguir nessa direção." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Well if it isn't " + yourName + ". I have been trapped in this bottle for years and there are many that I want to thank personally, but I cannot do much within this glass prison. I have many agents seeking items for me, and I have some enemies that need to be dispatched. For those that further my cause, I do tend to take notice and reward appropriately." + sBare;
+					sText = "Ora, se não é " + yourName + ". Estou preso nesta garrafa há anos e há muitos que eu gostaria de agradecer pessoalmente, mas não posso fazer muito dentro desta prisão de vidro. Tenho muitos agentes procurando itens para mim, e tenho alguns inimigos que precisam ser eliminados. Para aqueles que promovem minha causa, eu costumo notar e recompensar adequadamente." + sBare;
 				}
 			}
 			else if ( myName == "Geoffrey" )
 			{
-				sTitle = "The Art of War";
-				sText = "Greetings, " + yourName + ". I have been living in the castle for many years and served Lord British even longer than that. The word in the tavern is that you have done some really good deeds in your travels. This is good to hear as we need more champions in the realm. I would like to offer you something for your service. Something that could make you a better fighter." + sInfo + sBare;
+				sTitle = "A Arte da Guerra";
+				sText = "Saudações, " + yourName + ". Moro no castelo há muitos anos e servi Lord British por ainda mais tempo. A palavra na taverna é que você fez algumas ações realmente boas em suas viagens. Isso é bom de ouvir, pois precisamos de mais campeões no reino. Eu gostaria de oferecer algo por seu serviço. Algo que poderia torná-lo um lutador melhor." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Greetings, " + yourName + ". I have been living in the castle for many years and served Lord British even longer than that. The word in the tavern is that you have stayed to yourself and have failed to choose a side against good or evil. If your heart ever leads you to do what is right for the realm, come back and see me. I may have something to share with you." + sBare;
+					sText = "Saudações, " + yourName + ". Moro no castelo há muitos anos e servi Lord British por ainda mais tempo. A palavra na taverna é que você ficou na sua e falhou em escolher um lado contra o bem ou o mal. Se seu coração algum dia o levar a fazer o que é certo para o reino, volte e me visite. Posso ter algo para compartilhar com você." + sBare;
 				}
 			}
 			else if ( myName == "Shimazu" )
 			{
-				sTitle = "The Way of Shogun";
-				sText = "Hail, " + yourName + ". You have found my dojo. The does not surprise me since I have heard about your travels. If you seek to become master of ninjitsu, or simply one of the samurai, then I could maybe help you with some special items. What say you?" + sInfo + sBare;
+				sTitle = "O Caminho do Shogun";
+				sText = "Salve, " + yourName + ". Você encontrou meu dojo. Isso não me surpreende, pois ouvi sobre suas viagens. Se você busca se tornar mestre do ninjitsu, ou simplesmente um dos samurais, então eu poderia talvez ajudá-lo com alguns itens especiais. O que você diz?" + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Hail, " + yourName + ". You have found my dojo, although I am uncertain how. This dojo is for those that faced danger and lived to tell the tale, not those that sit around drinking ale all day. Leave this place, before the stink of cowardice attracts others." + sBare;
+					sText = "Salve, " + yourName + ". Você encontrou meu dojo, embora eu não saiba como. Este dojo é para aqueles que enfrentaram o perigo e viveram para contar a história, não para aqueles que ficam por aí bebendo hidromel o dia todo. Deixe este lugar, antes que o fedor da covardia atraia outros." + sBare;
 				}
 			}
 			else if ( myName == "Gorn" )
 			{
-				sTitle = "Strength and Steel";
-				sText = "Hail, " + yourName + ". I have ruled these islands for many years, but never had I heard such tales of bravery and courage than I have about you. If you are a true barbarian, I can make you something that would help you live off the land. Then you could travel even further, spreading your tales of victory to others." + sInfo + sBare;
+				sTitle = "Força e Aço";
+				sText = "Salve, " + yourName + ". Governo estas ilhas há muitos anos, mas nunca ouvi tantas histórias de bravura e coragem quanto as que ouvi sobre você. Se você é um verdadeiro bárbaro, posso fazer algo que o ajudaria a viver da terra. Então você poderia viajar ainda mais, espalhando suas histórias de vitória para outros." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Hail, " + yourName + ". I have ruled these islands for many years, but I have never heard of you. If you want to be a true barbarian, then you need to travel to the harshest regions of the world and face the mightiest of foes. Maybe next time I see you, you will be such a soul." + sBare;
+					sText = "Salve, " + yourName + ". Governo estas ilhas há muitos anos, mas nunca ouvi falar de você. Se você quer ser um verdadeiro bárbaro, então precisa viajar para as regiões mais severas do mundo e enfrentar os inimigos mais poderosos. Talvez da próxima vez que eu vê-lo, você será tal alma." + sBare;
 				}
 			}
 			else if ( myName == "Jaana" )
 			{
-				sTitle = "The Healing Hand";
-				sText = "Hail, " + yourName + ". I am one of the many healers of Sosaria and decided to live here since it is central to the land. I have not needed to heal you, which is suprising since I have heard of the many deeds you have done in the land. If you need to be better equipped to heal thyself, perhaps I can help." + sInfo + sBare;
+				sTitle = "A Mão Curandeira";
+				sText = "Salve, " + yourName + ". Sou uma das muitas curandeiras de Sosaria e decidi morar aqui, pois é central na terra. Não precisei curá-lo, o que é surpreendente, pois ouvi sobre as muitas façanhas que você fez na terra. Se você precisa estar melhor equipado para curar a si mesmo, talvez eu possa ajudar." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Hail, " + yourName + ". I am one of the many healers of Sosaria and decided to live here since it is central to the land. I have not needed to heal you, but that is probably because you do not risk your life for a cause. If you take up a true life of adventure, come visit again if you need to be better equipped to heal thyself." + sBare;
+					sText = "Salve, " + yourName + ". Sou uma das muitas curandeiras de Sosaria e decidi morar aqui, pois é central na terra. Não precisei curá-lo, mas isso provavelmente é porque você não arrisca sua vida por uma causa. Se você assumir uma verdadeira vida de aventura, visite novamente se precisar estar melhor equipado para curar a si mesmo." + sBare;
 				}
 			}
 			else if ( myName == "Dupre" )
 			{
-				sTitle = "Knights Against Evil";
-				sText = "Greetings, " + yourName + ". I am Dupre and I have been traveling the many lands, vanquishing evil in all of its forms. I have heard of your valor in battle and your purity of spirit. You should perhaps embrace the life of knightship, and join the battle against the undead. If you have the goal to bring light to the dark, just say so and another champion will join our ranks." + sInfo + sBare;
+				sTitle = "Cavaleiros Contra o Mal";
+				sText = "Saudações, " + yourName + ". Eu sou Dupre e tenho viajado por muitas terras, derrotando o mal em todas as suas formas. Ouvi sobre sua valentia em batalha e sua pureza de espírito. Você deveria talvez abraçar a vida da cavalaria e se juntar à batalha contra os mortos-vivos. Se você tem o objetivo de trazer luz às trevas, basta dizer e outro campeão se juntará às nossas fileiras." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Greetings, " + yourName + ". I am Dupre and I have been traveling the many lands, vanquishing evil in all of its forms. You should perhaps embrace the life of knightship, and join the battle against the undead. Nevertheless, I will keep my ears listening about you. If you can show me your mettle against the wicked dead of the world, I would be happy to call you friend." + sBare;
+					sText = "Saudações, " + yourName + ". Eu sou Dupre e tenho viajado por muitas terras, derrotando o mal em todas as suas formas. Você deveria talvez abraçar a vida da cavalaria e se juntar à batalha contra os mortos-vivos. No entanto, vou manter meus ouvidos atentos sobre você. Se você puder me mostrar seu valor contra os mortos perversos do mundo, ficarei feliz em chamá-lo de amigo." + sBare;
 				}
 			}
 			else if ( myName == "Gwenno" )
 			{
-				sTitle = "Music to My Ears";
-				sText = "Well met, " + yourName + ". I enjoy my music and tales of adventure, and I had sung many songs about you. If you perhaps seek to help others with the gift of music, I could perhaps help thee." + sInfo + sBare;
+				sTitle = "Música para Meus Ouvidos";
+				sText = "Bom encontro, " + yourName + ". Eu aprecio minha música e histórias de aventura, e cantei muitas canções sobre você. Se você talvez busca ajudar outros com o dom da música, eu poderia talvez ajudá-lo." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Well met, " + yourName + ". I enjoy my music and tales of adventure, but sadly I have no songs about your life. Perhaps you should return when you have stories of glory and I could then sing about your valor to others." + sBare;
+					sText = "Bom encontro, " + yourName + ". Eu aprecio minha música e histórias de aventura, mas infelizmente não tenho canções sobre sua vida. Talvez você deva retornar quando tiver histórias de glória e eu poderia então cantar sobre sua valentia para outros." + sBare;
 				}
 			}
 			else if ( myName == "Iolo" )
 			{
-				sTitle = "The True Shot";
-				sText = "Well met, " + yourName + ". I am a bard by night but a good archer by day. I make many bows for Lord British as he appreciates the quality, but that is all I seem to have time for in bowcrafting. He has told me many stories about your conquests of valor and justice though. I am willing to help you as I can give you many items that would greatly help an archer." + sInfo + sBare;
+				sTitle = "O Verdadeiro Arqueiro";
+				sText = "Bom encontro, " + yourName + ". Sou um bardo à noite, mas um bom arqueiro durante o dia. Faço muitos arcos para Lord British, pois ele aprecia a qualidade, mas é tudo que pareço ter tempo para fazer em arcoaria. Ele me contou muitas histórias sobre suas conquistas de valor e justiça. Estou disposto a ajudá-lo, pois posso dar a você muitos itens que ajudariam muito um arqueiro." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Well met, " + yourName + ". I am a bard by night but a good archer by day. I make many bows for Lord British as he appreciates the quality, but that is all I seem to have time for in bowcrafting. If you ever make a name for yourself, come back and visit. I may be able to make you a better archer." + sBare;
+					sText = "Bom encontro, " + yourName + ". Sou um bardo à noite, mas um bom arqueiro durante o dia. Faço muitos arcos para Lord British, pois ele aprecia a qualidade, mas é tudo que pareço ter tempo para fazer em arcoaria. Se você algum dia fizer um nome para si mesmo, volte e me visite. Posso ser capaz de torná-lo um arqueiro melhor." + sBare;
 				}
 			}
 			else if ( myName == "Shamino" )
 			{
-				sTitle = "The Wonderful Woodlands";
-				sText = "Well met, " + yourName + ". I am a simple woodsman but I have heard many tales of valor about you. I wish I could help in your pursuits, but all I could offer are items that would help you in the carpentry trade. Don't get me wrong, they can do much more than that. They are just items that would help you travel the forests in relative safety to be sure. If that interests you, let me know." + sInfo + sBare;
+				sTitle = "As Florestas Maravilhosas";
+				sText = "Bom encontro, " + yourName + ". Sou um simples lenhador, mas ouvi muitas histórias de valentia sobre você. Gostaria de poder ajudar em suas buscas, mas tudo que posso oferecer são itens que o ajudariam no ofício da carpintaria. Não me entenda mal, eles podem fazer muito mais do que isso. São apenas itens que o ajudariam a viajar pelas florestas com relativa segurança, com certeza. Se isso lhe interessa, me avise." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Well met, " + yourName + ". I am a simple woodsman and I have been living in Montor for many years. I usually like to help prospective woodsmen, but I usually aid those that have been seasoned in the ways of valor and kindness. Well, take care then." + sBare;
+					sText = "Bom encontro, " + yourName + ". Sou um simples lenhador e tenho vivido em Montor por muitos anos. Geralmente gosto de ajudar prospectivos lenhadores, mas geralmente ajudo aqueles que foram experientes nos caminhos do valor e da bondade. Bem, cuide-se então." + sBare;
 				}
 			}
 			else if ( myName == "Stefano" )
 			{
-				sTitle = "What is Yours is Mine";
-				sText = "Well, well, well. You must be " + yourName + ". While others drink their ale I hear them tell stories of some pretty harsh things you have done in the realm. I must say I am quite impressed. If you could part with some gold, I could make an item for you that would help you acquire things easier than simply buying them. Are you interested?" + sInfo + sBare;
+				sTitle = "O Que É Seu É Meu";
+				sText = "Ora, ora, ora. Você deve ser " + yourName + ". Enquanto outros bebem seu hidromel, eu os ouço contar histórias de algumas coisas bastante duras que você fez no reino. Devo dizer que estou bastante impressionado. Se você pudesse abrir mão de algum ouro, eu poderia fazer um item para você que o ajudaria a adquirir coisas mais facilmente do que simplesmente comprá-las. Você está interessado?" + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "So you say you are called " + yourName + "? Never heard of ya. Maybe go out and steal something that makes the entire land whisper stories of the theft. If you can do that, then maybe we can talk. Otherwise, get lost!" + sBare;
+					sText = "Então você diz que se chama " + yourName + "? Nunca ouvi falar de você. Talvez vá lá fora e roube algo que faça toda a terra sussurrar histórias do roubo. Se você puder fazer isso, então talvez possamos conversar. Caso contrário, suma daqui!" + sBare;
 				}
 			}
 			else if ( myName == "Katrina" )
 			{
-				sTitle = "Woodland Friends";
-				sText = "Hello, " + yourName + ". I have been taming animals here for many years, but I have not achieved the glory your name has brought. If you are willing to learn the ways of taming, I could perhaps make something to help you with that goal. It can be a long journey but may be worth it later on if you don't want to travel alone." + sInfo + sBare;
+				sTitle = "Amigos da Floresta";
+				sText = "Olá, " + yourName + ". Tenho domesticado animais aqui por muitos anos, mas não alcancei a glória que seu nome trouxe. Se você está disposto a aprender os caminhos da domesticação, eu poderia talvez fazer algo para ajudá-lo com esse objetivo. Pode ser uma longa jornada, mas pode valer a pena mais tarde se você não quiser viajar sozinho." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Hello, " + yourName + ". I have been taming animals here for many years, but I have not heard of you. Come back and visit if you ever have stories to tell of great battles or evil vanquished. I would love to hear them." + sBare;
+					sText = "Olá, " + yourName + ". Tenho domesticado animais aqui por muitos anos, mas não ouvi falar de você. Volte e me visite se algum dia tiver histórias para contar sobre grandes batalhas ou males derrotados. Adoraria ouvi-las." + sBare;
 				}
 			}
 			else if ( myName == "the Guardian" )
 			{
-				sTitle = "The Black Gate";
-				sText = "So you must be " + yourName + ". I have been watching your journey for quite some time. I am stuck here in Sosaria, looking for a way to get to the world of Pagan. Dupre and Lord British have been a thorn in my side, but I have many eager disciples to seek what I need or slay who I want elminated. You have done much in securing my success in this matter, as I am getting closer to having my black gate lead me to were I seek. Let me enhance your efforts, as I can conjure many items that could be of assistance to you." + sInfo + sBare;
+				sTitle = "O Portão Negro";
+				sText = "Então você deve ser " + yourName + ". Tenho observado sua jornada por bastante tempo. Estou preso aqui em Sosaria, procurando uma maneira de chegar ao mundo de Pagan. Dupre e Lord British têm sido um espinho em meu lado, mas tenho muitos discípulos ansiosos para procurar o que preciso ou matar quem quero eliminar. Você fez muito para garantir meu sucesso nesse assunto, pois estou cada vez mais perto de fazer meu portão negro me levar para onde busco. Deixe-me melhorar seus esforços, pois posso conjurar muitos itens que poderiam ser de assistência para você." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "So you say you are called " + yourName + "? I have not heard of you, but I am stuck here in Sosaria looking for a way to get to the world of Pagan. Dupre and Lord British have been a thorn in my side, but I have many eager disciples to seek what I need or slay who I want elminated. Maybe you can venture forth and assist those that worship me, or simply create havoc to keep Dupre and Lord British busy. Return to me when you have shown me you deserve my attention." + sBare;
+					sText = "Então você diz que se chama " + yourName + "? Não ouvi falar de você, mas estou preso aqui em Sosaria procurando uma maneira de chegar ao mundo de Pagan. Dupre e Lord British têm sido um espinho em meu lado, mas tenho muitos discípulos ansiosos para procurar o que preciso ou matar quem quero eliminar. Talvez você possa se aventurar e ajudar aqueles que me adoram, ou simplesmente criar caos para manter Dupre e Lord British ocupados. Retorne a mim quando tiver me mostrado que merece minha atenção." + sBare;
 				}
 			}
 			else if ( myName == "Garamon" )
 			{
-				sTitle = "A Brother No More";
-				sText = "Greetings, " + yourName + ". I am quite happy to see you as I have heard many stories of your exploits. Whether you know it or not, your efforts have slowed my brother Tyball down considerably. His attempt to enslave demons have only caused more to appear in the land and I have been trying to create elixirs to aid others in the fight against such evil. I would like to offer you tribute, as I have many items that would help you perpare potions as I do." + sInfo + sBare;
+				sTitle = "Um Irmão Não Mais";
+				sText = "Saudações, " + yourName + ". Estou muito feliz em vê-lo, pois ouvi muitas histórias de suas façanhas. Quer você saiba ou não, seus esforços atrasaram consideravelmente meu irmão Tyball. Sua tentativa de escravizar demônios só fez com que mais aparecessem na terra e tenho tentado criar elixires para ajudar outros na luta contra tal mal. Eu gostaria de oferecer a você tributo, pois tenho muitos itens que o ajudariam a preparar poções como eu faço." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Greetings, " + yourName + ". I am happy to meet you as I feel you could perhaps help me against the insane practices my brother Tyball performs. His attempt to enslave demons have only caused more to appear in the land and I have been trying to create elixirs to aid others in the fight against such evil. There are other items and agents he seeks to further his cause. Return to me when you have reached glory throughout the land. I feel that I could part with something for you." + sBare;
+					sText = "Saudações, " + yourName + ". Estou feliz em conhecê-lo, pois sinto que você poderia talvez me ajudar contra as práticas insanas que meu irmão Tyball realiza. Sua tentativa de escravizar demônios só fez com que mais aparecessem na terra e tenho tentado criar elixires para ajudar outros na luta contra tal mal. Há outros itens e agentes que ele busca para promover sua causa. Retorne a mim quando tiver alcançado glória por toda a terra. Sinto que poderia dar algo para você." + sBare;
 				}
 			}
 			else if ( myName == "Mors Gotha" )
 			{
-				sTitle = "Death to the Righteous";
-				sText = "Well met, " + yourName + ". The light of this world will eventually be vanquished due to your recent actions. People like you are quite rare. Rare enough you shouldn't have wreak havoc with what you got. How about I give you something to help you...spread the word of death? Alas I only have items that could really aid a death knight, but death knights are rare indeed." + sInfo + sBare;
+				sTitle = "Morte aos Justos";
+				sText = "Bom encontro, " + yourName + ". A luz deste mundo eventualmente será derrotada devido às suas ações recentes. Pessoas como você são bastante raras. Raras o suficiente para que você não devesse causar estragos com o que tem. Que tal eu dar a você algo para ajudá-lo... a espalhar a palavra da morte? Infelizmente, só tenho itens que realmente poderiam ajudar um cavaleiro da morte, mas cavaleiros da morte são realmente raros." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "What do you want, " + yourName + "? We don't need the likes of you roaming around Umbra! Perhaps you should make your way to the surface and show us you are worthy of the darkness!" + sBare;
+					sText = "O que você quer, " + yourName + "? Não precisamos de gente como você vagando por Umbra! Talvez você deva ir para a superfície e nos mostrar que é digno da escuridão!" + sBare;
 				}
 			}
 			else if ( myName == "Lethe" )
 			{
-				sTitle = "The Shallow Grave";
-				sText = "Well, well, well. I see that " + yourName + " has come to pursue knowledge in the resting places of the dead. You have been quite busy, aiding to my plans like a worthy servant. I suppose a tribute to your efforts are in order. I can offer items that would help those that explore death and molest the graves of others." + sInfo + sBare;
+				sTitle = "A Sepultura Rasa";
+				sText = "Ora, ora, ora. Vejo que " + yourName + " veio buscar conhecimento nos locais de descanso dos mortos. Você tem estado bastante ocupado, auxiliando meus planos como um servo digno. Suponho que um tributo aos seus esforços seja apropriado. Posso oferecer itens que ajudariam aqueles que exploram a morte e molestam os túmulos de outros." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Well, well, well. I see that " + yourName + " has come to pursue knowledge in the resting places of the dead. But alas you have failed to further my efforts against the living. Go forth, and return when you have dispatched those that oppose me." + sBare;
+					sText = "Ora, ora, ora. Vejo que " + yourName + " veio buscar conhecimento nos locais de descanso dos mortos. Mas, infelizmente, você falhou em promover meus esforços contra os vivos. Siga em frente e retorne quando tiver eliminado aqueles que se opõem a mim." + sBare;
 				}
 			}
 

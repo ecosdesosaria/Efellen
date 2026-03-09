@@ -8,8 +8,8 @@ namespace Server.Misc
 {
 	public class AttackMessage
 	{
-		private const string AggressorFormat = "You are attacking {0}!";
-		private const string AggressedFormat = "{0} is attacking you!";
+		private const string AggressorFormat = "Você está atacando {0}!";
+		private const string AggressedFormat = "{0} está atacando você!";
 		private const int Hue = 0x22;
 
 		private static TimeSpan Delay = TimeSpan.FromMinutes( 1.0 );

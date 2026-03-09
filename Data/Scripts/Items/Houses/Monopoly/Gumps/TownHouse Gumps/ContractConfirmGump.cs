@@ -20,26 +20,26 @@ namespace Knives.TownHouses
             int y = 0;
 
 			if ( c_Contract.RentalClient == null )
-				AddHtml( 0, y+5, width, HTML.Black + "<CENTER>Rent this House?");
+				AddHtml( 0, y+5, width, HTML.Black + "<CENTER>Alugar esta Casa?");
 			else
-				AddHtml( 0, y+5, width, HTML.Black + "<CENTER>Rental Agreement");
+				AddHtml( 0, y+5, width, HTML.Black + "<CENTER>Contrato de Aluguel");
 
-			string text = String.Format( "  I, {0}, agree to rent this property from {1} for the sum of {2} every {3}.  " +
-				"The funds for this payment will be taken directly from my bank.  In the case where " +
-				"I cannot pay this fee, the property will return to {1}.  I may cancel this agreement at any time by " +
-				"demolishing the property.  {1} may also cancel this agreement at any time by either demolishing their " +
-				"property or canceling the contract, in which case your security deposit will be returned.",
+			string text = String.Format( "  Eu, {0}, concordo em alugar esta propriedade de {1} pelo valor de {2} a cada {3}.  " +
+				"Os fundos para este pagamento serão retirados diretamente do meu banco.  No caso em que " +
+				"eu não possa pagar esta taxa, a propriedade retornará para {1}.  Posso cancelar este contrato a qualquer momento " +
+				"demolindo a propriedade.  {1} também pode cancelar este contrato a qualquer momento, seja demolindo sua " +
+				"propriedade ou cancelando o contrato, caso em que seu depósito de segurança será devolvido.",
 				c_Contract.RentalClient == null ? "_____" : c_Contract.RentalClient.Name,
 				c_Contract.RentalMaster.Name,
 				c_Contract.Free ? 0 : c_Contract.Price,
 				c_Contract.PriceTypeShort.ToLower() );
 
-			text += "<BR>   Here is some more info reguarding this property:<BR>";
+			text += "<BR>   Aqui está mais algumas informações sobre esta propriedade:<BR>";
 
-			text += String.Format( "<CENTER>Lockdowns: {0}<BR>", c_Contract.Locks );
-			text += String.Format( "Secures: {0}<BR>", c_Contract.Secures );
-			text += String.Format( "Floors: {0}<BR>", (c_Contract.MaxZ-c_Contract.MinZ < 200) ? (c_Contract.MaxZ-c_Contract.MinZ)/20+1 : 1 );
-			text += String.Format( "Space: {0} cubic units", c_Contract.CalcVolume() );
+			text += String.Format( "<CENTER>Bloqueios: {0}<BR>", c_Contract.Locks );
+			text += String.Format( "Seguros: {0}<BR>", c_Contract.Secures );
+			text += String.Format( "Andares: {0}<BR>", (c_Contract.MaxZ-c_Contract.MinZ < 200) ? (c_Contract.MaxZ-c_Contract.MinZ)/20+1 : 1 );
+			text += String.Format( "Espaço: {0} unidades cúbicas", c_Contract.CalcVolume() );
 
 			AddHtml( 40, y+=30, width-60, 200, HTML.Black + text, false, true );
 

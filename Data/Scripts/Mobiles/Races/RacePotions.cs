@@ -44,7 +44,7 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int)1 ); // version
+			writer.Write( (int)1 ); 
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -85,7 +85,7 @@ namespace Server.Items
 
 				int x = 194;
 				int y = 337;
-				int p = 173;
+				int p = 175;
 
 				int race = 79999+page;
 				int btn = 0;
@@ -137,14 +137,14 @@ namespace Server.Items
 					int gx = 804;
 					int gy = 56;
 					int gm = 30;
-					int go = 0;
+					int go = MySettings.S_MonsterCharacters;
 					int gb = 6000;
 
 					AddHtml( 786, 11, 213, 20, @"<BODY><BASEFONT Color=" + color + ">CATEGORIES</BASEFONT></BODY>", (bool)false, (bool)false);
 
 					gc++; AddButton(gx, gy, 2447, 2447, 123456789, GumpButtonType.Reply, 0); AddHtml( gx+18, gy-4, 98, 20, @"<BODY><BASEFONT Color=" + color + ">Human</BASEFONT></BODY>", (bool)false, (bool)false); gy=gy+gm;
 
-					while ( g < 44 )
+					while ( g < 45 )
 					{
 						g++;
 
@@ -194,6 +194,7 @@ namespace Server.Items
 						else if ( g == 42 && go >= 1 ){ gc++; AddButton(gx, gy, 2447, 2447, g+gb, GumpButtonType.Reply, 0); AddHtml( gx+18, gy-4, 98, 20, @"<BODY><BASEFONT Color=" + color + ">Troll</BASEFONT></BODY>", (bool)false, (bool)false); gy=gy+gm; }
 						else if ( g == 43 && go >= 1 ){ gc++; AddButton(gx, gy, 2447, 2447, g+gb, GumpButtonType.Reply, 0); AddHtml( gx+18, gy-4, 98, 20, @"<BODY><BASEFONT Color=" + color + ">Vampyre</BASEFONT></BODY>", (bool)false, (bool)false); gy=gy+gm; }
 						else if ( g == 44 && go >= 1 ){ gc++; AddButton(gx, gy, 2447, 2447, g+gb, GumpButtonType.Reply, 0); AddHtml( gx+18, gy-4, 98, 20, @"<BODY><BASEFONT Color=" + color + ">Zombi</BASEFONT></BODY>", (bool)false, (bool)false); gy=gy+gm; }
+						else if ( g == 45 && go >= 1 ){ gc++; AddButton(gx, gy, 2447, 2447, g+gb, GumpButtonType.Reply, 0); AddHtml( gx+18, gy-4, 98, 20, @"<BODY><BASEFONT Color=" + color + ">Drow</BASEFONT></BODY>", (bool)false, (bool)false); gy=gy+gm; }
 					}
 
 					AddButton(1125, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);	// CLOSE
@@ -248,26 +249,26 @@ namespace Server.Items
 
 					string alignment = "#e0e2b7";
 
-					AddHtml( 105, 42, 100, 20, @"<BODY><BASEFONT Color=" + color + ">Species:</BASEFONT></BODY>", (bool)false, (bool)false);
-					AddHtml( 105, 77, 100, 20, @"<BODY><BASEFONT Color=" + color + ">Alignment:</BASEFONT></BODY>", (bool)false, (bool)false);
-					AddHtml( 234, 42, 157, 20, @"<BODY><BASEFONT Color=" + color + ">Human</BASEFONT></BODY>", (bool)false, (bool)false);
-					AddHtml( 234, 77, 157, 20, @"<BODY><BASEFONT Color=" + alignment + ">Neutral</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 105, 42, 100, 20, @"<BODY><BASEFONT Color=" + color + ">Espécie:</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 105, 77, 100, 20, @"<BODY><BASEFONT Color=" + color + ">Alinhamento:</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 234, 42, 157, 20, @"<BODY><BASEFONT Color=" + color + ">Humano</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 234, 77, 157, 20, @"<BODY><BASEFONT Color=" + alignment + ">Neutro</BASEFONT></BODY>", (bool)false, (bool)false);
 
 					x = x - 15;
 					y = y - 29;
-					AddImage(x, y, 2818);	// HUMAN IMAGE
+					AddImage(x, y, 2818);	
 
-					AddButton(12, 573, 4014, 4014, prev, GumpButtonType.Reply, 0);	// PREV
-					AddButton(347, 573, 4005, 4005, next, GumpButtonType.Reply, 0);	// NEXT
+					AddButton(12, 573, 4014, 4014, prev, GumpButtonType.Reply, 0);	
+					AddButton(347, 573, 4005, 4005, next, GumpButtonType.Reply, 0);	
 
-					// RIGHT SIDE -----------------------------------------------------------------------------------------------------------------------------------------------------
+					// LADO DIREITO -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-					AddImage(452, 32, 2001);	// PAPERDOLL CONTAINER
-					AddImage(459, 51, 50994);	// MONSTER PAPERDOLL
-					AddImage(453, 51, 50422);	// BACKPACK
-					AddHtml( 479, 308, 200, 20, @"<BODY><BASEFONT Color=#000008><CENTER>HUMAN</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
-					AddButton(653, 254, 4023, 4023, 1000, GumpButtonType.Reply, 0);	// OK BUTTON
-					AddHtml( 403, 372, 356, 217, @"<BODY><BASEFONT Color=" + color + "><BR>Humans are the average, most common race in the land.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddImage(452, 32, 2001);	// CONTÊINER DO PAPERDOLL
+					AddImage(459, 51, 50994);	// PAPERDOLL DO MONSTRO
+					AddImage(453, 51, 50422);	// MOCHILA
+					AddHtml( 479, 308, 200, 20, @"<BODY><BASEFONT Color=#000008><CENTER>HUMANO</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+					AddButton(653, 254, 4023, 4023, 1000, GumpButtonType.Reply, 0);	// BOTÃO CONFIRMAR
+					AddHtml( 403, 372, 356, 217, @"<BODY><BASEFONT Color=" + color + "><BR>Humanos são a raça comum e mais frequente nestas terras.</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 			}
 
@@ -327,13 +328,14 @@ namespace Server.Items
 					else if ( quick == 35 ){ move = 130; }
 					else if ( quick == 36 ){ move = 131; }
 					else if ( quick == 37 ){ move = 138; }
-					else if ( quick == 38 ){ move = 151; }
+					else if ( quick == 38 ){ move = 151; if ( MySettings.S_MonsterCharacters > 1 ){ move = 150; } }
 					else if ( quick == 39 ){ move = 152; }
 					else if ( quick == 40 ){ move = 155; }
 					else if ( quick == 41 ){ move = 38; }
 					else if ( quick == 42 ){ move = 157; }
 					else if ( quick == 43 ){ move = 163; }
 					else if ( quick == 44 ){ move = 166; }
+					else if ( quick == 45 ){ move = 173; }
 
 					from.RaceSection = move+1;
 					from.SendGump( new RacePotionsGump( from, m_Tavern ) );
@@ -347,13 +349,21 @@ namespace Server.Items
 				}
 				else if ( info.ButtonID > 0 && info.ButtonID < 180 )
 				{
+					
 					from.RaceSection = info.ButtonID;
 					from.SendGump( new RacePotionsGump( from, m_Tavern ) );
 					from.SendSound( 0x4A ); 
 				}
 				else if ( info.ButtonID == 1000 )
 				{
-					BaseRace.BackToHuman( from );
+					if ( from.RaceID > 0 )
+					{
+						BaseRace.BackToHuman( from );
+					}
+					else
+					{
+						from.SendMessage("Você já está na forma humana.");
+					}
 					if ( m_Tavern == 0 ){ from.PlaySound( Utility.RandomList( 0x030, 0x031 ) ); }
 					Effects.SendLocationParticles( EffectItem.Create( from.Location, from.Map, EffectItem.DefaultDuration ), 0x3728, 8, 20, 0, 0, 5042, 0 );
 				}
@@ -383,30 +393,30 @@ namespace Server.Items
 		{
 			string txt = "";
 
-			if ( origin < 1 ){ txt = txt + "This shelf contains many of the gypsy's concoctions she brewed, where drinking them will physically alter you to another creature. You can use the arrows at the bottom to navigate through the shelf. If you choose to start your journey as a creature, search through this shelf and find one that appeals to you. Once you find something of interest, drink the potion by pressing the OK button next to the paperdoll image of the creature. Each listed potion notes the species and lists any benefits you may gain from being that creature. You will also see representations of these creatures, as that would be the appearance you will have for the rest of that character's life. You will only be able to change your creature appearance to another creature of the same species, but some creatures only have one appearance option available.<BR><BR>"; }
+			if ( origin < 1 ){ txt = txt + "Esta prateleira contém muitos dos concoções que a cigana preparou, onde bebê-las irá alterar-te fisicamente para outra criatura. Podes usar as setas na base para navegar pela prateleira. Se escolheres iniciar tua jornada como uma criatura, procura nesta prateleira e encontra uma que te agrade. Quando encontrares algo de interesse, bebe a poção pressionando o botão CONFIRMAR próximo à imagem do paperdoll da criatura. Cada poção listada nota a espécie e lista quaisquer benefícios que possas ganhar ao seres essa criatura. Também verás representações dessas criaturas, pois essa será a aparência que terás pelo resto da vida desse personagem. Só poderás mudar tua aparência de criatura para outra criatura da mesma espécie, mas algumas criaturas têm apenas uma opção de aparência disponível.<BR><BR>"; }
 
-			txt = txt + "Because these creatures use the static in-game models, you cannot customize their appearances like you can with humans. The images shown are what you will look like. You can, however, use all of the same types of items as humans do. Instead of seeing them represented on your character, they will be displayed as icons on your character's paperdoll window. You can hover over these icons to see the item's information, as well as select them to drag and drop them within your inventory. Creatures cannot ride mounts, so they have to find other means to travel swiftly. This could be from magical spells, or just a good pair of hiking boots.<BR><BR>";
+			txt = txt + "Porque estas criaturas usam os modelos estáticos do jogo, não podes personalizar suas aparências como podes com humanos. As imagens mostradas são como tu parecerás. No entanto, podes usar todos os mesmos tipos de itens que os humanos usam. Em vez de vê-los representados em teu personagem, eles serão exibidos como ícones na janela do paperdoll do teu personagem. Podes pairar sobre esses ícones para ver a informação do item, assim como selecioná-los para arrastar e soltá-los dentro de teu inventário. Criaturas não podem montar cavalarias, então têm que encontrar outros meios para viajar rapidamente. Isto pode ser de feitiços mágicos, ou apenas um bom par de botas de caminhada.<BR><BR>";
 
-			txt = txt + "As a creature, you can hover your cursor over your paperdoll to see the additional attributes you have being that type of creature. As your creature progresses through the game, these attributes will fluctuate based on your character level. Your character level can be viewed by using the INFO button on your paperdoll, and it is a combination of three different areas. The first is your total skills acquired, where the second is your total statistics gained such as strength or dexterity. The final area is your fame and karma, which will cause your level to raise higher or lower most often. The closer to zero your fame and karma are, the less impact on your level. <BR><BR>";
+			txt = txt + "Como criatura, podes pairar teu cursor sobre teu paperdoll para ver os atributos adicionais que tens por seres esse tipo de criatura. À medida que tua criatura progride no jogo, esses atributos flutuarão baseados no nível do teu personagem. Teu nível de personagem pode ser visto usando o botão INFO em teu paperdoll, e é uma combinação de três áreas diferentes. A primeira é o total de habilidades adquiridas, onde a segunda é o total de estatísticas ganhas como força ou destreza. A área final é tua fama e karma, que fará teu nível subir ou descer mais frequentemente. Quanto mais perto de zero tua fama e karma estiverem, menor o impacto em teu nível. <BR><BR>";
 
-			txt = txt + "Some creatures do not need to eat or drink, and these are usually creatures like the undead. There are others that only need to drink, and that is commonly plant-type creatures. Vampires suffer from the effects of hunger and thirst as humans do, but they can never eat and drink common foods. Instead, they must feast on fresh blood which satisfies both thirst and hunger simultaneously. Some other may need to eat fresh brains to survive. The only way to get fresh blood or fresh brains is to kill birds, animals, humanoids, or giants.<BR><BR>";
+			txt = txt + "Algumas criaturas não precisam comer ou beber, e estas são normalmente criaturas como os mortos-vivos. Há outras que só precisam beber, e isso é comum em criaturas do tipo vegetal. Vampiros sofrem os efeitos da fome e sede como humanos, mas nunca podem comer e beber comidas comuns. Em vez disso, devem banquetear-se com sangue fresco que satisfaz tanto sede quanto fome simultaneamente. Alguns outros podem precisar comer cérebros frescos para sobreviver. A única maneira de obter sangue fresco ou cérebros frescos é matando pássaros, animais, humanoides ou gigantes.<BR><BR>";
 
-			txt = txt + "There are two common adventure starting paths one can take. They can simply enter the world in the average way, or they can be labeled a murderous criminal. Where regular characters have the ability to achieve up to 1,000 skill points, those that begin as murderous criminals can achieve up to 1,300 points. Each creature has an inherit alignment that sets the tone of their outlook from others in the world. Creatures of good alignment cannot start their journey as a murderous criminal. Neutral creatures can choose to be regular adventurers, or murderous criminals. Those of evil alignment can also choose either, but avoiding the murderous criminal path does not welcome you into civilized villages and cities. One that begins with evil alignment would need to achieve a fame and karma title of admirable (2,500 or more of each). This then assumes that you have no recorded murders, or criminal actions pending. Falling below admirable would have citizens and guards look fearfully at you and try to drive you away. Places such as the port islands, the Undercity of Umbra, the Village of Ravendark, or even Xardok care very little if you are and evil creature or not. This is probably why such creatures gather at those places.<BR><BR>";
+			txt = txt + "Há dois caminhos iniciais comuns de aventura que se pode tomar. Podem simplesmente entrar no mundo da maneira comum, ou podem ser rotulados como criminosos assassinos. Onde personagens regulares têm a habilidade de alcançar até 1.000 pontos de habilidade, aqueles que começam como criminosos assassinos podem alcançar até 1.300 pontos. Cada criatura tem um alinhamento inerente que define o tom de sua perspectiva perante outros no mundo. Criaturas de alinhamento bom não podem iniciar sua jornada como criminosos assassinos. Criaturas neutras podem escolher ser aventureiros regulares ou criminosos assassinos. Aqueles de alinhamento mal também podem escolher qualquer um, mas evitar o caminho do criminoso assassino não te dá as boas-vindas em vilas e cidades civilizadas. Alguém que começa com alinhamento mal precisaria alcançar um título de fama e karma de admirável (2.500 ou mais de cada). Isto então assume que não tens assassinatos registrados ou ações criminosas pendentes. Cair abaixo de admirável faria cidadãos e guardas olharem para ti com temor e tentarem te expulsar. Lugares como as ilhas do porto, a Cidade Subterrânea de Umbra, a Vila de Ravendark, ou mesmo Xardok pouco se importam se és uma criatura maligna ou não. É provavelmente por isso que tais criaturas se reúnem nesses lugares.<BR><BR>";
 
-			txt = txt + "After you enter the world as a creature, there a setting you can configure later on. When you access the HELP section of your character paperdoll, you can see this option appear in the SETTINGS section. By default, your creature character will sometimes make sounds when hurting others or getting hurt. You can turn these sounds on or off. You can also access this information again in the HELP section, using the button labeled CREATURE HELP. So all of the information contained here is readily accessible later on.<BR><BR>";
+			txt = txt + "Depois que entrares no mundo como criatura, há uma configuração que podes ajustar mais tarde. Quando acederes à seção AJUDA do paperdoll do teu personagem, podes ver esta opção aparecer na seção CONFIGURAÇÕES. Por padrão, teu personagem criatura por vezes fará sons quando magoar outros ou for magoado. Podes ligar ou desligar esses sons. Também podes aceder a esta informação novamente na seção AJUDA, usando o botão rotulado AJUDA DA CRIATURA. Portanto, toda a informação contida aqui está prontamente acessível mais tarde.<BR><BR>";
 
-			txt = txt + "There are two other settings you can configure later on, but only in taverns and inns. These are also accessed by the HELP button, and then the SETTINGS section. One setting is the type of magic you want your creature to focus on, which can only be accessed in taverns or inns. You will only see this option if the creature has some inherent magical ability like magery or necromancy. Changing your CREATURE MAGIC will change what the creature has proficiency in. Meaning if you select a creature with a bonus to magery, altering this setting could have that creature instead have a bonus to necromancy or elementalism. The other option is the CREATURE TYPE. This either lets you change to a human forever, or change your appearance to another creature model within the same species. If there is only one creature appearance model for your species, the only option here will be to turn to human. When you turn back to a human, you will lose all of the attributes of the race you were.<BR><BR>";
+			txt = txt + "Há duas outras configurações que podes ajustar mais tarde, mas apenas em tavernas e estalagens. Estas também são acedidas pelo botão AJUDA, e depois pela seção CONFIGURAÇÕES. Uma configuração é o tipo de magia que queres que tua criatura se concentre, que só pode ser acedida em tavernas ou estalagens. Só verás esta opção se a criatura tiver alguma habilidade mágica inerente como magia ou necromancia. Mudar tua MAGIA DA CRIATURA mudará no que a criatura tem proficiência. Significando que se selecionares uma criatura com bónus para magia, alterar esta configuração poderia fazer com que essa criatura tenha instead um bónus para necromancia ou elementarismo. A outra opção é o TIPO DE CRIATURA. Isto permite-te mudar para humano para sempre, ou mudar tua aparência para outro modelo de criatura dentro da mesma espécie. Se houver apenas um modelo de aparência de criatura para tua espécie, a única opção aqui será tornar-te humano. Quando voltares a ser humano, perderás todos os atributos da raça que eras.<BR><BR>";
 
-			txt = txt + "This world has become an accepting land to most creatures. Long ago, races such as dwarves, elves, bobbits, and fuzzies lived among humans. Now you may stumble into cities and see a troll drinking at the tavern, or a minotaur resting by a campfire with his human comrades. Although most creatures are considered murderous monsters to be killed on sight, some have rose above the rest and performed acts of heroism or simply convinced others they mean no harm. You could be an ogre that rids the world of evil, or a lizardman practicing dark magic with necromantic spells. The choice is yours.<BR><BR>";
+			txt = txt + "Este mundo tornou-se uma terra aceitante para a maioria das criaturas. Há muito tempo, raças como anões, elfos, bobbits e fuzzies viviam entre humanos. Agora podes tropeçar em cidades e ver um troll a beber na taverna, ou um minotauro a descansar por uma fogueira com seus camaradas humanos. Embora a maioria das criaturas sejam consideradas monstros assassinos para serem mortos à vista, algumas elevaram-se acima do resto e realizaram actos de heroísmo ou simplesmente convenceram outros de que não significam mal. Podes ser um ogro que livra o mundo do mal, ou um homem-lagarto praticando magia negra com feitiços necromânticos. A escolha é tua.<BR><BR>";
 
-			if ( origin < 1 ){ txt = txt + "NOTE: The gaming environment does allow for discovered options to make slight changes to your character's appearance, without maneuvering away from the human models of dressing and appearance customization. Items such as orc masks or bone helms, can allow you to superficially play an orc or a skeletal knight. There are also magical orbs of essence that can change your skin and hair colors to mimic those of the drow, orcs, lizardmen, and vampires. Again, these are superficial and only give you the appearance of such a race. These creatures, however, instill a fantastical sense of becoming something different.<BR><BR>"; }
+			if ( origin < 1 ){ txt = txt + "NOTA: O ambiente de jogo permite opções descobertas para fazer ligeiras mudanças na aparência do teu personagem, sem manobrar para longe dos modelos humanos de vestir e personalização de aparência. Itens como máscaras de orc ou elmos de osso, podem permitir-te superficialmente interpretar um orc ou um cavaleiro esquelético. Há também orbes mágicos de essência que podem mudar tuas cores de pele e cabelo para imitar as dos drow, orcs, homens-lagarto e vampiros. Novamente, estes são superficiais e apenas te dão a aparência de tal raça. Estas criaturas, no entanto, instilam um sentido fantástico de tornar-se algo diferente.<BR><BR>"; }
 
 			return txt;
 		}
 
 		public static string RaceEquipment()
 		{
-			string txt = "Here is an example of a bugbear character named Drub of the Savage Claw. The left is their in-game avatar, and the right is their paperdoll image. Note the various equipment icons on the left and right of the bugbear's paperdoll image. Creatures can equip the same items as humans, and manage the equipment in a similar fashion. You can select the icons to drag and drop equipment, or hover over the icons to get the needed information for the item.<BR><BR>NOTE: When robes are equipped on humans, the armor tunics and sleeves/arms are covered by the robe. It is the same for creatures, where a robe icon will cover the two icons of the lower left of the bugbear's paperdoll image.";
+			string txt = "Aqui está um exemplo de um personagem bugbear chamado Drub da Garra Selvagem. A esquerda está seu avatar no jogo, e a direita está sua imagem de paperdoll. Nota os vários ícones de equipamento à esquerda e direita da imagem do paperdoll do bugbear. Criaturas podem equipar os mesmos itens que humanos, e gerir o equipamento de maneira similar. Podes selecionar os ícones para arrastar e soltar equipamento, ou pairar sobre os ícones para obter a informação necessária do item.<BR><BR>NOTA: Quando vestes são equipadas em humanos, as túnicas de armadura e mangas/braços são cobertas pela veste. É o mesmo para criaturas, onde um ícone de veste cobrirá os dois ícones do canto inferior esquerdo da imagem do paperdoll do bugbear.";
 
 			return txt;
 		}

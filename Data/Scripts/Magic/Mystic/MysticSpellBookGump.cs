@@ -57,104 +57,103 @@ namespace Server.Gumps
 			string abil_name = "";
 			int abil_icon = 0;
 			string abil_text = "";
-			string abil_info = "<br><br>To learn the secrets of this ability, you need to find the following location and open this book there to reach into your ki for enlightenment:<br><br>";
+			string abil_info = "<br><br>Para aprender os segredos desta habilidade, você precisa encontrar o seguinte local e abrir este livro lá para alcançar seu ki para iluminação:<br><br>";
 			string abil_skil = "";
 			string abil_mana = "";
 			string abil_tith = "";
 			int abil_spid = (page+248);
 
-			if ( page == 2 ){ 		abil_name = "Astral Projection";	abil_icon = 0x500E;	abil_skil = "80"; abil_mana = "50"; abil_tith = "300"; 
+			if ( page == 2 ){ 		abil_name = "Projeção Astral";	abil_icon = 0x500E;	abil_skil = "80"; abil_mana = "50"; abil_tith = "300"; 
 				m_Map = book.WritMap01;
 				m_X = (int)( ( book.WritX101 + book.WritX201 ) / 2 );
 				m_Y = (int)( ( book.WritY101 + book.WritY201 ) / 2 );
-				abil_info += "Place: " + book.WritPlace01 + "<br><br>";
-				abil_info += "World: " + book.WritWorld01 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord01 + "<br>";
-				abil_text = "Enter the astral plane where your soul is immune to harm. While you are in this state, you can freely travel but your interraction with the world is minimal. The better your skill, the longer it lasts. Monks use this ability to safely travel through dangerous areas."; }
-			else if ( page == 3 ){ 	abil_name = "Astral Travel";		abil_icon = 0x410;	abil_skil = "50"; abil_mana = "40"; abil_tith = "35"; 
+				abil_info += "Local: " + book.WritPlace01 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld01 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord01 + "<br>";
+				abil_text = "Entre no plano astral onde sua alma é imune a danos. Enquanto você está neste estado, pode viajar livremente, mas sua interação com o mundo é mínima. Quanto melhor sua habilidade, mais tempo dura. Monges usam esta habilidade para viajar com segurança por áreas perigosas."; }
+			else if ( page == 3 ){ 	abil_name = "Viagem Astral";		abil_icon = 0x410;	abil_skil = "50"; abil_mana = "40"; abil_tith = "35"; 
 				m_Map = book.WritMap02;
 				m_X = (int)( ( book.WritX102 + book.WritX202 ) / 2 );
 				m_Y = (int)( ( book.WritY102 + book.WritY202 ) / 2 );
-				abil_info += "Place: " + book.WritPlace02 + "<br><br>";
-				abil_info += "World: " + book.WritWorld02 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord02 + "<br>";
-				abil_text = "Travel through the astral plane to another location with the use of a magical recall rune. The rune must be marked by other magical means before you can travel to that location. If you wish to travel using a rune book, then set your rune book's default location and then you can target the book while using this ability."; }
-			else if ( page == 4 ){ 	abil_name = "Create Robe";			abil_icon = 0x15;	abil_skil = "25"; abil_mana = "20"; abil_tith = "150"; 
+				abil_info += "Local: " + book.WritPlace02 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld02 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord02 + "<br>";
+				abil_text = "Viaje através do plano astral para outro local com o uso de uma runa de recall mágica. A runa deve ser marcada por outros meios mágicos antes que você possa viajar para esse local. Se você deseja viajar usando um livro de runas, defina a localização padrão do seu livro de runas e então você pode mirar no livro enquanto usa esta habilidade."; }
+			else if ( page == 4 ){ 	abil_name = "Criar Manto";			abil_icon = 0x15;	abil_skil = "25"; abil_mana = "20"; abil_tith = "150"; 
 				m_Map = book.WritMap03;
 				m_X = (int)( ( book.WritX103 + book.WritX203 ) / 2 );
 				m_Y = (int)( ( book.WritY103 + book.WritY203 ) / 2 );
-				abil_info += "Place: " + book.WritPlace03 + "<br><br>";
-				abil_info += "World: " + book.WritWorld03 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord03 + "<br>";
-				abil_text = "Creates a robe that you will need in order to use the other abilities in this tome. The robe will have power based on your overall skill as a monk, and no one else may wear the robe. You can only have one such robe at a time, so creating a new robe will cause any others you own to go back to the astral plane. After creation, single click the robe and select the 'Enchant' option to spend the points on attributes you want the robe to have."; }
-			else if ( page == 5 ){ 	abil_name = "Gentle Touch";			abil_icon = 0x971;	abil_skil = "30"; abil_mana = "25"; abil_tith = "15"; 
+				abil_info += "Local: " + book.WritPlace03 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld03 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord03 + "<br>";
+				abil_text = "Cria um manto que você precisará para usar as outras habilidades neste tomo. O manto terá poder baseado em sua habilidade geral como monge, e ninguém mais pode usar o manto. Você só pode ter um manto desses por vez, então criar um novo manto fará com que quaisquer outros que você possua voltem ao plano astral. Após a criação, clique uma vez no manto e selecione a opção 'Encantar' para gastar os pontos nos atributos que você deseja que o manto tenha."; }
+			else if ( page == 5 ){ 	abil_name = "Toque Suave";			abil_icon = 0x971;	abil_skil = "30"; abil_mana = "25"; abil_tith = "15"; 
 				m_Map = book.WritMap04;
 				m_X = (int)( ( book.WritX104 + book.WritX204 ) / 2 );
 				m_Y = (int)( ( book.WritY104 + book.WritY204 ) / 2 );
-				abil_info += "Place: " + book.WritPlace04 + "<br><br>";
-				abil_info += "World: " + book.WritWorld04 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord04 + "<br>";
-				abil_text = "Perform a soothing touch, healing damage sustained. The higher your skill, the more damage you will heal with your touch."; }
-			else if ( page == 6 ){ 	abil_name = "Leap";					abil_icon = 0x4B2;	abil_skil = "35"; abil_mana = "20"; abil_tith = "10"; 
+				abil_info += "Local: " + book.WritPlace04 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld04 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord04 + "<br>";
+				abil_text = "Execute um toque suave, curando danos sofridos. Quanto maior sua habilidade, mais dano você curará com seu toque."; }
+			else if ( page == 6 ){ 	abil_name = "Salto";					abil_icon = 0x4B2;	abil_skil = "35"; abil_mana = "20"; abil_tith = "10"; 
 				m_Map = book.WritMap05;
 				m_X = (int)( ( book.WritX105 + book.WritX205 ) / 2 );
 				m_Y = (int)( ( book.WritY105 + book.WritY205 ) / 2 );
-				abil_info += "Place: " + book.WritPlace05 + "<br><br>";
-				abil_info += "World: " + book.WritWorld05 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord05 + "<br>";
-				abil_text = "Allows you to leap over a long distance. This is a quick action and can allow a monk to leap toward an opponent, leap away to safety, or leap over some obstacles like rivers and streams."; }
-			else if ( page == 7 ){ 	abil_name = "Psionic Blast";		abil_icon = 0x5DC2;	abil_skil = "30"; abil_mana = "35"; abil_tith = "15"; 
+				abil_info += "Local: " + book.WritPlace05 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld05 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord05 + "<br>";
+				abil_text = "Permite que você salte uma longa distância. Esta é uma ação rápida e pode permitir que um monge salte em direção a um oponente, salte para segurança ou salte sobre alguns obstáculos como rios e riachos."; }
+			else if ( page == 7 ){ 	abil_name = "Explosão Psíquica";		abil_icon = 0x5DC2;	abil_skil = "30"; abil_mana = "35"; abil_tith = "15"; 
 				m_Map = book.WritMap06;
 				m_X = (int)( ( book.WritX106 + book.WritX206 ) / 2 );
 				m_Y = (int)( ( book.WritY106 + book.WritY206 ) / 2 );
-				abil_info += "Place: " + book.WritPlace06 + "<br><br>";
-				abil_info += "World: " + book.WritWorld06 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord06 + "<br>";
-				abil_text = "Summon your Ki to perform a mental attack that deals an amount of energy damage based upon your fist fighting and intelligence values. Elemental Resistances may reduce damage done by this attack."; }
-			else if ( page == 8 ){ 	abil_name = "Psychic Wall";			abil_icon = 0x1A;	abil_skil = "60"; abil_mana = "45"; abil_tith = "500"; 
+				abil_info += "Local: " + book.WritPlace06 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld06 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord06 + "<br>";
+				abil_text = "Invoca seu Ki para realizar um ataque mental que causa uma quantidade de dano energético baseado em seus valores de luta de punhos e inteligência. Resistências Elementais podem reduzir o dano causado por este ataque."; }
+			else if ( page == 8 ){ 	abil_name = "Muralha Psíquica";			abil_icon = 0x1A;	abil_skil = "60"; abil_mana = "45"; abil_tith = "500"; 
 				m_Map = book.WritMap07;
 				m_X = (int)( ( book.WritX107 + book.WritX207 ) / 2 );
 				m_Y = (int)( ( book.WritY107 + book.WritY207 ) / 2 );
-				abil_info += "Place: " + book.WritPlace07 + "<br><br>";
-				abil_info += "World: " + book.WritWorld07 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord07 + "<br>";
-				abil_text = "You sheer force of will creates a barrier around you, deflecting magical attacks. This does not work against odd magics like necromancy. Affected spells will often bounce back onto the caster."; }
-			else if ( page == 9 ){ 	abil_name = "Purity of Body";		abil_icon = 0x96D;	abil_skil = "40"; abil_mana = "35"; abil_tith = "25"; 
+				abil_info += "Local: " + book.WritPlace07 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld07 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord07 + "<br>";
+				abil_text = "Sua pura força de vontade cria uma barreira ao seu redor, desviando ataques mágicos. Isso não funciona contra magias estranhas como necromancia. Feitiços afetados frequentemente ricocheteiam de volta para o conjurador."; }
+			else if ( page == 9 ){ 	abil_name = "Pureza Corporal";		abil_icon = 0x96D;	abil_skil = "40"; abil_mana = "35"; abil_tith = "25"; 
 				m_Map = book.WritMap08;
 				m_X = (int)( ( book.WritX108 + book.WritX208 ) / 2 );
 				m_Y = (int)( ( book.WritY108 + book.WritY208 ) / 2 );
-				abil_info += "Place: " + book.WritPlace08 + "<br><br>";
-				abil_info += "World: " + book.WritWorld08 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord08 + "<br>";
-				abil_text = "You can cleanse your body of poisons with this ability due to your physical discipline, and as such, it cannot be used to aid anyone else."; }
-			else if ( page == 10 ){	abil_name = "Quivering Palm";		abil_icon = 0x5001;	abil_skil = "20"; abil_mana = "20"; abil_tith = "20"; 
+				abil_info += "Local: " + book.WritPlace08 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld08 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord08 + "<br>";
+				abil_text = "Você pode limpar seu corpo de venenos com esta habilidade devido à sua disciplina física e, como tal, não pode ser usada para ajudar qualquer outra pessoa."; }
+			else if ( page == 10 ){	abil_name = "Palma Trêmula";		abil_icon = 0x5001;	abil_skil = "20"; abil_mana = "20"; abil_tith = "20"; 
 				m_Map = book.WritMap09;
 				m_X = (int)( ( book.WritX109 + book.WritX209 ) / 2 );
 				m_Y = (int)( ( book.WritY109 + book.WritY209 ) / 2 );
-				abil_info += "Place: " + book.WritPlace09 + "<br><br>";
-				abil_info += "World: " + book.WritWorld09 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord09 + "<br>";
-				abil_text = "You must be wearing some sort of pugilist gloves for this ability to work. It temporarily enhances the kind of damage the gloves do. The type of damage inflicted when hitting a target will be converted to the target's worst resistance type. The duration of the effect is affected by your fist fighting skill."; }
-			else if ( page == 11 ){	abil_name = "Wind Runner";			abil_icon = 0x19;	abil_skil = "70"; abil_mana = "50"; abil_tith = "250"; 
+				abil_info += "Local: " + book.WritPlace09 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld09 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord09 + "<br>";
+				abil_text = "Você deve estar usando algum tipo de luva de pugilista para esta habilidade funcionar. Ela aprimora temporariamente o tipo de dano que as luvas causam. O tipo de dano infligido ao atingir um alvo será convertido para o tipo de resistência mais fraco do alvo. A duração do efeito é afetada por sua habilidade em luta de punhos."; }
+			else if ( page == 11 ){	abil_name = "Corredor do Vento";			abil_icon = 0x19;	abil_skil = "70"; abil_mana = "50"; abil_tith = "250"; 
 				m_Map = book.WritMap10;
 				m_X = (int)( ( book.WritX110 + book.WritX210 ) / 2 );
 				m_Y = (int)( ( book.WritY110 + book.WritY210 ) / 2 );
-				abil_info += "Place: " + book.WritPlace10 + "<br><br>";
-				abil_info += "World: " + book.WritWorld10 + "<br><br>";
-				abil_info += "Location: " + book.WritCoord10 + "<br>";
-				abil_text = "This ability allows the monk to run as fast as a steed. This ability should be avoided if you already have a mount you are riding, or perhaps you have magical boots that allow you to run at this speed. using this ability in such conditions may cause unusual travel speeds, so be leery.";
+				abil_info += "Local: " + book.WritPlace10 + "<br><br>";
+				abil_info += "Mundo: " + book.WritWorld10 + "<br><br>";
+				abil_info += "Coordenadas: " + book.WritCoord10 + "<br>";
+				abil_text = "Esta habilidade permite que o monge corra tão rápido quanto uma montaria. Esta habilidade deve ser evitada se você já tiver uma montaria que está cavalgando, ou talvez tenha botas mágicas que permitem correr nesta velocidade. Usar esta habilidade em tais condições pode causar velocidades de viagem incomuns, então seja cauteloso.";
 					if ( MySettings.S_NoMountsInCertainRegions )
 					{
-						abil_text = abil_text + " Be aware when exploring the land, that there are some areas you cannot use this ability in. These are areas such as dungeons, caves, and some indoor areas. If you enter such an area, this ability will be hindered.";
+						abil_text = abil_text + " Esteja ciente ao explorar a terra, que existem algumas áreas onde você não pode usar esta habilidade. Estas são áreas como masmorras, cavernas e algumas áreas internas. Se você entrar em tal área, esta habilidade será prejudicada.";
 					}
 				}
 
-			abil_info += "<br>Make sure you bring a blank scroll with you, so you can write what you have learned. You can then place your writings within this book.<br>";
-
+			abil_info += "<br>Certifique-se de trazer um pergaminho em branco com você, para que possa escrever o que aprendeu. Você pode então colocar seus escritos dentro deste livro.<br>";
 			if ( page == 1 )
 			{
-				AddHtml( 110, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>MONK ABILITIES</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 404, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>MONK ABILITIES</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 110, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>HABILIDADES DE MONGE</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 404, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>HABILIDADES DE MONGE</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int SpellsInBook = 10;
 				int SafetyCatch = 0;
@@ -205,14 +204,14 @@ namespace Server.Gumps
 			}
 			else if ( page > 1 && page < 12 )
 			{
-				AddHtml( 110, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>MONK ABILITIES</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 404, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>MONK ABILITIES</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 110, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>HABILIDADES DE MONGE</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 404, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>HABILIDADES DE MONGE</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 
-				string know = "<BODY><BASEFONT Color=#f58a8a>Not Learned</BASEFONT></BODY>"; if ( this.HasSpell( from, abil_spid ) ){ know = "<BODY><BASEFONT Color=#8af599>Learned</BASEFONT></BODY>"; }
+				string know = "<BODY><BASEFONT Color=#f58a8a>Não Aprendida</BASEFONT></BODY>"; if ( this.HasSpell( from, abil_spid ) ){ know = "<BODY><BASEFONT Color=#8af599>Aprendida</BASEFONT></BODY>"; }
 
-				string ismonk = "<BODY><BASEFONT Color=#f58a8a>You are not a Monk!</BASEFONT></BODY>";
+				string ismonk = "<BODY><BASEFONT Color=#f58a8a>Você não é um Monge!</BASEFONT></BODY>";
 				if ( Server.Misc.GetPlayerInfo.isMonk( from ) )
-					ismonk = "<BODY><BASEFONT Color=#8af599>You are on the path...</BASEFONT></BODY>";
+					ismonk = "<BODY><BASEFONT Color=#8af599>Você está no caminho...</BASEFONT></BODY>";
 
 				AddHtml( 130, 105, 200, 20, @"<BODY><BASEFONT Color=" + color + ">" + abil_name + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				if ( this.HasSpell( from, abil_spid) ){ abil_info = ""; showScrollBar = false; AddButton(78, 94, abil_icon, abil_icon, abil_spid, GumpButtonType.Reply, 0); }
@@ -222,11 +221,11 @@ namespace Server.Gumps
 
 				AddHtml( 75, 336, 253, 20, @"" + know + "", (bool)false, (bool)false);
 
-				AddHtml( 130, 160, 88, 20, @"<BODY><BASEFONT Color=" + color + ">Skill:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 130, 160, 88, 20, @"<BODY><BASEFONT Color=" + color + ">Habilidade:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 225, 160, 88, 20, @"<BODY><BASEFONT Color=" + color + ">" + abil_skil + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 130, 210, 88, 20, @"<BODY><BASEFONT Color=" + color + ">Mana:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 225, 210, 88, 20, @"<BODY><BASEFONT Color=" + color + ">" + abil_mana + "</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 130, 260, 88, 20, @"<BODY><BASEFONT Color=" + color + ">Tithe:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 130, 260, 88, 20, @"<BODY><BASEFONT Color=" + color + ">Dízimo:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 225, 260, 88, 20, @"<BODY><BASEFONT Color=" + color + ">" + abil_tith + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddHtml( 370, 82, 247, 309, @"<BODY><BASEFONT Color=" + color + ">" + abil_text + abil_info + "</BASEFONT></BODY>", (bool)false, (bool)showScrollBar);
@@ -236,11 +235,11 @@ namespace Server.Gumps
 			}
 			else if ( page == 12 )
 			{
-				AddHtml( 110, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>MONK ABILITIES</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 404, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>MONK RUCKSACK</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 110, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>HABILIDADES DE MONGE</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 404, 47, 177, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>MOCHILA DE MONGE</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 
-				AddHtml( 78, 83, 247, 309, @"<BODY><BASEFONT Color=" + color + ">Monks are an order of those that hone their body and spirit. To become a monk, one must become a natural grandmaster in both focus and mediation. Monks may not use any weapons nor use any type of armor, unless the armor is light or enough to allow the channeling of spells. Their innate abilities come from their skills in fist fighting, so they may make use of pugilist gloves. To perform any of the monk abilities, one must adhere to these rules. A monk is also not considered such unless they wear a mystical monk's robe that they themselves create by using the associated monk ability. Along with that, monks do not require the donning of this robe if they are to create such a robe. That is the only exception.<br><br>When you acquired this tome, you likely looked through the pages to see the various abilities a monk may learn. In order to learn the secrets of these abilities, you need to travel to the various locations and open this book there to reach into your ki for enlightenment. Make sure you bring a blank scroll with you, so you can write what you have learned. You can then place your writings within this book and use the abilities if your skill and mana allow it. Whenever one touches these tomes, it is bound to their individual ki unless it is already bound to another. This means you will be the only one able to open the book as it belongs to you. Your writings also share this quality, so when you learn about new abilities, the parchments belong to you. Anyone else that touches these parchments will cause the paper to crumble to dust.<br><br>As previously stated, monks can create their own robes and this is something every monk must seek to do quickly. Without wearing this robe, a monk cannot perform the abilities they have learned. A monk's ability level will determine the power of the robe created. When you create the robe, it will appear in your pack and it will have a number of points you can spend to enhance it. This allows you to tailor the robe to suit your style. To begin, single click the robe and select 'Status'. A menu will appear that you can choose which attributes you want the robe to have. Be careful, as you cannot change an attribute once you select it. The points you can spend is equal to the power of the robe. Only one of your robes may exist in the world at a time, so if you create another, any previous robes will vanish to the astral plane.<br><br>Monks seek to contribute to causes other than their own, so some monks seek to help those less fortunate, while more vile monks seek to help causes that dampen the good of the land. As such they must tithe gold in order to use their abilities. You can tithe gold at any shrine you can find by single clicking the shrine and choosing the appropriate option. Abilities require varying amounts of tithing points to use. This tome will show you how many points you have available, and this information can also be seen by pressing the 'Info' button on your character's paper doll.<br><br>To demonstrate your title of 'Monk', you should set your skill title to 'Fist Fighting'. As long as you follow the rules of monkhood, your title will remain as such. If you have an apprentice ability in either magical or necromantic arts, but live the life of a monk, then your title would be that of 'Mystic'. Adventurous monks can learn skills other than those monks must know, just make sure any other skills will bit hinder the life of a monk (do not learn sword fighting, for example, as swords are useless to monks). There are no other behavioral requirements to be a monk. Some are good, and some are evil. It is all up to you on the path you take.<br><br>You can have tool bars to quickly use these abilities, and although you can manage this in the 'Help' menu, below are commands you can type to use these tool bars:<br><br>Open the first ability bar editor:<br><br>[monkspell1<br><br>Open the second ability bar editor:<br><br>[monkspell2<br><br>Open the first ability bar:<br><br>[monktool1<br><br>Open the second ability bar:<br><br>[monktool2<br><br>Close the first ability bar:<br><br>[monkclose1<br><br>Close the second ability bar:<br><br>[monkclose2<br><br><br><br>Below are some commands you can type to use these abilities, and can help when creating macros:<br><br>[AstralProjection<br><br>[AstralTravel<br><br>[CreateRobe<br><br>[GentleTouch<br><br>[Leap<br><br>[PsionicBlast<br><br>[PsychicWall<br><br>[PurityOfBody<br><br>[QuiveringPalm<br><br>[WindRunner<br><br></BASEFONT></BODY>", (bool)false, (bool)true);
-				AddHtml( 370, 83, 247, 309, @"<BODY><BASEFONT Color=" + color + ">When you have reached the level of grandmaster monk or mystic, you can travel to the " + book.PackShrine + " in Ambrosia and use your ki to call forth a monk's rucksack from the astral plane. You will need a pearl in order to do this. When you step into the shrine, open this book and if you are worthy, the rucksack will appear. Be careful, however, as you can only have one rucksack at a time and any others you may have like this will vanish back to the astral plane and any items in it. These rucksacks allow a monk to carry 100 different items with virtually no weight to anything placed within the rucksack. You will be the only one able to open this particular rucksack, and if you lose your path of a grandmaster monk or mystic, you will not be able to open the rucksack. You cannot store your monk's robe or your tome in this bag.</BASEFONT></BODY>", (bool)false, (bool)true);
+				AddHtml( 78, 83, 247, 309, @"<BODY><BASEFONT Color=" + color + ">Monjes são uma ordem daqueles que aperfeiçoam seu corpo e espírito. Para se tornar um monge, deve-se se tornar um grão-mestre natural tanto em foco quanto em meditação. Monjes não podem usar nenhuma arma nem usar qualquer tipo de armadura, a menos que a armadura seja leve ou suficiente para permitir o canalizar de feitiços. Suas habilidades inatas vêm de suas habilidades em luta de punhos, para que possam fazer uso de luvas de pugilista. Para realizar qualquer uma das habilidades de monge, deve-se seguir estas regras. Um monge também não é considerado como tal a menos que use um manto místico de monge que eles próprios criam usando a habilidade de monge associada. Junto com isso, os monges não precisam vestir este manto se forem criar tal manto. Essa é a única exceção.<br><br>Quando você adquiriu este tomo, provavelmente olhou as páginas para ver as várias habilidades que um monge pode aprender. Para aprender os segredos dessas habilidades, você precisa viajar para os vários locais e abrir este livro lá para alcançar seu ki para iluminação. Certifique-se de trazer um pergaminho em branco com você, para que você possa escrever o que aprendeu. Você pode então colocar seus escritos dentro deste livro e usar as habilidades se sua habilidade e mana permitirem. Sempre que alguém toca nestes tomos, ele é vinculado ao seu ki individual, a menos que já esteja vinculado a outro. Isso significa que você será o único capaz de abrir o livro, pois ele pertence a você. Seus escritos também compartilham essa qualidade, então quando você aprende sobre novas habilidades, os pergaminhos pertencem a você. Qualquer outra pessoa que tocar nesses pergaminhos fará com que o papel se desfaça em pó.<br><br>Como afirmado anteriormente, os monges podem criar seus próprios mantos e isso é algo que todo monge deve buscar fazer rapidamente. Sem usar este manto, um monge não pode realizar as habilidades que aprendeu. O nível de habilidade de um monge determinará o poder do manto criado. Quando você criar o manto, ele aparecerá em sua mochila e terá vários pontos que você pode gastar para melhorá-lo. Isso permite que você adapte o manto para se adequar ao seu estilo. Para começar, clique uma vez no manto e selecione 'Status'. Um menu aparecerá onde você pode escolher quais atributos deseja que o manto tenha. Tenha cuidado, pois você não pode alterar um atributo depois de selecioná-lo. Os pontos que você pode gastar são iguais ao poder do manto. Apenas um de seus mantos pode existir no mundo por vez, então se você criar outro, quaisquer mantos anteriores desaparecerão para o plano astral.<br><br>Monjes buscam contribuir para causas além das suas, então alguns monges buscam ajudar os menos afortunados, enquanto monges mais vis buscam ajudar causas que diminuem o bem da terra. Como tal, eles devem dizimar ouro para usar suas habilidades. Você pode dizimar ouro em qualquer santuário que encontrar clicando uma vez no santuário e escolhendo a opção apropriada. As habilidades exigem quantidades variadas de pontos de dízimo para usar. Este tomo mostrará quantos pontos você tem disponível, e esta informação também pode ser vista pressionando o botão 'Info' no paper doll do seu personagem.<br><br>Para demonstrar seu título de 'Monge', você deve definir seu título de habilidade para 'Luta de Punhos'. Contanto que você siga as regras da vida monástica, seu título permanecerá como tal. Se você tiver uma habilidade de aprendiz em artes mágicas ou necromânticas, mas viver a vida de um monge, então seu título seria o de 'Místico'. Monges aventureiros podem aprender habilidades além daquelas que os monges devem conhecer, apenas certifique-se de que quaisquer outras habilidades não prejudiquem a vida de um monge (por exemplo, não aprenda esgrima, pois espadas são inúteis para monges). Não há outros requisitos comportamentais para ser um monge. Alguns são bons e alguns são maus. Depende de você o caminho que tomar.<br><br>Você pode ter barras de ferramentas para usar essas habilidades rapidamente, e embora você possa gerenciar isso no menu 'Ajuda', abaixo estão os comandos que você pode digitar para usar essas barras de ferramentas:<br><br>Abra o primeiro editor de barra de habilidades:<br><br>[monkspell1<br><br>Abra o segundo editor de barra de habilidades:<br><br>[monkspell2<br><br>Abra a primeira barra de habilidades:<br><br>[monktool1<br><br>Abra a segunda barra de habilidades:<br><br>[monktool2<br><br>Feche a primeira barra de habilidades:<br><br>[monkclose1<br><br>Feche a segunda barra de habilidades:<br><br>[monkclose2<br><br><br><br>Abaixo estão alguns comandos que você pode digitar para usar essas habilidades e podem ajudar na criação de macros:<br><br>[AstralProjection<br><br>[AstralTravel<br><br>[CreateRobe<br><br>[GentleTouch<br><br>[Leap<br><br>[PsionicBlast<br><br>[PsychicWall<br><br>[PurityOfBody<br><br>[QuiveringPalm<br><br>[WindRunner<br><br></BASEFONT></BODY>", (bool)false, (bool)true);
+				AddHtml( 370, 83, 247, 309, @"<BODY><BASEFONT Color=" + color + ">Quando você atingir o nível de grão-mestre monge ou místico, pode viajar para o " + book.PackShrine + " em Ambrosia e usar seu ki para invocar uma mochila de monge do plano astral. Você precisará de uma pérola para fazer isso. Quando você entrar no santuário, abra este livro e se for digno, a mochila aparecerá. No entanto, tenha cuidado, pois você só pode ter uma mochila por vez e quaisquer outras que você possa ter assim desaparecerão de volta para o plano astral junto com quaisquer itens dentro dela. Essas mochilas permitem que um monge carregue 100 itens diferentes virtualmente sem peso para qualquer coisa colocada dentro da mochila. Você será o único capaz de abrir esta mochila em particular, e se você perder seu caminho de grão-mestre monge ou místico, não poderá abrir a mochila. Você não pode armazenar seu manto de monge ou seu tomo nesta bolsa.</BASEFONT></BODY>", (bool)false, (bool)true);
 			}
 		}
 

@@ -7,7 +7,7 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a basilisk corpse" )]
+	[CorpseName( "um cadáver de basilisco" )]
 	public class BasiliskRiding : BaseMount
 	{
 		[Constructable]

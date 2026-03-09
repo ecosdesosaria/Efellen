@@ -56,7 +56,7 @@ namespace Server.Items
 		{
 			if (m_Owner != null && m_Owner.Length > 0 && from.Name != m_Owner && from.Skills[SkillName.Tactics].Base < 111.0)
 			{
-				from.SendMessage("You are not worthy of the Moon Dancer.");
+				from.SendMessage("Você não é digno da Dançarina da Lua.");
 				return false;
 			}
 

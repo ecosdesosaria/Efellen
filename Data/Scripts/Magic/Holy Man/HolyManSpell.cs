@@ -25,28 +25,28 @@ namespace Server.Spells.HolyMan
 
 		public static string SpellDescription( int spell )
 		{
-			string txt = "This symbol holds the knowledge of spiritual blessings: ";
+			string txt = "Este símbolo contém o conhecimento das bênçãos espirituais: ";
 			string skl = "0";
 
-			if ( spell == 770 ){ 		skl = "60";	txt += "Sends demons and the dead back to the realms of hell."; }
-			else if ( spell == 771 ){ 	skl = "70";	txt += "Absorbs mana from others and bestows it to the priest."; }
-			else if ( spell == 772 ){ 	skl = "90";	txt += "Temporarily imbues a weapon with holy powers."; }
-			else if ( spell == 773 ){ 	skl = "50";	txt += "Temporarily summons a hammer from the gods."; }
-			else if ( spell == 774 ){ 	skl = "10";	txt += "Destroys the darkness, allowing for one to see better."; }
-			else if ( spell == 775 ){ 	skl = "10";	txt += "The priest is able to help those that are starving or thirsty."; }
-			else if ( spell == 776 ){ 	skl = "40";	txt += "Removes curses and other ailing effects."; }
-			else if ( spell == 777 ){ 	skl = "80";	txt += "Brings one back to life, or summons an orb to resurrect the priest later on."; }
-			else if ( spell == 778 ){ 	skl = "20";	txt += "Surrounds one with a holy aura that heals wounds much quicker."; }
-			else if ( spell == 779 ){ 	skl = "30";	txt += "The gods grant the priest greater strength, speed, and intelligence."; }
-			else if ( spell == 780 ){ 	skl = "60";	txt += "Allows the priest to enter the realm of the dead, avoiding any harm."; }
-			else if ( spell == 781 ){ 	skl = "40";	txt += "Calls down a bolt from the heavens, doing double damage to demons and undead."; }
-			else if ( spell == 782 ){ 	skl = "20";	txt += "Restores health and stamina to the weary."; }
-			else if ( spell == 783 ){ 	skl = "30";	txt += "Engulfs the priest in holy flames, reflecting magic back at the caster."; }
+			if ( spell == 770 ){ 		skl = "60";	txt += "Envia demônios e mortos de volta aos reinos do inferno."; }
+			else if ( spell == 771 ){ 	skl = "70";	txt += "Absorve mana de outros e a concede ao sacerdote."; }
+			else if ( spell == 772 ){ 	skl = "90";	txt += "Imbuí temporariamente uma arma com poderes sagrados."; }
+			else if ( spell == 773 ){ 	skl = "50";	txt += "Convoca temporariamente um martelo dos deuses."; }
+			else if ( spell == 774 ){ 	skl = "10";	txt += "Destrói a escuridão, permitindo enxergar melhor."; }
+			else if ( spell == 775 ){ 	skl = "10";	txt += "O sacerdote pode ajudar aqueles que estão famintos ou sedentos."; }
+			else if ( spell == 776 ){ 	skl = "40";	txt += "Remove maldições e outros efeitos debilitantes."; }
+			else if ( spell == 777 ){ 	skl = "80";	txt += "Traz alguém de volta à vida, ou invoca um orbe para ressuscitar o sacerdote posteriormente."; }
+			else if ( spell == 778 ){ 	skl = "20";	txt += "Circunda alguém com uma aura sagrada que cura ferimentos muito mais rápido."; }
+			else if ( spell == 779 ){ 	skl = "30";	txt += "Os deuses concedem ao sacerdote maior força, velocidade e inteligência."; }
+			else if ( spell == 780 ){ 	skl = "60";	txt += "Permite ao sacerdote adentrar o reino dos mortos, evitando qualquer dano."; }
+			else if ( spell == 781 ){ 	skl = "40";	txt += "Invoca um raio dos céus, causando dano duplo a demônios e mortos-vivos."; }
+			else if ( spell == 782 ){ 	skl = "20";	txt += "Restaura saúde e vigor aos cansados."; }
+			else if ( spell == 783 ){ 	skl = "30";	txt += "Envolve o sacerdote em chamas sagradas, refletindo magia de volta ao conjurador."; }
 
 			if ( skl == "0" )
 				return txt;
 
-			return txt + " It requires a Priest to be at least a " + skl + " in Spiritualism.";
+			return txt + " Requer que um Sacerdote tenha pelo menos " + skl + " em Espiritualismo.";
 		}
 
 		public override bool CheckCast()
@@ -56,22 +56,22 @@ namespace Server.Spells.HolyMan
 
 			if ( Caster.Karma < 2500 )
 			{
-				Caster.SendMessage( "You have too little Karma to invoke this prayer." );
+				Caster.SendMessage( "Você tem Karma insuficiente para invocar esta prece." );
 				return false;
 			}
 			else if ( Caster.Skills[CastSkill].Value < RequiredSkill )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredSkill + " Spiritualism to invoke this prayer." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + RequiredSkill + " em Espiritualismo para invocar esta prece." );
 				return false;
 			}
 			else if ( GetSoulsInSymbol( Caster ) < RequiredTithing )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredTithing + " piety to invoke this prayer." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + RequiredTithing + " de piedade para invocar esta prece." );
 				return false;
 			}
 			else if ( Caster.Mana < GetMana() )
 			{
-				Caster.SendMessage( "You must have at least " + GetMana() + " Mana to invoke this prayer." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + GetMana() + " de Mana para invocar esta prece." );
 				return false;
 			}
 
@@ -85,22 +85,22 @@ namespace Server.Spells.HolyMan
 
 			if ( Caster.Karma < 2500 )
 			{
-				Caster.SendMessage( "You have too little Karma to invoke this prayer." );
+				Caster.SendMessage( "Você tem Karma insuficiente para invocar esta prece." );
 				return false;
 			}
 			else if ( Caster.Skills[CastSkill].Value < RequiredSkill )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredSkill + " Spiritualism to invoke this prayer" );
+				Caster.SendMessage( "Você precisa ter pelo menos " + RequiredSkill + " em Espiritualismo para invocar esta prece." );
 				return false;
 			}
 			else if ( GetSoulsInSymbol( Caster ) < requiredTithing )
 			{
-				Caster.SendMessage( "You must have at least " + requiredTithing + " piety to invoke this prayer." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + requiredTithing + " de piedade para invocar esta prece." );
 				return false;
 			}
 			else if ( Caster.Mana < mana )
 			{
-				Caster.SendMessage( "You must have at least " + mana + " Mana to invoke this prayer." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + mana + " de Mana para invocar esta prece." );
 				return false;
 			}
 
@@ -111,7 +111,7 @@ namespace Server.Spells.HolyMan
 
 		public override void DoFizzle()
 		{
-			Caster.PrivateOverheadMessage(MessageType.Regular, 0x3B2, false, "You fail to invoke the power.", Caster.NetState);
+			Caster.PrivateOverheadMessage(MessageType.Regular, 0x3B2, false, "Você falha em invocar o poder.", Caster.NetState);
 			Caster.FixedParticles( 0x3735, 1, 30, 9503, EffectLayer.Waist );
 			Caster.PlaySound( 0x1D6 );
 			Caster.NextSpellTime = DateTime.Now;

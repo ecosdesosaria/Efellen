@@ -12,7 +12,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public GnomeMage () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a gnome magician";
+			Name = "um gnomo mago";
 			Body = 362;
 			BaseSoundID = 422;
 

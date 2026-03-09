@@ -26,18 +26,18 @@ namespace Server.Mobiles
 			SetDamageType( ResistanceType.Physical, 70 );
 			SetDamageType( ResistanceType.Poison, 30 );
 
-			SetResistance( ResistanceType.Physical, 40 );
-			SetResistance( ResistanceType.Fire, 35 );
-			SetResistance( ResistanceType.Cold, 35 );
-			SetResistance( ResistanceType.Poison, 40 );
-			SetResistance( ResistanceType.Energy, 30 );
+			SetResistance( ResistanceType.Physical, 30, 40 );
+			SetResistance( ResistanceType.Fire, 30, 35 );
+			SetResistance( ResistanceType.Cold, 25, 35 );
+			SetResistance( ResistanceType.Poison, 35, 40 );
+			SetResistance( ResistanceType.Energy, 25, 30 );
 
-			SetSkill( SkillName.Anatomy, 50.0 );
-			SetSkill( SkillName.Psychology, 85.0 );
-			SetSkill( SkillName.Magery, 85.0 );
-			SetSkill( SkillName.MagicResist, 85.0 );
-			SetSkill( SkillName.Tactics, 95.0 );
-			SetSkill( SkillName.FistFighting, 90.0 );
+			SetSkill( SkillName.Anatomy, 30.3, 60.0 );
+			SetSkill( SkillName.Psychology, 70.1, 85.0 );
+			SetSkill( SkillName.Magery, 70.1, 85.0 );
+			SetSkill( SkillName.MagicResist, 60.1, 75.0 );
+			SetSkill( SkillName.Tactics, 80.1, 90.0 );
+			SetSkill( SkillName.FistFighting, 70.1, 90.0 );
 
 			Fame = 4500;
 			Karma = -4500;

@@ -5,13 +5,13 @@ using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a harpy corpse" )]
+	[CorpseName( "um cadáver de harpia" )]
 	public class HarpyHen : BaseCreature
 	{
 		[Constructable]
 		public HarpyHen() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a harpy hen";
+			Name = "uma harpia galinha";
 			Body = 153;
 			BaseSoundID = 402;
 			Hue = 0x9C7;

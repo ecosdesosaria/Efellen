@@ -3,21 +3,21 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a rabbit corpse" )]
+	[CorpseName( "um cadáver de coelho" )]
 	public class WhiteRabbit : BaseCreature
 	{
 		[Constructable]
 		public WhiteRabbit() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a rabbit";
+			Name = "um coelho";
 			Body = 205;
 
 			Hue = 1150;
 
 			switch ( Utility.RandomMinMax( 0, 1 ) )
 			{
-				case 0: Name="a rabbit"; break;
-				case 1: Name="a hare"; break;
+				case 0: Name="um coelho"; break;
+				case 1: Name="um lebre"; break;
 			}
 
 			SetStr( 6, 10 );

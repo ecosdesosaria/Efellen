@@ -7,7 +7,7 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a beetle corpse" )]
+	[CorpseName( "um cadáver de besouro" )]
 	public class MetalBeetle : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -18,7 +18,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public MetalBeetle() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a metallic beetle";
+			Name = "um besouro metálico";
 			Body = 82;
 			BaseSoundID = 268;
 

@@ -62,7 +62,7 @@ namespace Server.Spells.HolyMan
 					}
 					else
 					{
-						from.SendMessage( "{0} already have nightsight.", from == targ ? "You" : "They" );
+						from.SendMessage( "{0} já possui visão noturna.", from == targ ? "You" : "They" );
 					}
 				}
 

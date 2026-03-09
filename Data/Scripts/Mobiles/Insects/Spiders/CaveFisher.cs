@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a cave fisher corpse" )]
+	[CorpseName( "um cadáver de cave fisher" )]
 	public class CaveFisher : BaseCreature
 	{
 		private Timer m_Timer;
@@ -28,7 +28,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public CaveFisher() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a cave fisher";
+			Name = "um cave fisher";
 			Body = 348;
 			BaseSoundID = 0x388;
 

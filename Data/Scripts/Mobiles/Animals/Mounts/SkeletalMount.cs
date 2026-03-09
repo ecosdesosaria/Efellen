@@ -3,11 +3,11 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an undead horse corpse" )]
+	[CorpseName( "um cadáver de cavalo morto-vivo" )]
 	public class SkeletalMount : BaseMount
 	{
 		[Constructable] 
-		public SkeletalMount() : this( "a skeletal steed" )
+		public SkeletalMount() : this( "um corcel esquelético" )
 		{
 		}
 
@@ -61,7 +61,7 @@ namespace Server.Mobiles
 			{
 				case 0:
 				{
-					Name = "a skeletal steed";
+					Name = "um corcel esquelético";
 					Tamable = false;
 					MinTameSkill = 0.0;
 					ControlSlots = 0;

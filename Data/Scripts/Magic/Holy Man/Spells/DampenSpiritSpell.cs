@@ -51,7 +51,7 @@ namespace Server.Spells.HolyMan
 				int toDrain = 0;
 
 				if ( m.Karma > 0 )
-					Caster.SendMessage( "The gods will not smite such a kindly soul." );
+					Caster.SendMessage( "Os deuses não ferirão uma alma tão bondosa." );
 				else
 				{
 					toDrain = (int)(GetDamageSkill( Caster ) - GetResistSkill( m ));

@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a fire toad corpse" )]
+	[CorpseName( "um cadáver de sapo de fogo" )]
 	public class FireToad : BaseCreature
 	{
 		private Timer m_Timer;
@@ -12,7 +12,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public FireToad () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a fire toad";
+			Name = "um sapo de fogo";
 			Body = 270;
 			Hue = 0xB73;
 			BaseSoundID = 0x266;

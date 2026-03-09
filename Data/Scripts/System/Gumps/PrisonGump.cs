@@ -21,9 +21,9 @@ namespace Server.Gumps
 			AddPage(0);
 
 			AddImage(0, 0, 7021, Server.Misc.PlayerSettings.GetGumpHue( from ));
-			AddHtml( 13, 13, 415, 20, @"<BODY><BASEFONT Color=" + color + ">SENT TO PRISON</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 13, 13, 415, 20, @"<BODY><BASEFONT Color=" + color + ">ENVIADO PARA A PRISÃO</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(466, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-			AddHtml( 16, 46, 475, 246, @"<BODY><BASEFONT Color=" + color + ">For your deeds you have been sent to prison! Although the guards intended for you to rot forever in your cell, they have been careless. Not only did they forget to lock your cell, but they left you alone for a brief time. You decided to use this opportunity to make your escape, but the doorway out is locked. You gather your belongings from the chest the guards put them in, only to discover they confiscated some of your things. You will surely never see them again. You have heard rumors of others escaping this prison through a tunnel they dug out of one of the cells. Perhaps you can do the same.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 16, 46, 475, 246, @"<BODY><BASEFONT Color=" + color + ">Por suas ações você foi enviado para a prisão! Embora os guardas pretendessem que você apodrecesse para sempre em sua cela, eles foram descuidados. Não só esqueceram de trancar sua cela, mas também o deixaram sozinho por um breve tempo. Você decidiu usar esta oportunidade para escapar, mas a saída está trancada. Você reúne seus pertences do baú onde os guardas os colocaram, apenas para descobrir que confiscaram algumas de suas coisas. Você certamente nunca as verá novamente. Você ouviu rumores de outros escapando desta prisão através de um túnel que escavaram de uma das celas. Talvez você possa fazer o mesmo.</BASEFONT></BODY>", (bool)false, (bool)false);
         }
 
         public override void OnResponse(NetState state, RelayInfo info)

@@ -243,27 +243,27 @@ namespace Server.Items
 
 				AddImage(0, 0, 7029, Server.Misc.PlayerSettings.GetGumpHue( from ));
 				AddButton(961, 9, 4017, 4017, 0, GumpButtonType.Reply, 0);
-				AddHtml( 11, 11, 807, 20, @"<BODY><BASEFONT Color=" + color + ">CODEX OF ULTIMATE WISDOM</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 12, 42, 976, 177, @"<BODY><BASEFONT Color=" + color + ">Those that wield the Codex of Ultimate Wisdom, can use the knowledge within to become more intelligent (+25) and a grandmaster in two skills of their choice (+100 in 2 chosen skills). The Codex lies within the Ethereal Void and can only be drawn out from within the Chamber of the Codex. To do this, you must obtain the 3 Keys of Infinity in order to enter the chamber. To see into the Void, where the Codex lies, you will need the Convex and Concave Lenses. Finally, this Cube has the power to draw things out from the Void. In order to do that, you will need to find the 6 void crystals to power the cube. If you manage to find all of these items, you can enter the Chamber of the Codex and approach the Void. The Codex will then be yours to do with what you wish, but it will be yours alone to use. Make sure to bring this cube with you when doing this quest.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 11, 11, 807, 20, @"<BODY><BASEFONT Color=" + color + ">CODEX DA SABEDORIA SUPREMA</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 42, 976, 177, @"<BODY><BASEFONT Color=" + color + ">Aqueles que empunham o Codex da Sabedoria Suprema podem usar o conhecimento contido nele para se tornarem mais inteligentes (+25) e um grão-mestre em duas habilidades de sua escolha (+100 em 2 habilidades escolhidas). O Codex está dentro do Vazio Etéreo e só pode ser retirado de dentro da Câmara do Codex. Para isso, você deve obter as 3 Chaves do Infinito para entrar na câmara. Para ver dentro do Vazio, onde o Codex está, você precisará das Lentes Côncava e Convexa. Finalmente, este Cubo tem o poder de retirar coisas do Vazio. Para isso, você precisará encontrar os 6 cristais do vazio para energizar o cubo. Se você conseguir encontrar todos esses itens, poderá entrar na Câmara do Codex e se aproximar do Vazio. O Codex será então seu para fazer o que quiser, mas será de uso exclusivo seu. Certifique-se de levar este cubo com você ao realizar esta missão.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 				int k = -49;
 				int g = -25;
 
-				// PEDESTALS
+				// PEDESTAIS
 				AddItem(85+k, 246+g, 4643);
 				AddItem(85+k, 346+g, 4643);
 				AddItem(85+k, 446+g, 4643);
 
-				AddHtml( 140+k, 252+g, 181, 20, @"<BODY><BASEFONT Color=" + color + ">The Vortex Cube</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 140+k, 279+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">Found!</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 140+k, 252+g, 181, 20, @"<BODY><BASEFONT Color=" + color + ">O Cubo de Vortex</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 140+k, 279+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">Encontrado!</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddItem(80+k, 245+g, 1493);
 
-				AddHtml( 140+k, 355+g, 181, 20, @"<BODY><BASEFONT Color=" + color + ">The Concave Lense</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 140+k, 355+g, 181, 20, @"<BODY><BASEFONT Color=" + color + ">A Lente Côncava</BASEFONT></BODY>", (bool)false, (bool)false);
 				if ( m_Cube.HasConcaveLense > 0 )
 				{
-					AddHtml( 140+k, 382+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">Found!</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 140+k, 382+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">Encontrada!</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddItem(80+k, 343+g, 1517);
 				}
 				else
@@ -271,10 +271,10 @@ namespace Server.Items
 					AddHtml( 140+k, 382+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">Naxatilor " + GargoyleLocation( "Naxatilor" ) + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 
-				AddHtml( 140+k, 458+g, 181, 20, @"<BODY><BASEFONT Color=" + color + ">The Convex Lense</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 140+k, 458+g, 181, 20, @"<BODY><BASEFONT Color=" + color + ">A Lente Convexa</BASEFONT></BODY>", (bool)false, (bool)false);
 				if ( m_Cube.HasConvexLense > 0 )
 				{
-					AddHtml( 140+k, 485+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">Found!</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 140+k, 485+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">Encontrada!</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddItem(80+k, 443+g, 1518);
 				}
 				else
@@ -289,68 +289,68 @@ namespace Server.Items
 
 				if ( m_Cube.HasKeyLaw > 0 )
 				{
-					AddItem(89+k, 551+g, 13519); // KEY OF LAW
-					AddHtml( 140+k, 538+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">The Key of Law has been found!</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddItem(89+k, 551+g, 13519); // CHAVE DA LEI
+					AddHtml( 140+k, 538+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">A Chave da Lei foi encontrada!</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else
 				{
-					AddHtml( 140+k, 538+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">The Key of Law " + m_Cube.TextKeyLaw + " " + m_Cube.LocationKeyLaw + ".</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 140+k, 538+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">A Chave da Lei " + m_Cube.TextKeyLaw + " " + m_Cube.LocationKeyLaw + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 
 				if ( m_Cube.HasKeyBalance > 0 )
 				{
-					AddItem(98+k, 542+g, 13516); // KEY OF BALANCE
-					AddHtml( 140+k, 568+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">The Key of Balance has been found!</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddItem(98+k, 542+g, 13516); // CHAVE DO EQUILÍBRIO
+					AddHtml( 140+k, 568+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">A Chave do Equilíbrio foi encontrada!</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else
 				{
-					AddHtml( 140+k, 568+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">The Key of Balance " + m_Cube.TextKeyBalance + " " + m_Cube.LocationKeyBalance + ".</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 140+k, 568+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">A Chave do Equilíbrio " + m_Cube.TextKeyBalance + " " + m_Cube.LocationKeyBalance + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 
 				if ( m_Cube.HasKeyChaos > 0 )
 				{
-					AddItem(109+k, 550+g, 13520); // KEY OF CHAOS
-					AddHtml( 140+k, 598+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">The Key of Chaos has been found!</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddItem(109+k, 550+g, 13520); // CHAVE DO CAOS
+					AddHtml( 140+k, 598+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">A Chave do Caos foi encontrada!</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else
 				{
-					AddHtml( 140+k, 598+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">The Key of Chaos " + m_Cube.TextKeyChaos + " " + m_Cube.LocationKeyChaos + ".</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 140+k, 598+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">A Chave do Caos " + m_Cube.TextKeyChaos + " " + m_Cube.LocationKeyChaos + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 
 				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-				AddHtml( 99+k, 656+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">The Void Crystals are scattered throughout the land. The Vortex Cube can draw you toward the dungeons they may be in.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 99+k, 656+g, 1016, 20, @"<BODY><BASEFONT Color=" + color + ">Os Cristais do Vazio estão espalhados por toda a terra. O Cubo de Vortex pode guiá-lo em direção às masmorras onde eles podem estar.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int d = -104;
 				int v = -66;
 
 				if ( ( m_Cube.HasCrystalRed + m_Cube.HasCrystalBlue + m_Cube.HasCrystalGreen + m_Cube.HasCrystalYellow + m_Cube.HasCrystalWhite + m_Cube.HasCrystalPurple ) > 5 )
 				{
-					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">All of the Void Crystals have been found!</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">Todos os Cristais do Vazio foram encontrados!</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else if ( m_Cube.HasCrystalRed == 0 )
 				{
-					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">The Red Void Crystal " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">O Cristal do Vazio Vermelho " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else if ( m_Cube.HasCrystalBlue == 0 )
 				{
-					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">The Blue Void Crystal " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">O Cristal do Vazio Azul " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else if ( m_Cube.HasCrystalGreen == 0 )
 				{
-					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">The Green Void Crystal " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">O Cristal do Vazio Verde " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else if ( m_Cube.HasCrystalYellow == 0 )
 				{
-					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">The Yellow Void Crystal " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">O Cristal do Vazio Amarelo " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else if ( m_Cube.HasCrystalWhite == 0 )
 				{
-					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">The White Void Crystal " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">O Cristal do Vazio Branco " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else if ( m_Cube.HasCrystalPurple == 0 )
 				{
-					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">The Purple Void Crystal " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 116+v, 715, 976, 20, @"<BODY><BASEFONT Color=" + color + ">O Cristal do Vazio Roxo " + m_Cube.TextCrystal + " " + m_Cube.LocationCrystal + ".</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 
 				// PEDESTALS

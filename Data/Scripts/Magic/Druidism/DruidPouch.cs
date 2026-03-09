@@ -69,112 +69,112 @@ namespace Server.Items
 				AddPage(0);
 
 				AddImage(0, 0, 7026, Server.Misc.PlayerSettings.GetGumpHue( from ));
-				AddHtml( 13, 13, 300, 20, @"<BODY><BASEFONT Color=" + color + ">DRUID'S BELT POUCH</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 13, 13, 300, 20, @"<BODY><BASEFONT Color=" + color + ">BOLSA DE CINTO DO DRUIDA</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddImage(10, 43, 11438);
 				AddButton(863, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-				AddHtml( 325, 42, 565, 142, @"<BODY><BASEFONT Color=" + color + ">This bag is only for items used in the creation of druidic mixtures, as well as the potions created by it. These items will have their weight greatly reduced while in this bag. Here you can configure a quick belt pouch for these potions. This is also the only place where you can open and close the quick belt pouch, which is a bar that will open with icons for easy potion access. You can configure the bar to be either horizontal or vertical. You can choose if you want the names of the potions to appear with a vertical bar. You have to select which potions will appear in the bar. To learn more about druidic herbalism, seek out the book titled - Druidic Herbalism.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 325, 42, 565, 142, @"<BODY><BASEFONT Color=" + color + ">Esta bolsa é apenas para itens usados na criação de misturas druídicas, bem como as poções criadas por ela. Esses itens terão seu peso greatly reduzido enquanto estiverem nesta bolsa. Aqui você pode configurar uma bolsa de cinto rápida para essas poções. Este também é o único lugar onde você pode abrir e fechar a bolsa de cinto rápida, que é uma barra que abrirá com ícones para fácil acesso às poções. Você pode configurar a barra para ser horizontal ou vertical. Você pode escolher se deseja que os nomes das poções apareçam com uma barra vertical. Você tem que selecionar quais poções aparecerão na barra. Para aprender mais sobre herbalismo druídico, procure o livro intitulado - Herbalismo Druídico.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
 				int b1 = 3609; if ( bag.LureStone > 0 ){ b1 = 4017; }
 				AddButton(18, 338, b1, b1, 1, GumpButtonType.Reply, 0);
 				AddImage(57, 328, 11446);
-				AddHtml( 113, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Stone in a Jar</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 113, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Pedra em um Frasco</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b2 = 3609; if ( bag.NaturesPassage > 0 ){ b2 = 4017; }
 				AddButton(18, 393, b2, b2, 2, GumpButtonType.Reply, 0);
 				AddImage(57, 383, 11449);
-				AddHtml( 113, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Nature Passage</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 113, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Passagem da Natureza</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b3 = 3609; if ( bag.ShieldOfEarth > 0 ){ b3 = 4017; }
 				AddButton(18, 448, b3, b3, 3, GumpButtonType.Reply, 0);
 				AddImage(57, 438, 11450);
-				AddHtml( 113, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Shield of Earth</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 113, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Escudo da Terra</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b4 = 3609; if ( bag.WoodlandProtection > 0 ){ b4 = 4017; }
 				AddButton(18, 503, b4, b4, 4, GumpButtonType.Reply, 0);
 				AddImage(57, 493, 11454);
-				AddHtml( 113, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Woodland Protection</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 113, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Proteção da Floresta</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b5 = 3609; if ( bag.StoneCircle > 0 ){ b5 = 4017; }
 				AddButton(18, 558, b5, b5, 5, GumpButtonType.Reply, 0);
 				AddImage(57, 548, 11451);
-				AddHtml( 113, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Stone Rising</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 113, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Ascensão da Pedra</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
 				int b6 = 3609; if ( bag.GraspingRoots > 0 ){ b6 = 4017; }
 				AddButton(322, 283, b6, b6, 6, GumpButtonType.Reply, 0);
 				AddImage(361, 273, 11443);
-				AddHtml( 417, 283, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Grasping Roots</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 417, 283, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Raízes Agarrantes</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b7 = 3609; if ( bag.DruidicRune > 0 ){ b7 = 4017; }
 				AddButton(322, 338, b7, b7, 7, GumpButtonType.Reply, 0);
 				AddImage(361, 328, 11439);
-				AddHtml( 417, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Druidic Marking</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 417, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Marca Druídica</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b8 = 3609; if ( bag.HerbalHealing > 0 ){ b8 = 4017; }
 				AddButton(322, 393, b8, b8, 8, GumpButtonType.Reply, 0);
 				AddImage(361, 383, 11444);
-				AddHtml( 417, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Herbal Healing</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 417, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Cura Herbácea</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b9 = 3609; if ( bag.BlendWithForest > 0 ){ b9 = 4017; }
 				AddButton(322, 448, b9, b9, 9, GumpButtonType.Reply, 0);
 				AddImage(361, 438, 11442);
-				AddHtml( 417, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Forest Blending</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 417, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Camuflagem da Floresta</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b10 = 3609; if ( bag.Firefly > 0 ){ b10 = 4017; }
 				AddButton(322, 503, b10, b10, 10, GumpButtonType.Reply, 0);
 				AddImage(361, 493, 11445);
-				AddHtml( 417, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Jar of Fireflies</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 417, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Frasco de Vaga-lumes</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b11 = 3609; if ( bag.MushroomGateway > 0 ){ b11 = 4017; }
 				AddButton(322, 558, b11, b11, 11, GumpButtonType.Reply, 0);
 				AddImage(361, 548, 11448);
-				AddHtml( 417, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Mushroom Gateway</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 417, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Portal de Cogumelos</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
 				int b12 = 3609; if ( bag.SwarmOfInsects > 0 ){ b12 = 4017; }
 				AddButton(631, 338, b12, b12, 12, GumpButtonType.Reply, 0);
 				AddImage(670, 328, 11441);
-				AddHtml( 726, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Jar of Insects</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 726, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Frasco de Insetos</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b13 = 3609; if ( bag.ProtectiveFairy > 0 ){ b13 = 4017; }
 				AddButton(631, 393, b13, b13, 13, GumpButtonType.Reply, 0);
 				AddImage(670, 383, 11440);
-				AddHtml( 726, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Fairy in a Jar</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 726, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Fada em um Frasco</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b14 = 3609; if ( bag.Treefellow > 0 ){ b14 = 4017; }
 				AddButton(631, 448, b14, b14, 14, GumpButtonType.Reply, 0);
 				AddImage(670, 438, 11452);
-				AddHtml( 726, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Treant Fertilizer</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 726, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Fertilizante de Treant</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b15 = 3609; if ( bag.VolcanicEruption > 0 ){ b15 = 4017; }
 				AddButton(631, 503, b15, b15, 15, GumpButtonType.Reply, 0);
 				AddImage(670, 493, 11453);
-				AddHtml( 726, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Volcanic Fluid</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 726, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Fluido Vulcânico</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b16 = 3609; if ( bag.RestorativeSoil > 0 ){ b16 = 4017; }
 				AddButton(631, 558, b16, b16, 16, GumpButtonType.Reply, 0);
 				AddImage(670, 548, 11447);
-				AddHtml( 726, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Magical Mud</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 726, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Lama Mágica</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
 				AddButton(675, 201, 4029, 4029, 20, GumpButtonType.Reply, 0);
-				AddHtml( 715, 201, 170, 20, @"<BODY><BASEFONT Color=" + color + ">Open Belt Pouch</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 715, 201, 170, 20, @"<BODY><BASEFONT Color=" + color + ">Abrir Bolsa de Cinto</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddButton(675, 231, 4020, 4020, 21, GumpButtonType.Reply, 0);
-				AddHtml( 715, 231, 170, 20, @"<BODY><BASEFONT Color=" + color + ">Close Belt Pouch</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 715, 231, 170, 20, @"<BODY><BASEFONT Color=" + color + ">Fechar Bolsa de Cinto</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int bDisplay = 3609; if ( bag.Titles > 0 ){ bDisplay = 4017; }
 				AddButton(325, 201, bDisplay, bDisplay, 22, GumpButtonType.Reply, 0);
-				AddHtml( 365, 201, 295, 20, @"<BODY><BASEFONT Color=" + color + ">Display Potion Names When Vertical</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 365, 201, 295, 20, @"<BODY><BASEFONT Color=" + color + ">Exibir Nomes das Poções na Vertical</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int bVertical = 3609; if ( bag.Bar > 0 ){ bVertical = 4017; }
 				AddButton(325, 231, bVertical, bVertical, 23, GumpButtonType.Reply, 0);
-				AddHtml( 365, 231, 295, 20, @"<BODY><BASEFONT Color=" + color + ">Vertical Belt Pouch</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 365, 231, 295, 20, @"<BODY><BASEFONT Color=" + color + ">Bolsa de Cinto Vertical</BASEFONT></BODY>", (bool)false, (bool)false);
 			}
 
 			public override void OnResponse( NetState state, RelayInfo info ) 

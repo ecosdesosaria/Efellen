@@ -31,12 +31,12 @@ namespace Server.Items
             set { m_Charges = value; InvalidateProperties(); }
         }
 
-        public override string DefaultDescription{ get{ return "This wand is used to unravel magical items and strip them of their essence. It can target a single item, or a bag or container filled with items, doing so will destroy them, and award you with Arcane Dust that skilled guild crafters can use to enhance items, and that is also of great value to powerful wizards. Artifacts and unidentified items can never be disenchanted."; } }
+        public override string DefaultDescription{ get{ return "Esta varinha é usada para desvendar itens mágicos e tirar sua essência. Ele pode ter como alvo um único item, ou uma bolsa ou contêiner cheio de itens, fazendo isso irá destruí-los e recompensá-lo com Pó Arcano que artesãos habilidosos da guilda podem usar para aprimorar itens, e que também é de grande valor para magos poderosos. Artefatos e itens não identificados nunca podem ser desencantados."; } }
 
         public override void GetProperties(ObjectPropertyList list)
         {
             base.GetProperties(list);
-            list.Add("charges remaining: {0}", m_Charges);
+            list.Add("cargas restantes: {0}", m_Charges);
         }
 
 
@@ -44,17 +44,17 @@ namespace Server.Items
         {
             if (!IsChildOf(from.Backpack))
             {
-                from.SendMessage("The wand must be in your backpack to use it.");
+                from.SendMessage("A varinha deve estar em seu inventário para usá-la.");
                 return;
             }
 
             if (m_Charges <= 0)
             {
-                from.SendMessage("The wand has no remaining charges.");
+                from.SendMessage("A varinha não tem cargas restantes.");
                 return;
             }
 
-            from.SendMessage("Select the item or container you wish to disenchant.");
+            from.SendMessage("Selecione o item ou contêiner que deseja desencantar.");
             from.Target = new DisenchantTarget(this);
         }
 

@@ -56,7 +56,7 @@ namespace Server.Spells.HolyMan
 
 			if ( m_Table.Contains( m ) )
 			{
-				Caster.LocalOverheadMessage( MessageType.Regular, 0x481, false, "That target already has this affect." );
+				Caster.LocalOverheadMessage( MessageType.Regular, 0x481, false, "Este alvo já possui este efeito." );
 			}
 
 			else if ( CheckBSequence( m, false ) )
@@ -69,7 +69,7 @@ namespace Server.Spells.HolyMan
 				m.PlaySound( 0x202 );
 				m.FixedParticles( 0x376A, 1, 62, 9923, 3, 3, EffectLayer.Waist );
 				m.FixedParticles( 0x3779, 1, 46, 9502, 5, 3, EffectLayer.Waist );
-				m.SendMessage( "A holy aura surrounds you causing your wounds to heal faster." );
+				m.SendMessage( "Uma aura sagrada o envolve, fazendo com que seus ferimentos se curem mais rápido." );
 			}
 
 			FinishSequence();

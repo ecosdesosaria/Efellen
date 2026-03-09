@@ -7,13 +7,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a hobgoblin corpse" )]
+	[CorpseName( "um cadáver de hobgoblin" )]
 	public class Hobgoblin : BaseCreature
 	{
 		[Constructable]
 		public Hobgoblin () : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a hobgoblin";
+			Name = "um hobgoblin";
 			Body = 11;
 			BaseSoundID = 0x45A;
 

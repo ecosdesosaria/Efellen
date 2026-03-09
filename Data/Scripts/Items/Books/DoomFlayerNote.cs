@@ -24,7 +24,7 @@ namespace Server.Items
 			public ClueGump( Mobile from ): base( 100, 100 )
 			{
 				from.PlaySound( 0x249 );
-				string sText = "The demon opened the black gate and unleashed chaos across Lodoria. Where the dwarven armies had fallen, the elven forces assembled all of their magic and sent the beast back to the void. While the world itself provided the natural forces to summon the demon, now it has diminished to the core of the world. This is where we have been searching for centuries, deep below the city of Lodoria. The drow have joined our cause and aided us in constructing our city deep below, where we can keep searching in secret. Now that my research in Doom is complete, I will return to the cemetery at night as not to be seen.";
+				string sText = "O demônio abriu o portão negro e desencadeou o caos através de Lodoria. Onde os exércitos anões haviam caído, as forças élficas reuniram toda sua magia e enviaram a fera de volta ao vazio. Enquanto o próprio mundo forneceu as forças naturais para convocar o demônio, agora elas diminuíram para o núcleo do mundo. É aqui que temos procurado por séculos, bem abaixo da cidade de Lodoria. Os drow se juntaram à nossa causa e nos ajudaram a construir nossa cidade nas profundezas, onde podemos continuar procurando em segredo. Agora que minha pesquisa em Doom está completa, retornarei ao cemitério à noite para não ser visto.";
 
 				this.Closable=true;
 				this.Disposable=true;

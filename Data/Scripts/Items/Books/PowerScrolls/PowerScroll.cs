@@ -175,7 +175,7 @@ namespace Server.Items
                 case SkillName.Fencing:
                     if (from.Region.IsPartOf("Shrine of Strength")) return true;
 
-                    from.SendMessage("This magic can only be unleashed at the Shrine of Strength.");
+                    from.SendMessage("Esta magia só pode ser liberada no Santuário da Força.");
                     return false;
 
                 case SkillName.Forensics:
@@ -196,7 +196,7 @@ namespace Server.Items
                 case SkillName.Inscribe:
                     if (from.Region.IsPartOf("Shrine of Intelligence")) return true;
 
-                    from.SendMessage("This magic can only be unleashed at the Shrine of Intelligence.");
+                    from.SendMessage("Esta magia só pode ser liberada no Santuário da Inteligência.");
                     return false;
 
                 case SkillName.Begging:
@@ -215,7 +215,7 @@ namespace Server.Items
                 case SkillName.Lockpicking:
                     if (from.Region.IsPartOf("Shrine of Dexterity")) return true;
 
-                    from.SendMessage("This magic can only be unleashed at the Shrine of Dexterity.");
+                    from.SendMessage("Esta magia só pode ser liberada no Santuário da Destreza.");
                     return false;
 
                 case SkillName.Mercantile:
@@ -233,7 +233,7 @@ namespace Server.Items
                 case SkillName.Healing:
                     if (from.Region.IsPartOf("Shrine of Wisdom")) return true;
 
-                    from.SendMessage("This magic can only be unleashed at the Shrine of Wisdom.");
+                    from.SendMessage("Esta magia só pode ser liberada no Santuário da Sabedoria.");
                     return false;
 
                 default:

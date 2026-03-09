@@ -13,7 +13,7 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public TigerRiding() : this( "a tiger" )
+		public TigerRiding() : this( "um tigre" )
 		{
 		}
 

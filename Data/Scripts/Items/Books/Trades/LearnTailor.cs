@@ -95,9 +95,9 @@ namespace Server.Items
 					AddItem(360, 198, 4117);
 					AddItem(367, 270, 4192);
 
-					string tailoring = "Tailoring is the skill of taking cloth and making clothing. Using a sewing kit, you can use cloth and turn it into items like robes, pants, or hat. The better the cloth, the better the clothing you can create. The types of cloth one can find can be viewed on the next page. You can also use scissors on existing clothing, and if your skill is high enough, it will be turned into workable cloth. You can sheer sheep with a bladed weapon to get wool by double clicking the weapon and then selecting the sheep.";
-					string cloth = "You can also find gardens that grow cotton and flax. You can gather these by using them or walking over them. The plants will be gathered in your pack. Once gathered, you can use them on a spinning wheel to make string. Once you have the string, you can use that on a loom to make cloth by using the string and then selecting the loom. You can also cut the cloth down into bandages if you need them.";
-
+					string tailoring = "Alfaiataria é a habilidade de pegar tecido e fazer roupas. Usando um kit de costura, você pode usar tecido e transformá-lo em itens como vestes, calças ou chapéus. Quanto melhor o tecido, melhor a roupa que você pode criar. Os tipos de tecido que se pode encontrar podem ser vistos na próxima página. Você também pode usar tesouras em roupas existentes e, se sua habilidade for alta o suficiente, elas serão transformadas em tecido utilizável. Você pode tosquiar ovelhas com uma arma cortante para obter lã clicando duas vezes na arma e depois selecionando a ovelha.";
+					string cloth = "Você também pode encontrar jardins que cultivam algodão e linho. Você pode colhê-los usando-os ou passando por cima deles. As plantas serão coletadas em sua mochila. Após colhidas, você pode usá-las em uma roda de fiar para fazer fio. Quando tiver o fio, você pode usá-lo em um tear para fazer tecido, usando o fio e depois selecionando o tear. Você também pode cortar o tecido em ataduras se precisar delas.";
+					
 					AddHtml( 122, 80, 200, 310, @"<BODY><BASEFONT Color=" + color + ">" + tailoring + "</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 415, 80, 200, 310, @"<BODY><BASEFONT Color=" + color + ">" + cloth + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				}

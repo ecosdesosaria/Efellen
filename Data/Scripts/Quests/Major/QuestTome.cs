@@ -147,7 +147,7 @@ namespace Server.Items
 			}
 			else if ( QuestTomeOwner != from )
 			{
-				from.SendMessage( "This book does not belong and it crumbles to dust!" );
+				from.SendMessage( "Este livro não pertence aqui e desintegra-se em pó!" );
 				bool remove = true;
 				foreach ( Account a in Accounts.GetAccounts() )
 				{
@@ -369,7 +369,7 @@ namespace Server.Items
 				if ( page > 0 )
 				{
 					AddButton(864, 9, 4017, 4017, 2, GumpButtonType.Reply, 0);
-					AddHtml( 12, 43, 878, 548, @"<BODY><BASEFONT Color=" + color + ">There are many times when adventurers are given a grand quest to obtain a magical item by slaying a powerful creature and thus using the item for good or evil. You have found the journal of one of these adventurers. What fate became of them, you will never know. Did they lose their journal? Did they perish in their search for " + m_Book.GoalItem4 + "?<br><br>Now you possess the journal and you can pursue this quest as it is yours alone. The quest has two forks that you may go down. If your karma is locked, the goal will lead you down the vile path of " + m_Book.QuestTomeNPCEvil + ". Otherwise, your quest will service good for " + m_Book.QuestTomeNPCGood + ". You may only have a single journal quest at any one time. If you find another journal, and choose to take it while you currently have a journal, then you will get a new journal with the same unfinished quest you had before.<br><br>To defeat " + m_Book.VillainName + " " + m_Book.VillainTitle + " and claim " + m_Book.GoalItem4 + ", you will have to find 3 unique items to aid you. You have no idea where these items are, so you will have to speak to citizens (orange names) to see if they have heard rumors that can help you. If a citizen does not initially mention anything about your quest, you will have to seek out another. When you finally get a clue, a small tune will play and your journal will be updated with that rumor they gave you. It could be true or it could be false. You won’t know until you pursue it. Sometimes the item may be in a chest or bag on a pedestal in a dungeon, or held by one of the more powerful creatures within that dungeon.<br><br>Once you collect the required relics, you must then figure out where " + m_Book.VillainName + " is. Again, talking to citizens may reveal a hint. Once you learn where " + m_Book.VillainName + " is, make haste to that location and face them in battle. Once you enter the area, find a strategic place you wish to combat them and then open the journal to call them forth to face you. The battle will surely be harsh so you best be prepared. Be sure to slay them so you can take " + m_Book.GoalItem4 + " from them. Making them vanish by other means will rob you of your goal, as would leaving the area they are in. If they do manage to escape, you will have to seek out rumors again to determine where " + m_Book.VillainName + " has fled to.<br><br>Slaying " + m_Book.VillainName + " will reveal an abundance of wealth they have taken from other adventurers that failed to be victorious. Feel free to take this treasure for yourself, as " + m_Book.VillainName + " " + m_Book.VillainTitle + " will no longer need it. Once you have acquired " + m_Book.GoalItem4 + ", seek out " + m_Book.QuestTomeNPCGood + " or " + m_Book.QuestTomeNPCEvil + " and hand them the journal. Your morality and fame will be affected by your choice of ethics and you will be rewarded with an item of your choosing. When you select your reward, the item will appear in your pack. Each item will appear with a number of points you can spend to enhance your item. This allows you to tailor the item to suit your style. To begin, single click the items and select 'Enchant'. A menu will appear that you can choose which attributes you want the item to have. Be careful, as you cannot change an attribute once you select it.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 12, 43, 878, 548, @"<BODY><BASEFONT Color=" + color + ">Há muitos momentos em que aventureiros recebem uma grande missão para obter um item mágico derrotando uma criatura poderosa e, assim, usando o item para o bem ou para o mal. Você encontrou o diário de um desses aventureiros. Qual destino os atingiu, você nunca saberá. Eles perderam o diário? Pereceram em sua busca por " + m_Book.GoalItem4 + "?<br><br>Agora você possui o diário e pode prosseguir com esta missão, pois é só sua. A missão tem dois caminhos que você pode seguir. Se seu karma estiver trancado, o objetivo o levará pelo caminho vil de " + m_Book.QuestTomeNPCEvil + ". Caso contrário, sua missão servirá ao bem para " + m_Book.QuestTomeNPCGood + ". Você só pode ter uma única missão de diário por vez. Se você encontrar outro diário e escolher pegá-lo enquanto atualmente tem um diário, receberá um novo diário com a mesma missão inacabada que tinha antes.<br><br>Para derrotar " + m_Book.VillainName + " " + m_Book.VillainTitle + " e reivindicar " + m_Book.GoalItem4 + ", você terá que encontrar 3 itens únicos para ajudá-lo. Você não tem ideia de onde esses itens estão, então terá que falar com cidadãos (nomes laranja) para ver se eles ouviram rumores que podem ajudá-lo. Se um cidadão inicialmente não mencionar nada sobre sua missão, você terá que procurar outro. Quando você finalmente conseguir uma pista, uma melodia tocará e seu diário será atualizado com o rumor que eles lhe deram. Pode ser verdadeiro ou falso. Você não saberá até investigá-lo. Às vezes o item pode estar em um baú ou saco em um pedestal em uma masmorra, ou guardado por uma das criaturas mais poderosas dentro dessa masmorra.<br><br>Uma vez que você coletar as relíquias necessárias, deve então descobrir onde " + m_Book.VillainName + " está. Novamente, conversar com cidadãos pode revelar uma pista. Quando você descobrir onde " + m_Book.VillainName + " está, vá rapidamente para esse local e enfrente-o em batalha. Assim que você entrar na área, encontre um lugar estratégico onde deseja combatê-lo e então abra o diário para convocá-lo para enfrentá-lo. A batalha certamente será dura, então é melhor você estar preparado. Certifique-se de matá-lo para que você possa tomar " + m_Book.GoalItem4 + " dele. Fazê-lo desaparecer por outros meios o privará de seu objetivo, assim como sair da área onde ele está. Se ele conseguir escapar, você terá que procurar rumores novamente para determinar para onde " + m_Book.VillainName + " fugiu.<br><br>Matar " + m_Book.VillainName + " revelará uma abundância de riquezas que ele tomou de outros aventureiros que não conseguiram ser vitoriosos. Sinta-se à vontade para pegar este tesouro para si, pois " + m_Book.VillainName + " " + m_Book.VillainTitle + " não precisará mais dele. Uma vez que você adquiriu " + m_Book.GoalItem4 + ", procure por " + m_Book.QuestTomeNPCGood + " ou " + m_Book.QuestTomeNPCEvil + " e entregue a eles o diário. Sua moral e fama serão afetadas por sua escolha de ética e você será recompensado com um item de sua escolha. Quando você selecionar sua recompensa, o item aparecerá em sua mochila. Cada item aparecerá com um número de pontos que você pode gastar para melhorar seu item. Isso permite que você adapte o item para se adequar ao seu estilo. Para começar, clique uma vez nos itens e selecione 'Enfeitiçar'. Um menu aparecerá onde você pode escolher quais atributos deseja que o item tenha. Tenha cuidado, pois você não pode alterar um atributo depois de selecioná-lo.</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else
 				{
@@ -462,20 +462,20 @@ namespace Server.Items
 
 			if ( talk )
 			{
-				string who = "I heard";
+				string who = "Eu ouvi";
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0:	who = "I heard";																								break;
-					case 1:	who = "I learned";																								break;
-					case 2:	who = "I found out";																							break;
-					case 3:	who = "The " + RandomThings.GetRandomJob() + " in " + RandomThings.GetRandomCity() + " told me";				break;
-					case 4:	who = "I overheard some " + RandomThings.GetRandomJob() + " say";												break;
-					case 5:	who = "My friend told me";																						break;
+					case 0:	who = "Eu ouvi";																								break;
+					case 1:	who = "Eu soube";																								break;
+					case 2:	who = "Eu descobri";																							break;
+					case 3:	who = "O " + RandomThings.GetRandomJob() + " em " + RandomThings.GetRandomCity() + " me contou";				break;
+					case 4:	who = "Eu ouvi alguns " + RandomThings.GetRandomJob() + " dizerem";												break;
+					case 5:	who = "Meu amigo me contou";																						break;
 				}
-				return who + " that " + item + " may be " + locate + " within " + dungeon + " in " + world + ".";
+				return who + " que " + item + " pode estar " + locate + " dentro de " + dungeon + " em " + world + ".";
 			}
 
-			if ( world != "" ){ return "" + from + " has told you that " + item + " may be " + locate + " within " + dungeon + " in " + world + "."; }
+			if ( world != "" ){ return "" + from + " lhe contou que " + item + " pode estar " + locate + " dentro de " + dungeon + " em " + world + "."; }
 
 			return "";
 		}
@@ -574,7 +574,7 @@ namespace Server.Items
 						if ( book.QuestTomeGoals == 1 ){ relic = book.GoalItem2; }
 						else if ( book.QuestTomeGoals == 2 ){ relic = book.GoalItem3; }
 
-					player.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found " + relic + ".");
+					player.LocalOverheadMessage(MessageType.Emote, 1150, true, "Você encontrou " + relic + ".");
 					player.SendSound( 0x5B4 );
 					book.QuestTomeCitizen = "";
 					book.QuestTomeDungeon = "";
@@ -586,7 +586,7 @@ namespace Server.Items
 				}
 				else
 				{
-					player.LocalOverheadMessage(MessageType.Emote, 1150, true, book.QuestTomeCitizen + " was either wrong or they lied.");
+					player.LocalOverheadMessage(MessageType.Emote, 1150, true, book.QuestTomeCitizen + " estava enganado ou mentiu.");
 					player.SendSound( 0x5B3 );
 					book.QuestTomeCitizen = "";
 					book.QuestTomeDungeon = "";
@@ -598,9 +598,8 @@ namespace Server.Items
 			}
 			else if ( chest != null && book.VillainName == chest.VillainName && book.VillainTitle == chest.VillainTitle && book.QuestTomeOwner == player && book.QuestTomeGoals >= 3 )
 			{
-				// gold explosion
 				RichesSystem.SpawnRiches( player, 5 );
-				player.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found " + book.GoalItem4 + ".");
+				player.LocalOverheadMessage(MessageType.Emote, 1150, true, "Você encontrou " + book.GoalItem4 + ".");
 				book.QuestTomeGoals++;
 				return true;
 			}

@@ -5,7 +5,7 @@ using Server.Spells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a anhkheg corpse" )]
+	[CorpseName( "um cadáver de ankheg" )]
 	public class Anhkheg : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -15,7 +15,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Anhkheg() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an anhkheg";
+			Name = "um ankheg";
 			Body = 242;
 			Hue = 46;
 

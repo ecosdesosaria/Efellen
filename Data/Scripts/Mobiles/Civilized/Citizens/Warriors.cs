@@ -76,70 +76,70 @@ namespace Server.Mobiles
 
 			if ( Server.Misc.Worlds.isOrientalRegion( this ) )
 			{
-				string jMove = "a monkey";
+				string jMove = "um macaco";
 				switch ( Utility.Random( 8 ))		   
 				{
-					case 1: jMove = "a ferret"; break;
-					case 2: jMove = "a butterfly"; break;
-					case 3: jMove = "a rabbit"; break;
-					case 4: jMove = "a bird"; break;
-					case 5: jMove = "the wind"; break;
-					case 6: jMove = "the breeze"; break;
-					case 7: jMove = "the waves"; break;
+					case 1: jMove = "um furão"; break;
+					case 2: jMove = "uma borboleta"; break;
+					case 3: jMove = "um coelho"; break;
+					case 4: jMove = "um pássaro"; break;
+					case 5: jMove = "o vento"; break;
+					case 6: jMove = "a brisa"; break;
+					case 7: jMove = "as ondas"; break;
 				};
 
-				string jHit = "a tiger";
+				string jHit = "um tigre";
 				switch ( Utility.Random( 8 ))		   
 				{
-					case 1: jHit = "a lion"; break;
-					case 2: jHit = "a bear"; break;
-					case 3: jHit = "a panther"; break;
-					case 4: jHit = "a warrior"; break;
-					case 5: jHit = "a storm"; break;
-					case 6: jHit = "lightning"; break;
-					case 7: jHit = "a bee"; break;
+					case 1: jHit = "um leão"; break;
+					case 2: jHit = "um urso"; break;
+					case 3: jHit = "uma pantera"; break;
+					case 4: jHit = "um guerreiro"; break;
+					case 5: jHit = "uma tempestade"; break;
+					case 6: jHit = "um raio"; break;
+					case 7: jHit = "uma abelha"; break;
 				};
 
 				switch ( Utility.Random( 60 ))		   
 				{
-					case 0: Say("You have improved" + name + "."); break;
-					case 1: Say("You will need to be more graceful than that" + name + "."); break;
-					case 2: Say("Where did you study to fight like that" + name + "?"); break;
-					case 3: Say("Move like " + jMove + ", attack like " + jHit + "."); break;
-					case 4: Say("You will have to be better than that" + name + "."); break;
-					case 5: Say("Defend yourself!"); break;
-					case 6: Say("Eyes open and focus on me" + name + "."); break;
-					case 7: Say("After this, we will reflect on what we learned."); break;
-					case 8: Say("This is good practice" + name + "."); break;
-					case 9: Say("You need to learn to parry" + name + "."); break;
-					case 10: Say("Did you not meditate before the coming sun?"); break;
+					case 0: Say("Você melhorou" + name + "."); break;
+					case 1: Say("Você precisará ser mais gracioso que isso" + name + "."); break;
+					case 2: Say("Onde você estudou para lutar assim" + name + "?"); break;
+					case 3: Say("Movimente-se como " + jMove + ", ataque como " + jHit + "."); break;
+					case 4: Say("Você terá que ser melhor que isso" + name + "."); break;
+					case 5: Say("Defenda-se!"); break;
+					case 6: Say("Olhos abertos e focados em mim" + name + "."); break;
+					case 7: Say("Depois disso, refletiremos sobre o que aprendemos."); break;
+					case 8: Say("Isto é um bom treino" + name + "."); break;
+					case 9: Say("Você precisa aprender a aparar" + name + "."); break;
+					case 10: Say("Você não meditou antes do sol nascer?"); break;
 				};
 			}
 			else
 			{
-				string ale = "ale";
+				string ale = "cerveja";
 				switch ( Utility.Random( 6 ))		   
 				{
-					case 1: ale = "wine"; break;
-					case 2: ale = "grog"; break;
-					case 3: ale = "mead"; break;
-					case 4: ale = "beer"; break;
-					case 5: ale = "cider"; break;
+					case 1: ale = "vinho"; break;
+					case 2: ale = "grogue"; break;
+					case 3: ale = "hidromel"; break;
+					case 4: ale = "cerveja"; break;
+					case 5: ale = "cidra"; break;
 				};
 
 				switch ( Utility.Random( 60 ))		   
 				{
-					case 0: Say("You have improved" + name + "."); break;
-					case 1: Say("You will need to be quicker than that" + name + "."); break;
-					case 2: Say("Where did you learn to fight like that" + name + "?"); break;
-					case 3: Say("" + Utility.RandomMinMax(10,100) + " gold says I can best you" + name + "."); break;
-					case 4: Say("You will have to do better than that" + name + "."); break;
-					case 5: Say("En garde!"); break;
-					case 6: Say("Eyes open and focus on me" + name + "."); break;
-					case 7: Say("After this, I will buy you some " + ale + "."); break;
-					case 8: Say("This is good practice" + name + "."); break;
-					case 9: Say("You need to learn to parry" + name + "."); break;
-					case 10: Say("Did you have too much " + ale + " last night" + name + "?"); break;
+					case 0: Say("Você melhorou" + name + "."); break;
+					case 1: Say("Você precisará ser mais rápido que isso" + name + "."); break;
+					case 2: Say("Onde você aprendeu a lutar assim" + name + "?"); break;
+					case 3: Say("" + Utility.RandomMinMax(10,100) + " de ouro diz que posso vencê-lo" + name + "."); break;
+					case 4: Say("Você terá que fazer melhor que isso" + name + "."); break;
+					case 5: Say("Em guarda!"); break;
+					case 6: Say("Olhos abertos e focados em mim" + name + "."); break;
+					case 7: Say("Depois disso, vou lhe comprar " + ale + "."); break;
+					case 8: Say("Isto é um bom treino" + name + "."); break;
+					case 9: Say("Você precisa aprender a aparar" + name + "."); break;
+					case 10: Say("Você bebeu " + ale + " demais ontem à noite" + name + "?"); break;
 				};
 			}
 		}

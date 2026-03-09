@@ -21,36 +21,36 @@ namespace Server.Scripts.Commands
 			// these values are taken from Food.cs and relate directly to the message
 			// you get when you eat.
 			if (h <= 0 )
-				e.Mobile.SendMessage( "You are starving to death." );
+				e.Mobile.SendMessage( "Você está morrendo de fome." );
 			else if ( h <= 5 )
-			       	e.Mobile.SendMessage( "You are extremely hungry." );
+				e.Mobile.SendMessage( "Você está extremamente faminto." );
 			else if ( h <= 10 )
-				e.Mobile.SendMessage( "You are very hungry." );
+				e.Mobile.SendMessage( "Você está muito faminto." );
 			else if ( h <= 15 )
-				e.Mobile.SendMessage( "You are slightly hungry." );
+				e.Mobile.SendMessage( "Você está um pouco faminto." );
 			else if ( h <= 19 )
-				e.Mobile.SendMessage( "You are not really hungry." );
+				e.Mobile.SendMessage( "Você não está realmente faminto." );
 			else if ( h > 19 )
-				e.Mobile.SendMessage( "You are quite full." );
+				e.Mobile.SendMessage( "Você está bastante satisfeito." );
 			else
-				e.Mobile.SendMessage( "Error: Please report this error: hunger not found." );
+				e.Mobile.SendMessage( "Erro: Por favor, reporte este erro: fome não encontrada." );
 
 			int t = e.Mobile.Thirst; // Variable to hold the thirst value of the player
 			// read the comments above to see where these values came from
 			if ( t <= 0 )
-				e.Mobile.SendMessage( "You are exhausted from thirst." );
+				e.Mobile.SendMessage( "Você está exausto de sede." );
 			else if ( t <= 5 )
-			       	e.Mobile.SendMessage( "You are extremely thirsty." );
+				e.Mobile.SendMessage( "Você está extremamente sedento." );
 			else if ( t <= 10 )
-				e.Mobile.SendMessage( "You are very thirsty." );
+				e.Mobile.SendMessage( "Você está muito sedento." );
 			else if ( t <= 15 )
-				e.Mobile.SendMessage( "You are slightly thirsty." );
+				e.Mobile.SendMessage( "Você está um pouco sedento." );
 			else if ( t <= 19 )
-				e.Mobile.SendMessage( "You are not really thirsty." );
+				e.Mobile.SendMessage( "Você não está realmente sedento." );
 			else if ( t > 19 )
-				e.Mobile.SendMessage( "You are not thirsty." );
+				e.Mobile.SendMessage( "Você não está com sede." );
 			else
-				e.Mobile.SendMessage( "Error: Please report this error: thirst not found." );
+				e.Mobile.SendMessage( "Erro: Por favor, reporte este erro: sede não encontrada." );
 		}
 	}
 }

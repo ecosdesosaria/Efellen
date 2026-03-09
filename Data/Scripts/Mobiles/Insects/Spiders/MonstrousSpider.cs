@@ -6,7 +6,7 @@ using Server.Custom;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a spider corpse" )]
+	[CorpseName( "um cadáver de aranha" )]
 	public class MonstrousSpider : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
@@ -27,7 +27,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public MonstrousSpider() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a monstrous spider";
+			Name = "uma aranha monstruosa";
 			Body = Utility.RandomList( 173, 460 );
 			BaseSoundID = 0x388;
 

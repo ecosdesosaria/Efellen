@@ -40,7 +40,7 @@ namespace Server.Spells.Song
 
 				foreach ( Mobile m in Caster.GetMobilesInRange( 10 ) )
 				{
-					if ( isFriendly( Caster, m ) && m.PhysicalResistance < 70 )
+					if ( isFriendly( Caster, m ) && m.PhysicalResistance < MySettings.S_MaxResistance )
 						targets.Add( m );
 				}
 
@@ -51,10 +51,10 @@ namespace Server.Spells.Song
 					TimeSpan duration = TimeSpan.FromSeconds( (double)(MusicSkill( Caster ) * 2) );
                     int amount = MyServerSettings.PlayerLevelMod( (int)(MusicSkill( Caster ) / 16), Caster );
 
-					if ( ( amount + m.PhysicalResistance ) > 70 )
-						amount = 70 - m.PhysicalResistance;
+					if ( ( amount + m.PhysicalResistance ) > MySettings.S_MaxResistance )
+						amount = MySettings.S_MaxResistance - m.PhysicalResistance;
 	
-					m.SendMessage( "Your resistance to physical attacks has increased." );
+					m.SendMessage( "Sua resistência aos ataques físicos aumentou." );
 					ResistanceMod mod1 = new ResistanceMod( ResistanceType.Physical, + amount );
 						
 					m.AddResistanceMod( mod1 );
@@ -95,7 +95,7 @@ namespace Server.Spells.Song
 			{
 				if ( m_Mobile != null )
 				{
-					m_Mobile.SendMessage( "The effect of the knight's minne wears off." );
+					m_Mobile.SendMessage( "O efeito do knight's minne desaparece." );
 					DoExpire();
 				}
 			}

@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a fire beetle corpse" )]
+	[CorpseName( "um cadáver de besouro de fogo" )]
 	[Server.Engines.Craft.Forge]
 	public class FireBeetle : BaseMount
 	{

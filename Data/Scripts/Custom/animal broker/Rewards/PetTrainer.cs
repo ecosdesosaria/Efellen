@@ -110,12 +110,12 @@ namespace Server.Items
 										t.PlaySound( t.GetAngerSound() );
 										t.Direction = t.GetDirectionTo( from );
 										break;
-										case 16:	from.SendMessage( "Your Pet Just Looks At You Sheepishly..." );
-										break;
-										case 17:	from.SendMessage( "Your Pet Just Looks At You Sheepishly..." );
-										break;
-										case 18:	from.SendMessage( "Your Pet Just Looks At You Sheepishly..." );
-										break;										
+										case 16: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
+											break;
+										case 17: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
+											break;
+										case 18: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
+											break;										
 										
 									}
 						
@@ -199,12 +199,12 @@ namespace Server.Items
 										t.PlaySound( t.GetAngerSound() );
 										t.Direction = t.GetDirectionTo( from );
 										break;
-										case 16:	from.SendMessage( "Your Pet Just Looks At You Sheepishly..." );
-										break;
-										case 17:	from.SendMessage( "Your Pet Just Looks At You Sheepishly..." );
-										break;
-										case 18:	from.SendMessage( "Your Pet Just Looks At You Sheepishly..." );
-										break;										
+										case 16: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
+											break;
+										case 17: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
+											break;
+										case 18: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
+											break;									
 										
 									}						
 

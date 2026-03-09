@@ -10,11 +10,11 @@ using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a ramadon corpse" )]
+	[CorpseName( "um cadáver de ramadon" )]
 	public class Ramadon : BaseMount
 	{
 		[Constructable]
-		public Ramadon() : this( "a ramadon" )
+		public Ramadon() : this( "um ramadon" )
 		{
 		}
 

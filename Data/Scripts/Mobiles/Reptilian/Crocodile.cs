@@ -3,13 +3,13 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a reptile corpse" )]
+	[CorpseName( "um cadáver de réptil" )]
 	public class Crocodile : BaseCreature
 	{
 		[Constructable]
 		public Crocodile() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a crocodile";
+			Name = "um crocodilo";
 			Body = 377;
 			BaseSoundID = 660;
 

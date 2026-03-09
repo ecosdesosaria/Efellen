@@ -16,8 +16,8 @@ namespace Server.Mobiles
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }
 
-		public override string TalkGumpTitle{ get{ return "Surely You Jest"; } }
-		public override string TalkGumpSubject{ get{ return "Jester"; } }
+		public override string TalkGumpTitle{ get{ return "Você Certamente Brinca"; } }
+		public override string TalkGumpSubject{ get{ return "Bobo da Corte"; } }
 
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.ThievesGuild; } }
 

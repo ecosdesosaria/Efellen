@@ -77,7 +77,7 @@ namespace Server.Spells.Song
 					duration = TimeSpan.FromSeconds( (double)(MusicSkill( Caster ) * 2) );
 				}
 
-				m.SendMessage( "Your resistance to cold has decreased." );
+				m.SendMessage( "Sua resistência ao frio diminuiu." );
 				ResistanceMod mod1 = new ResistanceMod( ResistanceType.Cold, - amount );
 				
 				m.AddResistanceMod( mod1 );
@@ -117,7 +117,7 @@ namespace Server.Spells.Song
 			{
 				if ( m_Mobile != null )
 				{
-					m_Mobile.SendMessage( "The effect of the ice threnody wears off." );
+					m_Mobile.SendMessage( "O efeito do ice threnody desaparece." );
 					DoExpire();
 				}
 			}

@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a spider corpse" )]
+	[CorpseName( "um cadáver de aranha" )]
 	public class DreadSpider : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
@@ -25,7 +25,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public DreadSpider () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a dread spider";
+			Name = "uma aranha do pavor";
 			Body = 140;
 			Hue = 0x4AA;
 			BaseSoundID = 1170;

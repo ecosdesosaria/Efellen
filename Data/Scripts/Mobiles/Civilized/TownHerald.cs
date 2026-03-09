@@ -27,7 +27,7 @@ namespace Server.Mobiles
 
 			InitStats( 100, 100, 25 );
 
-			Title = "the town crier";
+			Title = "o pregoeiro da cidade";
 			Hue = Utility.RandomSkinColor();
 
 			AddItem( new FancyShirt( Utility.RandomBlueHue() ) );
@@ -89,12 +89,12 @@ namespace Server.Mobiles
 		{
 			string shout = "";
 
-			string greet = "Hear ye, hear ye! ";
+			string greet = "Ouça, ouça! ";
 				switch ( Utility.RandomMinMax( 0, 3 ) )
 				{
-					case 1: greet = "Everyone listen! "; 			break;
-					case 2: greet = "All hail and hear my words! "; break;
-					case 3: greet = "Your attention please! "; 		break;
+					case 1: greet = "Todos ouçam! "; 			    break;
+					case 2: greet = "Todos saudem e ouçam minhas palavras! "; break;
+					case 3: greet = "Sua atenção, por favor! "; 		break;
 				};
 				if ( m == null ){ greet = ""; }
 
@@ -102,15 +102,15 @@ namespace Server.Mobiles
 				if ( Utility.RandomBool() ){ name = NameList.RandomName( "male" ); }
 				name = name + " " + TavernPatrons.GetTitle();
 
-			string seen = "was seen in"; 
+			string seen = "foi visto em"; 
 			switch ( Utility.RandomMinMax( 0, 6 ) )
 			{
-				case 1: seen = "was found in"; 			break;
-				case 2: seen = "was spotted in"; 		break;
-				case 3: seen = "was found near"; 		break;
-				case 4: seen = "was spotted near"; 		break;
-				case 5: seen = "was found leaving"; 	break;
-				case 6: seen = "was spotted leaving"; 	break;
+				case 1: seen = "foi encontrado em"; 		break;
+				case 2: seen = "foi avistado em"; 		break;
+				case 3: seen = "foi encontrado perto de"; 	break;
+				case 4: seen = "foi avistado perto de"; 	break;
+				case 5: seen = "foi encontrado saindo de"; 	break;
+				case 6: seen = "foi avistado saindo de"; 	break;
 			}
 
 			string city = RandomThings.GetRandomCity();	
@@ -122,57 +122,57 @@ namespace Server.Mobiles
 			string place = dungeon;
 				if ( Utility.RandomBool() ){ place = city; }
 
-			string slain = "has destroyed";
+			string slain = "destruiu";
 			switch( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 1: slain = "has defeated";		break;
-				case 2: slain = "has slain";		break;
-				case 3: slain = "has vanquished";	break;
+				case 1: slain = "derrotou";		break;
+				case 2: slain = "matou";		break;
+				case 3: slain = "subjugou";	    break;
 			}
 
-			string died = "was killed";
+			string died = "foi morto";
 			switch( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 1: died = "was slain";		break;
-				case 2: died = "was bested";	break;
-				case 3: died = "was beaten";	break;
+				case 1: died = "foi abatido";	break;
+				case 2: died = "foi superado";	break;
+				case 3: died = "foi derrotado";	break;
 			}
 
-			string death = "was killed";
+			string death = "foi morto";
 			switch( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 1: death = "has perished";			break;
-				case 2: death = "has met their end";	break;
-				case 3: death = "was slain";			break;
+				case 1: death = "pereceu";			        break;
+				case 2: death = "encontrou seu fim";	    break;
+				case 3: death = "foi abatido";		        break;
 			}
 
-			string crime = "murder";
+			string crime = "assassinato";
 			switch( Utility.RandomMinMax( 0, 6 ) )
 			{
-				case 1: crime = "witchcraft";	break;
-				case 2: crime = "thievery";		break;
-				case 3: crime = "heresy";		break;
-				case 4: crime = "blasphemy";	break;
-				case 5: crime = "treason";		break;
-				case 6: crime = "robbery";		break;
+				case 1: crime = "bruxaria";	break;
+				case 2: crime = "furto";		break;
+				case 3: crime = "heresia";		break;
+				case 4: crime = "blasfêmia";	break;
+				case 5: crime = "traição";		break;
+				case 6: crime = "roubo";		break;
 			}
 
-			string item = "destroyed";	
+			string item = "destruiu";	
 			switch( Utility.RandomMinMax( 0, 4 ) )
 			{
-				case 1: item = "lost"; break;	
-				case 2: item = "found"; break;	
-				case 3: item = "discovered"; break;	
-				case 4: item = "stole"; break;	
+				case 1: item = "perdeu"; break;	
+				case 2: item = "encontrou"; break;	
+				case 3: item = "descobriu"; break;	
+				case 4: item = "roubou"; break;	
 			}
 
 			switch ( Utility.RandomMinMax( 0, 5 ) )
 			{
 				case 0: shout = "" + greet + "" + name + " " + seen + " " + place + ""; break;
 				case 1: shout = "" + greet + "" + name + " " + slain + " " + RandomThings.GetRandomMonsters() + ""; break;
-				case 2: shout = "" + greet + "" + name + " " + died + " by " + RandomThings.GetRandomMonsters() + ""; break;
-				case 3: shout = "" + greet + "" + name + " " + death + " in " + dungeon + ""; break;
-				case 4: shout = "" + greet + "" + name + " is wanted for " + crime + " in " + city + ""; break;
+				case 2: shout = "" + greet + "" + name + " " + died + " por " + RandomThings.GetRandomMonsters() + ""; break;
+				case 3: shout = "" + greet + "" + name + " " + death + " em " + dungeon + ""; break;
+				case 4: shout = "" + greet + "" + name + " é procurado por " + crime + " em " + city + ""; break;
 				case 5: shout = "" + greet + "" + name + " " + item + " " + QuestCharacters.QuestItems( false ) + ""; 
 					if ( Utility.RandomBool() ){ shout = "" + greet + "" + name + " " + item + " " + QuestCharacters.ArtyItems( false ) + ""; }
 					break;

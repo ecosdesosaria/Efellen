@@ -3,18 +3,18 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a critter corpse" )]
+	[CorpseName( "um cadáver de criatura pequena" )]
 	public class Rabbit : BaseCreature
 	{
 		[Constructable]
 		public Rabbit() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
 			Body = 205;
-			Name = "a rabbit";
+			Name = "um coelho";
 			switch ( Utility.RandomMinMax( 0, 1 ) )
 			{
-				case 0: Name="a rabbit"; break;
-				case 1: Name="a hare"; break;
+				case 0: Name="um coelho"; break;
+				case 1: Name="um lebre"; break;
 			}
 
 			if ( 0.5 >= Utility.RandomDouble() ){ Hue = Utility.RandomAnimalHue(); }

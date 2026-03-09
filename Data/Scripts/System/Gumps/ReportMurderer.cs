@@ -112,9 +112,9 @@ namespace Server.Gumps
 			AddImage(0, 0, 7001, Server.Misc.PlayerSettings.GetGumpHue( m_Victum ));
 			AddButton(268, 9, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
-			AddHtml( 10, 10, 200, 20, @"<BODY><BASEFONT Color=" + color + ">MURDERED!</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 10, 10, 200, 20, @"<BODY><BASEFONT Color=" + color + ">ASSASSINADO!</BASEFONT></BODY>", (bool)false, (bool)false);
 
-			AddHtml( 12, 40, 285, 165, @"<BODY><BASEFONT Color=" + color + ">You have been murdered! Would you like to report this crime to the captain of the town guard? If so, their murder count will increase.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 12, 40, 285, 165, @"<BODY><BASEFONT Color=" + color + ">Você foi assassinado! Gostaria de reportar este crime ao capitão da guarda da cidade? Se sim, a contagem de assassinatos deles aumentará.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(10, 216, 4023, 4023, 1, GumpButtonType.Reply, 0);
 			AddButton(267, 217, 4020, 4020, 2, GumpButtonType.Reply, 0);

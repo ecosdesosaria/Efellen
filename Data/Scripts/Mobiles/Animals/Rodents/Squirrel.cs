@@ -5,13 +5,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a squirrel corpse" )]	
+	[CorpseName( "um cadáver de esquilo" )]	
 	public class Squirrel : BaseCreature
 	{
 		[Constructable]
 		public Squirrel() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a squirrel";
+			Name = "um esquilo";
 			Body = 0x116;
 			Hue = Utility.RandomList( 0, 0, 0x966 );
 

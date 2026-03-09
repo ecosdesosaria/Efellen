@@ -5,7 +5,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a roc corpse" )]
+	[CorpseName( "um cadáver de roc" )]
 	public class Roc : BaseMount
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -74,7 +74,7 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public Roc(): base( "a roc", 243, 0x3E94, AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
+		public Roc(): base( "um roc", 243, 0x3E94, AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Hue = GetHue();
 			BaseSoundID = 0x2EE;

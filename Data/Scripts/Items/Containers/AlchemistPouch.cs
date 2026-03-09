@@ -108,12 +108,11 @@ namespace Server.Items
 				AddPage(0);
 
 				AddImage(0, 0, 7027, Server.Misc.PlayerSettings.GetGumpHue( from ));
-				AddHtml( 13, 13, 300, 20, @"<BODY><BASEFONT Color=" + color + ">ALCHEMY BELT POUCH</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 13, 13, 300, 20, @"<BODY><BASEFONT Color=" + color + ">BOLSA DE CINTO DE ALQUIMIA</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddImage(531, 51, 10900);
 				AddButton(863, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
-
-				AddHtml( 15, 57, 497, 176, @"<BODY><BASEFONT Color=" + color + ">This bag is only for potions created by alchemists, which will have their weight greatly reduced while in this bag. Here you can configure a quick belt pouch for these potions. This is also the only place where you can open and close the quick belt pouch, which is a bar that will open with icons for easy potion access. You can configure the bar to be either horizontal or vertical. You can choose to display abbreviated names next to the icons. You have to select which potions will appear in the bar and you can only effectively use one alchemy belt pouch at a time.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 15, 57, 497, 176, @"<BODY><BASEFONT Color=" + color + ">Esta bolsa é apenas para poções criadas por alquimistas, que terão seu peso greatly reduzido enquanto estiverem nesta bolsa. Aqui você pode configurar uma bolsa de cinto rápida para essas poções. Este também é o único lugar onde você pode abrir e fechar a bolsa de cinto rápida, que é uma barra que abrirá com ícones para fácil acesso às poções. Você pode configurar a barra para ser horizontal ou vertical. Você pode escolher exibir nomes abreviados next to aos ícones. Você tem que selecionar quais poções aparecerão na barra e você só pode usar efetivamente uma bolsa de cinto de alquimia por vez.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 

@@ -5,7 +5,7 @@ using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a wolf corpse" )]
+	[CorpseName( "um cadáver de lobo" )]
 	public class WinterWolf : BaseMount
 	{
 		public override int BreathPhysicalDamage{ get{ return 0; } }
@@ -31,7 +31,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public WinterWolf( string name ) : base( name, 277, 16017, AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a winter wolf";
+			Name = "um lobo do inverno";
 			BaseSoundID = 0xE5;
 			Hue = 0xB5D;
 

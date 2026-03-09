@@ -894,7 +894,7 @@ namespace Server.Items
 
 	public abstract class BaseBeverage : Item, IHasQuantity
 	{
-		public override string DefaultDescription{ get{ return "Drinks can quench your thirst and sometimes be used in crafting. Beverages can be empty or filled with liquid. You can pour liquid from bottles in goblets and mugs. You can use an empty beverage container on a cow to milk it. If you want to quickly fill an empty container with water, use it near a water source. You can also single click the container and choose the fill option, where you can select a water source or cow. There are some single click menus available, dependent on the type of container. You can 'Fill' it up with liquid. If you want some in another container, you can 'Pour' it. You can 'Dump' the contents out on the ground. If you are thirsty, you can 'Drink', but if you want to drink as much of it as you can, you can always 'Drink Up'."; } }
+		public override string DefaultDescription{ get{ return "Bebidas podem saciar sua sede e às vezes ser usadas na criação. Recipientes de bebida podem estar vazios ou cheios de líquido. Você pode despejar líquido de garrafas em cálices e canecas. Pode usar um recipiente de bebida vazio em uma vaca para ordenhá-la. Se quiser encher rapidamente um recipiente vazio com água, use-o perto de uma fonte de água. Também pode clicar uma vez no recipiente e escolher a opção de encher, onde pode selecionar uma fonte de água ou uma vaca. Existem alguns menus de clique único disponíveis, dependendo do tipo de recipiente. Pode 'Encher' com líquido. Se quiser um pouco em outro recipiente, pode 'Despejar'. Pode 'Descartar' o conteúdo no chão. Se estiver com sede, pode 'Beber', mas se quiser beber o máximo possível, sempre pode 'Beber Tudo'."; } }
 
 		private BeverageType m_Content;
 		private int m_Quantity;
@@ -1383,7 +1383,7 @@ namespace Server.Items
 			}
 			else if ( from == targ && from.Thirst >= 20 )
 			{
-				from.SendMessage( "You are too quenched to drink more." );
+				from.SendMessage( "Você está muito saciado para beber mais." );
 			}
 			else if ( from == targ )
 			{
@@ -1401,13 +1401,13 @@ namespace Server.Items
 				if( from.Thirst < 20 )
 				{
 					if ( from.Thirst < 5 )
-						from.SendMessage( "You drink the liquid but are still extremely thirsty" );
+						from.SendMessage( "Você bebe o líquido mas ainda está extremamente sedento" );
 					else if ( from.Thirst < 10 )
-						from.SendMessage( "You drink the liquid and feel less thirsty" );
+						from.SendMessage( "Você bebe o líquido e se sente menos sedento" );
 					else if ( from.Thirst < 15 )
-						from.SendMessage( "You drink the liquid and feel much less thirsty" ); 
+						from.SendMessage( "Você bebe o líquido e se sente muito menos sedento" ); 
 					else
-						from.SendMessage( "You drink the liquid and are no longer thirsty" );
+						from.SendMessage( "Você bebe o líquido e não está mais sedento" );
 
 					from.Thirst += thirst;
 				}
@@ -1444,7 +1444,7 @@ namespace Server.Items
 		{
 			if ( !from.InRange( this.GetWorldLocation(), 1 ) )
 			{
-				from.SendMessage( "That is too far away!" );
+				from.SendMessage( "Isso está muito longe!" );
 				return;
 			}
 
@@ -1459,9 +1459,9 @@ namespace Server.Items
 				from.SendLocalizedMessage( 1010089 ); // You fill the container with water.
 			}
 			else if ( IsEmpty && !Fillable )
-				from.SendMessage( "That is empty and can no longer be filled." );
+				from.SendMessage( "Isso está vazio e não pode mais ser enchido." );
 			else if ( IsEmpty && Fillable )
-				from.SendMessage( "That is empty and will need to be refilled." );
+				from.SendMessage( "Isso está vazio e precisará ser reabastecido." );
 			else if( ValidateUse( from, true ) )
 				Pour_OnTarget( from, from );
 		}
@@ -1486,7 +1486,7 @@ namespace Server.Items
 				} 
 				else 
 				{
-					m_From.SendMessage( "This must be in your backpack to use." );
+					m_From.SendMessage( "Isso deve estar em sua mochila para usar." );
 				} 
 			} 
 		} 
@@ -1510,7 +1510,7 @@ namespace Server.Items
 					if (i_Beverage is WaterBottle)
 					{
 						i_Beverage.Delete();
-						m_From.SendMessage("You dump out the liquid, and the magical flask vanishes!");
+						m_From.SendMessage("Você despeja o líquido, e o frasco mágico desaparece!");
         }
 		else
 		{
@@ -1518,12 +1518,12 @@ namespace Server.Items
 					i_Beverage.Poison = null;
 					i_Beverage.Content = BeverageType.Water;
 					i_Beverage.Quantity = 0;
-					m_From.SendMessage( "You dump out the liquid." );
+					m_From.SendMessage( "Você despeja o líquido." );
 		}
 				} 
 				else 
 				{
-					m_From.SendMessage( "This must be in your backpack to dump out." );
+					m_From.SendMessage( "Isso deve estar em sua mochila para despejar." );
 				} 
 			} 
 		} 
@@ -1548,7 +1548,7 @@ namespace Server.Items
 				} 
 				else 
 				{
-					m_From.SendMessage( "This must be in your backpack to use." );
+					m_From.SendMessage( "Isso deve estar em sua mochila para usar." );
 				} 
 			} 
 		} 

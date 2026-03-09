@@ -172,9 +172,9 @@ namespace Server.Mobiles
 			Item item = Loot.RandomArty();
 
 			if ( m.AddToBackpack( item ) )
-				m.SendMessage( "As a reward for slaying the cursed creature, an artifact has been placed in your backpack." );
+				m.SendMessage( "Como recompensa por matar a criatura amaldiçoada, um artefato foi colocado em sua mochila." );
 			else
-				m.SendMessage( "As your backpack is full, your reward for slaying cursed creature has been placed at your feet." );
+				m.SendMessage( "Como sua mochila está cheia, sua recompensa por matar a criatura amaldiçoada foi colocada a seus pés." );
 		}
 	}
 }

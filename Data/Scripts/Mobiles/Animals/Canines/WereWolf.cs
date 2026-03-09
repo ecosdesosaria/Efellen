@@ -7,7 +7,7 @@ using Server.Regions;
 
 namespace Server.Mobiles 
 { 
-	[CorpseName( "a lycanthrope corpse" )] 
+	[CorpseName( "um cadáver de lobisomem" )] 
 	public class WereWolf : BaseCreature 
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -228,7 +228,7 @@ namespace Server.Mobiles
 
 			Body = Utility.RandomList( 708, 94 );
 			BaseSoundID = 0xE5;
-			Name = "a werewolf";
+			Name = "um lobisomem";
 			string Growl = "Grrrrr!";
 			Hue = 0;
 

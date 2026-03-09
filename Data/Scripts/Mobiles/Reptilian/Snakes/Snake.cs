@@ -4,13 +4,13 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a snake corpse" )]
+	[CorpseName( "um cadáver de cobra" )]
 	public class Snake : BaseCreature
 	{
 		[Constructable]
 		public Snake() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a snake";
+			Name = "uma cobra";
 			Body = Utility.RandomList( 52, 950, 963 );
 			Hue = Utility.RandomSnakeHue();
 			BaseSoundID = 0xDB;

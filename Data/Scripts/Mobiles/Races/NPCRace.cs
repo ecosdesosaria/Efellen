@@ -77,14 +77,12 @@ namespace Server.Items
 			if ( parent is Mobile )
 			{
 				Mobile from = (Mobile)parent;
-				if (from == null || from.Deleted) return;
 			}
 		}
-
 		public override bool OnEquip( Mobile m )
 		{
-      		if( base.OnEquip( m ) )
-      		{
+			if( base.OnEquip( m ) )
+			{
 				if ( SpeciesGender == 1 )
 				{
 					m.Female = true;
@@ -98,10 +96,21 @@ namespace Server.Items
 
 				m.BodyMod = SpeciesBody;
 				m.RaceID = SpeciesBody;
-				m.HueMod = this.Hue;
+				
+				if ( SpeciesBody == 605 || SpeciesBody == 606 )
+				{
+					m.Hue = 1316;
+					m.HueMod = 1316;
+					m.HairHue = 1150;
+				}
+				else
+				{
+					m.HueMod = this.Hue;
+				}
+				
 				m.RaceSection = this.Hue;
 				this.Name = m.Name;
-					if ( m.Title != null && m.Title != "" ){ this.Name = m.Name + " " + m.Title; }
+				if ( m.Title != null && m.Title != "" ){ this.Name = m.Name + " " + m.Title; }
 				m.RaceAngerSound = SpeciesAngerSound;
 				m.RaceIdleSound = SpeciesIdleSound;
 				m.RaceDeathSound = SpeciesDeathSound;
@@ -114,7 +123,7 @@ namespace Server.Items
 					Server.Mobiles.EtherealMount.EthyDismount( m );
 					mt.Rider = null;
 				}
-      		}
+			}
 			return base.OnEquip( m );
 		}
 
@@ -302,6 +311,8 @@ namespace Server.Items
 				case 307: race = "" + val + ",25782,471,0"; break; // Wight
 				case 728: race = "" + val + ",25778,471,0"; break; // Zombi
 				case 810: race = "" + val + ",25783,471,0"; break; // Zombi Mage
+				case 605: race = "" + val + ",14,0,0"; break; // Drow Masculino
+				case 606: race = "" + val + ",15,0,0"; break; // Drow Feminino
 			}
 
 			return race;

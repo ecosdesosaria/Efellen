@@ -3,7 +3,7 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a frog corpse" )]
+	[CorpseName( "um cadáver de rã" )]
 	public class Frog : BaseCreature
 	{
 		private Timer m_Timer;
@@ -11,7 +11,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Frog() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a frog";
+			Name = "uma rã";
 			Body = 81;
 			Hue = Utility.RandomList( 0x7D1, 0x7D2, 0x7D3, 0x7D4, 0x7D5, 0x7D6 );
 			BaseSoundID = 0x266;

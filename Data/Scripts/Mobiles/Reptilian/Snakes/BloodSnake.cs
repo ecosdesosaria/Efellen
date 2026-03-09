@@ -7,7 +7,7 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a giant snake corpse")]
+	[CorpseName("um cadáver de cobra gigante")]
 	public class BloodSnake : BaseCreature
 	{
 		[Constructable]
@@ -15,7 +15,7 @@ namespace Server.Mobiles
 		{
 			Body = 21;
 			Hue = 0x5B5;
-			Name = "a blood snake";
+			Name = "uma cobra de sangue";
 			BaseSoundID = 219;
 
 			SetStr( 161, 360 );

@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public EttinShaman() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an ettin shaman";
+			Name = "um ettin shaman";
 			Body = 316;
 			BaseSoundID = 367;
 

@@ -36,39 +36,39 @@ namespace Server.Items
 				AddPage(1);
 				AddButton( 401, 87, 0x89E, 0x89E, 18, GumpButtonType.Page, 2 );
 				AddButton( 129, 87, 0x89D, 0x89D, 19, GumpButtonType.Page, 63 );
-				AddHtml( 146, 111, 112, 75, @"<p align='center'>The Complete Book of Weapon Mastery", (bool)false, (bool)false);
+				AddHtml( 146, 111, 112, 75, @"<p align='center'>O Livro Completo da Maestria em Armas", (bool)false, (bool)false);
 				AddImage(166, 193, 21248);
-				AddHtml( 291, 108, 139, 163, @"Warriors have the ability to tap their Mana to perform devastating maneuvers with their weapons that can have a variety of unusual side-effects. Each weapon will have a", (bool)false, (bool)false);
+				AddHtml( 291, 108, 139, 163, @"Guerreiros têm a capacidade de usar sua Mana para executar manobras devastadoras com suas armas que podem ter uma variedade de efeitos colaterais incomuns. Cada arma terá uma", (bool)false, (bool)false);
 
 				AddPage(2);
 				AddButton( 401, 87, 0x89E, 0x89E, 18, GumpButtonType.Page, 3 );
 				AddButton( 129, 87, 0x89D, 0x89D, 19, GumpButtonType.Page, 1 );
-				AddHtml( 135, 108, 139, 163, @"unique combination of special moves. Warriors who have reached a 70 skill level in their weapon skill will be able to execute a weapon's primary special move. There can be five", (bool)false, (bool)false);
-				AddHtml( 291, 108, 139, 163, @"total special abilities for weapons, achieved at 80, 90, 100, and 110 in the weapon skill. The skill level required can even be achieved through use of skill enhancing items such as rings,", (bool)false, (bool)false);
+				AddHtml( 135, 108, 139, 163, @"combinação única de golpes especiais. Guerreiros que atingiram o nível 70 de habilidade em sua arma poderão executar o golpe especial primário da arma. Podem existir cinco", (bool)false, (bool)false);
+				AddHtml( 291, 108, 139, 163, @"habilidades especiais totais para armas, alcançadas nos níveis 80, 90, 100 e 110 da habilidade com a arma. O nível de habilidade necessário pode até ser alcançado através do uso de itens que aumentam", (bool)false, (bool)false);
 
 				AddPage(3);
 				AddButton( 401, 87, 0x89E, 0x89E, 18, GumpButtonType.Page, 4 );
 				AddButton( 129, 87, 0x89D, 0x89D, 19, GumpButtonType.Page, 2 );
-				AddHtml( 135, 108, 139, 163, @"bracelets, boots, robes, cloaks, belts, and earrings. In all cases another skill is required to perform these maneuvers. This is always tactics, however anatomy", (bool)false, (bool)false);
-				AddHtml( 291, 108, 139, 163, @"can sometimes help. Whenever you equip a weapon, you will get a display of buttons to select to initiate these special moves if your skill allows. To activate or deactivate a", (bool)false, (bool)false);
+				AddHtml( 135, 108, 139, 163, @"habilidades, como anéis, braceletes, botas, vestes, capas, cintos e brincos. Em todos os casos, outra habilidade é necessária para executar essas manobras. Esta é sempre tática, embora anatomia", (bool)false, (bool)false);
+				AddHtml( 291, 108, 139, 163, @"possa às vezes ajudar. Sempre que você equipar uma arma, verá uma display de botões para selecionar e iniciar esses golpes especiais se sua habilidade permitir. Para ativar ou desativar um", (bool)false, (bool)false);
 
 				AddPage(4);
 				AddButton( 401, 87, 0x89E, 0x89E, 18, GumpButtonType.Page, 5 );
 				AddButton( 129, 87, 0x89D, 0x89D, 19, GumpButtonType.Page, 3 );
-				AddHtml( 135, 108, 139, 163, @"special move, select the icon and the ribbon will turn red. At the next opportunity, the special move is performed, and the ribbon returns to its gray state. The Mana Cost of each special", (bool)false, (bool)false);
-				AddHtml( 291, 108, 139, 163, @"move can be reduced if the warrior's skills are high enough. Add up the skill points for Swords, Bludgeoning, Fencing, Marksmanship, Parrying, Fist Fighting, Lumberjacking, Stealth, Poisoning, Bushido and", (bool)false, (bool)false);
+				AddHtml( 135, 108, 139, 163, @"golpe especial, selecione o ícone e a fita ficará vermelha. Na primeira oportunidade, o golpe especial é executado e a fita retorna ao estado cinza. O Custo de Mana de cada golpe", (bool)false, (bool)false);
+				AddHtml( 291, 108, 139, 163, @"especial pode ser reduzido se as habilidades do guerreiro forem altas o suficiente. Some os pontos de habilidade para Espadas, Pancadas, Esgrima, Atirar, Aparar, Luta de Punhos, Lenhador, Furtividade, Envenenamento, Bushido e", (bool)false, (bool)false);
 
 				AddPage(5);
 				AddButton( 401, 87, 0x89E, 0x89E, 18, GumpButtonType.Page, 6 );
 				AddButton( 129, 87, 0x89D, 0x89D, 19, GumpButtonType.Page, 4 );
-				AddHtml( 135, 108, 139, 163, @"Ninjitsu. If the total lies between 200 and 299, subtract 5 from the Mana Cost. If the total is 300 or more, subtract 10 from the Mana Cost. Some items have a property called 'lower", (bool)false, (bool)false);
-				AddHtml( 291, 108, 139, 163, @"mana cost'. These items also reduce the Mana Cost of these Special Moves. If a special move is attempted within 3 seconds after another special move, the mana cost of that move will", (bool)false, (bool)false);
+				AddHtml( 135, 108, 139, 163, @"Ninjitsu. Se o total estiver entre 200 e 299, subtraia 5 do Custo de Mana. Se o total for 300 ou mais, subtraia 10 do Custo de Mana. Alguns itens têm uma propriedade chamada 'menor", (bool)false, (bool)false);
+				AddHtml( 291, 108, 139, 163, @"custo de mana'. Esses itens também reduzem o Custo de Mana desses Golpes Especiais. Se um golpe especial for tentado dentro de 3 segundos após outro golpe especial, o custo de mana desse golpe", (bool)false, (bool)false);
 
 				AddPage(6);
 				AddButton( 401, 87, 0x89E, 0x89E, 18, GumpButtonType.Page, 7 );
 				AddButton( 129, 87, 0x89D, 0x89D, 19, GumpButtonType.Page, 5 );
-				AddHtml( 135, 108, 139, 163, @"be doubled. The special move bar can have the names of the special moves to the right of the icons if you so choose. If you want to turn this feature on or off, simply type the", (bool)false, (bool)false);
-				AddHtml( 291, 108, 139, 163, @"command '[abilitynames' without the quotes.", (bool)false, (bool)false);
+				AddHtml( 135, 108, 139, 163, @"será dobrado. A barra de golpes especiais pode ter os nomes dos golpes especiais à direita dos ícones, se você assim desejar. Se quiser ativar ou desativar este recurso, simplesmente digite o", (bool)false, (bool)false);
+				AddHtml( 291, 108, 139, 163, @"comando '[abilitynames' sem as aspas.", (bool)false, (bool)false);
 
 				int counter = 0;
 				int pages = 55;
@@ -88,61 +88,61 @@ namespace Server.Items
 
 					switch( counter )
 					{
-						case 1:  myIcon = 0x1;		myAttack = "Achilles Strike";			myMana = 20; myDescribe1 = "A strike from the weapon will greatly hurt the target's Achilles tendon."; break;
-						case 2:  myIcon = 0x2;		myAttack = "Armor Ignore";				myMana = 20; myDescribe1 = "Ignores the Target's Resists but deals slightly lower damage than the weapon's maximum potential."; break;
-						case 3:  myIcon = 0x3;		myAttack = "Armor Pierce";				myMana = 20; myDescribe1 = "Strike your foe with armor piercing force and inflicting greater damage."; break;
-						case 4:  myIcon = 0x4;		myAttack = "Bladeweave";				myMana = 10; myDescribe1 = "The warrior becomes one with their weapon, allowing it to guide their hand."; myDescribe2 = "The effects of this attack are unpredictable, but effective (10+? Mana)."; break;
-						case 5:  myIcon = 0x5;		myAttack = "Bleed Attack";				myMana = 30; myDescribe1 = "Causes the target to bleed profusely, causing Direct Damage several times over"; myDescribe2 = "the next few seconds. The amount of Damage dealt decreases each time."; break;
-						case 6:  myIcon = 0x6;		myAttack = "Block";						myMana = 20; myDescribe1 = "Raises your defenses for a short time."; break;
-						case 7:  myIcon = 0x7;		myAttack = "Concussion Blow";			myMana = 20; myDescribe1 = "Does Direct Damage to the Target based on the difference between their current"; myDescribe2 = "Hit Points and Mana. The greater the difference, the more Damage they receive."; break;
-						case 8:  myIcon = 0x8;		myAttack = "Consecrated Strike";		myMana = 20; myDescribe1 = "Causes the weapon to do the best amount of damage possible."; break;
-						case 9:  myIcon = 0xA;		myAttack = "Crushing Blow";				myMana = 25; myDescribe1 = "Does a substantial extra amount of damage directly to the Target."; break;
-						case 10: myIcon = 0xB;		myAttack = "Death Blow";				myMana = 50; myDescribe1 = "Allows you to deliver a deadly blow."; break;
-						case 11: myIcon = 0x11;		myAttack = "Defense Mastery";			myMana = 20; myDescribe1 = "Raises your physical resistance for a short time while lowering your ability to inflict damage."; break;
-						case 12: myIcon = 0x12;		myAttack = "Devastating Blow";			myMana = 30; myDescribe1 = "Allows you to deliver a near deadly blow."; break;
-						case 13: myIcon = 0x13;		myAttack = "Disarm";					myMana = 20; myDescribe1 = "Disarms Target and prevents them from rearming any weapon for a short duration."; break;
-						case 14: myIcon = 0x14;		myAttack = "Dismount";					myMana = 20; myDescribe1 = "Dislodges Target from their Mount and deals a moderate amount of Direct damage to them."; break;
-						case 15: myIcon = 0x15;		myAttack = "Disrobe";					myMana = 15; myDescribe1 = "Forces your target to lose their outer clothing."; break;
-						case 16: myIcon = 0x16;		myAttack = "Double Shot";				myMana = 30; myDescribe1 = "Send two arrows flying at your opponent."; break;
-						case 17: myIcon = 0x17;		myAttack = "Double Strike";				myMana = 30; myDescribe1 = "The next Target the user strikes will be hit by the weapon twice."; break;
-						case 18: myIcon = 0x18;		myAttack = "Double Whirlwind Attack";	myMana = 25; myDescribe1 = "Hits all enemies in range, with extra bonus damage if there are many targets around you."; break;
-						case 19: myIcon = 0x19;		myAttack = "Drain Dexterity";			myMana = 25; myDescribe1 = "Drains the target's dexterity when they are struck."; break;
-						case 20: myIcon = 0x1A;		myAttack = "Drain Intellect";			myMana = 25; myDescribe1 = "Drains the target's intelligence when they are struck."; break;
-						case 21: myIcon = 0x1B;		myAttack = "Drain Mana";				myMana = 25; myDescribe1 = "Drains the target's mana when they are struck."; break;
-						case 22: myIcon = 0x1C;		myAttack = "Drain Stamina";				myMana = 25; myDescribe1 = "Drains the target's stamina when they are struck."; break;
-						case 23: myIcon = 0x2B;		myAttack = "Drain Strength";			myMana = 25; myDescribe1 = "Drains the target's strength when they are struck."; break;
-						case 24: myIcon = 0x2C;		myAttack = "Dual Wield";				myMana = 30; myDescribe1 = "Attack faster as you swing with both weapons."; break;
-						case 25: myIcon = 0x2D;		myAttack = "Earth Strike";				myMana = 20; myDescribe1 = "Causes the weapon to do an extra amount of physical damage."; break;
-						case 26: myIcon = 0x2E;		myAttack = "Elemental Strike";			myMana = 20; myDescribe1 = "Causes the weapon to do an extra amount of damage among fire, cold, energy, and poison."; break;
-						case 27: myIcon = 0x30;		myAttack = "Feint";						myMana = 25; myDescribe1 = "Gain a defensive advantage over your primary opponent for a short time."; break;
-						case 28: myIcon = 0x3E9;	myAttack = "Fire Strike";				myMana = 20; myDescribe1 = "Causes the weapon to do an extra amount of fire damage."; break;
-						case 29: myIcon = 0x3EA;	myAttack = "Fists of Fury";				myMana = 20; myDescribe1 = "Attacks with both fists with much more effectiveness."; break;
-						case 30: myIcon = 0x3EB;	myAttack = "Force Arrow";				myMana = 20; myDescribe1 = "The archer focuses their will into an arrow of pure force, dazing their enemy."; myDescribe2 = "Dazed enemies are temporarily easier to hit, and sometimes forget who they are attacking."; break;
-						case 31: myIcon = 0x3E8;	myAttack = "Force of Nature";			myMana = 40; myDescribe1 = "Infuses the attacker with Nature's Fury. This power causes leafy vines to erupt"; myDescribe2 = "from beneath the attacker's skin, dealing physical and poison damage to them."; break;
-						case 32: myIcon = 0x3EC;	myAttack = "Freeze Strike";				myMana = 20; myDescribe1 = "Causes the weapon to do an extra amount of cold damage."; break;
-						case 33: myIcon = 0x3ED;	myAttack = "Frenzied Whirlwind";		myMana = 20; myDescribe1 = "A quick attack to all enemies in range of your weapon that causes damage over time."; break;
-						case 34: myIcon = 0x3EE;	myAttack = "Greater Magic Protection";	myMana = 30; myDescribe1 = "Allows you to absorb a great amount of magical energy."; break;
-						case 35: myIcon = 0x3EF;	myAttack = "Greater Melee Protection";	myMana = 30; myDescribe1 = "Allows you to absorb a great amount of physical damage."; break;
-						case 36: myIcon = 0x3F0;	myAttack = "Infectious Strike";			myMana = 15; myDescribe1 = "Attempts to apply a poisoned weapon's poison to the Target. The higher the Poisoning skill of the"; myDescribe2 = "user, the higher the chance the strength of the applied Poison will be increased by one."; break;
-						case 37: myIcon = 0x3F1;	myAttack = "Lightning Arrow";			myMana = 20; myDescribe1 = "A charged arrow that arcs lightning into its target's allies."; break;
-						case 38: myIcon = 0x3F2;	myAttack = "Lightning Strike";			myMana = 20; myDescribe1 = "Causes the weapon to do an extra amount of energy damage."; break;
-						case 39: myIcon = 0x3F3;	myAttack = "Magic Protection";			myMana = 25; myDescribe1 = "Allows you to absorb a good amount of magical energy."; break;
-						case 40: myIcon = 0x3F4;	myAttack = "Melee Protection";			myMana = 25; myDescribe1 = "Allows you to absorb a good amount of physical damage."; break;
-						case 41: myIcon = 0x3F5;	myAttack = "Mortal Strike";				myMana = 25; myDescribe1 = "Prevents the Target from being healed by any means for a few Seconds."; myDescribe2 = "This effect does not stop a Target from regenerating hit points."; break;
-						case 42: myIcon = 0x3F6;	myAttack = "Moving Shot";				myMana = 15; myDescribe1 = "Allows archer to fire an arrow or bolt while moving."; myDescribe2 = "Normally an Archer must be Stationary to fire at a Target."; break;
-						case 43: myIcon = 0x3F7;	myAttack = "Nerve Strike";				myMana = 20; myDescribe1 = "Does damage and paralyzes your opponent for a short time."; break;
-						case 44: myIcon = 0x3F8;	myAttack = "Paralyzing Blow";			myMana = 20; myDescribe1 = "Paralyzes the target for a few seconds."; break;
-						case 45: myIcon = 0x3F9;	myAttack = "Psychic Attack";			myMana = 30; myDescribe1 = "Temporarily enchants the attacker's weapon with deadly psychic energy,"; myDescribe2 = "allowing it to damage the defender's mind and their ability to inflict damage with magic."; break;
-						case 46: myIcon = 0x3FA;	myAttack = "Riding Attack";				myMana = 20; myDescribe1 = "Gives your attacks on horseback a much more deadly effect."; break;
-						case 47: myIcon = 0x3FB;	myAttack = "Riding Swipe";				myMana = 30; myDescribe1 = "If you are on foot, dismounts your opponent and damages the ethereal's rider or the live mount"; myDescribe2 = "(which must be healed before ridden again)."; break;
-						case 48: myIcon = 0x3FC;	myAttack = "Serpent Arrow";				myMana = 30; myDescribe1 = "Fires a snake at the target, poisoning them in addition to normal damage with a successful hit."; myDescribe2 = "The archer must be skilled in poisoning and nimble of hand to achieve success."; break;
-						case 49: myIcon = 0x3FD;	myAttack = "Shadow Infectious Strike";	myMana = 25; myDescribe1 = "Attempts to apply a poisoned weapon's poison to the Target when sneaking and hidden. The higher the"; myDescribe2 = "Poisoning skill of the user, the higher the chance the strength of the applied Poison will be increased by one."; break;
-						case 50: myIcon = 0x3FE;	myAttack = "Shadow Strike";				myMana = 20; myDescribe1 = "This attack does moderate extra Damage to the Target and immediately hides the"; myDescribe2 = "user. In order to attempt a Shadowstrike you must have a high amount of the Stealth skill."; break;
-						case 51: myIcon = 0x3FF;	myAttack = "Spin Attack";				myMana = 20; myDescribe1 = "Causes one to spin around really fast, hitting multiple times with their weapon."; break;
-						case 52: myIcon = 0x400;	myAttack = "Stunning Strike";			myMana = 20; myDescribe1 = "One hit with a weapon will be seriously stunned."; break;
-						case 53: myIcon = 0x401;	myAttack = "Talon Strike";				myMana = 30; myDescribe1 = "Attack with increased damage with additional damage over time."; break;
-						case 54: myIcon = 0x402;	myAttack = "Toxic Strike";				myMana = 20; myDescribe1 = "Causes the weapon to do an extra amount of poison damage."; break;
-						case 55: myIcon = 0x403;	myAttack = "Whirlwind Attack";			myMana = 15; myDescribe1 = "Attacks all valid Targets within a one tile radius of the attacker."; break;
+						case 1:  myIcon = 0x1;		myAttack = "Achilles Strike";			myMana = 20; myDescribe1 = "Um golpe da arma irá ferir gravemente o tendão de Aquiles do alvo."; break;
+						case 2:  myIcon = 0x2;		myAttack = "Armor Ignore";				myMana = 20; myDescribe1 = "Ignora as Resistências do Alvo mas causa dano ligeiramente inferior ao potencial máximo da arma."; break;
+						case 3:  myIcon = 0x3;		myAttack = "Armor Pierce";				myMana = 20; myDescribe1 = "Golpeia teu inimigo com força perfurante de armadura e infligindo maior dano."; break;
+						case 4:  myIcon = 0x4;		myAttack = "Bladeweave";				myMana = 10; myDescribe1 = "O guerreiro torna-se um com sua arma, permitindo que ela guie sua mão."; myDescribe2 = "Os efeitos deste ataque são imprevisíveis, mas eficazes (10+? Mana)."; break;
+						case 5:  myIcon = 0x5;		myAttack = "Bleed Attack";				myMana = 30; myDescribe1 = "Faz o alvo sangrar profusamente, causando Dano Direto várias vezes ao longo"; myDescribe2 = "dos próximos segundos. A quantidade de Dano causado diminui a cada vez."; break;
+						case 6:  myIcon = 0x6;		myAttack = "Block";						myMana = 20; myDescribe1 = "Aumenta tuas defesas por um curto período."; break;
+						case 7:  myIcon = 0x7;		myAttack = "Concussion Blow";			myMana = 20; myDescribe1 = "Causa Dano Direto ao Alvo baseado na diferença entre seus atuais"; myDescribe2 = "Pontos de Vida e Mana. Quanto maior a diferença, mais Dano eles recebem."; break;
+						case 8:  myIcon = 0x8;		myAttack = "Consecrated Strike";		myMana = 20; myDescribe1 = "Faz a arma causar a melhor quantidade de dano possível."; break;
+						case 9:  myIcon = 0xA;		myAttack = "Crushing Blow";				myMana = 25; myDescribe1 = "Causa uma quantidade substancial extra de dano diretamente ao Alvo."; break;
+						case 10: myIcon = 0xB;		myAttack = "Death Blow";				myMana = 50; myDescribe1 = "Permite-te desferir um golpe mortal."; break;
+						case 11: myIcon = 0x11;		myAttack = "Defense Mastery";			myMana = 20; myDescribe1 = "Aumenta tua resistência física por um curto período enquanto reduz tua habilidade de infligir dano."; break;
+						case 12: myIcon = 0x12;		myAttack = "Devastating Blow";			myMana = 30; myDescribe1 = "Permite-te desferir um golpe quase mortal."; break;
+						case 13: myIcon = 0x13;		myAttack = "Disarm";					myMana = 20; myDescribe1 = "Desarma o Alvo e impede-o de rearmar qualquer arma por uma curta duração."; break;
+						case 14: myIcon = 0x14;		myAttack = "Dismount";					myMana = 20; myDescribe1 = "Desaloja o Alvo de sua Montaria e causa uma quantidade moderada de Dano direto a eles."; break;
+						case 15: myIcon = 0x15;		myAttack = "Disrobe";					myMana = 15; myDescribe1 = "Força teu alvo a perder sua roupa exterior."; break;
+						case 16: myIcon = 0x16;		myAttack = "Double Shot";				myMana = 30; myDescribe1 = "Envia duas flechas voando em direção ao teu oponente."; break;
+						case 17: myIcon = 0x17;		myAttack = "Double Strike";				myMana = 30; myDescribe1 = "O próximo Alvo que o usuário golpear será atingido pela arma duas vezes."; break;
+						case 18: myIcon = 0x18;		myAttack = "Double Whirlwind Attack";	myMana = 25; myDescribe1 = "Atinge todos os inimigos no alcance, com dano bónus extra se houver muitos alvos ao teu redor."; break;
+						case 19: myIcon = 0x19;		myAttack = "Drain Dexterity";			myMana = 25; myDescribe1 = "Drena a destreza do alvo quando ele é golpeado."; break;
+						case 20: myIcon = 0x1A;		myAttack = "Drain Intellect";			myMana = 25; myDescribe1 = "Drena a inteligência do alvo quando ele é golpeado."; break;
+						case 21: myIcon = 0x1B;		myAttack = "Drain Mana";				myMana = 25; myDescribe1 = "Drena a mana do alvo quando ele é golpeado."; break;
+						case 22: myIcon = 0x1C;		myAttack = "Drain Stamina";				myMana = 25; myDescribe1 = "Drena a stamina do alvo quando ele é golpeado."; break;
+						case 23: myIcon = 0x2B;		myAttack = "Drain Strength";			myMana = 25; myDescribe1 = "Drena a força do alvo quando ele é golpeado."; break;
+						case 24: myIcon = 0x2C;		myAttack = "Dual Wield";				myMana = 30; myDescribe1 = "Ataca mais rápido enquanto balanças com ambas as armas."; break;
+						case 25: myIcon = 0x2D;		myAttack = "Earth Strike";				myMana = 20; myDescribe1 = "Faz a arma causar uma quantidade extra de dano físico."; break;
+						case 26: myIcon = 0x2E;		myAttack = "Elemental Strike";			myMana = 20; myDescribe1 = "Faz a arma causar uma quantidade extra de dano entre fogo, frio, energia e veneno."; break;
+						case 27: myIcon = 0x30;		myAttack = "Feint";						myMana = 25; myDescribe1 = "Ganha uma vantagem defensiva sobre teu oponente principal por um curto período."; break;
+						case 28: myIcon = 0x3E9;	myAttack = "Fire Strike";				myMana = 20; myDescribe1 = "Faz a arma causar uma quantidade extra de dano de fogo."; break;
+						case 29: myIcon = 0x3EA;	myAttack = "Fists of Fury";				myMana = 20; myDescribe1 = "Ataca com ambos os punhos com muito mais eficácia."; break;
+						case 30: myIcon = 0x3EB;	myAttack = "Force Arrow";				myMana = 20; myDescribe1 = "O arqueiro concentra sua vontade numa flecha de força pura, atordoando seu inimigo."; myDescribe2 = "Inimigos atordoados ficam temporariamente mais fáceis de acertar, e às vezes esquecem quem estão atacando."; break;
+						case 31: myIcon = 0x3E8;	myAttack = "Force of Nature";			myMana = 40; myDescribe1 = "Infunde o atacante com a Fúria da Natureza. Este poder faz com que vinhas frondosas irrompam"; myDescribe2 = "debaixo da pele do atacante, causando dano físico e de veneno a eles."; break;
+						case 32: myIcon = 0x3EC;	myAttack = "Freeze Strike";				myMana = 20; myDescribe1 = "Faz a arma causar uma quantidade extra de dano de frio."; break;
+						case 33: myIcon = 0x3ED;	myAttack = "Frenzied Whirlwind";		myMana = 20; myDescribe1 = "Um ataque rápido a todos os inimigos no alcance de tua arma que causa dano ao longo do tempo."; break;
+						case 34: myIcon = 0x3EE;	myAttack = "Greater Magic Protection";	myMana = 30; myDescribe1 = "Permite-te absorver uma grande quantidade de energia mágica."; break;
+						case 35: myIcon = 0x3EF;	myAttack = "Greater Melee Protection";	myMana = 30; myDescribe1 = "Permite-te absorver uma grande quantidade de dano físico."; break;
+						case 36: myIcon = 0x3F0;	myAttack = "Infectious Strike";			myMana = 15; myDescribe1 = "Tenta aplicar o veneno de uma arma envenenada ao Alvo. Quanto maior a habilidade de Envenenamento do"; myDescribe2 = "usuário, maior a chance de a força do Veneno aplicado ser aumentada em um nível."; break;
+						case 37: myIcon = 0x3F1;	myAttack = "Lightning Arrow";			myMana = 20; myDescribe1 = "Uma flecha carregada que arremessa relâmpagos nos aliados do seu alvo."; break;
+						case 38: myIcon = 0x3F2;	myAttack = "Lightning Strike";			myMana = 20; myDescribe1 = "Faz a arma causar uma quantidade extra de dano de energia."; break;
+						case 39: myIcon = 0x3F3;	myAttack = "Magic Protection";			myMana = 25; myDescribe1 = "Permite-te absorver uma boa quantidade de energia mágica."; break;
+						case 40: myIcon = 0x3F4;	myAttack = "Melee Protection";			myMana = 25; myDescribe1 = "Permite-te absorver uma boa quantidade de dano físico."; break;
+						case 41: myIcon = 0x3F5;	myAttack = "Mortal Strike";				myMana = 25; myDescribe1 = "Impede o Alvo de ser curado por qualquer meio por alguns Segundos."; myDescribe2 = "Este efeito não impede um Alvo de regenerar pontos de vida."; break;
+						case 42: myIcon = 0x3F6;	myAttack = "Moving Shot";				myMana = 15; myDescribe1 = "Permite ao arqueiro disparar uma flecha ou virote enquanto se move."; myDescribe2 = "Normalmente um Arqueiro deve estar Parado para disparar em um Alvo."; break;
+						case 43: myIcon = 0x3F7;	myAttack = "Nerve Strike";				myMana = 20; myDescribe1 = "Causa dano e paralisa teu oponente por um curto período."; break;
+						case 44: myIcon = 0x3F8;	myAttack = "Paralyzing Blow";			myMana = 20; myDescribe1 = "Paralisa o alvo por alguns segundos."; break;
+						case 45: myIcon = 0x3F9;	myAttack = "Psychic Attack";			myMana = 30; myDescribe1 = "Encanta temporariamente a arma do atacante com energia psíquica mortal,"; myDescribe2 = "permitindo danificar a mente do defensor e sua habilidade de infligir dano com magia."; break;
+						case 46: myIcon = 0x3FA;	myAttack = "Riding Attack";				myMana = 20; myDescribe1 = "Dá aos teus ataques a cavalo um efeito muito mais mortal."; break;
+						case 47: myIcon = 0x3FB;	myAttack = "Riding Swipe";				myMana = 30; myDescribe1 = "Se estás a pé, desmonta teu oponente e danifica o cavaleiro etéreo ou a montaria viva"; myDescribe2 = "(que deve ser curada antes de ser montada novamente)."; break;
+						case 48: myIcon = 0x3FC;	myAttack = "Serpent Arrow";				myMana = 30; myDescribe1 = "Dispara uma serpente no alvo, envenenando-o além do dano normal com um acerto bem-sucedido."; myDescribe2 = "O arqueiro deve ser habilidoso em envenenamento e ágil de mãos para obter sucesso."; break;
+						case 49: myIcon = 0x3FD;	myAttack = "Shadow Infectious Strike";	myMana = 25; myDescribe1 = "Tenta aplicar o veneno de uma arma envenenada ao Alvo quando furtivo e escondido. Quanto maior a"; myDescribe2 = "habilidade de Envenenamento do usuário, maior a chance de a força do Veneno aplicado ser aumentada em um nível."; break;
+						case 50: myIcon = 0x3FE;	myAttack = "Shadow Strike";				myMana = 20; myDescribe1 = "Este ataque causa Dano extra moderado ao Alvo e esconde imediatamente o"; myDescribe2 = "usuário. Para tentar um Golpe das Sombras deves ter uma alta quantidade da habilidade Furtividade."; break;
+						case 51: myIcon = 0x3FF;	myAttack = "Spin Attack";				myMana = 20; myDescribe1 = "Faz com que alguém gire muito rapidamente, acertando múltiplas vezes com sua arma."; break;
+						case 52: myIcon = 0x400;	myAttack = "Stunning Strike";			myMana = 20; myDescribe1 = "Um golpe com uma arma deixará seriamente atordoado."; break;
+						case 53: myIcon = 0x401;	myAttack = "Talon Strike";				myMana = 30; myDescribe1 = "Ataca com dano aumentado com dano adicional ao longo do tempo."; break;
+						case 54: myIcon = 0x402;	myAttack = "Toxic Strike";				myMana = 20; myDescribe1 = "Faz a arma causar uma quantidade extra de dano de veneno."; break;
+						case 55: myIcon = 0x403;	myAttack = "Whirlwind Attack";			myMana = 15; myDescribe1 = "Ataca todos os Alvos válidos dentro de um raio de um tile do atacante."; break;
 					}
 					AddPage( nPage ); 
 
@@ -164,14 +164,14 @@ namespace Server.Items
 				AddPage(62);
 				AddButton( 401, 87, 0x89E, 0x89E, 18, GumpButtonType.Page, 63 );
 				AddButton( 129, 87, 0x89D, 0x89D, 19, GumpButtonType.Page, 61 );
-				AddHtml( 135, 108, 139, 163, @"There are some other ways to use these the command '[sad' will open the toolbar, in case you close the toolbar yourself. Of course it will reopen if", (bool)false, (bool)false);
-				AddHtml( 291, 108, 139, 163, @"you simply un-equip and re-equip the weapon again. If you want to create macros to initiate these abilities, you will simply need to use the '[set1', '[set2',", (bool)false, (bool)false);
+				AddHtml( 135, 108, 139, 163, @"Há outras maneiras de usar estes comandos: '[sad' abrirá a barra de ferramentas, caso a feches tu mesmo. Claro que ela reabrirá se", (bool)false, (bool)false);
+				AddHtml( 291, 108, 139, 163, @"simplesmente desequipares e reequipares a arma novamente. Se desejas criar macros para iniciar estas habilidades, precisarás apenas usar os comandos '[set1', '[set2',", (bool)false, (bool)false);
 
 				AddPage(63);
 				AddButton( 401, 87, 0x89E, 0x89E, 18, GumpButtonType.Page, 1 );
 				AddButton( 129, 87, 0x89D, 0x89D, 19, GumpButtonType.Page, 62 );
-				AddHtml( 135, 108, 139, 163, @"'[set3', '[set4', or '[set5' commands...depending on which ability you want to use. This book is also for reference only, and you do not need to carry it to use these", (bool)false, (bool)false);
-				AddHtml( 291, 108, 139, 163, @"special abilities.", (bool)false, (bool)false);
+				AddHtml( 135, 108, 139, 163, @"'[set3', '[set4', ou '[set5'... dependendo de qual habilidade desejas usar. Este livro é apenas para referência, e não precisas carregá-lo para usar estas", (bool)false, (bool)false);
+				AddHtml( 291, 108, 139, 163, @"habilidades especiais.", (bool)false, (bool)false);
 			}
 		}
 

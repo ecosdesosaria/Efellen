@@ -30,7 +30,7 @@ namespace Server.Misc
             int charges = GetCharges(wand);
             if (charges <= 0)
             {
-                from.SendMessage("The wand has no remaining charges.");
+                from.SendMessage("A varinha não possui mais cargas.");
                 wand.Delete();
                 return;
             }
@@ -42,7 +42,7 @@ namespace Server.Misc
                     {
                         if (target.Name.Equals(InvalidNames[i], StringComparison.OrdinalIgnoreCase))
                         {
-                            from.SendMessage("You cannot disenchant unidentified items.");
+                            from.SendMessage("Você não pode desencantar itens não identificados.");
                             return;
                         }
                     }
@@ -52,7 +52,7 @@ namespace Server.Misc
 
                 if (!cont.IsChildOf(from.Backpack))
                 {
-                    from.SendMessage("You can only disenchant containers in your backpack.");
+                    from.SendMessage("Você só pode desencantar itens dentro de seu próprio inventário.");
                     return;
                 }
 
@@ -62,14 +62,14 @@ namespace Server.Misc
 
             if (!IsDisenchantable(target))
             {
-                from.SendMessage("That cannot be disenchanted.");
+                from.SendMessage("Isso não pode ser desencantado.");
                 return;
             }
 
             int dust = GetArcaneDustValue(target);
             if (dust <= 0)
             {
-                from.SendMessage("The power of this item is too faint to produce arcane dust.");
+                from.SendMessage("A energia deste item é muito fraca para produzir poeira arcana.");
                 return;
             }
 
@@ -77,7 +77,7 @@ namespace Server.Misc
             target.Delete();
 
             GiveArcaneDust(from, dust);
-            from.SendMessage("{0} crumbled into {1} arcane dust.", target.Name != null ? target.Name : "An item", dust);
+            from.SendMessage("{0} desmoronou em {1} poeira arcana.", target.Name != null ? target.Name : "Um item", dust);
         }
 
         public static void DisenchantContainer(Mobile from, Container cont, Item wand)
@@ -88,7 +88,7 @@ namespace Server.Misc
             int charges = GetCharges(wand);
             if (charges <= 0)
             {
-                from.SendMessage("The wand has no remaining charges.");
+                from.SendMessage("A varinha não possui mais cargas.");
                 wand.Delete();
                 return;
             }
@@ -102,7 +102,7 @@ namespace Server.Misc
 
             if (validItems.Count == 0)
             {
-                from.SendMessage("No valid items found to disenchant.");
+                from.SendMessage("Nenhum item válido encontrado para desencantar.");
                 return;
             }
 
@@ -113,7 +113,7 @@ namespace Server.Misc
             {
                 if (charges <= 0)
                 {
-                    from.SendMessage("You could not finish your task because your wand has run out of charges.");
+                    from.SendMessage("Você não pode terminar sua tarefa porque sua varinha não possui mais cargas.");
                     break;
                 }
 
@@ -132,14 +132,14 @@ namespace Server.Misc
             if (disenchanted > 0)
             {
                 GiveArcaneDust(from, totalDust);
-                from.SendMessage("{0} item{1} crumbled into {2} arcane dust.", disenchanted, disenchanted != 1 ? "s" : "", totalDust);
+                from.SendMessage("{0} item{1} desmoronou em {2} poeira arcana.", disenchanted, disenchanted != 1 ? "s" : "", totalDust);
             }
 
             SetCharges(wand, charges);
 
             if (charges <= 0)
             {
-                from.SendMessage("The wand has exhausted its unraveling powers and has ceased to be.");
+                from.SendMessage("A varinha esgotou seus poderes de desvendar e deixou de existir.");
                 wand.Delete();
             }
         }
@@ -198,7 +198,7 @@ namespace Server.Misc
 
             if (charges <= 0)
             {
-                from.SendMessage("The wand has exhausted its unraveling powers and has ceased to be.");
+                from.SendMessage("A varinha esgotou seus poderes de desvendar e deixou de existir.");
                 wand.Delete();
                 return;
             }
@@ -380,11 +380,11 @@ namespace Server.Misc
             Dragable = true;
             AddPage(0);
             AddBackground(0, 0, 300, 140, 9270);
-            AddHtml(20, 20, 260, 60, "Are you sure? Confirming will disenchant all valid items inside of this container.", true, true);
+            AddHtml(20, 20, 260, 60, "Você tem certeza? Ao confirmar todos os itens válidos dentro do container serão desencantados.", true, true);
             AddButton(40, 100, 4005, 4007, 1, GumpButtonType.Reply, 0);
-            AddLabel(75, 100, 0, "Confirm");
+            AddLabel(75, 100, 0, "Confirmar");
             AddButton(170, 100, 4005, 4007, 0, GumpButtonType.Reply, 0);
-            AddLabel(205, 100, 0, "Cancel");
+            AddLabel(205, 100, 0, "Cancelar");
         }
 
         public override void OnResponse(Server.Network.NetState sender, RelayInfo info)

@@ -117,9 +117,9 @@ namespace Server.Misc
 					say = "";	
 					switch( Utility.RandomMinMax( 0, 2 ) )
 					{
-						case 0: say = "where one can find " + what + " in " + where + ""; break;	
-						case 1: say = "where one would need to go to " + where + " if they are going to find " + what + ""; break;	
-						case 2: say = "that someone can probably find " + what + " if they search " + where + ""; break;	
+						case 0: say = "onde se pode encontrar " + what + " em " + where + ""; break;	
+						case 1: say = "onde alguém precisaria ir para " + where + " se quiser encontrar " + what + ""; break;	
+						case 2: say = "que alguém provavelmente pode encontrar " + what + " se procurar em " + where + ""; break;	
 					}
 				}
 				else if ( toPlayer )
@@ -127,9 +127,9 @@ namespace Server.Misc
 					say = "";	
 					switch( Utility.RandomMinMax( 0, 2 ) )
 					{
-						case 0: say = "I learned where one can find " + what + ". They would need to head to " + where + "."; break;	
-						case 1: say = "One would need to go to " + where + " if they are going to find " + what + "."; break;	
-						case 2: say = "The " + RandomThings.GetRandomJob() + " in " + RandomThings.GetRandomCity() + " told me that someone can probably find " + what + " if they search " + where + "."; break;	
+						case 0: say = "Eu descobri onde se pode encontrar " + what + ". Seria preciso ir para " + where + "."; break;	
+						case 1: say = "Alguém precisaria ir para " + where + " se quiser encontrar " + what + "."; break;	
+						case 2: say = "O " + RandomThings.GetRandomJob() + " em " + RandomThings.GetRandomCity() + " me disse que alguém provavelmente pode encontrar " + what + " se procurar em " + where + "."; break;	
 					}
 				}
 				else if ( speaker is SherryTheMouse )
@@ -137,9 +137,9 @@ namespace Server.Misc
 					say = "";	
 					switch( Utility.RandomMinMax( 0, 2 ) )
 					{
-						case 0: say = "Lord British would tell me stories about " + what + ", and how it was in " + where + "."; break;	
-						case 1: say = "Someone in the castle went to " + where + " and saw " + what + "."; break;	
-						case 2: say = "I heard " + QuestCharacters.RandomWords() + " tell Lord British that " + what + " was said to be in " + where + "."; break;	
+						case 0: say = "Lord British me contava histórias sobre " + what + ", e como estava em " + where + "."; break;	
+						case 1: say = "Alguém no castel foi para " + where + " e viu " + what + "."; break;	
+						case 2: say = "Ouvi " + QuestCharacters.RandomWords() + " dizer ao Lord British que " + what + " supostamente estava em " + where + "."; break;	
 					}
 				}
 				else
@@ -147,9 +147,9 @@ namespace Server.Misc
 					say = "";	
 					switch( Utility.RandomMinMax( 0, 2 ) )
 					{
-						case 0: say = "I finally learned where we can find " + what + ". We need to head to " + where + "."; break;	
-						case 1: say = "We need to go to " + where + " if we are going to find " + what + "."; break;	
-						case 2: say = "The " + RandomThings.GetRandomJob() + " in " + RandomThings.GetRandomCity() + " told me that we can probably find " + what + " if we search " + where + "."; break;	
+						case 0: say = "Finalmente descobri onde podemos encontrar " + what + ". Precisamos ir para " + where + "."; break;	
+						case 1: say = "Precisamos ir para " + where + " se quisermos encontrar " + what + "."; break;	
+						case 2: say = "O " + RandomThings.GetRandomJob() + " em " + RandomThings.GetRandomCity() + " me disse que provavelmente podemos encontrar " + what + " se procurarmos em " + where + "."; break;	
 					}
 				}
 			}
@@ -534,57 +534,57 @@ namespace Server.Misc
 			int max = 198; if ( !useAll ){ max = max + 40; }
 			switch( Utility.RandomMinMax( 0, max ) )
 			{
-				case 0: sWords = "a bright white shrine in Sosaria that leads to the moon"; break;	
-				case 1: sWords = "a castle of evil mages ruled by an even more vile archmage"; break;	
-				case 2: sWords = "a cave in the Lodor swamp that is home to scaly humanoids"; break;	
-				case 3: sWords = "a cave of pixies and a crazy druid in the Savaged Empire"; break;	
-				case 4: sWords = "a cave west of Lodoria, that is filled with serpents, ettins, and trolls"; break;	
-				case 5: sWords = "a crypt beneath the cave of souls"; break;	
-				case 6: sWords = "a deep dungeon of dead in the Lodor cold lands"; break;	
-				case 7: sWords = "a demigoddess of blood, and she has returned"; break;	
-				case 8: sWords = "a demonic lord corrupting the core of Dungeon Ankh"; break;	
-				case 9: sWords = "a den of ancient gargoyles in the swamps of the Savaged Empire"; break;	
-				case 10: sWords = "a den of cave bears in the bottom of Dardin's Pit"; break;	
-				case 11: sWords = "a den of dragons north of the Village of Whisper"; break;	
-				case 12: sWords = "a den of harpies on the island in Lodor"; break;	
-				case 13: sWords = "a Dungeon of Doom in the southwest region of Sosaria"; break;	
-				case 14: sWords = "a dungeon of ork sorcerers plotting against us"; break;	
-				case 15: sWords = "a frozen palace where the ice queen dwells"; break;	
-				case 16: sWords = "a ghost haunting those ruins in the Savaged Empire"; break;	
-				case 17: sWords = "a gigantic squid living in the bottom of the Flooded Temple"; break;	
-				case 18: sWords = "a great many secrets that can be learned in the Library of Bal Tsareth"; break;	
-				case 19: sWords = "a group of devil worshipers in Dungeon Vile"; break;	
-				case 20: sWords = "a group of ophidians worshiping in the Serpent Sanctum"; break;	
-				case 21: sWords = "a horde of demons in Dungeon Torment"; break;	
-				case 22: sWords = "a horrible secret within the mountains of Umber Veil"; break;	
-				case 23: sWords = "a lair of vampires that exists north of the white shrine"; break;	
-				case 24: sWords = "a large group of ship builders in Lodor"; break;	
-				case 25: sWords = "a magic mirror in Dungeon Fire"; break;	
-				case 26: sWords = "a magical hedge maze created centuries ago"; break;	
-				case 27: sWords = "a magical portal in the bottom of the Pharaohs tomb in Sosaria"; break;	
-				case 28: sWords = "a magical portal in the Savaged Empire"; break;	
-				case 29: sWords = "a magical seal, keeping the lich king from escaping"; break;	
-				case 30: sWords = "a pack of minotaurs guarding that old hedge maze"; break;	
-				case 31: sWords = "a Pharaohs tomb in the desert of Sosaria"; break;	
-				case 32: sWords = "a pool of vile liquid in the bottom of Dungeon Wicked"; break;	
-				case 33: sWords = "a powerful lich roaming within a tower in Sosaria, with a magical mirror"; break;	
-				case 34: sWords = "a primitive orc fort near the old graveyard in the Savaged Empire"; break;	
-				case 35: sWords = "a race of serpent men in dungeon scorn"; break;	
-				case 36: sWords = "a secret entrance in the old cemetery of the Savaged Empire"; break;	
-				case 37: sWords = "a secret passage in the Umber Veil castle"; break;	
-				case 38: sWords = "a storm giant in a castle out on the Savaged Empire sea"; break;	
-				case 39: sWords = "a twisted pass in the Savaged Empire with undead druids about"; break;	
-				case 40: sWords = "a valley of cyclops in the Savaged Empire"; break;	
-				case 41: sWords = "an underground passage that connects the northern and central islands of Lodoria"; break;	
-				case 42: sWords = "an abandoned mine north of Grey in Sosaria"; break;	
-				case 43: sWords = "an altar in the Savaged Empire where those are sacrificed to the dragon king"; break;	
-				case 44: sWords = "an ancient blood cult in the Isles of Dread"; break;	
-				case 45: sWords = "an ancient crypt where the gargoyles once buried their dead"; break;	
-				case 46: sWords = "an ancient dark elf city deep beneath Lodor"; break;	
-				case 47: sWords = "an ancient evil beneath the mystical hedge maze"; break;	
-				case 48: sWords = "an ancient lair in the Lodor caves, where wizards and elementals dwell"; break;	
-				case 49: sWords = "an ancient lich that has an island fortress in the Savaged Empire"; break;	
-				case 50: sWords = "an ancient prison hidden in the desert sands of the Serpent Island"; break;	
+				case 0: sWords = "um santuário branco brilhante em Sosaria que leva à lua"; break;	
+				case 1: sWords = "um castelo de magos do mal governado por um arquimago ainda mais vil"; break;	
+				case 2: sWords = "uma caverna no pântano de Lodor que é lar de humanoides escamosos"; break;	
+				case 3: sWords = "uma caverna de pixies e um druida louco no Savaged Empire"; break;	
+				case 4: sWords = "uma caverna a oeste de Lodoria, que está cheia de serpentes, ettins e trolls"; break;	
+				case 5: sWords = "uma cripta sob a Cave of Souls"; break;	
+				case 6: sWords = "uma masmorra profunda dos mortos nas terras frias de Lodor"; break;	
+				case 7: sWords = "uma semideusa do sangue, e ela retornou"; break;	
+				case 8: sWords = "um senhor demoníaco corrompendo o núcleo de Dungeon Ankh"; break;	
+				case 9: sWords = "um covil de gárgulas antigas nos pântanos do Savaged Empire"; break;	
+				case 10: sWords = "um covil de ursos das cavernas no fundo de Dardin's Pit"; break;	
+				case 11: sWords = "um covil de dragões ao norte de Village of Whisper"; break;	
+				case 12: sWords = "um covil de harpias na ilha em Lodor"; break;	
+				case 13: sWords = "uma Dungeon of Doom na região sudoeste de Sosaria"; break;	
+				case 14: sWords = "uma masmorra de feiticeiros orcs conspirando contra nós"; break;	
+				case 15: sWords = "um palácio congelado onde habita a rainha do gelo"; break;	
+				case 16: sWords = "um fantasma assombrando aquelas ruínas no Savaged Empire"; break;	
+				case 17: sWords = "uma lula gigantesca vivendo no fundo do Flooded Temple"; break;	
+				case 18: sWords = "um grande número de segredos que podem ser aprendidos em Dungeon Clues"; break;	
+				case 19: sWords = "um grupo de adoradores do demônio em Dungeon Vile"; break;	
+				case 20: sWords = "um grupo de ophidians adorando no Serpent Sanctum"; break;	
+				case 21: sWords = "uma horda de demônios em Dungeon Torment"; break;	
+				case 22: sWords = "um segredo horrível dentro das montanhas de Umber Veil"; break;	
+				case 23: sWords = "um covil de vampiros que existe ao norte do santuário branco"; break;	
+				case 24: sWords = "um grande grupo de construtores navais em Lodor"; break;	
+				case 25: sWords = "um espelho mágico em Dungeon Fire"; break;	
+				case 26: sWords = "um labirinto de sebes mágico criado séculos atrás"; break;	
+				case 27: sWords = "um portal mágico no fundo da tumba do Faraó em Sosaria"; break;	
+				case 28: sWords = "um portal mágico no Savaged Empire"; break;	
+				case 29: sWords = "um selo mágico, impedindo que o lich king escape"; break;	
+				case 30: sWords = "uma matilha de minotauros guardando aquele antigo labirinto de sebes"; break;	
+				case 31: sWords = "uma tumba de Faraós no deserto de Sosaria"; break;	
+				case 32: sWords = "um poço de líquido vil no fundo de Dungeon Wicked"; break;	
+				case 33: sWords = "um lich poderoso vagando dentro de uma torre em Sosaria, com um espelho mágico"; break;	
+				case 34: sWords = "um forte orc primitivo perto do antigo cemitério no Savaged Empire"; break;	
+				case 35: sWords = "uma raça de homens-serpente em Dungeon Scorn"; break;	
+				case 36: sWords = "uma entrada secreta no antigo cemitério do Savaged Empire"; break;	
+				case 37: sWords = "uma passagem secreta no castelo de Umber Veil"; break;	
+				case 38: sWords = "um storm giant em um castelo no mar do Savaged Empire"; break;	
+				case 39: sWords = "uma passagem sinuosa no Savaged Empire com druidas mortos-vivos à solta"; break;	
+				case 40: sWords = "um vale de ciclopes no Savaged Empire"; break;	
+				case 41: sWords = "uma passagem subterrânea que conecta as ilhas norte e central de Lodoria"; break;	
+				case 42: sWords = "uma mina abandonada ao norte de Grey em Sosaria"; break;	
+				case 43: sWords = "um altar no Savaged Empire onde são feitos sacrifícios ao dragon king"; break;	
+				case 44: sWords = "um antigo culto de sangue nas Isles of Dread"; break;	
+				case 45: sWords = "uma cripta antiga onde os gárgulas enterravam seus mortos"; break;	
+				case 46: sWords = "uma cidade antiga de dark elves nas profundezas de Lodor"; break;	
+				case 47: sWords = "um mal antigo sob o labirinto de sebes místico"; break;	
+				case 48: sWords = "um covil antigo nas cavernas de Lodor, onde habitam magos e elementais"; break;	
+				case 49: sWords = "um lich antigo que tem uma fortaleza insular no Savaged Empire"; break;	
+				case 50: sWords = "uma prisão antiga escondida nas areias do deserto da Serpent Island"; break;
 				case 51: 
 					string land = "Lodor";
 					string where = "northern";
@@ -627,261 +627,261 @@ namespace Server.Misc
 						case 10: wyrm = "a stygian dragan"; break;
 						case 11: wyrm = "a night dragon"; break;
 					}
-					sWords = wyrm + " flying around the " + where + " area of " + land + ""; 
+					sWords = wyrm + " voando pela área de " + where + " em " + land + ""; 
 					break;	
-				case 52: sWords = "an ancient wyrm sleeping below Dungeon Hate"; break;	
-				case 53: sWords = "an elven pass that leads to great craftsmen"; break;	
-				case 54: sWords = "an infestation of rats and snakes in Dungeon Wrath"; break;	
-				case 55: sWords = "an island in the Savaged Empire with blue scaled drakes"; break;	
-				case 56: sWords = "an old ruined building in Sosaria, with treasure in the basement"; break;	
-				case 57: sWords = "an ork prophecy that speaks of their god returning to rule"; break;	
-				case 58: sWords = "a Savaged Empire lighthouse with a secret beneath it"; break;	
-				case 59: sWords = "ancient crypts deep below the Savaged Empire"; break;	
-				case 60: sWords = "a cave in Lodoria that only rangers or explorers could traverse"; break;	
-				case 61: sWords = "bandits within a stronghold in northern Sosaria"; break;	
-				case 62: sWords = "Castle Exodus lying in ruins since the stranger destroyed it"; break;	
-				case 63: sWords = "catacombs under the city of Lodoria"; break;	
-				case 64: sWords = "cauldrons full of potions in those dungeons"; break;	
-				case 65: sWords = "drakkul summoning demons in the ice caves of Lodor"; break;	
-				case 66: sWords = "demons being unleashed below the desert sands of Lodor"; break;	
-				case 67: sWords = "a dungeon called Deceit that is home to a very powerful lich"; break;	
-				case 68: sWords = "evil humans in an ancient temple in the Lodor mountains"; break;	
-				case 69: sWords = "fire beetles nesting in the Cave of Fire"; break;	
-				case 70: sWords = "many different elementals guarding the Tomb of the Fallen Wizard"; break;	
-				case 71: sWords = "men made of ice that the ice queen summons"; break;	
-				case 72: sWords = "mines in the Savaged Empire controlled by ratmen"; break;	
-				case 73: sWords = "mines the barbarians dig at, in the northern part of the Isles of Dread"; break;	
-				case 74: sWords = "powerful cursed creatures roaming the Serpent Island"; break;	
-				case 75: sWords = "scrolls of power, but they could only be used at shrines in Ambrosia"; break;	
-				case 76: sWords = "small settlements of primitive tribes in the Isles of Dread"; break;	
-				case 77: sWords = "some of the most poisonous creatures in Dungeon Bane"; break;	
-				case 78: sWords = "some old ruins in Sosaria, where ratmen now live beneath it"; break;	
-				case 79: sWords = "a City of Mistas that was supposedly swallowed by the sea centuries ago"; break;	
-				case 80: sWords = "dark elves summoning demons in dungeon destard"; break;	
-				case 81: sWords = "mystical stones that elves have that can color anything"; break;	
-				case 82: sWords = "a cemetery in Lodoria with a hidden secret"; break;	
-				case 83: sWords = "a swamp in Sosaria with an ancient temple where a lich awaits the prophecy"; break;	
-				case 84: sWords = "vile spider creatures in a castle in the jungles of Lodor"; break;	
-				case 85: sWords = "an ancient relic buried in a grave in Umber Veil"; break;	
-				case 86: sWords = "a powerful spellbook in a ruined wizard home"; break;	
-				case 87: sWords = "a friendly dragon living beneath the Sosarian ice islands"; break;	
-				case 88: sWords = "an abandoned logger home in Sosaria, with something beneath the floor boards"; break;	
-				case 89: sWords = "bandits having a royal prisoner held in the northern part of Sosaria"; break;	
-				case 90: sWords = "a tower in Sosaria where a lich holds a powerful staff"; break;	
-				case 91: sWords = "a skull of Mondain that is deep below Castle Exodus"; break;	
-				case 92: sWords = "this lighthouse keeper in Sosaria selling powerful artifacts found on the shore"; break;	
-				case 93: sWords = "a lich in the Sosaria swamp carrying a marvelous artifact"; break;	
-				case 94: sWords = "chests full of treasure in those magic pools"; break;	
-				case 95: sWords = "a powerful troll lord in the bottom of Dardin's Pit"; break;	
-				case 96: sWords = "a demon king dwelling in dungeon doom that grants wishes"; break;	
-				case 97: sWords = "a pair of mystical boots that let you walk on lava"; break;	
-				case 98: sWords = "really good ore in the Mines of Morinia"; break;	
-				case 99: sWords = "this time lord that is sending people to the past or future"; break;	
-				case 100: sWords = "a secret passage in the tomb below the Lodoria cemetery"; break;	
-				case 101: sWords = "a broken wall in the British family tomb"; break;	
-				case 102: sWords = "a group of ogres and ettins that have been burning farmland south of the Town of Moon"; break;	
-				case 103: sWords = "a grave being dug up in the Village of Grey"; break;	
-				case 104: sWords = "a volcanic dragon in southern Lodor"; break;	
-				case 105: sWords = "a master vampire on an island in Lodor"; break;	
-				case 106: sWords = "only necromancers and death knights living on that dead island in Lodor"; break;	
-				case 107: sWords = "a town called Skara Brae that wasn't really destroyed by a wizard"; break;	
-				case 108: sWords = "a wizard named Mangar who built a tower somewhere in Sosaria"; break;	
-				case 109: sWords = "some stranger who brought an end to Exodus"; break;	
-				case 110: sWords = "someone escaping from Skara Brae"; break;	
-				case 111: sWords = "a vault of the Black Knight that is too big to explore"; break;	
-				case 112: sWords = "the Undermountain being able to be reached through the lizardmen caves"; break;	
-				case 113: sWords = "someone that touched a crystal ball in Mangar's tower and vanished"; break;	
-				case 114: sWords = "an empty oak shelf that really is a door to the Thieves Guild"; break;	
-				case 115: sWords = "a Black Magic Guild hidden around here"; break;	
-				case 116: sWords = "the Black Knight having an entire city trapped in a bottle"; break;	
-				case 117: sWords = "a wizard named Vordo who was able to make an entire island disappear"; break;	
-				case 118: sWords = "a lost race of Zuluu that could ride the legendary dragyns"; break;	
-				case 119: sWords = "the dragyns, that were once offspring of wyrms"; break;	
-				case 120: sWords = "dragon like creatures with scales of gems"; break;	
-				case 121: sWords = "an island appearing by the hands of Poseidon"; break;	
-				case 122: sWords = "a thief escaping from the cell in the castle of Lord British"; break;	
-				case 123: sWords = "some forgotten halls below the castle of Lord British"; break;	
-				case 124: sWords = "some cultists bringing Kazibal back from the dead"; break;	
-				case 125: sWords = "an ancient evil dwelling below Castle British"; break;	
-				case 126: sWords = "a necromancer appearing out of the ever burning fire in Sosaria"; break;	
-				case 127: sWords = "someone buried with great treasure in the graveyard in " + city; break;	
-				case 128: sWords = "a demilich dwelling below " + city; break;	
-				case 129: sWords = "some " + RandomThings.GetRandomJob() + " selling artifacts in " + city; break;	
-				case 130: sWords = "someone who killed the " + RandomThings.GetRandomJob() + " in " + city; break;	
-				case 131: sWords = "a clan of orcs that slowly mutated over the centuries"; break;	
-				case 132: sWords = "sailors exploring a reef in the Isles of Dread"; break;	
-				case 133: sWords = "some necromancers practicing black magic deep below the castle"; break;	
-				case 134: sWords = "a brass tower appearing in Umber Veil"; break;	
-				case 135: sWords = "an orc tribe that discovered the lost silver mines"; break;	
-				case 136: sWords = "an abandoned castle of Stonegate, because all inside were slain"; break;	
-				case 137: sWords = "some Shadowlords that took over the castle of Stonegate"; break;	
-				case 138: sWords = "a cyclops warlord seeking silver to forge weapons for his army"; break;	
-				case 139: sWords = "an evil knight that has the skull of Mondain"; break;	
-				case 140: sWords = "a vile wizard that has the gem of immortality"; break;	
-				case 141: sWords = "an ancient book of magic buried in " + dungeon; break;	
-				case 142: sWords = "a wizard that sails the Isles of Dread, selling rare spells"; break;	
-				case 143: sWords = "a blacksmith in " + city + " that makes weapons out of mithril"; break;	
-				case 144: sWords = "Zorn living in " + dungeon; break;	
-				case 145: sWords = "a black sword resting in " + dungeon; break;	
-				case 146: sWords = "some " + adventurer + " that was killed by a cyclops' eye"; break;	
-				case 147: sWords = "some " + adventurer + " that had a tinker in " + city + " make a golem with a dark core"; break;	
-				case 148: sWords = "titans that drop lightning from the sky"; break;	
-				case 149: sWords = "some " + adventurer + " that was killed by elemental grues"; break;	
-				case 150: sWords = "an ancient wyrm guarding the way to the Hidden Valley"; break;	
-				case 151: sWords = "a mad wizard acting as a high priest of Kazibal"; break;	
-				case 152: sWords = "an island mansion where Azerok is said to still live"; break;	
-				case 153: sWords = "a hidden cave below the Forgotten Lighthouse"; break;	
-				case 154: sWords = GetRareLocation( from, false, true ); if ( from is HouseVisitor ){ sWords = "an artifact merchant in " + city + ""; } break;	
-				case 155: sWords = "a chatty mouse in the castle that likes cheese"; break;	
-				case 156: sWords = "a moonstone that can summon a moongate from almost anywhere"; break;	
-				case 157: sWords = "a group of miners saying that Morinia is one of the best mines for ore"; break;	
-				case 158: sWords = "some crystals being in the Morinia mines"; break;	
-				case 159: sWords = "a legendary miner that dug up dwarven ore"; break;	
-				case 160: sWords = "a legendary lumberjack that chopped up elven wood"; break;	
-				case 161: sWords = "some " + RandomThings.GetRandomJob() + " solving the mystery of the Skull Gate"; break;	
-				case 162: sWords = "some " + RandomThings.GetRandomJob() + " solving the mystery of the Serpent Pillars"; break;	
+				case 52: sWords = "um ancient wyrm dormindo abaixo de Dungeon Hate"; break;	
+				case 53: sWords = "um passe élfico que leva a grandes artesãos"; break;	
+				case 54: sWords = "uma infestação de ratos e cobras em Dungeon Wrath"; break;	
+				case 55: sWords = "uma ilha no Savaged Empire com drakes de escamas azuis"; break;	
+				case 56: sWords = "um edifício arruinado antigo em Sosaria, com tesouro no porão"; break;	
+				case 57: sWords = "uma profecia ork que fala de seu deus retornando para governar"; break;	
+				case 58: sWords = "um farol no Savaged Empire com um segredo sob ele"; break;	
+				case 59: sWords = "criptas antigas nas profundezas do Savaged Empire"; break;	
+				case 60: sWords = "uma caverna em Lodoria que apenas rangers ou exploradores poderiam atravessar"; break;	
+				case 61: sWords = "bandidos dentro de uma fortaleza no norte de Sosaria"; break;	
+				case 62: sWords = "Castle Exodus em ruínas desde que o estranho o destruiu"; break;	
+				case 63: sWords = "catacumbas sob a cidade de Lodoria"; break;	
+				case 64: sWords = "caldeirões cheios de poções naquelas masmorras"; break;	
+				case 65: sWords = "drakkul invocando demônios nas cavernas de gelo de Lodor"; break;	
+				case 66: sWords = "demônios sendo liberados sob as areias do deserto de Lodor"; break;	
+				case 67: sWords = "uma masmorra chamada Deceit que é lar de um lich muito poderoso"; break;	
+				case 68: sWords = "humanos maus em um templo antigo nas montanhas de Lodor"; break;	
+				case 69: sWords = "besouros de fogo aninhando na Cave of Fire"; break;	
+				case 70: sWords = "muitos elementais diferentes guardando a Tomb of the Fallen Wizard"; break;	
+				case 71: sWords = "homens de gelo que a rainha do gelo invoca"; break;	
+				case 72: sWords = "minas no Savaged Empire controladas por ratmen"; break;	
+				case 73: sWords = "minas que os bárbaros escavam, na parte norte das Isles of Dread"; break;	
+				case 74: sWords = "criaturas amaldiçoadas poderosas vagando pela Serpent Island"; break;	
+				case 75: sWords = "pergaminhos do poder, mas eles só poderiam ser usados em santuários em Ambrosia"; break;	
+				case 76: sWords = "pequenos assentamentos de tribos primitivas nas Isles of Dread"; break;	
+				case 77: sWords = "algumas das criaturas mais venenosas em Dungeon Bane"; break;	
+				case 78: sWords = "algumas ruínas antigas em Sosaria, onde ratmen agora vivem sob elas"; break;	
+				case 79: sWords = "uma City of Mistas que supostamente foi engolida pelo mar séculos atrás"; break;	
+				case 80: sWords = "dark elves invocando demônios em dungeon destard"; break;	
+				case 81: sWords = "pedras místicas que os elfos têm que podem colorir qualquer coisa"; break;	
+				case 82: sWords = "um cemitério em Lodoria com um segredo escondido"; break;	
+				case 83: sWords = "um pântano em Sosaria com um templo antigo onde um lich aguarda a profecia"; break;	
+				case 84: sWords = "criaturas aranhas vis em um castelo nas selvas de Lodor"; break;	
+				case 85: sWords = "uma relíquia antiga enterrada em uma sepultura em Umber Veil"; break;	
+				case 86: sWords = "um livro de feitiços poderoso em uma casa de mago arruinada"; break;	
+				case 87: sWords = "um dragão amigável vivendo sob as ilhas de gelo de Sosaria"; break;	
+				case 88: sWords = "uma casa de lenhador abandonada em Sosaria, com algo sob as tábuas do chão"; break;	
+				case 89: sWords = "bandidos mantendo um prisioneiro real na parte norte de Sosaria"; break;	
+				case 90: sWords = "uma torre em Sosaria onde um lich guarda um cajado poderoso"; break;	
+				case 91: sWords = "um crânio de Mondain que está nas profundezas de Castle Exodus"; break;	
+				case 92: sWords = "este faroleiro em Sosaria vendendo artefatos poderosos encontrados na costa"; break;	
+				case 93: sWords = "um lich no pântano de Sosaria carregando um artefato maravilhoso"; break;	
+				case 94: sWords = "baús cheios de tesouro naquelas poças mágicas"; break;	
+				case 95: sWords = "um poderoso troll lord no fundo de Dardin's Pit"; break;	
+				case 96: sWords = "um rei demônio habitando em dungeon doom que concede desejos"; break;	
+				case 97: sWords = "um par de botas místicas que permitem andar sobre lava"; break;	
+				case 98: sWords = "minério realmente bom nas Mines of Morinia"; break;	
+				case 99: sWords = "este time lord que está enviando pessoas para o passado ou futuro"; break;	
+				case 100: sWords = "uma passagem secreta na tumba abaixo do cemitério de Lodoria"; break;	
+				case 101: sWords = "uma parede quebrada na tumba da família British"; break;	
+				case 102: sWords = "um grupo de ogros e ettins que têm queimado terras agrícolas ao sul da Town of Moon"; break;	
+				case 103: sWords = "uma sepultura sendo escavada na Village of Grey"; break;	
+				case 104: sWords = "um dragão vulcânico no sul de Lodor"; break;	
+				case 105: sWords = "um vampiro mestre em uma ilha em Lodor"; break;	
+				case 106: sWords = "apenas necromantes e death knights vivendo naquela ilha morta em Lodor"; break;	
+				case 107: sWords = "uma cidade chamada Skara Brae que não foi realmente destruída por um mago"; break;	
+				case 108: sWords = "um mago chamado Mangar que construiu uma torre em algum lugar de Sosaria"; break;	
+				case 109: sWords = "algum estranho que pôs fim a Exodus"; break;	
+				case 110: sWords = "alguém escapando de Skara Brae"; break;	
+				case 111: sWords = "um cofre do Black Knight que é grande demais para explorar"; break;	
+				case 112: sWords = "o Undermountain podendo ser alcançado através das cavernas dos lizardmen"; break;	
+				case 113: sWords = "alguém que tocou uma bola de cristal na torre de Mangar e desapareceu"; break;	
+				case 114: sWords = "uma prateleira de carvalho vazia que na verdade é uma porta para a Thieves Guild"; break;	
+				case 115: sWords = "uma Black Magic Guild escondida por aqui"; break;	
+				case 116: sWords = "o Black Knight tendo uma cidade inteira presa em uma garrafa"; break;	
+				case 117: sWords = "um mago chamado Vordo que conseguiu fazer uma ilha inteira desaparecer"; break;	
+				case 118: sWords = "uma raça perdida de Zuluu que podia cavalgar os lendários dragyns"; break;	
+				case 119: sWords = "os dragyns, que eram outrora descendentes de wyrms"; break;	
+				case 120: sWords = "criaturas semelhantes a dragões com escamas de gemas"; break;	
+				case 121: sWords = "uma ilha aparecendo pelas mãos de Poseidon"; break;	
+				case 122: sWords = "um ladrão escapando da cela no castelo de Lord British"; break;	
+				case 123: sWords = "alguns salões esquecidos abaixo do castelo de Lord British"; break;	
+				case 124: sWords = "alguns cultistas trazendo Kazibal de volta dos mortos"; break;	
+				case 125: sWords = "um mal antigo habitando abaixo do Castle British"; break;	
+				case 126: sWords = "um necromante surgindo do fogo eterno em Sosaria"; break;	
+				case 127: sWords = "alguém enterrado com grande tesouro no cemitério em " + city; break;	
+				case 128: sWords = "um demilich habitando abaixo de " + city; break;	
+				case 129: sWords = "algum " + RandomThings.GetRandomJob() + " vendendo artefatos em " + city; break;	
+				case 130: sWords = "alguém que matou o " + RandomThings.GetRandomJob() + " em " + city; break;	
+				case 131: sWords = "um clã de orcs que lentamente mutou ao longo dos séculos"; break;	
+				case 132: sWords = "marinheiros explorando um recife nas Isles of Dread"; break;	
+				case 133: sWords = "alguns necromantes praticando magia negra nas profundezas do castelo"; break;	
+				case 134: sWords = "uma torre de latão aparecendo em Umber Veil"; break;	
+				case 135: sWords = "uma tribo orc que descobriu as minas de prata perdidas"; break;	
+				case 136: sWords = "um castelo abandonado de Stonegate, porque todos dentro foram mortos"; break;	
+				case 137: sWords = "alguns Shadowlords que tomaram o castelo de Stonegate"; break;	
+				case 138: sWords = "um warlord ciclope procurando prata para forjar armas para seu exército"; break;	
+				case 139: sWords = "um cavaleiro do mal que tem o crânio de Mondain"; break;	
+				case 140: sWords = "um mago vil que tem a gema da imortalidade"; break;	
+				case 141: sWords = "um livro antigo de magia enterrado em " + dungeon; break;	
+				case 142: sWords = "um mago que navega pelas Isles of Dread, vendendo feitiços raros"; break;	
+				case 143: sWords = "um ferreiro em " + city + " que faz armas de mithril"; break;	
+				case 144: sWords = "Zorn vivendo em " + dungeon; break;	
+				case 145: sWords = "uma espada negra repousando em " + dungeon; break;	
+				case 146: sWords = "algum " + adventurer + " que foi morto pelo olho de um ciclope"; break;	
+				case 147: sWords = "algum " + adventurer + " que mandou um tinker em " + city + " fazer um golem com um núcleo sombrio"; break;	
+				case 148: sWords = "titans que lançam raios do céu"; break;	
+				case 149: sWords = "algum " + adventurer + " que foi morto por grues elementais"; break;	
+				case 150: sWords = "um ancient wyrm guardando o caminho para o Hidden Valley"; break;	
+				case 151: sWords = "um mago louco atuando como um sumo sacerdote de Kazibal"; break;	
+				case 152: sWords = "uma mansão insular onde dizem que Azerok ainda vive"; break;	
+				case 153: sWords = "uma caverna escondida abaixo do Forgotten Lighthouse"; break;	
+				case 154: sWords = GetRareLocation( from, false, true ); if ( from is HouseVisitor ){ sWords = "um comerciante de artefatos em " + city + ""; } break;	
+				case 155: sWords = "um rato tagarela no castelo que gosta de queijo"; break;	
+				case 156: sWords = "uma moonstone que pode invocar um moongate de quase qualquer lugar"; break;	
+				case 157: sWords = "um grupo de mineiros dizendo que Morinia é uma das melhores minas para minério"; break;	
+				case 158: sWords = "alguns cristais estando nas minas de Morinia"; break;	
+				case 159: sWords = "um mineiro lendário que desenterrou minério anão"; break;	
+				case 160: sWords = "um lenhador lendário que cortou madeira élfica"; break;	
+				case 161: sWords = "algum " + RandomThings.GetRandomJob() + " resolvendo o mistério do Skull Gate"; break;	
+				case 162: sWords = "algum " + RandomThings.GetRandomJob() + " resolvendo o mistério dos Serpent Pillars"; break;
 				case 163: 
-					misc = "tomb";	
+					misc = "tumba";	
 					switch( Utility.RandomMinMax( 0, 4 ) )
 					{
-						case 1: misc = "crypt"; break;	
-						case 2: misc = "treasure"; break;	
-						case 3: misc = "artifact"; break;	
-						case 4: misc = "remains"; break;	
+						case 1: misc = "cripta"; break;	
+						case 2: misc = "tesouro"; break;	
+						case 3: misc = "artefato"; break;	
+						case 4: misc = "restos"; break;	
 					}
-					sWords = "a " + misc + " of " + RandomThings.GetRandomName() + " in " + dungeon + ""; break;	
+					sWords = "um " + misc + " de " + RandomThings.GetRandomName() + " em " + dungeon + ""; break;	
 				case 164:
-					misc = "map";	
+					misc = "mapa";	
 					switch( Utility.RandomMinMax( 0, 4 ) )
 					{
-						case 1: misc = "tablet"; break;	
-						case 2: misc = "scroll"; break;	
-						case 3: misc = "book"; break;	
-						case 4: misc = "clue"; break;	
+						case 1: misc = "tabuleta"; break;	
+						case 2: misc = "pergaminho"; break;	
+						case 3: misc = "livro"; break;	
+						case 4: misc = "pista"; break;	
 					}
-					sWords = "a " + misc + " that leads to " + dungeon + ""; break;	
+					sWords = "um " + misc + " que leva a " + dungeon + ""; break;	
 				case 165:
-					misc = "map";	
+					misc = "mapa";	
 					switch( Utility.RandomMinMax( 0, 4 ) )
 					{
-						case 1: misc = "tablet"; break;	
-						case 2: misc = "scroll"; break;	
-						case 3: misc = "book"; break;	
-						case 4: misc = "clue"; break;	
+						case 1: misc = "tabuleta"; break;	
+						case 2: misc = "pergaminho"; break;	
+						case 3: misc = "livro"; break;	
+						case 4: misc = "pista"; break;	
 					}
-					string misc2 = "gold";	
+					string misc2 = "ouro";	
 					switch( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 1: misc2 = "treasure"; break;
-						case 2: misc2 = "gems"; break;
-						case 3: misc2 = "jewels"; break;
-						case 4: misc2 = "riches"; break;
-						case 5: misc2 = "crystals"; break;
+						case 1: misc2 = "tesouro"; break;
+						case 2: misc2 = "gemas"; break;
+						case 3: misc2 = "joias"; break;
+						case 4: misc2 = "riquezas"; break;
+						case 5: misc2 = "cristais"; break;
 					}
-					sWords = "a " + misc + " that leads to the " + misc2 + " of " + RandomThings.GetRandomName() + ""; break;	
+					sWords = "um " + misc + " que leva ao " + misc2 + " de " + RandomThings.GetRandomName() + ""; break;	
 				case 166: 
-					misc = "n artifact";	
+					misc = " artefato";	
 					switch( Utility.RandomMinMax( 0, 4 ) )
 					{
 						case 1: misc = "Artefact"; break;	
-						case 2: misc = "magic item"; break;	
-						case 3: misc = "n ancient artifact"; break;	
-						case 4: misc = "n ancient relic"; break;	
+						case 2: misc = "item mágico"; break;	
+						case 3: misc = " artefato antigo"; break;	
+						case 4: misc = " relíquia antiga"; break;	
 					}
-					sWords = "a" + misc + " called " + relics + " lost in " + dungeon + ""; break;	
+					sWords = "um" + misc + " chamado " + relics + " perdido em " + dungeon + ""; break;	
 				case 167: 
-					misc = "destroyed";	
+					misc = "destruída";	
 					switch( Utility.RandomMinMax( 0, 3 ) )
 					{
-						case 1: misc = "ruined"; break;	
-						case 2: misc = "devastated"; break;	
-						case 3: misc = "lost"; break;	
+						case 1: misc = "arruinada"; break;	
+						case 2: misc = "devastada"; break;	
+						case 3: misc = "perdida"; break;	
 					}
-					sWords = "legends of " + RandomThings.MadeUpCity() + " being " + misc + " during " + RandomThings.GetRandomDisaster() + ""; break;	
+					sWords = "lendas de " + RandomThings.MadeUpCity() + " sendo " + misc + " durante " + RandomThings.GetRandomDisaster() + ""; break;	
 				case 168: 
-					misc = "joined";	
+					misc = "se juntou a";	
 					switch( Utility.RandomMinMax( 0, 4 ) )
 					{
-						case 1: misc = "left"; break;	
-						case 2: misc = "betrayed"; break;	
-						case 3: misc = "destroyed"; break;	
-						case 4: misc = "started"; break;	
+						case 1: misc = "deixou"; break;	
+						case 2: misc = "traiu"; break;	
+						case 3: misc = "destruiu"; break;	
+						case 4: misc = "iniciou"; break;	
 					}
-					sWords = "a " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " that " + misc + " " + RandomThings.GetRandomSociety() + ""; break;
+					sWords = "um " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " que " + misc + " " + RandomThings.GetRandomSociety() + ""; break;
 				case 169: 
-					misc = "robbed";	
+					misc = "roubado";	
 					switch( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 1: misc = "killed"; break;	
-						case 2: misc = "lost"; break;	
-						case 3: misc = "slain"; break;	
-						case 4: misc = "arrested"; break;	
-						case 5: misc = "kidnapped"; break;	
+						case 1: misc = "morto"; break;	
+						case 2: misc = "perdido"; break;	
+						case 3: misc = "abatido"; break;	
+						case 4: misc = "preso"; break;	
+						case 5: misc = "sequestrado"; break;	
 					}
-					sWords = "a " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " that was " + misc + " on the way to " + RandomThings.MadeUpCity() + ""; break;
+					sWords = "um " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " que foi " + misc + " a caminho de " + RandomThings.MadeUpCity() + ""; break;
 				case 170: 
 					misc = "hydra";	
 					switch( Utility.RandomMinMax( 1, 6 ) )
 					{
-						case 1: misc = "dragon"; break;	
+						case 1: misc = "dragão"; break;	
 						case 2: misc = "drake"; break;	
 						case 3: misc = "wyrm"; break;	
 					}
-					sWords = "a " + misc + " tooth being thrown on the ground to summon a skeleton"; break;
+					sWords = "um dente de " + misc + " sendo jogado no chão para invocar um esqueleto"; break;
 				case 171: 
-					misc = "fisherman";	
+					misc = "pescador";	
 					switch( Utility.RandomMinMax( 1, 6 ) )
 					{
-						case 1: misc = "ship builder"; break;	
-						case 2: misc = "pirate"; break;	
-						case 3: misc = "sailor"; break;	
+						case 1: misc = "construtor de navios"; break;	
+						case 2: misc = "pirata"; break;	
+						case 3: misc = "marinheiro"; break;	
 					}
-					sWords = "a " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " selling a megaldon tooth to a " + misc + " in " + RandomThings.MadeUpCity() + " for " + (Utility.RandomMinMax( 5, 20 )*100) + " gold"; break;
+					sWords = "um " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " vendendo um dente de megaldon para um " + misc + " em " + RandomThings.MadeUpCity() + " por " + (Utility.RandomMinMax( 5, 20 )*100) + " de ouro"; break;
 				case 172: 
-					misc = "died";	
+					misc = "morreu";	
 					switch( Utility.RandomMinMax( 0, 4 ) )
 					{
-						case 1: misc = "went missing"; break;	
-						case 2: misc = "perished"; break;	
-						case 3: misc = "was slain"; break;	
-						case 4: misc = "was lost"; break;	
+						case 1: misc = "desapareceu"; break;	
+						case 2: misc = "pereceu"; break;	
+						case 3: misc = "foi morto"; break;	
+						case 4: misc = "foi perdido"; break;	
 					}
-					sWords = "a " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " that " + misc + " in " + dungeon + ""; break;
-				case 173: sWords = "Some Myconids have been wandering far from the underground lately"; break;
-				case 174: sWords = "Strange are the dreams I'm having as of late, the priest said I should consider my sins, and yet I wonder if there's nothing else at play here"; break;
-				case 175: sWords = "They said a Trollbear called Blacktooth has been raiding caravans passing by the woods near Montor"; break;
+					sWords = "um " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " que " + misc + " em " + dungeon + ""; break;
+				case 173: sWords = "Alguns micônidas têm vagado para longe do subterrâneo ultimamente"; break;
+				case 174: sWords = "Estranhos são os sonhos que tenho tido ultimamente, o sacerdote disse que eu deveria considerar meus pecados, e ainda assim me pergunto se não há mais algo em jogo aqui"; break;
+				case 175: sWords = "Disseram que um Urso-Troll chamado Dente-Negro tem atacado caravanas que passam pelas florestas perto de Montor"; break;
 				case 176: 
-					misc = "mother";	
+					misc = "mãe";	
 						switch( Utility.RandomMinMax( 0, 4 ) )
 						{
-							case 1: misc = "parrot"; break;	
-							case 2: misc = "father"; break;	
-							case 3: misc = "daughter"; break;	
-							case 4: misc = "wife"; break;	
+							case 1: misc = "papagaio"; break;	
+							case 2: misc = "pai"; break;	
+							case 3: misc = "filha"; break;	
+							case 4: misc = "esposa"; break;	
 						}
-					sWords = "The Mother Superior at the convent of Holy Mercy near grey is taking care of my "+misc+"."; break;
-				case 177: sWords = "The Butcher is real. I've seen it, deep into the castle in Ravendark."; break;
-				case 178: sWords = "The orcs have a new warchief. Firefang has been setting farms on fire near Moon."; break;
-				case 179: sWords = "Strange mushrooms that seem to walk have been spotted on the eastern coast of Sosaria. I wonder what is causing that."; break;
-				case 180: sWords = "Archdruid Fiorin has long since abandoned civilization and now guards the Howling Grove on the western coast of Sosaria."; break;
-				case 181: sWords = "I've seen the black covenant at midnight, dancing around a vile goat in the dread islands!"; break;
-				case 182: sWords = "The Skeleton King has awoken, I say! Its tomb in the Ancient Pyramid rattles with his gilded bones!"; break;
-				case 183: sWords = "Strange have been my dreams of late. A sage I consulted in Lodoria told me that I was being influenced by some vile force."; break;
-				case 184: sWords = "The Eye Tyrants can fire dreadful rays from each of their eyestalks."; break;
-				case 185: sWords = "I've seen it in my sleep. Yellow and monstrous, all eyestalks and teech. It said its name is The Dreamweaver, and it dwells in Lodoria."; break;
-				case 186: sWords = "A hunter told me that the Old One Eye rampaged through their camp in the deserts of the Savaged Empire and killed many before moving on."; break;
-				case 187: sWords = "I've heard chilling songs coming from Ravendark. Some say the Prince of Darkness is back."; break;
-				case 188: sWords = "I've seen the angel that guards the Sky Knight's fortress. I'll never see something as beautiful again."; break;
-				case 189: sWords = "Strange cultists have been seen in Lodoria, talking about a great dragon called Ashardalom."; break;
-				case 190: sWords = "It's said that the fires of Destard are burning hotter than ever."; break;
-				case 191: sWords = "I've seen the druids of the Howling Order transform into wolves!"; break;
-				case 192: sWords = "They said that the Daughter of Fire attracts adventurers to the bowels of the Fires of Hell, and they are never seen again."; break;
-				case 193: sWords = "Hrimah has claimed the frozen crown and proclamed himself to the Fist of the North in the Glacial Scar."; break;				
-				case 194: sWords = "The elf said that dread house Fanae had rose in the favor of their evil goddess."; break;
-				case 195: sWords = "That strange elf spoke some evil goddess demanding sacrifice in the dark corners of the world."; break;
-				case 196: sWords = "After milemnia, the Scorching legion has been seen in Sosaria again, deep into the fires of hell"; break;
-				case 197: sWords = "A band of brigands led by an Ettin named Dardin has been terrorizing the northern coast";break;
-				case 198: sWords = "A group of fallen knights has built a keep red as blood in central Sosaria, they are led by a vile man named Caelan.";break;
+					sWords = "A Madre Superiora no convento da Santa Misericórdia perto de Grey está cuidando do(a) meu(minha) " + misc + "."; break;
+				case 177: sWords = "O Açougueiro é real. Eu o vi, no fundo do castelo em Ravendark."; break;
+				case 178: sWords = "Os orcs têm um novo chefe de guerra. Presa de Fogo tem incendiado fazendas perto de Moon."; break;
+				case 179: sWords = "Cogumelos estranhos que parecem andar foram avistados na costa leste de Sosaria. O que será que está causando isso."; break;
+				case 180: sWords = "O Arquidruida Fiorin abandonou a civilização há muito tempo e agora guarda o Bosque Uivante na costa oeste de Sosaria."; break;
+				case 181: sWords = "Eu vi o pacto negro à meia-noite, dançando em torno de um bode vil nas ilhas do pavor!"; break;
+				case 182: sWords = "O Rei Esqueleto despertou, eu digo! Sua tumba na Pirâmide Antiga ressoa com seus ossos dourados!"; break;
+				case 183: sWords = "Estranhos têm sido meus sonhos ultimamente. Um sábio que consultei em Lodoria me disse que eu estava sendo influenciado por alguma força vil."; break;
+				case 184: sWords = "Os Tiranos dos Olhos podem disparar raios terríveis de cada um de seus olhos."; break;
+				case 185: sWords = "Eu vi em meu sono. Amarelo e monstruoso, todo olhos e dentes. Disse que seu nome é O Tecelão de Sonhos, e que habita em Lodoria."; break;
+				case 186: sWords = "Um caçador me disse que o Velho Caolho arrasou o acampamento deles nos desertos do Império Selvagem e matou muitos antes de seguir em frente."; break;
+				case 187: sWords = "Ouvi canções arrepiantes vindas de Ravendark. Alguns dizem que o Príncipe das Trevas está de volta."; break;
+				case 188: sWords = "Eu vi o anjo que guarda a fortaleza dos Cavaleiros do Céu. Nunca mais verei algo tão belo."; break;
+				case 189: sWords = "Cultistas estranhos foram vistos em Lodoria, falando sobre um grande dragão chamado Ashardalom."; break;
+				case 190: sWords = "Dizem que os fogos de Destard estão queimando mais forte do que nunca."; break;
+				case 191: sWords = "Eu vi os druidas da Ordem Uivante se transformarem em lobos!"; break;
+				case 192: sWords = "Disseram que a Filha do Fogo atrai aventureiros para as entranhas dos Fogos do Inferno, e eles nunca mais são vistos."; break;
+				case 193: sWords = "Hrimah reivindicou a coroa congelada e se proclamou o Punho do Norte na Cicatriz Glacial."; break;				
+				case 194: sWords = "O elfo disse que a temida casa Fanae havia ascendido no favor de sua deusa maligna."; break;
+				case 195: sWords = "Aquele elfo estranho falou de alguma deusa maligna exigindo sacrifício nos cantos escuros do mundo."; break;
+				case 196: sWords = "Após milênios, a legião abrasadora foi vista novamente em Sosaria, nas profundezas dos fogos do inferno"; break;
+				case 197: sWords = "Uma gangue de bandidos liderada por um Ettin chamado Dardin tem aterrorizado a costa norte"; break;
+				case 198: sWords = "Um grupo de cavaleiros caídos construiu uma fortaleza vermelha como sangue na região central de Sosaria, eles são liderados por um homem vil chamado Caelan."; break;
 			}
 			return sWords;	
 		}
@@ -890,66 +890,66 @@ namespace Server.Misc
 
 		public static string Adventurer()
 		{
-			string sAdventurer = "bandit";	
+			string sAdventurer = "bandido";	
 			switch( Utility.RandomMinMax( 0, 56 ) )
 			{
-				case 0: sAdventurer = "adventurer"; break;	
-				case 1: sAdventurer = "bandit"; break;	
-				case 2: sAdventurer = "barbarian"; break;	
-				case 3: sAdventurer = "bard"; break;	
-				case 4: sAdventurer = "baron"; break;	
-				case 5: sAdventurer = "baroness"; break;	
-				case 6: sAdventurer = "cavalier"; break;	
-				case 7: sAdventurer = "cleric"; break;	
-				case 8: sAdventurer = "conjurer"; break;	
-				case 9: sAdventurer = "defender"; break;	
-				case 10: sAdventurer = "diviner"; break;	
-				case 11: sAdventurer = "enchanter"; break;	
-				case 12: sAdventurer = "enchantress"; break;	
-				case 13: sAdventurer = "explorer"; break;	
-				case 14: sAdventurer = "fighter"; break;	
-				case 15: sAdventurer = "gladiator"; break;	
-				case 16: sAdventurer = "heretic"; break;	
-				case 17: sAdventurer = "hunter"; break;	
-				case 18: sAdventurer = "illusionist"; break;	
-				case 19: sAdventurer = "invoker"; break;	
-				case 20: sAdventurer = "king"; break;	
-				case 21: sAdventurer = "knight"; break;	
-				case 22: sAdventurer = "lady"; break;	
+				case 0: sAdventurer = "aventureiro"; break;	
+				case 1: sAdventurer = "bandido"; break;	
+				case 2: sAdventurer = "bárbaro"; break;	
+				case 3: sAdventurer = "bardo"; break;	
+				case 4: sAdventurer = "barão"; break;	
+				case 5: sAdventurer = "baronesa"; break;	
+				case 6: sAdventurer = "cavaleiro"; break;	
+				case 7: sAdventurer = "clérigo"; break;	
+				case 8: sAdventurer = "conjurador"; break;	
+				case 9: sAdventurer = "defensor"; break;	
+				case 10: sAdventurer = "adivinho"; break;	
+				case 11: sAdventurer = "encantador"; break;	
+				case 12: sAdventurer = "encantadora"; break;	
+				case 13: sAdventurer = "explorador"; break;	
+				case 14: sAdventurer = "guerreiro"; break;	
+				case 15: sAdventurer = "gladiador"; break;	
+				case 16: sAdventurer = "herege"; break;	
+				case 17: sAdventurer = "caçador"; break;	
+				case 18: sAdventurer = "ilusionista"; break;	
+				case 19: sAdventurer = "invocador"; break;	
+				case 20: sAdventurer = "rei"; break;	
+				case 21: sAdventurer = "cavaleiro"; break;	
+				case 22: sAdventurer = "dama"; break;	
 				case 23: sAdventurer = "lord"; break;	
-				case 24: sAdventurer = "mage"; break;	
+				case 24: sAdventurer = "mago"; break;	
 				case 25: sAdventurer = "magician"; break;	
-				case 26: sAdventurer = "mercenary"; break;	
-				case 27: sAdventurer = "minstrel"; break;	
-				case 28: sAdventurer = "monk"; break;	
-				case 29: sAdventurer = "mystic"; break;	
-				case 30: sAdventurer = "necromancer"; break;	
-				case 31: sAdventurer = "outlaw"; break;	
-				case 32: sAdventurer = "paladin"; break;	
-				case 33: sAdventurer = "priest"; break;	
-				case 34: sAdventurer = "priestess"; break;	
-				case 35: sAdventurer = "prince"; break;	
-				case 36: sAdventurer = "princess"; break;	
-				case 37: sAdventurer = "prophet"; break;	
-				case 38: sAdventurer = "queen"; break;	
+				case 26: sAdventurer = "mercenário"; break;	
+				case 27: sAdventurer = "menestrel"; break;	
+				case 28: sAdventurer = "monge"; break;	
+				case 29: sAdventurer = "místico"; break;	
+				case 30: sAdventurer = "necromante"; break;	
+				case 31: sAdventurer = "fora da lei"; break;	
+				case 32: sAdventurer = "paladino"; break;	
+				case 33: sAdventurer = "sacerdote"; break;	
+				case 34: sAdventurer = "sacerdotisa"; break;	
+				case 35: sAdventurer = "príncipe"; break;	
+				case 36: sAdventurer = "princesa"; break;	
+				case 37: sAdventurer = "profeta"; break;	
+				case 38: sAdventurer = "rainha"; break;	
 				case 39: sAdventurer = "ranger"; break;	
-				case 40: sAdventurer = "rogue"; break;	
-				case 41: sAdventurer = "sage"; break;	
-				case 42: sAdventurer = "scout"; break;	
-				case 43: sAdventurer = "seeker"; break;	
-				case 44: sAdventurer = "seer"; break;	
-				case 45: sAdventurer = "shaman"; break;	
-				case 46: sAdventurer = "slayer"; break;	
-				case 47: sAdventurer = "sorcerer"; break;	
-				case 48: sAdventurer = "sorceress"; break;	
-				case 49: sAdventurer = "summoner"; break;	
-				case 50: sAdventurer = "templar"; break;	
-				case 51: sAdventurer = "thief"; break;	
-				case 52: sAdventurer = "traveler"; break;	
-				case 53: sAdventurer = "warlock"; break;	
-				case 54: sAdventurer = "warrior"; break;	
-				case 55: sAdventurer = "witch"; break;	
-				case 56: sAdventurer = "wizard"; break;	
+				case 40: sAdventurer = "ladino"; break;	
+				case 41: sAdventurer = "sábio"; break;	
+				case 42: sAdventurer = "batedor"; break;	
+				case 43: sAdventurer = "buscador"; break;	
+				case 44: sAdventurer = "vidente"; break;	
+				case 45: sAdventurer = "xamã"; break;	
+				case 46: sAdventurer = "exterminador"; break;	
+				case 47: sAdventurer = "feiticeiro"; break;	
+				case 48: sAdventurer = "feiticeira"; break;	
+				case 49: sAdventurer = "invocador"; break;	
+				case 50: sAdventurer = "templário"; break;	
+				case 51: sAdventurer = "ladrão"; break;	
+				case 52: sAdventurer = "viajante"; break;	
+				case 53: sAdventurer = "bruxo"; break;	
+				case 54: sAdventurer = "guerreiro"; break;	
+				case 55: sAdventurer = "bruxa"; break;	
+				case 56: sAdventurer = "mago"; break;	
 			}
 			return sAdventurer;	
 		}
@@ -975,22 +975,22 @@ namespace Server.Misc
 				sSourceJob = RandomThings.GetBoyGirlJob(1);
 			}
 
-			string sSource = "I heard about";	
+			string sSource = "Eu ouvi sobre";	
 			switch( Utility.RandomMinMax( 1, 13 ) )
 			{
-				case 1: sSource = "Rumors are spoken about"; break;
-				case 2: sSource = "They are talking about"; break;
-				case 3: sSource = "There are rumors about"; break;
-				case 4: sSource = "I was told about"; break;
-				case 5: sSource = "I heard someone talking about"; break;
-				case 6: sSource = "There is a story about"; break;
-				case 7: sSource = sSourceName + " told me about"; break;
-				case 8: sSource = sSourceName + " the " + sSourceJob + " told me about"; break;
-				case 9: sSource = "Some " + sSourceJob + " told me about"; break;
-				case 10: sSource = sSourceName + " the " + sSourceJob + " heard about"; break;
-				case 11: sSource = "Some " + sSourceJob + " heard about"; break;
-				case 12: sSource = sSourceName + " the " + sSourceJob + " learned about"; break;
-				case 13: sSource = "Some " + sSourceJob + " learned about"; break;
+				case 1: sSource = "Há rumores sobre"; break;
+				case 2: sSource = "Estão falando sobre"; break;
+				case 3: sSource = "Existem rumores sobre"; break;
+				case 4: sSource = "Me contaram sobre"; break;
+				case 5: sSource = "Ouvi alguém falando sobre"; break;
+				case 6: sSource = "Há uma história sobre"; break;
+				case 7: sSource = sSourceName + " me contou sobre"; break;
+				case 8: sSource = sSourceName + " o " + sSourceJob + " me contou sobre"; break;
+				case 9: sSource = "Algum " + sSourceJob + " me contou sobre"; break;
+				case 10: sSource = sSourceName + " o " + sSourceJob + " ouviu sobre"; break;
+				case 11: sSource = "Algum " + sSourceJob + " ouviu sobre"; break;
+				case 12: sSource = sSourceName + " o " + sSourceJob + " descobriu sobre"; break;
+				case 13: sSource = "Algum " + sSourceJob + " descobriu sobre"; break;
 			}
 
 			string sThey = "Samson";	
@@ -1004,158 +1004,158 @@ namespace Server.Misc
 
 			string sAdventurer = Adventurer();	
 
-			string sMoney = "gold";	
+			string sMoney = "ouro";	
 			switch( Utility.RandomMinMax( 0, 6 ) )
 			{
-				case 0: sMoney = "silver"; break;	
-				case 1: sMoney = "copper"; break;	
-				case 2: sMoney = "jewels"; break;	
-				case 3: sMoney = "crystals"; break;	
+				case 0: sMoney = "prata"; break;	
+				case 1: sMoney = "cobre"; break;	
+				case 2: sMoney = "joias"; break;	
+				case 3: sMoney = "cristais"; break;	
 			}
 
-			string sDebt = "from that card game";	
+			string sDebt = "daquele jogo de cartas";	
 			switch( Utility.RandomMinMax( 0, 19 ) )
 			{
-				case 0: sDebt = "from that bet"; break;	
-				case 1: sDebt = "for that artifact"; break;	
-				case 2: sDebt = "from that card game"; break;	
-				case 3: sDebt = "from that dart game"; break;	
-				case 4: sDebt = "for that horse"; break;	
-				case 5: sDebt = "for that potion"; break;	
-				case 6: sDebt = "for that weapon"; break;	
-				case 7: sDebt = "for that armor"; break;	
-				case 8: sDebt = "for releasing him"; break;	
-				case 9: sDebt = "for finding that item"; break;	
-				case 10: sDebt = "for solving that riddle"; break;	
-				case 11: sDebt = "for digging up that treasure"; break;	
-				case 12: sDebt = "for that gem"; break;	
-				case 13: sDebt = "for that wand"; break;	
-				case 14: sDebt = "for that staff"; break;	
-				case 15: sDebt = "for fixing that thing"; break;	
-				case 16: sDebt = "for killing that monster"; break;	
-				case 17: sDebt = "for stealing that thing"; break;	
-				case 18: sDebt = "for hiding them in my house"; break;	
-				case 19: sDebt = "for that map"; break;	
+				case 0: sDebt = "daquela aposta"; break;	
+				case 1: sDebt = "por aquele artefato"; break;	
+				case 2: sDebt = "daquele jogo de cartas"; break;	
+				case 3: sDebt = "daquele jogo de dardos"; break;	
+				case 4: sDebt = "por aquele cavalo"; break;	
+				case 5: sDebt = "por aquela poção"; break;	
+				case 6: sDebt = "por aquela arma"; break;	
+				case 7: sDebt = "por aquela armadura"; break;	
+				case 8: sDebt = "por libertá-lo"; break;	
+				case 9: sDebt = "por encontrar aquele item"; break;	
+				case 10: sDebt = "por resolver aquele enigma"; break;	
+				case 11: sDebt = "por desenterrar aquele tesouro"; break;	
+				case 12: sDebt = "por aquela gema"; break;	
+				case 13: sDebt = "por aquela varinha"; break;	
+				case 14: sDebt = "por aquele cajado"; break;	
+				case 15: sDebt = "por consertar aquela coisa"; break;	
+				case 16: sDebt = "por matar aquele monstro"; break;	
+				case 17: sDebt = "por roubar aquela coisa"; break;	
+				case 18: sDebt = "por escondê-los na minha casa"; break;	
+				case 19: sDebt = "por aquele mapa"; break;	
 			}
 
 			int relic = Utility.RandomMinMax( 1, 59 );	
 
 			int CommonTalkingCount = 58;
-			string sSpeech = "We are supposed to wait for " + sThey + ".";
+			string sSpeech = "Nós devemos esperar por " + sThey + ".";
 			switch( Utility.RandomMinMax( 1, CommonTalkingCount ) )
 			{
-				case 1: sSpeech = "We are supposed to wait for " + sThey + "."; break;	
-				case 2: sSpeech = sThey + " lives somewhere near " + city + "."; break;	
-				case 3: sSpeech = "We will go find " + sThey + " tomorrow."; break;	
-				case 4: sSpeech = "We need to find a bank and split this loot we have."; break;	
-				case 5: sSpeech = sThey + " still owes me " + Utility.RandomMinMax( 5, 200 ) + " " + sMoney + " " + sDebt + "."; break;	
+				case 1: sSpeech = "Nós devemos esperar por " + sThey + "."; break;	
+				case 2: sSpeech = sThey + " mora em algum lugar perto de " + city + "."; break;	
+				case 3: sSpeech = "Nós vamos encontrar " + sThey + " amanhã."; break;	
+				case 4: sSpeech = "Precisamos encontrar um banco e dividir este saque que temos."; break;	
+				case 5: sSpeech = sThey + " ainda me deve " + Utility.RandomMinMax( 5, 200 ) + " de " + sMoney + " " + sDebt + "."; break;	
 				case 6:
-					cVal = "sleeping";	
+					cVal = "dormindo";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: cVal = "drinking"; break;	
-						case 2: cVal = "eating"; break;	
-						case 3: cVal = "distracted"; break;	
-						case 4: cVal = "searching"; break;	
-						case 5: cVal = "lost"; break;	
-						case 6: cVal = "gone"; break;	
-						case 7: cVal = "exploring"; break;	
-						case 8: cVal = "drunk"; break;	
+						case 1: cVal = "bebendo"; break;	
+						case 2: cVal = "comendo"; break;	
+						case 3: cVal = "distraídos"; break;	
+						case 4: cVal = "procurando"; break;	
+						case 5: cVal = "perdidos"; break;	
+						case 6: cVal = "ausentes"; break;	
+						case 7: cVal = "explorando"; break;	
+						case 8: cVal = "bêbados"; break;	
 					}
-					sSpeech = "I think " + sThey + " stole it while we were " + cVal + "."; break;	
-				case 7: sSpeech = sThey + " will bring it here when they find it."; break;	
+					sSpeech = "Acho que " + sThey + " roubou enquanto estávamos " + cVal + "."; break;	
+				case 7: sSpeech = sThey + " trará isso aqui quando encontrar."; break;	
 				case 8:
-					cVal = "Do you know";	
+					cVal = "Você sabe";	
 					switch( Utility.RandomMinMax( 0, 9 ) )
 					{
-						case 1: cVal = "Where did you meet"; break;	
-						case 2: cVal = "Where did you see"; break;	
-						case 3: cVal = "When did you meet"; break;	
-						case 4: cVal = "When did you see"; break;	
-						case 5: cVal = "When have you last heard from"; break;	
-						case 6: cVal = "When did you kill"; break;	
-						case 7: cVal = "Where did you kill"; break;	
-						case 8: cVal = "When will I meet"; break;	
-						case 9: cVal = "When will we meet"; break;	
+						case 1: cVal = "Onde você conheceu"; break;	
+						case 2: cVal = "Onde você viu"; break;	
+						case 3: cVal = "Quando você conheceu"; break;	
+						case 4: cVal = "Quando você viu"; break;	
+						case 5: cVal = "Quando você teve notícias de"; break;	
+						case 6: cVal = "Quando você matou"; break;	
+						case 7: cVal = "Onde você matou"; break;	
+						case 8: cVal = "Quando eu vou conhecer"; break;	
+						case 9: cVal = "Quando nós vamos conhecer"; break;	
 					}
 					sSpeech = cVal + " " + sThey + "?"; break;	
-				case 9: sSpeech = sThey + " sold " + relics + " for " + Utility.RandomMinMax( 5, 200 ) + " " + sMoney + "."; break;	
-				case 10: sSpeech = "I paid " + sThey + " " + Utility.RandomMinMax( 5, 200 ) + " " + sMoney + " for " + relics + "."; break;	
+				case 9: sSpeech = sThey + " vendeu " + relics + " por " + Utility.RandomMinMax( 5, 200 ) + " de " + sMoney + "."; break;	
+				case 10: sSpeech = "Eu paguei a " + sThey + " " + Utility.RandomMinMax( 5, 200 ) + " de " + sMoney + " por " + relics + "."; break;	
 				case 11:
-					cVal = "destroyed";	
+					cVal = "destruiu";	
 					switch( Utility.RandomMinMax( 0, 6 ) )
 					{
-						case 1: cVal = "sold"; break;	
-						case 2: cVal = "lost"; break;	
-						case 3: cVal = "found"; break;	
-						case 4: cVal = "discovered"; break;	
-						case 5: cVal = "traded"; break;	
-						case 6: cVal = "stole"; break;	
+						case 1: cVal = "vendeu"; break;	
+						case 2: cVal = "perdeu"; break;	
+						case 3: cVal = "encontrou"; break;	
+						case 4: cVal = "descobriu"; break;	
+						case 5: cVal = "trocou"; break;	
+						case 6: cVal = "roubou"; break;	
 					}
 					sSpeech = sThey + " " + cVal + " " + relics + "."; break;	
 				case 12:
-					cVal = "robbed";	
+					cVal = "roubou";	
 					switch( Utility.RandomMinMax( 0, 6 ) )
 					{
-						case 1: cVal = "assassinated"; break;	
-						case 2: cVal = "betrayed"; break;	
-						case 3: cVal = "captured"; break;	
-						case 4: cVal = "fooled"; break;	
-						case 5: cVal = "killed"; break;	
-						case 6: cVal = "swindled"; break;	
+						case 1: cVal = "assassinou"; break;	
+						case 2: cVal = "traiu"; break;	
+						case 3: cVal = "capturou"; break;	
+						case 4: cVal = "enganou"; break;	
+						case 5: cVal = "matou"; break;	
+						case 6: cVal = "extorquiu"; break;	
 					}
-					sSpeech = sThey + " " + cVal + " them, I just know it."; break;	
+					sSpeech = sThey + " " + cVal + " eles, eu sei disso."; break;	
 				case 13:
-					cVal = "bought that from";	
+					cVal = "comprou isso de";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: cVal = "stole that from"; break;	
-						case 2: cVal = "sold that to"; break;	
-						case 3: cVal = "met with"; break;	
-						case 4: cVal = "kidnapped"; break;	
-						case 5: cVal = "robbed"; break;	
-						case 6: cVal = "works for"; break;	
-						case 7: cVal = "lives with"; break;	
-						case 8: cVal = "owes " + Utility.RandomMinMax( 5, 200 ) + " gold to"; break;	
+						case 1: cVal = "roubou isso de"; break;	
+						case 2: cVal = "vendeu isso para"; break;	
+						case 3: cVal = "se encontrou com"; break;	
+						case 4: cVal = "sequestrou"; break;	
+						case 5: cVal = "assaltou"; break;	
+						case 6: cVal = "trabalha para"; break;	
+						case 7: cVal = "mora com"; break;	
+						case 8: cVal = "deve " + Utility.RandomMinMax( 5, 200 ) + " de ouro para"; break;	
 					}
-					sSpeech = sThey + " " + cVal + " a " + RandomThings.GetRandomJob() + " in " + city + "."; break;	
+					sSpeech = sThey + " " + cVal + " um " + RandomThings.GetRandomJob() + " em " + city + "."; break;	
 				case 14:
-					act = "robbed";	
+					act = "assaltou";	
 					switch( Utility.RandomMinMax( 0, 9 ) )
 					{
-						case 1: act = "assassinated"; break;	
-						case 2: act = "betrayed"; break;	
-						case 3: act = "captured"; break;	
-						case 4: act = "met"; break;	
-						case 5: act = "killed"; break;	
-						case 6: act = "left"; break;	
-						case 7: act = "followed"; break;	
-						case 8: act = "served"; break;	
-						case 9: act = "arrested"; break;	
+						case 1: act = "assassinou"; break;	
+						case 2: act = "traiu"; break;	
+						case 3: act = "capturou"; break;	
+						case 4: act = "conheceu"; break;	
+						case 5: act = "matou"; break;	
+						case 6: act = "deixou"; break;	
+						case 7: act = "seguiu"; break;	
+						case 8: act = "serviu"; break;	
+						case 9: act = "prendeu"; break;	
 					}
 					cVal = NameList.RandomName( "female" );	
 					if ( Utility.RandomBool() ){ cVal = NameList.RandomName( "male" ); }
 					string scene = city;	
 					if ( Utility.RandomBool() ){ scene = dungeon; }
-					sSpeech = sThey + " " + act + " " + cVal + " in " + scene + "."; break;	
+					sSpeech = sThey + " " + act + " " + cVal + " em " + scene + "."; break;	
 				case 15:
-					cVal = "executed";	
+					cVal = "executado";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: cVal = "jailed"; break;	
-						case 2: cVal = "arrested"; break;	
-						case 3: cVal = "captured"; break;	
-						case 4: cVal = "banished"; break;	
-						case 5: cVal = "rewarded"; break;	
-						case 6: cVal = "celebrated"; break;	
-						case 7: cVal = "promoted"; break;	
-						case 8: cVal = "released"; break;	
+						case 1: cVal = "preso"; break;	
+						case 2: cVal = "preso"; break;	
+						case 3: cVal = "capturado"; break;	
+						case 4: cVal = "banido"; break;	
+						case 5: cVal = "recompensado"; break;	
+						case 6: cVal = "celebrado"; break;	
+						case 7: cVal = "promovido"; break;	
+						case 8: cVal = "libertado"; break;	
 					}
-					sSpeech = sThey + " was " + cVal + " for killing that " + RandomThings.GetRandomJob() + " in " + city + "."; break;	
-				case 16: sSpeech = "I heard " + sThey + " became a " + RandomThings.GetRandomJob() + " in " + city + "."; break;	
-				case 17: sSpeech = "I need to see the " + RandomThings.GetRandomJob() + " before we travel on."; break;	
-				case 18: sSpeech = sThey + " retired and became a " + RandomThings.GetRandomJob() + " in " + city + "."; break;	
-				case 19: sSpeech = sThey + " was imprisoned for stealing from the " + RandomThings.GetRandomJob() + " in " + city + "."; break;	
+					sSpeech = sThey + " foi " + cVal + " por matar aquele " + RandomThings.GetRandomJob() + " em " + city + "."; break;	
+				case 16: sSpeech = "Ouvi dizer que " + sThey + " se tornou um " + RandomThings.GetRandomJob() + " em " + city + "."; break;	
+				case 17: sSpeech = "Preciso ver o " + RandomThings.GetRandomJob() + " antes de continuarmos viajando."; break;	
+				case 18: sSpeech = sThey + " se aposentou e se tornou um " + RandomThings.GetRandomJob() + " em " + city + "."; break;	
+				case 19: sSpeech = sThey + " foi preso por roubar do " + RandomThings.GetRandomJob() + " em " + city + "."; break;	
 				case 20:
 					string item20 = Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 );		if ( patron is HouseVisitor ){ item20 = relics; }
 					string place20 = Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 );
@@ -1165,7 +1165,7 @@ namespace Server.Misc
 							else { place20 = QuestCharacters.SomePlace( null ); }
 						}
 						if ( patron is HouseVisitor ){ place20 = dungeon; }
-					sSpeech = "I finally learned how we can get the " + item20 + ". We need to assemble the others and meet at " + place20 + "."; break;	
+					sSpeech = "Finalmente descobri como podemos obter o " + item20 + ". Precisamos reunir os outros e nos encontrar em " + place20 + "."; break;	
 				case 21:
 					string item21 = Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 );		if ( patron is HouseVisitor ){ item21 = relics; }
 					string place21 = Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 );
@@ -1175,7 +1175,7 @@ namespace Server.Misc
 							else { place21 = QuestCharacters.SomePlace( null ); }
 						}
 						if ( patron is HouseVisitor ){ place21 = dungeon; }
-					sSpeech = "We need to go to " + place21 + " if we are going to obtain the " + item21 + " for " + QuestCharacters.RandomWords() + "."; break;	
+					sSpeech = "Precisamos ir para " + place21 + " se quisermos obter o " + item21 + " para " + QuestCharacters.RandomWords() + "."; break;	
 				case 22:
 					string item22 = Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 );		if ( patron is HouseVisitor ){ item22 = relics; }
 					string place22 = Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 );
@@ -1185,277 +1185,277 @@ namespace Server.Misc
 							else { place22 = QuestCharacters.SomePlace( null ); }
 						}
 						if ( patron is HouseVisitor ){ place22 = dungeon; }
-					sSpeech = "The " + RandomThings.GetRandomJob() + " in " + city + " told me that we can probably get the " + item22 + " if we search " + place22 + "."; break;
-				case 23: sSpeech = GetRareLocation( patron, false, false ); if ( patron is HouseVisitor ){ sSpeech = "We need to go to " + city + " if we are going to find the " + relics + "."; } break;	
-				case 24: sSpeech = sThey + " has been selling body parts to the black magic guild."; break;	
-				case 25: sSpeech = sThey + " sold that monster skull to the necromancers for " + Utility.RandomMinMax( 50, 200 ) + " gold."; break;	
-				case 26: sSpeech = "We will search for the " + Server.Misc.RandomThings.GetRandomColorName( 0 ) + " " + RandomThings.GetRandomThing( 0 ) + " tomorrow."; break;	
-				case 27: sSpeech = "The " + RandomThings.GetRandomJob() + " in " + RandomThings.MadeUpCity() + " is looking for some help with " + RandomThings.GetRandomMonsters() + "."; break;	
-				case 28: sSpeech = RandomThings.GetRandomShipName( "", 0 ) + " sank off the coast of the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;	
+					sSpeech = "O " + RandomThings.GetRandomJob() + " em " + city + " me disse que provavelmente podemos obter o " + item22 + " se procurarmos em " + place22 + "."; break;
+				case 23: sSpeech = GetRareLocation( patron, false, false ); if ( patron is HouseVisitor ){ sSpeech = "Precisamos ir para " + city + " se quisermos encontrar o " + relics + "."; } break;	
+				case 24: sSpeech = sThey + " tem vendido partes do corpo para a guilda de magia negra."; break;	
+				case 25: sSpeech = sThey + " vendeu aquele crânio de monstro para os necromantes por " + Utility.RandomMinMax( 50, 200 ) + " de ouro."; break;	
+				case 26: sSpeech = "Vamos procurar pelo " + Server.Misc.RandomThings.GetRandomColorName( 0 ) + " " + RandomThings.GetRandomThing( 0 ) + " amanhã."; break;	
+				case 27: sSpeech = "O " + RandomThings.GetRandomJob() + " em " + RandomThings.MadeUpCity() + " está procurando ajuda com " + RandomThings.GetRandomMonsters() + "."; break;	
+				case 28: sSpeech = RandomThings.GetRandomShipName( "", 0 ) + " afundou na costa do " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;	
 				case 29:
 					cVal = RandomThings.MadeUpDungeon();	
 					switch( Utility.RandomMinMax( 0, 1 ) )
 					{
 						case 1: cVal = RandomThings.MadeUpCity(); break;	
 					}
-					sSpeech = "I found a map that leads to " + cVal + "."; break;	
+					sSpeech = "Encontrei um mapa que leva a " + cVal + "."; break;	
 				case 30:
-					cVal = "attack";	
+					cVal = "atacar";	
 					switch( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 1: cVal = "destroy"; break;	
-						case 2: cVal = "invade"; break;	
-						case 3: cVal = "war with"; break;	
-						case 4: cVal = "be defeated by"; break;	
-						case 5: cVal = "be attacked by"; break;	
+						case 1: cVal = "destruir"; break;	
+						case 2: cVal = "invadir"; break;	
+						case 3: cVal = "guerrear com"; break;	
+						case 4: cVal = "ser derrotado por"; break;	
+						case 5: cVal = "ser atacado por"; break;	
 					}
-					sSpeech = "The " + RandomThings.GetRandomTroops() + " are going to " + cVal + " the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;	
+					sSpeech = "Os " + RandomThings.GetRandomTroops() + " vão " + cVal + " o " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;	
 				case 31:
-					cVal = "tower";	
+					cVal = "torre";	
 					switch( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 1: cVal = "castle"; break;	
-						case 2: cVal = "mansion"; break;	
-						case 3: cVal = "keep"; break;	
-						case 4: cVal = "home"; break;	
-						case 5: cVal = "cabin"; break;	
+						case 1: cVal = "castelo"; break;	
+						case 2: cVal = "mansão"; break;	
+						case 3: cVal = "fortaleza"; break;	
+						case 4: cVal = "casa"; break;	
+						case 5: cVal = "cabana"; break;	
 					}
-					sSpeech = "We should build that " + cVal + " in the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;	
+					sSpeech = "Deveríamos construir aquela " + cVal + " no " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;	
 				case 32:
 					cVal = RandomThings.MadeUpDungeon();	
 					switch( Utility.RandomMinMax( 0, 1 ) )
 					{
 						case 1: cVal = RandomThings.MadeUpCity(); break;	
 					}
-					sSpeech = "We need to get to " + cVal + " before " + sThey + " does."; break;	
-				case 33: sSpeech = "The " + RandomThings.GetRandomJob() + " in " + RandomThings.MadeUpCity() + " has " + relics + " for sale."; break;	
-				case 34: sSpeech = "The " + RandomThings.GetRandomNoble() + " is offering gold to rid the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + " of " + RandomThings.GetRandomAttackers() + "."; break;	
+					sSpeech = "Precisamos chegar a " + cVal + " antes de " + sThey + "."; break;	
+				case 33: sSpeech = "O " + RandomThings.GetRandomJob() + " em " + RandomThings.MadeUpCity() + " tem " + relics + " à venda."; break;	
+				case 34: sSpeech = "O " + RandomThings.GetRandomNoble() + " está oferecendo ouro para livrar o " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + " de " + RandomThings.GetRandomAttackers() + "."; break;	
 				case 35:
 					cVal = RandomThings.MadeUpDungeon();	
 					switch( Utility.RandomMinMax( 0, 1 ) )
 					{
 						case 1: cVal = QuestCharacters.SomePlace( "" ); break;	
 					}
-					sSpeech = "I think we got the most treasure out of " + cVal + "."; break;	
+					sSpeech = "Acho que conseguimos o maior tesouro de " + cVal + "."; break;	
 				case 36:
-					cVal = "robbed";	
+					cVal = "assaltou";	
 					switch( Utility.RandomMinMax( 0, 9 ) )
 					{
-						case 1: cVal = "assassinated"; break;	
-						case 2: cVal = "met"; break;	
-						case 3: cVal = "spied on"; break;	
-						case 4: cVal = "betrayed"; break;	
-						case 5: cVal = "swore allegiance to"; break;	
-						case 6: cVal = "serves"; break;	
-						case 7: cVal = "was jailed by"; break;	
-						case 8: cVal = "was killed by"; break;	
-						case 9: cVal = "killed"; break;	
+						case 1: cVal = "assassinou"; break;	
+						case 2: cVal = "conheceu"; break;	
+						case 3: cVal = "espionou"; break;	
+						case 4: cVal = "traiu"; break;	
+						case 5: cVal = "prestou juramento a"; break;	
+						case 6: cVal = "serve"; break;	
+						case 7: cVal = "foi preso por"; break;	
+						case 8: cVal = "foi morto por"; break;	
+						case 9: cVal = "matou"; break;	
 					}
-					sSpeech = sThey + " " + cVal + " the " + RandomThings.GetRandomNoble() + " in " + RandomThings.MadeUpCity() + "."; break;	
-				case 37: sSpeech = "Some " + RandomThings.GetRandomNoble() + " will pay us " + RandomThings.GetRandomCoinReward() + " gold if we find them " + relics + "."; break;
-				case 38: sSpeech = "There is a bounty of  " + RandomThings.GetRandomCoinReward() + " gold for " + sThey + " the " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + "."; break;	
-				case 39: sSpeech = "The " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " said for great treasure we need to go to " + RandomThings.MadeUpDungeon() + "."; break;	
+					sSpeech = sThey + " " + cVal + " o " + RandomThings.GetRandomNoble() + " em " + RandomThings.MadeUpCity() + "."; break;	
+				case 37: sSpeech = "Algum " + RandomThings.GetRandomNoble() + " nos pagará " + RandomThings.GetRandomCoinReward() + " de ouro se encontrarmos " + relics + " para ele."; break;
+				case 38: sSpeech = "Há uma recompensa de " + RandomThings.GetRandomCoinReward() + " de ouro por " + sThey + " o " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + "."; break;	
+				case 39: sSpeech = "O " + RandomThings.GetBoyGirlJob( Utility.RandomMinMax( 0, 1 ) ) + " disse que para um grande tesouro precisamos ir para " + RandomThings.MadeUpDungeon() + "."; break;	
 				case 40:
-					cVal = "hid";	
+					cVal = "escondeu";	
 					switch( Utility.RandomMinMax( 0, 6 ) )
 					{
-						case 1: cVal = "lost"; break;	
-						case 2: cVal = "left"; break;	
-						case 3: cVal = "hidden"; break;	
-						case 4: cVal = "found"; break;	
-						case 5: cVal = "discovered"; break;	
-						case 6: cVal = "created"; break;	
+						case 1: cVal = "perdeu"; break;	
+						case 2: cVal = "deixou"; break;	
+						case 3: cVal = "escondeu"; break;	
+						case 4: cVal = "encontrou"; break;	
+						case 5: cVal = "descobriu"; break;	
+						case 6: cVal = "criou"; break;	
 					}
-					sSpeech = sThey + " " + cVal + " " + relics + " deep in " + RandomThings.MadeUpDungeon() + "."; break;	
+					sSpeech = sThey + " " + cVal + " " + relics + " nas profundezas de " + RandomThings.MadeUpDungeon() + "."; break;	
 				case 41:
 					cVal = RandomThings.MadeUpDungeon();	
-					string portal = "mirror";	
+					string portal = "espelho";	
 					if ( Utility.RandomBool() ){ cVal = QuestCharacters.SomePlace( "" ); }
 					if ( Utility.RandomBool() ){ portal = "portal"; }
-					sSpeech = sThey + " found a magic " + portal + " that led to " + cVal + "."; break;	
+					sSpeech = sThey + " encontrou um " + portal + " mágico que levou a " + cVal + "."; break;	
 				case 42:
-					cVal = "all of their coins turned to lead";	
+					cVal = "todas as suas moedas viraram chumbo";	
 					switch( Utility.RandomMinMax( 0, 13 ) )
 					{
-						case 1: cVal = "all of their meager coins turned to gold"; break;	
-						case 2: cVal = "they became much stronger"; break;	
-						case 3: cVal = "they became much quicker"; break;	
-						case 4: cVal = "they became more intelligent"; break;	
-						case 5: cVal = "they became much weaker"; break;	
-						case 6: cVal = "they became much less nimble"; break;	
-						case 7: cVal = "they lost their mind"; break;	
-						case 8: cVal = "water elementals spewed forth"; break;	
-						case 9: cVal = "they saw a great treasure box within it"; break;	
-						case 10: cVal = "they died from the poison"; break;	
-						case 11: cVal = "they were magically healed"; break;	
-						case 12: cVal = "they were cured of the poison"; break;	
-						case 13: cVal = "their " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " vanished"; break;	
+						case 1: cVal = "todas as suas míseras moedas viraram ouro"; break;	
+						case 2: cVal = "eles ficaram muito mais fortes"; break;	
+						case 3: cVal = "eles ficaram muito mais ágeis"; break;	
+						case 4: cVal = "eles ficaram mais inteligentes"; break;	
+						case 5: cVal = "eles ficaram muito mais fracos"; break;	
+						case 6: cVal = "eles ficaram muito menos ágeis"; break;	
+						case 7: cVal = "eles perderam a mente"; break;	
+						case 8: cVal = "elementais da água jorraram"; break;	
+						case 9: cVal = "eles viram uma grande caixa de tesouro dentro dele"; break;	
+						case 10: cVal = "eles morreram envenenados"; break;	
+						case 11: cVal = "eles foram magicamente curados"; break;	
+						case 12: cVal = "eles foram curados do veneno"; break;	
+						case 13: cVal = "seu " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " desapareceu"; break;	
 					}
 					cDun = RandomThings.MadeUpDungeon();	
 					if ( Utility.RandomBool() ){ cDun = QuestCharacters.SomePlace( "" ); }
-					sSpeech = sThey + " drank from a strange pool in " + cDun + " and " + cVal + "."; break;	
+					sSpeech = sThey + " bebeu de um poço estranho em " + cDun + " e " + cVal + "."; break;	
 				case 43:
-					cVal = "a pit trap";	
+					cVal = "uma armadilha de buraco";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: cVal = "a spike trap"; break;	
-						case 2: cVal = "a flame trap"; break;	
-						case 3: cVal = "an explosion trap"; break;	
-						case 4: cVal = "a poison gas trap"; break;	
-						case 5: cVal = "an exploding mushroom"; break;	
-						case 6: cVal = "a saw blade trap"; break;	
-						case 7: cVal = "a fiery stone face trap"; break;	
-						case 8: cVal = "a magic trap"; break;	
+						case 1: cVal = "uma armadilha de espinhos"; break;	
+						case 2: cVal = "uma armadilha de fogo"; break;	
+						case 3: cVal = "uma armadilha explosiva"; break;	
+						case 4: cVal = "uma armadilha de gás venenoso"; break;	
+						case 5: cVal = "um cogumelo explosivo"; break;	
+						case 6: cVal = "uma armadilha de lâmina de serra"; break;	
+						case 7: cVal = "uma armadilha de rosto de pedra flamejante"; break;	
+						case 8: cVal = "uma armadilha mágica"; break;	
 					}
 					cDun = RandomThings.MadeUpDungeon();	
 					if ( Utility.RandomBool() ){ cDun = QuestCharacters.SomePlace( "" ); }
-					sSpeech = sThey + " died in " + cDun + " from " + cVal + "."; break;	
+					sSpeech = sThey + " morreu em " + cDun + " por causa de " + cVal + "."; break;	
 				case 44:
-					cVal = "has fallen to";	
+					cVal = "caiu para";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: cVal = "was attacked by"; break;	
-						case 2: cVal = "was invaded by"; break;	
-						case 3: cVal = "was destroyed by"; break;	
-						case 4: cVal = "was defeated by"; break;	
-						case 5: cVal = "has surrendered to"; break;	
-						case 6: cVal = "won against"; break;	
-						case 7: cVal = "has defeated"; break;	
-						case 8: cVal = "has slain the army of"; break;	
+						case 1: cVal = "foi atacado por"; break;	
+						case 2: cVal = "foi invadido por"; break;	
+						case 3: cVal = "foi destruído por"; break;	
+						case 4: cVal = "foi derrotado por"; break;	
+						case 5: cVal = "se rendeu a"; break;	
+						case 6: cVal = "venceu contra"; break;	
+						case 7: cVal = "derrotou"; break;	
+						case 8: cVal = "matou o exército de"; break;	
 					}
-					sSpeech = "The " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + " " + cVal + " the " + RandomThings.GetRandomTroops() + "."; break;	
+					sSpeech = "O " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + " " + cVal + " os " + RandomThings.GetRandomTroops() + "."; break;	
 				case 45:
-					cVal = "killed";	
+					cVal = "morto";	
 					switch( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 1: cVal = "slain"; break;	
-						case 2: cVal = "defeated"; break;	
-						case 3: cVal = "almost killed"; break;	
-						case 4: cVal = "almost slain"; break;	
-						case 5: cVal = "almost defeated"; break;	
+						case 1: cVal = "abatido"; break;	
+						case 2: cVal = "derrotado"; break;	
+						case 3: cVal = "quase morto"; break;	
+						case 4: cVal = "quase abatido"; break;	
+						case 5: cVal = "quase derrotado"; break;	
 					}
-					sSpeech = sThey + " was " + cVal + " by " + RandomThings.GetRandomMonsters() + " in " + RandomThings.MadeUpDungeon() + "."; break;
+					sSpeech = sThey + " foi " + cVal + " por " + RandomThings.GetRandomMonsters() + " em " + RandomThings.MadeUpDungeon() + "."; break;
 				case 46:
-					string dIrc = "Let me tell you";
-						if ( Utility.RandomBool() ){ dIrc = "Tell me"; }
+					string dIrc = "Deixe-me contar a você";
+						if ( Utility.RandomBool() ){ dIrc = "Conte-me"; }
 
-					cVal = "tale";	
+					cVal = "conto";	
 					switch( Utility.RandomMinMax( 0, 4 ) )
 					{
-						case 1: cVal = "story"; break;	
-						case 2: cVal = "fable"; break;	
-						case 3: cVal = "legend"; break;	
-						case 4: cVal = "myth"; break;	
+						case 1: cVal = "história"; break;	
+						case 2: cVal = "fábula"; break;	
+						case 3: cVal = "lenda"; break;	
+						case 4: cVal = "mito"; break;	
 					}
 
-					sSpeech = dIrc + " the " + cVal + " of " + relics + ".";
+					sSpeech = dIrc + " o " + cVal + " de " + relics + ".";
 
 					switch( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 1: sSpeech = dIrc + " the " + cVal + " of the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;	
-						case 2: sSpeech = dIrc + " the " + cVal + " of " + RandomThings.MadeUpDungeon() + "."; break;	
-						case 3: sSpeech = dIrc + " the " + cVal + " of the " + RandomThings.GetRandomJobTitle(0) + " and the " + RandomThings.GetRandomThing(0) + "."; break;	
-						case 4: sSpeech = dIrc + " the " + cVal + " of " + RandomThings.GetRandomColorName(0) + " " + RandomThings.GetRandomThing(0) + "."; break;	
-						case 5: sSpeech = dIrc + " the " + cVal + " of the " + RandomThings.GetRandomJobTitle(0) + " and the " + RandomThings.GetRandomCreature() + "."; break;	
+						case 1: sSpeech = dIrc + " o " + cVal + " do " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;	
+						case 2: sSpeech = dIrc + " o " + cVal + " de " + RandomThings.MadeUpDungeon() + "."; break;	
+						case 3: sSpeech = dIrc + " o " + cVal + " do " + RandomThings.GetRandomJobTitle(0) + " e do " + RandomThings.GetRandomThing(0) + "."; break;	
+						case 4: sSpeech = dIrc + " o " + cVal + " do " + RandomThings.GetRandomColorName(0) + " " + RandomThings.GetRandomThing(0) + "."; break;	
+						case 5: sSpeech = dIrc + " o " + cVal + " do " + RandomThings.GetRandomJobTitle(0) + " e da " + RandomThings.GetRandomCreature() + "."; break;	
 					}
 					break;
 				case 47:
-					cVal = "searching for";	
+					cVal = "procurando por";	
 					switch( Utility.RandomMinMax( 0, 3 ) )
 					{
-						case 1: cVal = "looking for"; break;	
-						case 2: cVal = "trying to find"; break;	
-						case 3: cVal = "trying to locate"; break;	
+						case 1: cVal = "procurando por"; break;	
+						case 2: cVal = "tentando encontrar"; break;	
+						case 3: cVal = "tentando localizar"; break;	
 					}
 
-					string goal = "the Codex of Ultimate Wisdom";	
+					string goal = "o Codex da Sabedoria Suprema";	
 					switch( Utility.RandomMinMax( 0, 25 ) )
 					{
-						case 1: goal = "the Dark Core of Exodus";	 	break;	
+						case 1: goal = "o Núcleo Sombrio de Exodus";	 	break;	
 						case 2: goal = QuestCharacters.QuestItems( false );	break;	
-						case 3: goal = "the Staff of Five Parts";	break;	
-						case 4: goal = "Mangar the Dark";	break;	
-						case 5: goal = "the Runes of Virtue";	break;	
-						case 6: goal = "the Book of Truth";	break;	
-						case 7: goal = "the Bell of Courage";	break;	
-						case 8: goal = "the Candle of Love";	break;	
-						case 9: goal = "the Scales of Ethicality";	break;	
-						case 10: goal = "the Orb of Logic";	break;	
-						case 11: goal = "the Lantern of Discipline";	break;	
-						case 12: goal = "the Breath of Air";	break;	
-						case 13: goal = "the Tongue of Flame";	break;	
-						case 14: goal = "the Heart of Earth";	break;	
-						case 15: goal = "the Tear of the Seas";	break;	
-						case 16: goal = "the Statue of Gygax";	break;	
-						case 17: goal = "the Skull of Baron Almric";	break;	
-						case 18: goal = "the Shard of Cowardice";	break;	
-						case 19: goal = "the Shard of Falsehood";	break;	
-						case 20: goal = "the Shard of Hatred";	break;	
-						case 21: goal = "the Gem of Immortality";	break;	
-						case 22: goal = "the Manual of Golems";	break;	
-						case 23: goal = "Frankenstein's Journal";	break;	
-						case 24: goal = "the Vortex Cube";	break;	
+						case 3: goal = "o Cajado de Cinco Partes";	break;	
+						case 4: goal = "Mangar, o Sombrio";	break;	
+						case 5: goal = "as Runas da Virtude";	break;	
+						case 6: goal = "o Livro da Verdade";	break;	
+						case 7: goal = "o Sino da Coragem";	break;	
+						case 8: goal = "a Vela do Amor";	break;	
+						case 9: goal = "a Balança da Ethicalidade";	break;	
+						case 10: goal = "o Orbe da Lógica";	break;	
+						case 11: goal = "a Lanterna da Disciplina";	break;	
+						case 12: goal = "o Sopro do Ar";	break;	
+						case 13: goal = "a Língua da Chama";	break;	
+						case 14: goal = "o Coração da Terra";	break;	
+						case 15: goal = "a Lágrima dos Mares";	break;	
+						case 16: goal = "a Estátua de Gygax";	break;	
+						case 17: goal = "a Caveira do Barão Almric";	break;	
+						case 18: goal = "o Fragmento da Covardia";	break;	
+						case 19: goal = "o Fragmento da Falsidade";	break;	
+						case 20: goal = "o Fragmento do Ódio";	break;	
+						case 21: goal = "a Gema da Imortalidade";	break;	
+						case 22: goal = "o Manual dos Golems";	break;	
+						case 23: goal = "o Diário de Frankenstein";	break;	
+						case 24: goal = "o Cubo de Vortex";	break;	
 						case 25: goal = QuestCharacters.QuestItems( false );	break;	
 					}
 
-					string fate = "died";	
+					string fate = "morreu";	
 					switch( Utility.RandomMinMax( 0, 6 ) )
 					{
-						case 1: fate = "went missing";	 			break;	
-						case 2: fate = "has been";	 				break;	
-						case 3: fate = "almost died";	 			break;	
-						case 4: fate = "never returned while";	 	break;	
-						case 5: fate = "vanished";	 				break;	
-						case 6: fate = "perished";	 				break;	
+						case 1: fate = "desapareceu";	 			break;	
+						case 2: fate = "está";	 				break;	
+						case 3: fate = "quase morreu";	 			break;	
+						case 4: fate = "nunca retornou enquanto";	 	break;	
+						case 5: fate = "desapareceu";	 				break;	
+						case 6: fate = "pereceu";	 				break;	
 					}
 
-					sSpeech = sThey + " " + fate + " " + cVal + " " + goal + ".";
+					sSpeech = sThey + " " + fate + " " + cVal + " " + goal + "."; break;
 
 					break;
 				case 48: 
-					misc = "kill";	
+					misc = "matar";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: misc = "find"; break;
-						case 2: misc = "slay"; break;
-						case 3: misc = "assassinate"; break;
-						case 4: misc = "rescue"; break;
-						case 5: misc = "kidnap"; break;
-						case 6: misc = "free"; break;
-						case 7: misc = "help"; break;
-						case 8: misc = "capture"; break;
+						case 1: misc = "encontrar"; break;
+						case 2: misc = "abater"; break;
+						case 3: misc = "assassinar"; break;
+						case 4: misc = "resgatar"; break;
+						case 5: misc = "sequestrar"; break;
+						case 6: misc = "libertar"; break;
+						case 7: misc = "ajudar"; break;
+						case 8: misc = "capturar"; break;
 					}
-					string prize = "prize";	
+					string prize = "prêmio";	
 					switch( Utility.RandomMinMax( 0, 7 ) )
 					{
-						case 1: prize = "fee"; break;
-						case 2: prize = "reward"; break;
-						case 3: prize = "tribute"; break;
-						case 4: prize = "sack"; break;
-						case 5: prize = "chest"; break;
-						case 6: prize = "coffer"; break;
-						case 7: prize = "pile"; break;
+						case 1: prize = "taxa"; break;
+						case 2: prize = "recompensa"; break;
+						case 3: prize = "tributo"; break;
+						case 4: prize = "saco"; break;
+						case 5: prize = "baú"; break;
+						case 6: prize = "cofre"; break;
+						case 7: prize = "pilha"; break;
 					}
 
-					if ( Utility.RandomBool() ){ sSpeech = "" + sSource + " a " + prize + " of " + RandomThings.GetRandomCoinReward() + " gold if we " + misc + " " + RandomThings.GetRandomGirlName() + " the " + RandomThings.GetBoyGirlJob(1) + "."; }
-					else { sSpeech = "" + sSource + " a " + prize + " of " + RandomThings.GetRandomCoinReward() + " gold if we " + misc + " " + RandomThings.GetRandomBoyName() + " the " + RandomThings.GetBoyGirlJob(0) + "."; }
+					if ( Utility.RandomBool() ){ sSpeech = "" + sSource + " um " + prize + " de " + RandomThings.GetRandomCoinReward() + " de ouro se nós " + misc + " " + RandomThings.GetRandomGirlName() + " a " + RandomThings.GetBoyGirlJob(1) + "."; }
+					else { sSpeech = "" + sSource + " um " + prize + " de " + RandomThings.GetRandomCoinReward() + " de ouro se nós " + misc + " " + RandomThings.GetRandomBoyName() + " o " + RandomThings.GetBoyGirlJob(0) + "."; }
 				break;
 				case 49:
-					misc = "a war";	
+					misc = "uma guerra";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: misc = "a battle"; break;
-						case 2: misc = "an alliance"; break;
-						case 3: misc = "a pact"; break;
-						case 4: misc = "a trade agreement"; break;
-						case 5: misc = "a tournament"; break;
-						case 6: misc = "a standoff"; break;
-						case 7: misc = "a blockade"; break;
-						case 8: misc = "a dispute"; break;
+						case 1: misc = "uma batalha"; break;
+						case 2: misc = "uma aliança"; break;
+						case 3: misc = "um pacto"; break;
+						case 4: misc = "um acordo comercial"; break;
+						case 5: misc = "um torneio"; break;
+						case 6: misc = "um impasse"; break;
+						case 7: misc = "um bloqueio"; break;
+						case 8: misc = "uma disputa"; break;
 					}
 
-					if ( Utility.RandomBool() ){ sSpeech = "" + sSource + " " + misc + " between " + RandomThings.MadeUpCity() + " and " + RandomThings.MadeUpCity() + "."; }
-					else { sSpeech = "" + sSource + " " + misc + " between the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + " and the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; }
+					if ( Utility.RandomBool() ){ sSpeech = "" + sSource + " " + misc + " entre " + RandomThings.MadeUpCity() + " e " + RandomThings.MadeUpCity() + "."; }
+					else { sSpeech = "" + sSource + " " + misc + " entre o " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + " e o " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; }
 				break;
 				case 50: 
 					misc = "";	if ( Utility.RandomBool() ){ misc = RandomThings.GetRandomGirlNoble() + " "; }
@@ -1463,156 +1463,156 @@ namespace Server.Misc
 
 					switch( Utility.RandomMinMax( 1, 8 ) )
 					{
-						case 1: sSpeech = "" + sSource + " " + misc + RandomThings.GetRandomGirlName() + " marrying " + mis2 + RandomThings.GetRandomBoyName() + " in " + RandomThings.MadeUpCity() + "." ; break;
-						case 2: sSpeech = "" + sSource + " " + mis2 + RandomThings.GetRandomBoyName() + " marrying " + misc + RandomThings.GetRandomGirlName() + " in " + RandomThings.MadeUpCity() + "." ; break;
-						case 3: sSpeech = "" + sSource + " " + "the " + RandomThings.GetRandomGirlNoble() + " of " + RandomThings.MadeUpCity()  + " marrying the " + RandomThings.GetRandomBoyNoble() + " of " + RandomThings.MadeUpCity() + "." ; break;
-						case 4: sSpeech = "" + sSource + " " + "the " + RandomThings.GetRandomBoyNoble() + " of " + RandomThings.MadeUpCity() + " marrying the " + RandomThings.GetRandomGirlNoble() + " of " + RandomThings.MadeUpCity() + "." ; break;
-						case 5: sSpeech = "" + sSource + " " + RandomThings.GetRandomGirlName() + " marrying the " + RandomThings.GetRandomBoyNoble() + " of " + RandomThings.MadeUpCity() + "." ; break;
-						case 6: sSpeech = "" + sSource + " " + RandomThings.GetRandomGirlName() + " marrying the " + RandomThings.GetRandomBoyNoble() + " of the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "." ; break;
-						case 7: sSpeech = "" + sSource + " " + RandomThings.GetRandomBoyName() + " marrying the " + RandomThings.GetRandomGirlNoble() + " of " + RandomThings.MadeUpCity() + "." ; break;
-						case 8: sSpeech = "" + sSource + " " + RandomThings.GetRandomBoyName() + " marrying the " + RandomThings.GetRandomGirlNoble() + " of the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "." ; break;
+						case 1: sSpeech = "" + sSource + " " + misc + RandomThings.GetRandomGirlName() + " se casando com " + mis2 + RandomThings.GetRandomBoyName() + " em " + RandomThings.MadeUpCity() + "." ; break;
+						case 2: sSpeech = "" + sSource + " " + mis2 + RandomThings.GetRandomBoyName() + " se casando com " + misc + RandomThings.GetRandomGirlName() + " em " + RandomThings.MadeUpCity() + "." ; break;
+						case 3: sSpeech = "" + sSource + " " + "a " + RandomThings.GetRandomGirlNoble() + " de " + RandomThings.MadeUpCity()  + " se casando com o " + RandomThings.GetRandomBoyNoble() + " de " + RandomThings.MadeUpCity() + "." ; break;
+						case 4: sSpeech = "" + sSource + " " + "o " + RandomThings.GetRandomBoyNoble() + " de " + RandomThings.MadeUpCity() + " se casando com a " + RandomThings.GetRandomGirlNoble() + " de " + RandomThings.MadeUpCity() + "." ; break;
+						case 5: sSpeech = "" + sSource + " " + RandomThings.GetRandomGirlName() + " se casando com o " + RandomThings.GetRandomBoyNoble() + " de " + RandomThings.MadeUpCity() + "." ; break;
+						case 6: sSpeech = "" + sSource + " " + RandomThings.GetRandomGirlName() + " se casando com o " + RandomThings.GetRandomBoyNoble() + " do " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "." ; break;
+						case 7: sSpeech = "" + sSource + " " + RandomThings.GetRandomBoyName() + " se casando com a " + RandomThings.GetRandomGirlNoble() + " de " + RandomThings.MadeUpCity() + "." ; break;
+						case 8: sSpeech = "" + sSource + " " + RandomThings.GetRandomBoyName() + " se casando com a " + RandomThings.GetRandomGirlNoble() + " do " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "." ; break;
 					}
 				break;
 				case 51:
-					misc = "war";	
+					misc = "guerra";	
 					switch( Utility.RandomMinMax( 0, 12 ) )
 					{
-						case 1: misc = "battle"; break;
-						case 2: misc = "destruction"; break;
-						case 3: misc = "plague"; break;
-						case 4: misc = "curse"; break;
-						case 5: misc = "tavern"; break;
-						case 6: misc = "villany"; break;
-						case 7: misc = "taxes"; break;
-						case 8: misc = "trouble"; break;
-						case 9: misc = "inn"; break;
-						case 10: misc = "problems"; break;
+						case 1: misc = "batalha"; break;
+						case 2: misc = "destruição"; break;
+						case 3: misc = "praga"; break;
+						case 4: misc = "maldição"; break;
+						case 5: misc = "taberna"; break;
+						case 6: misc = "vilania"; break;
+						case 7: misc = "impostos"; break;
+						case 8: misc = "problemas"; break;
+						case 9: misc = "estalagem"; break;
+						case 10: misc = "problemas"; break;
 						case 11: misc = RandomThings.GetRandomGirlNoble(); break;
 						case 12: misc = RandomThings.GetRandomBoyNoble(); break;
 					}
 
 					switch( Utility.RandomMinMax( 1, 2 ) )
 					{
-						case 1: sSpeech = sSource + " the " + misc + " in " + RandomThings.MadeUpCity() + "."; break;
-						case 2: sSpeech = sSource + " the " + misc + " in the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;
+						case 1: sSpeech = sSource + " a " + misc + " em " + RandomThings.MadeUpCity() + "."; break;
+						case 2: sSpeech = sSource + " a " + misc + " no " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;
 					}
 				break;
 				case 52:
 					misc = "";
-						if ( Utility.RandomBool() ){ misc = " the " + RandomThings.GetBoyGirlJob(0) + ""; }
+						if ( Utility.RandomBool() ){ misc = " o " + RandomThings.GetBoyGirlJob(0) + ""; }
 					string mis3 = "";
-						if ( Utility.RandomBool() ){ mis3 = " the " + RandomThings.GetBoyGirlJob(1) + ""; }
+						if ( Utility.RandomBool() ){ mis3 = " a " + RandomThings.GetBoyGirlJob(1) + ""; }
 
 					switch( Utility.RandomMinMax( 1, 4 ) )
 					{
-						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + misc + " becoming the " + RandomThings.GetRandomBoyNoble() + " of " + RandomThings.MadeUpCity() + "."; break;
-						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + mis3 + " becoming the " + RandomThings.GetRandomGirlNoble() + " of " + RandomThings.MadeUpCity() + "."; break;
-						case 3: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + misc + " becoming the " + RandomThings.GetRandomBoyNoble() + " of the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom()+ "."; break;
-						case 4: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + mis3 + " becoming the " + RandomThings.GetRandomGirlNoble() + " of the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;
+						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + misc + " se tornando o " + RandomThings.GetRandomBoyNoble() + " de " + RandomThings.MadeUpCity() + "."; break;
+						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + mis3 + " se tornando a " + RandomThings.GetRandomGirlNoble() + " de " + RandomThings.MadeUpCity() + "."; break;
+						case 3: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + misc + " se tornando o " + RandomThings.GetRandomBoyNoble() + " do " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom()+ "."; break;
+						case 4: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + mis3 + " se tornando a " + RandomThings.GetRandomGirlNoble() + " do " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;
 					}
 				break;
 				case 53:
-					misc = "destroyed";	
+					misc = "destruída";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: misc = "captured"; break;
-						case 2: misc = "invaded"; break;
-						case 3: misc = "rescued"; break;
-						case 4: misc = "freed"; break;
-						case 5: misc = "ruined"; break;
-						case 6: misc = "taken"; break;
-						case 7: misc = "surrounded"; break;
-						case 8: misc = "settled"; break;
+						case 1: misc = "capturada"; break;
+						case 2: misc = "invadida"; break;
+						case 3: misc = "resgatada"; break;
+						case 4: misc = "libertada"; break;
+						case 5: misc = "arruinada"; break;
+						case 6: misc = "tomada"; break;
+						case 7: misc = "cercada"; break;
+						case 8: misc = "estabelecida"; break;
 					}
-					string mis4 = "army";	
+					string mis4 = "exército";	
 					switch( Utility.RandomMinMax( 0, 7 ) )
 					{
-						case 1: mis4 = "troops"; break;
-						case 2: mis4 = "soldiers"; break;
-						case 3: mis4 = "knights"; break;
-						case 4: mis4 = "fleet"; break;
+						case 1: mis4 = "tropas"; break;
+						case 2: mis4 = "soldados"; break;
+						case 3: mis4 = "cavaleiros"; break;
+						case 4: mis4 = "frota"; break;
 						case 5: mis4 = RandomThings.GetRandomGirlNoble(); break;
 						case 6: mis4 = RandomThings.GetRandomBoyNoble(); break;
-						case 7: mis4 = "forces"; break;
+						case 7: mis4 = "forças"; break;
 					}
 
 					switch( Utility.RandomMinMax( 1, 2 ) )
 					{
-						case 1: sSpeech = sSource + " " + RandomThings.MadeUpCity() + " being " + misc + " by the " + mis4 + " of the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;
-						case 2: sSpeech = sSource + " " + RandomThings.MadeUpCity() + " being " + misc + " by the " + mis4 + " of " + RandomThings.MadeUpCity() + "."; break;
+						case 1: sSpeech = sSource + " " + RandomThings.MadeUpCity() + " sendo " + misc + " pelo " + mis4 + " do " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;
+						case 2: sSpeech = sSource + " " + RandomThings.MadeUpCity() + " sendo " + misc + " pelo " + mis4 + " de " + RandomThings.MadeUpCity() + "."; break;
 					}
 				break;
 				case 54:
 					misc = "";
-						if ( Utility.RandomBool() ){ misc = " the " + RandomThings.GetBoyGirlJob(0) + ""; }
+						if ( Utility.RandomBool() ){ misc = " o " + RandomThings.GetBoyGirlJob(0) + ""; }
 					string mis5 = "";
-						if ( Utility.RandomBool() ){ mis5 = " the " + RandomThings.GetBoyGirlJob(1) + ""; }
-					string misc3 = "hiding";	
+						if ( Utility.RandomBool() ){ mis5 = " a " + RandomThings.GetBoyGirlJob(1) + ""; }
+					string misc3 = "se escondendo";	
 					switch( Utility.RandomMinMax( 0, 9 ) )
 					{
-						case 1: misc3 = "missing"; break;
-						case 2: misc3 = "living"; break;
-						case 3: misc3 = "resting"; break;
-						case 4: misc3 = "laying low"; break;
-						case 5: misc3 = "imprisoned"; break;
-						case 6: misc3 = "locked up"; break;
-						case 7: misc3 = "retired"; break;
-						case 8: misc3 = "settling"; break;
-						case 9: misc3 = "starting " + RandomThings.GetRandomShop(); break;
+						case 1: misc3 = "desaparecido"; break;
+						case 2: misc3 = "vivendo"; break;
+						case 3: misc3 = "descansando"; break;
+						case 4: misc3 = "mantendo-se discreto"; break;
+						case 5: misc3 = "aprisionado"; break;
+						case 6: misc3 = "trancado"; break;
+						case 7: misc3 = "aposentado"; break;
+						case 8: misc3 = "estabelecendo"; break;
+						case 9: misc3 = "iniciando " + RandomThings.GetRandomShop(); break;
 					}
 
 					string gbv346 = RandomThings.GetRandomCity(); if ( Utility.RandomBool() ){ gbv346 = RandomThings.MadeUpCity(); }
 
 					switch( Utility.RandomMinMax( 1, 4 ) )
 					{
-						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + misc + " having been " + misc3 + " in " + gbv346 + "."; break;
-						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + mis5 + " having been " + misc3 + " in " + gbv346 + "."; break;
-						case 3: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + misc + " having been " + misc3 + " in the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom()+ "."; break;
-						case 4: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + mis5 + " having been " + misc3 + " in the " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;
+						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + misc + " estando " + misc3 + " em " + gbv346 + "."; break;
+						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + mis5 + " estando " + misc3 + " em " + gbv346 + "."; break;
+						case 3: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + misc + " estando " + misc3 + " no " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom()+ "."; break;
+						case 4: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + mis5 + " estando " + misc3 + " no " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;
 					}
 				break;
 				case 55:
 					string titleA = "";
-						if ( Utility.RandomBool() ){ titleA = " the " + RandomThings.GetBoyGirlJob(0) + ""; }
+						if ( Utility.RandomBool() ){ titleA = " o " + RandomThings.GetBoyGirlJob(0) + ""; }
 					string titleB = "";
-						if ( Utility.RandomBool() ){ titleB = " the " + RandomThings.GetBoyGirlJob(1) + ""; }
-					misc = "wanted";	
+						if ( Utility.RandomBool() ){ titleB = " a " + RandomThings.GetBoyGirlJob(1) + ""; }
+					misc = "procurado";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: misc = "on trial"; break;
-						case 2: misc = "in jail"; break;
-						case 3: misc = "in prison"; break;
-						case 4: misc = "put to death"; break;
-						case 5: misc = "sought after"; break;
-						case 6: misc = "put in chains"; break;
-						case 7: misc = "sentenced"; break;
-						case 8: misc = "put in the iron maiden"; break;
+						case 1: misc = "em julgamento"; break;
+						case 2: misc = "na cadeia"; break;
+						case 3: misc = "na prisão"; break;
+						case 4: misc = "condenado à morte"; break;
+						case 5: misc = "procurado"; break;
+						case 6: misc = "acorrentado"; break;
+						case 7: misc = "sentenciado"; break;
+						case 8: misc = "colocado na donzela de ferro"; break;
 					}
-					string crime = "murder";	
+					string crime = "assassinato";	
 					switch( Utility.RandomMinMax( 0, 7 ) )
 					{
-						case 1: crime = "theft"; break;
-						case 2: crime = "gambling"; break;
-						case 3: crime = "witchcraft"; break;
-						case 4: crime = "slavery"; break;
-						case 5: crime = "attempted murder"; break;
-						case 6: crime = "debauchery"; break;
-						case 7: crime = "drunkenness"; break;
+						case 1: crime = "roubo"; break;
+						case 2: crime = "jogo ilegal"; break;
+						case 3: crime = "bruxaria"; break;
+						case 4: crime = "escravidão"; break;
+						case 5: crime = "tentativa de assassinato"; break;
+						case 6: crime = "devassidão"; break;
+						case 7: crime = "embriaguez"; break;
 					}
 
 					string bjj311 = RandomThings.GetRandomCity(); if ( Utility.RandomBool() ){ bjj311 = RandomThings.MadeUpCity(); }
 
 					switch( Utility.RandomMinMax( 1, 2 ) )
 					{
-						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + titleA + " being " + misc + " for " + crime + " in " + bjj311 + "."; break;
-						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + titleB + " being " + misc + " for " + crime + " in " + bjj311 + "."; break;
+						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + titleA + " estando " + misc + " por " + crime + " em " + bjj311 + "."; break;
+						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + titleB + " estando " + misc + " por " + crime + " em " + bjj311 + "."; break;
 					}
 				break;
 				case 56:
 					string titleC = "";
-						if ( Utility.RandomBool() ){ titleC = " the " + RandomThings.GetBoyGirlJob(0) + ""; }
+						if ( Utility.RandomBool() ){ titleC = " o " + RandomThings.GetBoyGirlJob(0) + ""; }
 					string titleD = "";
-						if ( Utility.RandomBool() ){ titleD = " the " + RandomThings.GetBoyGirlJob(1) + ""; }
+						if ( Utility.RandomBool() ){ titleD = " a " + RandomThings.GetBoyGirlJob(1) + ""; }
 
 					string town = RandomThings.MadeUpDungeon();
 					switch( Utility.RandomMinMax( 0, 3 ) )
@@ -1621,97 +1621,97 @@ namespace Server.Misc
 						case 2: town = RandomThings.MadeUpCity(); break;
 						case 3: town = RandomThings.GetRandomCity(); break;
 					}
-					misc = "hiding";	
+					misc = "escondendo";	
 					switch( Utility.RandomMinMax( 0, 7 ) )
 					{
-						case 1: misc = "burying"; break;
-						case 2: misc = "bringing"; break;
-						case 3: misc = "losing"; break;
-						case 4: misc = "finding"; break;
-						case 5: misc = "searching for"; break;
-						case 6: misc = "delivering"; break;
-						case 7: misc = "leaving"; break;
+						case 1: misc = "enterrando"; break;
+						case 2: misc = "trazendo"; break;
+						case 3: misc = "perdendo"; break;
+						case 4: misc = "encontrando"; break;
+						case 5: misc = "procurando por"; break;
+						case 6: misc = "entregando"; break;
+						case 7: misc = "deixando"; break;
 					}
-					misc2 = "hidden";	
+					misc2 = "escondido";	
 					switch( Utility.RandomMinMax( 0, 3 ) )
 					{
-						case 1: misc2 = "buried"; break;
-						case 2: misc2 = "lost"; break;
-						case 3: misc2 = "waiting"; break;
+						case 1: misc2 = "enterrado"; break;
+						case 2: misc2 = "perdido"; break;
+						case 3: misc2 = "esperando"; break;
 					}
 					string loot = RandomThings.RandomMagicalItem();
 					switch( Utility.RandomMinMax( 1, 12 ) )
 					{
-						case 1: loot = "treasure"; break;
-						case 2: loot = "gold"; break;
-						case 3: loot = "crystals"; break;
-						case 4: loot = "gems"; break;
-						case 5: loot = "jewels"; break;
-						case 6: loot = "coins"; break;
+						case 1: loot = "tesouro"; break;
+						case 2: loot = "ouro"; break;
+						case 3: loot = "cristais"; break;
+						case 4: loot = "gemas"; break;
+						case 5: loot = "joias"; break;
+						case 6: loot = "moedas"; break;
 					}
-					string locale = "near";	
+					string locale = "perto de";	
 					switch( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 1: locale = "on the outskirts of"; break;
-						case 2: locale = "outside"; break;
-						case 3: locale = "inside"; break;
-						case 4: locale = "in"; break;
-						case 5: locale = "by"; break;
+						case 1: locale = "nos arredores de"; break;
+						case 2: locale = "fora de"; break;
+						case 3: locale = "dentro de"; break;
+						case 4: locale = "em"; break;
+						case 5: locale = "próximo a"; break;
 					}
-					if ( Utility.RandomBool() ){ locale = "somewhere " + locale; }
+					if ( Utility.RandomBool() ){ locale = "em algum lugar " + locale; }
 
 					switch( Utility.RandomMinMax( 1, 4 ) )
 					{
-						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + titleC + " " + misc + " the " + loot + " " + locale + " " + town + "."; break;
-						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + titleD + " " + misc + " the " + loot + " " + locale + " " + town + "."; break;
-						case 3: sSpeech = sSource + " the " + loot + " being " + misc2 + " " + locale + " " + town + "."; break;
-						case 4: sSpeech = sSource + " the " + loot + " being " + misc2 + " " + locale + " " + town + "."; break;
+						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + titleC + " " + misc + " o " + loot + " " + locale + " " + town + "."; break;
+						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + titleD + " " + misc + " o " + loot + " " + locale + " " + town + "."; break;
+						case 3: sSpeech = sSource + " o " + loot + " estando " + misc2 + " " + locale + " " + town + "."; break;
+						case 4: sSpeech = sSource + " o " + loot + " estando " + misc2 + " " + locale + " " + town + "."; break;
 					}
 				break;
 				case 57:
 					string titleE = "";
-						if ( Utility.RandomBool() ){ titleE = " the " + RandomThings.GetBoyGirlJob(0) + ""; }
+						if ( Utility.RandomBool() ){ titleE = " o " + RandomThings.GetBoyGirlJob(0) + ""; }
 					string titleF = "";
-						if ( Utility.RandomBool() ){ titleF = " the " + RandomThings.GetBoyGirlJob(1) + ""; }
+						if ( Utility.RandomBool() ){ titleF = " a " + RandomThings.GetBoyGirlJob(1) + ""; }
 
 					string tomb = RandomThings.MadeUpDungeon();
 					if ( Utility.RandomBool() ){ tomb = QuestCharacters.SomePlace( null ); }
 
-					misc = "killing";	
+					misc = "matando";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: misc = "slaying"; break;
-						case 2: misc = "being killed by"; break;
-						case 3: misc = "being slain by"; break;
-						case 4: misc = "fleeing from"; break;
-						case 5: misc = "chasing"; break;
-						case 6: misc = "hunting for"; break;
-						case 7: misc = "searching for"; break;
-						case 8: misc = "never finding"; break;
+						case 1: misc = "abatendo"; break;
+						case 2: misc = "sendo morto por"; break;
+						case 3: misc = "sendo abatido por"; break;
+						case 4: misc = "fugindo de"; break;
+						case 5: misc = "perseguindo"; break;
+						case 6: misc = "caçando"; break;
+						case 7: misc = "procurando por"; break;
+						case 8: misc = "nunca encontrando"; break;
 					}
 
 					switch( Utility.RandomMinMax( 1, 2 ) )
 					{
-						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + titleE + " " + misc + " " + RandomThings.GetRandomMonsters() + " in " + tomb + "."; break;
-						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + titleF + " " + misc + " " + RandomThings.GetRandomMonsters() + " in " + tomb + "."; break;
+						case 1: sSpeech = sSource + " " + RandomThings.GetRandomBoyName() + titleE + " " + misc + " " + RandomThings.GetRandomMonsters() + " em " + tomb + "."; break;
+						case 2: sSpeech = sSource + " " + RandomThings.GetRandomGirlName() + titleF + " " + misc + " " + RandomThings.GetRandomMonsters() + " em " + tomb + "."; break;
 					}
 				break;
 				case 58:
 					if ( Utility.RandomBool() ){ dungeon = city; }
-					misc = "look for";	
+					misc = "procurar por";	
 					switch( Utility.RandomMinMax( 0, 8 ) )
 					{
-						case 1: misc = "search for"; break;
-						case 2: misc = "find"; break;
-						case 3: misc = "seek out"; break;
-						case 4: misc = "try to find"; break;
-						case 5: misc = "ambush"; break;
-						case 6: misc = "surprise"; break;
-						case 7: misc = "try to ambush"; break;
-						case 8: misc = "try to capture"; break;
+						case 1: misc = "procurar por"; break;
+						case 2: misc = "encontrar"; break;
+						case 3: misc = "buscar"; break;
+						case 4: misc = "tentar encontrar"; break;
+						case 5: misc = "emboscar"; break;
+						case 6: misc = "surpreender"; break;
+						case 7: misc = "tentar emboscar"; break;
+						case 8: misc = "tentar capturar"; break;
 					}
-					sSpeech = "We will " + misc + " " + sThey + " in " + dungeon + "";
-					if ( Utility.RandomBool() ){ sSpeech = sSpeech + " tomorrow"; } sSpeech = sSpeech + ".";
+					sSpeech = "Nós vamos " + misc + " " + sThey + " em " + dungeon + "";
+					if ( Utility.RandomBool() ){ sSpeech = sSpeech + " amanhã"; } sSpeech = sSpeech + ".";
 				break;
 			}
 
@@ -1719,75 +1719,75 @@ namespace Server.Misc
 
 			switch( Utility.RandomMinMax( 1, ( 11 + CommonTalkingCount ) ) )
 			{
-				case 1: sGossip = "Another ale over here!"; break;	
-				case 2: sGossip = "More wine!"; break;	
-				case 3: sGossip = "Can I get another mug over here?"; break;	
-				case 4: sGossip = "What does it take to get a good drink in this place?"; break;	
-				case 5: sGossip = sThey + " said this is the best place to drink."; break;	
-				case 6: sGossip = sThey + " lives around here somewhere."; break;	
-				case 7: sGossip = "Raise a mug to " + sThey + ", as we will not forget them."; break;	
-				case 8: sGossip = "We should eat while we are here."; break;	
-				case 9: sGossip = "this is some good wine."; break;	
-				case 10: sGossip = "I never had ale quite like this."; break;	
-				case 11: sGossip = "I am starting to think they water down the drinks."; break;	
+				case 1: sGossip = "Outra cerveja aqui!"; break;	
+				case 2: sGossip = "Mais vinho!"; break;	
+				case 3: sGossip = "Posso receber outro caneco aqui?"; break;	
+				case 4: sGossip = "O que é preciso para conseguir uma boa bebida neste lugar?"; break;	
+				case 5: sGossip = sThey + " disse que este é o melhor lugar para beber."; break;	
+				case 6: sGossip = sThey + " mora por aqui em algum lugar."; break;	
+				case 7: sGossip = "Levante um caneco para " + sThey + ", pois não nos esqueceremos deles."; break;	
+				case 8: sGossip = "Deveríamos comer enquanto estamos aqui."; break;	
+				case 9: sGossip = "este é um vinho muito bom."; break;	
+				case 10: sGossip = "Nunca tomei uma cerveja assim."; break;	
+				case 11: sGossip = "Estou começando a achar que eles adulteram as bebidas."; break;	
 			}
 
 			string sTent = sSpeech;	
 			switch( Utility.RandomMinMax( 1, ( 5 + CommonTalkingCount ) ) )
 			{
-				case 1: sTent = sThey + " said this is the safest place to camp."; break;	
-				case 2: sTent = "Raise a mug to " + sThey + ", as we will not forget them."; break;	
-				case 3: sTent = "We should eat while we are resting here."; break;	
-				case 4: sTent = "this is some good wine you brought."; break;	
-				case 5: sTent = "I never had ale quite like this."; break;	
+				case 1: sTent = sThey + " disse que este é o lugar mais seguro para acampar."; break;	
+				case 2: sTent = "Levante um caneco para " + sThey + ", pois não nos esqueceremos deles."; break;	
+				case 3: sTent = "Deveríamos comer enquanto descansamos aqui."; break;	
+				case 4: sTent = "este é um vinho muito bom que você trouxe."; break;	
+				case 5: sTent = "Nunca tomei uma cerveja assim."; break;	
 			}
 
 			string sCitizen = sSpeech;	
 			switch( Utility.RandomMinMax( 1, ( 2 + CommonTalkingCount ) ) )
 			{
-				case 1: sCitizen = sThey + " said this is the safest place to stay."; break;	
-				case 2: sCitizen = sThey + " lives somewhere near " + city + "."; break;	
+				case 1: sCitizen = sThey + " disse que este é o lugar mais seguro para ficar."; break;	
+				case 2: sCitizen = sThey + " mora em algum lugar perto de " + city + "."; break;	
 			}
 
-			string sHappen = "A friend of mine died"; string sEnd = ".";	
+			string sHappen = "Um amigo meu morreu"; string sEnd = ".";	
 			switch( Utility.RandomMinMax( 0, 35 ) )
 			{
-				case 0: sHappen = "A friend of mine was lost in"; sEnd = "."; break;	
-				case 1: sHappen = "A friend of mine died in"; sEnd = "."; break;	
-				case 2: sHappen = "I lost that weapon in"; sEnd = "."; break;	
-				case 3: sHappen = "Have you ever been to"; sEnd = "?"; break;	
-				case 4: sHappen = "Have you ever heard of"; sEnd = "?"; break;	
-				case 5: sHappen = "When did you go to"; sEnd = "?"; break;	
-				case 6: sHappen = "How did you get to"; sEnd = "?"; break;	
-				case 7: sHappen = "Why did you go to"; sEnd = "?"; break;	
-				case 8: sHappen = "What did you find in"; sEnd = "?"; break;	
-				case 9: sHappen = "You found that in"; sEnd = "?"; break;	
-				case 10: sHappen = "They died in"; sEnd = "."; break;	
-				case 11: sHappen = "I have never been to"; sEnd = "."; break;	
-				case 12: sHappen = "That artifact came from"; sEnd = "."; break;	
-				case 13: sHappen = "They got lost in"; sEnd = "."; break;	
-				case 14: sHappen = "They vanished in"; sEnd = "."; break;	
-				case 15: sHappen = "I almost didn't make it out of"; sEnd = "."; break;	
-				case 16: sHappen = "They didn't make it out of"; sEnd = "."; break;	
-				case 17: sHappen = "I lost that magic item in"; sEnd = "."; break;	
-				case 18: sHappen = "Did you lose it in"; sEnd = "?"; break;	
-				case 19: sHappen = "We should go search in"; sEnd = "."; break;	
-				case 20: sHappen = "We should go explore in"; sEnd = "."; break;	
-				case 21: sHappen = "Tonight we will go to"; sEnd = "."; break;	
-				case 22: sHappen = sThey + " was lost in"; sEnd = "."; break;	
-				case 23: sHappen = sThey + " died in"; sEnd = "."; break;	
-				case 24: sHappen = sThey + " lost that weapon in"; sEnd = "."; break;	
-				case 25: sHappen = "When did " + sThey + " go to"; sEnd = "?"; break;	
-				case 26: sHappen = "How did " + sThey + " get to"; sEnd = "?"; break;	
-				case 27: sHappen = "Why did " + sThey + " go to"; sEnd = "?"; break;	
-				case 28: sHappen = "What did " + sThey + " find in"; sEnd = "?"; break;	
-				case 29: sHappen = sThey + " found that in"; sEnd = "?"; break;	
-				case 30: sHappen = sThey + " has never been to"; sEnd = "."; break;	
-				case 31: sHappen = sThey + " vanished in"; sEnd = "."; break;	
-				case 32: sHappen = sThey + " almost didn't make it out of"; sEnd = "."; break;	
-				case 33: sHappen = sThey + " didn't make it out of"; sEnd = "."; break;	
-				case 34: sHappen = sThey + " lost that magic item in"; sEnd = "."; break;	
-				case 35: sHappen = "Did " + sThey + " lose it in"; sEnd = "?"; break;	
+				case 0: sHappen = "Um amigo meu se perdeu em"; sEnd = "."; break;	
+				case 1: sHappen = "Um amigo meu morreu em"; sEnd = "."; break;	
+				case 2: sHappen = "Eu perdi aquela arma em"; sEnd = "."; break;	
+				case 3: sHappen = "Você já esteve em"; sEnd = "?"; break;	
+				case 4: sHappen = "Você já ouviu falar de"; sEnd = "?"; break;	
+				case 5: sHappen = "Quando você foi para"; sEnd = "?"; break;	
+				case 6: sHappen = "Como você chegou a"; sEnd = "?"; break;	
+				case 7: sHappen = "Por que você foi para"; sEnd = "?"; break;	
+				case 8: sHappen = "O que você encontrou em"; sEnd = "?"; break;	
+				case 9: sHappen = "Você encontrou isso em"; sEnd = "?"; break;	
+				case 10: sHappen = "Eles morreram em"; sEnd = "."; break;	
+				case 11: sHappen = "Eu nunca estive em"; sEnd = "."; break;	
+				case 12: sHappen = "Aquele artefato veio de"; sEnd = "."; break;	
+				case 13: sHappen = "Eles se perderam em"; sEnd = "."; break;	
+				case 14: sHappen = "Eles desapareceram em"; sEnd = "."; break;	
+				case 15: sHappen = "Eu quase não consegui sair de"; sEnd = "."; break;	
+				case 16: sHappen = "Eles não conseguiram sair de"; sEnd = "."; break;	
+				case 17: sHappen = "Eu perdi aquele item mágico em"; sEnd = "."; break;	
+				case 18: sHappen = "Você perdeu isso em"; sEnd = "?"; break;	
+				case 19: sHappen = "Nós deveríamos procurar em"; sEnd = "."; break;	
+				case 20: sHappen = "Nós deveríamos explorar"; sEnd = "."; break;	
+				case 21: sHappen = "Esta noite nós vamos para"; sEnd = "."; break;	
+				case 22: sHappen = sThey + " se perdeu em"; sEnd = "."; break;	
+				case 23: sHappen = sThey + " morreu em"; sEnd = "."; break;	
+				case 24: sHappen = sThey + " perdeu aquela arma em"; sEnd = "."; break;	
+				case 25: sHappen = "Quando " + sThey + " foi para"; sEnd = "?"; break;	
+				case 26: sHappen = "Como " + sThey + " chegou a"; sEnd = "?"; break;	
+				case 27: sHappen = "Por que " + sThey + " foi para"; sEnd = "?"; break;	
+				case 28: sHappen = "O que " + sThey + " encontrou em"; sEnd = "?"; break;	
+				case 29: sHappen = sThey + " encontrou isso em"; sEnd = "?"; break;	
+				case 30: sHappen = sThey + " nunca esteve em"; sEnd = "."; break;	
+				case 31: sHappen = sThey + " desapareceu em"; sEnd = "."; break;	
+				case 32: sHappen = sThey + " quase não conseguiu sair de"; sEnd = "."; break;	
+				case 33: sHappen = sThey + " não conseguiu sair de"; sEnd = "."; break;	
+				case 34: sHappen = sThey + " perdeu aquele item mágico em"; sEnd = "."; break;	
+				case 35: sHappen = sThey + " perdeu isso em"; sEnd = "?"; break;	
 			}
 
 			string sEvent = sHappen + " " + dungeon + sEnd;	
@@ -1805,103 +1805,103 @@ namespace Server.Misc
 			string sJob = sThey;	
 			switch( Utility.RandomMinMax( 0, 86 ) )
 			{
-				case 0: sJob = "An adventurer"; break;	
-				case 1: sJob = "A bandit"; break;	
-				case 2: sJob = "A barbarian"; break;	
-				case 3: sJob = "A bard"; break;	
-				case 4: sJob = "A baron"; break;	
-				case 5: sJob = "A baroness"; break;	
-				case 6: sJob = "A cavalier"; break;	
-				case 7: sJob = "A cleric"; break;	
-				case 8: sJob = "A conjurer"; break;	
-				case 9: sJob = "A defender"; break;	
-				case 10: sJob = "A diviner"; break;	
-				case 11: sJob = "An enchanter"; break;	
-				case 12: sJob = "A enchantress"; break;	
-				case 13: sJob = "An explorer"; break;	
-				case 14: sJob = "A fighter"; break;	
-				case 15: sJob = "A gladiator"; break;	
-				case 16: sJob = "A heretic"; break;	
-				case 17: sJob = "A hunter"; break;	
-				case 18: sJob = "An illusionist"; break;	
-				case 19: sJob = "An invoker"; break;	
-				case 20: sJob = "A king"; break;	
-				case 21: sJob = "A knight"; break;	
-				case 22: sJob = "A lady"; break;	
-				case 23: sJob = "A lord"; break;	
-				case 24: sJob = "A mage"; break;	
-				case 25: sJob = "A magician"; break;	
-				case 26: sJob = "A mercenary"; break;	
-				case 27: sJob = "A minstrel"; break;	
-				case 28: sJob = "A monk"; break;	
-				case 29: sJob = "A mystic"; break;	
-				case 30: sJob = "A necromancer"; break;	
-				case 31: sJob = "An outlaw"; break;	
-				case 32: sJob = "A paladin"; break;	
-				case 33: sJob = "A priest"; break;	
-				case 34: sJob = "A priestess"; break;	
-				case 35: sJob = "A prince"; break;	
-				case 36: sJob = "A princess"; break;	
-				case 37: sJob = "A prophet"; break;	
-				case 38: sJob = "A queen"; break;	
-				case 39: sJob = "A ranger"; break;	
-				case 40: sJob = "A rogue"; break;	
-				case 41: sJob = "A sage"; break;	
-				case 42: sJob = "A scout"; break;	
-				case 43: sJob = "A seeker"; break;	
-				case 44: sJob = "A seer"; break;	
-				case 45: sJob = "A shaman"; break;	
-				case 46: sJob = "A slayer"; break;	
-				case 47: sJob = "A sorcerer"; break;	
-				case 48: sJob = "A sorceress"; break;	
-				case 49: sJob = "A summoner"; break;	
-				case 50: sJob = "A templar"; break;	
-				case 51: sJob = "A thief"; break;	
-				case 52: sJob = "A traveler"; break;	
-				case 53: sJob = "A warlock"; break;	
-				case 54: sJob = "A warrior"; break;	
-				case 55: sJob = "A witch"; break;	
-				case 56: sJob = "A wizard"; break;	
+					case 0: sJob = "Um aventureiro"; break;	
+					case 1: sJob = "Um bandido"; break;	
+					case 2: sJob = "Um bárbaro"; break;	
+					case 3: sJob = "Um bardo"; break;	
+					case 4: sJob = "Um barão"; break;	
+					case 5: sJob = "Uma baronesa"; break;	
+					case 6: sJob = "Um cavaleiro"; break;	
+					case 7: sJob = "Um clérigo"; break;	
+					case 8: sJob = "Um conjurador"; break;	
+					case 9: sJob = "Um defensor"; break;	
+					case 10: sJob = "Um adivinho"; break;	
+					case 11: sJob = "Um encantador"; break;	
+					case 12: sJob = "Uma encantadora"; break;	
+					case 13: sJob = "Um explorador"; break;	
+					case 14: sJob = "Um guerreiro"; break;	
+					case 15: sJob = "Um gladiador"; break;	
+					case 16: sJob = "Um herege"; break;	
+					case 17: sJob = "Um caçador"; break;	
+					case 18: sJob = "Um ilusionista"; break;	
+					case 19: sJob = "Um invocador"; break;	
+					case 20: sJob = "Um rei"; break;	
+					case 21: sJob = "Um cavaleiro"; break;	
+					case 22: sJob = "Uma dama"; break;	
+					case 23: sJob = "Um lord"; break;	
+					case 24: sJob = "Um mago"; break;	
+					case 25: sJob = "Um magician"; break;	
+					case 26: sJob = "Um mercenário"; break;	
+					case 27: sJob = "Um menestrel"; break;	
+					case 28: sJob = "Um monge"; break;	
+					case 29: sJob = "Um místico"; break;	
+					case 30: sJob = "Um necromante"; break;	
+					case 31: sJob = "Um fora da lei"; break;	
+					case 32: sJob = "Um paladino"; break;	
+					case 33: sJob = "Um sacerdote"; break;	
+					case 34: sJob = "Uma sacerdotisa"; break;	
+					case 35: sJob = "Um príncipe"; break;	
+					case 36: sJob = "Uma princesa"; break;	
+					case 37: sJob = "Um profeta"; break;	
+					case 38: sJob = "Uma rainha"; break;	
+					case 39: sJob = "Um ranger"; break;	
+					case 40: sJob = "Um ladino"; break;	
+					case 41: sJob = "Um sábio"; break;	
+					case 42: sJob = "Um batedor"; break;	
+					case 43: sJob = "Um buscador"; break;	
+					case 44: sJob = "Um vidente"; break;	
+					case 45: sJob = "Um xamã"; break;	
+					case 46: sJob = "Um exterminador"; break;	
+					case 47: sJob = "Um feiticeiro"; break;	
+					case 48: sJob = "Uma feiticeira"; break;	
+					case 49: sJob = "Um invocador"; break;	
+					case 50: sJob = "Um templário"; break;	
+					case 51: sJob = "Um ladrão"; break;	
+					case 52: sJob = "Um viajante"; break;	
+					case 53: sJob = "Um bruxo"; break;	
+					case 54: sJob = "Um guerreiro"; break;	
+					case 55: sJob = "Uma bruxa"; break;	
+					case 56: sJob = "Um mago"; break;	
 			}
 
-			string sBuild1 = "I found"; string sBuild2 = ".";	
+				string sBuild1 = "Eu encontrei"; string sBuild2 = ".";	
 
 			if ( LogReader == 1 )
 			{
 				switch( Utility.RandomMinMax( 0, 11 ) )
 				{
-					case 0: sBuild1 = sJob + " heard of"; sBuild2 = "."; break;	
-					case 1: sBuild1 = sJob + " tells of"; sBuild2 = "."; break;	
-					case 2: sBuild1 = sJob + " is spreading rumours about"; sBuild2 = "."; break;	
-					case 3: sBuild1 = sJob + " tells tales of"; sBuild2 = "."; break;	
-					case 4: sBuild1 = sJob + " mentioned something about"; sBuild2 = "."; break;	
-					case 5: sBuild1 = sJob + " heard rumours about"; sBuild2 = "."; break;	
-					case 6: sBuild1 = "I found"; sBuild2 = "."; break;	
-					case 7: sBuild1 = "I heard rumours about"; sBuild2 = "."; break;	
-					case 8: sBuild1 = "I heard a story about"; sBuild2 = "."; break;	
-					case 9: sBuild1 = "I overheard someone tell of"; sBuild2 = "."; break;	
-					case 10: sBuild1 = "Were you saying something about"; sBuild2 = "?"; break;	
-					case 11: sBuild1 = "Where did I hear about"; sBuild2 = "?"; break;	
+					case 0: sBuild1 = sJob + " ouviu falar de"; sBuild2 = "."; break;	
+					case 1: sBuild1 = sJob + " conta sobre"; sBuild2 = "."; break;	
+					case 2: sBuild1 = sJob + " está espalhando rumores sobre"; sBuild2 = "."; break;	
+					case 3: sBuild1 = sJob + " conta histórias de"; sBuild2 = "."; break;	
+					case 4: sBuild1 = sJob + " mencionou algo sobre"; sBuild2 = "."; break;	
+					case 5: sBuild1 = sJob + " ouviu rumores sobre"; sBuild2 = "."; break;	
+					case 6: sBuild1 = "Eu encontrei"; sBuild2 = "."; break;	
+					case 7: sBuild1 = "Eu ouvi rumores sobre"; sBuild2 = "."; break;	
+					case 8: sBuild1 = "Eu ouvi uma história sobre"; sBuild2 = "."; break;	
+					case 9: sBuild1 = "Eu ouvi alguém contar sobre"; sBuild2 = "."; break;	
+					case 10: sBuild1 = "Você estava dizendo algo sobre"; sBuild2 = "?"; break;	
+					case 11: sBuild1 = "Onde eu ouvi sobre"; sBuild2 = "?"; break;	
 				}
 			}
 			else if ( LogReader == 0 )
 			{
 				switch( Utility.RandomMinMax( 0, 13 ) )
 				{
-					case 0: sBuild1 = sJob + " found"; sBuild2 = "."; break;	
-					case 1: sBuild1 = sJob + " tells of"; sBuild2 = "."; break;	
-					case 2: sBuild1 = sJob + " is spreading rumours about"; sBuild2 = "."; break;	
-					case 3: sBuild1 = sJob + " tells tales of"; sBuild2 = "."; break;	
-					case 4: sBuild1 = sJob + " mentioned that there was"; sBuild2 = "."; break;	
-					case 5: sBuild1 = sJob + " heard rumours about"; sBuild2 = "."; break;	
-					case 6: sBuild1 = "I found"; sBuild2 = "."; break;	
-					case 7: sBuild1 = "I heard rumours about"; sBuild2 = "."; break;	
-					case 8: sBuild1 = "I heard a story about"; sBuild2 = "."; break;	
-					case 9: sBuild1 = "I overheard someone tell of"; sBuild2 = "."; break;	
-					case 10: sBuild1 = "Were you saying that there is"; sBuild2 = "?"; break;	
-					case 11: sBuild1 = "Where did I hear that there is"; sBuild2 = "?"; break;	
-					case 12: sBuild1 = "Are you telling me that there is"; sBuild2 = "?"; break;	
-					case 13: sBuild1 = "Do you mean to say that there is"; sBuild2 = "?"; break;	
+					case 0: sBuild1 = sJob + " encontrou"; sBuild2 = "."; break;	
+					case 1: sBuild1 = sJob + " conta sobre"; sBuild2 = "."; break;	
+					case 2: sBuild1 = sJob + " está espalhando rumores sobre"; sBuild2 = "."; break;	
+					case 3: sBuild1 = sJob + " conta histórias de"; sBuild2 = "."; break;	
+					case 4: sBuild1 = sJob + " mencionou que havia"; sBuild2 = "."; break;	
+					case 5: sBuild1 = sJob + " ouviu rumores sobre"; sBuild2 = "."; break;	
+					case 6: sBuild1 = "Eu encontrei"; sBuild2 = "."; break;	
+					case 7: sBuild1 = "Eu ouvi rumores sobre"; sBuild2 = "."; break;	
+					case 8: sBuild1 = "Eu ouvi uma história sobre"; sBuild2 = "."; break;	
+					case 9: sBuild1 = "Eu ouvi alguém contar sobre"; sBuild2 = "."; break;	
+					case 10: sBuild1 = "Você estava dizendo que há"; sBuild2 = "?"; break;	
+					case 11: sBuild1 = "Onde eu ouvi que há"; sBuild2 = "?"; break;	
+					case 12: sBuild1 = "Você está me dizendo que há"; sBuild2 = "?"; break;	
+					case 13: sBuild1 = "Você quer dizer que há"; sBuild2 = "?"; break;	
 				}
 			}
 
@@ -1922,38 +1922,38 @@ namespace Server.Misc
 				{
 					case 1: patron.PlaySound( patron.Female ? 778 : 1049 ); patron.Say( "*ah!*" ); break;	
 					case 2: patron.PlaySound( patron.Female ? 779 : 1050 ); patron.Say( "Ah ha!" ); break;	
-					case 3: patron.PlaySound( patron.Female ? 780 : 1051 ); patron.Say( "*applauds*" ); break;	
-					case 4: patron.PlaySound( patron.Female ? 781 : 1052 ); patron.Say( "*blows nose*" );	break;	
-					case 5: patron.PlaySound( patron.Female ? 786 : 1057 ); patron.Say( "*cough*" ); break;	
-					case 6: patron.PlaySound( patron.Female ? 782 : 1053 ); patron.Say( "*burp*" ); break;	
-					case 7: patron.PlaySound( patron.Female ? 784 : 1055 ); patron.Say( "*clears throat*" ); break;	
-					case 8: patron.PlaySound( patron.Female ? 785 : 1056 ); patron.Say( "*cough*" ); break;	
-					case 9: patron.PlaySound( patron.Female ? 787 : 1058 ); patron.Say( "*cries*" ); break;	
-					case 10: patron.PlaySound( patron.Female ? 792 : 1064 ); patron.Say( "*farts*" ); break;	
-					case 11: patron.PlaySound( patron.Female ? 793 : 1065 ); patron.Say( "*gasp*" ); break;	
-					case 12: patron.PlaySound( patron.Female ? 794 : 1066 ); patron.Say( "*giggles*" ); break;	
-					case 13: patron.PlaySound( patron.Female ? 0x31B : 0x42B ); patron.Say( "*groans*" ); break;	
-					case 14: patron.PlaySound( patron.Female ? 0x338 : 0x44A ); patron.Say( "*growls*" ); break;	
-					case 15: patron.PlaySound( patron.Female ? 797 : 1069 ); patron.Say( "Hey!" ); break;	
-					case 16: patron.PlaySound( patron.Female ? 798 : 1070 ); patron.Say( "*hiccup*" ); break;	
-					case 17: patron.PlaySound( patron.Female ? 799 : 1071 ); patron.Say( "Huh?" ); break;	
-					case 18: patron.PlaySound( patron.Female ? 801 : 1073 ); patron.Say( "*laughs*" ); break;	
-					case 19: patron.PlaySound( patron.Female ? 802 : 1074 ); patron.Say( "No!" ); break;	
+					case 3: patron.PlaySound( patron.Female ? 780 : 1051 ); patron.Say( "*aplaude*" ); break;	
+					case 4: patron.PlaySound( patron.Female ? 781 : 1052 ); patron.Say( "*assoa o nariz*" );	break;	
+					case 5: patron.PlaySound( patron.Female ? 786 : 1057 ); patron.Say( "*tosse*" ); break;	
+					case 6: patron.PlaySound( patron.Female ? 782 : 1053 ); patron.Say( "*arroto*" ); break;	
+					case 7: patron.PlaySound( patron.Female ? 784 : 1055 ); patron.Say( "*limpa a garganta*" ); break;	
+					case 8: patron.PlaySound( patron.Female ? 785 : 1056 ); patron.Say( "*tosse*" ); break;	
+					case 9: patron.PlaySound( patron.Female ? 787 : 1058 ); patron.Say( "*chora*" ); break;	
+					case 10: patron.PlaySound( patron.Female ? 792 : 1064 ); patron.Say( "*peida*" ); break;	
+					case 11: patron.PlaySound( patron.Female ? 793 : 1065 ); patron.Say( "*suspiro*" ); break;	
+					case 12: patron.PlaySound( patron.Female ? 794 : 1066 ); patron.Say( "*risada*" ); break;	
+					case 13: patron.PlaySound( patron.Female ? 0x31B : 0x42B ); patron.Say( "*gemido*" ); break;	
+					case 14: patron.PlaySound( patron.Female ? 0x338 : 0x44A ); patron.Say( "*rosna*" ); break;	
+					case 15: patron.PlaySound( patron.Female ? 797 : 1069 ); patron.Say( "Ei!" ); break;	
+					case 16: patron.PlaySound( patron.Female ? 798 : 1070 ); patron.Say( "*soluço*" ); break;	
+					case 17: patron.PlaySound( patron.Female ? 799 : 1071 ); patron.Say( "Hã?" ); break;	
+					case 18: patron.PlaySound( patron.Female ? 801 : 1073 ); patron.Say( "*ri*" ); break;	
+					case 19: patron.PlaySound( patron.Female ? 802 : 1074 ); patron.Say( "Não!" ); break;	
 					case 20: patron.PlaySound( patron.Female ? 803 : 1075 ); patron.Say( "Oh!" ); break;	
 					case 21: patron.PlaySound( patron.Female ? 811 : 1085 ); patron.Say( "Oooh." ); break;	
-					case 22: patron.PlaySound( patron.Female ? 812 : 1086 ); patron.Say( "Oops!" ); break;	
+					case 22: patron.PlaySound( patron.Female ? 812 : 1086 ); patron.Say( "Ops!" ); break;	
 					case 23: patron.PlaySound( patron.Female ? 0x32E : 0x440 ); patron.Say( "Ahhhh!" ); break;	
 					case 24: patron.PlaySound( patron.Female ? 815 : 1089 ); patron.Say( "Shhh!" ); break;	
-					case 25: patron.PlaySound( patron.Female ? 816 : 1090 ); patron.Say( "*sigh*" ); break;	
-					case 26: patron.PlaySound( patron.Female ? 817 : 1091 ); patron.Say( "Ahh-choo!" ); break;	
-					case 27: patron.PlaySound( patron.Female ? 818 : 1092 ); patron.Say( "*sniff*" ); break;	
-					case 28: patron.PlaySound( patron.Female ? 819 : 1093 ); patron.Say( "*snore*" ); break;	
-					case 29: patron.PlaySound( patron.Female ? 820 : 1094 ); patron.Say( "*spits*" ); break;	
-					case 30: patron.PlaySound( patron.Female ? 821 : 1095 ); patron.Say( "*whistles*" ); break;	
-					case 31: patron.PlaySound( patron.Female ? 783 : 1054 ); patron.Say( "Woohoo!" ); break;	
-					case 32: patron.PlaySound( patron.Female ? 822 : 1096 ); patron.Say( "*yawns*" ); break;	
-					case 33: patron.PlaySound( patron.Female ? 823 : 1097 ); patron.Say( "Yea!" ); break;	
-					case 34: patron.PlaySound( patron.Female ? 0x31C : 0x42C ); patron.Say( "*yells*" ); break;	
+					case 25: patron.PlaySound( patron.Female ? 816 : 1090 ); patron.Say( "*suspiro*" ); break;	
+					case 26: patron.PlaySound( patron.Female ? 817 : 1091 ); patron.Say( "Atchim!" ); break;	
+					case 27: patron.PlaySound( patron.Female ? 818 : 1092 ); patron.Say( "*fungada*" ); break;	
+					case 28: patron.PlaySound( patron.Female ? 819 : 1093 ); patron.Say( "*ronco*" ); break;	
+					case 29: patron.PlaySound( patron.Female ? 820 : 1094 ); patron.Say( "*cospe*" ); break;	
+					case 30: patron.PlaySound( patron.Female ? 821 : 1095 ); patron.Say( "*assobia*" ); break;	
+					case 31: patron.PlaySound( patron.Female ? 783 : 1054 ); patron.Say( "Uhuu!" ); break;	
+					case 32: patron.PlaySound( patron.Female ? 822 : 1096 ); patron.Say( "*bocejo*" ); break;	
+					case 33: patron.PlaySound( patron.Female ? 823 : 1097 ); patron.Say( "Sim!" ); break;	
+					case 34: patron.PlaySound( patron.Female ? 0x31C : 0x42C ); patron.Say( "*grita*" ); break;	
 					case 35: patron.PlaySound( Utility.RandomList( 0x30, 0x2D6 ) ); break;	
 					case 36: patron.PlaySound( Utility.RandomList( 0x30, 0x2D6 ) ); break;	
 					case 37: patron.PlaySound( Utility.RandomList( 0x30, 0x2D6 ) ); break;	
@@ -1961,11 +1961,11 @@ namespace Server.Misc
 					case 39: patron.PlaySound( Utility.RandomList( 0x30, 0x2D6 ) ); break;	
 				}
 			}
-			else if ( iWillSay < 5 ){ patron.Say( sPhrase ); }
-			else if ( iWillSay < 7 ){ patron.Say( sEvent ); }
-			else if ( reg.Name == "the Basement" || reg.Name == "the Dungeon Room" || reg.Name == "the Camping Tent" ) { patron.Say( sTent ); }
-			else if ( !( patron is TavernPatronNorth || patron is TavernPatronSouth || patron is TavernPatronEast || patron is TavernPatronWest ) ) { patron.Say( sCitizen ); }
-			else { patron.Say( sGossip ); }
+				else if ( iWillSay < 5 ){ patron.Say( sPhrase ); }
+				else if ( iWillSay < 7 ){ patron.Say( sEvent ); }
+				else if ( reg.Name == "the Basement" || reg.Name == "the Dungeon Room" || reg.Name == "the Camping Tent" ) { patron.Say( sTent ); }
+				else if ( !( patron is TavernPatronNorth || patron is TavernPatronSouth || patron is TavernPatronEast || patron is TavernPatronWest ) ) { patron.Say( sCitizen ); }
+				else { patron.Say( sGossip ); }
 		}
 	}
 }

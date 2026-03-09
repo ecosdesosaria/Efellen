@@ -21,23 +21,23 @@ namespace Server.Items
 		{
 			Weight = 1.0;
 			Hue = 0xB98;
-			Name = "an old parchment";
+			Name = "um pergaminho antigo";
 
 			switch ( Utility.RandomMinMax( 0, 2 ) )
 			{
-				case 0:	Name = "parchment";	break;
-				case 1:	Name = "note";		break;
-				case 2:	Name = "scroll";		break;
+				case 0: Name = "pergaminho"; break;
+				case 1: Name = "nota"; break;
+				case 2: Name = "rolo"; break;
 			}
 
 			switch ( Utility.RandomMinMax( 0, 5 ) )
 			{
-				case 0:	Name = "an old" + " " + Name;		break;
-				case 1:	Name = "a weathered" + " " + Name;	break;
-				case 2:	Name = "a worn" + " " + Name;		break;
-				case 3:	Name = "a scribbled" + " " + Name;	break;
-				case 4:	Name = "an unusual" + " " + Name;	break;
-				case 5:	Name = "a strange" + " " + Name;	break;
+				case 0: Name = "um antigo " + Name; break;
+				case 1: Name = "um desgastado " + Name; break;
+				case 2: Name = "um gasto " + Name; break;
+				case 3: Name = "um rabiscado " + Name; break;
+				case 4: Name = "um incomum " + Name; break;
+				case 5: Name = "um estranho " + Name; break;
 			}
 
 			ItemID = Utility.RandomList( 0xE34, 0x14ED, 0x14EE, 0x14EF, 0x14F0 );
@@ -46,24 +46,24 @@ namespace Server.Items
 
 			switch ( amnt )
 			{
-				case 1:		ScrollMessage = "The magician named Kylearan is really behind the fate of Skara Brae."; break;
-				case 2:		ScrollMessage = "The crystal sword can cut through the void."; break;
-				case 3:		ScrollMessage = "The crystal statue is indestructible."; break;
-				case 4:		ScrollMessage = "There is a way to escape the void from the sewers."; break;
-				case 5:		ScrollMessage = "There is a secret passage in the cellar below the Scarlet Bard."; break;
-				case 6:		ScrollMessage = "One could get into the catacombs if they know the name of the mad god."; break;
-				case 7:		ScrollMessage = "There is more than one way into Mangar's tower."; break;
-				case 8:		ScrollMessage = "There is a secret passage in the deer hunter's room."; break;
-				case 9:		ScrollMessage = "There is a passageway behind Harkyn's throne."; break;
-				case 10:	ScrollMessage = "The gray dragon holds the key to escape."; break;
-				case 11:	ScrollMessage = "Some believe that a deal was struck between Kylearan and Mangar"; break;
-				case 12:	ScrollMessage = "There is a cave where Garth gets his ore."; break;
-				case 13:	ScrollMessage = "There was a mad god that left ruins of Skara Brae in Sosaria."; break;
-				case 14:	ScrollMessage = "There are three silver shapes that are needed to enter Mangar's room."; break;
-				case 15:	ScrollMessage = "Some have seen a wizard that would go into his dungeon cells and disappear."; break;
-				case 16:	ScrollMessage = "There is a statue of the mad god is on top of Harkyn's tower."; break;
-				case 17:	ScrollMessage = "Some believe that the key to Mangar's tower was seen in Kylearn's tower."; break;
-				case 18:	ScrollMessage = "Long ago, a crystal statue was carved with a jade box inside."; break;
+				case 1: ScrollMessage = "O mago chamado Kylearan está realmente por trás do destino de Skara Brae."; break;
+				case 2: ScrollMessage = "A espada de cristal pode cortar através do vazio."; break;
+				case 3: ScrollMessage = "A estátua de cristal é indestrutível."; break;
+				case 4: ScrollMessage = "Há uma maneira de escapar do vazio a partir dos esgotos."; break;
+				case 5: ScrollMessage = "Há uma passagem secreta na adega abaixo do Bardo Escarlate."; break;
+				case 6: ScrollMessage = "Alguém poderia entrar nas catacumbas se soubesse o nome do deus louco."; break;
+				case 7: ScrollMessage = "Há mais de uma maneira de entrar na torre de Mangar."; break;
+				case 8: ScrollMessage = "Há uma passagem secreta no quarto do caçador de veados."; break;
+				case 9: ScrollMessage = "Há uma passagem atrás do trono de Harkyn."; break;
+				case 10: ScrollMessage = "O dragão cinza guarda a chave para escapar."; break;
+				case 11: ScrollMessage = "Alguns acreditam que um acordo foi feito entre Kylearan e Mangar"; break;
+				case 12: ScrollMessage = "Há uma caverna onde Garth obtém seu minério."; break;
+				case 13: ScrollMessage = "Houve um deus louco que deixou ruínas de Skara Brae em Sosaria."; break;
+				case 14: ScrollMessage = "Há três formas de prata necessárias para entrar no quarto de Mangar."; break;
+				case 15: ScrollMessage = "Alguns viram um mago que entrava em suas celas de masmorra e desaparecia."; break;
+				case 16: ScrollMessage = "Há uma estátua do deus louco no topo da torre de Harkyn."; break;
+				case 17: ScrollMessage = "Alguns acreditam que a chave da torre de Mangar foi vista na torre de Kylearan."; break;
+				case 18: ScrollMessage = "Há muito tempo, uma estátua de cristal foi esculpida com uma caixa de jade inside."; break;
 			}
 		}
 

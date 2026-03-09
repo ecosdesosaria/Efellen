@@ -5,7 +5,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a bird corpse" )]
+	[CorpseName( "um corpo de pássaro" )]
 	public class GiantRaven : BaseMount
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public GiantRaven() : this( "a giant raven" )
+		public GiantRaven() : this( "um corvo gigante" )
 		{
 		}
 
@@ -73,7 +73,7 @@ namespace Server.Mobiles
 			if ( this.Map == Map.Lodor && this.Home.X >= 1419 && this.Home.X <= 1432 && this.Home.Y >= 3110 && this.Home.Y <= 3119 )
 			{
 				this.Hue = 0xA77;
-				this.Name = "a giant vulture";
+				this.Name = "um abutre gigante";
 			}
 		}
 

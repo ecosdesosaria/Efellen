@@ -4,13 +4,13 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a giraffe corpse" )]
+	[CorpseName( "um cadáver de girafa" )]
 	public class Giraffe : BaseCreature
 	{
 		[Constructable]
 		public Giraffe() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a giraffe";
+			Name = "uma girafa";
 			Body = 894;
 			BaseSoundID = 0x3F3;
 

@@ -5,7 +5,7 @@ using Server.Spells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an insect corpse" )]
+	[CorpseName( "um cadáver de inseto" )]
 	[TypeAlias( "Server.Mobiles.DeathWatchBeetle" )]
 	public class DeathwatchBeetle : BaseCreature
 	{
@@ -17,7 +17,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public DeathwatchBeetle() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{
-			Name = "a skitter";
+			Name = "um skitter";
 			Body = 242;
 
 			SetStr( 136, 160 );

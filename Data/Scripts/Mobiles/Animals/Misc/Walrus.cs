@@ -7,13 +7,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a seal corpse" )]
+	[CorpseName( "um cadáver de foca" )]
 	public class Walrus : BaseCreature
 	{
 		[Constructable]
 		public Walrus() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a seal";
+			Name = "uma foca";
 			Body = 0xDD;
 			BaseSoundID = 0xE0;
 
@@ -49,7 +49,7 @@ namespace Server.Mobiles
 
 			if ( Utility.RandomList( 1, 5 ) == 1 )
 			{
-				Name = "a walrus";
+				Name = "uma morsa";
 				Body = 891;
 
 				SetStr( 41, 69 );

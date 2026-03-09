@@ -8,13 +8,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a gnoll corpse" )]
+	[CorpseName( "um cadáver de gnoll" )]
 	public class Gnoll : BaseCreature
 	{
 		[Constructable]
 		public Gnoll() : base( AIType.AI_Melee,FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a gnoll";
+			Name = "um gnoll";
 			Body = 510;
 			BaseSoundID = 0x4F5;
 

@@ -111,16 +111,15 @@ namespace Server.Mobiles
 				{
 					switch ( Utility.RandomMinMax( 0, 8 ) )
 					{
-
-						case 0:	mouse.Say("Oft have I wished that stranger would return."); break;
-						case 1:	mouse.Say("We must bring the shards into harmony, so that they resonate in such a manner that matches the original universe."); break;
-						case 2:	mouse.Say("Yet sometimes one must sacrifice a pawn to save a king."); break;
-						case 3:	mouse.Say("Suddenly the shutters blew open and Lord British fell to the ground, one hand shielding his eyes."); break;
-						case 4:	mouse.Say("I witnessed them all from my tiny mousehole."); break;
-						case 5:	mouse.Say("But I am but a mouse, and none hear me."); break;
-						case 6:	mouse.Say("A shard of a universe is a powerful thing."); break;
-						case 7:	mouse.Say("Aid the nobility that resideth in human heart."); break;
-						case 8:	mouse.Say("Even pawns have lives and loves at home, my lord."); break;
+						case 0:	mouse.Say("Muitas vezes desejei que o estranho retornasse."); break;
+						case 1:	mouse.Say("Devemos trazer os fragmentos para a harmonia, para que ressoem de maneira que combine com o universo original."); break;
+						case 2:	mouse.Say("No entanto, às vezes é preciso sacrificar um peão para salvar um rei."); break;
+						case 3:	mouse.Say("Subitamente as persianas se abriram e Lord British caiu no chão, com uma mão protegendo os olhos."); break;
+						case 4:	mouse.Say("Eu testemunhei tudo do meu pequeno buraco de rato."); break;
+						case 5:	mouse.Say("Mas eu sou apenas um rato, e ninguém me ouve."); break;
+						case 6:	mouse.Say("Um fragmento de um universo é uma coisa poderosa."); break;
+						case 7:	mouse.Say("Ajudai a nobreza que reside no coração humano."); break;
+						case 8:	mouse.Say("Até os peões têm vidas e amores em casa, meu senhor."); break;
 					}
 				}
 			}
@@ -144,15 +143,15 @@ namespace Server.Mobiles
 
 				switch ( pick )
 				{
-					case 0:	sMessage = "I heard that the " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " can be obtained in " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
-					case 1:	sMessage = "Nystal said something about the " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " and " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
-					case 2:	sMessage = "Someone told Lord British that " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + " is where you would look for the " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + "."; break;
-					case 3:	sMessage = "Lord British would tell me tales of knights going to " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + " and bringing back the " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + "."; break;
-					case 4:	sMessage = QuestCharacters.RandomWords() + " was in the kitchen whispering about the " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " and " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
-					case 5:	sMessage = "I saw a note from the " + RandomThings.GetRandomJob() + ", and it mentioned the " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " and " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
-					case 6:	sMessage = "Lord British met with " + QuestCharacters.RandomWords() + " and told them to bring back the " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " from " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
-					case 7:	sMessage = "I heard that the " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " can be found in " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
-					case 8:	sMessage = "Someone from " + RandomThings.GetRandomCity() + " died in " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + " searching for the " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + "."; break;
+					case 0:	sMessage = "Ouvi dizer que o " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " pode ser obtido em " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
+					case 1:	sMessage = "Nystal disse algo sobre o " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " e " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
+					case 2:	sMessage = "Alguém disse a Lord British que " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + " é onde você procuraria pelo " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + "."; break;
+					case 3:	sMessage = "Lord British me contava histórias de cavaleiros indo para " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + " e trazendo de volta o " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + "."; break;
+					case 4:	sMessage = QuestCharacters.RandomWords() + " estava na cozinha sussurrando sobre o " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " e " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
+					case 5:	sMessage = "Vi uma nota do " + RandomThings.GetRandomJob() + ", e ela mencionava o " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " e " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
+					case 6:	sMessage = "Lord British se encontrou com " + QuestCharacters.RandomWords() + " e lhes disse para trazerem de volta o " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " de " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
+					case 7:	sMessage = "Ouvi dizer que o " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + " pode ser encontrado em " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + "."; break;
+					case 8:	sMessage = "Alguém de " + RandomThings.GetRandomCity() + " morreu em " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 0 ) + " procurando pelo " + Server.Items.SomeRandomNote.GetSpecialItem( relic, 1 ) + "."; break;
 					case 9:	sMessage = Server.Misc.TavernPatrons.GetRareLocation( this, false, false );		break;
 				}
 				this.PrivateOverheadMessage(MessageType.Regular, 1153, false, sMessage, from.NetState);

@@ -123,7 +123,7 @@ namespace Server.Mobiles
 
 		public virtual void OnDisallowedRider( Mobile m )
 		{
-			m.SendMessage( "You may not ride this creature." );
+			m.SendMessage( "Você não pode montar nesta criatura." );
 		}
 
 		public override void OnDoubleClick( Mobile from )
@@ -158,7 +158,7 @@ namespace Server.Mobiles
 
 			if ( from is PlayerMobile && !PlayerSettings.GetKeys( from, "DragonRiding" ) && ( this is Dragoon || this is RidingDragon || this is GemDragon ) )
 			{
-				from.SendMessage( "You have yet to learn the secrets of riding draconic creatures." );
+				from.SendMessage( "Você ainda não aprendeu os segredos de montar criaturas dracônicas." );
 				return;
 			}
 
@@ -173,16 +173,17 @@ namespace Server.Mobiles
 
 			if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, from.Region ) )
 			{
-				from.SendMessage( "You cannot mount that while you are in this place." );
+				from.SendMessage( "Você não pode montar isso enquanto estiver neste lugar." );
 				return;
 			}
 			else if ( ( MySettings.S_NoMountBuilding && Server.Misc.Worlds.InBuilding( from ) ) || ( from.Region is HouseRegion && MySettings.S_NoMountsInHouses ) )
 			{
-				from.SendMessage( "You cannot mount that while you are in here." );
+				from.SendMessage( "Você não pode montar isso enquanto estiver aqui." );
 				return;
 			}
 
-			int range = 5;
+			int range = 1;
+				if ( MySettings.S_FriendsAvoidHeels ){ range = 5; }
 
 			if ( from.InRange( this, range ) )
 			{

@@ -20,15 +20,15 @@ namespace Server.Mobiles
 				{
 					switch ( Utility.Random( 9 ))
 					{
-						case 0: Say("The Stranger has saved Sosaria from Exodus."); break;
-						case 1: Say("Castle Exodus lies in ruins, no one knowing what evil lurks below."); break;
-						case 2: Say("Mondain's legacy is forever extinguished."); break;
-						case 3: Say("The timeline has been restored, after the wrath of Minax."); break;
-						case 4: Say("One day the Stranger will return to Sosaria."); break;
-						case 5: Say("Although some speak of virtue, it is the serpents of order who keep the balance."); break;
-						case 6: Say("The order was Love, Sol, Moon, and Death."); break;
-						case 7: Say("Maybe one day the Stranger will achieve Avatarhood."); break;
-						case 8: Say("The strings of time show the Guardian is coming."); break;
+						case 0: Say("O Estranho salvou Sosaria de Exodus."); break;
+						case 1: Say("O Castelo de Exodus está em ruínas, ninguém sabe que mal habita abaixo."); break;
+						case 2: Say("O legado de Mondain está extinto para sempre."); break;
+						case 3: Say("A linha do tempo foi restaurada, após a ira de Minax."); break;
+						case 4: Say("Um dia o Estranho retornará a Sosaria."); break;
+						case 5: Say("Embora alguns falem de virtude, são as serpentes da ordem que mantêm o equilíbrio."); break;
+						case 6: Say("A ordem era Amor, Sol, Lua e Morte."); break;
+						case 7: Say("Talvez um dia o Estranho alcance o Avatar."); break;
+						case 8: Say("Os fios do tempo mostram que o Guardião está chegando."); break;
 					};
 
 					m_NextTalk = (DateTime.Now + TimeSpan.FromSeconds( 30 ));

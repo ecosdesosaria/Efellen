@@ -100,28 +100,28 @@ namespace Server.Spells.Research
 
 			if ( book != null && book.paper < 1 )
 			{
-				Caster.SendMessage( "You do not have enough pages in your book to cast this spell." );
+				Caster.SendMessage( "Você não tem páginas suficientes em seu livro para lançar este feitiço." );
 				return false;
 			}
 			else if ( book != null && book.quill < 1 )
 			{
-				Caster.SendMessage( "You do not have enough quills for your book to cast this spell." );
+				Caster.SendMessage( "Você não tem canetas suficientes em seu livro para lançar este feitiço." );
 				return false;
 			}
 
 			if ( CastingSkill( Caster ) < RequiredSkill )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredSkill + " in magery or necromancy to cast this spell." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + RequiredSkill + " em magia ou necromancia para lançar este feitiço." );
 				return false;
 			}
 			else if ( Caster.Mana < GetMana() )
 			{
-				Caster.SendMessage( "You must have at least " + GetMana() + " mana to cast this spell." );
+				Caster.SendMessage( "Você deve ter pelo menos " + GetMana() + " de mana para lançar este feitiço." );
 				return false;
 			}
 			else if ( !SpellPrepared( Caster, spellIndex ) && !ResearchSettings.BookCaster( Caster ) )
 			{
-				Caster.SendMessage( "You do not have that spell prepared." );
+				Caster.SendMessage( "Você não tem esse feitiço preparado." );
 				return false;
 			}
 
@@ -132,17 +132,17 @@ namespace Server.Spells.Research
 		{
 			if ( CastingSkill( Caster ) < RequiredSkill )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredSkill + " in magery or necromancy to cast this spell." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + RequiredSkill + " em magia ou necromancia para lançar este feitiço." );
 				return false;
 			}
 			else if ( Caster.Mana < GetMana() )
 			{
-				Caster.SendMessage( "You must have at least " + GetMana() + " mana to cast this spell." );
+				Caster.SendMessage( "Você deve ter pelo menos " + GetMana() + " de mana para lançar este feitiço." );
 				return false;
 			}
 			else if ( !SpellPrepared( Caster, spellIndex ) && !ResearchSettings.BookCaster( Caster ) )
 			{
-				Caster.SendMessage( "You do not have that spell prepared." );
+				Caster.SendMessage( "Você não tem esse feitiço preparado." );
 				return false;
 			}
 

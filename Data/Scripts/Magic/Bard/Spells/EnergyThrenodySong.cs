@@ -55,7 +55,7 @@ namespace Server.Spells.Song
 
             if (m_Book.Instrument == null || !(Caster.InRange(m_Book.Instrument.GetWorldLocation(), 1)))
             {
-                Caster.SendMessage("Your instrument is missing! You can select another from your song book.");
+                Caster.SendMessage("Seu instrumento está faltando! Você pode selecionar outro do seu livro de canções.");
                 return;
             }
 
@@ -77,7 +77,7 @@ namespace Server.Spells.Song
 					duration = TimeSpan.FromSeconds( (double)(MusicSkill( Caster ) * 2) );
 				}
 
-				m.SendMessage( "Your resistance to energy has decreased." );
+				m.SendMessage( "Sua resistência à energia diminuiu." );
 				ResistanceMod mod1 = new ResistanceMod( ResistanceType.Energy, - amount );
 				
 				m.AddResistanceMod( mod1 );
@@ -117,7 +117,7 @@ namespace Server.Spells.Song
 			{
 				if ( m_Mobile != null )
 				{
-					m_Mobile.SendMessage( "The effect of the energy threnody wears off." );
+					m_Mobile.SendMessage( "O efeito do energy threnody desaparece." );
 					DoExpire();
 				}
 			}

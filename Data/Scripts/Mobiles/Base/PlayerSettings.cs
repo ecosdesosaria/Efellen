@@ -162,15 +162,15 @@ namespace Server.Misc
 				}
 			} 
 
-			((PlayerMobile)m).CharacterWanted = m.Name + " is wanted for the murder of " + wTitle + " " + wName + ". The " + wTitle + " was attacked while " + wPron + " was visting " + RandomThings.GetRandomCity() + ". Citizens stated they seen " + m.Name + " leaving the area with a blood covered " + Server.Misc.RandomThings.GetRandomWeapon() + ". The guard captain " + QuestCharacters.ParchmentWriter() + " warns all citizen to be on the lookout for " + m.Name + " as they escaped their jail cell in Britain.";
+			((PlayerMobile)m).CharacterWanted = m.Name + " é procurado pelo assassinato de " + wTitle + " " + wName + ". O " + wTitle + " foi atacado enquanto " + wPron + " visitava " + RandomThings.GetRandomCity() + ". Cidadãos afirmaram ter visto " + m.Name + " deixando o local com uma " + Server.Misc.RandomThings.GetRandomWeapon() + " coberta de sangue. O capitão da guarda " + QuestCharacters.ParchmentWriter() + " adverte a todos os cidadãos para ficarem alertas quanto a " + m.Name + ", pois este fugiu de sua cela em Britain.";
 			int words = Utility.RandomMinMax( 1, 3 );
 			if ( words == 2 ) 
 			{
-				((PlayerMobile)m).CharacterWanted = m.Name + " is wanted for the murder of " + wTitle + " " + wName + ". The " + wTitle + " was attacked while " + wPron + " was visting " + RandomThings.GetRandomCity() + ". " + m.Name + " also stole " + Server.Misc.QuestCharacters.QuestItems( true ) + " that the " + wTitle + " had with them. The guard captain " + QuestCharacters.ParchmentWriter() + " warns all citizen to be on the lookout for " + m.Name + " as they escaped their jail cell in Britain.";
+				((PlayerMobile)m).CharacterWanted = m.Name + " é procurado pelo assassinato de " + wTitle + " " + wName + ". O " + wTitle + " foi atacado enquanto " + wPron + " visitava " + RandomThings.GetRandomCity() + ". " + m.Name + " também roubou " + Server.Misc.QuestCharacters.QuestItems( true ) + " que o " + wTitle + " portava consigo. O capitão da guarda " + QuestCharacters.ParchmentWriter() + " adverte a todos os cidadãos para ficarem alertas quanto a " + m.Name + ", pois este fugiu de sua cela em Britain.";
 			}
 			else if ( words == 3 ) 
 			{
-				((PlayerMobile)m).CharacterWanted = m.Name + " is wanted for the murder of " + wTitle + " " + wName + ". The " + wTitle + " was assassinated by orders from a group calling themselves " + RandomThings.GetRandomSociety() + ". " + m.Name + " was hired by them to carry out the deed, but their motivations remain unclear. The guard captain " + QuestCharacters.ParchmentWriter() + " warns all citizen to be on the lookout for " + m.Name + " as they escaped their jail cell in Britain.";
+				((PlayerMobile)m).CharacterWanted = m.Name + " é procurado pelo assassinato de " + wTitle + " " + wName + ". O " + wTitle + " foi assassinado por ordens de um grupo que se intitula " + RandomThings.GetRandomSociety() + ". " + m.Name + " foi contratado por eles para realizar o feito, mas suas motivações permanecem obscuras. O capitão da guarda " + QuestCharacters.ParchmentWriter() + " adverte a todos os cidadãos para ficarem alertas quanto a " + m.Name + ", pois este fugiu de sua cela em Britain.";
 			}
 
 			m.Profile = ((PlayerMobile)m).CharacterWanted;
@@ -1433,20 +1433,20 @@ namespace Server.Misc
 				{
 					m.PlaySound( 0x048 );
 
-					string sMessage = "You take some ";
+					string sMessage = "Você pega algumas ";
 
-					if ( foundCoins > 0 ){ sMessage = sMessage + "coins, "; }
-					if ( foundGems > 0 ){ sMessage = sMessage + "gems, "; }
-					if ( foundNuggets > 0 ){ sMessage = sMessage + "nuggets, "; }
-					if ( foundJewels > 0 ){ sMessage = sMessage + "jewels, "; }
-					if ( foundArrows > 0 ){ sMessage = sMessage +" arrows, "; }
-					if ( foundBolts > 0 ){ sMessage = sMessage + "bolts, "; }
-					if ( foundBandages > 0 ){ sMessage = sMessage + "bandages, "; }
-					if ( foundScrolls > 0 ){ sMessage = sMessage + "scrolls, "; }
-					if ( foundReagents > 0 ){ sMessage = sMessage + "reagents, "; }
-					if ( foundPotions > 0 ){ sMessage = sMessage + "potions, "; }
+					if ( foundCoins > 0 ){ sMessage = sMessage + "moedas, "; }
+					if ( foundGems > 0 ){ sMessage = sMessage + "gemas, "; }
+					if ( foundNuggets > 0 ){ sMessage = sMessage + "pepitas, "; }
+					if ( foundJewels > 0 ){ sMessage = sMessage + "joias, "; }
+					if ( foundArrows > 0 ){ sMessage = sMessage + "flechas, "; }
+					if ( foundBolts > 0 ){ sMessage = sMessage + "virotes, "; }
+					if ( foundBandages > 0 ){ sMessage = sMessage + "ataduras, "; }
+					if ( foundScrolls > 0 ){ sMessage = sMessage + "pergaminhos, "; }
+					if ( foundReagents > 0 ){ sMessage = sMessage + "reagentes, "; }
+					if ( foundPotions > 0 ){ sMessage = sMessage + "poções, "; }
 
-					sMessage = sMessage + "and put them in your pack.";
+					sMessage = sMessage + "e as coloca na sua mochila.";
 
 					m.SendMessage( sMessage );
 				}

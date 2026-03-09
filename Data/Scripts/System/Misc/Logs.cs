@@ -166,7 +166,7 @@ namespace Server.Misc
 			}
 			catch(Exception)
 			{
-				sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I am busy at the moment.";
+				sLogEntries = sLogEntries + "Perdoai, " + m.Name + ". Encontro-me ocupado no momento.";
 			}
 			finally
 			{
@@ -176,14 +176,14 @@ namespace Server.Misc
 
 			if ( nBlank == 1 )
 			{
-				if ( sLog == "Logging Murderers" ){ sLogEntries = sLogEntries + "I am happy to say " + m.Name + ", that no one is wanted for murder."; }
-				else if ( sLog == "Logging Battles" ){ sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have no new tales of bravery to tell."; }
-				else if ( sLog == "Logging Adventures" ){ sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have no new gossip to tell."; }
-				else if ( sLog == "Logging Quests" ){ sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have no new tales of deeds to tell."; }
-				else if ( sLog == "Logging Deaths" ){ sLogEntries = sLogEntries + "I am happy to say " + m.Name + ", that all of Sosaria's citizens are alive and well."; }
-				else if ( sLog == "Logging Journies" ){ sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have no new tales of exploration to tell."; }
-				else { sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have nothing new to tell of such things."; }
-			}
+				if ( sLog == "Logging Murderers" ){ sLogEntries = sLogEntries + "Com alegria declaro, " + m.Name + ", que ninguém é procurado por assassinato."; }
+					else if ( sLog == "Logging Battles" ){ sLogEntries = sLogEntries + "Perdoai, " + m.Name + ", mas não tenho novos contos de bravura para relatar."; }
+					else if ( sLog == "Logging Adventures" ){ sLogEntries = sLogEntries + "Perdoai, " + m.Name + ", mas não tenho novos rumores para partilhar."; }
+					else if ( sLog == "Logging Quests" ){ sLogEntries = sLogEntries + "Perdoai, " + m.Name + ", mas não tenho novos feitos para narrar."; }
+					else if ( sLog == "Logging Deaths" ){ sLogEntries = sLogEntries + "Com alegria afirmo, " + m.Name + ", que todos os cidadãos de Sosaria vivem e estão bem."; }
+					else if ( sLog == "Logging Journies" ){ sLogEntries = sLogEntries + "Perdoai, " + m.Name + ", mas não tenho novas sagas de exploração para contar."; }
+					else { sLogEntries = sLogEntries + "Perdoai, " + m.Name + ", mas não tenho novas informações sobre tais assuntos."; }
+					}
 
 			if ( sLogEntries.Contains(" .") ){ sLogEntries = sLogEntries.Replace(" .", "."); }
 			if ( sLogEntries.Contains("..") ){ sLogEntries = sLogEntries.Replace("..", "."); }
@@ -290,13 +290,13 @@ namespace Server.Misc
 			CreateFile( sPath );
 
 			int lineCount = 1;
-			string sGreet = "Hear ye, hear ye!";
+			string sGreet = "Ouça, Ouça!";
 				switch ( Utility.Random( 4 ))
 				{
-					case 0: sGreet = "Hear ye, hear ye!"; break;
-					case 1: sGreet = "Everyone listen!"; break;
-					case 2: sGreet = "All hail and hear my words!"; break;
-					case 3: sGreet = "Your attention please!"; break;
+					case 0: sGreet = "Ouça, Ouça!"; break;
+					case 1: sGreet = "Todos escutem!"; break;
+					case 2: sGreet = "Toda honra e escutai minhas palavras!"; break;
+					case 3: sGreet = "Vossa atenção, imploro!"; break;
 				};
 
 			string myShout = "";
@@ -1219,15 +1219,15 @@ namespace Server.Misc
 					}
 					else
 					{
-						string privateEnemy = "an opponent";
+						string privateEnemy = "um oponente";
 						switch ( Utility.Random( 6 ) )
 						{
-							case 0: privateEnemy = "an opponent"; break;
-							case 1: privateEnemy = "an enemy"; break;
-							case 2: privateEnemy = "another"; break;
-							case 3: privateEnemy = "an adversary"; break;
-							case 4: privateEnemy = "a foe"; break;
-							case 5: privateEnemy = "a rival"; break;
+							case 0: privateEnemy = "um oponente"; break;
+							case 1: privateEnemy = "um inimigo"; break;
+							case 2: privateEnemy = "um outro"; break;
+							case 3: privateEnemy = "um adversário"; break;
+							case 4: privateEnemy = "um inimigo"; break;
+							case 5: privateEnemy = "um rival"; break;
 						}
 
 						if ( ( mob == m ) && ( mob != null ) )
@@ -1264,8 +1264,8 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			if ( m.Kills > 1){ sEvent = m.Name + " " + sTitle + " is wanted for the murder of " + m.Kills + " people."; }
-			else if ( m.Kills > 0){ sEvent = m.Name + " " + sTitle + " is wanted for murder."; }
+			if ( m.Kills > 1){ sEvent = m.Name + " " + sTitle + " é procurado pelo assassinato de " + m.Kills + " pessoas."; }
+			else if ( m.Kills > 0){ sEvent = m.Name + " " + sTitle + " é procurado por assassinato."; }
 
 			LoggingFunctions.LogEvent( sEvent, "Logging Murderers" );
 

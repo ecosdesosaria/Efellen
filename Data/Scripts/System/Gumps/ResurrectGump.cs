@@ -75,10 +75,10 @@ namespace Server.Gumps
 				if ( owner.Karma < 0 ){ img = 9587; }
 
 			AddImage(0, 0, img, Server.Misc.PlayerSettings.GetGumpHue( owner ));
-			AddHtml( 10, 11, 349, 20, @"<BODY><BASEFONT Color=" + color + ">RESURRECTION</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 10, 11, 349, 20, @"<BODY><BASEFONT Color=" + color + ">RESSURREIÇÃO</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(368, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
-			AddHtml( 11, 41, 385, 141, @"<BODY><BASEFONT Color=" + color + ">It is possible for you to be resurrected here by this healer. Do you want to return to the land of the living? If not, you can remain in the spirit realm.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 11, 41, 385, 141, @"<BODY><BASEFONT Color=" + color + ">É possível que você seja ressuscitado aqui por este curandeiro. Você deseja retornar à terra dos vivos? Se não, você pode permanecer no reino espiritual.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(10, 225, 4023, 4023, 1, GumpButtonType.Reply, 0);
 			AddButton(367, 225, 4020, 4020, 0, GumpButtonType.Reply, 0);
@@ -169,14 +169,14 @@ namespace Server.Gumps
 						else if ( m_Tithe >= m_Price )
 						{
 							from.TithingPoints = from.TithingPoints - m_Price;
-							from.SendMessage( "" + m_Price.ToString() + " tithing has been offered to the gods." );
-							from.SendMessage( "" + (from.TithingPoints).ToString() + " tithing remains." );
+							from.SendMessage( "" + m_Price.ToString() + " de dízimo foi oferecido aos deuses." );
+							from.SendMessage( "" + (from.TithingPoints).ToString() + " de dízimo permanece." );
 							Server.Misc.Death.Penalty( from, false );
 							Server.Misc.Death.Penalty( from, false );
 						}
 						else
 						{
-							from.SendMessage( "You do not have enough gold or tithing tribute to be resurrected by a healer." );
+							from.SendMessage( "Você não tem ouro ou tributo de dízimo suficiente para ser ressuscitado por um curandeiro." );
 							return;
 						}
 					}

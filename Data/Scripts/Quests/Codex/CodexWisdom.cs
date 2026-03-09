@@ -196,8 +196,8 @@ namespace Server
 			AddPage(0);
 
 
-			string phrase = "You will need the Concave and Convex Lenses to read the Codex.";
-			if ( status > 0 ){ phrase = "This can only be studied within the Chamber of the Codex."; }
+			string phrase = "Precisarás das Lentes Côncava e Convexa para ler o Codex.";
+			if ( status > 0 ){ phrase = "Isto só pode ser estudado dentro da Câmara do Codex."; }
 
 
 			AddImage(0, 0, 7039, Server.Misc.PlayerSettings.GetGumpHue( from ));
@@ -214,7 +214,7 @@ namespace Server
 
 			if ( m_CodexWisdom.HasConcaveLense > 0 )
 			{
-				AddHtml( 12, 154, 200, 71, @"<BODY><BASEFONT Color=" + color + ">You have the Concave Lense.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 154, 200, 71, @"<BODY><BASEFONT Color=" + color + ">Possuis a Lente Côncava.</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddItem(207, 157, 1517);
 			}
 			else
@@ -223,7 +223,7 @@ namespace Server
 			}
 			if ( m_CodexWisdom.HasConvexLense > 0 )
 			{
-				AddHtml( 45, 251, 200, 71, @"<BODY><BASEFONT Color=" + hue + ">You have the Convex Lense.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 45, 251, 200, 71, @"<BODY><BASEFONT Color=" + hue + ">Possuis a Lente Convexa.</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddItem(-4, 251, 1518);
 			}
 			else

@@ -20,12 +20,11 @@ namespace Server.Gumps
 			string regs = "#b8d090";
 			from.SendSound( 0x5C9 ); 
 
-			string sEnding = "If one were to touch more than one such magical prisons, All but one would vanish into the void.";
-				if ( item.owner != null ){ sEnding = "If " + item.owner.Name + " happens to touch another such magical prison, this sealed prison would vanish into the void."; }
+			string sEnding = "Se alguém tocar mais de uma dessas prisões mágicas, todas, exceto uma, desaparecerão no vazio.";
+				if ( item.owner != null ){ sEnding = "Se " + item.owner.Name + " tocar outra prisão mágica como esta, esta prisão selada desaparecerá no vazio."; }
 			string sPrisoner = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(item.Prisoner.ToLower());
 
-			string sText = "You have found a rare orb that contains the spirit of " + sPrisoner + ". Magically sealed here by " + item.Jailor + ", you have no clue as to how long they have been locked away. In order to free " + sPrisoner + " from this magical prison, you will need to find some special items. Once the items have been found, this crystal prison will need to be brought to " + item.Dungeon + " where which they were ensorcelled into the orb. If they are freed, they will surely seek to unleash wrath on all who stand before them, but what they held before their imprisonment may be worth the risk.<br><br><br><br>Below you can see what items you need to unlock the cell. When you have obtained all of the needed items, venture to the place of imprisonment and use the orb there. Be ready for battle in such a case, as you may not know what you truly face. They have been locked away for years, or maybe centuries, so madness has surely claimed them by now. Once they are freed, they will remain for one hour before they leave the area and go off elsewhere, forever. Be quick with the coming attack if this fight is truly the desired course you wish to take. " + sEnding;
-
+			string sText = "Você encontrou um orbe raro que contém o espírito de " + sPrisoner + ". Magicamente selado aqui por " + item.Jailor + ", você não tem ideia de quanto tempo ele(a) esteve trancado(a). Para libertar " + sPrisoner + " desta prisão mágica, você precisará encontrar alguns itens especiais. Uma vez que os itens tenham sido encontrados, esta prisão de cristal precisará ser levada para " + item.Dungeon + ", onde ele(a) foi enfeitiçado(a) no orbe. Se for libertado(a), certamente buscará desencadear fúria sobre todos que estiverem em sua frente, mas o que ele(a) guardava antes de seu encarceramento pode valer o risco.<br><br><br><br>Abaixo você pode ver quais itens precisa para destravar a cela. Quando você obtiver todos os itens necessários, aventure-se no local do encarceramento e use o orbe lá. Esteja pronto para a batalha nesse caso, pois você pode não saber o que realmente enfrenta. Ele(a) esteve trancado(a) por anos, ou talvez séculos, então a loucura certamente o(a) dominou até agora. Uma vez libertado(a), ele(a) permanecerá por uma hora antes de deixar a área e ir para outro lugar, para sempre. Seja rápido com o ataque iminente se esta luta é verdadeiramente o curso desejado que você deseja tomar. " + sEnding;
             this.Closable=true;
 			this.Disposable=true;
 			this.Dragable=true;
@@ -35,12 +34,12 @@ namespace Server.Gumps
 
 			AddImage(0, 0, 5595, Server.Misc.PlayerSettings.GetGumpHue( from ));
 			AddButton(767, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-			AddHtml( 12, 12, 667, 20, @"<BODY><BASEFONT Color=" + color + ">PRISONS OF WIZARDRY</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 12, 12, 667, 20, @"<BODY><BASEFONT Color=" + color + ">PRISÕES DE FEITIÇARIA</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddHtml( 12, 45, 783, 353, @"<BODY><BASEFONT Color=" + color + ">" + sText + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			sText = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(item.Prisoner.ToLower());
 
-			sText = sText + "<br><br>To free them, you need:";
+			sText = sText + "<br><br>Para libertá-lo(a), você precisa:";
 
 			sText = sText + "<br><br>" + System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(item.KeyA.ToLower());
 			sText = sText + "<br>" + System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(item.KeyB.ToLower());
@@ -49,7 +48,7 @@ namespace Server.Gumps
 			sText = sText + "<br>" + item.ReagentQtyA.ToString() + " " + System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(item.ReagentNameA.ToLower());
 			sText = sText + "<br>" + item.ReagentQtyB.ToString() + " " + System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(item.ReagentNameB.ToLower());
 
-			sText = sText + "<br><br>Then bring it to " + item.Dungeon;
+			sText = sText + "<br><br>Então leve para " + item.Dungeon;
 
 			AddHtml( 12, 368, 783, 266, @"<BODY><BASEFONT Color=" + regs + ">" + sText + "</BASEFONT></BODY>", (bool)false, (bool)false);
         }

@@ -41,7 +41,7 @@ namespace Server.Gumps
 
 			if ( GetPlayerInfo.isFromSpace( owner ) )
 			{
-				loss = " If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+				loss = " Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 				c1 = "10";
 				c2 = "20";
 			}
@@ -52,107 +52,107 @@ namespace Server.Gumps
 				{
 					if ( m_Healer < 2 )
 					{
-						sText = "You currently do not have enough gold in the bank or tithed to provide an offering to the healer. Do you wish to plead to the healer for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+						sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda ao curandeiro. Deseja implorar ao curandeiro por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 					}
 					else
 					{
-						sText = "You currently do not have enough gold in the bank or tithed to provide an offering to the shrine. Do you wish to plead to the gods for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+						sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda ao santuário. Deseja implorar aos deuses por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 
 						if ( m_Healer == 3 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to Azrael. Do you wish to plead to him for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda a Azrael. Deseja implorar a ele por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 						else if ( m_Healer == 4 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to the Reaper. Do you wish to plead to him for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda ao Ceifador. Deseja implorar a ele por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 						else if ( m_Healer == 5 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to the goddess of the sea. Do you wish to plead to Amphitrite for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda à deusa do mar. Deseja implorar a Anfitrite por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 						else if ( m_Healer == 6 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to the Archmages. Do you wish to plead to the Archmages for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda aos Arquimagos. Deseja implorar aos Arquimagos por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 						else if ( m_Healer == 7 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to Sin'Vraal. Do you wish to plead to him for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda a Sin'Vraal. Deseja implorar a ele por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 						else if ( m_Healer == 8 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to the god of the sea. Do you wish to plead to Neptune for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda ao deus do mar. Deseja implorar a Netuno por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 						else if ( m_Healer == 9 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to the lord of the sea. Do you wish to plead to Poseidon for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda ao senhor do mar. Deseja implorar a Poseidon por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 						else if ( m_Healer == 10 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to Ktulu. Do you wish to plead to him for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda a Ktulu. Deseja implorar a ele por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 						else if ( m_Healer == 11 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to Durama. Do you wish to plead for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda a Durama. Deseja implorar por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 						else if ( m_Healer == 12 )
 						{
-							sText = "You currently do not have enough gold in the bank or tithed to provide an offering to the Ancient Dryad. Do you wish to plead for your life back now, without providing tribute? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+							sText = "Atualmente você não tem ouro suficiente no banco ou em dízimo para fornecer uma oferenda à Dríade Ancestral. Deseja implorar por sua vida de volta agora, sem fornecer tributo? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 						}
 					}
 					m_ResurrectType = 1;
 				}
 				else
 				{
-					string tribute = "tithing";
-					if ( m_Bank >= m_Price ){ tribute = "gold in the bank"; }
+					string tribute = "dízimo";
+					if ( m_Bank >= m_Price ){ tribute = "ouro no banco"; }
 
 					if ( m_Healer < 2 )
 					{
-						sText = "You currently have enough " + tribute + " to provide an offering to the healer. Do you wish to offer the tribute to the healer for your life back?" + loss;
+						sText = "Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda ao curandeiro. Deseja oferecer o tributo ao curandeiro por sua vida de volta?" + loss;
 					}
 					else
 					{
-						sText = "You currently have enough " + tribute + " to provide an offering to the shrine. Do you wish to offer the tribute to the gods for your life back?" + loss;
+						sText = "Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda ao santuário. Deseja oferecer o tributo aos deuses por sua vida de volta?" + loss;
 
 						if ( m_Healer == 3 )
 						{
-							sText = "Azrael is not ready for your soul just yet, and you currently have enough " + tribute + " to provide an offering to him. Do you wish to offer the tribute to Azrael for your life back?" + loss;
+							sText = "Azrael não está pronto para sua alma ainda, e atualmente você tem " + tribute + " suficiente para fornecer uma oferenda a ele. Deseja oferecer o tributo a Azrael por sua vida de volta?" + loss;
 						}
 						else if ( m_Healer == 4 )
 						{
-							sText = "Although the Reaper would gladly take your soul, he thinks your time has come to an end too soon. You currently have enough " + tribute + " to provide an offering to the Reaper. Do you wish to offer the tribute to him for your life back?" + loss;
+							sText = "Embora o Ceifador aceitasse sua alma com prazer, ele acha que seu tempo chegou ao fim muito cedo. Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda ao Ceifador. Deseja oferecer o tributo a ele por sua vida de volta?" + loss;
 						}
 						else if ( m_Healer == 5 )
 						{
-							sText = "You currently have enough " + tribute + " to provide an offering to the goddess of the sea. Do you wish to offer the tribute to Amphitrite for your life back?" + loss;
+							sText = "Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda à deusa do mar. Deseja oferecer o tributo a Anfitrite por sua vida de volta?" + loss;
 						}
 						else if ( m_Healer == 6 )
 						{
-							sText = "You currently have enough " + tribute + " to provide an offering to the Archmages. Do you wish to offer the tribute to the Archmages for your life back?" + loss;
+							sText = "Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda aos Arquimagos. Deseja oferecer o tributo aos Arquimagos por sua vida de volta?" + loss;
 						}
 						else if ( m_Healer == 7 )
 						{
-							sText = "You currently have enough " + tribute + " to provide an offering to Sin'Vraal. Do you wish to offer the tribute to Sin'Vraal for your life back?" + loss;
+							sText = "Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda a Sin'Vraal. Deseja oferecer o tributo a Sin'Vraal por sua vida de volta?" + loss;
 						}
 						else if ( m_Healer == 8 )
 						{
-							sText = "You currently have enough " + tribute + " to provide an offering to the god of the sea. Do you wish to offer the tribute to Neptune for your life back?" + loss;
+							sText = "Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda ao deus do mar. Deseja oferecer o tributo a Netuno por sua vida de volta?" + loss;
 						}
 						else if ( m_Healer == 9 )
 						{
-							sText = "You currently have enough " + tribute + " to provide an offering to the lord of the sea. Do you wish to offer the tribute to Poseidon for your life back?" + loss;
+							sText = "Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda ao senhor do mar. Deseja oferecer o tributo a Poseidon por sua vida de volta?" + loss;
 						}
 						else if ( m_Healer == 10 )
 						{
-							sText = "Ktulu is not ready for your soul just yet, and you currently have enough " + tribute + " to provide an offering to him. Do you wish to offer the tribute to Ktulu for your life back?" + loss;
+							sText = "Ktulu não está pronto para sua alma ainda, e atualmente você tem " + tribute + " suficiente para fornecer uma oferenda a ele. Deseja oferecer o tributo a Ktulu por sua vida de volta?" + loss;
 						}
 						else if ( m_Healer == 11 )
 						{
-							sText = "You currently have enough " + tribute + " to provide an offering to Durama. Do you wish to offer the tribute for your life back?" + loss;
+							sText = "Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda a Durama. Deseja oferecer o tributo por sua vida de volta?" + loss;
 						}
 						else if ( m_Healer == 12 )
 						{
-							sText = "You currently have enough " + tribute + " to provide an offering to the Ancient Dryad. Do you wish to offer the tribute for your life back?" + loss;
+							sText = "Atualmente você tem " + tribute + " suficiente para fornecer uma oferenda à Dríade Ancestral. Deseja oferecer o tributo por sua vida de volta?" + loss;
 						}
 					}
 					m_ResurrectType = 2;
@@ -162,62 +162,62 @@ namespace Server.Gumps
 			{
 				if ( m_Healer < 2 )
 				{
-					sText = "Do you wish to have the healer return you to life?";
+					sText = "Deseja que o curandeiro o retorne à vida?";
 				}
 				else
 				{
-					sText = "Do you wish to have the gods return you to life?";
+					sText = "Deseja que os deuses o retornem à vida?";
 
 					if ( m_Healer == 3 )
 					{
-						sText = "Do you wish to have Azrael return you to life?";
+						sText = "Deseja que Azrael o retorne à vida?";
 					}
 					else if ( m_Healer == 4 )
 					{
-						sText = "Do you wish to have the Reaper return you to life?";
+						sText = "Deseja que o Ceifador o retorne à vida?";
 					}
 					else if ( m_Healer == 5 )
 					{
-						sText = "Do you wish to have Amphitrite return you to life?";
+						sText = "Deseja que Anfitrite o retorne à vida?";
 					}
 					else if ( m_Healer == 6 )
 					{
-						sText = "Do you wish to have the Archmages return you to life?";
+						sText = "Deseja que os Arquimagos o retornem à vida?";
 					}
 					else if ( m_Healer == 7 )
 					{
-						sText = "Do you wish to have Sin'Vraal return you to life?";
+						sText = "Deseja que Sin'Vraal o retorne à vida?";
 					}
 					else if ( m_Healer == 8 )
 					{
-						sText = "Do you wish to have Neptune return you to life?";
+						sText = "Deseja que Netuno o retorne à vida?";
 					}
 					else if ( m_Healer == 9 )
 					{
-						sText = "Do you wish to have Poseidon return you to life?";
+						sText = "Deseja que Poseidon o retorne à vida?";
 					}
 					else if ( m_Healer == 10 )
 					{
-						sText = "Do you wish to have Ktulu return you to life?";
+						sText = "Deseja que Ktulu o retorne à vida?";
 					}
 					else if ( m_Healer == 11 )
 					{
-						sText = "Do you wish to have Durama return you to life?";
+						sText = "Deseja que Durama o retorne à vida?";
 					}
 					else if ( m_Healer == 12 )
 					{
-						sText = "Do you wish to have the Ancient Dryad return you to life?";
+						sText = "Deseja que a Dríade Ancestral o retorne à vida?";
 					}
 				}
 			}
 
-			string sGrave = "RETURN TO THE LIVING";
+			string sGrave = "RETORNAR AOS VIVOS";
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 0:	sGrave = "YOUR LIFE BACK";			break;
-				case 1:	sGrave = "YOUR RESURRECTION";		break;
-				case 2:	sGrave = "RETURN TO THE LIVING";	break;
-				case 3:	sGrave = "RETURN FROM THE DEAD";	break;
+				case 0:	sGrave = "SUA VIDA DE VOLTA";			break;
+				case 1:	sGrave = "SUA RESSURREIÇÃO";		break;
+				case 2:	sGrave = "RETORNAR AOS VIVOS";	break;
+				case 3:	sGrave = "RETORNAR DOS MORTOS";	break;
 			}
 
             this.Closable=true;
@@ -361,7 +361,7 @@ namespace Server.Gumps
 			int BankGold = Banker.GetBalance( from );
 			int TithePoints = from.TithingPoints;
 
-			string sText = "Do you wish to plead to the gods for your life back now? You may also continue on in your spirit form and seek out a shrine or healer.";
+			string sText = "Deseja implorar aos deuses por sua vida de volta agora? Você também pode continuar em sua forma espiritual e procurar por um santuário ou curandeiro.";
 			bool ResPenalty = false;
 
 			string c1 = MyServerSettings.DeathStatAndSkillLoss().ToString();
@@ -370,7 +370,7 @@ namespace Server.Gumps
 
 			if ( GetPlayerInfo.isFromSpace( from ) )
 			{
-				loss = " If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills.";
+				loss = " Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades.";
 				c1 = "10";
 				c2 = "20";
 			}
@@ -380,20 +380,20 @@ namespace Server.Gumps
 				ResPenalty = true;
 
 				if ( BankGold >= HealCost )
-					sText = "Do you wish to plead to the gods for your life back now? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills. You have enough gold in the bank to offer the resurrection tribute, so perhaps you may want to find a shrine or healer instead of suffering the penalties.";
+					sText = "Deseja implorar aos deuses por sua vida de volta agora? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades. Você tem ouro suficiente no banco para oferecer o tributo de ressurreição, então talvez queira encontrar um santuário ou curandeiro em vez de sofrer as penalidades.";
 				else if ( TithePoints >= HealCost )
-					sText = "Do you wish to plead to the gods for your life back now? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills. You have enough tithe to offer the resurrection tribute, so perhaps you may want to find a shrine or healer instead of suffering the penalties.";
+					sText = "Deseja implorar aos deuses por sua vida de volta agora? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades. Você tem dízimo suficiente para oferecer o tributo de ressurreição, então talvez queira encontrar um santuário ou curandeiro em vez de sofrer as penalidades.";
 				else
-					sText = "Do you wish to plead to the gods for your life back now? If you do, you will suffer a " + c2 + "% loss to your fame and karma. You will also lose " + c1 + "% of your statistics and skills. You cannot afford the resurrection tribute due to the lack of gold in the bank or tithed, so perhaps you may want to do this.";
+					sText = "Deseja implorar aos deuses por sua vida de volta agora? Se fizer isso, sofrerá uma perda de " + c2 + "% de sua fama e karma. Você também perderá " + c1 + "% de suas estatísticas e habilidades. Você não pode pagar o tributo de ressurreição devido à falta de ouro no banco ou em dízimo, então talvez queira fazer isso.";
 			}
 
-			string sGrave = "YOU HAVE DIED!";
+			string sGrave = "VOCÊ MORREU!";
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 0:	sGrave = "YOU HAVE DIED!";			break;
-				case 1:	sGrave = "YOU HAVE PERISHED!";		break;
-				case 2:	sGrave = "YOU MET YOUR END!";		break;
-				case 3:	sGrave = "YOUR LIFE HAS ENDED!";	break;
+				case 0:	sGrave = "VOCÊ MORREU!";			break;
+				case 1:	sGrave = "VOCÊ PERECEU!";		break;
+				case 2:	sGrave = "VOCÊ ENCONTROU SEU FIM!";		break;
+				case 3:	sGrave = "SUA VIDA CHEGOU AO FIM!";	break;
 			}
 
 			from.SendSound( 0x0F8 ); 

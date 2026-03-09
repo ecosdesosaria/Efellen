@@ -307,38 +307,38 @@ namespace Server.SkillHandlers
 
 						switch ( Utility.Random( 32 ) )
 						{
-							case 0: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Easy...easy..."); break;
-							case 1: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Don't be afraid..."); break;
-							case 2: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "I won't hurt you..."); break;
-							case 3: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "See? Nothing to be afraid of..."); break;
-							case 4: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Nice and easy..."); break;
-							case 5: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "We will be great friends..."); break;
-							case 6: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "I always wanted a companion like you..."); break;
-							case 7: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "I'll protect you from the dangers of this world..."); break;
-							case 8: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "We could accomplish much by joining forces..."); break;
-							case 9: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "You will make many friends with me..."); break;
-							case 10: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "We will venture far into the unknown together..."); break;
-							case 11: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Easy now, friend... I mean you no harm..."); break;
-							case 12: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Come with me and I'll show you a better life..."); break;
-							case 13: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Steady. You are safe with me..."); break;
-							case 14: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "You are so fierce. I'll always respect you..."); break;
-							case 15: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Come on now, you're not really going to bite me, are you?"); break;
-							case 16: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "There are no chains here, only trust..."); break;
-							case 17: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "You've been alone a long time, haven't you?"); break;
-							case 18: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "You're fierce, but I see wisdom in your eyes..."); break;
-							case 19: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "I promise, you'll roam far and feast well..."); break;
-							case 20: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "There's a place for you by my side, if you'll have it..."); break;
-							case 21: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Let go of fear. I'm not your enemy..."); break;
-							case 22: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "I've come a long way for you..."); break;
-							case 23: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "We can be stronger together..."); break;
-							case 24: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "You've been through a lot, haven't you? I can feel it..."); break;
-							case 25: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Shhh... It's alright now. I'm here..."); break;
-							case 26: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "The stars told me I'd meet you..."); break;
-							case 27: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Well, you're not the scariest thing I've tried to pet..."); break;
-							case 28: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Just pretend I'm competent and this'll go smoothly..."); break;
-							case 29: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "If you bite me I'll bite you. Be warned!"); break;
-							case 30: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "You don't trust easily. I understand..."); break;
-							case 31: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "They tried to chain you... I won't..."); break;
+							case 0: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Calma... calminho..."); break;
+							case 1: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Não tenha medo..."); break;
+							case 2: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Eu não vou te machucar..."); break;
+							case 3: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Viu? Nada para temer..."); break;
+							case 4: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Calmo e tranquilo..."); break;
+							case 5: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Seremos grandes amigos..."); break;
+							case 6: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Sempre quis um companheiro como você..."); break;
+							case 7: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Vou te proteger dos perigos deste mundo..."); break;
+							case 8: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Poderíamos realizar muito juntando forças..."); break;
+							case 9: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Você fará muitos amigos comigo..."); break;
+							case 10: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Vamos aventurar longe no desconhecido juntos..."); break;
+							case 11: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Calma agora, amigo... Não quero te machucar..."); break;
+							case 12: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Venha comigo e te mostrarei uma vida melhor..."); break;
+							case 13: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Firme. Você está seguro comigo..."); break;
+							case 14: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Você é tão feroz. Sempre te respeitarei..."); break;
+							case 15: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Qual é, você não vai realmente me morder, vai?"); break;
+							case 16: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Não há correntes aqui, apenas confiança..."); break;
+							case 17: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Você está sozinho há muito tempo, não está?"); break;
+							case 18: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Você é feroz, mas vejo sabedoria em seus olhos..."); break;
+							case 19: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Prometo, você vagará longe e se alimentará bem..."); break;
+							case 20: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Há um lugar para você ao meu lado, se aceitar..."); break;
+							case 21: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Deixe o medo ir. Eu não sou seu inimigo..."); break;
+							case 22: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Eu percorri um longo caminho por você..."); break;
+							case 23: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Podemos ser mais fortes juntos..."); break;
+							case 24: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Você passou por muita coisa, não é? Posso sentir..."); break;
+							case 25: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Shhh... Está tudo bem agora. Estou aqui..."); break;
+							case 26: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "As estrelas me disseram que te encontraria..."); break;
+							case 27: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Bem, você não é a coisa mais assustadora que tentei acariciar..."); break;
+							case 28: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Só finja que sou competente e isso vai correr bem..."); break;
+							case 29: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Se me morder, eu te mordo. Esteja avisado!"); break;
+							case 30: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Você não confia facilmente. Compreendo..."); break;
+							case 31: m_Tamer.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Eles tentaram acorrentar você... Eu não vou..."); break;
 						}
 
 						if ( !alreadyOwned ) // Passively check druidism for gain

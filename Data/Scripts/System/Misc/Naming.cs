@@ -384,18 +384,18 @@ namespace Server.Gumps
 			this.Dragable=true;
 			this.Resizable=false;
 
-			string text = "These are the census records for the many lands, and the sages have compiled a list of names of its citizens. Your name is on this list as well. If you want to change your name, you can do it within this book.";
+			string text = "Estes são os registos censitários das muitas terras, e os sábios compilaram uma lista de nomes de seus cidadãos. Teu nome também está nesta lista. Se desejas mudar teu nome, podes fazê-lo dentro deste livro.";
 
-			if ( !legal ){ text = "These are the forged census records for the many lands, and the thieves guild has compiled a list of names of its citizens. Your name is on this list as well. If you want to change your name, you can do it within this book."; } 
+			if ( !legal ){ text = "Estes são os registos censitários falsificados das muitas terras, e a guilda de ladrões compilou uma lista de nomes de seus cidadãos. Teu nome também está nesta lista. Se desejas mudar teu nome, podes fazê-lo dentro deste livro."; } 
 
 			AddPage(0);
 
 			AddImage(0, 0, 9547, Server.Misc.PlayerSettings.GetGumpHue( from ));
-			AddHtml( 15, 15, 577, 261, @"<BODY><BASEFONT Color=" + color + ">" + text + " So if you have an idea for a new fantasy appropriate name, and are willing to spend 2,000 gold, then delete the text below and retype it. A new name can be no longer than 16 characters.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 15, 15, 577, 261, @"<BODY><BASEFONT Color=" + color + ">" + text + " Portanto, se tens uma ideia para um novo nome apropriado para fantasia, e estás disposto a gastar 2.000 peças de ouro, então apaga o texto abaixo e reescreve-o. Um novo nome não pode ter mais de 16 caracteres.</BASEFONT></BODY>", (bool)false, (bool)false);
 
-			AddHtml( 15, 301, 577, 152, @"<BODY><BASEFONT Color=#E5FF00>WARNING: If you decide to change your name, go ahead and do so. Once you do that, close your game client. Then browse to your account’s profile folder in the `Game\Data\Profiles` directory. In that folder, you will see a directory that matches your character’s previous name. Rename that folder, to the exact name you changed your character to. Then you can launch the client again and continue playing. Doing this process will ensure that all of your client settings will be applied to the new character’s name, without making a new profile and setting everything back to default settings.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 15, 301, 577, 152, @"<BODY><BASEFONT Color=#E5FF00>AVISO: Se decides mudar teu nome, prossegue e fá-lo. Depois de o fazeres, fecha teu cliente do jogo. Então, navega até a pasta do perfil da tua conta no diretório `Game\Data\Profiles`. Nessa pasta, verás um diretório que corresponde ao nome anterior do teu personagem. Renomeia essa pasta para o nome exato para o qual mudaste teu personagem. Depois podes iniciar o cliente novamente e continuar a jogar. Fazer este processo garantirá que todas as tuas configurações do cliente serão aplicadas ao novo nome do personagem, sem criar um novo perfil e redefinir tudo para as configurações padrão.</BASEFONT></BODY>", (bool)false, (bool)false);
 
-			AddTextEntry(49, 496, 200, 20, 0x481, 1, @"Type here...", 16);
+			AddTextEntry(49, 496, 200, 20, 0x481, 1, @"Escreve aqui...", 16);
 			AddButton(13, 495, 4023, 4023, 1, GumpButtonType.Reply, 0);
 			AddButton(563, 493, 4020, 4020, 0, GumpButtonType.Reply, 0);
         }
@@ -481,13 +481,13 @@ namespace Server.Gumps
 			this.Dragable=true;
 			this.Resizable=false;
 
-			string text = "The world will know you as the title of your best skill, or if you specify a skill you want to be known for in your title. You can, however, choose a unique title of your own. Here you can create a title, or if you already set a custom title, you can remove or change it.";
+			string text = "O mundo te conhecerá pelo título de tua melhor habilidade, ou se especificares uma habilidade pela qual desejas ser conhecido em teu título. No entanto, podes escolher um título único de tua própria autoria. Aqui podes criar um título, ou se já definiste um título personalizado, podes removê-lo ou alterá-lo.";
 
 			AddPage(0);
 
 			AddImage(0, 0, 9577, Server.Misc.PlayerSettings.GetGumpHue( from ));
-			AddHtml( 12, 12, 280, 210, @"<BODY><BASEFONT Color=" + color + ">" + text + " So if you have an idea for a unique character title, then delete the text below and retype it. A new title can be no longer than 25 characters.</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddTextEntry(48, 237, 200, 20, 0x481, 1, @"Type here...", 25);
+			AddHtml( 12, 12, 280, 210, @"<BODY><BASEFONT Color=" + color + ">" + text + " Portanto, se tens uma ideia para um título de personagem único, então apaga o texto abaixo e reescreve-o. Um novo título não pode ter mais de 25 caracteres.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddTextEntry(48, 237, 200, 20, 0x481, 1, @"Escreve aqui...", 25);
 			AddButton(12, 236, 4023, 4023, 1, GumpButtonType.Reply, 0);
 			AddButton(267, 236, 4020, 4020, 0, GumpButtonType.Reply, 0);
         }
@@ -573,8 +573,8 @@ namespace Server.Gumps
 			AddPage(0);
 
 			AddImage(0, 0, 9577, Server.Misc.PlayerSettings.GetGumpHue( from ));
-			AddHtml( 12, 12, 280, 210, @"<BODY><BASEFONT Color=" + color + ">A fantasy world is best served with a unique fantasy name for your character. If you are reconsidering a different name, now is the time to enter the name you want to be known by in the gypsy's journal. All names must be unique to other adventurers, so choose wisely. If you feel your name is appropriate, then close this book. Otherwise, remove the text below and enter a new name for yourself that is no longer than 16 characters.</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddTextEntry(48, 237, 200, 20, 0x481, 1, @"Type here...", 16);
+			AddHtml( 12, 12, 280, 210, @"<BODY><BASEFONT Color=" + color + ">Um mundo de fantasia é melhor servido com um nome único de fantasia para teu personagem. Se estás a reconsiderar um nome diferente, agora é a hora de inserir o nome pelo qual desejas ser conhecido no diário da cigana. Todos os nomes devem ser únicos entre outros aventureiros, portanto escolhe sabiamente. Se sentes que teu nome é apropriado, então fecha este livro. Caso contrário, remove o texto abaixo e insere um novo nome para ti mesmo que não tenha mais de 16 caracteres.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddTextEntry(48, 237, 200, 20, 0x481, 1, @"Escreve aqui...", 16);
 			AddButton(12, 236, 4023, 4023, 1, GumpButtonType.Reply, 0);
 			AddButton(267, 236, 4020, 4020, 0, GumpButtonType.Reply, 0);
         }
@@ -601,36 +601,36 @@ namespace Server.Gumps
             }
             else
             {
-                from.SendMessage(0X22, "You may enter a name.");
+                from.SendMessage(0X22, "Podes inserir um nome.");
                 from.SendGump(new NameAlterGump(from));
             }
 
-			if ( name == "Type here..." || info.ButtonID == 0 )
+			if ( name == "Escreve aqui..." || info.ButtonID == 0 )
 			{
 			}
             else if (name != "" && info.ButtonID == 1)
             {
                 if (!NameVerification.Validate(name, 2, 16, true, false, true, 1, NameVerification.SpaceOnly))
-                {
-                    from.SendMessage(0X22, "That name is unacceptable or already taken.");
-                    return;
-                }
-                else if ( CharacterCreation.CheckDupe(from, name) )
-                {
-                    from.SendMessage(0X22, "Your name is now {0}.", name);
-                    from.Name = name;
-                    from.CantWalk = false;
-                    return;
-                }
-                else if ( CharacterCreation.CheckDupe(from, name) )
-                {
-                    from.SendMessage(0X22, "That name is unacceptable or already taken.");
-                    return;
-                }
+				{
+					from.SendMessage(0X22, "Esse nome é inaceitável ou já está em uso.");
+					return;
+				}
+				else if ( CharacterCreation.CheckDupe(from, name) )
+				{
+					from.SendMessage(0X22, "Teu nome agora é {0}.", name);
+					from.Name = name;
+					from.CantWalk = false;
+					return;
+				}
+				else if ( CharacterCreation.CheckDupe(from, name) )
+				{
+					from.SendMessage(0X22, "Esse nome é inaceitável ou já está em uso.");
+					return;
+				}
             }
             else
             {
-                from.SendMessage(0X22, "You must enter a name.");
+                from.SendMessage(0X22, "Deves inserir um nome.");
             }
         }
     }
@@ -660,7 +660,7 @@ namespace Server.Gumps
 			AddPage(0);
 
 			AddImage(0, 0, 9577, Server.Misc.PlayerSettings.GetGumpHue( from ));
-			AddHtml( 12, 12, 280, 210, @"<BODY><BASEFONT Color=" + color + ">The name you've chosen is currently in use and is no longer available. You must choose a different name before you're able to continue. So delete the text below and enter a new fantasy appropriate name.</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 12, 12, 280, 210, @"<BODY><BASEFONT Color=" + color + ">O nome que escolheste está atualmente em uso e já não está disponível. Deves escolher um nome diferente antes de poderes continuar. Portanto, apaga o texto abaixo e insere um novo nome apropriado para fantasia.</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddTextEntry(48, 237, 200, 20, 0x481, 1, @"Type here...", 16);
 			AddButton(12, 236, 4023, 4023, 1, GumpButtonType.Reply, 0);
 			AddButton(267, 236, 4020, 4020, 0, GumpButtonType.Reply, 0);
@@ -685,34 +685,34 @@ namespace Server.Gumps
             {
                 name = name.Trim();
             }
-            else
-            {
-                from.SendMessage(0X22, "You must enter a name.");
-                from.SendGump(new NameChangeGump(from));
-            }
+           else
+			{
+				from.SendMessage(0X22, "Deves inserir um nome.");
+				from.SendGump(new NameChangeGump(from));
+			}
 
-			if ( name == "Type here..." || info.ButtonID == 0 )
+			if ( name == "Escreve aqui..." || info.ButtonID == 0 )
 			{
 			}
-            else if (name != "" && info.ButtonID == 1)
-            {
-                if (!NameVerification.Validate(name, 2, 16, true, false, true, 1, NameVerification.SpaceOnly))
-                {
-                    from.SendMessage(0X22, "That name is unacceptable or already taken.");
-                    from.SendGump(new NameChangeGump(from));
-                    return;
-                }
-                if (CharacterCreation.CheckDupe(from, name))
-                {
-                    from.SendMessage(0X22, "Your name is now {0}.", name);
-                    from.Name = name;
-                    from.CantWalk = false;
-                    return;
-                }
-            }
+			else if (name != "" && info.ButtonID == 1)
+			{
+				if (!NameVerification.Validate(name, 2, 16, true, false, true, 1, NameVerification.SpaceOnly))
+				{
+					from.SendMessage(0X22, "Esse nome é inaceitável ou já está em uso.");
+					from.SendGump(new NameChangeGump(from));
+					return;
+				}
+				if (CharacterCreation.CheckDupe(from, name))
+				{
+					from.SendMessage(0X22, "Teu nome agora é {0}.", name);
+					from.Name = name;
+					from.CantWalk = false;
+					return;
+				}
+			}
             else
             {
-                from.SendMessage(0X22, "You must enter a name.");
+                from.SendMessage(0X22, "Deves inserir um nome.");
             }
 
             from.SendGump(new NameChangeGump(from));

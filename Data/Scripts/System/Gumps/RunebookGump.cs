@@ -166,13 +166,13 @@ namespace Server.Gumps
 
 		private void AddInstructions()
 		{
-			string title = "RUNEBOOK";
+			string title = "LIVRO DE RUNAS";
 				if ( m_Book.Description != null && m_Book.Description != "" ){ title = m_Book.Description; }
 			AddHtml( 593, 75, 302, 20, @"<BODY><BASEFONT Color=" + fonts + ">" + title + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
-			AddHtml( 116, 110, 377, 487, @"<BODY><BASEFONT Color=" + fonts + ">Rune Books are designed to help reduce the total number of carried runes and to assist rune libraries.<br><br>General Features:<br><br>- A rune book can hold a total of 16 locations.<br><br>- One of these locations can be set as the 'default' location.<br><br>- Casting the recall, gate, ethereal travel, or sacred journey spell on the rune book will treat the book like a rune marked with the default location.<br><br>- using the astral travel skill on the rune book will treat the book like a rune marked with the default location.<br><br>- using potions of nature fury, mushroom gateway, demonic fire, and black gate on the rune book will treat the book like a rune marked with the default location.<br><br>- Books can have charges that will allow you to recall to locations in the book without using spells, skills, or potions.<br><br>- Rune Books can be recharged with recall, gate, or astral travel scrolls. They can also be recharged with potions of nature fury, mushroom gateway, demonic fire, and black gate. Dragging such items onto the book will add one charge (up to its maximum).<br><br>- Books cannot be recharged while open.<br><br>- Dragging a rune onto a book will add that location to the book.<br><br>- You can name the rune book by opening the book and selecting 'Rename Book'. After selecting that, simply type in the name of the book and hit enter.<br><br>- You can change the appearance of this book by giving it to a local scribe or librarian.</BASEFONT></BODY>", (bool)false, (bool)true);
+			AddHtml( 116, 110, 377, 487, @"<BODY><BASEFONT Color=" + fonts + ">Livros de Runas são projetados para ajudar a reduzir o número total de runas carregadas e auxiliar bibliotecas de runas.<br><br>Características Gerais:<br><br>- Um livro de runas pode conter um total de 16 localizações.<br><br>- Uma dessas localizações pode ser definida como a localização 'padrão'.<br><br>- Lançar os feitiços de recordar, portal, viagem etérea ou jornada sagrada no livro de runas tratará o livro como uma runa marcada com a localização padrão.<br><br>- Usar a habilidade de viagem astral no livro de runas tratará o livro como uma runa marcada com a localização padrão.<br><br>- Usar poções de fúria da natureza, portal de cogumelos, fogo demoníaco e portal negro no livro de runas tratará o livro como uma runa marcada com a localização padrão.<br><br>- Livros podem ter cargas que permitirão que você se recorde para localizações no livro sem usar feitiços, habilidades ou poções.<br><br>- Livros de Runas podem ser recarregados com pergaminhos de recordar, portal ou viagem astral. Eles também podem ser recarregados com poções de fúria da natureza, portal de cogumelos, fogo demoníaco e portal negro. Arrastar tais itens para o livro adicionará uma carga (até seu máximo).<br><br>- Livros não podem ser recarregados enquanto abertos.<br><br>- Arrastar uma runa para um livro adicionará essa localização ao livro.<br><br>- Você pode nomear o livro de runas abrindo o livro e selecionando 'Renomear Livro'. Após selecionar isso, simplesmente digite o nome do livro e pressione enter.<br><br>- Você pode mudar a aparência deste livro dando-o a um escriba ou bibliotecário local.</BASEFONT></BODY>", (bool)false, (bool)true);
 
-			AddHtml( 555, 113, 377, 487, @"<BODY><BASEFONT Color=" + fonts + ">Using Rune Books:<br><br>- On the top right of the first index page is an option to rename the book.<br><br>- Casting recall, ethereal travel, or sacred journey directly on the rune book will transport you to the location set as the 'default'.<br><br>- using the astral travel skill directly on the rune book will transport you to the location set as the 'default'.<br><br>- using potions of nature fury and demonic fire directly on the rune book will transport you to the location set as the 'default'.<br><br>- Casting gate directly on the rune book will open a gate with the destination to the 'default' location of the book.<br><br>- using potions of mushroom gateway and black gate directly on the rune book will open a gate with the destination to the 'default' location of the book.<br><br>- To access the non-default locations, you will be able to open the book by double clicking on it.<br><br>- When open, the book will display two index pages with 8 locations on each page.<br><br>- Each page will have the current number of charges listed on the top left side.<br><br>- Each location entry will have a button that will use a charge and transport you to that location. If the book has no charges left, you will not be able to do this.<br><br>- The index pages will display the first 18 characters from the marked rune�s name.<br><br>- The side of the book has book markers. Clicking these numbers will bring you to that page.<br><br>- After each use (success or failure) the rune book needs a few seconds to recharge.<br><br>Rune Book Pages:<br><br>Each rune page will contain buttons that...<br><br>- will use a charge and recall to that location.<br><br>- will set that location as the book's default location.<br><br>- will remove the rune from the book.<br><br>- will use the astral travel ability if you know it.<br><br>- will use a black gate potion if you have one.<br><br>- will use a demonic fire potion if you have one.<br><br>- will cast the elemental gate spell if you have one.<br><br>- will cast the elemental void spell if you have one.<br><br>- will use the etheral travel spell if prepared.<br><br>- will cast the gate travel spell if you know it.<br><br>- will use a mushroom gateway potion if you have one.<br><br>- will use a nature passage potion if you have one.<br><br>- will cast the recall spell if you know it.<br><br>- will cast the sacred journey spell if you know it.</BASEFONT></BODY>", (bool)false, (bool)true);
+			AddHtml( 555, 113, 377, 487, @"<BODY><BASEFONT Color=" + fonts + ">Usando Livros de Runas:<br><br>- No canto superior direito da primeira página do índice há uma opção para renomear o livro.<br><br>- Lançar recordar, viagem etérea ou jornada sagrada diretamente no livro de runas o transportará para a localização definida como 'padrão'.<br><br>- Usar a habilidade de viagem astral diretamente no livro de runas o transportará para a localização definida como 'padrão'.<br><br>- Usar poções de fúria da natureza e fogo demoníaco diretamente no livro de runas o transportará para a localização definida como 'padrão'.<br><br>- Lançar portal diretamente no livro de runas abrirá um portal com o destino para a localização 'padrão' do livro.<br><br>- Usar poções de portal de cogumelos e portal negro diretamente no livro de runas abrirá um portal com o destino para a localização 'padrão' do livro.<br><br>- Para acessar as localizações não padrão, você poderá abrir o livro clicando duas vezes nele.<br><br>- Quando aberto, o livro exibirá duas páginas de índice com 8 localizações em cada página.<br><br>- Cada página terá o número atual de cargas listado no lado superior esquerdo.<br><br>- Cada entrada de localização terá um botão que usará uma carga e o transportará para essa localização. Se o livro não tiver mais cargas, você não poderá fazer isso.<br><br>- As páginas de índice exibirão os primeiros 18 caracteres do nome da runa marcada.<br><br>- A lateral do livro possui marcadores de página. Clicar nesses números o levará a essa página.<br><br>- Após cada uso (sucesso ou falha) o livro de runas precisa de alguns segundos para recarregar.<br><br>Páginas do Livro de Runas:<br><br>Cada página de runa conterá botões que...<br><br>- usarão uma carga e recordarão para essa localização.<br><br>- definirão essa localização como a localização padrão do livro.<br><br>- removerão a runa do livro.<br><br>- usarão a habilidade de viagem astral se você a conhecer.<br><br>- usarão uma poção de portal negro se você tiver uma.<br><br>- usarão uma poção de fogo demoníaco se você tiver uma.<br><br>- lançarão o feitiço de portal elemental se você o tiver.<br><br>- lançarão o feitiço de vazio elemental se você o tiver.<br><br>- usarão o feitiço de viagem etérea se preparado.<br><br>- lançarão o feitiço de viagem portal se você o conhecer.<br><br>- usarão uma poção de portal de cogumelos se você tiver uma.<br><br>- usarão uma poção de passagem da natureza se você tiver uma.<br><br>- lançarão o feitiço de recordar se você o conhecer.<br><br>- lançarão o feitiço de jornada sagrada se você o conhecer.</BASEFONT></BODY>", (bool)false, (bool)true);
 		}
 
 		private void AddDetails( int index, int half, Mobile from )
@@ -211,7 +211,7 @@ namespace Server.Gumps
 
 				if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 				{
-					Sextants = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+					Sextants = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 				}
 
 				// Set as default button
@@ -466,7 +466,7 @@ namespace Server.Gumps
 
 								if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 								{
-									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 									from.SendMessage( location );
 								}
 
@@ -492,7 +492,7 @@ namespace Server.Gumps
 
 								if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 								{
-									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 									from.SendMessage( location );
 								}
 
@@ -518,7 +518,7 @@ namespace Server.Gumps
 
 								if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 								{
-									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 									from.SendMessage( location );
 								}
 
@@ -544,7 +544,7 @@ namespace Server.Gumps
 
 								if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 								{
-									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 									from.SendMessage( location );
 								}
 
@@ -566,7 +566,7 @@ namespace Server.Gumps
 
 								if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 								{
-									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 									from.SendMessage( location );
 								}
 
@@ -606,7 +606,7 @@ namespace Server.Gumps
 
 							if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 							{
-								string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+								string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 								from.SendMessage( location );
 							}
 
@@ -641,7 +641,7 @@ namespace Server.Gumps
 
 						if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 						{
-							string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+							string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 							from.SendMessage( location );
 						}
 
@@ -677,7 +677,7 @@ namespace Server.Gumps
 
 						if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 						{
-							string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+							string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 							from.SendMessage( location );
 						}
 
@@ -724,7 +724,7 @@ namespace Server.Gumps
 
 								if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 								{
-									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 									from.SendMessage( location );
 								}
 
@@ -779,7 +779,7 @@ namespace Server.Gumps
 
 								if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 								{
-									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 									from.SendMessage( location );
 								}
 
@@ -805,7 +805,7 @@ namespace Server.Gumps
 
 								if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 								{
-									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+									string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 									from.SendMessage( location );
 								}
 
@@ -833,7 +833,7 @@ namespace Server.Gumps
 
 									if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 									{
-										string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+										string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 										from.SendMessage( location );
 									}
 

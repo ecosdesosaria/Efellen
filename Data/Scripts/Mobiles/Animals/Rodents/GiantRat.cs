@@ -3,20 +3,20 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a giant rat corpse" )]
+	[CorpseName( "um cadáver de rato gigante" )]
 	[TypeAlias( "Server.Mobiles.Giantrat" )]
 	public class GiantRat : BaseCreature
 	{
 		[Constructable]
 		public GiantRat() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a giant rat";
+			Name = "um rato gigante";
 			Body = 0xD7;
 			BaseSoundID = 0x188;
 
 			if ( Utility.RandomBool() )
 			{
-				Name = "a giant mouse";
+				Name = "um rato gigante";
 				Body = 940;
 			}
 

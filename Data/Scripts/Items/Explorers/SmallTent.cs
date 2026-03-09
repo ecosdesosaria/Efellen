@@ -18,7 +18,7 @@ namespace Server.Items
 
 	public class SmallTent : Item
 	{
-		public override string DefaultDescription{ get{ return "This requires someone proficient in camping. You can use this while travelling outdoors. When used, it can make a protective tent around you for safety. The tent will remain for 5 minutes, where it will be taken down."; } }
+		public override string DefaultDescription{ get{ return "Isso requer alguém proficiente em acampamento. Você pode usar isto enquanto viaja ao ar livre. Quando usado, pode criar uma barraca protetora ao seu redor para segurança. A barraca permanecerá por 5 minutos, após os quais será desmontada."; } }
 
 		private SmallTentEffect m_SmallTentEffect;
 		private int m_Charges;
@@ -50,8 +50,8 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Setup A Small Tent In Which To Rest");
-			list.Add( 1049644, "Usable By Those Skilled In Camping");
+			list.Add( 1070722, "Montar Uma Barraca Pequena Para Descansar");
+			list.Add( 1049644, "Usável Por Aqueles Habilidosos Em Acampamento");
         } 
 		
 		public override void OnDoubleClick( Mobile from )
@@ -60,22 +60,22 @@ namespace Server.Items
 
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isso deve estar em sua mochila para ser usado." );
 				return;
 			}
 			else if ( Server.Misc.Worlds.IsOnBoat( from ) )
 			{
-				from.SendMessage( "You cannot setup this tent near a boat." );
+				from.SendMessage( "Você não pode montar esta barraca perto de um barco." );
 				return;
 			}
 			else if ( !Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) ) )
 			{
-				from.SendMessage( "You can only setup this tent in the wilderness." );
+				from.SendMessage( "Você só pode montar esta barraca na natureza." );
 				return;
 			}
 			else if ( inCombat )
 			{
-				from.SendMessage( "You cannot setup a tent while in combat." );
+				from.SendMessage( "Você não pode montar uma barraca enquanto está em combate." );
 				return;
 			}
 			else if ( Charges > 0 && from.CheckSkill( SkillName.Camping, 0.0, 50.0 ) )
@@ -91,7 +91,7 @@ namespace Server.Items
 			{
 				if ( Validate( from ) )
 				{
-					from.SendMessage( "Your tent is a bit more worn out as you fail to set it up properly." );
+					from.SendMessage( "Sua barraca está um pouco mais desgastada pois você falhou ao montá-la corretamente." );
 					Server.Items.Kindling.RaiseCamping( from );
 					ConsumeCharge( from );
 					return;
@@ -99,7 +99,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "This tent is too worn from over use, and is no longer of any good." );
+				from.SendMessage( "Esta barraca está muito desgastada devido ao uso excessivo, e não é mais útil." );
 				return;
 			}
 		}
@@ -108,7 +108,7 @@ namespace Server.Items
 		{
 			if ( from.Skills[SkillName.Camping].Value < 10 )
 			{
-				from.SendMessage( "You need at least a 10.0 camping skill to use this tent!" ); 
+				from.SendMessage( "Você precisa de pelo menos uma habilidade de acampamento de 10.0 para usar esta barraca!" ); 
 				return false;
 			}		
 			else 
@@ -123,7 +123,7 @@ namespace Server.Items
 
 			if ( Charges == 0 )
 			{
-				from.SendMessage( "This tent is too worn from over use, and is no longer of any good." );
+				from.SendMessage( "Esta barraca está muito desgastada devido ao uso excessivo, e não é mais útil." );
 				this.Delete();
 			}
 		}
@@ -235,7 +235,7 @@ namespace Server.Items
 			public override void OnDisturb( DisturbType type, bool message )
 			{
 				if ( message && !m_Stop )
-					Caster.SendMessage( "You have been disrupted while attempting to setup your tent." );
+					Caster.SendMessage( "Você foi interrompido ao tentar montar sua barraca." );
 			}
 
 			public override void OnCast()

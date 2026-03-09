@@ -18,8 +18,8 @@ namespace Server.Items
 			{
 				if ( DateTime.Now >= m_NextTalk && Utility.InRange( from.Location, this.Location, 5 ) )
 				{
-					if ( Name == "gypsy bag" ){ from.SendMessage( 68, "Double click the backpack, on your character window, to open it." ); }
-					else if ( Name == "gypsy help" ){ from.SendMessage( 68, "Single click the gypsy and select 'Talk' to speak with her." ); }
+					if ( Name == "gypsy bag" ){ from.SendMessage( 68, "Clique duas vezes na mochila, na janela do seu personagem, para abri-la." ); }
+					else if ( Name == "gypsy help" ){ from.SendMessage( 68, "Clique uma vez na cigana e selecione 'Talk' para conversar com ela." ); }
 
 					m_NextTalk = (DateTime.Now + TimeSpan.FromSeconds( 15 ));
 				}

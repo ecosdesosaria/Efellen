@@ -4,7 +4,7 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a frog corpse" )]
+	[CorpseName( "um cadáver de rã" )]
 	public class PoisonFrog : BaseCreature
 	{
 		private Timer m_Timer;
@@ -12,7 +12,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public PoisonFrog() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a marsh frog";
+			Name = "uma rã do pântano";
 			Body = 270;
 			Hue = Utility.RandomList( 0x5AC,0x5A3,0x59A,0x591,0x588,0x57F );
 			BaseSoundID = 0x266;

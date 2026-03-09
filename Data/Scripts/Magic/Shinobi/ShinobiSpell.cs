@@ -30,12 +30,12 @@ namespace Server.Spells.Shinobi
 
 			if ( Caster.TithingPoints < RequiredTithing )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredTithing.ToString() + " Tithing Points to use this ability." );
+				Caster.SendMessage( "Você deve ter pelo menos " + RequiredTithing.ToString() + " Pontos de Tithing para usar esta habilidade." );
 				return false;
 			}
 			else if ( Caster.Skills[SkillName.Ninjitsu].Value < RequiredSkill )
 			{
-				Caster.SendMessage( "You are not a skilled enough ninja to do that!" );
+				Caster.SendMessage( "Você não é um ninja habilidoso o suficiente para fazer isso!" );
 				return false;
 			}
 			else if ( Caster.Mana < mana )
@@ -45,7 +45,7 @@ namespace Server.Spells.Shinobi
 			}
 			else if ( this is CheetahPaws && MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( Caster, Region.Find( Caster.Location, Caster.Map ) ) )
 			{
-				Caster.SendMessage( "This ability doesn't seem to work in this place." );
+				Caster.SendMessage( "Esta habilidade não parece funcionar neste lugar." );
 				return false;
 			}
 
@@ -63,12 +63,12 @@ namespace Server.Spells.Shinobi
 
 			if ( Caster.TithingPoints < requiredTithing )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredTithing.ToString() + " Tithing Points to use this ability." );
+				Caster.SendMessage( "Você deve ter pelo menos " + RequiredTithing.ToString() + " Pontos de Tithing para usar esta habilidade." );
 				return false;
 			}
 			else if ( Caster.Skills[SkillName.Ninjitsu].Value < RequiredSkill )
 			{
-				Caster.SendMessage( "You are not a skilled enough ninja to do that!" );
+				Caster.SendMessage( "Você não é um ninja habilidoso o suficiente para fazer isso!" );
 				return false;
 			}
 			else if ( Caster.Mana < mana )
@@ -78,7 +78,7 @@ namespace Server.Spells.Shinobi
 			}
 			else if ( this is CheetahPaws && MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( Caster, Region.Find( Caster.Location, Caster.Map ) ) )
 			{
-				Caster.SendMessage( "This ability doesn't seem to work in this place." );
+				Caster.SendMessage( "Esta habilidade não parece funcionar neste lugar." );
 				return false;
 			}
 

@@ -27,51 +27,51 @@ namespace Server.Mobiles
 				{
 					switch ( Utility.Random( 45 ))
 					{
-						case 0: Say("A reunion must not occur or the unlucky chimera must fold in the age of temptation."); break;
-						case 1: Say("An injury shall happen."); break;
-						case 2: Say("He shall not assimilate with the proud youth."); break;
-						case 3: Say("They will not weave near an altar."); break;
-						case 4: Say("She will finally intrude."); break;
-						case 5: Say("The diamond possum shall not deflect near a fortress on a sunny day before the coming of beauty."); break;
-						case 6: Say("A relationship ending will finally happen with the tired juggler during the planting season."); break;
-						case 7: Say("The clever hamster will trespass with the saffron youth in a castle when the first flowers bloom."); break;
-						case 8: Say("A betrayal will finally happen or he will babble at the coming of destruction."); break;
-						case 9: Say("She will finally gutter in a market before it is too late."); break;
-						case 10: Say("An introduction will finally happen or the seductive viper shall not worship with the fanatical druid during the planting season."); break;
-						case 11: Say("The broken-hearted grandmother will act or he shall not meander."); break;
-						case 12: Say("A defeat will not take place in a castle on a journey."); break;
-						case 13: Say("The fearless trader shall not look with the violet druid."); break;
-						case 14: Say("The honest runaway will succumb with the hungry hare before the coming of lust."); break;
-						case 15: Say("It will judge in the summer."); break;
-						case 16: Say("The emerald lion will never scare for the sake of winter."); break;
-						case 17: Say("She will finally famish and a recovery will not happen near a well during a rainstorm."); break;
-						case 18: Say("A fight shall take place for the sake of willpower."); break;
-						case 19: Say("The fanatical wizard shall not wax near a holy site in the afternoon at the coming of luck."); break;
-						case 20: Say("She shall not ascend after sunset."); break;
-						case 21: Say("It will never pray with the shy zealot."); break;
-						case 22: Say("A meeting must happen with the malicious cook."); break;
-						case 23: Say("The remorseless muse will fraternize at the bridge."); break;
-						case 24: Say("The russet berserker must gasp or the remorseless slave must not bicker with the triumphant lion near a farm on the spring equinox."); break;
-						case 25: Say("He shall fence with the black countess near a portal."); break;
-						case 26: Say("An introduction will not happen and the intelligent champion shall lower on the spring equinox."); break;
-						case 27: Say("The hasty hostler must jump."); break;
-						case 28: Say("An agreement must take place with the broken-hearted cleric."); break;
-						case 29: Say("It will finally benefit in the citadel in the age of dreams."); break;
-						case 30: Say("A financial difficulty will never take place or the clumsy zombie will finally weep at midnight."); break;
-						case 31: Say("She shall weld or he will finally crush during the growing season."); break;
-						case 32: Say("The greedy artist shall lace and the garnet general must not compose."); break;
-						case 33: Say("The arrogant rogue must not comply with the indigo robber at the coming of joy."); break;
-						case 34: Say("The lavender summoner will crush in a time of truth."); break;
-						case 35: Say("A contest must not happen after the first frost."); break;
-						case 36: Say("She must not consent in the age of entropy."); break;
-						case 37: Say("The deluded pony will not forget in a graveyard on a windy day for the sake of alchemy."); break;
-						case 38: Say("A reversal of fortune shall not happen and a fall shall not occur in the spring for the sake of lust."); break;
-						case 39: Say("She will ensure in the citadel."); break;
-						case 40: Say("The lazy juggler will finally enquire and a loss shall not occur."); break;
-						case 41: Say("A promise will finally take place and it shall not bother during fall in a time of fear."); break;
-						case 42: Say("He must not weary."); break;
-						case 43: Say("The orange donkey shall not gutter at the bridge."); break;
-						case 44: Say("The word to the dark mage depths is 'bravoka'."); break;
+						case 0: Say("Uma reunião não deve ocorrer ou a quimera de má sorte deve recuar na idade da tentação."); break;
+						case 1: Say("Uma lesão acontecerá."); break;
+						case 2: Say("Ele não se assimilirá com a juventude orgulhosa."); break;
+						case 3: Say("Eles não tecerão perto de um altar."); break;
+						case 4: Say("Ela finalmente irá se intrometer."); break;
+						case 5: Say("O gambá de diamante não desviará perto de uma fortaleza em um dia ensolarado antes da chegada da beleza."); break;
+						case 6: Say("Um término de relacionamento finalmente acontecerá com o malabarista cansado durante a estação de plantio."); break;
+						case 7: Say("O hamster astuto vai transgredir com o jovem açafrão em um castelo quando as primeiras flores desabrocharem."); break;
+						case 8: Say("Uma traição finalmente acontecerá ou ele balbuciará na vinda da destruição."); break;
+						case 9: Say("Ela finalmente vacilará em um mercado antes que seja tarde demais."); break;
+						case 10: Say("Uma introdução finalmente acontecerá ou a víbora sedutora não adorará com o druida fanático durante a estação de plantio."); break;
+						case 11: Say("A avó de coração partido agirá ou ele não vagueará."); break;
+						case 12: Say("Uma derrota não ocorrerá em um castelo durante uma jornada."); break;
+						case 13: Say("O comerciante destemido não olhará com o druida violeta."); break;
+						case 14: Say("O fugitivo honesto sucumbirá com a lebre faminta antes da vinda da luxúria."); break;
+						case 15: Say("Isto julgará no verão."); break;
+						case 16: Say("O leão esmeralda nunca terá medo por causa do inverno."); break;
+						case 17: Say("Ela finalmente definhará e uma recuperação não acontecerá perto de um poço durante uma tempestade."); break;
+						case 18: Say("Uma luta ocorrerá por causa da força de vontade."); break;
+						case 19: Say("O mago fanático não crescerá perto de um local sagrado à tarde na vinda da sorte."); break;
+						case 20: Say("Ela não ascenderá após o pôr do sol."); break;
+						case 21: Say("Isto nunca orará com o zelote tímido."); break;
+						case 22: Say("Um encontro deve acontecer com o cozinheiro malicioso."); break;
+						case 23: Say("A musa sem remorsos confraternizará na ponte."); break;
+						case 24: Say("O berserker rússio deve suspirar ou o escravo sem remorsos não deve discutir com o leão triunfante perto de uma fazenda no equinócio da primavera."); break;
+						case 25: Say("Ele esgrimirá com a condessa negra perto de um portal."); break;
+						case 26: Say("Uma introdução não acontecerá e o campeão inteligente baixará no equinócio da primavera."); break;
+						case 27: Say("O estalajadeiro apressado deve pular."); break;
+						case 28: Say("Um acordo deve ocorrer com o clérigo de coração partido."); break;
+						case 29: Say("Isto finalmente beneficiará na cidadela na era dos sonhos."); break;
+						case 30: Say("Uma dificuldade financeira nunca ocorrerá ou o zumbi desajeitado finalmente chorará à meia-noite."); break;
+						case 31: Say("Ela soldará ou ele finalmente esmagará durante a estação de crescimento."); break;
+						case 32: Say("O artista ganancioso amarrará e o general de granada não deve compor."); break;
+						case 33: Say("O ladrão arrogante não deve obedecer ao ladrão índigo na vinda da alegria."); break;
+						case 34: Say("O invocador lavanda esmagará em um tempo de verdade."); break;
+						case 35: Say("Uma competição não deve acontecer após a primeira geada."); break;
+						case 36: Say("Ela não deve consentir na era da entropia."); break;
+						case 37: Say("O pônei iludido não esquecerá em um cemitério em um dia ventoso por causa da alquimia."); break;
+						case 38: Say("Uma reversão de fortuna não acontecerá e uma queda não ocorrerá na primavera por causa da luxúria."); break;
+						case 39: Say("Ela assegurará na cidadela."); break;
+						case 40: Say("O malabarista preguiçoso finalmente perguntará e uma perda não ocorrerá."); break;
+						case 41: Say("Uma promessa finalmente ocorrerá e isto não incomodará durante o outono em um tempo de medo."); break;
+						case 42: Say("Ele não deve cansar."); break;
+						case 43: Say("O burro laranja não vacilará na ponte."); break;
+						case 44: Say("A palavra para as profundezas do mago negro é 'bravoka'."); break;
 					};
 					m_NextTalk = (DateTime.Now + TimeSpan.FromSeconds( 30 ));
 				}
@@ -87,7 +87,7 @@ namespace Server.Mobiles
 			Body = 0x191;
 			Female = true;
 			Name = NameList.RandomName( "female" );
-			Title = "the gypsy";
+			Title = "a cigana";
 
 			AddItem( new Kilt( Utility.RandomDyedHue() ) );
 			AddItem( new Shirt( Utility.RandomDyedHue() ) );
@@ -142,7 +142,7 @@ namespace Server.Mobiles
             if ( Deleted || !from.Alive )
                 return;
 
-			SayTo(from, "So you want me to reveal the truth of a parchment for you?");
+			SayTo(from, "Então você quer que eu revele a verdade de um pergaminho para você?");
 
             from.Target = new RevealTarget(this);
         }
@@ -175,7 +175,7 @@ namespace Server.Mobiles
 
 					if ( scroll.ScrollIntelligence > 0 )
 					{
-						m_GypsyLady.SayTo(from, "That parchment hasn't been deciphered yet.");
+						m_GypsyLady.SayTo(from, "Esse pergaminho ainda não foi decifrado.");
 					}
 					else if (pack.ConsumeTotal(typeof(Gold), toConsume))
 					{
@@ -183,26 +183,26 @@ namespace Server.Mobiles
 
 						switch ( Utility.RandomMinMax( 0, 3 ) ) 
 						{
-							case 0: WillSay = "The spirits tell me that this parchment is"; break;
-							case 1: WillSay = "My mind is showing me that this parchment is"; break;
-							case 2: WillSay = "The voices all speak that this parchment is"; break;
-							case 3: WillSay = "I can see beyond that this parchment is"; break;
+							case 0: WillSay = "Os espíritos me dizem que este pergaminho está"; break;
+							case 1: WillSay = "Minha mente está me mostrando que este pergaminho está"; break;
+							case 2: WillSay = "As vozes todas dizem que este pergaminho está"; break;
+							case 3: WillSay = "Eu posso ver além que este pergaminho está"; break;
 						}
 
 						if ( scroll.ScrollTrue == 1 )
 						{
-							m_GypsyLady.SayTo(from, WillSay + " truthfully written.");
+							m_GypsyLady.SayTo(from, WillSay + " escrito com a verdade.");
 						}
 						else
 						{
-							m_GypsyLady.SayTo(from, WillSay + " falsely written.");
+							m_GypsyLady.SayTo(from, WillSay + " escrito falsamente.");
 						}
 
-						from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+						from.SendMessage(String.Format("Você paga {0} de ouro.", toConsume));
 					}
 					else
 					{
-						m_GypsyLady.SayTo(from, "I require {0} gold for my visions.", toConsume);
+						m_GypsyLady.SayTo(from, "Eu exijo {0} de ouro para minhas visões.", toConsume);
 					}
 				}
 				///////////////////////////////////////////////////////////////////////////////////
@@ -225,26 +225,26 @@ namespace Server.Mobiles
 
 						switch ( Utility.RandomMinMax( 0, 3 ) ) 
 						{
-							case 0: WillSay = "The spirits tell me that this legend "; break;
-							case 1: WillSay = "My mind is showing me that this legend "; break;
-							case 2: WillSay = "The voices all speak that this legend "; break;
-							case 3: WillSay = "I can see beyond that this legend "; break;
+							case 0: WillSay = "Os espíritos me dizem que esta lenda "; break;
+							case 1: WillSay = "Minha mente está me mostrando que esta lenda "; break;
+							case 2: WillSay = "As vozes todas dizem que esta lenda "; break;
+							case 3: WillSay = "Eu posso ver além que esta lenda "; break;
 						}
 
 						if ( scroll.LegendReal == 1 )
 						{
-							m_GypsyLady.SayTo(from, WillSay + " really happened.");
+							m_GypsyLady.SayTo(from, WillSay + " realmente aconteceu.");
 						}
 						else
 						{
-							m_GypsyLady.SayTo(from, WillSay + " never happened.");
+							m_GypsyLady.SayTo(from, WillSay + " nunca aconteceu.");
 						}
 
-						from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+						from.SendMessage(String.Format("Você paga {0} de ouro.", toConsume));
 					}
 					else
 					{
-						m_GypsyLady.SayTo(from, "I require {0} gold for my visions.", toConsume);
+						m_GypsyLady.SayTo(from, "Eu exijo {0} de ouro para minhas visões.", toConsume);
 					}
 				}
 				///////////////////////////////////////////////////////////////////////////////////
@@ -267,26 +267,26 @@ namespace Server.Mobiles
 
 						switch ( Utility.RandomMinMax( 0, 3 ) ) 
 						{
-							case 0: WillSay = "The spirits tell me that this book "; break;
-							case 1: WillSay = "My mind is showing me that this book "; break;
-							case 2: WillSay = "The voices all speak that this book "; break;
-							case 3: WillSay = "I can see beyond that this book "; break;
+							case 0: WillSay = "Os espíritos me dizem que este livro "; break;
+							case 1: WillSay = "Minha mente está me mostrando que este livro "; break;
+							case 2: WillSay = "As vozes todas dizem que este livro "; break;
+							case 3: WillSay = "Eu posso ver além que este livro "; break;
 						}
 
 						if ( scroll.BookTrue > 0 )
 						{
-							m_GypsyLady.SayTo(from, WillSay + " contains the truth.");
+							m_GypsyLady.SayTo(from, WillSay + " contém a verdade.");
 						}
 						else
 						{
-							m_GypsyLady.SayTo(from, WillSay + " contains falsehoods.");
+							m_GypsyLady.SayTo(from, WillSay + " contém falsidades.");
 						}
 
-						from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+						from.SendMessage(String.Format("Você paga {0} de ouro.", toConsume));
 					}
 					else
 					{
-						m_GypsyLady.SayTo(from, "I require {0} gold for my visions.", toConsume);
+						m_GypsyLady.SayTo(from, "Eu exijo {0} de ouro para minhas visões.", toConsume);
 					}
 				}
 				///////////////////////////////////////////////////////////////////////////////////
@@ -309,32 +309,32 @@ namespace Server.Mobiles
 
 						switch ( Utility.RandomMinMax( 0, 3 ) ) 
 						{
-							case 0: WillSay = "The spirits tell me that this parchment is"; break;
-							case 1: WillSay = "My mind is showing me that this parchment is"; break;
-							case 2: WillSay = "The voices all speak that this parchment is"; break;
-							case 3: WillSay = "I can see beyond that this parchment is"; break;
+							case 0: WillSay = "Os espíritos me dizem que este pergaminho está"; break;
+							case 1: WillSay = "Minha mente está me mostrando que este pergaminho está"; break;
+							case 2: WillSay = "As vozes todas dizem que este pergaminho está"; break;
+							case 3: WillSay = "Eu posso ver além que este pergaminho está"; break;
 						}
 
 						if ( scroll.ScrollTrue == 1 )
 						{
-							m_GypsyLady.SayTo(from, WillSay + " truthfully written.");
+							m_GypsyLady.SayTo(from, WillSay + " escrito com a verdade.");
 						}
 						else
 						{
-							m_GypsyLady.SayTo(from, WillSay + " falsely written.");
+							m_GypsyLady.SayTo(from, WillSay + " escrito falsamente.");
 						}
 
-						from.SendMessage(String.Format("You pay {0} gold.", toConsume));
+						from.SendMessage(String.Format("Você paga {0} de ouro.", toConsume));
 					}
 					else
 					{
-						m_GypsyLady.SayTo(from, "I require {0} gold for my visions.", toConsume);
+						m_GypsyLady.SayTo(from, "Eu exijo {0} de ouro para minhas visões.", toConsume);
 					}
 				}
 				///////////////////////////////////////////////////////////////////////////////////
 				else
 				{
-					m_GypsyLady.SayTo(from, "That is not a book or parchment.");
+					m_GypsyLady.SayTo(from, "Isso não é um livro ou pergaminho.");
 				}
             }
         }

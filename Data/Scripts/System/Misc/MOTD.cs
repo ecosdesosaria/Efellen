@@ -42,11 +42,11 @@ namespace Joeku.MOTD
 			AddPage(0);
 
 			AddImage(0, 0, 9541, Server.Misc.PlayerSettings.GetGumpHue( user ));
-			AddHtml( 11, 12, 291, 20, @"<BODY><BASEFONT Color=" + color + ">MESSAGE OF THE DAY</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 11, 12, 291, 20, @"<BODY><BASEFONT Color=" + color + ">MENSAGEM DO DIA</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(607, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 			AddButton(14, 399, button, button, 1, GumpButtonType.Reply, 0);
 			AddBody( user );
-			AddHtml( 51, 402, 141, 20, @"<BODY><BASEFONT Color=" + color + ">SHOW AT LOGIN</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 51, 402, 141, 20, @"<BODY><BASEFONT Color=" + color + ">MOSTRAR AO ENTRAR</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			if ( MySettings.S_WebsiteLink != null && MySettings.S_WebsiteLink != "" )
 			{

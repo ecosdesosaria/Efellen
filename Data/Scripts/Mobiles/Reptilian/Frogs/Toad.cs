@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a toad corpse" )]
+	[CorpseName( "um cadáver de sapo" )]
 	public class Toad : BaseCreature
 	{
 		private Timer m_Timer;
@@ -12,7 +12,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Toad() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a toad";
+			Name = "um sapo";
 			Body = 81;
 			Hue = Utility.RandomList( 0x7D7, 0x7D8, 0x7D9, 0x7DA, 0x7DB, 0x7DC );
 			BaseSoundID = 0x266;

@@ -4,13 +4,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a corpse" )]
+	[CorpseName( "um cadáver" )]
 	public class Critter : BaseCreature
 	{
 		[Constructable]
 		public Critter() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a rat";
+			Name = "um rato";
 			Body = 238;
 			BaseSoundID = 0xCC;
 
@@ -65,11 +65,11 @@ namespace Server.Mobiles
 
 			switch ( setup ) 
 			{
-				case 1: Name = "a lizard";		Body = 382;		break;
-				case 2: Name = "a beetle";		Body = 383;		break;
-				case 3: Name = "a frog";		Body = 816;		break;
-				case 4: Name = "a scorpion";	Body = 817;		break;
-				case 5: Name = "a spider";		Body = 829;		break;
+				case 1: Name = "um lagarto";		Body = 382;		break;
+				case 2: Name = "um besouro";		Body = 383;		break;
+				case 3: Name = "um sapo";		Body = 816;		break;
+				case 4: Name = "um escorpião";	Body = 817;		break;
+				case 5: Name = "uma aranha";		Body = 829;		break;
 			}
 
 			if ( Body == 382 || Body == 816 )

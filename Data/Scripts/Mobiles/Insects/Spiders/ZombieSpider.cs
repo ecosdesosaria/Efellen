@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a spider corpse" )]
+	[CorpseName( "um cadáver de aranha" )]
 	public class ZombieSpider : BaseCreature
 	{
 		public override int BreathPhysicalDamage{ get{ return 50; } }
@@ -26,7 +26,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public ZombieSpider() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a decaying spider";
+			Name = "uma aranha em decomposição";
 			Body = 438;
 			BaseSoundID = 1170;
 

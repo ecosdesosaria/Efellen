@@ -3,13 +3,13 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a reptile corpse" )]
+	[CorpseName( "um cadáver de réptil" )]
 	public class Alligator : BaseCreature
 	{
 		[Constructable]
 		public Alligator() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an alligator";
+			Name = "um jacaré";
 			Body = 206;
 			Hue = Utility.RandomList( 0x7D1, 0x7D2, 0x7D3, 0x7D4, 0x7D5, 0x7D6 );
 			BaseSoundID = 660;
@@ -26,7 +26,7 @@ namespace Server.Mobiles
 
 			if ( Utility.RandomMinMax( 1, 3 ) == 1 )
 			{
-				Name = "a crocodile";
+				Name = "um crocodilo";
 				Hue = Utility.RandomList( 0x7D7, 0x7D8, 0x7D9, 0x7DA, 0x7DB, 0x7DC );
 
 				SetStr( 106, 130 );
