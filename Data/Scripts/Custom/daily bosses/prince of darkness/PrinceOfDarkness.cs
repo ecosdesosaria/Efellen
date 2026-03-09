@@ -25,10 +25,10 @@ namespace Server.Mobiles
 		private static readonly Type[] SummonTypes = new Type[] 
 		{ 
 			typeof(MetalHead), 
-			typeof(Ozzy_WereWolf), 
-			typeof(Demon), 
-			typeof(Daemon), 
-			typeof(Balron) 
+			typeof(InfernalBat), 
+			typeof(GreaterDemon), 
+			typeof(Marilith), 
+			typeof(HeraldOfDiscordance) 
 		};
 
 		private static readonly string[] SummonWarcries = new string[]
@@ -86,6 +86,7 @@ namespace Server.Mobiles
 			SetSkill( SkillName.Spiritualism, 125.0, 125.0);
 			SetSkill( SkillName.Necromancy, 125.0, 125.0);
 			SetSkill( SkillName.Magery, 101.0, 120.0 );
+			SetSkill( SkillName.Musicianship, 125.0, 145.5 );
 
 			Fame = 35000;
 			Karma = -35000;
@@ -211,7 +212,18 @@ namespace Server.Mobiles
 		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(30 - (m_Rage * 2));
 		    }
 
+			if ( DateTime.Now >= NextPickup )
+			{
+				switch( Utility.RandomMinMax( 0, 2 ) )
+				{
+					case 0:	Peace( combatant ); break;
+					case 1:	Undress( combatant ); break;
+					case 2:	Suppress( combatant ); break;
+				}
+			}
+
 		    m_LastTarget = combatant;
+			
 		}
 
 		private int GetMaxSummons()

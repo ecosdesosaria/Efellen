@@ -307,7 +307,7 @@ namespace Server.Items
 				typeof( PirateLichLord ), 
 				typeof( PirateSkeleton ), 
 				typeof( WereWolf ), 
-				typeof(Ozzy_WereWolf),
+
 				typeof( NecroticHound ), 
 				typeof( IceGhoul ), 
 				typeof( DiseasedMummy ), 
@@ -1158,7 +1158,10 @@ namespace Server.Items
 
 			abyss.Opposition = new SlayerGroup[]{ };
 			abyss.FoundOn = new Type[]{ };
-			abyss.Super = new SlayerEntry( SlayerName.Exorcism, 
+			abyss.Super = new SlayerEntry( SlayerName.Exorcism,
+				typeof( InfernalBat),
+				typeof( HeraldOfDiscordance),
+				typeof( GreaterDemon),  
 				typeof( BlackPhillip),
 				typeof( PrinceOfDarkness),
 				typeof( Tarjan ), 

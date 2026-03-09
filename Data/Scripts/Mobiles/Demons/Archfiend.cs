@@ -10,7 +10,7 @@ namespace Server.Mobiles
 	public class Archfiend : BaseCreature
 	{
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
-		public override double DispelDifficulty{ get{ return 150.0; } }
+		public override double DispelDifficulty{ get{ return 350.0; } }
 		public override double DispelFocus{ get{ return 25.0; } }
 
 		[Constructable]
