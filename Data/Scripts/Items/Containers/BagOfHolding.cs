@@ -22,7 +22,7 @@ namespace Server.Items
         {
 			if ( dropped is Container )
 			{
-                from.SendMessage("You cannot store containers in this bag.");
+                from.SendMessage("Você não pode guardar recipientes nesta bolsa.");
                 return false;
 			}
 
@@ -33,7 +33,7 @@ namespace Server.Items
         {
 			if ( dropped is Container )
 			{
-                from.SendMessage("You cannot store containers in this bag.");
+                from.SendMessage("Você não pode guardar recipientes nesta bolsa.");
                 return false;
 			}
 

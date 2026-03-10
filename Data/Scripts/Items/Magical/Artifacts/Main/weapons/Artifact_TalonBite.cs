@@ -40,7 +40,7 @@ namespace Server.Items
                     attacker.Stam += stam;
                     attacker.Mana += mana;
 
-                    attacker.SendMessage(33, "The Talon Bite empowers you!");
+                    attacker.SendMessage(33, "A Mordida da Garra te fortalece!");
                 }
             }
         }

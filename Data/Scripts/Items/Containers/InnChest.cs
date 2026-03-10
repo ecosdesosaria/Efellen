@@ -36,8 +36,8 @@ namespace Server.Items
 					}
 					else
 					{
-						pm.SendMessage( "You will need " + InnKeeper.RoomCost( pm ) + " gold for an inn room." );
-						pm.SendMessage( "Give the innkeeper " + InnKeeper.RoomCost( pm ) + " gold, or put that amount in the bank." );
+						pm.SendMessage( "Você precisará de " + InnKeeper.RoomCost( pm ) + " moedas de ouro para um quarto na estalagem." );
+						pm.SendMessage( "Dê ao estaleiro " + InnKeeper.RoomCost( pm ) + " moedas de ouro, ou coloque essa quantia no banco." );
 					}
 
 					if ( canOpen )

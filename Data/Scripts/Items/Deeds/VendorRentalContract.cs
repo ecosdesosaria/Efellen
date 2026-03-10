@@ -170,7 +170,7 @@ namespace Server.Items
 				}
 				else if ( !house.IsAosRules )
 				{
-					from.SendMessage( "Rental contracts can only be placed in AOS-enabled houses." );
+					from.SendMessage( "Contratos de aluguel só podem ser colocados em casas compatíveis com AOS." );
 				}
 				else if ( !house.Public )
 				{
@@ -264,7 +264,7 @@ namespace Server.Items
 				}
 				else if ( !house.IsAosRules )
 				{
-					from.SendMessage( "Rental contracts can only be placed in AOS-enabled houses." );
+					from.SendMessage( "Contratos de aluguel só podem ser colocados em casas compatíveis com AOS." );
 				}
 				else if ( !house.Public )
 				{

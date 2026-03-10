@@ -149,11 +149,11 @@ namespace Server.Gumps
 
 			if (HeartOfTheWilds.Shapeshift(m_Caster, entry, m_Amulet))
 			{
-				m_Caster.SendMessage("You transform into a {0}!", entry.Name);
+				m_Caster.SendMessage("Você se transforma em {0}!", entry.Name);
 			}
 			else
 			{
-				m_Caster.SendMessage("You fail to shapeshift.");
+				m_Caster.SendMessage("Você falha ao transmorfar.");
 			}
 		}
 	}
@@ -179,29 +179,29 @@ namespace Server.Gumps
 			AddHtml(14, 12, 480, 20, "<CENTER><BASEFONT COLOR=#FFFFFF>Wild Shape - Help</CENTER></BASEFONT>", false, false);
 
 			string helpText = "<BASEFONT COLOR=#FFFFFF>" +
-				"<CENTER><B>Wild Shape</B></CENTER><BR><BR>" +
-				"The Heart of the Wilds allows druids to transform into various animal forms. Each form grants unique bonuses and abilities.<BR><BR>" +
-				"<B>Mechanics:</B><BR>" +
-				"• Every form requires you to meet the Druidism and Spiritualism skill requirements listed beside it<BR>" +
-				"• Some forms require additional skills at the same level that they require Druidism and Spiritualism.<BR>" +
-				"• Cannot be used while mounted or wearing metal armor (unless it has Mage Armor).<BR>" +
-				"• Necromancers cannot wildshape.<BR>" +
-				"• Transformations end on death or unequipping the amulet.<BR>" +
-				"• While under wild shape, you can only cast elementalist spells.<BR>"+
-				"• Forms offer various different abilities that scaled up with your Druidism and Spiritualism<BR>" +
-				"<B>Unlocking new forms:</B><BR>" +
-				"• You can learn new forms by aqquiring Totems of the wilds. These can be found by studying creatures, fighting alongside tamed pets and slaying creatures that have a wild shape form<BR><BR>" +
-				"• The following forms can be learned:<BR>"+
-				"• Anaconda (learned from various giant serpents, requires poisoning 80)<BR>"+
-				"• Dire Bear (learned from cave bears and elder bears requires 85 druidism)<BR>"+
-				"• Stalker (learned only from stalkers, requires 85 hiding and druidism)<BR>"+
-				"• Scorpion (learned from scorpions and deadly scorpion, requires poisoning 90 and druidism)<BR>"+
-				"• Gorakong (learned only from gorillas Gorakongs)<BR>"+
-				"• Worg (learned from wolves and Worgs requires 105 druidism)<BR>"+
-				"• Griffon (learned from Griffons and Trained Griffons, requires 110 druidism)<BR>"+
-				"• Stegosaurus (learned from Stegosaurus) requires 115 druidism<BR>"+
-				"• Monstrous spider (learned from monstrous spiders, requires 120 poisoning and druidism)<BR>"+
-				"• Tyranasaur (learned from Tyranasaurus requires 125 druidism)<BR>"+
+				"<CENTER><B>Forma Selvagem</B></CENTER><BR><BR>" +
+				"O Coração das Selvas permite que druidas se transformem em várias formas animais. Cada forma concede bônus e habilidades únicas.<BR><BR>" +
+				"<B>Mecânicas:</B><BR>" +
+				"• Cada forma exige que você atenda aos requisitos de habilidade de Druidismo e Espiritualismo listados ao lado dela<BR>" +
+				"• Algumas formas exigem habilidades adicionais no mesmo nível que exigem Druidismo e Espiritualismo.<BR>" +
+				"• Não pode ser usado enquanto montado ou usando armadura de metal (a menos que tenha Armadura de Mago).<BR>" +
+				"• Necromantes não podem usar Forma Selvagem.<BR>" +
+				"• As transformações terminam ao morrer ou ao remover o amuleto.<BR>" +
+				"• Enquanto na forma selvagem, você só pode lançar feitiços de elementalismo.<BR>"+
+				"• As formas oferecem várias habilidades diferentes que são ampliadas com seu Druidismo e Espiritualismo<BR>" +
+				"<B>Desbloqueando novas formas:</B><BR>" +
+				"• Você pode aprender novas formas adquirindo Totens das selvas. Estes podem ser encontrados estudando criaturas, lutando ao lado de animais domados e abatendo criaturas que possuem uma forma selvagem<BR><BR>" +
+				"• As seguintes formas podem ser aprendidas:<BR>"+
+				"• Anaconda (aprendida com várias serpentes gigantes, requer envenenamento 80)<BR>"+
+				"• Urso-Dire (aprendido com ursos das cavernas e ursos anciões, requer 85 de druidismo)<BR>"+
+				"• Stalker (aprendido apenas com stalkers, requer 85 de furtividade e druidismo)<BR>"+
+				"• Escorpião (aprendido com escorpiões e escorpiões mortais, requer envenenamento 90 e druidismo)<BR>"+
+				"• Gorakong (aprendido apenas com gorilas e gorakongs)<BR>"+
+				"• Worg (aprendido com lobos e worgs, requer 105 de druidismo)<BR>"+
+				"• Grifo (aprendido com grifos e grifos treinados, requer 110 de druidismo)<BR>"+
+				"• Estegossauro (aprendido com estegossauros) requer 115 de druidismo<BR>"+
+				"• Aranha monstruosa (aprendida com aranhas monstruosas, requer 120 de envenenamento e druidismo)<BR>"+
+				"• Tiranossauro (aprendido com tiranossauros, requer 125 de druidismo)<BR>"+
 				"</BASEFONT>";
 
 			AddHtml(20, 45, 460, 360, helpText, false, true);

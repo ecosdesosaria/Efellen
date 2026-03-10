@@ -25,20 +25,20 @@ namespace Server.Items
 
 				if ( item.RootParent != from )
 				{
-					from.SendMessage( "The item must be in your pack." );
+					from.SendMessage( "O item deve estar em sua mochila." );
 				}
 				else
 				{
 					int luck = item.Attributes.Luck;
 					if ( luck >= 500 )
 					{
-						from.SendMessage( "There is already enough luck on this item." );
+						from.SendMessage( "Já há sorte suficiente neste item." );
 					}
 					else
 					{
 						item.Attributes.Luck = luck + Utility.RandomMinMax(25,125);
 							if ( item.Attributes.Luck > 500 ){ item.Attributes.Luck = 500; }
-						from.SendMessage( "You add some extra luck to the item." );
+						from.SendMessage( "Você adiciona um pouco de sorte extra ao item." );
 						m_Deed.Delete();
 					}
 				}
@@ -49,20 +49,20 @@ namespace Server.Items
 
 				if ( item.RootParent != from )
 				{
-					from.SendMessage( "The item must be in your pack." );
+					from.SendMessage( "O item deve estar em sua mochila." );
 				}
 				else
 				{
 					int luck = item.Attributes.Luck;
 					if ( luck >= 500 )
 					{
-						from.SendMessage( "There is already enough luck on this item." );
+						from.SendMessage( "Já há sorte suficiente neste item." );
 					}
 					else
 					{
 						item.Attributes.Luck = luck + Utility.RandomMinMax(25,125);
 							if ( item.Attributes.Luck > 500 ){ item.Attributes.Luck = 500; }
-						from.SendMessage( "You add some extra luck to the item." );
+						from.SendMessage( "Você adiciona um pouco de sorte extra ao item." );
 						m_Deed.Delete();
 					}
 				}
@@ -73,20 +73,20 @@ namespace Server.Items
 
 				if ( item.RootParent != from )
 				{
-					from.SendMessage( "The item must be in your pack." );
+					from.SendMessage( "O item deve estar em sua mochila." );
 				}
 				else
 				{
 					int luck = item.Attributes.Luck;
 					if ( luck >= 500 )
 					{
-						from.SendMessage( "There is already enough luck on this item." );
+						from.SendMessage( "Já há sorte suficiente neste item." );
 					}
 					else
 					{
 						item.Attributes.Luck = luck + Utility.RandomMinMax(25,125);
 							if ( item.Attributes.Luck > 500 ){ item.Attributes.Luck = 500; }
-						from.SendMessage( "You add some extra luck to the item." );
+						from.SendMessage( "Você adiciona um pouco de sorte extra ao item." );
 						m_Deed.Delete();
 					}
 				}
@@ -97,20 +97,20 @@ namespace Server.Items
 
 				if ( item.RootParent != from )
 				{
-					from.SendMessage( "The item must be in your pack." );
+					from.SendMessage( "O item deve estar em sua mochila." );
 				}
 				else
 				{
 					int luck = item.Attributes.Luck;
 					if ( luck >= 500 )
 					{
-						from.SendMessage( "There is already enough luck on this item." );
+						from.SendMessage( "Já há sorte suficiente neste item." );
 					}
 					else
 					{
 						item.Attributes.Luck = luck + Utility.RandomMinMax(25,125);
 							if ( item.Attributes.Luck > 500 ){ item.Attributes.Luck = 500; }
-						from.SendMessage( "You add some extra luck to the item." );
+						from.SendMessage( "Você adiciona um pouco de sorte extra ao item." );
 						m_Deed.Delete();
 					}
 				}
@@ -121,27 +121,27 @@ namespace Server.Items
 
 				if ( item.RootParent != from )
 				{
-					from.SendMessage( "The item must be in your pack." );
+					from.SendMessage( "O item deve estar em sua mochila." );
 				}
 				else
 				{
 					int luck = item.Attributes.Luck;
 					if ( luck >= 500 )
 					{
-						from.SendMessage( "There is already enough luck on this item." );
+						from.SendMessage( "Já há sorte suficiente neste item." );
 					}
 					else
 					{
 						item.Attributes.Luck = luck + Utility.RandomMinMax(25,125);
 							if ( item.Attributes.Luck > 500 ){ item.Attributes.Luck = 500; }
-						from.SendMessage( "You add some extra luck to the item." );
+						from.SendMessage( "Você adiciona um pouco de sorte extra ao item." );
 						m_Deed.Delete();
 					}
 				}
 			}
 			else
 			{
-				from.SendMessage( "You cannot enhance that item with luck." );
+				from.SendMessage( "Você não pode melhorar esse item com sorte." );
 			}
 		}
 	}
@@ -185,7 +185,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "What item would you like to add luck to?" );
+				from.SendMessage( "Em qual item você gostaria de adicionar sorte?" );
 				from.Target = new LuckTarget( this );
 			}
 		}

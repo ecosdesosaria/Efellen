@@ -46,7 +46,7 @@ namespace Server.Items
                 if (defender != null && defender.Alive && !defender.Paralyzed)
                 {
                     defender.Paralyze(TimeSpan.FromSeconds(6));
-                    attacker.SendMessage("Your whip immobilizes your foe!");
+                    attacker.SendMessage("Seu chicote imobiliza seu inimigo!");
                     m_NextParalyze = DateTime.Now + TimeSpan.FromSeconds(30);
                 }
             }

@@ -91,7 +91,7 @@ namespace Server.Items
 				if ( !box.SearchedThis && m.CheckSkill( SkillName.Searching, 0, 125 ) )
 				{
 					m.PlaySound( m.Female ? 778 : 1049 ); m.Say( "*ah!*" );
-					m.SendMessage( "This container is trapped!" );
+					m.SendMessage( "Este recipiente tem uma armadilha!" );
 					box.SearchedThis = true;
 					return true;
 				}
@@ -110,7 +110,7 @@ namespace Server.Items
 
 				if ( from.AccessLevel >= AccessLevel.GameMaster )
 				{
-					SendMessageTo( from, "That is trapped, but you open it with your godly powers.", 0x3B2 );
+					SendMessageTo( from, "Isso está com armadilha, mas você abre com seus poderes divinos.", 0x3B2 );
 					return false;
 				}
 
@@ -127,7 +127,7 @@ namespace Server.Items
 					TrapPower = 0;
 					TrapLevel = 0;
 					TrapType = TrapType.None;
-					SendMessageTo( from, "That was trapped, but you were able to disable it.", 0x3B2 );
+					SendMessageTo( from, "Isso estava com armadilha, mas você conseguiu desativá-lo.", 0x3B2 );
 					return false;
 				}
 
@@ -142,7 +142,7 @@ namespace Server.Items
 						TrapPower = 0;
 						TrapLevel = 0;
 						TrapType = TrapType.None;
-						SendMessageTo( from, "That was trapped, but with luck on your side...it broke.", 0x3B2 );
+						SendMessageTo( from, "Isso estava com armadilha, mas com sorte ao seu favor... ela quebrou.", 0x3B2 );
 						return false;
 					}
 					if ( magicwand != null )
@@ -156,7 +156,7 @@ namespace Server.Items
 							TrapPower = 0;
 							TrapLevel = 0;
 							TrapType = TrapType.None;
-							SendMessageTo( from, "That was trapped, but your magic orb disabled it.", 0x3B2 );
+							SendMessageTo( from, "Isso estava com armadilha, mas seu orbe mágico a desativou.", 0x3B2 );
 							return false;
 						}
 					}
@@ -172,11 +172,11 @@ namespace Server.Items
 							poles.ConsumeLimits( 1 );
 							if ( poles.Limits < 1 )
 							{
-								SendMessageTo( from, "You tap your ten foot pole, disabling a trap and breaking the pole.", 0x3B2 );
+								SendMessageTo( from, "Você toca sua vara de dez pés, desativando uma armadilha e quebrando a vara.", 0x3B2 );
 							}
 							else
 							{
-								SendMessageTo( from, "You tap your ten foot pole, disabling a trap.", 0x3B2 );
+								SendMessageTo( from, "Você toca sua vara de dez pés, desativando uma armadilha.", 0x3B2 );
 								poles.InvalidateProperties();
 							}
 							return false;

@@ -41,7 +41,7 @@ namespace Server.Items
 				if (defender != null && defender.Alive && !defender.Paralyzed)
                 {
                     defender.Paralyze(TimeSpan.FromSeconds(5));
-                    attacker.SendMessage("Your blow immobilizes your foe!");
+                    attacker.SendMessage("Seu golpe imobiliza seu inimigo!");
                     double skill = attacker.Skills[SkillName.Bludgeoning].Value;
 					int duration = 7 + (int)(skill / 25.0);
 					DotEffect.ApplyDot(defender, duration, attacker,2);

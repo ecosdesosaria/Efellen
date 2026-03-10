@@ -21,12 +21,12 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile m )
 		{
-			m.SendMessage( "This door seems to be locked from the other side." );
+			m.SendMessage( "Esta porta parece estar trancada do outro lado." );
 		}
 
         public override void OnDoubleClickDead( Mobile m )
 		{
-			m.SendMessage( "This door seems to be locked from the other side." );
+			m.SendMessage( "Esta porta parece estar trancada do outro lado." );
 		}
 
 		public override void Serialize( GenericWriter writer )

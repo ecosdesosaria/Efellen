@@ -107,7 +107,7 @@ namespace Server.Items
 		    {
 		        eable.Free();
 		    }
-			attacker.SendMessage("Your blade of insanity unleashes poisonous fire!");
+			attacker.SendMessage("Sua lâmina da insanidade libera fogo venenoso!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 63);
 		}
 		public Artifact_BladeOfInsanity( Serial serial ) : base( serial )

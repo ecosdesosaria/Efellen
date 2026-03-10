@@ -24,33 +24,31 @@ namespace Server.Items
 				BaseCreature k = ( BaseCreature ) target; 
 
 				if ( !k.Tamable )
-					{ 
-							from.SendMessage( "That pet is not Tamable..." );
-					} 
-					
+				{ 
+					from.SendMessage( "Esse animal não é domável..." );
+				} 
 				else if ( from.Skills[SkillName.Taming].Base  < k.MinTameSkill )
-					{ 
-							from.SendMessage( "You have no chance of affecting this animal..." );
-					} 
-		
+				{ 
+					from.SendMessage( "Você não tem chance de afetar este animal..." );
+				} 
 				else if ( k.ControlMaster != from ) 
-					{ 
-						from.SendMessage( "This is not your pet" ); 
-					} 
+				{ 
+					from.SendMessage( "Este não é seu animal de estimação" ); 
+				} 
 					
 				else  
 				 
 					{ 
 
 					k.MinTameSkill -= 10;
-					from.SendMessage( "The Pet seems easier to control!" );
+					from.SendMessage( "O animal parece mais fácil de controlar!" );
 					m_Deed.Delete(); // Delete the deed 
 					} 
 
 			} 
          else 
          { 
-            from.SendMessage( "That is not a valid traget." );  
+            from.SendMessage( "Esse não é um alvo válido." );  
          } 
       } 
    } 
@@ -95,7 +93,7 @@ namespace Server.Items
          	} 
          	else 
          	{ 
-            		from.SendMessage( "Choose the pet you wish to ease." );  
+            		from.SendMessage( "Escolha o animal que deseja acalmar." ); 
             		from.Target = new PetEasingTarget( this ); 
           	} 
       	}    

@@ -42,17 +42,17 @@ namespace Server.Custom.BalTsareth
                     {
                         switch (Utility.Random(11))
                         {
-                            case 0: Say("Kamina shall pay dearly for this treachery!"); break;
-                            case 1: Say("These vile brigands have undone all my labors!"); break;
-                            case 2: Say("Why doth the King tarry, when an army is sorely needed?"); break;
-                            case 3: Say("Years of study, laid waste by a brigand’s whim!"); break;
-                            case 4: Say("Step forth, brave adventurer! Thy aid is most required!"); break;
-                            case 5: Say("Rich reward awaiteth any who dare brave these cursed depths!"); break;
-                            case 6: Say("Madness and folly do reign in these halls!"); break;
-                            case 7: Say("The restless shades of the fallen shall ever haunt this place!"); break;
-                            case 8: Say("Beware thee! Dire perils lurk beyond these stones!"); break;
-                            case 9: Say("Truly, I should have chosen the life of a humble clerk!"); break;
-                            case 10: Say("So much life is lost… and for what grim purpose?"); break;
+                            case 0: Say("Kamina pagará caro por esta traição!"); break;
+                            case 1: Say("Estes vis bandidos desfizeram todo o meu trabalho!"); break;
+                            case 2: Say("Por que o Rei demora, quando um exército é tão necessário?"); break;
+                            case 3: Say("Anos de estudo, destruídos por um capricho de bandido!"); break;
+                            case 4: Say("Apresente-se, bravo aventureiro! Tua ajuda é mais que necessária!"); break;
+                            case 5: Say("Rica recompensa aguarda quem ousar enfrentar estas profundezas amaldiçoadas!"); break;
+                            case 6: Say("Loucura e tolice reinam nestes salões!"); break;
+                            case 7: Say("As sombras inquietas dos caídos assombrarão este lugar para sempre!"); break;
+                            case 8: Say("Cuidado! Perigos terríveis espreitam além destas pedras!"); break;
+                            case 9: Say("Verdadeiramente, deveria ter escolhido a vida de um humilde escriba!"); break;
+                            case 10: Say("Tanta vida é perdida… e para que propósito sombrio?"); break;
                         }
                         m_NextSpeechTime = DateTime.UtcNow + TimeSpan.FromSeconds(30);
                     }
@@ -73,7 +73,7 @@ namespace Server.Custom.BalTsareth
                 return false;
 
             if (used >= 100)
-                Say("Hold, hold! Thou bringest far too many! I must reckon them in proper measure, lest my wits be utterly undone!");
+                Say("Pare, pare! Trazes muitos! Devo contá-los na medida certa, para que meu juízo não se perca por completo!");
 
             Bag bag = new Bag();
             bag.Hue = 0x0213;
@@ -197,7 +197,7 @@ namespace Server.Custom.BalTsareth
             protected override void OnTick()
             {
                 if (m_From != null && !m_From.Deleted)
-                    m_From.SendMessage(0x59, "Thank thee kindly for thy noble aid, brave soul.");
+                    m_From.SendMessage(0x59, "Agradeço-te gentilmente por tua nobre ajuda, brava alma.");
 
                 Stop();
             }

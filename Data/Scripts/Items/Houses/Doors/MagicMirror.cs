@@ -234,12 +234,12 @@ namespace Server.Items
 			{
 				Server.Mobiles.BaseCreature.TeleportPets( m, p, map );
 				m.MoveToWorld( p, map );
-				m.SendMessage( "The magical mirror draws you in and you end up elsewhere." );
+				m.SendMessage( "O espelho mágico o atrai e você acaba em outro lugar." );
 				m.PlaySound( 0x5C0 );
 			}
 			else
 			{
-				m.SendMessage( "You see yourself staring back at you." );
+				m.SendMessage( "Você vê a si mesmo olhando de volta para você." );
 			}
 		}
 

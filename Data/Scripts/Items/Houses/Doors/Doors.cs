@@ -424,7 +424,7 @@ namespace Server.Items
 				MainY = Y;
 			}
 			X++;
-			from.SendMessage( "You found a secret door!" );
+			from.SendMessage( "Você encontrou uma porta secreta!" );
 		}
 
 		public override bool HandlesOnMovement{ get{ return true; } }
@@ -483,7 +483,7 @@ namespace Server.Items
 				MainY = Y;
 			}
 			Y++;
-			from.SendMessage( "You found a secret door!" );
+			from.SendMessage( "Você encontrou uma porta secreta!" );
 		}
 
 		public override bool HandlesOnMovement{ get{ return true; } }

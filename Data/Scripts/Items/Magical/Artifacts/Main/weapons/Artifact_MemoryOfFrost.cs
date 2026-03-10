@@ -110,7 +110,7 @@ namespace Server.Items
 		        eable.Free();
 		    }
 
-		    attacker.SendMessage("Your Tessen brings forth a chilling wind!");
+		    attacker.SendMessage("Seu Tessen traz um vento gelado!");
 		    SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x186);
 		}
 

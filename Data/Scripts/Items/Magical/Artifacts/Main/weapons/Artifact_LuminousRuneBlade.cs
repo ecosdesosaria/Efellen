@@ -44,7 +44,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker,5);
 
-			attacker.SendMessage(33, "The Rune Blade cracks your foe with electricity!");
+			attacker.SendMessage(33, "A Lâmina Rúnica fende seu inimigo com eletricidade!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

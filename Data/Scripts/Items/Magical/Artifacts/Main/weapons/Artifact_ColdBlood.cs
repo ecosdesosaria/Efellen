@@ -33,7 +33,7 @@ namespace Server.Items
                 {
                     int hits = Utility.RandomMinMax(10, 35);
                     attacker.Hits += hits;
-                    attacker.SendMessage(33, "Cold Blood feasts on the fallen enemy!");
+                    attacker.SendMessage(33, "Sangue Frio se banqueteia com o inimigo caído!");
                 }
             }
         }

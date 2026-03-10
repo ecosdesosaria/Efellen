@@ -25,19 +25,19 @@ namespace Server.Items
 
             if ( t.IsDeadPet == true )
             { 
-               from.SendMessage( "That Being Must Be Alive!!!" );
+               from.SendMessage( "Esse ser precisa estar vivo!!!" );
             } 
             else if ( t.ControlMaster != from ) 
             { 
-               from.SendMessage( "That is not your pet!" ); 
+               from.SendMessage( "Esse não é seu animal de estimação!" ); 
             } 
 		  else if ( t.IsBonded == false ) 
            				 { 
-               				from.SendMessage( "The Creature Must Be Bonded To You!!!" ); 
+               				from.SendMessage( "A criatura precisa estar vinculada a você!!!" );
            				 } 
 								else if ( t.SkillsTotal >= t.SkillsCap ) 
            						{ 
-               						from.SendMessage( "The Creature Is At It's Max Skill Level" ); 
+               						from.SendMessage( "A criatura está no nível máximo de habilidade" );
            						} 
 					else if ( from.Skills[SkillName.Taming].Base < 100.0 ) 
            					 	{
@@ -46,70 +46,70 @@ namespace Server.Items
 						switch ( Utility.Random( 19 ) )
 
 									{
-				 						case 0:	t.Skills[SkillName.FistFighting].Base += 0.5;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 1:	t.Skills[SkillName.Psychology].Base += 0.5;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 2:	t.Skills[SkillName.Magery].Base += 0.5;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 3:	t.Skills[SkillName.Meditation].Base += 0.5;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 4:	t.Skills[SkillName.MagicResist].Base += 0.5;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 5:	t.Skills[SkillName.Tactics].Base += 0.5;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 6:	t.Skills[SkillName.Poisoning].Base += 0.5;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 7:	t.Skills[SkillName.Anatomy].Base += 0.5;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 8:	t.Skills[SkillName.FistFighting].Base -= 1;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 9:	t.Skills[SkillName.Psychology].Base -= 1;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 10:	t.Skills[SkillName.Magery].Base -= 1;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 11:	t.Skills[SkillName.Meditation].Base -= 1;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 12:	t.Skills[SkillName.MagicResist].Base -= 1;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 13:	t.Skills[SkillName.Tactics].Base -= 1;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 14:	t.Skills[SkillName.Poisoning].Base -= 1;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 15:	t.Skills[SkillName.Anatomy].Base -= 1;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
+				 						case 0: t.Skills[SkillName.FistFighting].Base += 0.5;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 1: t.Skills[SkillName.Psychology].Base += 0.5;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 2: t.Skills[SkillName.Magery].Base += 0.5;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 3: t.Skills[SkillName.Meditation].Base += 0.5;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 4: t.Skills[SkillName.MagicResist].Base += 0.5;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 5: t.Skills[SkillName.Tactics].Base += 0.5;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 6: t.Skills[SkillName.Poisoning].Base += 0.5;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 7: t.Skills[SkillName.Anatomy].Base += 0.5;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 8: t.Skills[SkillName.FistFighting].Base -= 1;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 9: t.Skills[SkillName.Psychology].Base -= 1;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 10: t.Skills[SkillName.Magery].Base -= 1;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 11: t.Skills[SkillName.Meditation].Base -= 1;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 12: t.Skills[SkillName.MagicResist].Base -= 1;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 13: t.Skills[SkillName.Tactics].Base -= 1;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 14: t.Skills[SkillName.Poisoning].Base -= 1;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 15: t.Skills[SkillName.Anatomy].Base -= 1;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
 										case 16: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
 											break;
 										case 17: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
@@ -124,7 +124,7 @@ namespace Server.Items
 						switch ( Utility.Random( 10 ) )
 							{
 				 				case 0:	t.Combatant = from;
-								from.SendMessage( "You Really Anger The Beast!!!" );
+								from.SendMessage( "Você irrita muito a fera!!!" );
 								break;
 							}
 						
@@ -135,70 +135,70 @@ namespace Server.Items
 							switch ( Utility.Random( 19 ) )
 
 									{
-				 						case 0:	t.Skills[SkillName.FistFighting].Base += 1;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 1:	t.Skills[SkillName.Psychology].Base += 1;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 2:	t.Skills[SkillName.Magery].Base += 1;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 3:	t.Skills[SkillName.Meditation].Base += 1;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 4:	t.Skills[SkillName.MagicResist].Base += 1;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 5:	t.Skills[SkillName.Tactics].Base += 1;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 6:	t.Skills[SkillName.Poisoning].Base += 1;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 7:	t.Skills[SkillName.Anatomy].Base += 1;
-										from.SendMessage( "Your Pet Becomes Stronger!!!" );
-										break;
-										case 8:	t.Skills[SkillName.FistFighting].Base -= 0.5;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 9:	t.Skills[SkillName.Psychology].Base -= 0.5;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 10:	t.Skills[SkillName.Magery].Base -= 0.5;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 11:	t.Skills[SkillName.Meditation].Base -= 0.5;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 12:	t.Skills[SkillName.MagicResist].Base -= 0.5;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 13:	t.Skills[SkillName.Tactics].Base -= 0.5;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 14:	t.Skills[SkillName.Poisoning].Base -= 0.5;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
-										case 15:	t.Skills[SkillName.Anatomy].Base -= 0.5;
-										from.SendMessage( "You Anger The Beast" );
-										t.PlaySound( t.GetAngerSound() );
-										t.Direction = t.GetDirectionTo( from );
-										break;
+				 						case 0: t.Skills[SkillName.FistFighting].Base += 1;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 1: t.Skills[SkillName.Psychology].Base += 1;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 2: t.Skills[SkillName.Magery].Base += 1;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 3: t.Skills[SkillName.Meditation].Base += 1;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 4: t.Skills[SkillName.MagicResist].Base += 1;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 5: t.Skills[SkillName.Tactics].Base += 1;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 6: t.Skills[SkillName.Poisoning].Base += 1;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 7: t.Skills[SkillName.Anatomy].Base += 1;
+											from.SendMessage( "Seu animal fica mais forte!!!" );
+											break;
+										case 8: t.Skills[SkillName.FistFighting].Base -= 0.5;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 9: t.Skills[SkillName.Psychology].Base -= 0.5;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 10: t.Skills[SkillName.Magery].Base -= 0.5;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 11: t.Skills[SkillName.Meditation].Base -= 0.5;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 12: t.Skills[SkillName.MagicResist].Base -= 0.5;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 13: t.Skills[SkillName.Tactics].Base -= 0.5;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 14: t.Skills[SkillName.Poisoning].Base -= 0.5;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
+										case 15: t.Skills[SkillName.Anatomy].Base -= 0.5;
+											from.SendMessage( "Você irrita a fera" );
+											t.PlaySound( t.GetAngerSound() );
+											t.Direction = t.GetDirectionTo( from );
+											break;
 										case 16: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
 											break;
 										case 17: from.SendMessage("Seu Mascote Apenas Olha para Você Timidamente...");
@@ -212,7 +212,7 @@ namespace Server.Items
 
 									{
 				 						case 0:	t.Combatant = from;
-										from.SendMessage( "You Really Anger The Beast!!!" );
+										from.SendMessage( "Você irrita muito a fera!!!" );
 										break;
 									}
 								
@@ -221,7 +221,7 @@ namespace Server.Items
          } 
          else 
          { 
-            from.SendMessage( "That is not a valid traget." );  
+            from.SendMessage( "Esse não é um alvo válido." ); 
          } 
       } 
    } 
@@ -265,11 +265,11 @@ namespace Server.Items
 		 if (Utility.RandomDouble() <= 0.1)
 		 {
 			this.Delete();
-			from.SendMessage( "Sadly, You broke the tool... " ); 
+			from.SendMessage( "Infelizmente, você quebrou a ferramenta..." );
 		 }
          else 
          { 
-            from.SendMessage( "Choose the pet you wish to train!!" );  
+            from.SendMessage( "Escolha o animal que deseja treinar!!" );  
             from.Target = new TrainTarget( this ); // Call our target 
           } 
       }    

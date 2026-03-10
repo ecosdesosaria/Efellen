@@ -24,7 +24,7 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			from.Hunger = 20;
-			from.SendMessage( "You take a healthy bite from the bread...and it magically reforms." );
+			from.SendMessage( "Você dá uma mordida saudável no pão... e ele magicamente se refaz." );
 
 			// Play a random "eat" sound
 			from.PlaySound( Utility.Random( 0x3A, 3 ) );

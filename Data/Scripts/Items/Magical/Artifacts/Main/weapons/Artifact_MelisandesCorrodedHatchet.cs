@@ -45,7 +45,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker,4);
 
-			attacker.SendMessage(33, "The Corroded Hatches rusts your enemy!");
+			attacker.SendMessage(33, "O Machado Corroído enferruja seu inimigo!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

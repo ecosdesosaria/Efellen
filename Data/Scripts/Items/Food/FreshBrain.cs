@@ -23,12 +23,12 @@ namespace Server.Items
 		{
 			if ( !Server.Items.BaseRace.BrainEater( from.RaceID ) )
 			{
-				from.SendMessage( "This looks like something zombies would eat." );
+				from.SendMessage( "Isto parece algo que zumbis comeriam." );
 				return;
 			}
 			if ( !IsChildOf( from.Backpack ) && Server.Items.BaseRace.BrainEater( from.RaceID ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to eat." );
+				from.SendMessage( "Isto deve estar em sua mochila para comer." );
 				return;
 			}
 			else if ( Server.Items.BaseRace.BrainEater( from.RaceID ) )
@@ -39,14 +39,13 @@ namespace Server.Items
 					from.Hunger += 3;
 
 					if ( from.Hunger < 5 )
-						from.SendMessage( "You eat the brains, but still need more." );
+						from.SendMessage( "Você come os cérebros, mas ainda precisa de mais." );
 					else if ( from.Hunger < 10 )
-						from.SendMessage( "You eat the brains, but still desire more." );
+						from.SendMessage( "Você come os cérebros, mas ainda deseja mais." );
 					else if ( from.Hunger < 15 )
-						from.SendMessage( "You eat the brains, but could still induldge yourself." );
+						from.SendMessage( "Você come os cérebros, mas ainda poderia se satisfazer mais." );
 					else
-						from.SendMessage( "You eat the brains, but have indulged in enough." );
-
+						from.SendMessage( "Você come os cérebros, mas já se satisfez o suficiente." );
 					from.PlaySound( Utility.Random( 0x3A, 3 ) );
 
 					if ( from.Body.IsHuman && !from.Mounted )
@@ -58,7 +57,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "You have indulged in enough brains for now." );
+					from.SendMessage( "Você já se satisfez com cérebros por enquanto." );
 					from.Hunger = 20;
 					from.Thirst = 20;
 				}

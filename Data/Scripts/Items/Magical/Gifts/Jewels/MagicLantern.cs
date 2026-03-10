@@ -69,7 +69,7 @@ namespace Server.Items
 				{
 					from.AddToBackpack( from.FindItemOnLayer( Layer.TwoHanded ) );
 				}
-				from.SendMessage( "You put the lantern in your left hand." );
+				from.SendMessage( "Você coloca a lanterna em sua mão esquerda." );
 				from.AddItem(this);
 				this.ItemID = 0xA15;
 				from.PlaySound( 0x47 );

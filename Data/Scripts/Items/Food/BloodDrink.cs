@@ -25,12 +25,12 @@ namespace Server.Items
 		{
 			if ( !Server.Items.BaseRace.BloodDrinker( from.RaceID ) )
 			{
-				from.SendMessage( "This looks like something vampires would drink." );
+				from.SendMessage( "Isto parece algo que vampiros beberiam." );
 				return;
 			}
 			if ( !IsChildOf( from.Backpack ) && Server.Items.BaseRace.BloodDrinker( from.RaceID ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to drink." );
+				from.SendMessage( "Isto deve estar em sua mochila para beber." );
 				return;
 			}
 			else if ( Server.Items.BaseRace.BloodDrinker( from.RaceID ) )
@@ -41,13 +41,13 @@ namespace Server.Items
 					from.Thirst += 3;
 
 					if ( from.Hunger < 5 )
-						from.SendMessage( "You drink the blood, but still need more." );
+						from.SendMessage( "Você bebe o sangue, mas ainda precisa de mais." );
 					else if ( from.Hunger < 10 )
-						from.SendMessage( "You drink the blood, but still desire more." );
+						from.SendMessage( "Você bebe o sangue, mas ainda deseja mais." );
 					else if ( from.Hunger < 15 )
-						from.SendMessage( "You drink the blood, but could still induldge yourself." );
+						from.SendMessage( "Você bebe o sangue, mas ainda poderia se satisfazer mais." );
 					else
-						from.SendMessage( "You drink the blood, but have indulged in enough." );
+						from.SendMessage( "Você bebe o sangue, mas já se satisfez o suficiente." );
 
 					from.PlaySound( 0x2D6 );
 
@@ -60,7 +60,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "You have indulged in enough blood for now." );
+					from.SendMessage( "Você já bebeu sangue suficiente por enquanto." );
 					from.Hunger = 20;
 					from.Thirst = 20;
 				}

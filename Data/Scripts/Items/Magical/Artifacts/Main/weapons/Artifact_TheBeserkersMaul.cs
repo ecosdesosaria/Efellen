@@ -43,7 +43,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker,1);
 
-			attacker.SendMessage(33, "The Berserker's Maul shatters your enemy!");
+			attacker.SendMessage(33, "O Malho do Berserker estilhaça seu inimigo!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

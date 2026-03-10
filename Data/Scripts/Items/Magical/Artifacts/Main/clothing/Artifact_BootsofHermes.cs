@@ -25,7 +25,7 @@ namespace Server.Items
 			{
 				from.Send(SpeedControl.Disable);
 				Weight = 5.0;
-				from.SendMessage( "These shoes seem to have their magic diminished here." );
+				from.SendMessage( "Estes sapatos parecem ter sua magia diminuída aqui." );
 			}
 			else
 			{

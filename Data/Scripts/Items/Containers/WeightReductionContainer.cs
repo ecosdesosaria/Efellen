@@ -18,9 +18,9 @@ namespace Server.Items
         public override int ContainerMaxItems { get { return 5; } }
 
         // Setup access messages to provide a roleplaying experience
-        public override string AccessDelayMessage { get { return "The rift in the nether that separates the dimensions has that stabilized yet."; } }
-        public override string AddAccessMessage { get { return "You slip your hand through the nether to place an item into another dimension."; } }
-        public override string RemoveAccessMessage { get { return "You slip your hand through the nether to retrieve an item from another dimension."; } }
+        public override string AccessDelayMessage { get { return "A fenda no submundo que separa as dimensões ainda não se estabilizou."; } }
+        public override string AddAccessMessage { get { return "Você desliza sua mão através do submundo para colocar um item em outra dimensão."; } }
+        public override string RemoveAccessMessage { get { return "Você desliza sua mão através do submundo para recuperar um item de outra dimensão."; } }
 
         [Constructable]
         public SmallBagofHolding()
@@ -65,9 +65,9 @@ namespace Server.Items
         public override int ContainerMaxItems { get { return 10; } }
 
         // Setup access messages to provide a roleplaying experience
-        public override string AccessDelayMessage { get { return "The rift in the nether that separates the dimensions has that stabilized yet."; } }
-        public override string AddAccessMessage { get { return "You slip your hand through the nether to place an item into another dimension."; } }
-        public override string RemoveAccessMessage { get { return "You slip your hand through the nether to retrieve an item from another dimension."; } }
+        public override string AccessDelayMessage { get { return "A fenda no submundo que separa as dimensões ainda não se estabilizou."; } }
+        public override string AddAccessMessage { get { return "Você desliza sua mão através do submundo para colocar um item em outra dimensão."; } }
+        public override string RemoveAccessMessage { get { return "Você desliza sua mão através do submundo para recuperar um item de outra dimensão."; } }
 
         [Constructable]
         public MediumBagofHolding()
@@ -112,9 +112,9 @@ namespace Server.Items
         public override int ContainerMaxItems { get { return 20; } }
 
         // Setup access messages to provide a roleplaying experience
-        public override string AccessDelayMessage { get { return "The rift in the nether that separates the dimensions has that stabilized yet."; } }
-        public override string AddAccessMessage { get { return "You slip your hand through the nether to place an item into another dimension."; } }
-        public override string RemoveAccessMessage { get { return "You slip your hand through the nether to retrieve an item from another dimension."; } }
+        public override string AccessDelayMessage { get { return "A fenda no submundo que separa as dimensões ainda não se estabilizou."; } }
+        public override string AddAccessMessage { get { return "Você desliza sua mão através do submundo para colocar um item em outra dimensão."; } }
+        public override string RemoveAccessMessage { get { return "Você desliza sua mão através do submundo para recuperar um item de outra dimensão."; } }
 
         [Constructable]
         public LargeBagofHolding()
@@ -184,7 +184,7 @@ namespace Server.Items
         {
             if (dropped is Container)
             {
-                from.SendMessage("That item is not allowed in this container");
+                from.SendMessage("Esse item não é permitido neste recipiente");
                 return false;
             }
 
@@ -193,7 +193,7 @@ namespace Server.Items
                 if (AccessDelayMessage != "")
                     from.SendMessage(Utility.RandomNeutralHue(), AccessDelayMessage);
 
-                from.SendMessage(String.Format("You will need to wait approximately {0} more seconds before you can try again",
+                from.SendMessage(String.Format("Você precisará aguardar aproximadamente mais {0} segundos antes de tentar novamente",
                     NextAccessTime.Subtract(DateTime.Now).Seconds));
 
                 return false;
@@ -217,7 +217,7 @@ namespace Server.Items
                 if (AccessDelayMessage != "")
                     from.SendMessage(Utility.RandomNeutralHue(), AccessDelayMessage);
 
-                from.SendMessage(String.Format("You will need to wait approximately {0} more seconds before you can try again",
+                from.SendMessage(String.Format("Você precisará aguardar aproximadamente mais {0} segundos antes de tentar novamente",
                     NextAccessTime.Subtract(DateTime.Now).Seconds));
 
                 return false;

@@ -107,7 +107,7 @@ namespace Server.Items
 		    {
 		        eable.Free();
 		    }
-		    attacker.SendMessage("Your Holy Sword unleashes a burst of divine fire!");
+		    attacker.SendMessage("Sua Espada Sagrada libera uma explosão de fogo divino!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 1153);
 		}
 
@@ -115,7 +115,7 @@ namespace Server.Items
 		{
 			if (from.Karma < 0)
 			{
-				from.SendMessage("This holy blade burns your hands and refuses to be wielded by you!");
+				from.SendMessage("Esta lâmina sagrada queima suas mãos e se recusa a ser empunhada por você!");
 				return false;
 			}
 

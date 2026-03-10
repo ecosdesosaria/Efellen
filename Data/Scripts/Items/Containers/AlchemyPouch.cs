@@ -21,7 +21,7 @@ namespace Server.Items
         {
 			if ( dropped is Container && !(dropped is AlchemyPouch) )
 			{
-                from.SendMessage("You can only use another alchemy rucksack within this sack.");
+                from.SendMessage("Você só pode usar outra mochila de alquimia dentro desta sacola.");
                 return false;
 			}
             else if ( dropped.Catalog == Catalogs.Reagent || 
@@ -36,7 +36,7 @@ namespace Server.Items
 				return base.OnDragDropInto(from, dropped, p);
 			}
 
-			from.SendMessage("This rucksack is for small alchemical crafting items.");
+			from.SendMessage("Esta mochila é para pequenos itens de criação alquímica.");
 			return false;
         }
 
@@ -44,7 +44,7 @@ namespace Server.Items
         {
 			if ( dropped is Container && !(dropped is AlchemyPouch) )
 			{
-                from.SendMessage("You can only use another alchemy rucksack within this sack.");
+                from.SendMessage("Você só pode usar outra mochila de alquimia dentro desta sacola.");
                 return false;
 			}
             else if ( dropped.Catalog == Catalogs.Reagent || 
@@ -59,7 +59,7 @@ namespace Server.Items
 				return base.OnDragDrop(from, dropped);
 			}
 
-			from.SendMessage("This rucksack is for small alchemical crafting items.");
+			from.SendMessage("Esta mochila é para pequenos itens de criação alquímica.");
 			return false;
         }
 

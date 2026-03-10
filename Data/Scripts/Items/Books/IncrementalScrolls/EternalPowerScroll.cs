@@ -23,7 +23,7 @@ namespace Server.Items
         {
             if (!IsChildOf(from.Backpack))
             {
-                from.SendMessage("This scroll must be in your backpack to use it.");
+                from.SendMessage("Este pergaminho deve estar em sua mochila para ser usado.");
                 return;
             }
 
@@ -63,13 +63,13 @@ namespace Server.Items
 
                 if (skills.Length == 0)
                 {
-                    AddLabel(20, 20, 33, "Somehow, all of your skills are already at the cap of 125.0!");
-                    AddLabel(20, 50, 33, "This scroll cannot be used.");
+                    AddLabel(20, 20, 33, "De alguma forma, todas as suas habilidades já estão no limite de 125.0!");
+                    AddLabel(20, 50, 33, "Este pergaminho não pode ser usado.");
                     return;
                 }
 
                 int totalPages = (int)Math.Ceiling(skills.Length / (double)SkillsPerPage);
-                AddLabel(20, 20, 1152, string.Format("Choose a skill to raise the cap by 5 (Page {0} of {1})", page + 1, totalPages));
+                AddLabel(20, 20, 1152, string.Format("Escolha uma habilidade para aumentar o limite em 5 (Página {0} de {1})", page + 1, totalPages));
 
                 int start = page * SkillsPerPage;
                 int end = Math.Min(start + SkillsPerPage, skills.Length);
@@ -158,14 +158,14 @@ namespace Server.Items
 
                 AddPage(0);
                 AddBackground(0, 0, 350, 150, 5054);
-                AddLabel(20, 20, 1152, string.Format("Increase {0} cap from {1:F1} to {2:F1}?", m_Skill.Name, m_Skill.Cap, Math.Min(125.0, m_Skill.Cap + 5.0)));
-                AddLabel(20, 50, 0, "This cannot be undone.");
+                AddLabel(20, 20, 1152, string.Format("Aumentar o limite de {0} de {1:F1} para {2:F1}?", m_Skill.Name, m_Skill.Cap, Math.Min(125.0, m_Skill.Cap + 5.0)));
+                AddLabel(20, 50, 0, "Isto não pode ser desfeito.");
 
                 AddButton(50, 100, 4005, 4007, 1, GumpButtonType.Reply, 0);
-                AddLabel(85, 102, 0, "Yes");
+                AddLabel(85, 102, 0, "Sim");
 
                 AddButton(200, 100, 4005, 4007, 2, GumpButtonType.Reply, 0);
-                AddLabel(235, 102, 0, "No");
+                AddLabel(235, 102, 0, "Não");
             }
 
             public override void OnResponse(NetState sender, RelayInfo info)
@@ -174,20 +174,20 @@ namespace Server.Items
                 {
                     if (m_Scroll.Deleted || !m_Scroll.IsChildOf(m_User.Backpack))
                     {
-                        m_User.SendMessage("The scroll must be in your backpack to use it.");
+                        m_User.SendMessage("O pergaminho deve estar em sua mochila para ser usado.");
                         return;
                     }
 
                     if (m_Skill.Cap >= 125.0)
                     {
-                        m_User.SendMessage(string.Format("{0} is already at the maximum cap of 125.0.", m_Skill.Name));
+                        m_User.SendMessage(string.Format("{0} já está no limite máximo de 125.0.", m_Skill.Name));
                         return;
                     }
 
                     double oldCap = m_Skill.Cap;
                     m_Skill.Cap = Math.Min(125.0, m_Skill.Cap + 5.0);
 
-                    m_User.SendMessage(string.Format("Your maximum {0} skill cap has increased from {1:F1} to {2:F1}.", m_Skill.Name, oldCap, m_Skill.Cap));
+                    m_User.SendMessage(string.Format("Seu limite máximo de habilidade de {0} aumentou de {1:F1} para {2:F1}.", m_Skill.Name, oldCap, m_Skill.Cap));
                     m_User.PlaySound(0x1EA);
 
                     Effects.SendLocationParticles(EffectItem.Create(m_User.Location, m_User.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
@@ -202,7 +202,7 @@ namespace Server.Items
                 }
                 else
                 {
-                    m_User.SendMessage("You decided not to use the scroll.");
+                    m_User.SendMessage("Você decidiu não usar o pergaminho.");
                 }
             }
         }

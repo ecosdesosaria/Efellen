@@ -44,40 +44,40 @@ namespace Server.Mobiles
 
         public static readonly string[] SuccessLines = new string[]
         {
-            "Oh! That actually helped. Thank you!",
-            "Bless you! I can feel the pain fading.",
-            "You have a gentle touch, friend.",
-            "Ahh… that feels much better!",
-            "You’re pretty good at this!",
-            "I think I'll see my grandchildren age after all...",
-            "The voices are quieter now, thank you!",
-            "The nuns said someone like you would come if I prayed!",
-            "Thank you, healer! I owe you much.",
-            "Ooh… warm hands. Nice!",
-            "That's it, that's the spot...",
-            "The air no longer smells of copper!",
-            "You mean those were supposed to be inside all this time?",
-            "I'll name my firstborn after you.",
-            "I told them I wasn't being dramatic."
+            "Oh! Isso realmente ajudou. Obrigado!",
+            "Deus te abençoe! Consigo a dor sumindo.",
+            "Você tem um toque suave, amigo.",
+            "Ahh… isso é muito melhor!",
+            "Você é muito bom nisso!",
+            "Acho que vou ver meus netos crescerem afinal...",
+            "As vozes estão mais calmas agora, obrigado!",
+            "As freiras disseram que alguém como você viria se eu rezasse!",
+            "Obrigado, curandeiro! Estou em dívida.",
+            "Ooh… mãos quentes. Que bom!",
+            "É aí, é aí mesmo...",
+            "O ar não cheira mais a cobre!",
+            "Quer dizer que aquilo deveria estar dentro todo esse tempo?",
+            "Vou dar o seu nome ao meu primogênito.",
+            "Eu disse que não estava sendo dramático."
         };
 
         public static readonly string[] FailLines = new string[]
         {
-            "OUCH!!",
-            "Merciful heavens, STOP! That hurts!",
-            "NUNS!! This one is trying to finish me off!",
-            "That gave me a new perspective on the woes of life.",
-            "I think that my kidney was supposed to stay inside",
-            "Hey!! Are you sure you're trained for this?",
-            "No no no—bandages go *around* wounds, not *in* them!",
-            "*screams in pain*",
-            "OW! I said HEALING, not SEARING!",
-            "Was I supposed to be tasting all of these colors?",
-            "AUGH!! My spleen! I think that was my spleen!",
-            "If you want to help, maybe stop stabbing me!",
-            "Nurse! This one needs supervision!",
-            "I guess I get what I paid for",
-            "I deserve this punishment for my many sins"
+            "AU!!",
+            "Céus misericordiosos, PARE! Isso dói!",
+            "FREIRAS!! Este aqui está tentando me matar!",
+            "Isso me deu uma nova perspectiva sobre os males da vida.",
+            "Acho que meu rim deveria ficar dentro do corpo",
+            "Ei!! Tem certeza de que é treinado para isso?",
+            "Não não não—ataduras vão *em volta* dos ferimentos, não *dentro* deles!",
+            "*grita de dor*",
+            "AI! Eu disse CURAR, não QUEIMAR!",
+            "Era pra eu estar sentindo o gosto de todas essas cores?",
+            "UGH!! Meu baço! Acho que era meu baço!",
+            "Se quer ajudar, talvez pare de me esfaquear!",
+            "Enfermeiro! Este aqui precisa de supervisão!",
+            "Acho que é o que mereço pelo que paguei",
+            "Mereço este castigo pelos meus muitos pecados"
         };
 
         public bool HandleBandage(Mobile from, Bandage band)
@@ -87,13 +87,13 @@ namespace Server.Mobiles
 
             if (from.Karma < 0)
             {
-                from.SendMessage("The patient is scared of you. They refuse your help.");
+                from.SendMessage("O paciente está com medo de você. Ele recusa sua ajuda.");
                 return true;
             }
 
             if (from.Skills[SkillName.Healing].Value < 30.0)
             {
-                from.SendMessage("Your healing skill is too low to treat this patient.");
+                from.SendMessage("Sua skill de cura é muito baixa para tratar este paciente.");
                 return true;
             }
 
@@ -105,7 +105,7 @@ namespace Server.Mobiles
 
             if ((DateTime.UtcNow - last) < TimeSpan.FromHours(1))
             {
-                from.SendMessage("You have already treated this patient recently.");
+                from.SendMessage("Você já tratou este paciente recentemente.");
                 return true;
             }
 
@@ -118,15 +118,15 @@ namespace Server.Mobiles
                 int amount = Utility.Random(5,25);
                 from.Karma += amount;
                 Say(SuccessLines[Utility.Random(SuccessLines.Length)]);
-                from.SendMessage("Your healing attempt succeeds. The patient feels better.");
+                from.SendMessage("Sua tentativa de cura é bem-sucedida. O paciente se sente melhor.");
                 from.AddToBackpack( new MarksOfDevotion( amount ) );
-				from.SendMessage( "You aqquired" + " " + amount + " " + "Marks of Devotion!" );
+				from.SendMessage( "Você adquiriu" + " " + amount + " " + "Marcas de Devocão!" );
             }
             else
             {
                 Say(FailLines[Utility.Random(FailLines.Length)]);
                 SpillBlood();
-                from.SendMessage("Your healing attempt fails.");
+                from.SendMessage("Sua tentativa de cura falhou.");
             }
             return true; 
         }

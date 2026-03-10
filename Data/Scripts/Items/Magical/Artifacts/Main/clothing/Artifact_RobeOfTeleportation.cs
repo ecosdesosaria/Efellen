@@ -24,7 +24,7 @@ namespace Server.Items
 		{
 			if ( Parent != from )
 			{
-				from.SendMessage( "You must be wearing the robe to teleport." );
+				from.SendMessage( "Você precisa estar usando a vestimenta para teleportar." );
 			}
 			else
 			{

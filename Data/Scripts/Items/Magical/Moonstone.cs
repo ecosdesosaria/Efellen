@@ -31,11 +31,11 @@ namespace Server.Items
 			if ( !IsChildOf( from.Backpack ) )
 				from.SendLocalizedMessage( 1060640 ); // The item must be in your backpack to use it.
 			else if ( from is PlayerMobile && from.Land == Land.Kuldar && !( Server.Misc.PlayerSettings.GetKeys( from, "VordoKey" ) ) )
-				from.SendMessage( "This magical gate doesn't seem to do anything." );
+				from.SendMessage( "Este portal mágico não parece fazer nada." );
 			else if ( !Worlds.AllowEscape( from, from.Map, from.Location, from.X, from.Y ) && from.Land != Land.Kuldar )
-				from.SendMessage( "This magical gate doesn't seem to do anything." );
+				from.SendMessage( "Este portal mágico não parece fazer nada." );
 			else if ( !Worlds.RegionAllowedRecall( from.Map, from.Location, from.X, from.Y ) && from.Land != Land.Ambrosia && from.Land != Land.Kuldar )
-				from.SendMessage( "This magical gate doesn't seem to do anything." );
+				from.SendMessage( "Este portal mágico não parece fazer nada." );
 			else
 			{
 				Effects.PlaySound( from.Location, from.Map, 0x20E );

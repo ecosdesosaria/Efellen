@@ -255,7 +255,7 @@ namespace Server.Items
 			else
 				itemdesc = "item";
 
-			from.SendMessage( "Your "+itemdesc+" has gained a level. It is now level {0}.", newLevel );
+			from.SendMessage( "Seu " + itemdesc + " subiu de nível. Agora é nível {0}.", newLevel );
         }
 	}
 }

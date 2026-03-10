@@ -66,7 +66,7 @@ namespace Server.Items
 
 			if ( inCombat )
 			{
-				m.SendMessage( "You cannot run down below during combat." );
+				m.SendMessage( "Você não pode descer correndo durante o combate." );
 				return;
 			}
 			else if ( m.InRange( this.GetWorldLocation(), 1 ) && m.Map == this.Map )

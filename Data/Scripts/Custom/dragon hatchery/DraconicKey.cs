@@ -39,7 +39,7 @@ namespace Server.Items
             StartExpirationTimer();
         }
 
-        public override string DefaultDescription{ get{ return "This ancient key shimmers with warm and strange energy. It's of an ancient design and looks like its about to crumble into dust."; } }
+        public override string DefaultDescription{ get{ return "Esta chave antiga brilha com uma energia quente e estranha. É de um design ancestral e parece prestes a se desfazer em pó."; } }
 
         public override void OnDoubleClick(Mobile from)
         {
@@ -55,7 +55,7 @@ namespace Server.Items
             }
             else
             {
-                from.SendMessage("You don't see where you could use this key.");
+                from.SendMessage("Você não vê onde poderia usar esta chave.");
             }
         }
 
@@ -77,7 +77,7 @@ namespace Server.Items
 
             if (portcullis == null)
             {
-                from.SendMessage("The gate is already open!");
+                from.SendMessage("O portão já está aberto!");
                 return;
             }
 
@@ -95,7 +95,7 @@ namespace Server.Items
             Teleporter teleporter3 = new Teleporter(new Point3D(6895, 610, 0), Map.Lodor);
             teleporter3.MoveToWorld(new Point3D(5188, 1000, 0), Map.Lodor);
 
-            from.SendMessage("The gate has been opened!");
+            from.SendMessage("O portão foi aberto!");
 
             Teleporter[] teleporters = new Teleporter[]
             {
@@ -137,11 +137,11 @@ namespace Server.Items
             TimeSpan remaining = m_ExpirationTime - DateTime.UtcNow;
             if (remaining > TimeSpan.Zero)
             {
-                list.Add(1060658, "Time Remaining\t{0}", FormatTimeSpan(remaining));
+                list.Add(1060658, "Tempo Restante\t{0}", FormatTimeSpan(remaining));
             }
             else
             {
-                list.Add(1060658, "Time Remaining\tExpired");
+                list.Add(1060658, "Tempo Restante\tExpirado");
             }
         }
 
@@ -175,7 +175,7 @@ namespace Server.Items
             {
                 if (m_FoundBy != null)
                 {
-                    m_FoundBy.SendMessage("Your draconic key has crumbled to dust.");
+                    m_FoundBy.SendMessage("Sua chave draconica se despedaçou em pó.");
                 }
                 Delete();
             }

@@ -20,7 +20,7 @@ namespace Server.Gumps
 
             string PaymentMsg = null;
             if (LevelItems.RewardBlacksmith && LevelItems.BlacksmithRewardAmt > 0)
-                PaymentMsg = "<BR><BR>If you accept and the process is successful, you will be given additional compensation of " + LevelItems.BlacksmithRewardAmt + ".";
+                PaymentMsg = "<BR><BR>Se você aceitar e o processo for bem-sucedido, você receberá uma compensação adicional de " + LevelItems.BlacksmithRewardAmt + ".";
 
 			Closable=false;
 			Disposable=false;
@@ -32,7 +32,7 @@ namespace Server.Gumps
             AddLabel(52, 27, 0, @"Level Increase Request");
             AddLabel(52, 60, 0, @"Requested By:");
             AddLabel(52, 81, 0, @"Level Amount:");
-            AddHtml(49, 109, 271, 116, @"<CENTER><U>Max Level Increase Request</U><BR><BR>Someone has requested your expert services in increasing the max levels of a levelable item."+PaymentMsg+"<BR><BR>Do you accept their offer?", (bool)false, (bool)true);
+            AddHtml(49, 109, 271, 116, @"<CENTER><U>Solicitação de Aumento de Nível Máximo</U><BR><BR>Alguém solicitou seus serviços especializados para aumentar os níveis máximos de um item de nível."+PaymentMsg+"<BR><BR>Você aceita a oferta?", (bool)false, (bool)true);
             AddButton(50, 235, 4023, 4024, 1, GumpButtonType.Reply, 0);
             AddButton(83, 235, 4017, 4018, 2, GumpButtonType.Reply, 0);
             if (m_From != null)
@@ -57,17 +57,17 @@ namespace Server.Gumps
 					{
 						m_Scroll.BlacksmithValidated = true;
                         m_From.CloseGump(typeof(AwaitingSmithApprovalGump));
-                        m_From.SendMessage("They have validated your scroll.  Select a levelable item to increase max levels or ESC to apply at another time.");
+                        m_From.SendMessage("Eles validaram seu pergaminho. Selecione um item de nível para aumentar o nível máximo ou ESC para aplicar em outro momento.");
                         m_From.Target = new LevelUpScroll.LevelItemTarget(m_Scroll); // Call our target
 					}
 
 					if ( smith != null ) //Accepted... send message to smith and pay them bonus reward
 					{
-						smith.SendMessage("Thank you for your services!");
+						smith.SendMessage("Obrigado pelos seus serviços!");
                         if (smith != m_From && LevelItems.RewardBlacksmith && LevelItems.BlacksmithRewardAmt > 0)
                         {
                             smith.AddToBackpack(new BankCheck(LevelItems.BlacksmithRewardAmt));
-                            smith.SendMessage("A Bonus payment has been added to your pack.");
+                            smith.SendMessage("Um pagamento bônus foi adicionado à sua mochila.");
                         }
 					}
 				}
@@ -75,8 +75,8 @@ namespace Server.Gumps
 				{
 					if ( m_From != null && smith != null )
 					{
-						m_From.SendMessage( "There was a problem validating this scroll." );
-                        smith.SendMessage( "There was a problem validating this scroll." );
+						m_From.SendMessage( "Houve um problema ao validar este pergaminho." );
+						smith.SendMessage( "Houve um problema ao validar este pergaminho." );
 					}
 				}
 			}
@@ -84,11 +84,11 @@ namespace Server.Gumps
 			//Decline
 			if ( info.ButtonID == 2 )
 			{
-				smith.SendMessage( "You have declined their offer." );
+				smith.SendMessage( "Você recusou a oferta." );
 
 				if ( m_From != null )
                     m_From.CloseGump(typeof(AwaitingSmithApprovalGump));
-					m_From.SendMessage( "They have declined your offer" );
+					m_From.SendMessage( "Eles recusaram sua oferta." );
 			}
 		}
 	}

@@ -13,12 +13,12 @@ namespace Server.Items
             Movable   = true;
         }
 
-        public override string DefaultDescription{ get{ return "This box contains illegal goods. They can be given to the guildmaster in the thieves guild, who will know who might be interested in the contents of such ill gotten goods."; } }
+        public override string DefaultDescription{ get{ return "Esta caixa contém bens ilegais. Eles podem ser entregues ao mestre da guilda na guilda dos ladrões, que saberá quem pode estar interessado no conteúdo de tais bens mal adquiridos."; } }
 
         public override void OnDoubleClick(Mobile from)
         {
             if (from != null && !from.Deleted)
-                from.SendMessage("You cannot open this contraband box.");
+                from.SendMessage("Você não pode abrir esta caixa de contrabando.");
         }
 
         public ContrabandBox(Serial serial) : base(serial) { }

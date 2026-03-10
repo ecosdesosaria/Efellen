@@ -182,7 +182,7 @@ namespace Server.Items
 		{
 			if ( IsOpen && from is PlayerMobile && m_Boat != null && m_Boat.Contains( from ) )
 			{
-				from.SendMessage( "Where do you want to disembark?" );
+				from.SendMessage( "Onde você quer desembarcar?" );
 				from.Target = new InternalTarget( this );
 				return true;
 			}

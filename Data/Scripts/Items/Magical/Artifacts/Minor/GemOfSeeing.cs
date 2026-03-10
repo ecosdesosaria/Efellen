@@ -55,7 +55,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "The gem has lost all of its magic." );
+				from.SendMessage( "A gema perdeu toda a sua magia." );
 				this.Delete();
 				return;
 			}

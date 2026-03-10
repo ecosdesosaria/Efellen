@@ -35,7 +35,7 @@ namespace Server.Items
                     int mana = Utility.RandomMinMax(15, 35);
                     attacker.Mana += mana;
 
-                    attacker.SendMessage(33, "Wrath empowers you!");
+                    attacker.SendMessage(33, "Ira te fortalece!");
                 }
             }
         }

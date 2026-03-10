@@ -241,7 +241,7 @@ namespace Server.Items
 				if (specialItem != null)
 				{
 					rewardBag.DropItem(specialItem);
-					m_from.SendMessage("You got a special drop!");
+					m_from.SendMessage("Você recebeu um drop especial!");
 				}
 				
 				int goldAmount = MCparent.Reward;
@@ -283,13 +283,13 @@ namespace Server.Items
 				rewardBag.DropItem(new BankCheck(MCparent.Reward));
 				
 				backpack.DropItem(rewardBag);
-				m_from.SendMessage("Your reward was placed in your bag.");
+				m_from.SendMessage("Sua recompensa foi colocada na sua mochila.");
 			
 				return true;
 			}
 			else
 			{
-				m_from.SendMessage("There is something wrong with this deed.");		
+				m_from.SendMessage("Há algo errado com este documento.");		
 			}	
 
 			return false;				

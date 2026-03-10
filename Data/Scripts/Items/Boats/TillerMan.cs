@@ -100,7 +100,7 @@ namespace Server.Items
 					}
 					else if ( DockSearch.NearDock(from) == false && !BaseBoat.isCarpet( m_Boat ) )
 					{
-						from.SendMessage( "You must be near a dock to dry dock your ship!" );
+						from.SendMessage( "Você precisa estar perto de um cais para colocar seu navio em doca seca!" );
 					}
 					else
 					{
@@ -124,7 +124,7 @@ namespace Server.Items
 					}
 					else if ( DockSearch.NearDock(from) == false && !BaseBoat.isCarpet( m_Boat ) )
 					{
-						from.SendMessage( "You must be near a dock to dry dock your ship!" );
+						from.SendMessage( "Você precisa estar perto de um cais para colocar seu navio em doca seca!" );
 					}
 					else
 					{

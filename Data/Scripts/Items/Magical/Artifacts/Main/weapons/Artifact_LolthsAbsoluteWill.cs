@@ -33,7 +33,7 @@ namespace Server.Items
 		{
 			if (from.Karma >= -14999)
 			{
-				from.SendMessage("This vile implement judges you unworthy!");
+				from.SendMessage("Este instrumento vil te julga indigno!");
 				from.ApplyPoison(from, Poison.Deadly);
 				return false;
 			}
@@ -74,7 +74,7 @@ namespace Server.Items
 					0x3728, 10, 10, 2023
 				);
 
-				attacker.SendMessage("Lolth smites your foe!");
+				attacker.SendMessage("Lolth fere seu inimigo!");
 
 				m_NextSlayTime = DateTime.UtcNow + TimeSpan.FromMinutes(2);
 
@@ -119,7 +119,7 @@ namespace Server.Items
 				if (m_Owner.Poison == null)
 				{
 					m_Owner.ApplyPoison(m_Owner, Poison.Lethal);
-					m_Owner.SendMessage("Lolth's attention comes at a price.");
+					m_Owner.SendMessage("A atenção de Lolth tem um preço.");
 				}
 			}
 		}

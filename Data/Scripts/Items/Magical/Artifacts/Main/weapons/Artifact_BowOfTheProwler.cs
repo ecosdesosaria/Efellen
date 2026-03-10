@@ -72,7 +72,7 @@ namespace Server.Items
             if (extra < 1) extra = 1;
 
             AOS.Damage(defender, attacker, extra, 100, 0, 0, 0, 0);
-            attacker.SendMessage(1161, "Headshot for " + extra+ " extra damage");
+            attacker.SendMessage(1161, "Tiro certeiro com " + extra + " de dano extra");
             defender.FixedParticles(0x36BD, 10, 10, 5044, 0, 0, EffectLayer.Head);
             defender.PlaySound(0x22F);
         }

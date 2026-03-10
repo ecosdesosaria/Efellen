@@ -72,7 +72,7 @@ namespace Server.Items
 				}
 			}
 
-			from.SendMessage( "This is not a valid contract.");
+			from.SendMessage( "Este não é um contrato válido." );
 			return false;
 		}
 

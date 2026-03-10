@@ -31,7 +31,7 @@ namespace Server.Items
 		
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "Select an object to rename" ); // Select an object to engrave.
+			from.SendMessage( "Selecione um objeto para renomear" );// Select an object to engrave.
 			from.Target = new TargetWeapon( this );
 		}
 		
@@ -83,7 +83,7 @@ namespace Server.Items
 					from.SendGump( new InternalGump( m_Tool, item ) );
 				}
 				else
-					from.SendMessage( "The selected item cannobt be renamed using this tool" ); 
+					from.SendMessage( "O item selecionado não pode ser renomeado usando esta ferramenta" ); 
 			}
 		}
 		

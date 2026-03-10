@@ -44,7 +44,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker,1);
 
-			attacker.SendMessage(33, "The Giant Blackjack shatters your enemy!");
+			attacker.SendMessage(33, "O Porrete Gigante estilhaça seu inimigo!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

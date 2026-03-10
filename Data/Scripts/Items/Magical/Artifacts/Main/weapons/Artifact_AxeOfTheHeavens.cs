@@ -45,7 +45,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker,5);
 
-			attacker.SendMessage(33, "The Axe of the heavens cracks your foe with electricity!");
+			attacker.SendMessage(33, "O Machado dos céus fende seu inimigo com eletricidade!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

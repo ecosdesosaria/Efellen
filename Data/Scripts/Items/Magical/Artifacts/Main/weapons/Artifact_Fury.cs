@@ -75,13 +75,13 @@ namespace Server.Items
         {
             if (Parent != from)
             {
-                from.SendMessage("You must be holding Fury to invoke its power.");
+                from.SendMessage("Você precisa estar segurando Fúria para invocar seu poder.");
                 return;
             }
 
             if (!CanCast(from))
             {
-                from.SendMessage("Fury is still recharging.");
+                from.SendMessage("Fúria ainda está recarregando.");
                 return;
             }
 

@@ -29,7 +29,7 @@ namespace Server.Custom.BeholderSpecials
             DoRayEffect(caster, target, 0x36D4, 1172, 10);
 			target.PlaySound(0x1F8);
 
-			target.SendMessage("Your magical energy is drained by the anti-magic ray!");
+			target.SendMessage("Sua energia mágica é drenada pelo raio antimagia!");
 			SetCooldown(caster, "AntiMagicEye", cooldown);
         	return true;
 		}
@@ -47,13 +47,13 @@ namespace Server.Custom.BeholderSpecials
 
 			if (target.Hits >= (target.HitsMax / 2))
 			{
-				target.SendMessage("The disintegration ray grazes you, but you resist its full power!");
+				target.SendMessage("O raio de desintegração te atinge, mas você resiste a sua plena força!");
 				int reducedDamage = damage / 3;
 				AOS.Damage(target, caster, reducedDamage, 0, 0, 0, 0, 100);
 			}
 			else
 			{
-				target.SendMessage("The disintegration ray tears through your weakened form!");
+				target.SendMessage("O raio de desintegração destrói sua forma enfraquecida!");
 				AOS.Damage(target, caster, damage, 0, 0, 0, 0, 100);
 			}
 
@@ -88,7 +88,7 @@ namespace Server.Custom.BeholderSpecials
 			target.FixedParticles(0x376A, 9, 32, 5030, 0x3F, 0, EffectLayer.Waist);
 			target.PlaySound(0x204);
 
-			target.SendMessage("You are petrified by the energy's ray!");
+			target.SendMessage("Você é petrificado pelo raio de energia!");
 			SetCooldown(caster, "Petrification", cooldown);
 
 			return true;
@@ -107,7 +107,7 @@ namespace Server.Custom.BeholderSpecials
 
 			if (target.Skills.Knightship.Value > 70.0)
 			{
-				target.SendMessage("Your knightly courage protects you from fear!");
+				target.SendMessage("Sua coragem de cavaleiro te protege do medo!");
 				SetCooldown(caster, "Fear", cooldown);
 				return false;
 			}
@@ -147,11 +147,11 @@ namespace Server.Custom.BeholderSpecials
 				target.MoveToWorld(newLocation, target.Map);
 				target.PlaySound(0x204);
 				target.FixedParticles(0x376A, 9, 32, 5030, 0x21, 0, EffectLayer.Waist);
-				target.SendMessage("You flee in terror from the unnatural gaze!");
+				target.SendMessage("Você foge aterrorizado do olhar sobrenatural!");
 			}
 			else
 			{
-				target.SendMessage("The fear ray washes over you, but you cannot move!");
+				target.SendMessage("O raio de medo te envolve, mas você não consegue se mover!");
 			}
 
 			SetCooldown(caster, "Fear", cooldown);
@@ -215,7 +215,7 @@ namespace Server.Custom.BeholderSpecials
         			target.PlaySound(0x204);
         			target.FixedParticles(0x3728, 10, 10, 0x1F4, 0, 5029, 0);
                     DoRayEffect(caster, target, 0x36D4, 1153, 10);
-        			target.SendMessage("A telekinetic force hurls you!");
+        			target.SendMessage("Uma força telecinética te arremessa!");
         			affectedAny = true;
         		}
         	}
@@ -240,7 +240,7 @@ namespace Server.Custom.BeholderSpecials
         	if (!caster.InLOS(target))
         		return false;
 
-        	target.SendMessage("A deadly ray of necrotic energy begins to consume you!");
+        	target.SendMessage("Um raio mortal de energia necrótica começa a consumi-lo!");
         	target.PlaySound(0x208);
         	target.FixedParticles(0x3709, 10, 30, 5052, 0x96, 0, EffectLayer.Head);
             DoRayEffect(caster, target, 0x36D4, 1175, 10);

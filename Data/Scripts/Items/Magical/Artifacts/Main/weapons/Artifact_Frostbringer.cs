@@ -48,7 +48,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker,3);
 
-			attacker.SendMessage(33, "The Frostbringer Bow shivers your enemy!");
+			attacker.SendMessage(33, "O Arco Traz-geada estremece seu inimigo!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

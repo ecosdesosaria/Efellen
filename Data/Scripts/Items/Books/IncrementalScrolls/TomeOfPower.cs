@@ -56,7 +56,7 @@ namespace Server.Items
 
             if (this.Weight > 1.0)
             {
-                LabelTo(from, "Single Click to Organize");
+                LabelTo(from, "Clique Uma Vez para Organizar");
             }
         }
 
@@ -65,7 +65,7 @@ namespace Server.Items
             base.AddNameProperties(list);
             if (this.Weight > 1.0)
             {
-                list.Add(1070722, "Single Click to Organize");
+                list.Add(1070722, "Clique Uma Vez para Organizar");
             }
         }
 
@@ -77,7 +77,7 @@ namespace Server.Items
             }
             else if (m_Entries.Count == 0)
             {
-                from.SendMessage("The tome is empty.");
+                from.SendMessage("O tomo está vazio.");
             }
             else if (from is PlayerMobile)
             {
@@ -89,7 +89,7 @@ namespace Server.Items
         {
             if (!IsChildOf(from.Backpack))
             {
-                from.SendMessage("The tome must be in your backpack to organize scrolls.");
+                from.SendMessage("O tomo deve estar em sua mochila para organizar os pergaminhos.");
                 return;
             }
 
@@ -129,7 +129,7 @@ namespace Server.Items
             if (totalAdded > 0)
             {
                 from.SendSound(0x42, GetWorldLocation());
-                from.SendMessage("You have organized {0} power scroll{1} into the tome.", totalAdded, totalAdded != 1 ? "s" : "");
+                from.SendMessage("Você organizou {0} pergaminho{1} no tomo.", totalAdded, totalAdded != 1 ? "s" : "");
                 InvalidateProperties();
 
                 if (from is PlayerMobile)
@@ -139,7 +139,7 @@ namespace Server.Items
             }
             else
             {
-                from.SendMessage("There are no Ethereal Power Scrolls in your backpack to organize.");
+                from.SendMessage("Não há pergaminhos de Poder Etéreo em sua mochila para organizar.");
             }
         }
 
@@ -149,7 +149,7 @@ namespace Server.Items
             {
                 if (!IsChildOf(from.Backpack))
                 {
-                    from.SendMessage("The tome must be in your backpack to add scrolls to it.");
+                    from.SendMessage("O tomo deve estar em sua mochila para adicionar pergaminhos a ele.");
                     return false;
                 }
 
@@ -167,7 +167,7 @@ namespace Server.Items
 
                 InvalidateProperties();
                 from.SendSound(0x42, GetWorldLocation());
-                from.SendMessage("Power scroll added to tome.");
+                from.SendMessage("Pergaminho de Poder Adicionado ao tomo.");
 
                 if (from is PlayerMobile)
                 {
@@ -178,7 +178,7 @@ namespace Server.Items
                 return true;
             }
 
-            from.SendMessage("That is not an Ethereal Power Scroll.");
+            from.SendMessage("Esse não é um Pergaminho de Poder Etéreo.");
             return false;
         }
 
@@ -186,26 +186,26 @@ namespace Server.Items
         {
             if (!IsChildOf(from.Backpack))
             {
-                from.SendMessage("The tome must be in your backpack.");
+                from.SendMessage("O tomo deve estar em sua mochila.");
                 return;
             }
 
             if (!m_Entries.ContainsKey(skill))
             {
-                from.SendMessage("There are no scrolls of that type in the tome.");
+                from.SendMessage("Não há pergaminhos desse tipo no tomo.");
                 return;
             }
 
             if (amount <= 0)
             {
-                from.SendMessage("Invalid amount.");
+                from.SendMessage("Quantidade inválida.");
                 return;
             }
 
             int available = m_Entries[skill];
             if (amount > available)
             {
-                from.SendMessage("You only have {0} scroll{1} of that type.", available, available != 1 ? "s" : "");
+                from.SendMessage("Você só tem {0} pergaminho{1} desse tipo.", available, available != 1 ? "s" : "");
                 return;
             }
 
@@ -216,7 +216,7 @@ namespace Server.Items
             // Check if backpack can hold the scrolls
             if (pack.TotalItems + amount > pack.MaxItems)
             {
-                from.SendMessage("Your backpack cannot hold that many items.");
+                from.SendMessage("Sua mochila não pode segurar tantos itens.");
                 return;
             }
 
@@ -235,7 +235,7 @@ namespace Server.Items
             }
 
             from.SendSound(0x55, GetWorldLocation());
-            from.SendMessage("You have withdrawn {0} power scroll{1} from the tome.", amount, amount != 1 ? "s" : "");
+            from.SendMessage("Você retirou {0} pergaminho{1} do tomo.", amount, amount != 1 ? "s" : "");
             InvalidateProperties();
 
             if (from is PlayerMobile)
@@ -363,7 +363,7 @@ namespace Server.Items
                 if (m_From.CheckAlive() && m_Tome.IsChildOf(m_From.Backpack))
                 {
                     m_From.Prompt = new NameBookPrompt(m_Tome);
-                    m_From.SendMessage("Type in the new name of the tome:");
+                    m_From.SendMessage("Digite o novo nome do tomo:");
                 }
             }
         }
@@ -385,7 +385,7 @@ namespace Server.Items
                 if (from.CheckAlive() && m_Tome.IsChildOf(from.Backpack))
                 {
                     m_Tome.BookName = Utility.FixHtml(text.Trim());
-                    from.SendMessage("The tome's name has been changed.");
+                    from.SendMessage("O nome do tomo foi alterado.");
                 }
             }
 
@@ -450,13 +450,13 @@ namespace Server.Items
                     if (page > 1)
                     {
                         AddButton(20, height - 40, 4014, 4016, 0, GumpButtonType.Page, page - 1);
-                        AddLabel(55, height - 40, 0x480, "Previous");
+                        AddLabel(55, height - 40, 0x480, "Anterior");
                     }
 
                     if (page < totalPages)
                     {
                         AddButton(250, height - 40, 4005, 4007, 0, GumpButtonType.Page, page + 1);
-                        AddLabel(285, height - 40, 0x480, "Next");
+                        AddLabel(285, height - 40, 0x480, "Próximo");
                     }
 
                     yPos = 80;
@@ -465,7 +465,7 @@ namespace Server.Items
                 KeyValuePair<SkillName, int> entry = m_SortedEntries[i];
 
                 AddLabel(30, yPos, 0x480, entry.Key.ToString());
-                AddLabel(250, yPos, 0x480, String.Format("Amount: {0}", entry.Value));
+                AddLabel(250, yPos, 0x480, String.Format("Quantidade: {0}", entry.Value));
                 AddButton(330, yPos, 4005, 4007, i + 1, GumpButtonType.Reply, 0);
 
                 yPos += 25;
@@ -538,12 +538,12 @@ namespace Server.Items
             AddBackground(0, 0, 350, 200, 9270);
             AddLabel(20, 20, 1152, "Withdraw Scrolls");
 
-            string message = String.Format("You have {0} {1} scroll{2}.<br>How many would you like to withdraw?",
+            string message = String.Format("Você tem {0} {1} pergaminho{2}.<br>Quantos gostaria de sacar?",
                 available, skill.ToString(), available != 1 ? "s" : "");
 
             AddHtml(20, 50, 310, 60, message, true, true);
 
-            AddLabel(20, 120, 0x480, "Amount:");
+            AddLabel(20, 120, 0x480, "Quantidade:");
             AddBackground(100, 120, 100, 25, 9350);
             AddTextEntry(105, 120, 90, 20, 0, 0, "");
 
@@ -567,13 +567,13 @@ namespace Server.Items
                         }
                         else
                         {
-                            m_From.SendMessage("Invalid amount. Please enter a number between 1 and {0}.", m_Available);
+                            m_From.SendMessage("Quantidade inválida. Por favor, insira um número entre 1 e {0}.", m_Available);
                             m_From.SendGump(new TomeOfPowerGump(m_From, m_Tome));
                         }
                     }
                     else
                     {
-                        m_From.SendMessage("Invalid amount. Please enter a valid number.");
+                        m_From.SendMessage("Quantidade inválida. Por favor, insira um número válido.");
                         m_From.SendGump(new TomeOfPowerGump(m_From, m_Tome));
                     }
                 }

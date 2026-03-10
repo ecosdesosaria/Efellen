@@ -35,7 +35,7 @@ namespace Server.Items
                 {
                     int stam = Utility.RandomMinMax(10, 35);
 				    attacker.Stam += stam;
-				    attacker.SendMessage(33, "Retort saps the will of the fallen enemy!");
+				    attacker.SendMessage(33, "Retorção suga a vontade do inimigo caído!");
                 }
             }
         }

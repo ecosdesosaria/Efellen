@@ -48,7 +48,7 @@ namespace Server.Items
 
 			ApplyArtifactBuff(attacker);
 
-			attacker.SendMessage(33, "The fallen undead empowers you!");
+			attacker.SendMessage(33, "O morto-vivo caído te fortalece!");
 			attacker.PlaySound(0x1E9);
 
 			m_NextArtifactBuff = DateTime.UtcNow + TimeSpan.FromMinutes(5.0);

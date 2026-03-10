@@ -31,10 +31,10 @@ namespace Server.Mobiles
 
 		private static readonly string[] SummonWarcries = new string[]
 		{
-			"*Focuses its alien eyes*",
-			"*Intently focuses its alien eyes*",
-			"*Diabolically focuses its alien eyes*",
-			"*Stares maniacally into the void*"
+			"*Foca seus olhos alienígenas*",
+			"*Foca intensamente seus olhos alienígenas*",
+			"*Foca diabolicamente seus olhos alienígenas*",
+			"*Encara o vazio maniacamente*"
 		};
 
 		private static readonly List<Type> BossDrops = new List<Type>
@@ -176,7 +176,7 @@ namespace Server.Mobiles
 				{
 					BossSpecialAttack.PerformSlam(
                        boss: this,
-                       warcry: "*Stares fiercely in all directions*",
+                       warcry: "*Encara ferozmente em todas as direções*",
                        hue: 0x36B0,
                        rage: m_Rage+1,
                        range: 6,
@@ -187,7 +187,7 @@ namespace Server.Mobiles
 				}
 				case 2: // Rage 2: psychic blast (stamina drain + damage)
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Quivers with power*" );
+					PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Estremece com poder*" );
 					PlaySound( 0x228 );
 					FixedParticles( 0x3789, 10, 25, 5032, EffectLayer.Head );
 					
@@ -221,7 +221,7 @@ namespace Server.Mobiles
 				{
                     if (this == null || this.Deleted)
         		        return;
-        	        PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Quivers with rage*" );
+        	        PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Estremece de raiva*" );
 
 					List<Mobile> victims = new List<Mobile>();
 					foreach (Mobile victim in this.GetMobilesInRange(9))
@@ -279,7 +279,7 @@ namespace Server.Mobiles
                             	1153,
                             	10
                             );
-        	        		victim.SendMessage("A telekinetic force crushes you!");
+        	        		victim.SendMessage("Uma força telecinética o esmaga!");
         	        	}
         	        }
         	       break;
@@ -320,7 +320,7 @@ namespace Server.Mobiles
 		{
 			if ( m_Rage == 0 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Stares with boredom*" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Encara com tédio*" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -331,7 +331,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 1 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Annoyedly pouts*" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Faz beicinho irritado*" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -342,7 +342,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 2 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Bites its tongue and spews black blood*" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Morde a língua e cospe sangue negro*" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -355,7 +355,7 @@ namespace Server.Mobiles
 			{
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Stares in disbelief*" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Encara em descrença*" );
 				Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma > 0)
             	{
@@ -407,7 +407,7 @@ namespace Server.Mobiles
 				{
 					if ( BeholderSpecials.AntiMagicEye( this, 80, 45, target ) )
 					{
-						this.Say( "*Focuses its anti-magic eye on {0}*", target.Name );
+						this.Say( "*Foca seu olho antimagia em {0}*", target.Name );
 					}
 					break;
 				}
@@ -415,7 +415,7 @@ namespace Server.Mobiles
 				{
 					if ( BeholderSpecials.Disintegration( this, 100, 90, target ) )
 					{
-						this.Say( "*Fires a disintegration ray at {0}*", target.Name );
+						this.Say( "*Dispara um raio de desintegração em {0}*", target.Name );
 					}
 					break;
 				}
@@ -423,7 +423,7 @@ namespace Server.Mobiles
 				{
 					if ( BeholderSpecials.Petrification( this, 30, target ) )
 					{
-						this.Say( "*Petrifies {0} with its gaze*", target.Name );
+						this.Say( "*Petrifica {0} com seu olhar*", target.Name );
 					}
 					break;
 				}
@@ -431,7 +431,7 @@ namespace Server.Mobiles
 				{
 					if ( BeholderSpecials.Fear( this, 60, target ) )
 					{
-						this.Say( "*Strikes fear into {0}*", target.Name );
+						this.Say( "*Infunde medo em {0}*", target.Name );
 					}
 					break;
 				}
@@ -439,7 +439,7 @@ namespace Server.Mobiles
 				{
 					if ( BeholderSpecials.TelekineticRay( this, 9, 40 ) )
 					{
-						this.Say( "*A wave of Telekinetic energy oozes from an eyestalk!*" );
+						this.Say( "*Uma onda de energia telecinética emana de um olho!*" );
 					}
 					break;
 				}
@@ -447,7 +447,7 @@ namespace Server.Mobiles
 				{
 					if ( BeholderSpecials.DeathRay( this, target, 31, 10, 90 ) )
 					{
-						this.Say( "*Fires a necrotic ray at {0}*", target.Name );
+						this.Say( "*Dispara um raio necrótico em {0}*", target.Name );
 					}
 					break;
 				}

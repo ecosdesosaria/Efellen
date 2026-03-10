@@ -12,31 +12,31 @@ namespace Server.Custom.KoperPets
 
         private static readonly string[] SuccessMessages = new string[]
         {
-            "You feel more confident in guiding animals.",
-            "Your understanding of animal behavior improves.",
-            "You refine your ability to control creatures.",
-            "Your herding instincts grow stronger.",
-            "You sense a deeper connection with the animals.",
-            "You observe the subtle body language of the herd.",
-            "The creatures seem to respond to your commands more easily.",
-            "You learn to anticipate the movements of the animals.",
-            "Your patience with the herd pays off.",
-            "You develop a rhythm in directing the animals.",
-            "The bond between you and your animals strengthens.",
-            "You notice an improvement in how quickly animals obey you.",
-            "You gain insight into the instincts of the creatures you guide.",
-            "You master a new technique in controlling stubborn animals.",
-            "Your steady guidance makes the animals trust you more."
+            "Você se sente mais confiante em guiar animais.",
+            "Sua compreensão do comportamento animal melhora.",
+            "Você refina sua habilidade de controlar criaturas.",
+            "Seus instintos de pastoreio ficam mais fortes.",
+            "Você sente uma conexão mais profunda com os animais.",
+            "Você observa a linguagem corporal sutil do rebanho.",
+            "As criaturas parecem responder mais facilmente aos seus comandos.",
+            "Você aprende a antecipar os movimentos dos animais.",
+            "Sua paciência com o rebanho compensa.",
+            "Você desenvolve um ritmo ao direcionar os animais.",
+            "O vínculo entre você e seus animais se fortalece.",
+            "Você nota uma melhora na rapidez com que os animais obedecem.",
+            "Você ganha entendimento sobre os instintos das criaturas que guia.",
+            "Você domina uma nova técnica no controle de animais teimosos.",
+            "Sua orientação constante faz os animais confiarem mais em você."
         };
 
         private static readonly string[] BondingMessages = new string[]
         {
-            "Your deep understanding of animal behavior has forged a special bond!",
-            "Through your skilled herding, the creature has grown to trust you completely.",
-            "Your patient guidance has earned the creature's unwavering loyalty.",
-            "The animal looks at you with newfound devotion and trust.",
-            "Your herding expertise has created a bond that will last a lifetime.",
-            "The creature's eyes reflect a deep connection forged through your skill."
+            "Seu profundo entendimento do comportamento animal forjou um vínculo especial!",
+            "Através do seu pastoreio habilidoso, a criatura passou a confiar completamente em você.",
+            "Sua orientação paciente conquistou a lealdade inabalável da criatura.",
+            "O animal olha para você com devoção e confiança recém-descobertas.",
+            "Sua expertise em pastoreio criou um vínculo que durará a vida toda.",
+            "Os olhos da criatura refletem uma conexão profunda forjada através de sua habilidade."
         };
 
         public static void TryGainHerdingSkill(Mobile owner)
@@ -147,7 +147,7 @@ namespace Server.Custom.KoperPets
                     if (MyServerSettings.KoperPetsImmersive())
                     {
                         owner.SendMessage(BondingMessages[Utility.Random(BondingMessages.Length)]);
-                        owner.PublicOverheadMessage(Network.MessageType.Regular, 0x3B2, false, "Your " + pet.Name + " has bonded with you!");
+                        owner.PublicOverheadMessage(Network.MessageType.Regular, 0x3B2, false, "Seu " + pet.Name + " se vinculou a você!");
                     }
                 }
             }

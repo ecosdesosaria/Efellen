@@ -29,7 +29,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "Target a crew member to board their ship." );
+				from.SendMessage( "Selecione um membro da tripulação para embarcar no navio dele." );
 				t = new HookTarget();
 				from.Target = t;
 			}
@@ -49,11 +49,11 @@ namespace Server.Items
 					Point3D loc = Server.Multis.BaseBoat.GetPirateShip( pirate );
 
 					if ( loc.X > 0 && loc.Y > 0 ){ DoTeleport( from, loc ); }
-					else { from.SendMessage( "You cannot use the hook on this." ); }
+					else { from.SendMessage( "Você não pode usar o gancho nisto." ); }
 				}
 				else
 				{
-					from.SendMessage( "You cannot use the hook on this." );
+					from.SendMessage( "Você não pode usar o gancho nisto." );
 				}
 			}
 		}
@@ -68,7 +68,7 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Used to board boats and galleons");
+			list.Add( 1070722, "Usado para embarcar em navios e galeões");
         }
 
 		public GrapplingHook(Serial serial) : base(serial)

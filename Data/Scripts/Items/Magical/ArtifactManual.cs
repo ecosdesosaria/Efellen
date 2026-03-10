@@ -47,7 +47,7 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-            list.Add( 1070722, "This Identifies Items");
+            list.Add( 1070722, "Isto Identifica Itens");
 		}
 
         public override void OnDoubleClick( Mobile from )
@@ -62,14 +62,14 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "What do you want to research with this?" );
+					from.SendMessage( "O que você quer pesquisar com isto?" );
 					t = new BookTarget( this );
 					from.Target = t;
 				}
 			}
 			else
 			{
-				from.SendMessage( "Finding nothing about it, you throw it away." );
+				from.SendMessage( "Não encontrando nada sobre isso, você o joga fora." );
 				this.Delete();
 			}
         }
@@ -99,7 +99,7 @@ namespace Server.Items
 
 				if ( !iBook.IsChildOf( from.Backpack ) )
 				{
-					from.SendMessage( "You can only examine an item in your pack." );
+					from.SendMessage( "Você só pode examinar um item em sua mochila." );
 				}
 				else if ( ( iBook.IsChildOf( from.Backpack ) ) && ( iBook is NotIdentified ) ) //////////////////////////////////////////////////////////////////////////
 				{
@@ -115,17 +115,17 @@ namespace Server.Items
 							from.AddToBackpack ( item );
 						}
 
-					from.SendMessage("You successfully identify the item.");
+					from.SendMessage("Você identificou o item com sucesso.");
 					iBook.Delete();
 				}
 				else
 				{
-					from.SendMessage( "You cannot find any information on that." );
+					from.SendMessage( "Você não consegue encontrar nenhuma informação sobre isso." );
 				}
 			}
 			else
 			{
-				from.SendMessage( "You cannot find any information on that." );
+				from.SendMessage( "Você não consegue encontrar nenhuma informação sobre isso." );
 			}
 
 			return useCharges;

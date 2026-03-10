@@ -47,7 +47,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( e.Backpack ) ) 
 			{
-				e.SendMessage( "This must be in your backpack to read." );
+				e.SendMessage( "Isto precisa estar em sua mochila para ser lido." );
 				return;
 			}
 			else

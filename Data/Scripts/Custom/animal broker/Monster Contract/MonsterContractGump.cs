@@ -52,7 +52,7 @@ namespace Server.Gumps
 			{
 				if ( info.ButtonID == 1 )
 				{
-					m_from.SendMessage("Choose the tamed animal to add.");
+					m_from.SendMessage("Escolha o animal domado para adicionar.");
 					m_from.Target = new MonsterCorpseTarget( MCparent );
 				}
 				if ( info.ButtonID == 2 )
@@ -84,9 +84,9 @@ namespace Server.Gumps
 				else if ( pet.IsDeadPet ) 
 					from.SendLocalizedMessage( 1049668 ); // Living pets only, please. 
 				else if ( pet.Summoned ) 
-					from.SendMessage( "This creature was summoned." ); // I can not PetSale summoned creatures. 
+					from.SendMessage( "Esta criatura foi invocada." ); // I can not PetSale summoned creatures. 
 				else if ( pet.Body.IsHuman ) 
-					from.SendMessage( "This won't work on humans." ); // HA HA HA! Sorry, I am not an inn. 
+					from.SendMessage( "Isso não funciona em humanos." ); // HA HA HA! Sorry, I am not an inn. 
 				else if ( (pet is PackLlama || pet is PackHorse || pet is Beetle) && (pet.Backpack != null && pet.Backpack.Items.Count > 0) ) 
 					from.SendLocalizedMessage( 1042563 ); // You need to unload your pet. 
 				else if ( pet.Combatant != null && pet.InRange( pet.Combatant, 12 ) && pet.Map == pet.Combatant.Map ) 
@@ -104,10 +104,10 @@ namespace Server.Gumps
 						pet.Delete();	
 					}
 				else
-					from.SendMessage("This pet won't work.");
+					from.SendMessage("Este animal não vai funcionar.");
 			}
 			else
-				from.SendMessage("This is not a tamable pet.");
+				from.SendMessage("Este não é um animal domável.");
 		}
 
 	}

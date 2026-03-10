@@ -46,7 +46,7 @@ namespace Server.Items
             defender.Paralyze(TimeSpan.FromSeconds(9));
             
             if (attacker != null && !attacker.Deleted)
-                attacker.SendMessage("Your vicious blow chops a limb out of your opponent!");
+                attacker.SendMessage("Seu golpe violento arranca um membro do seu oponente!");
             
             m_NextParalyze = DateTime.UtcNow + TimeSpan.FromSeconds(60);
         }

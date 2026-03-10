@@ -232,11 +232,11 @@ namespace Server.Items
 					i_Tent.TentColor2 = color1;
 					i_Tent.Hue = color2;
 					m_From.PlaySound( 0x55 );
-					m_From.SendMessage( "You swap the primary and secondary colors." );
+					m_From.SendMessage( "Você troca as cores primária e secundária." );
 				} 
 				else 
 				{
-					m_From.SendMessage( "This must be in your backpack to swap colors." );
+					m_From.SendMessage( "Isso deve estar em seu inventário para trocar as cores." );
 				} 
 			} 
 		} 

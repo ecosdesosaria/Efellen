@@ -30,10 +30,10 @@ namespace Server.Mobiles
 
 		private static readonly string[] SummonWarcries = new string[]
 		{
-			"Your bones shall join my armies!",
-			"Soon you will be amongst my subjects!",
-			"We will feast on your flesh!",
-			"The royal army shall see to your end!"
+			"Seus ossos se juntarão aos meus exércitos!",
+			"Logo você estará entre meus súditos!",
+			"Nos banquetearmos com sua carne!",
+			"O exército real cuidará do seu fim!"
 		};
 		
 		private static readonly List<Type> BossDrops = new List<Type>
@@ -55,8 +55,8 @@ namespace Server.Mobiles
 		[Constructable]
 		public SkeletonKing () : base( AIType.AI_Melee, FightMode.Closest, 20, 1, 0.4, 0.8 )
 		{
-			Name = "Skeleton King";
-            Title = "The thrall of hell";
+			Name = "Rei Esqueleto";
+            Title = "O Escravo do Inferno";
 			Body = 0x147;
 			BaseSoundID = 451;
 			NameHue = 0x22;
@@ -161,7 +161,7 @@ namespace Server.Mobiles
                 {
                     BossSpecialAttack.PerformSlam(
                        boss: this,
-                       warcry: "Share the bounty of my tomb!",
+                       warcry: "Compartilhe a recompensa da minha tumba!",
                        hue: 0x09d3,
                        rage: m_Rage+1,
                        range: 6,
@@ -173,7 +173,7 @@ namespace Server.Mobiles
                 {
                    BossSpecialAttack.PerformRampage(
                        boss: this,
-                       warcry: "*The Skeleton King prepares to charge!*",
+                       warcry: "*O Rei Esqueleto se prepara para avançar!*",
                        hue: 0x09d3,
                        rage: m_Rage+1,
                        stunDuration: 4.0
@@ -185,7 +185,7 @@ namespace Server.Mobiles
                     BossSpecialAttack.SummonHonorGuard(
                         boss: this,
                         target: target,
-                        warcry: "Honor guard! I call thee!",
+                        warcry: "Guarda de honra! Eu vos chamo!",
                         amount: 4,
                         creatureType: typeof(HellKnight),
                         hue: 0x09d3
@@ -210,7 +210,7 @@ namespace Server.Mobiles
 		{
 			if ( m_Rage == 0 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "The warmth of life has entered my tomb. Prepare yourself, mortal, to serve my master for eternity!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "O calor da vida entrou em minha tumba. Prepare-se, mortal, para servir a meu mestre pela eternidade!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -221,7 +221,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 1 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fear the wrath of Leoric!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Tema a ira de Leoric!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -233,7 +233,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 2 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "The lord of terror shall feast upon your soul!" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "O senhor do terror fará um banquete com sua alma!" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x202 );
@@ -246,7 +246,7 @@ namespace Server.Mobiles
 			{
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "At last...I'm free..." );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Finalmente... Estou livre..." );
 				Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma > 0)
             	{

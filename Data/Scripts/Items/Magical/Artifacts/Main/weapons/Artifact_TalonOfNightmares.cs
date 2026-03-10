@@ -110,7 +110,7 @@ namespace Server.Items
 		    {
 		        eable.Free();
 		    }
-			attacker.SendMessage("Your Nightmarish weapon unleashes a burst of psychic energy!");
+			attacker.SendMessage("Sua arma pesadelo libera uma explosão de energia psíquica!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x81b);
 		}
 
@@ -118,7 +118,7 @@ namespace Server.Items
         {
             if (from.Int < 75)
             {
-                from.SendMessage("This strange implement refuses to be wielded by you!");
+                from.SendMessage("Este estranho instrumento se recusa a ser empunhado por você!");
                 return false;
             }
 

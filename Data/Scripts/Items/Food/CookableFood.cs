@@ -65,7 +65,7 @@ namespace Server.Items
 			if ( !Movable )
 				return;
 
-			from.SendMessage( "You must use cooking tools to prepare this." );
+			from.SendMessage( "Você deve usar ferramentas de culinária para preparar isto." );
 		}
 
 		public static bool IsHeatSource( object targeted )

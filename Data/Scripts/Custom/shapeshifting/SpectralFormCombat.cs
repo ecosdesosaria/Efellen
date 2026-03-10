@@ -58,7 +58,7 @@ namespace Server.Items
 			{
 				int marks = Utility.RandomMinMax(2, 12);
 				attacker.AddToBackpack(new MarksOfTheWilds(marks));
-				attacker.SendMessage(string.Format("You gained {0} Marks of the Wilds.", marks));
+				attacker.SendMessage(string.Format("Você ganhou {0} Marcas das Selvas.", marks));
 			}
 
 			// Calculate hit chance: (Druidism + Spiritualism) / 10, capped at 25%
@@ -126,7 +126,7 @@ namespace Server.Items
 
 		    if (targets.Count == 0)
 		    {
-		        attacker.SendMessage("There is no other prey within reach.");
+		        attacker.SendMessage("Não há outra presa dentro do alcance.");
 		        return false;
 		    }
 
@@ -136,11 +136,11 @@ namespace Server.Items
 		        ((druidism + spiritualism) / 2.0) / 100.0;
 
 		    attacker.SendMessage(
-		        "You tear through your foe and carry the force of your attack into another!"
+		        "Você rasga seu inimigo e leva a força do seu ataque para outro!"
 		    );
 
 		    target.SendMessage(
-		        "A savage cleaving blow rips into you!"
+		        "Um golpe selvagem e dilacerante te atinge!"
 		    );
 
 		    target.FixedParticles(
@@ -184,7 +184,7 @@ namespace Server.Items
 				double totalSkill = druidism + spiritualism;
 				double duration = Math.Min(2.0 + (totalSkill / 25.0), 7.0);
 
-				defender.SendMessage("You begin to bleed profusely!");
+				defender.SendMessage("Você começa a sangrar profusamente!");
 				defender.FixedParticles(0x377A, 1, 40, 9942, 0x26, 0, EffectLayer.Waist);
 				defender.PlaySound(0x133);
 
@@ -260,7 +260,7 @@ namespace Server.Items
 
 				AOS.Damage(defender, attacker, damage, 0, 0, 0, 100, 0);
 
-				defender.SendMessage("You are struck by spectral lightning!");
+				defender.SendMessage("Você é atingido por relâmpagos espectrais!");
 			}
 		}
 
@@ -275,7 +275,7 @@ namespace Server.Items
 				defender.Paralyze(TimeSpan.FromSeconds(duration));
 				defender.FixedParticles(0x376A, 9, 32, 0x13AF, EffectLayer.Waist);
 				defender.PlaySound(0x204);
-				defender.SendMessage("The spectral force paralyzes you!");
+				defender.SendMessage("A força espectral paralisa você!");
 			}
 		}
 

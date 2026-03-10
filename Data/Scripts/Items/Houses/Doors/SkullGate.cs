@@ -45,7 +45,7 @@ namespace Server.Items
 					Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
 					Effects.PlaySound( m.Location, m.Map, 0x229 );
 					m.ApplyPoison( m, Poison.Lethal );
-					m.SendMessage( "Not knowing the secret of the skull gate, you suffer the effects." );
+					m.SendMessage( "Sem conhecer o segredo do portal da caveira, você sofre os efeitos." );
 				}
 			}
 			return true;

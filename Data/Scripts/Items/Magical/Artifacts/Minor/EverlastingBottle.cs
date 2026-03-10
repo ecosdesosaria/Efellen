@@ -24,7 +24,7 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			from.Thirst = 20;
-			from.SendMessage( "You take a healthy drink from the bottle...and it magically refills." );
+			from.SendMessage( "Você bebe um gole saudável da garrafa... e ela magicamente se reabastece." );
 			from.PlaySound( Utility.RandomList( 0x30, 0x2D6 ) );
 		}
 

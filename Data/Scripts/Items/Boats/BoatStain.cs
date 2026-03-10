@@ -21,7 +21,7 @@ namespace Server.Items
 		public override void AddNameProperties( ObjectPropertyList list )
 		{
 			base.AddNameProperties( list );
-			list.Add( 1070722, "Stain Boats to the Standard Color" );
+			list.Add( 1070722, "Tingir Barcos para a Cor Padrão" );
 		}
 
 		public override void OnDoubleClick( Mobile from )
@@ -34,7 +34,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "What docked ship do you wish to stain?" );
+				from.SendMessage( "Qual navio atraque você deseja tingir?" );
 				t = new DyeTarget( this );
 				from.Target = t;
 			}
@@ -57,7 +57,7 @@ namespace Server.Items
 
 					if ( !iDye.IsChildOf( from.Backpack ) )
 					{
-						from.SendMessage( "You can only dye docked ships in your pack." );
+						from.SendMessage( "Você só pode tingir navios atracados em sua mochila." );
 					}
 					else if ( iDye is BaseBoatDeed || iDye is BaseDockedBoat )
 					{
@@ -67,12 +67,12 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage( "You cannot stain that with this." );
+						from.SendMessage( "Você não pode tingir isso com isso." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "You cannot stain that with this." );
+					from.SendMessage( "Você não pode tingir isso com isso." );
 				}
 			}
 		}

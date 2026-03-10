@@ -44,7 +44,7 @@ namespace Server.Items
          } 
          else 
          { 
-            from.SendMessage( "Enter your desired Title." );
+            from.SendMessage( "Digite o título desejado." );
             from.Prompt = new RetitlePrompt( from );
             this.Delete();
          } 
@@ -63,7 +63,7 @@ namespace Server.Items
          { 
             PlayerMobile pm = (PlayerMobile) from; 
 	    pm.Title = text;                                
-            pm.SendMessage( "Your Title be hence forth know as {0}", text );
+            pm.SendMessage( "Seu título será doravante conhecido como {0}", text );
          } 
       } 
    } 

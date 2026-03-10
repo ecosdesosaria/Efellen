@@ -20,7 +20,7 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
         {
             InitStats(125, 55, 65);
             Name = this.Female ? NameList.RandomName("female") : NameList.RandomName("male");
-            Title = "Defender of the Realm";
+            Title = "Defensor do Reino";
             HairHue = Utility.RandomHairHue();
             Body = this.Female ? 0x191 : 0x190;
             SpeechHue = Utility.RandomTalkHue();
@@ -50,17 +50,17 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
                     {
                         switch (Utility.Random(11))
                         {
-                            case 0: Say("The Defenders of the Realm are in need of reinforcements!"); break;
-                            case 1: Say("Slay many a foul beast and make our land safer!"); break;
-                            case 2: Say("By decree of the king, we shall rid this land of evil!"); break;
-                            case 3: Say("Stand tall, mighty warriors of the realm! Our loved ones count on thy courage!"); break;
-                            case 4: Say("Steel your heart, for restless darkness roams these lands!"); break;
-                            case 5: Say("Prove thy valor in the name of our king!"); break;
-                            case 6: Say("Honor is it's own reward for the worthy!"); break;
-                            case 7: Say("Raise thy blade in the name of virtue!"); break;
-                            case 8: Say("Beware! Many dangers lie ahead!"); break;
-                            case 9: Say("The foul hordes shall be made headless by the culling of their generals!"); break;
-                            case 10: Say("Many have we lost in our struggle against darkness, but we shall not give it rest!"); break;
+                            case 0: Say("Os Defensores do Reino precisam de reforços!"); break;
+                            case 1: Say("Abatei muitas bestas vis e tornai nossa terra mais segura!"); break;
+                            case 2: Say("Por decreto do rei, livraremos esta terra do mal!"); break;
+                            case 3: Say("Erguei-vos, poderosos guerreiros do reino! Nossos entes queridos contam com vossa coragem!"); break;
+                            case 4: Say("Fortalecei vosso coração, pois a escuridão inquieta ronda estas terras!"); break;
+                            case 5: Say("Provai vosso valor em nome de nosso rei!"); break;
+                            case 6: Say("A honra é sua própria recompensa para os dignos!"); break;
+                            case 7: Say("Erguei vossa lâmina em nome da virtude!"); break;
+                            case 8: Say("Cuidado! Muitos perigos vos esperam!"); break;
+                            case 9: Say("As hordas vis serão decapitadas pelo abate de seus generais!"); break;
+                            case 10: Say("Muitos perdemos em nossa luta contra a escuridão, mas não daremos trégua a ela!"); break;
                         }
                         m_NextSpeechTime = DateTime.UtcNow + TimeSpan.FromSeconds(10);
                     }
@@ -98,11 +98,11 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
             if (from.Karma > 0)
             {
                 from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(from, 1, 0));
-                Say("These are the rewards I can offer thee.");
+                Say("Estas são as recompensas que posso te oferecer.");
             }
             else
             {
-                Say("I shall not offer my services to servants of evil! Redeem thyself!");
+                Say("Não oferecerei meus serviços a servos do mal! Redima-te!");
             }
         }
 
@@ -159,12 +159,12 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
 
                 if (!mobile.CheckAlive())
                 {
-                    mobile.SendMessage("You must be alive to receive a Vow of Honor.");
+                    mobile.SendMessage("Você precisa estar vivo para receber um Juramento de Honra.");
                     return;
                 }
                 else if (mobile.Backpack == null)
                 {
-                    mobile.SendMessage("You have no backpack to receive the Vow of honor.");
+                    mobile.SendMessage("Você não tem uma mochila para receber o Juramento de Honra.");
                     return;
                 }
                 else if (LastUsers.TryGetValue(mobile, out lastUse))
@@ -172,7 +172,7 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
                     TimeSpan cooldown = Delay - (DateTime.UtcNow - lastUse);
                     if (cooldown > TimeSpan.Zero)
                     {
-                        m_Npc.Say(String.Format("I'll have another vow for you in  {0} hour{1} and {2} minute{3}.",
+                        m_Npc.Say(String.Format("Terei outro juramento para você em {0} hora{1} e {2} minuto{3}.",
                           cooldown.Hours, cooldown.Hours == 1 ? "" : "s",
                           cooldown.Minutes, cooldown.Minutes == 1 ? "" : "s"));
                         return;
@@ -180,7 +180,7 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
                 }
                 else if (mobile.Karma < 0)
                 {
-                    m_Npc.Say("Thou has strayed from the path of virtue! I shall not trust thee to be honorable until you redeem yourself!");
+                    m_Npc.Say("Tu te desviaste do caminho da virtude! Não confiarei em ti para seres honrado até que te redimas!");
                     return;
                 }
                 if (CanGetVow(mobile))
@@ -192,12 +192,12 @@ namespace Server.Custom.DefenderOfTheRealm.Knight
                     if (vow.Parent == mobile.Backpack)
                     {
                         mobile.SendGump(new SpeechGump(mobile, "Defender of the Realm", SpeechFunctions.SpeechText(m_Npc, mobile, "Defender of the Realm")));
-                        mobile.SendMessage("You receive a Vow of Honor.");
+                        mobile.SendMessage("Você recebe um Juramento de Honra.");
                     }
                     else
                     {
                         vow.Delete();
-                        mobile.SendMessage("You do not have enough inventory space to receive a Vow of Honor.");
+                        mobile.SendMessage("Você não tem espaço suficiente em seu inventário para receber um Juramento de Honra.");
                     }
                 }
             }

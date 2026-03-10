@@ -41,7 +41,7 @@ namespace Server.Items
                     attacker.Hits += hits;
                     attacker.Mana += mana;
 
-                    attacker.SendMessage(33, "Grim Reaper's Scythe devours the enemy's soul!");
+                    attacker.SendMessage(33, "A Foice do Ceifador devora a alma do inimigo!");
                 }
             }
         }

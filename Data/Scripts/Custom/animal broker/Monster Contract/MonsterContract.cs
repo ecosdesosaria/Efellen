@@ -245,15 +245,15 @@ namespace Server.Items
 									if (shelf != null)
 									{
 										backpack.DropItem( shelf );	
-										m_from.SendMessage("You got a special drop!");		
+										m_from.SendMessage("Você recebeu um drop especial!");	
 									}										
 									backpack.DropItem( new BankCheck( MCparent.Reward ) );	
-									m_from.SendMessage("Your reward was placed in your bag.");	
+									m_from.SendMessage("Sua recompensa foi colocada em sua bolsa.");	
 									return true;
 				}
 			else
 			{
-				m_from.SendMessage("There is something wrong with this deed.");		
+				m_from.SendMessage("Há algo de errado com este contrato.");		
 				
 			}	
 			return false;				

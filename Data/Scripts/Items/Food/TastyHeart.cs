@@ -32,7 +32,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isto deve estar em sua mochila para usar." );
 				return;
 			}
 			else
@@ -46,36 +46,36 @@ namespace Server.Items
 					{
 						from.Thirst += 3;
 						if ( iHunger < 5 )
-							from.SendMessage( "You eat the heart, but still need more blood." );
+							from.SendMessage( "Você come o coração, mas ainda precisa de mais sangue." );
 						else if ( iHunger < 10 )
-							from.SendMessage( "You eat the heart, but still desire more blood." );
+							from.SendMessage( "Você come o coração, mas ainda deseja mais sangue." );
 						else if ( iHunger < 15 )
-							from.SendMessage( "You eat the heart, but could still induldge in blood." );
+							from.SendMessage( "Você come o coração, mas ainda poderia se satisfazer com sangue." );
 						else
-							from.SendMessage( "You eat the heart, but have indulged in enough blood." );
+							from.SendMessage( "Você come o coração, mas já se satisfez com sangue o suficiente." );
 					}
 					else if ( Server.Items.BaseRace.BrainEater( from.RaceID ) )
 					{
 						from.Thirst += 3;
 						if ( iHunger < 5 )
-							from.SendMessage( "You eat the heart, but still need brains." );
+							from.SendMessage( "Você come o coração, mas ainda precisa de mais cérebros." );
 						else if ( iHunger < 10 )
-							from.SendMessage( "You eat the heart, but still desire brains." );
+							from.SendMessage( "Você come o coração, mas ainda deseja mais cérebros." );
 						else if ( iHunger < 15 )
-							from.SendMessage( "You eat the heart, but could still induldge in some brains." );
+							from.SendMessage( "Você come o coração, mas ainda poderia se satisfazer com cérebros." );
 						else
-							from.SendMessage( "You eat the heart, and you no longer hunger for brains." );
+							from.SendMessage( "Você come o coração, e você não sente mais fome por cérebros." );
 					}
 					else
 					{
 						if ( iHunger < 5 )
-							from.SendMessage( "You eat the heart, but are still extremely hungry." );
+							from.SendMessage( "Você come o coração, mas ainda está extremamente com fome." );
 						else if ( iHunger < 10 )
-							from.SendMessage( "You eat the heart, feeling more satiated." );
+							from.SendMessage( "Você come o coração, sentindo-se mais satisfeito." );
 						else if ( iHunger < 15 )
-							from.SendMessage( "You eat the heart, feeling much less hungry." );
+							from.SendMessage( "Você come o coração, sentindo-se muito menos com fome." );
 						else
-							from.SendMessage( "You eat the heart, but now feel quite full." );
+							from.SendMessage( "Você come o coração, mas agora se sente bastante cheio." );
 					}
 
 					this.Consume();
@@ -103,7 +103,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "You don't feel hungry enough to eat the " + HeartName + "." );
+					from.SendMessage( "Você não está com fome o suficiente para comer o " + HeartName + "." );
 					from.Hunger = 20;
 				}
 			}

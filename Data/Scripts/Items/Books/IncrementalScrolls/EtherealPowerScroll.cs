@@ -99,7 +99,7 @@ namespace Server.Items
         {
             if (!IsChildOf(from.Backpack))
             {
-                from.SendMessage("The scroll must be in your backpack to use it.");
+                from.SendMessage("O pergaminho deve estar em sua mochila para ser usado.");
                 return;
             }
 
@@ -107,13 +107,13 @@ namespace Server.Items
 
             if (skill == null)
             {
-                from.SendMessage("You don't know how to use this scroll.");
+                from.SendMessage("Você não sabe como usar este pergaminho.");
                 return;
             }
 
             if (skill.Cap >= 125.0)
             {
-                from.SendMessage("Your " + m_Skill.ToString() + " is already at the maximum cap of 125.0.");
+                from.SendMessage("Sua habilidade " + m_Skill.ToString() + " já está no limite máximo de 125.0.");
                 return;
             }
 
@@ -161,11 +161,11 @@ namespace Server.Items
 
             AddPage(0);
             AddBackground(0, 0, 350, 160, 9270);
-            AddLabel(20, 20, 1152, "Are you sure?");
+            AddLabel(20, 20, 1152, "Você tem certeza?");
 
-            string message = "Consuming this scroll will increase the cap of your <basefont color=#ffcc00>" +
+            string message = "Consumir este pergaminho aumentará o limite da sua habilidade <basefont color=#ffcc00>" +
                              m_Skill.ToString() +
-                             "</basefont> skill by 5.<br>This cannot be undone.";
+                             "</basefont> em 5.<br>Isso não pode ser desfeito.";
 
             AddHtml(20, 50, 310, 60, message, true, true);
 
@@ -187,8 +187,8 @@ namespace Server.Items
                         double oldCap = skill.Cap;
                         skill.Cap = Math.Min(125.0, skill.Cap + 5.0);
 
-                        m_From.SendMessage("Your maximum " + m_Skill.ToString() + " skill cap has increased from " +
-                            oldCap.ToString("F1") + " to " + skill.Cap.ToString("F1") + "!");
+                        m_From.SendMessage("Seu limite máximo de habilidade de " + m_Skill.ToString() + " aumentou de " +
+                            oldCap.ToString("F1") + " para " + skill.Cap.ToString("F1") + "!");
 
                         m_From.PlaySound(0x1EA);
 
@@ -205,7 +205,7 @@ namespace Server.Items
                     }
                     else
                     {
-                        m_From.SendMessage("Your " + m_Skill.ToString() + " skill is already at the maximum cap.");
+                        m_From.SendMessage("Sua habilidade " + m_Skill.ToString() + " já está no limite máximo.");
                     }
                 }
             }

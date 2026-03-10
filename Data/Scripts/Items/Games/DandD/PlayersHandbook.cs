@@ -28,7 +28,7 @@ namespace Server.Items
 
         public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "What person do you want to look up?" );
+			from.SendMessage( "Qual pessoa você quer pesquisar?" );
 			Target t = new BookTarget( this );
 			from.Target = t;
 			from.SendSound( 0x55 );
@@ -71,16 +71,16 @@ namespace Server.Items
 				}
 				else if ( targeted is BaseVendor || targeted is BasePerson || targeted is Citizens )
 				{
-					from.SendMessage( "The Players Handbook doesn't cover those types of characters." );
+					from.SendMessage( "O Manual do Jogador não cobre esse tipo de personagem." );
 				}
 				else if ( targeted is HenchmanMonster || targeted is HenchmanWizard || targeted is HenchmanFighter || targeted is HenchmanArcher )
 				{
-					from.SendMessage( "These henchman wouldn't want the scrutiny." );
+					from.SendMessage( "Esses ajudantes não iriam querer o escrutínio." );
 				}
 				else if (	targeted is PackBeast || targeted is GolemPorter || targeted is GolemFighter || targeted is Robot || 
 							targeted is FrankenPorter || targeted is FrankenFighter || targeted is HenchmanFamiliar || targeted is AerialServant )
 				{
-					from.SendMessage( "They don't seem to be in this book." );
+					from.SendMessage( "Eles não parecem estar neste livro." );
 				}
 				else if ( targeted is Mobile )
 				{
@@ -88,7 +88,7 @@ namespace Server.Items
 
 					if ( !IsPeople( m ) )
 					{
-						from.SendMessage( "You would probably need the Monster Manual for that." );
+						from.SendMessage( "Você provavelmente precisaria do Manual dos Monstros para isso." );
 					}
 					else if ( m is BaseCreature )
 					{
@@ -99,12 +99,12 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage( "That doesn't seem to be in this book." );
+						from.SendMessage( "Isso não parece estar neste livro." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "That doesn't seem to be in this book." );
+					from.SendMessage( "Isso não parece estar neste livro." );
 				}
 			}
 		}

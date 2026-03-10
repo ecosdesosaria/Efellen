@@ -24,7 +24,7 @@ namespace Server.Items
 
             if ( t.ControlMaster != from ) 
             { 
-               from.SendMessage( "That is not your pet!" ); 
+               from.SendMessage( "Esse não é seu animal de estimação!" );
             } 
             else  
              
@@ -37,7 +37,7 @@ namespace Server.Items
          } 
          else 
          { 
-            from.SendMessage( "That is not a valid traget." );  
+            from.SendMessage( "Esse não é um alvo válido." );  
          } 
       } 
    } 
@@ -62,7 +62,7 @@ namespace Server.Items
 			base.GetProperties( list );
 
 			
-				list.Add("Changes a pet's body." ); 
+				list.Add("Muda o corpo de um pet." ); 
 		}
 
       public override void Serialize( GenericWriter writer ) 
@@ -90,7 +90,7 @@ namespace Server.Items
          } 
          else 
          { 
-            from.SendMessage( "Choose the pet you wish to change." ); 
+            from.SendMessage( "Escolha o animal que deseja modificar." ); 
             from.Target = new BodyChangeCow( this ); // Call our target 
           } 
       }    

@@ -53,7 +53,7 @@ namespace Server.Items
 
 		public override bool OnEquip( Mobile from )
 		{
-			from.SendMessage( "This is a throwing weapon that requires harpoon ropes to throw." );
+			from.SendMessage( "Esta é uma arma de arremesso que requer cordas de arpão para lançar." );
 			return base.OnEquip( from );
 		}
 

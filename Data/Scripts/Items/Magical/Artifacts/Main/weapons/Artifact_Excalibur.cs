@@ -40,7 +40,7 @@ namespace Server.Items
         {
             if (from.Karma < 0)
             {
-                from.SendMessage("This holy blade burns your hands and refuses to be wielded by you!");
+                from.SendMessage("Esta lâmina sagrada queima suas mãos e se recusa a ser empunhada por você!");
                 return false;
             }
 
@@ -144,11 +144,11 @@ namespace Server.Items
             attacker.PlaySound(0x206);
 
             if (healedCount >= 5)
-                attacker.Say("We are the legion of light!");
+                attacker.Say("Nós somos a legião da luz!");
             else if (healedCount >= 3)
-                attacker.Say("Fear no darkness, my companions!");
+                attacker.Say("Não temais a escuridão, meus companheiros!");
             else
-                attacker.Say("Light protects me!");
+                attacker.Say("A luz me protege!");
         }
 
         public override void Serialize(GenericWriter writer)

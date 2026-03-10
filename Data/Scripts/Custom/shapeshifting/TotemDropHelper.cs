@@ -49,7 +49,7 @@ namespace Server.Items
             else
                 totem.MoveToWorld(pm.Location, pm.Map);
 
-            pm.SendMessage("You recover a primal totem from the fallen creature.");
+            pm.SendMessage("Você recupera um totem primal da criatura caída.");
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Server.Items
 		{
 			if ( from.Backpack.FindItemByType( typeof ( BookGuideToAdventure ) ) != null )
 			{
-				from.SendMessage( "The other books here seem uninteresting to you." );
+				from.SendMessage( "Os outros livros aqui parecem desinteressantes para você." );
 			}
 			else
 			{
@@ -51,7 +51,7 @@ namespace Server.Items
 			from.PlaySound( 0x02E );
 			book.owner = from;
 			from.AddToBackpack( book );
-			from.SendMessage( "You take a book from the gypsy's shelf." );
+			from.SendMessage( "Você pega um livro da estante da cigana." );
 		}
 
         public GypsyShelf( Serial serial ) : base( serial )

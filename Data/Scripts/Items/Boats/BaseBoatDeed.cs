@@ -71,12 +71,12 @@ namespace Server.Multis
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			string phrase_a = "Where do you wish to place the ship?";
-			string phrase_b = "You may not place a boat from this location.";
+			string phrase_a = "Onde deseja colocar o navio?";
+			string phrase_b = "Você não pode colocar um barco a partir desta localização.";
 			if ( BaseBoat.isCarpet( Boat ) )
 			{
-				phrase_a = "Where do you wish to place the carpet?";
-				phrase_b = "There is not magic from the carpet in this location.";
+				phrase_a = "Onde deseja colocar o tapete?";
+				phrase_b = "Não há magia do tapete nesta localização.";
 			}
 
 			Region reg = Region.Find( from.Location, from.Map );
@@ -87,7 +87,7 @@ namespace Server.Multis
 			}
 			else if ( DockSearch.NearDock(from) == false && !BaseBoat.isCarpet( Boat ) )
 			{
-				from.SendMessage( "You must be near a dock to launch your ship!" );
+				from.SendMessage( "Você precisa estar perto de um cais para lançar seu navio!" );
 			}
 			else if (
 				Server.Misc.Worlds.IsSeaTown( from.Location, from.Map ) || 
@@ -124,11 +124,11 @@ namespace Server.Multis
 			}
 			else
 			{
-				string phrase_a = "You may not place a ship while on another ship or inside a house.";
-				string phrase_b = "A ship can not be launched here.";
+				string phrase_a = "Você não pode colocar um navio enquanto está em outro navio ou dentro de uma casa.";
+				string phrase_b = "Um navio não pode ser lançado aqui.";
 				if ( BaseBoat.isCarpet( Boat ) )
 				{
-					phrase_a = "You may not place the carpet while on a ship or carpet, or inside a house.";
+					phrase_a = "Você não pode colocar o tapete enquanto está em um navio ou tapete, ou dentro de uma casa.";
 				}
 
 				Map map = from.Map;

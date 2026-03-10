@@ -107,7 +107,7 @@ namespace Server.Items
 		    {
 		        eable.Free();
 		    }
-			attacker.SendMessage("Your Nightmarish weapon unleashes a burst of ghostly poison fumes!");
+			attacker.SendMessage("Sua arma pesadelo libera uma explosão de vapores venenosos fantasmagóricos!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x4F6);
 		}
 
@@ -115,7 +115,7 @@ namespace Server.Items
         {
             if (from.Karma > 0)
             {
-                from.SendMessage("This vile weapon refuses to be wielded by you!");
+                from.SendMessage("Esta arma vil se recusa a ser empunhada por você!");
                 return false;
             }
 

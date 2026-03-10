@@ -99,7 +99,7 @@ namespace Server.Items
 			{
 				if ( from.Thirst >= 20 )
 				{
-					from.SendMessage( "You are not thirsty at all." );
+					from.SendMessage( "Você não está com sede alguma." );
 				}
 				else
 				{
@@ -114,19 +114,19 @@ namespace Server.Items
 					switch( Utility.RandomMinMax( 1, 5 ) )
 					{
 						case 1:  
-							msg = "You drink your fill of the cool well water. The quiet sounds of splashing water are softly musical.";
+							msg = "Você bebe até se saciar da água fresca do poço. Os sons tranquilos da água respingando são suavemente musicais.";
 							break;
 						case 2:  
-							msg = "The well's invigorating water refreshes you and sets your mind at ease. You drink your fill.";	
+							msg = "A água revigorante do poço refresca você e acalma sua mente. Você bebe até se saciar.";	
 							break;
 						case 3:  
-							msg = "You drink deeply of the clean well water. The shimmering reflections on the surface stir your thoughts.";
+							msg = "Você bebe profundamente da água limpa do poço. Os reflexos cintilantes na superfície agitam seus pensamentos.";
 							break;
 						case 4:  
-							msg = "As you drink from the water, an tantalizing scent reminds you of memories long forgotten.";
+							msg = "Enquanto você bebe da água, um aroma tentador lembra memórias há muito esquecidas.";
 							break;
 						case 5:  
-							msg = "You drink from the pure well and quiet dreams of sylvan delight pass through your mind.";
+							msg = "Você bebe do poço puro e sonhos tranquilos de deleite silvestre passam por sua mente.";
 							break;
 					}
 						
@@ -137,7 +137,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "Get closer." );
+				from.SendMessage( "Aproxime-se." );
 			}
 		}
 

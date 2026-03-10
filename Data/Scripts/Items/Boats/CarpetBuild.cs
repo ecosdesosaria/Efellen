@@ -44,12 +44,12 @@ namespace Server.Items
 
 			if ( carpetDone > 0 )
 			{
-				list.Add( 1070722, "Drop The Items Needed On This Book" );
-				list.Add( 1049644, "Need " + needGold.ToString() + " Gold Coins, " + needCloth.ToString() + " Cloth" );
+				list.Add( 1070722, "Coloque os Itens Necessários Neste Livro" );
+				list.Add( 1049644, "Precisa de " + needGold.ToString() + " Moedas de Ouro, " + needCloth.ToString() + " Tecido" );
 			}
 			else
 			{
-				list.Add( 1070722, "Read the Book to Conjure" );
+				list.Add( 1070722, "Leia o Livro para Conjurá-lo" );
 			}
         }
 
@@ -62,7 +62,7 @@ namespace Server.Items
 
 			if ( carpetDone > 0 )
 			{
-				from.SendMessage( "You need to gather more items before you can conjure this!" );
+				from.SendMessage( "Você precisa coletar mais itens antes de conseguir conjurá-lo!" );
 				from.SendSound( 0x4A );
 				from.CloseGump( typeof( RugGump ) );
 				from.SendGump( new RugGump( from, HaveGold, HaveCloth ) );
@@ -79,14 +79,14 @@ namespace Server.Items
 
 				if ( builder < 1 )
 				{
-					from.SendMessage( "You need to be near a wizard to conjure that!" );
+					from.SendMessage( "Você precisa estar perto de um mago para conjurar isso!" );
 					from.SendSound( 0x4A );
 					from.CloseGump( typeof( RugGump ) );
 					from.SendGump( new RugGump( from, HaveGold, HaveCloth ) );
 				}
 				else
 				{
-					from.SendMessage( "You read the book and it transforms into a magic carpet." );
+					from.SendMessage( "Você lê o livro e ele se transforma em um tapete mágico." );
 					from.PlaySound( 0x243 );
 					from.AddToBackpack ( new Multis.MagicCarpetADeed() );
 					this.Delete();

@@ -175,18 +175,18 @@ namespace Server.Items
 						reward.Name = sArty;
 						from.AddToBackpack ( reward );
 						LoggingFunctions.LogCreatedArtifact( from, sArty );
-						from.SendMessage( "The gods have created a legendary artefact called " + sArty + ".");
+						from.SendMessage( "Os deuses criaram um artefato lendário chamado " + sArty + ".");
 						from.FixedParticles( 0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot );
 						from.PlaySound( 0x208 );
 					}
 				}
 				else if ( from.TotalGold < 10000 )
 				{
-					from.SendMessage( "You do not have enough gold for tribute.");
+					from.SendMessage( "Você não tem ouro suficiente para o tributo." );
 				}
 				else
 				{
-					from.SendMessage( "You are not legendary enough to summon the artifact.");
+					from.SendMessage( "Você não é lendário o suficiente para invocar o artefato." );
 				}
 			}
 		}

@@ -23,28 +23,28 @@ namespace Server.Items
 		{
 			if ( targeted is Item )
 			{
-				from.SendMessage( "You cannot dye items with this." );
+				from.SendMessage( "Você não pode tingir itens com isso." );
 			}
 			else if ( targeted is PlayerMobile )
 			{
-				from.SendMessage( "You cannot dye players with this." );
+				from.SendMessage( "Você não pode tingir jogadores com isso." );
 			}
 			else if ( targeted is BaseCreature )
 			{
 				BaseCreature targ = (BaseCreature)targeted;
 				if( from.InRange( m_Tub.GetWorldLocation(), 3 ) ) 
-		        	{
+				{
 					if ( targ.Controlled == false )
 					{
-						from.SendMessage( "This animal is not tame." );
+						from.SendMessage( "Este animal não é domado." );
 					}
 					else if ( targ.IsDeadPet )
 					{
-						from.SendMessage( "You cannot dye a dead pet." );
+						from.SendMessage( "Você não pode tingir um animal morto." );
 					}
 					else if ( targ.ControlMaster != from )
 					{
-						from.SendMessage( "This is not your pet." );
+						from.SendMessage( "Este não é seu animal de estimação." );
 					}
 					else
 					{
@@ -59,7 +59,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "You cannot dye this." );
+				from.SendMessage( "Você não pode tingir isso." );
 			}
 		}
 	}
@@ -86,12 +86,12 @@ namespace Server.Items
 			if ( !IsChildOf (from.Backpack))
 			{
 				from.Target = new PetDyeTubTarget( this );
-				from.SendMessage( "What pet do you wish to dye?" );
+				from.SendMessage( "Qual animal você deseja tingir?" );
 			}	
 			else if( from.InRange( this.GetWorldLocation(), 3 ) )
 			{
 				from.Target = new PetDyeTubTarget( this );
-				from.SendMessage( "What pet do you wish to dye?" );
+				from.SendMessage( "Qual animal você deseja tingir?" );
 
 			}
 

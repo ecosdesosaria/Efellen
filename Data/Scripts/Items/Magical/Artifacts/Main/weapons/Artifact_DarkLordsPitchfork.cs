@@ -27,7 +27,7 @@ namespace Server.Items
         {
             if (from.Karma > 0)
             {
-                from.SendMessage("This vile implement burns your hands and refuses to be wielded by you!");
+                from.SendMessage("Este instrumento vil queima suas mãos e se recusa a ser empunhado por você!");
                 return false;
             }
 
@@ -38,7 +38,7 @@ namespace Server.Items
 		{
 			if ( Parent != from )
 			{
-				from.SendMessage( "You must be holding the pitchfork to summon a Demon." );
+				from.SendMessage( "Você precisa estar segurando o forcado para invocar um Demônio." );
 			}
 			else
 			{

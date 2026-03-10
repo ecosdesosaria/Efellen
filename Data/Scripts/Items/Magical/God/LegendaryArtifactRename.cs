@@ -45,20 +45,20 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if(!IsChildOf(from.Backpack)) from.SendMessage( "This must be in your backpack to use it." );
+			if(!IsChildOf(from.Backpack)) from.SendMessage( "Isto deve estar em sua mochila para usá-lo." );
 			else if ( this.owner != from  )
 			{
-				from.SendMessage( "This is not your branding iron." );
+				from.SendMessage( "Este não é seu ferro de marcar." );
 				return;
 			}
 			else if ( m_Charges > 0)
 			{
-				from.SendMessage( "Choose the legendary artefact you wish to brand." );
+				from.SendMessage( "Escolha o artefato lendário que deseja marcar." );
 				from.Target = new InternalTarget( this );
 			}
 			else
 			{
-				from.SendMessage( "That brand is out of uses." );
+				from.SendMessage( "Esta marca está sem usos." );
 				this.Delete();
 			}
 		}
@@ -86,16 +86,16 @@ namespace Server.Items
 				else if ( targeted is ILevelable )
 				{
 					m_engtarg = (Item)targeted;
-					if(!m_engtarg.IsChildOf(from.Backpack)) from.SendMessage( "This must be in your backpack to change its name." );
+					if(!m_engtarg.IsChildOf(from.Backpack)) from.SendMessage( "Isto deve estar em sua mochila para mudar seu nome." );
 					else
 					{
-						from.SendMessage( "What name do you want to brand the legendary artefact?" );
+						from.SendMessage( "Qual nome você quer marcar no artefato lendário?" );
 						m_LegendaryArtifactRename.Charges -= 1 ;
 						m_LegendaryArtifactRename.InvalidateProperties();
 						from.Prompt = new RenameContPrompt( m_engtarg );
 					}
 				}
-				else from.SendMessage( "You cannot brand that." );
+				else from.SendMessage( "Você não pode marcar isso." );
 			}
 		}
 
@@ -132,7 +132,7 @@ namespace Server.Prompts
 		public override void OnResponse( Mobile from, string text )
 		{
 			m_engtarg.Name = text;
-			from.SendMessage( "You have branded the legendary artefact." );
+			from.SendMessage( "Você marcou o artefato lendário." );
 		}
 	}
 }

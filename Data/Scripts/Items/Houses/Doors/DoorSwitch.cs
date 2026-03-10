@@ -41,7 +41,7 @@ namespace Server.Items
 		public override void OnDoubleClick(Mobile m)
 		{
             InvalidateProperties();
-            m.SendMessage("Please target a door to add/remove or this item to open/close the doors.");
+            m.SendMessage("Por favor, selecione uma porta para adicionar/remover ou este item para abrir/fechar as portas.");
 			m.Target = new AddDoor(m_doors);
             InvalidateProperties();
 		}
@@ -95,7 +95,7 @@ namespace Server.Items
 				}
 				if (!(targ is BaseDoor))
 				{
-					from.SendMessage("That is not a door");
+					from.SendMessage("Isso não é uma porta");
 					return;
 				}
 				BaseDoor d = targ as BaseDoor;
@@ -103,12 +103,12 @@ namespace Server.Items
 				if (!door.Contains(targ1))
 				{
 					door.Add(targ1);
-					from.SendMessage("Door added!");
+					from.SendMessage("Porta adicionada!");
 				}
 				else
 				{
 					door.Remove(targ1);
-					from.SendMessage("Door removed!");
+					from.SendMessage("Porta removida!");
 				}
 			}
 		}

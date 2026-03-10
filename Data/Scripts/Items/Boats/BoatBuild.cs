@@ -47,12 +47,12 @@ namespace Server.Items
 
 			if ( boatDone > 0 )
 			{
-				list.Add( 1070722, "Drop The Materials Needed On This Parchment" );
-				list.Add( 1049644, "Need " + needWood.ToString() + " Wood, " + needCloth.ToString() + " Cloth, " + needIngot.ToString() + " Ingots" );
+				list.Add( 1070722, "Coloque os Materiais Necessários Neste Pergaminho" );
+				list.Add( 1049644, "Precisa " + needWood.ToString() + " Wood, " + needCloth.ToString() + " Cloth, " + needIngot.ToString() + " Ingots" );
 			}
 			else
 			{
-				list.Add( 1070722, "Double Click To Build" );
+				list.Add( 1070722, "Clique Duas Vezes Para Construir" );
 			}
         }
 
@@ -66,7 +66,7 @@ namespace Server.Items
 
 			if ( boatDone > 0 )
 			{
-				from.SendMessage( "You need to gather more materials before you can build this!" );
+				from.SendMessage( "Você precisa coletar mais materiais antes de poder construir isto!" );
 			}
 			else
 			{
@@ -80,11 +80,11 @@ namespace Server.Items
 
 				if ( builder < 1 )
 				{
-					from.SendMessage( "You need to be near a shipwright to build that!" );
+					from.SendMessage( "Você precisa estar perto de um construtor de navios para construir isso!" );
 				}
 				else
 				{
-					from.SendMessage( "You build yourself a small ship." );
+					from.SendMessage( "Você constrói um pequeno navio para si mesmo." );
 					from.PlaySound( 0x23D );
 					from.AddToBackpack ( new Multis.SmallBoatDeed() );
 					this.Delete();
@@ -111,7 +111,7 @@ namespace Server.Items
 					if ( iAmount > 1 ){ sEnd = "s."; }
 
 					HaveIngots = HaveIngots + iAmount;
-					from.SendMessage( "You added " + iAmount.ToString() + " ingot" + sEnd );
+					from.SendMessage( "Você adicionou " + iAmount.ToString() + " lingote" + sEnd );
 					dropped.Delete();
 					this.InvalidateProperties();
 					return true;
@@ -119,7 +119,7 @@ namespace Server.Items
 				else if ( ( dropped is BaseWoodBoard || dropped is BaseLog ) && needWood > 0 )
 				{
 					HaveWood = HaveWood + iAmount;
-					from.SendMessage( "You added " + iAmount.ToString() + " wood." );
+					from.SendMessage( "Você adicionou " + iAmount.ToString() + " madeira." );
 					dropped.Delete();
 					this.InvalidateProperties();
 					return true;
@@ -127,7 +127,7 @@ namespace Server.Items
 				else if ( dropped is BaseFabric && needCloth > 0 )
 				{
 					HaveCloth = HaveCloth + iAmount;
-					from.SendMessage( "You added " + iAmount.ToString() + " cloth." );
+					from.SendMessage( "Você adicionou " + iAmount.ToString() + " tecido." );
 					dropped.Delete();
 					this.InvalidateProperties();
 					return true;

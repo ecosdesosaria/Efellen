@@ -24,16 +24,16 @@ namespace Server.Items
 
 				switch( Utility.RandomMinMax( 0, 4 ) )
 				{
-					case 0: Item jerky = new FoodBeefJerky(); jerky.Amount = Utility.RandomMinMax(2,6); from.AddToBackpack( jerky ); from.SendMessage( "You take some beef jerky." ); break;
-					case 1: Item bread = new BakedBread(); bread.Amount = Utility.RandomMinMax(2,6); from.AddToBackpack( bread ); from.SendMessage( "You take some bread." ); break;
-					case 2: Item toad = new FoodToadStool(); toad.Amount = Utility.RandomMinMax(2,6); from.AddToBackpack( toad ); from.SendMessage( "You take some edible toad stools." ); break;
-					case 3: Item berry = new FoodImpBerry(); berry.Amount = Utility.RandomMinMax(2,6); from.AddToBackpack( berry ); from.SendMessage( "You take some imp berries." ); break;
-					case 4: Item FoodPotato = new FoodPotato(); FoodPotato.Amount = Utility.RandomMinMax(2,6);  from.AddToBackpack( FoodPotato ); from.SendMessage( "You take some FoodPotatoes." ); break;
+					case 0: Item jerky = new FoodBeefJerky(); jerky.Amount = Utility.RandomMinMax(2,6); from.AddToBackpack( jerky ); from.SendMessage( "Você pega um pouco de carne seca." ); break;
+					case 1: Item bread = new BakedBread(); bread.Amount = Utility.RandomMinMax(2,6); from.AddToBackpack( bread ); from.SendMessage( "Você pega um pouco de pão." ); break;
+					case 2: Item toad = new FoodToadStool(); toad.Amount = Utility.RandomMinMax(2,6); from.AddToBackpack( toad ); from.SendMessage( "Você pega alguns cogumelos comestíveis." ); break;
+					case 3: Item berry = new FoodImpBerry(); berry.Amount = Utility.RandomMinMax(2,6); from.AddToBackpack( berry ); from.SendMessage( "Você pega algumas frutinhas de diablito." ); break;
+					case 4: Item FoodPotato = new FoodPotato(); FoodPotato.Amount = Utility.RandomMinMax(2,6);  from.AddToBackpack( FoodPotato ); from.SendMessage( "Você pega algumas batatas." ); break;
 				}
 			}
 			else if ( from.InRange( this.GetWorldLocation(), 4 ) )
 			{
-				from.SendMessage( "You should wait a minute to see if there is food in here." ); 
+				from.SendMessage( "Você deve esperar um minuto para ver se há comida aqui." );
 			}
 			else
 			{

@@ -147,7 +147,7 @@ namespace Knives.TownHouses
         {
             TownHouseSign sign = new TownHouseSign();
             Owner.AddToBackpack(sign);
-            Owner.SendMessage("A new sign is now in your backpack.  It will move on it's own during setup, but if you don't complete setup you may want to delete it.");
+            Owner.SendMessage("Uma nova placa está agora em sua mochila. Ela se moverá sozinha durante a configuração, mas se você não completar a configuração, talvez queira deletá-la.");
 
             NewGump();
 
