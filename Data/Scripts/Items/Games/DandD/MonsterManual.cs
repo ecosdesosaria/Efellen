@@ -28,7 +28,7 @@ namespace Server.Items
 
         public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "What creature do you want to look up?" );
+			from.SendMessage( "Qual criatura você quer pesquisar?" );
 			Target t = new BookTarget( this );
 			from.Target = t;
 			from.SendSound( 0x55 );
@@ -47,18 +47,18 @@ namespace Server.Items
 			{
 				if ( targeted is PlayerMobile )
 				{
-					from.SendMessage( "You would probably need the Players Handbook for that." );
+					from.SendMessage( "Você provavelmente precisaria do Manual do Jogador para isso." );
 				}
 				else if ( targeted is HenchmanMonster || targeted is HenchmanWizard || targeted is HenchmanFighter || targeted is HenchmanArcher )
 				{
-					from.SendMessage( "These henchman wouldn't want the scrutiny." );
+					from.SendMessage( "Estes ajudantes não iriam querer o escrutínio." );
 				}
 				else if (	targeted is BaseVendor || targeted is BasePerson || targeted is Citizens || targeted is PackBeast || 
 							targeted is FrankenPorter || targeted is FrankenFighter || targeted is HenchmanFamiliar || targeted is AerialServant || 
 							targeted is GolemPorter || targeted is Robot || targeted is GolemFighter || targeted is HenchmanArcher || 
 							targeted is HenchmanMonster || targeted is HenchmanFighter || targeted is HenchmanWizard )
 				{
-					from.SendMessage( "They don't seem to be in this book." );
+					from.SendMessage( "Eles não parecem estar neste livro." );
 				}
 				else if ( targeted is Mobile )
 				{
@@ -66,7 +66,7 @@ namespace Server.Items
 
 					if ( Server.Items.PlayersHandbook.IsPeople( m ) )
 					{
-						from.SendMessage( "You would probably need the Players Handbook for that." );
+						from.SendMessage( "Você provavelmente precisaria do Manual do Jogador para isso." );
 					}
 					else if ( m is BaseCreature )
 					{
@@ -77,12 +77,12 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage( "That doesn't seem to be in this book." );
+						from.SendMessage( "Isso não parece estar neste livro." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "That doesn't seem to be in this book." );
+					from.SendMessage( "Isso não parece estar neste livro." );
 				}
 			}
 		}

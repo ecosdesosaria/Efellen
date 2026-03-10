@@ -41,15 +41,15 @@ namespace Server.Items
 
 			if ( Parent != from )
 			{
-				from.SendMessage( "You must be holding the staff to call dragons." );
+				from.SendMessage( "Você precisa estar segurando o cajado para invocar dragões." );
 			}
 			else if ( CanUseMagic > 0 )
 			{
 				TimeSpan t = TimeSpan.FromMinutes( CanUseMagic );
-				string wait = string.Format("{0:D1} hours and {1:D2} minutes", 
+				string wait = string.Format("{0:D1} horas e {1:D2} minutos", 
 								t.Hours, 
 								t.Minutes);
-				from.SendMessage( "You can use the magic in " + wait + "." );
+				from.SendMessage( "Você pode usar a magia em " + wait + "." );
 			}
 			else
 			{

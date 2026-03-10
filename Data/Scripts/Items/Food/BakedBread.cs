@@ -31,12 +31,12 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isto deve estar em sua mochila para usar." );
 				return;
 			}
 			else if ( Server.Items.BaseRace.BloodDrinker( from.RaceID ) || Server.Items.BaseRace.BrainEater( from.RaceID ) )
 			{
-				from.SendMessage( "This does not look very good to you." );
+				from.SendMessage( "Isto não parece muito bom para você." );
 				return;
 			}
 			else
@@ -87,7 +87,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "You are simply too full to eat any more!" );
+					from.SendMessage( "Você está simplesmente muito cheio para comer mais!" );
 					from.Hunger = 20;
 				}
 			}

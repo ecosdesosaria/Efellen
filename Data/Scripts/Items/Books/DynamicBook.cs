@@ -234,7 +234,7 @@ namespace Server.Items
 			}
 			else
 			{
-				e.SendMessage( "That is too far away to read." );
+				e.SendMessage( "Isso está muito longe para ler." );
 			}
 		}
 

@@ -111,7 +111,7 @@ namespace Server.Items
 		    {
 		        eable.Free();
 		    }
-		    attacker.SendMessage("Your regal Sword unleashes an explosion!");
+		    attacker.SendMessage("Sua espada régia desencadeia uma explosão!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x09d3);
 		}
 
@@ -119,7 +119,7 @@ namespace Server.Items
         {
             if (from.Karma > 0)
             {
-                from.SendMessage("This vile blade burns your hands and refuses to be wielded by you!");
+                from.SendMessage("Esta lâmina vil queima suas mãos e se recusa a ser empunhada por você!");
                 return false;
             }
 

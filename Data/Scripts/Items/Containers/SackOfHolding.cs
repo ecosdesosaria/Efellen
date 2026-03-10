@@ -51,7 +51,7 @@ namespace Server.Items
         {
 			if ( dropped is Container )
 			{
-                from.SendMessage("You cannot store containers in this bag.");
+                from.SendMessage("Você não pode guardar recipientes nesta bolsa.");
                 return false;
 			}
 
@@ -62,7 +62,7 @@ namespace Server.Items
         {
 			if ( dropped is Container )
 			{
-                from.SendMessage("You cannot store containers in this bag.");
+                from.SendMessage("Você não pode guardar recipientes nesta bolsa.");
                 return false;
 			}
 
@@ -77,7 +77,7 @@ namespace Server.Items
 				from.SendSound( 0x4A );
 
 				int hold = bag.MaxItems;
-				string sText = "This magical bag can hold almost an infinite amount of weight, but it can only hold " + hold + " separate items. Items stacked onto each other count as a single item in this regard. Other containers cannot be placed within the bag. Now that you have read this information about the bag, you can now open the bag as you normally would. To read this information in the future, single click the bag and choose the Look At menu option. Placing items in this bag can be tricky, so be aware of these issues. Items placed into the bag will only be magically affected after being placed within it. This means if your main backpack can only hold 500 stones, and this bag of holding is within your main backpack, then placing 600 stones of weight into this magical bag will not work. You would instead need to place a lesser amount of weight into the bag so the bag can magically reduce that weight. Then you can place a few more items within it. Another method of placing large piles of weight (iron ore for example) into the bag, is to set the bag on the ground and then place items in it.";
+				string sText = "Esta bolsa mágica pode conter quase uma quantidade infinita de peso, mas só pode conter " + hold + " itens separados. Itens empilhados uns sobre os outros contam como um único item nesse aspecto. Outros recipientes não podem ser colocados dentro da bolsa. Agora que você leu esta informação sobre a bolsa, você pode abrir a bolsa como normalmente faria. Para ler esta informação no futuro, clique uma vez na bolsa e escolha a opção de menu Examinar. Colocar itens nesta bolsa pode ser complicado, então esteja ciente destes problemas. Itens colocados na bolsa só serão magicamente afetados depois de serem colocados dentro dela. Isso significa que se sua mochila principal só pode conter 500 stones, e esta bolsa de armazenamento está dentro de sua mochila principal, então colocar 600 stones de peso nesta bolsa mágica não funcionará. Em vez disso, você precisaria colocar uma quantidade menor de peso na bolsa para que a bolsa possa magicamente reduzir esse peso. Então você pode colocar mais alguns itens dentro dela. Outro método de colocar grandes pilhas de peso (minério de ferro, por exemplo) na bolsa, é colocar a bolsa no chão e então colocar itens nela.";
 
 				this.Closable=true;
 				this.Disposable=true;

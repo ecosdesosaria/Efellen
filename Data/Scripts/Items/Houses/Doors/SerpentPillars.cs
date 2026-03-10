@@ -46,7 +46,7 @@ namespace Server.Items
 					Effects.SendLocationEffect( blast, m.Map, 0x2A4E, 30, 10, 0, 0 );
 					m.PlaySound( 0x029 );
 					m.Hits = 1;
-					m.SendMessage( "Not knowing the secret of the Serpent Pillars, you suffer Poseidon's wrath." );
+					m.SendMessage( "Sem conhecer o segredo de Serpent Pillars, você sofre a ira de Poseidon." );
 				}
 			}
 			return true;

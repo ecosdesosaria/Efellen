@@ -191,7 +191,7 @@ namespace Server.Multis.Deeds
 					}
 					case HousePlacementResult.NoSurface:
 					{
-						from.SendMessage( "The house could not be created here.  Part of the foundation would not be on any surface." );
+						from.SendMessage( "A casa não pôde ser criada aqui. Parte da fundação não estaria sobre nenhuma superfície." );
 						break;
 					}
 					case HousePlacementResult.BadRegion:

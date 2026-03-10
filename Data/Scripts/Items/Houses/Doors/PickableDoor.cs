@@ -91,7 +91,7 @@ namespace Server.Items
 			if ( DateTime.Now > m_Unlocked + m_RelockTime )
 			{
 				Locked = true;
-				from.SendMessage( "This door is locked." );
+				from.SendMessage( "Esta porta está trancada." );
 				return;
 			}
 			if ( m_Message != null && m_Message.Length > 0 )

@@ -34,20 +34,20 @@ namespace Server.Items
 
 			if ( !IsEnabled() )
 			{
-                from.SendMessage("The crate doesn't seem to open as the wood is warped.");
+				from.SendMessage("A caixa não parece abrir, pois a madeira está empenada.");
 			}
 			else if ( !Movable || IsSecure )
 			{
-                from.SendMessage("The crate cannot be locked down if you want to open it.");
+				from.SendMessage("A caixa não pode ser fixada se você quiser abri-la.");
 			}
 			else if ( from == owner && ( from.Region is HouseRegion || reg.IsPartOf( "the Bank" ) ) )
 			{
 				Open( from );
 			}
 			else
-            {
-                from.SendMessage("Only the crate owner can open this, and while in a home or bank.");
-            }
+			{
+				from.SendMessage("Apenas o dono da caixa pode abrir isto, e enquanto estiver em uma casa ou banco.");
+			}
 		}
 
 		public override bool OnDragDropInto( Mobile from, Item dropped, Point3D p )
@@ -56,12 +56,12 @@ namespace Server.Items
 
 			if ( !IsEnabled() )
 			{
-                from.SendMessage("The crate doesn't seem to open as the wood is warped.");
+                from.SendMessage("A caixa não parece abrir, pois a madeira está empenada.");
                 return false;
 			}
 			else if ( !Movable || IsSecure )
 			{
-                from.SendMessage("The crate cannot be locked down if you want to open it.");
+                from.SendMessage("A caixa não pode ser fixada se você quiser abri-la.");
 			}
 			else if ( from == owner && ( from.Region is HouseRegion || reg.IsPartOf( "the Bank" ) ) )
 			{
@@ -69,7 +69,7 @@ namespace Server.Items
 			}
 			else
             {
-                from.SendMessage("Only the crate owner can open this, and while in a home or bank.");
+                from.SendMessage("Apenas o dono da caixa pode abrir isto, e enquanto estiver em uma casa ou banco.");
                 return false;
             }
 
@@ -82,12 +82,12 @@ namespace Server.Items
 
 			if ( !IsEnabled() )
 			{
-                from.SendMessage("The crate doesn't seem to open as the wood is warped.");
+                from.SendMessage("A caixa não parece abrir, pois a madeira está empenada.");
                 return false;
 			}
 			else if ( !Movable )
 			{
-                from.SendMessage("The crate cannot be locked down if you want to open it.");
+                from.SendMessage("A caixa não pode ser fixada se você quiser abri-la.");
 			}
 			else if ( from == owner && ( from.Region is HouseRegion || reg.IsPartOf( "the Bank" ) ) )
 			{
@@ -95,7 +95,7 @@ namespace Server.Items
 			}
 			else
             {
-                from.SendMessage("Only the crate owner can open this, and while in a home or bank.");
+                from.SendMessage("Apenas o dono da caixa pode abrir isto, e enquanto estiver em uma casa ou banco.");
                 return false;
             }
 
@@ -105,7 +105,7 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			if ( owner != null ){ list.Add( 1070722, "Belongs to " + owner.Name + "" ); }
+			if ( owner != null ){ list.Add( 1070722, "Pertence a " + owner.Name + "" ); }
         }
 
 		public override bool OnDragLift( Mobile from )

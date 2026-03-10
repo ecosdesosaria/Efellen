@@ -79,7 +79,7 @@ namespace Server.Mobiles
 				m.FixedParticles( 0x374A, 10, 15, 5013, 0x496, 0, EffectLayer.Waist );
 				m.PlaySound( 0x231 );
 
-				m.SendMessage( "You feel the life drain out of you!" );
+				m.SendMessage( "Você sente a vida drenar de você!" );
 
 				int toDrain = Utility.RandomMinMax( 40, 70 );
 

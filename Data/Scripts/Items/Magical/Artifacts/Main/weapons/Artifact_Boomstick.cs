@@ -28,7 +28,7 @@ namespace Server.Items
 		{
 			if ( Parent != from )
 			{
-				from.SendMessage( "You must be holding the staff to unleash an energy bolt." );
+				from.SendMessage( "Você precisa estar segurando o cajado para liberar um raio de energia." );
 			}
 			else
 			{

@@ -36,7 +36,7 @@ namespace Server.Items
 			}
 			else if( from.InRange( this.GetWorldLocation(), 1 ) ) 
 		        {
-				from.SendMessage( "What do you wish to dye?" ); 
+				from.SendMessage( "O que você deseja tingir?" );
            			from.Target = new BlazeDyeTarget( this );
 		        } 
 		        else 
@@ -75,30 +75,28 @@ namespace Server.Items
          		protected override void OnTarget( Mobile from, object target ) 
          		{ 
 
-            			if ( target == from ) 
-               				from.SendMessage( "This can only be used on pets." );
-
-				else if ( target is PlayerMobile )
-					from.SendMessage( "You cannot dye them." );
-
-				else if ( target is Item )
-					from.SendMessage( "You cannot dye that." );
+					if ( target == from ) 
+						from.SendMessage( "Isso só pode ser usado em animais de estimação." );
+					else if ( target is PlayerMobile )
+						from.SendMessage( "Você não pode tingir eles." );
+					else if ( target is Item )
+						from.SendMessage( "Você não pode tingir isso." );
 
           			else if ( target is BaseCreature ) 
           			{ 
           				BaseCreature c = (BaseCreature)target;	
 					if ( c.BodyValue == 400 || c.BodyValue == 401 && c.Controlled == false )
 					{
-						from.SendMessage( "You cannot dye them." );
+						from.SendMessage( "Você não pode tingir eles." );
 					}
 					else if ( c.ControlMaster != from && c.Controlled == false )
 					{
-						from.SendMessage( "This is not your pet." );
+						from.SendMessage( "Esse não é seu animal de estimação." );
 					}
 					else if ( c.Controlled == true && c.ControlMaster == from)
 					{
 						c.Hue = 1161;
-						from.SendMessage( 53, "Your pet has now been dyed." );
+						from.SendMessage( 53, "Seu animal de estimação foi tingido." );
 						from.PlaySound( 0x23E );
 						m_Powder.Delete();
 					}

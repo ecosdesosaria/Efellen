@@ -77,7 +77,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "Which horse do you want to use this on?" );
+				from.SendMessage( "Em qual cavalo você quer usar isto?" );
 				t = new HorseTarget( this );
 				from.Target = t;
 			}
@@ -134,12 +134,12 @@ namespace Server.Items
 						}
 						else
 						{
-							from.SendMessage( "This armor is only for horses you own." );
+							from.SendMessage( "Esta armadura é apenas para cavalos que você possui." );
 						}
 					}
 					else
 					{
-						from.SendMessage( "This armor is only for horses you own." );
+						from.SendMessage( "Esta armadura é apenas para cavalos que você possui." );
 					}
 				}
 			}

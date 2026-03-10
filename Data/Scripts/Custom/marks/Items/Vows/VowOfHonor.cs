@@ -44,23 +44,23 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
 
             if (from.Backpack == null || !IsChildOf(from.Backpack))
             {
-                from.SendMessage("The Vow must be in your backpack to use.");
+                from.SendMessage("O Juramento deve estar em sua mochila para ser usado.");
                 return;
             }
 
             from.SendGump(new VowOfHonorGump(from, this));
         }
 
-        public override string DefaultDescription{ get{ return "A Vow represents a commitment to slay fearsome foes that dwell in dungeons. Once its completed, bring it to the one that bestowed it upon you. Say 'rewards' to that person in order to see what gifts can be bestowed upon you by completing them."; } }
+        public override string DefaultDescription{ get{ return "Um Juramento representa o compromisso de abater inimigos temíveis que habitam em masmorras. Quando concluído, leve-o até quem o concedeu a você. Diga 'rewards' a essa pessoa para ver quais presentes podem ser concedidos a você ao completá-los."; } }
 
         public override void GetProperties(ObjectPropertyList list)
         {
             base.GetProperties(list);
 
-            list.Add("Belongs to {0}", m_OwnerName);
-            list.Add("A vow to slay {0} deadly enemies", m_Required);
-            list.Add("Progress: {0}/{1}", m_Current, m_Required);
-            list.Add("Reward so far: {0} Marks", m_Reward);
+            list.Add("Pertence a {0}", m_OwnerName);
+            list.Add("Um juramento de abater {0} inimigos mortais", m_Required);
+            list.Add("Progresso: {0}/{1}", m_Current, m_Required);
+            list.Add("Recompensa até agora: {0} Marcas", m_Reward);
         }
 
         public void AddTrophy(Mobile from)
@@ -75,10 +75,10 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
             m_Current++;
             m_Reward += Utility.RandomMinMax((int)(marks * 0.6), (int)(marks * 1.2)) < 1 ? 1 : Utility.RandomMinMax((int)(marks * 0.6), (int)(marks * 1.2));
             InvalidateProperties();
-            from.SendMessage("You add a trophy to your Vow of Honor.");
+            from.SendMessage("Você adiciona um troféu ao seu Juramento de Honra.");
             if (m_Current >= m_Required)
             {
-                from.SendMessage("Your vow of honor is complete!");
+                from.SendMessage("Seu juramento de honra está completo!");
             }
         }
 
@@ -111,22 +111,22 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
         {
             if (target == null || !(target is DefenderOfRealm))
             {
-                from.SendMessage("You can only complete your Vow with a Defender of the Realm.");
+                from.SendMessage("Você só pode completar seu Juramento com um Defensor do Reino.");
                 return false;
             }
             if (from.Name != m_OwnerName)
             {
-                from.SendMessage("This vow does not belong to you!");
+                from.SendMessage("Este juramento não pertence a você!");
                 return false;
             }
             if (m_Current < m_Required)
             {
-                from.SendMessage("Your vow is not yet complete. You need {0} more trophies.", m_Required - m_Current);
+                from.SendMessage("Seu juramento não está completo. Você precisa de {0} mais troféus.", m_Required - m_Current);
                 return false;
             }
             if (from.Backpack == null || from.Backpack.Items.Count >= from.Backpack.MaxItems)
             {
-                from.SendMessage("You do not have enough space in your backpack to receive the rewards.");
+                from.SendMessage("Você não tem espaço suficiente em seu inventário para receber as recompensas.");
                 return false;
             }
             Bag rewardBag = new Bag();
@@ -135,7 +135,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
             VowRewardHelper.GenerateRewards(from, m_Reward, rewardBag,VowType.Honor);
             rewardBag.DropItem(new MarksOfHonor(m_Reward));
             from.AddToBackpack(rewardBag);
-            from.SendMessage("You have completed your Vow of Honor and received a bag containing {0} Marks of Honor and additional rewards!", m_Reward);
+            from.SendMessage("Você completou seu Juramento de Honra e recebeu uma bolsa contendo {0} Marcas de Honra e recompensas adicionais!", m_Reward);
             Effects.PlaySound(from.Location, from.Map, 0x243);
             Misc.Titles.AwardKarma( from, 400, true );
             this.Delete();
@@ -161,28 +161,28 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
             Item item = targeted as Item;
             if (item == null)
             {
-                from.SendMessage("That is not a valid trophy. Only items acquired from fearsome foes in deep dungeons can be added to it.");
+                from.SendMessage("Esse não é um troféu válido. Apenas itens adquiridos de inimigos temíveis em masmorras profundas podem ser adicionados a ele.");
                 return;
             }
             if (from.Name != m_Vow.OwnerName)
             {
-                from.SendMessage("This vow does not belong to you!");
+                from.SendMessage("Este juramento não pertence a você!");
                 return;
             }
             if (!(item is SummonItems))
             {
-                from.SendMessage("That item cannot be added to your Vow. Only items acquired from fearsome foes in deep dungeons can be added to it.");
+                from.SendMessage("Esse item não pode ser adicionado ao seu Juramento. Apenas itens adquiridos de inimigos temíveis em masmorras profundas podem ser adicionados a ele.");
                 return;
             }
             SummonItems summonItem = (SummonItems)item;
             if (summonItem.Owner == null)
             {
-                from.SendMessage("This trophy has no owner and cannot be added to your vow.");
+                from.SendMessage("Este troféu não tem dono e não pode ser adicionado ao seu juramento.");
                 return;
             }
             if (summonItem.Owner.Name != m_Vow.OwnerName)
             {
-                from.SendMessage("This trophy was not seized by you!");
+                from.SendMessage("Este troféu não foi capturado por você!");
                 return;
             }
             item.Delete();

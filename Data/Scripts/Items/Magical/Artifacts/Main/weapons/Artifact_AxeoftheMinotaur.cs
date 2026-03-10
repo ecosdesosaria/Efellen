@@ -45,7 +45,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker,1);
 
-			attacker.SendMessage(33, "The Axe of the Minotaur shatters your enemy!");
+			attacker.SendMessage(33, "O Machado do Minotauro estilhaça seu inimigo!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

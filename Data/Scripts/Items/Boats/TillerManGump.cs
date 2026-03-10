@@ -55,8 +55,8 @@ namespace Server.Gumps
 				
 			if( !m_Boat.Contains( m_From ) )
 			{
-				if ( BaseBoat.isCarpet( m_Boat ) ){ m_From.SendMessage( "You have to be on your carpet to do that!" ); }
-				else { m_From.SendMessage( "You have to be on the boat to do that!" ); }
+				if ( BaseBoat.isCarpet( m_Boat ) ){ m_From.SendMessage( "Você precisa estar no seu tapete para fazer isso!" ); }
+				else { m_From.SendMessage( "Você precisa estar no barco para fazer isso!" ); }
 				m_From.CloseGump( typeof( TillerManGump ) );
 				return;
 			}

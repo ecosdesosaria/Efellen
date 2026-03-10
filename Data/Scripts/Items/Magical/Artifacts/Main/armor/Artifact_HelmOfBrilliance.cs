@@ -30,7 +30,7 @@ namespace Server.Items
 		{
 			if ( Parent != from )
 			{
-				from.SendMessage( "You must be wearing the helm to unleash a fireball." );
+				from.SendMessage( "Você precisa estar usando o elmo para lançar uma bola de fogo." );
 			}
 			else
 			{

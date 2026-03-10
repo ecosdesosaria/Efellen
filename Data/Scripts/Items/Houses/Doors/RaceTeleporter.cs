@@ -91,7 +91,7 @@ namespace Server.Items
 			}
 			else if ( this.Name == "furnace" && m is PlayerMobile && Server.Items.BaseRace.IsEvilDemonCreature( m ) && !PlayerSettings.GetDiscovered( m, "the Serpent Island" ) )
 			{
-				m.SendMessage( "The guards feel it is unsafe to leave the city!" );
+				m.SendMessage( "Os guardas acham que não é seguro deixar a cidade!" );
 			}
 			else if ( this.Name == "dead" && m is PlayerMobile && Server.Items.BaseRace.IsEvilDeadCreature( m ) && m.RaceHomeLand == 2 )
 			{
@@ -102,7 +102,7 @@ namespace Server.Items
 			}
 			else if ( this.Name == "dead" )
 			{
-				m.SendMessage( "The doors seem to be rusted shut!" );
+				m.SendMessage( "As portas parecem estar emperradas de ferrugem!" );
 			}
 			else if ( this.Name == "umbra" && m is PlayerMobile && Server.Items.BaseRace.IsEvilDeadCreature( m ) && m.RaceHomeLand == 1 )
 			{
@@ -115,7 +115,7 @@ namespace Server.Items
 			}
 			else if ( this.Name == "umbra" )
 			{
-				m.SendMessage( "The doors seem to be rusted shut!" );
+				m.SendMessage( "As portas parecem estar emperradas de ferrugem!" );
 			}
 
 			if ( allow )

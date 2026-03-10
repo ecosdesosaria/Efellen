@@ -32,7 +32,7 @@ namespace Server.Items
 		{
 			if ( Parent != from )
 			{
-				from.SendMessage( "You must be holding the hammer to unleash a lightning bolt." );
+				from.SendMessage( "Você precisa estar segurando o martelo para liberar um raio." );
 			}
 			else
 			{

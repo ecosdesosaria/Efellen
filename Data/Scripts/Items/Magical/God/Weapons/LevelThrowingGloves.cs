@@ -123,7 +123,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to change the weapon type." );
+				from.SendMessage( "Isto deve estar em sua mochila para mudar o tipo de arma." );
 				return;
 			}
 			else
@@ -133,7 +133,7 @@ namespace Server.Items
 				else if ( GloveType == "Knives" ){ GloveType = "Darts"; }
 				else if ( GloveType == "Darts" ){ GloveType = "Stars"; }
 				else { GloveType = "Stones"; }
-				from.SendMessage(68, "You have changed the gloves to throw " + GloveType + ".");
+				from.SendMessage(68, "Você mudou as luvas para arremessar " + GloveType + ".");
 				this.InvalidateProperties();
 			}
 		}
@@ -141,8 +141,8 @@ namespace Server.Items
 		public override void AddNameProperties( ObjectPropertyList list )
 		{
 			base.AddNameProperties( list );
-			list.Add( 1049644, "Double click to change type from " + GloveType );
-			list.Add( 1070722, "Cannot be used with other weapons" );
+			list.Add( 1049644, "Clique duas vezes para mudar o tipo de " + GloveType );
+			list.Add( 1070722, "Não pode ser usado com outras armas" );
 		}
 
 		public LevelThrowingGloves( Serial serial ) : base( serial )

@@ -47,7 +47,7 @@ namespace Server.Items
                 return;
 
             ApplyArtifactBuff(attacker);
-            attacker.SendMessage(33, "The fallen fey empowers you!");
+           attacker.SendMessage(33, "A fada caída te fortalece!");
             attacker.PlaySound(0x1E9);
             m_NextArtifactBuff = DateTime.UtcNow + TimeSpan.FromMinutes(5.0);
         }

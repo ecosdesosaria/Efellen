@@ -88,8 +88,8 @@ namespace Server.Custom.DefenderOfTheRealm
                     {
                         existing.Amount += amount;
 
-                        string msg = "You have gained " + amount + " mark" + (amount > 1 ? "s" : "") +
-                                     " of the " + str + ".";
+                        string msg = "Você ganhou " + amount + " marca" + (amount > 1 ? "s" : "") +
+                                     " do " + str + ".";
                         recipient.SendMessage(msg);
 
                         marks.Delete();
@@ -98,15 +98,15 @@ namespace Server.Custom.DefenderOfTheRealm
                     {
                         pack.DropItem(marks);
 
-                        string msg = "You have received " + amount + " mark" +
-                                     (amount > 1 ? "s" : "") + " of the " + str + ".";
+                        string msg = "Você recebeu " + amount + " marca" +
+                                     (amount > 1 ? "s" : "") + " do " + str + ".";
                         recipient.SendMessage(msg);
                     }
                 }
                 else
                 {
                     marks.MoveToWorld(recipient.Location, recipient.Map);
-                    recipient.SendMessage("Your marks of the " + str + " have been placed at your feet.");
+                    recipient.SendMessage("Suas marcas do " + str + " foram colocadas em seus pés.");
                 }
             }
             catch (Exception){}

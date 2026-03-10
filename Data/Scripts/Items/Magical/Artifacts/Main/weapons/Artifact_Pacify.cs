@@ -38,7 +38,7 @@ namespace Server.Items
                 if (defender != null && defender.Alive && !defender.Paralyzed)
                 {
                     defender.Paralyze(TimeSpan.FromSeconds(9));
-                    attacker.SendMessage("Your blow immobilizes your foe!");
+                    attacker.SendMessage("Seu golpe imobiliza seu inimigo!");
                     m_NextArtifactAttackAllowed = DateTime.Now + TimeSpan.FromSeconds(90);
                 }
             }

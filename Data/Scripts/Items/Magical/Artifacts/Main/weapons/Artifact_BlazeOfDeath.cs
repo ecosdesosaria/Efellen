@@ -45,7 +45,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker,4);
 
-			attacker.SendMessage(33, "The Blaze of death sets your enemy on fire!");
+			attacker.SendMessage(33, "A Chama da morte incendeia seu inimigo!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

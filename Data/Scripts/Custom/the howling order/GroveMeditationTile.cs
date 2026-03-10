@@ -13,29 +13,29 @@ namespace Server.Custom.Grove
 		
 		private static readonly string[] m_OneStar = new string[]
 		{
-			"The beast stares into your soul and you find kinship with it.",
-			"A faint howl echoes in your mind as the wolf spirit acknowledges your presence.",
-			"The spectral wolf circles you once, and you feel a primal connection stirring.",
-			"Your heartbeat synchronizes with the wolf's breathing, if only for a moment.",
-			"The spirit's eyes meet yours, and you sense the beginning of understanding."
+			"A besta encara sua alma e você encontra parentesco com ela.",
+			"Um uivo fraco ecoa em sua mente enquanto o espírito do lobo reconhece sua presença.",
+			"O lobo espectral circula você uma vez, e você sente uma conexão primal se agitando.",
+			"Sua batida cardíaca sincroniza com a respiração do lobo, ainda que por um momento.",
+			"Os olhos do espírito encontram os seus, e você pressente o início da compreensão."
 		};
-		
+
 		private static readonly string[] m_TwoStar = new string[]
 		{
-			"The wolf eagerly licks its paw, staring at you and snarling, and you feel its hunger.",
-			"The spirit bounds toward you playfully, and you understand the joy of the hunt.",
-			"You feel the wolf's memories of moonlit runs through ancient forests flood your mind.",
-			"The creature's tail wags as it recognizes a kindred soul, and you share in its excitement.",
-			"A growl reverberates through your chest, not threatening but welcoming, as predator accepts predator."
+			"O lobo lambe a pata avidamente, encarando você e rosnando, e você sente sua fome.",
+			"O espírito corre em sua direção brincalhão, e você entende a alegria da caçada.",
+			"Você sente as memórias do lobo de corridas noturnas através de florestas antigas inundarem sua mente.",
+			"O rabo da criatura abana ao reconhecer uma alma afim, e você compartilha sua empolgação.",
+			"Um rosnado reverbera em seu peito, não ameaçador, mas acolhedor, enquanto predador aceita predador."
 		};
-		
+
 		private static readonly string[] m_ThreeStar = new string[]
 		{
-			"The spirit nods towards you in understanding, and you feel as if you both were one.",
-			"Your consciousness merges with the wolf's for a heartbeat, and you run together across ethereal plains.",
-			"The boundary between human and beast dissolves, and ancient wisdom flows between you freely.",
-			"The wolf spirit bows its head to you as an equal, and you know the secrets of the wild.",
-			"Time stands still as your souls intertwine, hunter and hunted, predator and pack, unified in purpose."
+			"O espírito acena com a cabeça em compreensão, e você sente como se ambos fossem um.",
+			"Sua consciência se funde com a do lobo por um instante, e vocês correm juntos por planícies etéreas.",
+			"A fronteira entre humano e besta se dissolve, e sabedoria antiga flui entre vocês livremente.",
+			"O espírito do lobo inclina a cabeça para você como igual, e você conhece os segredos da natureza.",
+			"O tempo para enquanto suas almas se entrelaçam, caçador e caçado, predador e alcateia, unificados em propósito."
 		};
 		
 		[Constructable]
@@ -54,11 +54,11 @@ namespace Server.Custom.Grove
 			TimeSpan remaining;
 			if (IsOnCooldown(from, out remaining))
 			{
-				from.SendMessage(string.Format("You must wait {0} before communing with the spirits again.", FormatTimeSpan(remaining)));
+				from.SendMessage(string.Format("Você deve aguardar {0} antes de se comunicar com os espíritos novamente.", FormatTimeSpan(remaining)));
 				return;
 			}
 			
-			from.SendMessage("You meditate on the nature of wolf and man.");
+			from.SendMessage("Você medita sobre a natureza do lobo e do homem.");
 			
 			int successes = CountSuccesses(from);
 			
@@ -69,8 +69,8 @@ namespace Server.Custom.Grove
 					HeartOfTheWilds existingHeart = from.FindItemOnLayer(Layer.Neck) as HeartOfTheWilds;
     		        if (existingHeart == null)
 					{
-	    				from.SendMessage("The grove answers to your presence, and you find new power within you");
-						from.SendMessage("You have acquired the Heart of the Wilds");
+	    				from.SendMessage("O bosque responde à sua presença, e você encontra novo poder dentro de si");
+						from.SendMessage("Você adquiriu o Coração das Selvas");
 						HeartOfTheWilds heart = new HeartOfTheWilds(from);
 	                    from.Backpack.DropItem(heart);
 					}
@@ -85,7 +85,7 @@ namespace Server.Custom.Grove
 			}
 			else
 			{
-				from.SendMessage("You fail to commune with the spirits of the grove.");
+				from.SendMessage("Você falha em se comunicar com os espíritos do bosque.");
 			}
 			
 			SetCooldown(from, TimeSpan.FromHours(1.0));
@@ -153,13 +153,13 @@ namespace Server.Custom.Grove
 		private string FormatTimeSpan(TimeSpan ts)
 		{
 			if (ts.TotalHours >= 1)
-				return string.Format("{0:0} hour{1} and {2:0} minute{3}", 
+				return string.Format("{0:0} hora{1} e {2:0} minuto{3}", 
 					ts.Hours, ts.Hours != 1 ? "s" : "", 
 					ts.Minutes, ts.Minutes != 1 ? "s" : "");
 			else if (ts.TotalMinutes >= 1)
-				return string.Format("{0:0} minute{1}", ts.Minutes, ts.Minutes != 1 ? "s" : "");
+				return string.Format("{0:0} minuto{1}", ts.Minutes, ts.Minutes != 1 ? "s" : "");
 			else
-				return string.Format("{0:0} second{1}", ts.Seconds, ts.Seconds != 1 ? "s" : "");
+				return string.Format("{0:0} segundo{1}", ts.Seconds, ts.Seconds != 1 ? "s" : "");
 		}
 		
 		private void SpawnSpectralWolf(Mobile from)

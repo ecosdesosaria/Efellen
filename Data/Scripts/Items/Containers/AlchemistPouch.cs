@@ -28,7 +28,7 @@ namespace Server.Items
 		public override void AddNameProperties( ObjectPropertyList list )
 		{
 			base.AddNameProperties( list );
-			if ( this.Weight > 1.0 ){ list.Add( 1070722, "Single Click to Organize" ); }
+			if ( this.Weight > 1.0 ){ list.Add( 1070722, "Clique Uma Vez para Organizar" ); }
 		}
 
 		public override bool OnDragDropInto( Mobile from, Item dropped, Point3D p )
@@ -36,9 +36,9 @@ namespace Server.Items
 			if ( isAlchemy( dropped ) )
 				return base.OnDragDropInto(from, dropped, p);
 			else if ( dropped.Catalog == Catalogs.Potion )
-				from.SendMessage("That particular item cannot be used in this pouch.");
+				from.SendMessage("Esse item em particular não pode ser usado nesta bolsa.");
 			else
-				from.SendMessage("This belt pouch is for alchemy potions.");
+				from.SendMessage("Esta bolsa de cinto é para poções de alquimia.");
 
 			return false;
         }
@@ -48,9 +48,9 @@ namespace Server.Items
 			if ( isAlchemy( dropped ) )
 				return base.OnDragDrop(from, dropped);
 			else if ( dropped.Catalog == Catalogs.Potion )
-				from.SendMessage("That particular item cannot be used in this pouch.");
+				from.SendMessage("Esse item em particular não pode ser usado nesta bolsa.");
 			else
-				from.SendMessage("This belt pouch is for alchemy potions.");
+				from.SendMessage("Esta bolsa de cinto é para poções de alquimia.");
 
 			return false;
         }
@@ -65,9 +65,9 @@ namespace Server.Items
 						count++;
 
 			if ( count > 0 )
-				from.SendMessage( "You have moved " + count + " potion(s) into the alchemist's belt pouch." );
+				from.SendMessage( "Você moveu " + count + " poção(ões) para a bolsa de cinto do alquimista." );
 			else
-				from.SendMessage( "No potions were found to organize." );
+				from.SendMessage( "Nenhuma poção foi encontrada para organizar." );
 		}
 
 		private IEnumerable<Item> getAllItems( Container container )
@@ -112,7 +112,7 @@ namespace Server.Items
 				AddImage(531, 51, 10900);
 				AddButton(863, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
-				AddHtml( 15, 57, 497, 176, @"<BODY><BASEFONT Color=" + color + ">Esta bolsa é apenas para poções criadas por alquimistas, que terão seu peso greatly reduzido enquanto estiverem nesta bolsa. Aqui você pode configurar uma bolsa de cinto rápida para essas poções. Este também é o único lugar onde você pode abrir e fechar a bolsa de cinto rápida, que é uma barra que abrirá com ícones para fácil acesso às poções. Você pode configurar a barra para ser horizontal ou vertical. Você pode escolher exibir nomes abreviados next to aos ícones. Você tem que selecionar quais poções aparecerão na barra e você só pode usar efetivamente uma bolsa de cinto de alquimia por vez.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 15, 57, 497, 176, @"<BODY><BASEFONT Color=" + color + ">Esta bolsa é apenas para poções criadas por alquimistas, que terão seu peso reduzido enquanto estiverem nesta bolsa. Aqui você pode configurar uma bolsa de cinto rápida para essas poções. Este também é o único lugar onde você pode abrir e fechar a bolsa de cinto rápida, que é uma barra que abrirá com ícones para fácil acesso às poções. Você pode configurar a barra para ser horizontal ou vertical. Você pode escolher exibir nomes abreviados next to aos ícones. Você tem que selecionar quais poções aparecerão na barra e você só pode usar efetivamente uma bolsa de cinto de alquimia por vez.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
@@ -676,7 +676,7 @@ namespace Server.Items
 
 		public static void warnMe( Mobile from )
 		{
-			string text = "You don't have that potion!";
+			string text = "Você não tem essa poção!";
 
 			from.SendMessage( text );
 			from.LocalOverheadMessage(MessageType.Emote, 1150, true, text);
@@ -684,7 +684,7 @@ namespace Server.Items
 
 		public override bool OnDragLift( Mobile from )
 		{
-			from.SendMessage( "Single click this bag to organize it." );
+			from.SendMessage( "Clique único nesta bolsa para organizá-la." );
 			return base.OnDragLift( from );
 		}
 
@@ -867,7 +867,7 @@ namespace Server.Items
 				} 
 				else 
 				{
-					m_From.SendMessage( "This must be in your backpack to organize." );
+					m_From.SendMessage( "Isto deve estar em sua mochila para organizar." );
 				} 
 			} 
 		}
@@ -888,7 +888,7 @@ namespace Server.Items
 				if ( m_Pouch.IsChildOf( m_From.Backpack ) )
 					m_Pouch.OrganizePotions( m_From );
 				else
-					m_From.SendMessage( "This pouch must be in your backpack to organize potions." );
+					m_From.SendMessage( "Esta bolsa deve estar em sua mochila para organizar poções." );
 			}
 		} 
 

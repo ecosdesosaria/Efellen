@@ -42,7 +42,7 @@ namespace Server.Items
                 if (defender != null && defender.Alive && !defender.Paralyzed)
                 {
                     defender.Paralyze(TimeSpan.FromSeconds(6));
-                    attacker.SendMessage("Your blow immobilizes your foe!");
+                    attacker.SendMessage("Seu golpe imobiliza seu inimigo!");
                     m_NextParalyze = DateTime.Now + TimeSpan.FromSeconds(30);
                 }
             }

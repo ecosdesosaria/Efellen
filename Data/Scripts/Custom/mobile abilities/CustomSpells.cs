@@ -830,7 +830,7 @@ namespace Server.CustomSpells
 
             if (target.Skills[SkillName.Knightship].Value > 50 + level * 2)
             {
-                target.SendMessage("Your bravery shields you from fear!");
+                target.SendMessage("Sua bravura te protege do medo!");
                 target.FixedEffect(0x375A, 10, 20, hue != 0 ? hue : 0x47E, 0);
                 target.PlaySound(0x1F7);
                 return;
@@ -856,7 +856,7 @@ namespace Server.CustomSpells
             }
 
             target.FixedParticles(0x376A, 9, 32, 5008, hue != 0 ? hue : 0x455, 0, EffectLayer.Waist);
-            target.SendMessage("You flee in terror!");
+            target.SendMessage("Você foge aterrorizado!");
         }
     }
 
@@ -877,7 +877,7 @@ namespace Server.CustomSpells
             
             caster.FixedParticles(0x376A, 9, 32, 5030, hue != 0 ? hue : 0x47D, 0, EffectLayer.Waist);
             caster.PlaySound(0x1F7);
-            caster.SendMessage("You feel vitality flowing through your body.");
+            caster.SendMessage("Você sente vitalidade fluindo através do seu corpo.");
             
             NatureSpellHelper.ApplyVigor(caster, 3, duration, level);
         }
@@ -904,7 +904,7 @@ namespace Server.CustomSpells
             caster.FixedParticles(0x375A, 10, 15, 5018, hue != 0 ? hue : 0x47D, 0, EffectLayer.Head);
             caster.PlaySound(0x202);
             
-            caster.SendMessage("You feel healing energy flow through you.");
+            caster.SendMessage("Você sente energia de cura fluindo através do seu corpo.");
         }
     }
 
@@ -946,7 +946,7 @@ namespace Server.CustomSpells
                 m.FixedEffect(0x376A, 9, 32);
                 m.FixedParticles(0x3735, 10, 20, 5052, hue != 0 ? hue : 0x47E, 0, EffectLayer.Waist);
                 m.PlaySound(0x204);
-                m.SendMessage("Magical vines entangle you!");
+                m.SendMessage("Vinhas mágicas te enredam!");
             });
         }
     }
@@ -1048,7 +1048,7 @@ namespace Server.CustomSpells
                 m.FixedEffect(0x376A, 9, 32, hue != 0 ? hue : 0x47E, 0);
                 m.FixedParticles(0x375A, 9, 20, 5044, hue != 0 ? hue : 0x47E, 0, EffectLayer.Head);
                 m.PlaySound(0x204);
-                m.SendMessage("You fall into a magical slumber!");
+                m.SendMessage("Você cai em um sono mágico!");
             });
         }
     }
@@ -1176,7 +1176,7 @@ namespace Server.CustomSpells
             caster.FixedEffect(0x3709, 10, 30, hue != 0 ? hue : 0x501, 0);
             caster.FixedParticles(0x376A, 9, 32, 5008, hue != 0 ? hue : 0x501, 0, EffectLayer.Waist);
             caster.PlaySound(0x208);
-            caster.SendMessage("Your body radiates scorching heat!");
+            caster.SendMessage("Seu corpo irradia calor escaldante!");
 
             new BodyOfTheSunTimer(caster, level, duration, hue).Start();
         }
@@ -1251,7 +1251,7 @@ namespace Server.CustomSpells
             caster.FixedParticles(0x376A, 9, 20, 5044, hue != 0 ? hue : 0x21, 0, EffectLayer.RightHand);
             caster.PlaySound(0x1E9);
             
-            caster.SendMessage("You feel the strength of a raging bull!");
+            caster.SendMessage("Você sente a força de um touro enfurecido!");
         }
     }
 
@@ -1283,7 +1283,7 @@ namespace Server.CustomSpells
             caster.FixedParticles(0x373A, 10, 15, 5036, hue != 0 ? hue : 0x47E, 0, EffectLayer.Head);
             caster.PlaySound(0x1E9);
             
-            caster.SendMessage("You move with feline grace and agility!");
+            caster.SendMessage("Você se move com graça e agilidade felina!");
         }
     }
 
@@ -1356,7 +1356,7 @@ namespace Server.CustomSpells
                     int dmg = Utility.RandomMinMax(8, 13) + m_Level;
                     AOS.Damage(m, m_Caster, dmg, 100, 0, 0, 0, 0);
                         
-                    m.SendMessage("Whirling blades slice into you!");
+                    m.SendMessage("Lâminas giratórias cortam você!");
                 }
                 eable.Free();
             }
@@ -1405,11 +1405,11 @@ namespace Server.CustomSpells
                 if (resist < roll)
                 {
                     target.Paralyze(TimeSpan.FromSeconds(4));
-                    target.SendMessage("Dark energy freezes you in place!");
+                    target.SendMessage("Energia sombria te congela no lugar!");
                 }
                 else
                 {
-                    target.SendMessage("You resist the paralyzing energy!");
+                    target.SendMessage("Você resiste à energia paralisante!");
                 }
             });
         }
@@ -1486,7 +1486,7 @@ namespace Server.CustomSpells
                     AOS.Damage(m, m_Caster, dmg, 0, 100, 0, 0, 0);
                         
                     m.FixedParticles(0x3709, 10, 15, 5052, m_Hue != 0 ? m_Hue : 1160, 0, EffectLayer.Waist);
-                    m.SendMessage("The flaming sphere burns you!");
+                    m.SendMessage("A esfera flamejante queima você!");
                 }
                 eable.Free();
             }
@@ -1522,7 +1522,7 @@ namespace Server.CustomSpells
             target.FixedParticles(0x375A, 10, 20, 5044, hue != 0 ? hue : 0x0, 0, EffectLayer.LeftHand);
             target.FixedParticles(0x375A, 10, 20, 5044, hue != 0 ? hue : 0x0, 0, EffectLayer.RightHand);
             target.PlaySound(0x204);
-            target.SendMessage("Magical bonds hold you completely still!");
+            target.SendMessage("Ligações mágicas te mantêm completamente imóveis!");
         }
     }
 
@@ -1557,7 +1557,7 @@ namespace Server.CustomSpells
                 AOS.Damage(target, caster, initialDamage, 0, 0, 0, 100, 0);
 
                 target.FixedParticles(0x36BD, 10, 20, 5044, 0x48E, 0, EffectLayer.Waist);
-                target.SendMessage("Acid sears your flesh!");
+                target.SendMessage("Ácido queima sua carne!");
 
                 Timer.DelayCall(TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(3), level,
                     new TimerStateCallback(DoTick), new object[] { caster, target });
@@ -1577,7 +1577,7 @@ namespace Server.CustomSpells
             AOS.Damage(target, caster, dotDamage, 0, 0, 0, 100, 0);
             
             target.FixedEffect(0x36BD, 10, 20, 0x48E, 0);
-            target.SendMessage("The acid continues to burn!");
+            target.SendMessage("O ácido continua queimando!");
         }
     }
 
@@ -1609,7 +1609,7 @@ namespace Server.CustomSpells
             caster.FixedParticles(0x376A, 9, 32, 5008, hue != 0 ? hue : 0x480, 0, EffectLayer.Head);
             caster.PlaySound(0x1E9);
             
-            caster.SendMessage("Ancient wisdom fills your mind!");
+            caster.SendMessage("Sabedoria antiga preenche sua mente!");
         }
     }
 
@@ -1687,7 +1687,7 @@ namespace Server.CustomSpells
                 Effects.SendLocationEffect(m.Location, m.Map, 0x23AF, 30, 10, hue != 0 ? hue : 0x0, 0);
                 m.FixedParticles(0x376A, 9, 32, 5008, EffectLayer.Waist);
                 Effects.PlaySound(m.Location, m.Map, 0x5D2);
-                m.SendMessage("You are trapped in a magical web!");
+                m.SendMessage("Você está preso em uma teia mágica!");
             }
         }
     }
@@ -1763,7 +1763,7 @@ namespace Server.CustomSpells
                         });
                     }
 
-                    m.SendMessage("Acid burns through your armor and flesh!");
+                    m.SendMessage("Ácido queima sua armadura e carne!");
                 });
 
                 Timer.DelayCall(TimeSpan.FromSeconds(0.6), delegate()
@@ -1954,7 +1954,7 @@ namespace Server.CustomSpells
             int strLoss = 6 + level;
             target.AddStatMod(new StatMod(StatType.Str, "ContagionStr", -strLoss, TimeSpan.FromMinutes(2)));
 
-            target.SendMessage("A virulent disease weakens your body!");
+            target.SendMessage("Uma doença virulenta enfraquece seu corpo!");
 
             Timer.DelayCall(TimeSpan.FromSeconds(2), delegate()
             {
@@ -2025,7 +2025,7 @@ namespace Server.CustomSpells
                 }
 
                 m.PlaySound(0x2F3);
-                m.SendMessage("A deafening sonic blast assaults your senses!");
+                m.SendMessage("Uma explosão sônica ensurdecedora ataca seus sentidos!");
             });
 
             Timer.DelayCall(TimeSpan.FromSeconds(0.3), delegate()
@@ -2088,7 +2088,7 @@ namespace Server.CustomSpells
                 }
 
                 m.PlaySound(0x204);
-                m.SendMessage("A discordant dirge saps your strength and agility!");
+                m.SendMessage("Uma cantiga fúnebre dissonante suga sua força e agilidade!");
             });
 
             for (int i = 1; i <= 2; i++)
@@ -2153,7 +2153,7 @@ namespace Server.CustomSpells
                     }
 
                     m.PlaySound(0x1F2); 
-                    m.SendMessage("A dissonant chord tears through you!");
+                    m.SendMessage("Um acorde dissonante te atravessa!");
                 });
 
                 Timer.DelayCall(TimeSpan.FromSeconds(0.2), delegate()
@@ -2250,7 +2250,7 @@ namespace Server.CustomSpells
                     }
 
                     m.PlaySound(0x208);
-                    m.SendMessage("You are engulfed in a massive fireball!");
+                    m.SendMessage("Você é engolfado por uma bola de fogo massiva!");
                 });
 
                 for (int i = 1; i <= 2; i++)
@@ -2492,7 +2492,7 @@ namespace Server.CustomSpells
                     m.BoltEffect(effectHue);
 
                     m.PlaySound(0x28);
-                    m.SendMessage("Lightning strikes through you!");
+                    m.SendMessage("Um raio te atravessa!");
                 }
                 eable.Free();
             }
@@ -2589,7 +2589,7 @@ namespace Server.CustomSpells
                     }
 
                     m.PlaySound(0x1F8);
-                    m.SendMessage("A divine curse weakens your body!");
+                    m.SendMessage("Uma maldição divina enfraquece seu corpo!");
                 }
                 else
                 {
@@ -2716,16 +2716,16 @@ namespace Server.CustomSpells
                 switch (m_Type)
                 {
                     case EnergyProtectionType.Cold:
-                        m_Mobile.SendMessage("Your protection from cold fades.");
+                        m_Mobile.SendMessage("Sua proteção contra o frio desaparece.");
                         break;
                     case EnergyProtectionType.Fire:
-                        m_Mobile.SendMessage("Your protection from fire fades.");
+                        m_Mobile.SendMessage("Sua proteção contra o fogo desaparece.");
                         break;
                     case EnergyProtectionType.Energy:
-                        m_Mobile.SendMessage("Your protection from electricity fades.");
+                        m_Mobile.SendMessage("Sua proteção contra a eletricidade desaparece.");
                         break;
                     case EnergyProtectionType.Poison:
-                        m_Mobile.SendMessage("Your protection from acid fades.");
+                        m_Mobile.SendMessage("Sua proteção contra o ácido desaparece.");
                         break;
                 }
 
@@ -2831,7 +2831,7 @@ namespace Server.CustomSpells
                         m.FixedParticles(0x374A, 8, 12, 5013, effectHue, 0, EffectLayer.Waist);
 
                         m.PlaySound(0x22F);
-                        m.SendMessage("Sharp spikes pierce through you!");
+                        m.SendMessage("Espinhos afiados perfuram você!");
                     });
                 });
             }
@@ -2925,7 +2925,7 @@ namespace Server.CustomSpells
                     });
                 }
 
-                target.SendMessage("A pillar of divine fire engulfs you!");
+                target.SendMessage("Um pilar de fogo divino te engolfa!");
             });
         }
     }
@@ -3013,7 +3013,7 @@ namespace Server.CustomSpells
                     }
 
                     m.PlaySound(0x64F);
-                    m.SendMessage("Freezing ice shards rain down upon you!");
+                    m.SendMessage("Estilhaços de gelo congelante chovem sobre você!");
                 });
             });
         }
@@ -3085,7 +3085,7 @@ namespace Server.CustomSpells
         protected override int Poison { get { return 100; } }
         protected override int Energy { get { return 0; } }
         protected override int Hue { get { return 0x3F; } }
-        protected override string HitMessage { get { return "Acid burns your flesh!"; } }
+        protected override string HitMessage { get { return "Ácido queima sua carne!"; } }
     }
 
     public class OrbOfColdSpell : BaseOrbSpell
@@ -3104,7 +3104,7 @@ namespace Server.CustomSpells
         protected override int Poison { get { return 0; } }
         protected override int Energy { get { return 0; } }
         protected override int Hue { get { return 0x3F; } }
-        protected override string HitMessage { get { return "Cold scars your flesh!"; } }
+        protected override string HitMessage { get { return "Frio queima sua carne!"; } }
     }
 
     public class OrbOfElectricitySpell : BaseOrbSpell
@@ -3123,7 +3123,7 @@ namespace Server.CustomSpells
         protected override int Poison { get { return 0; } }
         protected override int Energy { get { return 100; } }
         protected override int Hue { get { return 0x3F; } }
-        protected override string HitMessage { get { return "Electricity runs through your flesh!"; } }
+        protected override string HitMessage { get { return "Eletricidade corre através da sua carne!"; } }
     }
 
     public class OrbOfFireSpell : BaseOrbSpell
@@ -3142,7 +3142,7 @@ namespace Server.CustomSpells
         protected override int Poison { get { return 0; } }
         protected override int Energy { get { return 0; } }
         protected override int Hue { get { return 0x3F; } }
-        protected override string HitMessage { get { return "Fire gnaws at your flesh!"; } }
+        protected override string HitMessage { get { return "Fogo roe sua carne!"; } }
     }
 
     public class OrbOfForceSpell : BaseOrbSpell
@@ -3161,7 +3161,7 @@ namespace Server.CustomSpells
         protected override int Poison { get { return 0; } }
         protected override int Energy { get { return 0; } }
         protected override int Hue { get { return 0x3F; } }
-        protected override string HitMessage { get { return "A powerful impact hits you!"; } }
+        protected override string HitMessage { get { return "Um impacto poderoso atinge você!"; } }
     }
     
     public class ShoutSpell : CustomSpell
@@ -3227,7 +3227,7 @@ namespace Server.CustomSpells
                         }
 
                         m.PlaySound(0x2F3);
-                        m.SendMessage("A thunderous shout blasts you backwards!");
+                        m.SendMessage("Um grito trovejante te arremessa para trás!");
                     }
                     eable.Free();
                 }
@@ -3339,7 +3339,7 @@ namespace Server.CustomSpells
                 Server.Network.MessageType.Emote,
                 0x3B2,
                 false,
-                "*dark storm clouds gather overhead*"
+                "*nuvens de tempestade escuras se reúnem acima*"
             );
 
             Effects.SendLocationEffect(caster.Location, caster.Map, 0x3728, 30, 10, effectHue, 0);
@@ -3388,7 +3388,7 @@ namespace Server.CustomSpells
                         }
 
                         target.PlaySound(0x29);
-                        target.SendMessage("A lightning bolt crashes down upon you!");
+                        target.SendMessage("Um raio cai sobre você!");
                     });
                 }
             );
@@ -3484,7 +3484,7 @@ namespace Server.CustomSpells
                         if (target != null && !target.Deleted && target.Alive)
                         {
                             target.Kill();
-                            target.SendMessage("Your life force is violently ripped from your body!");
+                            target.SendMessage("Sua força vital é violentamente arrancada do seu corpo!");
                         }
                     });
                 }
@@ -3495,7 +3495,7 @@ namespace Server.CustomSpells
 
                     target.FixedParticles(0x376A, 9, 20, 5044, effectHue, 0, EffectLayer.CenterFeet);
                     target.PlaySound(0x1F2);
-                    target.SendMessage("You resist the death magic but suffer terrible pain!");
+                    target.SendMessage("Você resiste à magia da morte, mas sofre uma dor terrível!");
                 }
             });
         }
@@ -3600,11 +3600,11 @@ namespace Server.CustomSpells
                             });
                         }
 
-                        m.SendMessage("The wail of doom overwhelms your mind!");
+                        m.SendMessage("O lamento da morte domina sua mente!");
                     }
                     else
                     {
-                        m.SendMessage("You resist the terrifying wail!");
+                        m.SendMessage("Você resiste ao lamento aterrorizante!");
                     }
 
                     m.PlaySound(0x204);
@@ -3756,7 +3756,7 @@ namespace Server.CustomSpells
                 m.FixedParticles(0x36BD, 6, 10, 5044, m_Hue, 0, EffectLayer.CenterFeet);
 
                 m.PlaySound(0x231);
-                m.SendMessage("Corrosive acid fog burns your flesh!");
+                m.SendMessage("Névoa ácida corrosiva queima sua carne!");
             }
             eable.Free();
         }
@@ -3933,7 +3933,7 @@ namespace Server.CustomSpells
                 }
 
                 target.PlaySound(0x1F8);
-                target.SendMessage("A terrible curse weakens your body!");
+                target.SendMessage("Uma terrível maldição enfraquece seu corpo!");
             });
         }
     }
@@ -4077,7 +4077,7 @@ namespace Server.CustomSpells
                         m.FixedParticles(0x3728, 8, 12, 5013, effectHue, 0, EffectLayer.Head);
 
                         m.PlaySound(0x2F3);
-                        m.SendMessage("The cacophonic shield's discord strikes you!");
+                        m.SendMessage("A discórdia do escudo cacofônico te atinge!");
                     });
                 }
             );
@@ -4260,7 +4260,7 @@ namespace Server.CustomSpells
                         }
 
                         currentTarget.PlaySound(0x28);
-                        currentTarget.SendMessage("Chain lightning surges through your body!");
+                        currentTarget.SendMessage("Cadeia de relâmpagos percorre seu corpo!");
                     });
                 });
 
@@ -4351,11 +4351,11 @@ namespace Server.CustomSpells
                         });
                     }
 
-                    target.SendMessage("The comet's impact sends you flying!");
+                    target.SendMessage("O impacto do cometa te arremessa para longe!");
                 }
                 else
                 {
-                    target.SendMessage("You brace yourself against the comet's impact!");
+                    target.SendMessage("Você se prepara contra o impacto do cometa!");
                 }
             });
         }
@@ -4464,7 +4464,7 @@ namespace Server.CustomSpells
                             }
                         });
                     }
-                    target.SendMessage("The disintegration ray tears through your weakened body!");
+                    target.SendMessage("O raio de desintegração atravessa seu corpo enfraquecido!");
                 }
                 else
                 {
@@ -4481,7 +4481,7 @@ namespace Server.CustomSpells
                             }
                         });
                     }
-                    target.SendMessage("A disintegration ray strikes you!");
+                    target.SendMessage("Um raio de desintegração te atinge!");
                 }
 
                 target.PlaySound(0x211);
@@ -4799,12 +4799,12 @@ namespace Server.CustomSpells
                         });
                     }
 
-                    m.SendMessage("Magical bonds freeze you completely in place!");
+                    m.SendMessage("Laços mágicos te imobilizam completamente no lugar!");
                 }
                 else
                 {
                     m.FixedParticles(0x373A, 10, 15, 5036, effectHue, 0, EffectLayer.Waist);
-                    m.SendMessage("You resist the paralyzing magic!");
+                    m.SendMessage("Você resiste à magia paralisante!");
                 }
 
                 m.PlaySound(0x204);
@@ -4888,7 +4888,7 @@ namespace Server.CustomSpells
                             target.Kill();
                             target.FixedEffect(0x3709, 10, 30, effectHue, 0);
                             target.PlaySound(0x211);
-                            target.SendMessage("Your life force is violently ripped away!");
+                            target.SendMessage("Sua força vital é violentamente arrancada!");
 
                             Effects.SendLocationEffect(target.Location, target.Map, 0x36BD, 30, 10, effectHue, 0);
                         }
@@ -4901,7 +4901,7 @@ namespace Server.CustomSpells
 
                     target.FixedParticles(0x376A, 9, 20, 5044, effectHue, 0, EffectLayer.CenterFeet);
                     target.PlaySound(0x1F2);
-                    target.SendMessage("You resist the death magic but suffer terrible pain!");
+                    target.SendMessage("Você resiste à magia da morte, mas sofre uma dor terrível!");
 
                     for (int i = 1; i <= 2; i++)
                     {
@@ -5052,7 +5052,7 @@ namespace Server.CustomSpells
                     m.FixedParticles(0x36BD, 8, 12, 5044, m_Hue, 0, EffectLayer.Head);
 
                     m.PlaySound(0x208);
-                    m.SendMessage("Raging flames engulf you!");
+                    m.SendMessage("Chamas furiosas te engolfam!");
                 }
             );
 
@@ -5183,7 +5183,7 @@ namespace Server.CustomSpells
                     }
 
                     m.PlaySound(0x205);
-                    m.SendMessage("Virulent plague ravages your body!");
+                    m.SendMessage("Praga virulenta devasta seu corpo!");
                 });
             });
         }
@@ -5255,7 +5255,7 @@ namespace Server.CustomSpells
                 return;
 
             caster.DoHarmful(target);
-            target.SendMessage("Black flames burn into your soul!");
+            target.SendMessage("Chamas negras queimam sua alma!");
 
             caster.MovingParticles(target, 0x36D4, 7, 0, false, true,
                 hue != 0 ? hue : 0x455, 0, 9502, 1, 0, (EffectLayer)255, 0);
@@ -5309,7 +5309,7 @@ namespace Server.CustomSpells
 
                 m.FixedEffect(0x374A, 10, 20);
                 m.PlaySound(0x1FB);
-                m.SendMessage("Your strength and energy are drained!");
+                m.SendMessage("Sua força e energia são drenadas!");
             });
         }
     }
@@ -5338,7 +5338,7 @@ namespace Server.CustomSpells
 
                 m.FixedEffect(0x3709, 10, 30);
                 m.PlaySound(0x1FB);
-                m.SendMessage("Your body shrivels from magical drought!");
+                m.SendMessage("Seu corpo resseca com a seca mágica!");
             });
         }
     }
@@ -5426,7 +5426,7 @@ namespace Server.CustomSpells
                     m.FixedEffect(0x376A, 9, 32, 0x480, 0);
                 }
 
-                m.SendMessage("You are blinded by searing light!");
+                m.SendMessage("Você é cegado por uma luz abrasadora!");
             });
 
             Timer.DelayCall(TimeSpan.FromSeconds(0.5), () =>
@@ -5456,7 +5456,7 @@ namespace Server.CustomSpells
             caster.PlaySound(0x64D);
 
             caster.DoHarmful(target);
-            target.SendMessage("You are struck by absolute cold!"); 
+            target.SendMessage("Você é atingido por frio absoluto!");
 
             caster.MovingParticles(target, 0x36D4, 7, 0, false, true,
                 hue != 0 ? hue : 0x481, 0, 9502, 1, 0, (EffectLayer)255, 0);
@@ -5555,7 +5555,7 @@ namespace Server.CustomSpells
 
                 Effects.SendLocationEffect(flee, m.Map, 0x3728, 10, 10, 0x496, 0);
 
-                m.SendMessage("You flee in absolute terror!");
+                m.SendMessage("Você foge em terror absoluto!");
             });
         }
     }
@@ -5627,7 +5627,7 @@ namespace Server.CustomSpells
                     Effects.SendLocationEffect(exhaustLoc, m.Map, 0x3735, 10, 10, 0x21, 0);
                 }
 
-                m.SendMessage("Your limbs feel unbearably heavy!");
+                m.SendMessage("Seus membros parecem insuportavelmente pesados!");
             });
         }
     }
@@ -5726,7 +5726,7 @@ namespace Server.CustomSpells
 
                 m.FixedEffect(0x376A, 10, 16, 0x481, 0);
 
-                m.SendMessage("You are crushed beneath falling ice!");
+                m.SendMessage("Você é esmagado sob gelo caindo!");
             });
         }
     }
@@ -5845,7 +5845,7 @@ namespace Server.CustomSpells
             else
             {
                 target.FixedEffect(0x3779, 10, 15, 0x1, 0);
-                target.SendMessage("The word of death fails to claim you!");
+                target.SendMessage("A palavra da morte falha em te reivindicar!");
                 target.PlaySound(0x1F2);
             }
         }
@@ -5895,7 +5895,7 @@ namespace Server.CustomSpells
                 25, 25, 25, 25, 0,
                 0x36BD,
                 effectHue,
-                "The storm tears into you!"
+                "A tempestade te dilacera!"
             );
         }
     }

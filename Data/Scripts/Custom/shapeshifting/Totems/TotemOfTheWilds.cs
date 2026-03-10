@@ -38,23 +38,23 @@ namespace Server.Items
                 Name = "Totem of the " + formId;
         }
 
-        public override string DefaultDescription{ get{ return "A totem of the wilds contains the spiritual essence of a creature. It can be used to infuse a druid's talisman and teach them to shapeshift into that creature"; } }
+        public override string DefaultDescription{ get{ return "Um totem das selvas contém a essência espiritual de uma criatura. Pode ser usado para infundir um talismã de druida e ensiná-lo a se transformar naquela criatura."; } }
         
         public override void OnDoubleClick(Mobile from)
         {
             if (!IsChildOf(from.Backpack))
             {
-                from.SendMessage("The totem must be in your backpack to use it.");
+                from.SendMessage("O totem deve estar em sua mochila para usá-lo.");
                 return;
             }
 
             if (String.IsNullOrEmpty(m_FormId))
             {
-                from.SendMessage("This totem holds no spiritual knowledge.");
+                from.SendMessage("Este totem não contém conhecimento espiritual.");
                 return;
             }
 
-            from.SendMessage("Select the Heart of the Wilds to absorb this totem.");
+            from.SendMessage("Selecione o Coração das Selvas para absorver este totem.");
             from.Target = new TotemTarget(this);
         }
 
@@ -99,25 +99,25 @@ namespace Server.Items
 
         if (heart == null)
         {
-            from.SendMessage("That is not a Heart of the Wilds.");
+            from.SendMessage("Isso não é um Coração das Selvas.");
             return;
         }
 
         if (!heart.IsChildOf(from))
         {
-            from.SendMessage("You must be holding the Heart of the Wilds.");
+            from.SendMessage("Você deve estar segurando o Coração das Selvas.");
             return;
         }
 
         if (heart.IsFormUnlocked(m_Totem.FormId))
         {
-            from.SendMessage("You have already mastered this form.");
+            from.SendMessage("Você já dominou esta forma.");
             return;
         }
 
         heart.UnlockForm(m_Totem.FormId);
 
-        from.SendMessage("The spirits reveal the form of the {0} to you.", m_Totem.FormId);
+        from.SendMessage("Os espíritos revelam a forma do {0} para você.", m_Totem.FormId);
         from.FixedParticles(0x373A, 10, 15, 5018, EffectLayer.Waist);
         from.PlaySound(0x1F7);
 

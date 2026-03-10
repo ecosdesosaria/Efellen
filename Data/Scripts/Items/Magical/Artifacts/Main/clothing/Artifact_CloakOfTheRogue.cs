@@ -32,15 +32,15 @@ namespace Server.Items
 
 			if ( Parent != from )
 			{
-				from.SendMessage( "You must be wearing the cloak to use its power." );
+				from.SendMessage( "Você precisa estar usando a capa para usar seu poder." );
 			}
             else if ( CanUseMagic > 0 )
 			{
 				TimeSpan t = TimeSpan.FromMinutes( CanUseMagic );
-				string wait = string.Format("{0:D1} hours and {1:D2} minutes", 
-								t.Hours, 
-								t.Minutes);
-				from.SendMessage( "You can use the magic in " + wait + "." );
+				string wait = string.Format("{0:D1} horas e {1:D2} minutos", 
+                                t.Hours, 
+                                t.Minutes);
+				from.SendMessage( "Você pode usar a magia em " + wait + "." );
 			}
 			else
 			{

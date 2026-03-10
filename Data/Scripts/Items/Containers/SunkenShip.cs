@@ -82,7 +82,7 @@ namespace Server.Items
 			from.PlaySound( 0x13E );
 			from.PlaySound( 0x026 );
 			Effects.SendLocationEffect( this.Location, this.Map, 0x352D, 16, 4 );
-			from.SendMessage( "You salvage some usable wood from the ship." );
+			from.SendMessage( "Você recupera alguma madeira utilizável do navio." );
 			this.Delete();
 		}
 

@@ -114,7 +114,7 @@ namespace Server.Mobiles
 				{
 					BossSpecialAttack.PerformFear(
 				      boss: this,
-				      warcry: "*The Old One Eye unleashes a soul-freezing roar!*",
+				      warcry: "*O Velho Caolho solta um rugido que congela a alma!*",
 				      range: 6,
 				      rage: m_Rage+1,
 				      terror: 110  // Knightship 110+ saves from fear
@@ -125,7 +125,7 @@ namespace Server.Mobiles
 				{
 					BossSpecialAttack.PerformSlam(
                     	boss: this,
-                    	warcry: "*The ground quakes!*",
+                    	warcry: "*O chão treme!*",
                     	hue: 0x995,
                     	rage: m_Rage+1,
                     	range: 6,
@@ -137,7 +137,7 @@ namespace Server.Mobiles
 				{
                     BossSpecialAttack.PerformRampage(
                        boss: this,
-                       warcry: "*The Old One Eye charges wildly!*",
+                       warcry: "*O Velho Caolho avança furiosamente!*",
                        hue: 0x995,
                        rage: m_Rage+1,
                        stunDuration: 3.0
@@ -189,7 +189,7 @@ namespace Server.Mobiles
 				MessageType.Regular,
 				0x21,
 				false,
-				"*Swings its massive tail!*"
+				"*Balança sua cauda massiva!*"
 			);
 			PlaySound(0x64E);
 			List<Mobile> targets = new List<Mobile>();
@@ -208,7 +208,7 @@ namespace Server.Mobiles
 				if (mount != null)
 				{
 					wasMounted = true;
-					m.SendMessage("The massive tail swipe knocks you off your mount!");
+					m.SendMessage("A gigantesca cauda te derruba de sua montaria!");
 					m.PlaySound(0x140);
 					m.FixedParticles(0x3728, 10, 15, 9955, EffectLayer.Waist);
 					Server.Mobiles.EtherealMount.EthyDismount(m);
@@ -220,12 +220,12 @@ namespace Server.Mobiles
 				if (wasMounted)
 				{
 					damage = Utility.RandomMinMax(33, 40) + Utility.RandomMinMax(15, 25);
-					m.SendMessage("You are struck by a devastating tail swipe and take additional damage from the fall!");
+					m.SendMessage("Você é atingido por uma devastadora cauda e sofre dano adicional da queda!");
 				}
 				else
 				{
 					damage = Utility.RandomMinMax(33, 40);
-					m.SendMessage("You are struck by a devastating tail swipe!");
+					m.SendMessage("Você é atingido por uma devastadora cauda!");
 				}
 				AOS.Damage(m, this, damage, 100, 0, 0, 0, 0);
 				m.FixedParticles(0x36BD, 20, 10, 5044, EffectLayer.Head);
@@ -236,7 +236,7 @@ namespace Server.Mobiles
 		{
 			if ( m_Rage == 0 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Screeches defiantly*" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Guincha desafiadoramente*" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x63F );
@@ -248,7 +248,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 1 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Screeches in Pain*" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Guincha de dor*" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x63F );
@@ -259,7 +259,7 @@ namespace Server.Mobiles
 			}
 			else if ( m_Rage == 2 )
 			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Roars terrifyingly*" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Ruge aterrorizantemente*" );
 				this.Hits = this.HitsMax;
 				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 				this.PlaySound( 0x63F );
@@ -272,7 +272,7 @@ namespace Server.Mobiles
 			{
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x63F );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Screeches one last time*" );
+				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Guincha uma última vez*" );
 				Mobile killer = this.LastKiller;
 				if (killer != null && killer.Player && killer.Karma > 0)
             	{

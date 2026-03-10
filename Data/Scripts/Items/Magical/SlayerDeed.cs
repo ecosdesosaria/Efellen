@@ -28,28 +28,28 @@ namespace Server.Items
 
 				if ( item.RootParent != from )
 				{
-					from.SendMessage( "The weapon must be in your pack." );
+					from.SendMessage( "A arma deve estar em sua mochila." );
 				}
 				else if ( item.Slayer != SlayerName.None && item.Slayer2 != SlayerName.None )
 				{
-					from.SendMessage( "The weapon is already a slayer.");
+					from.SendMessage( "A arma já é um slayer." );
 				}
 				else if ( item.Slayer == slaying || item.Slayer2 == slaying )
 				{
-					from.SendMessage( "The weapon already slays these creatures.");
+					from.SendMessage( "A arma já extermina essas criaturas." );
 				}
 				else
 				{
 					if (item.Slayer == SlayerName.None)
 					{
 						item.Slayer = slaying;
-						from.SendMessage( "The weapon now slays these creatures." );
+						from.SendMessage( "A arma agora extermina essas criaturas." );
 						m_Deed.Delete();
 					}
 					else if (item.Slayer2 == SlayerName.None)
 					{
 						item.Slayer2 = slaying;
-						from.SendMessage( "You weapon now slays these creatures." );
+						from.SendMessage( "A arma agora extermina essas criaturas." );
 						m_Deed.Delete();
 					}
 				}
@@ -62,28 +62,28 @@ namespace Server.Items
 
 				if ( item.RootParent != from )
 				{
-					from.SendMessage( "The instrument must be in your pack." );
+					from.SendMessage( "O instrumento deve estar em sua mochila." );
 				}
 				else if ( item.Slayer != SlayerName.None && item.Slayer2 != SlayerName.None )
 				{
-					from.SendMessage( "The instrument is already a slayer.");
+					from.SendMessage( "O instrumento já é um slayer." );
 				}
 				else if ( item.Slayer == slaying || item.Slayer2 == slaying )
 				{
-					from.SendMessage( "The instrument already slays these creatures.");
+					from.SendMessage( "O instrumento já extermina essas criaturas." );
 				}
 				else
 				{
 					if (item.Slayer == SlayerName.None)
 					{
 						item.Slayer = slaying;
-						from.SendMessage( "The instrument now slays these creatures." );
+						from.SendMessage( "O instrumento agora extermina essas criaturas." );
 						m_Deed.Delete();
 					}
 					else if (item.Slayer2 == SlayerName.None)
 					{
 						item.Slayer2 = slaying;
-						from.SendMessage( "You instrument now slays these creatures." );
+						from.SendMessage( "O instrumento agora extermina essas criaturas." );
 						m_Deed.Delete();
 					}
 				}
@@ -96,28 +96,28 @@ namespace Server.Items
 
 				if ( item.RootParent != from )
 				{
-					from.SendMessage( "The book must be in your pack." );
+					from.SendMessage( "O livro deve estar em sua mochila." );
 				}
 				else if ( item.Slayer != SlayerName.None && item.Slayer2 != SlayerName.None )
 				{
-					from.SendMessage( "The book is already a slayer.");
+					from.SendMessage( "O livro já é um slayer." );
 				}
 				else if ( item.Slayer == slaying || item.Slayer2 == slaying )
 				{
-					from.SendMessage( "The book already slays these creatures.");
+					from.SendMessage( "O livro já extermina essas criaturas." );
 				}
 				else
 				{
 					if (item.Slayer == SlayerName.None)
 					{
 						item.Slayer = slaying;
-						from.SendMessage( "The book now slays these creatures." );
+						from.SendMessage( "O livro agora extermina essas criaturas." );
 						m_Deed.Delete();
 					}
 					else if (item.Slayer2 == SlayerName.None)
 					{
 						item.Slayer2 = slaying;
-						from.SendMessage( "You book now slays these creatures." );
+						from.SendMessage( "O livro agora extermina essas criaturas." );
 						m_Deed.Delete();
 					}
 				}
@@ -218,7 +218,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "What item would you like to make a slayer?" );
+				from.SendMessage( "Qual item você gostaria de transformar em um extermínio?" );
 				from.Target = new SlayerTarget( this );
 			}
 		}

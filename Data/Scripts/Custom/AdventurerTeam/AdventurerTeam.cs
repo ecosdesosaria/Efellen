@@ -532,7 +532,7 @@ namespace Server.Scripts.Custom
                 if (Combatant == null && Utility.RandomDouble() < 0.10)
                 {
                     m_IsLeaving = true;
-                    if (CanSendMessage(now)) Say("Time to move on."); 
+                    if (CanSendMessage(now)) Say("Hora de partir."); 
                     Timer.DelayCall(TimeSpan.FromSeconds(5.0), ExecuteDeparture);
                 }
             }

@@ -179,44 +179,44 @@ namespace Server.Mobiles
 
 		private static readonly string[] AttackLines = new string[]
 		{
-		    "Die villian!",
-		    "I will bring you justice!",
-		    "So, {0}? Your evil ends here!",
-		    "We have been told to watch for {0}!",
-		    "Fellow knights, {0} is here!",
-		    "We have ways of dealing with the likes of {0}!",
-		    "Give up! We do not fear {0}!",
-		    "So, {0}? I sentence you to death!",
-		    "Face the judgment of the Sky Knights!",
-		    "For the realm, I strike you down!",
-		    "Your wicked path ends beneath our wings!",
-		    "Stand firm, griffin! Justice calls us onward!",
-		    "You dare raise steel against the skywatch?",
-		    "In the name of honor, fall before us!",
-		    "The skies themselves deny you mercy, {0}!",
-		    "Feel the wrath of a knight sworn to the heavens!",
-		    "The griffins sense your corruption, {0}!",
-		    "By oath and virtue, I bring light to your darkness!",
-			"Your crimes echo across the skies, {0}!",
-			"The griffins shall tear the corruption from your flesh!",
-			"Justice descends upon you!",
-			"The griffins cry out for your downfall!",
-			"You stand against the Sky Order—foolish!",
-			"Your fate was sealed the moment you appeared, {0}!",
-			"The heavens judge you unworthy!",
-			"Your darkness falters beneath our wings!",
-			"By the Angel's Lyre, fall!",
-			"Our vigilance ends you here, {0}!",
-			"You cannot outrun us!",
-			"The storm answers our call, {0}!",
-			"We soar with purpose, and you shall fall before it!",
-			"Your wickedness stains the realm no more!",
-			"The light of the heavens burns you, {0}!",
-			"Your path ends beneath our righteous charge!",
-			"The griffins hunger for victory, yield ruffian!",
-			"You cannot face the might of the Sky Knights!",
-			"The sky rejects your wickedness, {0}!",
-			"I ride the wind of justice—prepare yourself!"
+			"Morra vilão!",
+			"Eu trarei justiça a você!",
+			"Então, {0}? Seu mal termina aqui!",
+			"Disseram-nos para vigiar {0}!",
+			"Cavaleiros, {0} está aqui!",
+			"Temos maneiras de lidar com a laia de {0}!",
+			"Renda-se! Não tememos {0}!",
+			"Então, {0}? Eu o sentencio à morte!",
+			"Enfrente o julgamento dos Cavaleiros do Céu!",
+			"Pelo reino, eu o derrubo!",
+			"Seu caminho perverso termina sob nossas asas!",
+			"Mantenha-se firme, grifo! A justiça nos chama adiante!",
+			"Ousa erguer aço contra a guarda dos céus?",
+			"Em nome da honra, caia diante de nós!",
+			"Os próprios céus negam misericórdia a você, {0}!",
+			"Sinta a ira de um cavaleiro jurado aos céus!",
+			"Os grifos sentem sua corrupção, {0}!",
+			"Por juramento e virtude, trago luz à sua escuridão!",
+			"Seus crimes ecoam pelos céus, {0}!",
+			"Os grifos arrancarão a corrupção de sua carne!",
+			"A justiça desce sobre você!",
+			"Os grifos clamam por sua queda!",
+			"Você se opõe à Ordem do Céu — insensato!",
+			"Seu destino foi selado no momento em que apareceu, {0}!",
+			"Os céus o julgam indigno!",
+			"Sua escuridão vacila sob nossas asas!",
+			"Pela Lira do Anjo, caia!",
+			"Nossa vigilância acaba com você aqui, {0}!",
+			"Você não pode fugir de nós!",
+			"A tempestade atende nosso chamado, {0}!",
+			"Voamos com propósito, e você cairá diante dele!",
+			"Sua maldade não mancha mais o reino!",
+			"A luz dos céus queima você, {0}!",
+			"Seu caminho termina sob nossa investida justa!",
+			"Os grifos anseiam pela vitória, renda-se malfeitor!",
+			"Você não pode enfrentar o poder dos Cavaleiros do Céu!",
+			"O céu rejeita sua maldade, {0}!",
+			"Cavalgo o vento da justiça — prepare-se!"
 		};
 
 		public override void OnGaveMeleeAttack(Mobile defender)
@@ -249,10 +249,10 @@ namespace Server.Mobiles
 		        MessageType.Regular,
 		        0x3B2,
 		        false,
-		        "* The knight slams its shield into " + defender.Name + "! *"
+		        "* O cavaleiro golpeia " + defender.Name + " com seu escudo! *"
 		    );
 
-		    defender.SendMessage("You are struck by a crushing shield bash!");
+		    defender.SendMessage("Você é atingido por uma pancada esmagadora de escudo!");
 
 		    double duration = 6.0;
 
@@ -286,7 +286,7 @@ namespace Server.Mobiles
 
 		    m_NextArmorIgnore = DateTime.UtcNow + TimeSpan.FromMinutes(1.5);
 		    this.PublicOverheadMessage(MessageType.Regular, 0x22, false,
-		        "The griffin gores " + defender.Name + " with its sharp talons!");
+		        "O grifo dilacera " + defender.Name + " com suas garras afiadas!");
 		
 		    defender.FixedEffect(0x37B9, 10, 16, 0x44E, 0);
 		    defender.PlaySound(0x142);

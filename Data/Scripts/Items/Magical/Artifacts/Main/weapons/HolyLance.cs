@@ -47,7 +47,7 @@ namespace Server.Items
         {
             if (from.Karma < 0)
             {
-                from.SendMessage("This holy lance burns your hands and refuses to be wielded by you!");
+                from.SendMessage("Esta lança sagrada queima suas mãos e se recusa a ser empunhada por você!");
                 return false;
             }
 

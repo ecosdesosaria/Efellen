@@ -31,7 +31,7 @@ namespace Server.Items
 
 			if ( (from.Followers + pet.ControlSlots) > from.FollowersMax )
 			{
-				from.SendMessage("You have too many followers to open this cage!");
+				from.SendMessage("Você tem muitos seguidores para abrir esta jaula!");
 				return false;
 			}
 			else

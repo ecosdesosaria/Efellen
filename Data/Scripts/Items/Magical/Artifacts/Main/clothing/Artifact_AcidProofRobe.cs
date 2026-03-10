@@ -37,19 +37,19 @@ namespace Server.Items
 
 			if ( CanFillBottle > 0 )
 			{
-				from.SendMessage( "You can squeeze out acid in " + CanFillBottle + " minutes." );
+				from.SendMessage( "Você pode extrair ácido em " + CanFillBottle + " minutos." );
 			}
 			else
 			{
 				if (!from.Backpack.ConsumeTotal(typeof(Bottle), 1))
 				{
-					from.SendMessage("You need an empty bottle to squeeze the acid into.");
+					from.SendMessage("Você precisa de uma garrafa vazia para extrair o ácido.");
 				}
 				else
 				{
 					from.PlaySound( 0x240 );
 					from.AddToBackpack( new BottleOfAcid() );
-					from.SendMessage( "You squeeze some acid from the cloth of the robe." );
+					from.SendMessage( "Você extrai um pouco de ácido do tecido da vestimenta." );
 					TimeUsed = DateTime.Now;
 				}
 			}
@@ -59,7 +59,7 @@ namespace Server.Items
 		{
 			if ( from is PlayerMobile )
 			{
-				from.SendMessage( "You can use this robe to sqeeze acid out from its cloth." );
+				from.SendMessage( "Você pode usar esta vestimenta para extrair ácido de seu tecido." );
 			}
 
 			return true;

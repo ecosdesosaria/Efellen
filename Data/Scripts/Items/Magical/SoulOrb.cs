@@ -95,9 +95,9 @@ namespace Server.Items
                 if (owner.Alive)
                     return;
 
-				if ( arp.Name == "blood of a vampire" ){ owner.SendMessage("The blood pours out of the bottle, restoring your life."); }
-				else if ( arp.Name == "cloning crystal" ){ owner.SendMessage("The crystal forms a clone of your body, restoring your life."); }
-                else { owner.SendMessage("The orb glows, releasing your soul."); }
+				if ( arp.Name == "blood of a vampire" ){ owner.SendMessage("O sangue escorre da garrafa, restaurando sua vida."); }
+				else if ( arp.Name == "cloning crystal" ){ owner.SendMessage("O cristal forma um clone do seu corpo, restaurando sua vida."); }
+                else { owner.SendMessage("O orbe brilha, liberando sua alma."); }
                 owner.Resurrect();
                 owner.FixedEffect( 0x376A, 10, 16, Server.Misc.PlayerSettings.GetMySpellHue( true, owner, 0 ), 0 );
                 Server.Misc.Death.Penalty( owner, false );
@@ -110,9 +110,9 @@ namespace Server.Items
 		{
             base.AddNameProperties(list);
 
-			if ( this.Name == "blood of a vampire" ){ list.Add( 1049644, "Contains vampire blood for " + m_Owner.Name ); }
-			else if ( this.Name == "cloning crystal" ){ list.Add( 1049644, "Contains genetic patterns for " + m_Owner.Name ); }
-			else { list.Add( 1049644, "Contains the Soul of " + m_Owner.Name ); }
+			if ( this.Name == "blood of a vampire" ){ list.Add( 1049644, "Contém sangue de vampiro para " + m_Owner.Name ); }
+			else if ( this.Name == "cloning crystal" ){ list.Add( 1049644, "Contém padrões genéticos para " + m_Owner.Name ); }
+			else { list.Add( 1049644, "Contém a Alma de " + m_Owner.Name ); }
         } 
 
         public override void Serialize(GenericWriter writer)

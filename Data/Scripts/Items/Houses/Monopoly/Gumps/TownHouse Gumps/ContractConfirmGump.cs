@@ -54,21 +54,21 @@ namespace Knives.TownHouses
 
 				if ( Owner != c_Contract.RentalMaster && locsec )
 				{
-					AddHtml( width-100, y, 60, HTML.Black + "Accept");
-					AddButton( width-60, y+3, 0x232C, 0x232D, "Accept", new GumpCallback( Accept ) );
+					AddHtml( width-100, y, 60, HTML.Black + "Aceitar");
+					AddButton( width-60, y+3, 0x232C, 0x232D, "Aceitar", new GumpCallback( Accept ) );
 				}
 				else
 					AddImage( width-60, y-10, 0x232C );
 
 				if ( !locsec )
-					Owner.SendMessage( (Owner == c_Contract.RentalMaster ? "You don't have the lockdowns or secures available for this contract." : "The owner of this contract cannot rent this property at this time.") );
+					Owner.SendMessage( (Owner == c_Contract.RentalMaster ? "Você não tem os lock downs ou seguros disponíveis para este contrato." : "O proprietário deste contrato não pode alugar esta propriedade no momento.") );
 			}
 			else
 			{
 				if ( Owner == c_Contract.RentalMaster )
 				{
-					AddHtml( 60, y+=20, 100, HTML.Black + "Cancel Contract");
-					AddButton( 40, y+3, 0x837, 0x838, "Cancel Contract", new GumpCallback( CancelContract ) );
+					AddHtml( 60, y+=20, 100, HTML.Black + "Cancelar Contrato");
+					AddButton( 40, y+3, 0x837, 0x838, "Cancelar Contrato", new GumpCallback( CancelContract ) );
 				}
                 else
 				    AddImage( width-60, y+=20, 0x232C );
@@ -100,7 +100,7 @@ namespace Knives.TownHouses
 		{
 			if ( !c_Contract.ValidateLocSec() )
 			{
-				Owner.SendMessage( "The owner of this contract cannot rent this property at this time." );
+				Owner.SendMessage( "O proprietário deste contrato não pode alugar esta propriedade no momento." );
 				return;
 			}
 

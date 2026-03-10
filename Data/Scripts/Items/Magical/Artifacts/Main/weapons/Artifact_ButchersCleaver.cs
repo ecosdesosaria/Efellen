@@ -36,7 +36,7 @@ namespace Server.Items
                 {
                     int hits = Utility.RandomMinMax(10, 35);
                     attacker.Hits += hits;
-                    attacker.SendMessage(33, "The Butcher's Cleaver gorges on the fallen enemy!");
+                    attacker.SendMessage(33, "O Cutelo do Açougueiro se empanturra do inimigo caído!");
                 }
             }
         }

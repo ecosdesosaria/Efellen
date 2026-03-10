@@ -143,7 +143,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( e.Backpack ) && this.Weight != -50.0 ) 
 			{
-				e.SendMessage( "This must be in your backpack to read." );
+				e.SendMessage( "Isto precisa estar em sua mochila para ser lido." );
 			}
 			else
 			{

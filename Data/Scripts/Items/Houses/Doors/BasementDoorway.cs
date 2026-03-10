@@ -28,7 +28,7 @@ namespace Server.Items
 			}
 			else if ( m.InRange( this.GetWorldLocation(), 2 ) )
 			{
-				m.SendMessage( "The wood of the door is warped and doesn't seem to budge." );
+				m.SendMessage( "A madeira da porta está empenada e parece não ceder." );
 			}
 			else
 			{
@@ -44,7 +44,7 @@ namespace Server.Items
 			}
 			else if ( m.InRange( this.GetWorldLocation(), 2 ) )
 			{
-				m.SendMessage( "The wood of the door is warped and doesn't seem to budge." );
+				m.SendMessage( "A madeira da porta está empenada e parece não ceder." );
 			}
 			else
 			{

@@ -31,7 +31,7 @@ namespace Server.Items
 
 			from.ApplyPoison( from, Poison.Deadly );
 			
-			from.SendMessage( "You eat the Winter Fruit of Gulthias and immediately feel violently ill!" );
+			from.SendMessage( "Você come o Fruto de Inverno de Gulthias e imediatamente se sente violentamente doente!" );
 			from.PlaySound( 0x246 );
 			from.FixedEffect( 0x374A, 10, 16, 0x3F, 0 );
 			

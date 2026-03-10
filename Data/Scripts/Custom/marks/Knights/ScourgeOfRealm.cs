@@ -20,7 +20,7 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
         {
             InitStats(125, 55, 65);
             Name = this.Female ? NameList.RandomName("female") : NameList.RandomName("male");
-            Title = "Scourge of the Realm";
+            Title = "Flagelo do Reino";
             HairHue = Utility.RandomHairHue();
             Body = this.Female ? 0x191 : 0x190;
             SpeechHue = Utility.RandomTalkHue();
@@ -50,17 +50,17 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
                     {
                         switch (Utility.Random(11))
                         {
-                            case 0: Say("The Weak shall fall before us!"); break;
-                            case 1: Say("Blood and fire will cleanse this land!"); break;
-                            case 2: Say("The King's virtue is but a frail lie!"); break;
-                            case 3: Say("Those that do not kneel shall be broken!"); break;
-                            case 4: Say("Steel your heart, for we are heirs of endless darkness!"); break;
-                            case 5: Say("All glory belongs to us!"); break;
-                            case 6: Say("Sosaria shall burn!"); break;
-                            case 7: Say("Raise thy blade in the name of vengeance!"); break;
-                            case 8: Say("We shall make covenant with the ghosts of this land!"); break;
-                            case 9: Say("We shall remove the rot of this realm!"); break;
-                            case 10: Say("Hail the scourge, bane of virtue!"); break;
+                            case 0: Say("Os fracos cairão diante de nós!"); break;
+                            case 1: Say("Sangue e fogo purificarão esta terra!"); break;
+                            case 2: Say("A virtude do Rei é apenas uma frágil mentira!"); break;
+                            case 3: Say("Aqueles que não se ajoelharem serão quebrados!"); break;
+                            case 4: Say("Fortalecei vosso coração, pois somos herdeiros da escuridão sem fim!"); break;
+                            case 5: Say("Toda glória pertence a nós!"); break;
+                            case 6: Say("Sosaria arderá!"); break;
+                            case 7: Say("Erguei vossa lâmina em nome da vingança!"); break;
+                            case 8: Say("Faremos pacto com os fantasmas desta terra!"); break;
+                            case 9: Say("Removeremos a podridão deste reino!"); break;
+                            case 10: Say("Salve o flagelo, a perdição da virtude!"); break;
                         }
 
                         m_NextSpeechTime = DateTime.UtcNow + TimeSpan.FromSeconds(10);
@@ -122,12 +122,12 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
 
                 if (!mobile.CheckAlive())
                 {
-                    mobile.SendMessage("You must be alive to receive a Vow of the Scourge.");
+                    mobile.SendMessage("Você precisa estar vivo para receber um Juramento do Flagelo.");
                     return;
                 }
                 else if (mobile.Backpack == null)
                 {
-                    mobile.SendMessage("You have no backpack to receive the Vow of the Scourge.");
+                    mobile.SendMessage("Você não tem uma mochila para receber o Juramento do Flagelo.");
                     return;
                 }
                 else if (LastUsers.TryGetValue(mobile, out lastUse))
@@ -135,7 +135,7 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
                     TimeSpan cooldown = Delay - (DateTime.UtcNow - lastUse);
                     if (cooldown > TimeSpan.Zero)
                     {
-                        m_Npc.Say(String.Format("I'll have another Vow for you in  {0} hour{1} and {2} minute{3}.",
+                        m_Npc.Say(String.Format("Terei outro Juramento para você em {0} hora{1} e {2} minuto{3}.",
                           cooldown.Hours, cooldown.Hours == 1 ? "" : "s",
                           cooldown.Minutes, cooldown.Minutes == 1 ? "" : "s"));
                         return;
@@ -143,7 +143,7 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
                 }
                 else if (mobile.Karma > 0)
                 {
-                    m_Npc.Say("Thou has yet to prove thy value! I shall not deal with those that dabble in meaningless virtue!");
+                    m_Npc.Say("Tu ainda tens que provar teu valor! Não negociarei com aqueles que se ocupam com virtude sem sentido!");
                     return;
                 }
                 if (CanGetVow(mobile))
@@ -155,12 +155,12 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
                     if (vow.Parent == mobile.Backpack)
                     {
                         mobile.SendGump(new SpeechGump(mobile, "Scourge of the Realm", SpeechFunctions.SpeechText(m_Npc, mobile, "Scourge of the Realm")));
-                        mobile.SendMessage("You receive a Vow of the Scourge.");
+                        mobile.SendMessage("Você recebe um Juramento do Flagelo.");
                     }
                     else
                     {
                         vow.Delete();
-                        mobile.SendMessage("You do not have enough inventory space to receive a Vow of the Scourge.");
+                        mobile.SendMessage("Você não tem espaço suficiente no inventário para receber um Juramento do Flagelo.");
                     }
                 }
             }
@@ -216,11 +216,11 @@ namespace Server.Custom.DefenderOfTheRealm.Scourge
             if (from.Karma < 0)
             {
                 from.SendGump(new Server.Custom.DefenderOfTheRealm.RewardGump(from, 2, 0));
-                Say("These are the rewards I can offer thee.");
+                Say("Estas são as recompensas que posso te oferecer.");
             }
             else
             {
-                Say("I shall not offer my services to slaves of Virtue!");
+                Say("Não oferecerei meus serviços a escravos da Virtude!");
             }
         }
 

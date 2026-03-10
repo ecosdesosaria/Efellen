@@ -30,7 +30,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage("This needs to be in your backpack, silly.");
+				from.SendMessage("Isso precisa estar na sua mochila, bobinho.");
 			}
 		}
 		
@@ -63,7 +63,7 @@ namespace Server.Items
 			{
 				m_Deed = deed;
 				m_From = from;
-				from.SendMessage("What animal do you want to bond with?");
+				from.SendMessage("Com qual animal você quer se vincular?");
 		
 				
 			}
@@ -79,41 +79,41 @@ namespace Server.Items
 						{
 							BaseCreature creature = (BaseCreature)targeted;
 							if( !creature.Tamable ){
-								from.SendMessage("This animal isn't tamable!");
+								from.SendMessage("Este animal não é domável!");
 							}
 							else if(  !creature.Controlled || creature.ControlMaster != from ){
-								from.SendMessage("It's not your pet!");
+								from.SendMessage("Não é seu animal de estimação!");
 							}
 							else if( creature.IsDeadPet ){
-								from.SendMessage("This pet is dead... ");
+								from.SendMessage("Este animal está morto... ");
 							}
 							else if ( creature.Summoned ){
-								from.SendMessage("This pet is summoned");
+								from.SendMessage("Este animal é invocado");
 							}
 							else if ( creature.Body.IsHuman ){
-								from.SendMessage("You want to bond with a humanoid??  Hmm... try a room.");
+								from.SendMessage("Você quer se vincular a um humanoide?? Hmm... tente num quarto.");
 							}
 							else{	
 								
 								if( creature.IsBonded == true ){
-									from.SendMessage("Trying to bond the pet....");
+									from.SendMessage("Tentando vincular o animal....");
 								}
 								else{
 									
 									if( from.Skills[SkillName.Taming].Base  < creature.MinTameSkill ){
-										from.SendMessage("Your skill is too low to control this pet!");
+										from.SendMessage("Sua habilidade é muito baixa para controlar este animal!");
 									}
 									else if( from.Skills[SkillName.Druidism].Base  < creature.MinTameSkill ){
-											from.SendMessage("Your skill is too low to control this pet!");
+											from.SendMessage("Sua habilidade é muito baixa para controlar este animal!");
 										}
 									else{
 										try{
 											creature.IsBonded = true;
-											from.SendMessage("{0} is now bonded with you!",creature.Name);
+											from.SendMessage("{0} agora está vinculado a você!",creature.Name);
 											m_Deed.Delete();
 										}
 										catch{
-											from.SendMessage("There was a problem bonding this animal..");
+											from.SendMessage("Houve um problema ao vincular este animal..");
 										}
 											
 									}
@@ -121,15 +121,15 @@ namespace Server.Items
 							}							
 						}
 						else{
-							from.SendMessage("Voc� pode bondar somente animais");
+							from.SendMessage("Você pode bondar somente animais");
 						}
 					}
 					else{
-							from.SendMessage("Voc� pode bondar somente animais");
+							from.SendMessage("Você pode bondar somente animais");
 						}
 				}
 				else{
-					from.SendMessage("This needs to be in your backpack, silly.");
+					from.SendMessage("Isso precisa estar na sua mochila, bobinho.");
 				}			
 		}
 	}

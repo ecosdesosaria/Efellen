@@ -49,7 +49,7 @@ namespace Server.Items
                 return;
 
             ApplyArtifactBuff(attacker);
-            attacker.SendMessage(33, "The fallen reptile empowers you!");
+            attacker.SendMessage(33, "O réptil caído te fortalece!");
             attacker.PlaySound(0x1E9);
             m_NextArtifactBuff = DateTime.UtcNow + TimeSpan.FromMinutes(5.0);
         }

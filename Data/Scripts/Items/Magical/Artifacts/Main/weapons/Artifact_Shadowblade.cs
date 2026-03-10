@@ -107,7 +107,7 @@ namespace Server.Items
 		    {
 		        eable.Free();
 		    }
-		    attacker.SendMessage("Your Shadow Blade erupts with vile darkness!");
+		    attacker.SendMessage("Sua Lâmina Sombria irrompe com escuridão vil!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 1153);
 		}
 
@@ -115,7 +115,7 @@ namespace Server.Items
         {
             if (from.Karma > 0)
             {
-                from.SendMessage("This vile blade burns your hands and refuses to be wielded by you!");
+                from.SendMessage("Esta lâmina vil queima suas mãos e se recusa a ser empunhada por você!");
                 return false;
             }
 

@@ -29,7 +29,7 @@ namespace Server.Items
 		    if (Utility.RandomDouble() < 0.10)
 		    {
 		        damageBonus += 0.45;
-		        attacker.SendMessage("Your strike pierces through your enemy!");
+		        attacker.SendMessage("Seu golpe perfura seu inimigo!");
 		        attacker.PlaySound(0x20F);
 		    }
 		    base.OnHit(attacker, defender, damageBonus);

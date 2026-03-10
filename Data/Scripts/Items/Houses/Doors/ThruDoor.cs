@@ -102,7 +102,7 @@ namespace Server.Items
 			{
 				if ( Rules == 1 && !GetPlayerInfo.EvilPlayer( from ) )
 				{
-					from.SendMessage( "This door has an evil aura and doesn't seem to budge." );
+					from.SendMessage( "Esta porta tem uma aura maligna e parece não ceder." );
 					return;
 				}
 
@@ -210,7 +210,7 @@ namespace Server.Items
 				}
 				else if ( this.Name == "the Wizards Guild" && pc.NpcGuild != NpcGuild.MagesGuild )
 				{
-					m.SendMessage( "Only those of the Wizards Guild may enter!" );
+					m.SendMessage( "Apenas membros da Guilda dos Magos podem entrar!" );
 				}
 				else
 				{

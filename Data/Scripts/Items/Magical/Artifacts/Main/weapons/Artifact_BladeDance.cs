@@ -36,7 +36,7 @@ namespace Server.Items
                 {
                     int mana = Utility.RandomMinMax(10, 35);
 				    attacker.Mana += mana;
-				    attacker.SendMessage(33, "Blade Dance devour the energy of the fallen enemy!");
+				    attacker.SendMessage(33, "Dança das Lâminas devora a energia do inimigo caído!");
                 }
             }
         }

@@ -897,7 +897,7 @@ namespace Server.Multis
 			if ( !this.Deleted ) { // Temporary Fix. We should be booting a client out of customization mode in the delete handler.
 				if ( from.AccessLevel >= AccessLevel.GameMaster && cost != 0 )
 				{
-					from.SendMessage( "{0} gold would have been {1} your bank if you were not a GM.", cost.ToString(), ((cost > 0 )? "withdrawn from" : "deposited into" ) );
+					from.SendMessage( "{0} moedas de ouro teriam sido {1} seu banco se você não fosse um GM.", cost.ToString(), ((cost > 0 )? "sacadas do" : "depositadas no" ) );
 				}
 				else
 				{

@@ -63,11 +63,11 @@ namespace Server.Items
 			{
 				if ( from.PlaceInBackpack( spawn ) )
 				{
-					from.SendMessage( "You put it in your backpack." );
+					from.SendMessage( "Você coloca em sua mochila." );
 				}
 				else
 				{
-					from.SendMessage( "You can't fit it in your backpack!" );
+					from.SendMessage( "Você não consegue colocar isso em sua mochila!" );
 					spawn.MoveToWorld( loc, map );
 				}
 			}

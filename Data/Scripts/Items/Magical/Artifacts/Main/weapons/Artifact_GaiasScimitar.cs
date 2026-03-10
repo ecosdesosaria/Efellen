@@ -35,7 +35,7 @@ namespace Server.Items
 			if (Utility.RandomDouble() < 0.15)
 		    {
 		        damageBonus += 0.35;
-		        attacker.SendMessage("Your strike pierces through your enemy!");
+		        attacker.SendMessage("Seu golpe perfura seu inimigo!");
 		        attacker.PlaySound(0x20F);
 		    }
 
@@ -59,7 +59,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker, Utility.RandomMinMax(2, 5));
 
-			attacker.SendMessage(33, "The Gaia's Scimitar bursts with power!");
+			attacker.SendMessage(33, "O Cimitarra de Gaia explode com poder!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

@@ -32,10 +32,10 @@ namespace Server.Items
         {
             base.GetProperties(list);
 
-            list.Add("Belongs to {0}", m_OwnerName);
+            list.Add("Pertence a {0}", m_OwnerName);
         }
 
-		public override string DefaultDescription{ get{ return "A Heart of the wilds contains druidic knowledge aqquired by one of the servants of nature. It can be used by skilled druids to shapeshift into the various creatures that they have bonded with."; } }
+		public override string DefaultDescription{ get{ return "Um Coração das selvas contém conhecimento druídico adquirido de um dos servos da natureza. Pode ser usado por druidas habilidosos para se transformar nas várias criaturas com as quais se vincularam."; } }
 
 		public HeartOfTheWilds(Serial serial) : base(serial)
 		{
@@ -56,31 +56,31 @@ namespace Server.Items
 		{
 			if (from.FindItemOnLayer(Layer.Neck) != this)
 			{
-				from.SendMessage("You must equip the amulet to use its power.");
+				from.SendMessage("Você deve equipar o amuleto para usar seu poder.");
 				return;
 			}
 
 			if (from.Mounted)
 			{
-				from.SendMessage("You cannot shapeshift while mounted.");
+				from.SendMessage("Você não pode transmorfar enquanto está montado.");
 				return;
 			}
 
 			if (from.Skills[SkillName.Druidism].Value < 70.0 || from.Skills[SkillName.Druidism].Value < 70.0 )
 			{
-				from.SendMessage("You are not skilled enough to shapeshift. You need at least 70 in Druidism and Spiritualism.");
+				from.SendMessage("Você não é habilidoso o suficiente para transmorfar. Precisa de pelo menos 70 em Druidismo e Espiritualismo.");
 				return;
 			}
 			
 			if (from.Skills[SkillName.Necromancy].Base > 0.1)
 			{
-				from.SendMessage("The spirits refuse to commune with necromancers.");
+				from.SendMessage("Os espíritos se recusam a se comunicar com necromantes.");
 				return;
 			}
 
 			if (IsWearingMetalArmor(from))
 			{
-				from.SendMessage("You cannot shapeshift while wearing metal armor.");
+				from.SendMessage("Você não pode transmorfar enquanto estiver usando armadura de metal.");
 				return;
 			}
 
@@ -89,7 +89,7 @@ namespace Server.Items
 			if (context != null)
 			{
 				RemoveContext(from, true);
-				from.SendMessage("You return to your natural form.");
+				from.SendMessage("Você retorna à sua forma natural.");
 			}
 			else
 			{
@@ -141,7 +141,7 @@ namespace Server.Items
 				if (context != null)
 				{
 					RemoveContext(m, true);
-					m.SendMessage("You return to your natural form as the amulet's power fades.");
+					m.SendMessage("Você retorna à sua forma natural à medida que o poder do amuleto desaparece.");
 				}
 			}
 		}
@@ -207,19 +207,19 @@ namespace Server.Items
 
 			if (amulet.m_OwnerName != m.Name) 
 			{
-				m.SendMessage("This amulet does not belong to you");
+				m.SendMessage("Este amuleto não pertence a você");
 				return false;
 			}
 			
 			if (m.FindItemOnLayer(Layer.Neck) != amulet)
 			{
-				m.SendMessage("The amulet must be equipped to use its power.");
+				m.SendMessage("O amuleto deve ser equipado para usar seu poder.");
 				return false;
 			}
 
 			if (!amulet.IsFormUnlocked(entry.Id))
 			{
-			    m.SendMessage("You have not yet learned this form.");
+			    m.SendMessage("Você ainda não aprendeu esta forma.");
 			    return false;
 			}
 
@@ -229,25 +229,25 @@ namespace Server.Items
 
 			if (druidism < entry.RequiredSkill || spiritualism < entry.RequiredSkill)
 			{
-				m.SendMessage("You need at least {0} in both Druidism and Spiritualism to take this form.", entry.RequiredSkill);
+				m.SendMessage("Você precisa de pelo menos {0} em ambos Druidismo e Espiritualismo para assumir esta forma.", entry.RequiredSkill);
 				return false;
 			}
 
 			if (entry.ThirdSkill != SkillName.Alchemy && m.Skills[entry.ThirdSkill].Value < entry.ThirdSkillRequired)
 			{
-				m.SendMessage("You need at least {0} {1} to take this form.", entry.ThirdSkillRequired, entry.ThirdSkill);
+				m.SendMessage("Você precisa de pelo menos {0} {1} para assumir esta forma.", entry.ThirdSkillRequired, entry.ThirdSkill);
 				return false;
 			}
 
 			if (m.Mana < entry.ManaCost)
 			{
-				m.SendMessage("You need at least {0} mana to shapeshift.", entry.ManaCost);
+				m.SendMessage("Você precisa de pelo menos {0} de mana para transmorfar.", entry.ManaCost);
 				return false;
 			}
 
 			if (m.FindItemOnLayer(Layer.Neck) != amulet)
 			{
-				m.SendMessage("The amulet must be equipped.");
+				m.SendMessage("O amuleto deve ser equipado.");
 				return false;
 			}
 
@@ -647,7 +647,7 @@ namespace Server.Items
 			if (m_Mobile.FindItemOnLayer(Layer.Neck) != context.Amulet)
 			{
 				HeartOfTheWilds.RemoveContext(m_Mobile, true);
-				m_Mobile.SendMessage("You return to your natural form as the amulet's power fades.");
+				m_Mobile.SendMessage("Você retorna à sua forma natural enquanto o poder do amuleto desaparece.");
 				Stop();
 				return;
 			}

@@ -206,7 +206,7 @@ namespace Server.Items
 					if( RequiredRace == Race.Elf )
 						from.SendLocalizedMessage( 1072203 ); // Only Elves may use this.
 					else
-						from.SendMessage( "Only {0} may use this.", RequiredRace.PluralName );
+						from.SendMessage( "Apenas {0} podem usar isto.", RequiredRace.PluralName );
 
 					return false;
 				}
@@ -215,7 +215,7 @@ namespace Server.Items
 					if( AllowFemaleWearer )
 						from.SendLocalizedMessage( 1010388 ); // Only females can wear this.
 					else
-						from.SendMessage( "You may not wear this." );
+						from.SendMessage( "Você não pode vestir isto." );
 
 					return false;
 				}
@@ -224,7 +224,7 @@ namespace Server.Items
 					if( AllowMaleWearer )
 						from.SendLocalizedMessage( 1063343 ); // Only males can wear this.
 					else
-						from.SendMessage( "You may not wear this." );
+						from.SendMessage( "Você não pode vestir isto." );
 
 					return false;
 				}
@@ -313,7 +313,7 @@ namespace Server.Items
 						if( clothing.RequiredRace == Race.Elf )
 							m.SendLocalizedMessage( 1072203 ); // Only Elves may use this.
 						else
-							m.SendMessage( "Only {0} may use this.", clothing.RequiredRace.PluralName );
+							m.SendMessage( "Apenas {0} podem usar isto.", clothing.RequiredRace.PluralName );
 
 						m.AddToBackpack( clothing );
 					}
@@ -322,7 +322,7 @@ namespace Server.Items
 						if ( clothing.AllowFemaleWearer )
 							m.SendLocalizedMessage( 1010388 ); // Only females can wear this.
 						else
-							m.SendMessage( "You may not wear this." );
+							m.SendMessage( "Você não pode vestir isto." );
 
 						m.AddToBackpack( clothing );
 					}
@@ -331,7 +331,7 @@ namespace Server.Items
 						if ( clothing.AllowMaleWearer )
 							m.SendLocalizedMessage( 1063343 ); // Only males can wear this.
 						else
-							m.SendMessage( "You may not wear this." );
+							m.SendMessage( "Você não pode vestir isto." );
 
 						m.AddToBackpack( clothing );
 					}

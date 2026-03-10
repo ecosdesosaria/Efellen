@@ -45,7 +45,7 @@ namespace Server.Items
 
 			DotEffect.ApplyDot(defender, duration, attacker,3);
 
-			attacker.SendMessage(33, "The Winter's grip shivers your enemy!");
+			attacker.SendMessage(33, "O Aperto do inverno estremece seu inimigo!");
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);

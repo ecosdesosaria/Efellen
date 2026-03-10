@@ -46,7 +46,7 @@ namespace Server.Items
 		{
 			if (from.Karma >= -11999)
 			{
-				from.SendMessage("This vile implement judges you unworthy!");
+				from.SendMessage("Este instrumento vil te julga indigno!");
 				from.ApplyPoison(from, Poison.Deadly);
 				return false;
 			}
@@ -125,7 +125,7 @@ namespace Server.Items
 			);
 			spinner.PlaySound(0x218);
 
-			m_Wearer.SendMessage("Lolth has taken an interest in your suffering.");
+			m_Wearer.SendMessage("Lolth se interessou pelo seu sofrimento.");
 
             m_Wearer.ApplyPoison(m_Wearer, Poison.Deadly);
 

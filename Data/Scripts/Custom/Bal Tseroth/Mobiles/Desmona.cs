@@ -77,7 +77,7 @@ namespace Server.Mobiles
 
 			m_IsChanneling = false;
 			this.Frozen = false;
-            Say( "*The spell fizzles*" );
+            Say( "*O feitiço falha*" );
 
 			if ( m_ChannelTimer != null )
 			{
@@ -105,7 +105,7 @@ namespace Server.Mobiles
 		{
 			m_IsChanneling = true;
 			this.Frozen = true;
-            Say( "*starts channeling a spell*" );
+            Say( "*começa a canalizar um feitiço*" );
 			m_ChannelTimer = Timer.DelayCall( TimeSpan.FromSeconds( 3 ), new TimerCallback( ExecuteSpell ) );
 		}
 
@@ -136,7 +136,7 @@ namespace Server.Mobiles
 			if ( m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
 				return;
 
-            Say( "*Casts Fireball*" );
+            Say( "*Lança Bola de Fogo*" );
 
 			Point3D targetLoc = m_ChannelTarget.Location;
 			Map map = m_ChannelTarget.Map;
@@ -175,7 +175,7 @@ namespace Server.Mobiles
 			if ( m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
 				return;
 
-            Say( "*Casts Magic Missile*" );
+            Say( "*Lança Mísseis Mágicos*" );
 
 			int projectileCount = Utility.RandomMinMax( 2, 5 );
 			
@@ -207,7 +207,7 @@ namespace Server.Mobiles
 			if ( m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
 				return;
 
-            Say( "*Casts Web*" );
+            Say( "*Lança Teia*" );
 
 			List<Mobile> targets = new List<Mobile>();
 			IPooledEnumerable eable = m_ChannelTarget.GetMobilesInRange( 2 );
@@ -230,7 +230,7 @@ namespace Server.Mobiles
 				Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x376A, 9, 10, 0x0213 );
 				Effects.SendLocationEffect( m.Location, m.Map, 0x3709, 30, 10, 0x0213, 0 );
 				Effects.PlaySound( m.Location, m.Map, 0x204 );
-				m.SendMessage( "You are trapped in a magical web!" );
+				m.SendMessage( "Você está preso em uma teia mágica!" );
 			}
 		}
 
@@ -239,7 +239,7 @@ namespace Server.Mobiles
 			if ( m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
 				return;
 
-            Say( "*Casts Disintegrate*" );
+            Say( "*Lança Desintegração*" );
 			Effects.SendMovingEffect( this, m_ChannelTarget, 0x379F, 7, 0, false, false, 0x0213, 0 );
 			Effects.PlaySound( this.Location, this.Map, 0x1F1 );
 
@@ -260,7 +260,7 @@ namespace Server.Mobiles
 
 		private void CastPowerwordFear()
 		{
-            Say( "*Casts Powerword: Fear*" );
+            Say( "*Lança Palavra de Poder: Medo*" );
 
 			List<Mobile> targets = new List<Mobile>();
 			IPooledEnumerable eable = this.GetMobilesInRange( 4 );
@@ -276,7 +276,7 @@ namespace Server.Mobiles
 			{
 				if ( m.Skills[SkillName.Knightship].Value >= 95.0 )
 				{
-					m.SendMessage( "Your valor steels you against fear!" );
+					m.SendMessage( "Sua coragem te protege contra o medo!" );
 					continue;
 				}
 
@@ -294,7 +294,7 @@ namespace Server.Mobiles
 					if ( duration > 0 )
 						m.Paralyze( TimeSpan.FromSeconds( duration ) );
 
-					m.SendMessage( "You are gripped by overwhelming fear!" );
+					m.SendMessage( "Você é tomado por um medo avassalador!" );
 				}
 			}
 
@@ -318,7 +318,7 @@ namespace Server.Mobiles
 
 		private void CastPowerwordSlow()
 		{
-            Say( "*Casts Powerword: Slow*" );
+            Say( "*Lança Palavra de Poder: Lentidão*" );
 
 			List<Mobile> targets = new List<Mobile>();
 			IPooledEnumerable eable = this.GetMobilesInRange( 4 );
@@ -335,7 +335,7 @@ namespace Server.Mobiles
 				m.Stam = 1;
 				Effects.SendLocationEffect( m.Location, m.Map, 0x3709, 30, 10, 0x0213, 0 );
 				Effects.PlaySound( m.Location, m.Map, 0x204 );
-				m.SendMessage( "You feel incredibly sluggish!" );
+				m.SendMessage( "Você se sente incrivelmente lento!" );
 			}
 
 			Effects.PlaySound( this.Location, this.Map, 0x5C3 );
@@ -346,7 +346,7 @@ namespace Server.Mobiles
 			if ( m_ChannelTarget == null || m_ChannelTarget.Deleted || !m_ChannelTarget.Alive )
 				return;
 
-            Say( "*Casts Acid Fog*" );
+            Say( "*Lança Névoa Ácida*" );
 
 			Point3D centerLoc = m_ChannelTarget.Location;
 			Map map = m_ChannelTarget.Map;

@@ -24,12 +24,12 @@ namespace Server.Items
 		{
 			if ( Parent != from )
 			{
-				from.SendMessage( "You must be holding the rod to resurrect." );
+				from.SendMessage( "Você precisa estar segurando a varinha para ressuscitar." );
 			}
 			else
 			{
 				from.Target = new InternalTarget( from, this );
-				from.SendMessage( "Who would you like to resurrect!" );
+				from.SendMessage( "Quem você gostaria de ressuscitar?" );
 			}
 			return;
 		}
@@ -93,7 +93,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage("They are not dead.");
+					from.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if ( hench is HenchmanWizardItem )
@@ -109,7 +109,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage("They are not dead.");
+					from.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if ( hench is HenchmanArcherItem )
@@ -125,7 +125,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage("They are not dead.");
+					from.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if (hench is HenchmanMonsterItem )
@@ -141,12 +141,12 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage("They are not dead.");
+					from.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else
 			{
-				from.SendMessage("This spell didn't seem to work.");
+				from.SendMessage("Este feitiço parece não ter funcionado.");
 			}
 		}
  

@@ -446,7 +446,7 @@ namespace Server.Gumps
                     }
                     else
                     {
-                        m_From.SendMessage("You don't have enough points available!  This attribute costs "+cost+" points.");
+                        m_From.SendMessage("Você não tem pontos disponíveis suficientes! Este atributo custa " + cost + " pontos.");
                     }
 
                     m_From.SendGump(new GiftGump(m_From, m_Item, GiftAttributes.m_Attributes[index].m_Category, GumpPage.AttributeList));
@@ -480,7 +480,7 @@ namespace Server.Gumps
                     }
                     else
                     {
-                        m_From.SendMessage("You don't have enough points available!  This attribute costs "+cost+" points.");
+                        m_From.SendMessage("Você não tem pontos disponíveis suficientes! Este atributo custa " + cost + " pontos.");
                     }
 
                     m_From.SendGump(new GiftGump(m_From, m_Item, GiftAttributes.m_WeaponAttributes[index].m_Category, GumpPage.AttributeList));
@@ -513,7 +513,7 @@ namespace Server.Gumps
                     }
                     else
                     {
-                        m_From.SendMessage("You don't have enough points available!  This attribute costs "+cost+" points.");
+                        m_From.SendMessage("Você não tem pontos disponíveis suficientes! Este atributo custa " + cost + " pontos.");
                     }
 
                     m_From.SendGump(new GiftGump(m_From, m_Item, GiftAttributes.m_ArmorAttributes[index].m_Category, GumpPage.AttributeList));
@@ -579,7 +579,7 @@ namespace Server.Gumps
                     }
                     else
                     {
-                        m_From.SendMessage("You don't have enough points available!  This attribute costs "+cost+" points.");
+                        m_From.SendMessage("Você não tem pontos disponíveis suficientes! Este atributo custa " + cost + " pontos.");
                     }
 
                     m_From.SendGump(new GiftGump(m_From, m_Item, GiftAttributes.m_ResistanceTypes[index].m_Category, GumpPage.AttributeList));
@@ -616,7 +616,7 @@ namespace Server.Gumps
                     }
                     else
                     {
-                        m_From.SendMessage("You don't have enough points available!  This attribute costs "+cost+" points.");
+                        m_From.SendMessage("Você não tem pontos disponíveis suficientes! Este atributo custa " + cost + " pontos.");
                     }
 
                     m_From.SendGump(new GiftGump(m_From, m_Item, GiftAttributes.m_ElementAttributes[index].m_Category, GumpPage.AttributeList));

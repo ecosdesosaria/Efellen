@@ -83,7 +83,7 @@ namespace Server.Items
 		public override bool OnEquip( Mobile from )
 		{
 			if ( from.AccessLevel < m_AccessLevel )
-				from.SendMessage( "You may not wear this." );
+				from.SendMessage( "Você não pode vestir isto." );
 
 			return ( from.AccessLevel >= m_AccessLevel );
 		}

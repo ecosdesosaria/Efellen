@@ -216,7 +216,7 @@ namespace Server.Mobiles
 
 				if (AppraiseMode)
 				{
-					this.Say("I can pay you " + petpriceint + " for this pet.");
+					this.Say("Posso te pagar " + petpriceint + " por este animal.");
 					pet.MinTameSkill = oldvalue; // resets the value to what it was;
 					return;
 				} 
@@ -229,19 +229,15 @@ namespace Server.Mobiles
 				Titles.AwardFame( from, (pet.Fame / 100), true );
 
 				if (petpriceint <= 400)	
-					this.Say( "I have plenty of " + pet.Name + " so I'll give you " + petpriceint + " gold");
-			
+					this.Say( "Já tenho vários " + pet.Name + ", então te dou " + petpriceint + " moedas de ouro");
 				else if (petpriceint <= 1000)	
-					this.Say( "Thank you {0}, I will add this " + pet.Name + " to my collection!  Here is " + petpriceint + " for your troubles",from.Name  );
-				
+					this.Say( "Obrigado {0}, vou adicionar este " + pet.Name + " à minha coleção! Aqui está " + petpriceint + " pelo seu trabalho", from.Name);
 				else if (petpriceint <= 3000)	
-					this.Say( "A Rare find!!! Thank you for " + pet.Name + " it's worth " + petpriceint + " to the right buyer..");
-				
+					this.Say( "Um achado raro!!! Obrigado pelo " + pet.Name + ", vale " + petpriceint + " para o comprador certo..");
 				else if (petpriceint <= 6000)	
-					this.Say( "What an amazing Specimen!  I will pay you " + petpriceint + " for it! " );
-				
+					this.Say( "Que espécime incrível! Vou te pagar " + petpriceint + " por ele!");
 				else if (petpriceint >= 12000)	
-					this.Say( "I'll pay " + petpriceint + "!  I've always wanted one of these!!! " );
+					this.Say( "Vou pagar " + petpriceint + "! Sempre quis um desses!!!");
 				
 				
 			}

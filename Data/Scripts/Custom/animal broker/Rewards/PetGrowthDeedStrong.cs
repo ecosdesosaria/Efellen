@@ -24,13 +24,13 @@ namespace Server.Items
 
             if ( t.ControlMaster != from ) 
             { 
-               from.SendMessage( "That is not your pet!" ); 
+               from.SendMessage( "Esse não é seu animal de estimação!" );
             } 
             else  
              
                { 
 
-                  from.SendMessage( "Your pet grows stronger!" );
+                  from.SendMessage( "Seu animal fica mais forte!" );
 
                   int growth = Utility.RandomMinMax(1,10);
                   int amnt = Utility.RandomMinMax(3,5);
@@ -119,7 +119,7 @@ namespace Server.Items
          } 
          else 
          { 
-            from.SendMessage( "That is not a valid traget." );  
+            from.SendMessage( "Esse não é um alvo válido." );  
          } 
       } 
    } 
@@ -151,7 +151,7 @@ namespace Server.Items
 			base.GetProperties( list );
 
 			
-				list.Add("Adds 3 to 5 points to one of your pet's attributes." ); 
+				list.Add("Adiciona 3 a 5 pontos a um dos atributos do seu animal." );
 		}
 
       public override void Deserialize( GenericReader reader ) 
@@ -172,7 +172,7 @@ namespace Server.Items
          } 
          else 
          { 
-            from.SendMessage( "Choose the pet you wish to feed this to." );  
+            from.SendMessage( "Escolha o animal que deseja alimentar com isso." );  
             from.Target = new GrowthTargetStrong( this ); // Call our target 
           } 
       }    

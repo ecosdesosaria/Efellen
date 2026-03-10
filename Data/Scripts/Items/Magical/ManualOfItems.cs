@@ -53,7 +53,7 @@ namespace Server.Items
 		{
             base.AddNameProperties(list);
 			if ( m_FromWho != "" && m_FromWho != null ){ list.Add( 1070722, m_FromWho); }
-			if ( m_Owner != null ){ list.Add( 1049644, "Belongs to " + m_Owner.Name + "" ); }
+			if ( m_Owner != null ){ list.Add( 1049644, "Pertence a " + m_Owner.Name + "" ); }
         }
 
 		public override void OnDoubleClick( Mobile from )
@@ -71,7 +71,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "You cannot seem to get the chest to open. Is it yours?" );
+				from.SendMessage( "Você não consegue abrir o baú. Ele é seu?" );
 			}
 		}
 
@@ -129,7 +129,7 @@ namespace Server.Items
 
 				if ( page == 999999 )
 				{
-					AddHtml( 13, 52, 681, 364, @"<BODY><BASEFONT Color=" + color + ">You have obtained a chest with powerful items of your choice. You are able to select as many items as the chest has charges. Once the charges are used up, the chest will vanish. When you make a selection, the item will appear in your pack. Some chests provide additional attributes to items such as slayer properties or skill enhancements. Each item will appear with a number of points you can spend to enhance your item. This allows you to tailor the item to suit your style. To begin, single click the items and select 'Enchant'. A menu will appear that you can choose which attributes you want the item to have. Be careful, as you cannot change an attribute once you select it.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 13, 52, 681, 364, @"<BODY><BASEFONT Color=" + color + ">Você obteve um baú com itens poderosos de sua escolha. Você pode selecionar quantos itens o baú tiver cargas. Quando as cargas forem usadas, o baú desaparecerá. Ao fazer uma seleção, o item aparecerá em sua mochila. Alguns baús fornecem atributos adicionais aos itens, como propriedades de extermínio ou melhorias de habilidade. Cada item aparecerá com um número de pontos que você pode gastar para aprimorar seu item. Isso permite que você personalize o item para se adequar ao seu estilo. Para começar, clique uma vez nos itens e selecione 'Encantar'. Um menu aparecerá onde você pode escolher quais atributos deseja que o item tenha. Tenha cuidado, pois você não pode alterar um atributo depois de selecioná-lo.</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddButton(668, 425, 4005, 4005, 999998, GumpButtonType.Reply, 0);
 				}
 				else

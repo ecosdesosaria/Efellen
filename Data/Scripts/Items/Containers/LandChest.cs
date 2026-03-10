@@ -100,7 +100,7 @@ namespace Server.Items
 				this.DropItem( new BodyPart( 0x1DA1 ) );
 				this.DropItem( new BodyPart( 0x1DA0 ) );
 
-				from.SendMessage( "You hack up the body into bloody pieces." );
+				from.SendMessage( "Você corta o corpo em pedaços sangrentos." );
 			}
 		}
 

@@ -24,11 +24,11 @@ namespace Server.Items
 
             if (t.IsParagon == true)
             {
-               from.SendMessage("That pet is already a paragon!");
+               from.SendMessage("Esse animal já é um paragon!");
             }
             else if (t.ControlMaster != from)
             {
-               from.SendMessage("That is not your pet!");
+               from.SendMessage("Este não é o seu animal de estimação!");
             }
             else
             {
@@ -37,7 +37,7 @@ namespace Server.Items
                   bonded = true;
 
                t.IsParagon = true;
-               from.SendMessage("Your pet is now a paragon!");
+               from.SendMessage("Seu animal agora é um paragon!");
 
                m_Deed.Delete(); // Delete the deed 
                t.Tamable = true;
@@ -48,7 +48,7 @@ namespace Server.Items
          }
          else
          {
-            from.SendMessage("That is not a valid traget.");
+            from.SendMessage("Esse não é um alvo válido.");
          }
       }
    }
@@ -93,7 +93,7 @@ namespace Server.Items
          }
          else
          {
-            from.SendMessage("Choose the pet you wish to make a paragon.");
+            from.SendMessage("Escolha o animal que deseja tornar um paragon.");
             from.Target = new ParagonTarget(this); // Call our target 
          }
       }

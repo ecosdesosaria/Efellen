@@ -37,15 +37,15 @@ namespace Server.Items
 		{
 			if ( Movable )
 			{
-				from.SendMessage( "This must be secured down in a home to use." );
+				from.SendMessage( "Isso deve estar fixado em uma casa para usar." );
 			}
 			else if ( !from.InRange( GetWorldLocation(), 2 ) || !from.CanSee( this ) || !from.InLOS( this ) )
 			{
-				from.SendMessage( "You will have to get closer to use that." );
+				from.SendMessage( "Você precisa se aproximar para usar isso." );
 			}
 			else if ( !CheckAccess( from ) )
 			{
-				from.SendMessage ("You cannot use this safe.");
+				from.SendMessage ("Você não pode usar este cofre.");
 			}
 			else
 			{

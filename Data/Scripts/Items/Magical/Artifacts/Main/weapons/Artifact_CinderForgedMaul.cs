@@ -114,7 +114,7 @@ namespace Server.Items
 		        eable.Free();
 		    }
 
-		    attacker.SendMessage("Your Maul sets the ground ablaze!");
+		    attacker.SendMessage("Seu Malho incendeia o chão!");
 		    SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 1160);
 		}
 

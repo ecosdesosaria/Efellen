@@ -220,7 +220,7 @@ namespace Server.Items
 		{
 			if ( from.Blessed )
 			{
-				from.SendMessage( "You cannot open that while in this state." );
+				from.SendMessage( "Você não pode abrir isso neste estado." );
 				return;
 			}
 			else if ( from.Hidden && from is PlayerMobile && from.Skills[SkillName.Hiding].Value < Utility.RandomMinMax( 1, 125 ) )

@@ -25,7 +25,7 @@ namespace Server.Items
             Name = "Essense of Lolth's Hatred";
         }
 
-        public override string DefaultDescription{ get{ return "This strange idol shimmers with Drow malice. It seems to want to move with a will of its own towards the sacrificial pool in the depths of Fanaedar"; } }
+        public override string DefaultDescription{ get{ return "Este estranho ídolo brilha com malícia Drow. Parece querer se mover com vontade própria em direção à piscina sacrificial nas profundezas de Fanaedar."; } }
 
         public EssenceOfLolthsHatred(Serial serial) : base(serial)
         {
@@ -42,14 +42,14 @@ namespace Server.Items
             Region reg = from.Region;
             if (reg == null || !reg.IsPartOf("Fanaedar"))
             {
-                from.SendMessage("You must be in Fanaedar to use this.");
+                from.SendMessage("Você deve estar em Fanaedar para usar isso.");
                 return;
             }
 
             Point3D targetCoord = new Point3D(640, 2868, 0);
             if (from.GetDistanceToSqrt(targetCoord) > 2)
             {
-                from.SendMessage("You are too far away from the pool of sacrifices.");
+                from.SendMessage("Você está muito longe da piscina de sacrifícios.");
                 return;
             }
 
@@ -62,11 +62,11 @@ namespace Server.Items
 
             if (totalEssense < 20)
             {
-                from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "You have not done enough to warrant Lolth's attention");
+                from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Você não fez o suficiente para merecer a atenção de Lolth");
                 return;
             }
 
-            from.SendMessage("Target the artifact weapon that you want to consecrate to Lolth");
+            from.SendMessage("Selecione a arma artefato que deseja consagrar a Lolth");
             from.Target = new LolthConsecrateTarget(from);
         }
 
@@ -105,14 +105,14 @@ namespace Server.Items
 
                     if (!isValidType)
                     {
-                        from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Lolth is uninterested in that item.");
+                        from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Lolth não está interessada nesse item.");
                         return;
                     }
 
                     BaseWeapon weapon = item as BaseWeapon;
                     if (weapon == null)
                     {
-                        from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Lolth is uninterested in that item.");
+                        from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Lolth não está interessada nesse item.");
                         return;
                     }
 
@@ -206,12 +206,12 @@ namespace Server.Items
                         from.PlaySound(0x208);
                         Effects.SendLocationEffect(new Point3D(from.X, from.Y, from.Z + 5), from.Map, 0x3728, 13, 10, 1316, 0);
                         from.PlaySound(0x1F1);
-                        from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Lolth's tendrils caress the weapon...");
+                        from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Os tentáculos de Lolth acariciam a arma...");
                     }
                 }
                 else
                 {
-                    from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Lolth is uninterested in that item.");
+                    from.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Lolth não está interessada nesse item.");
                 }
             }
         }

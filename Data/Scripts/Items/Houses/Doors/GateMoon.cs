@@ -25,15 +25,15 @@ namespace Server.Items
 			{
 				if ( m is PlayerMobile && m.Land == Land.Kuldar && !( Server.Misc.PlayerSettings.GetKeys( m, "VordoKey" ) ) )
 				{
-					m.SendMessage( "This magical gate doesn't seem to do anything." );
+					m.SendMessage( "Este portal mágico não parece fazer nada." );
 				}
 				else if ( Worlds.AllowEscape( m, m.Map, m.Location, m.X, m.Y ) == false && m.Land != Land.Kuldar )
 				{
-					m.SendMessage( "This magical gate doesn't seem to do anything." );
+					m.SendMessage( "Este portal mágico não parece fazer nada." );
 				}
 				else if ( Worlds.RegionAllowedRecall( m.Map, m.Location, m.X, m.Y ) == false && m.Land != Land.Ambrosia && m.Land != Land.Kuldar )
 				{
-					m.SendMessage( "This magical gate doesn't seem to do anything." );
+					m.SendMessage( "Este portal mágico não parece fazer nada." );
 				}
 				else 
 				{
@@ -54,7 +54,7 @@ namespace Server.Items
 					m.PlaySound( 0x20E );
 					m.CloseGump( typeof( MoonGateGump ) );
 					m.SendGump( new MoonGateGump( m, false ) );
-					m.SendMessage( "Choose a destination." );
+					m.SendMessage( "Escolha um destino." );
 				}
 			}
 			return true;

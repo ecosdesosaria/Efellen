@@ -598,7 +598,7 @@ namespace Server.Items
 						if( armor.RequiredRace == Race.Elf )
 							m.SendLocalizedMessage( 1072203 ); // Only Elves may use this.
 						else
-							m.SendMessage( "Only {0} may use this.", armor.RequiredRace.PluralName );
+							m.SendMessage( "Apenas {0} pode usar isto.", armor.RequiredRace.PluralName );
 
 						m.AddToBackpack( armor );
 					}
@@ -607,7 +607,7 @@ namespace Server.Items
 						if ( armor.AllowFemaleWearer )
 							m.SendLocalizedMessage( 1010388 ); // Only females can wear this.
 						else
-							m.SendMessage( "You may not wear this." );
+							m.SendMessage( "Você não pode vestir isto." );
 
 						m.AddToBackpack( armor );
 					}
@@ -616,7 +616,7 @@ namespace Server.Items
 						if ( armor.AllowMaleWearer )
 							m.SendLocalizedMessage( 1063343 ); // Only males can wear this.
 						else
-							m.SendMessage( "You may not wear this." );
+							m.SendMessage( "Você não pode vestir isto." );
 
 						m.AddToBackpack( armor );
 					}
@@ -1120,7 +1120,7 @@ namespace Server.Items
 					if( RequiredRace == Race.Elf )
 						from.SendLocalizedMessage( 1072203 ); // Only Elves may use this.
 					else
-						from.SendMessage( "Only {0} may use this.", RequiredRace.PluralName );
+						from.SendMessage( "Apenas {0} pode usar isto.", RequiredRace.PluralName );
 
 					return false;
 				}
@@ -1129,7 +1129,7 @@ namespace Server.Items
 					if( AllowFemaleWearer )
 						from.SendLocalizedMessage( 1010388 ); // Only females can wear this.
 					else
-						from.SendMessage( "You may not wear this." );
+						from.SendMessage( "Você não pode vestir isto." );
 
 					return false;
 				}
@@ -1138,7 +1138,7 @@ namespace Server.Items
 					if( AllowMaleWearer )
 						from.SendLocalizedMessage( 1063343 ); // Only males can wear this.
 					else
-						from.SendMessage( "You may not wear this." );
+						from.SendMessage( "Você não pode vestir isto." );
 
 					return false;
 				}
@@ -1160,7 +1160,7 @@ namespace Server.Items
 					}
 					else if( from.Int < intReq || (from.Int + intBonus) < 1 )
 					{
-						from.SendMessage( "You are not intelligent enough to equip that." );
+						from.SendMessage( "Você não é inteligente o suficiente para equipar isso." );
 						return false;
 					}
 				}

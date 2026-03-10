@@ -33,7 +33,7 @@ namespace Server.Items
 			int healAmount = Utility.RandomMinMax( 70, 120 );
 			from.Heal( healAmount );
 			
-			from.SendMessage( "You eat the Summer Fruit of Gulthias and feel invigorated!" );
+			from.SendMessage( "Você come o Fruto de Verão de Gulthias e se sente revigorado!" );
 			from.PlaySound( 0x4F );
 			from.FixedEffect( 0x376A, 9, 32 );
 			

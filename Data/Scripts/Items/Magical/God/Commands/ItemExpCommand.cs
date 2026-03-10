@@ -28,7 +28,7 @@ namespace Server.Commands
 
 	        public static void ixp_OnCommand(CommandEventArgs e)
 	        {
-			e.Mobile.SendMessage( "Select an item to view experience" );
+			e.Mobile.SendMessage( "Selecione um item para ver a experiência" );
 			e.Mobile.Target = new InternalTarget( e.Mobile );
 	        }
 
@@ -49,7 +49,7 @@ namespace Server.Commands
 
                     if ( item.Parent != from && item.Parent != from.Backpack )
                     {
-                    	from.SendMessage("The item must be in your pack or equiped!");
+                    	from.SendMessage("O item deve estar em sua mochila ou equipado!");
                     	return;
 					}
 
@@ -61,17 +61,17 @@ namespace Server.Commands
 						}
                         else
                         {
-                            from.SendMessage("That is not a valid levelable item");
+                            from.SendMessage("Esse não é um item de nível válido");
                         }
 					}
 					else
 					{
-						from.SendMessage("That item is not levelable!");
+						from.SendMessage("Esse item não pode subir de nível!");
 					}
 				}
 				else
 				{
-					from.SendMessage("That is not a valid item!");
+					from.SendMessage("Esse não é um item válido!");
 				}
 
 			}

@@ -17,70 +17,70 @@ namespace Server.Custom.KoperPets
         
         private static readonly string[] TamingMessages = new string[]
         {
-            "*{0} seems to trust their master more.*",
-            "*{0} appears more in sync with their master.*",
-            "*{0} moves with greater confidence alongside their master.*",
-            "*{0} looks to their master with newfound understanding.*",
-            "*{0} follows their master's guidance more closely.*",
-            "*{0} seems to grow stronger under their master's leadership.*",
-            "*{0} and their master fight in perfect harmony.*",
-            "*{0} moves with greater coordination beside their master.*",
-            "*{0} watches their master carefully, learning from every movement.*",
-            "*{0} responds to commands with increased precision.*",
-            "*{0} fights as though truly bonded with their master.*",
-            "*{0} appears more devoted to their master's cause.*",
-            "*{0} follows their master with unwavering loyalty.*",
-            "*{0} carries themselves with a newfound sense of purpose.*",
-            "*{0} seems more confident with their master by their side.*",
-            "*{0} appears more attuned to their master's presence.*",
-            "*{0} trusts their master more deeply after the battle.*",
-            "*{0} has grown more in tune with their master's instincts.*",
-            "*{0} learns from their master's movements, adapting quickly.*",
-            "*{0} fights with the precision of a well-trained companion.*",
-            "*{0} and their master move as one in battle.*",
-            "*{0} seems to have strengthened their bond through combat.*",
-            "*{0} watches their master with admiration and understanding.*",
-            "*{0} seems to feel a stronger connection with their master.*",
-            "*{0} reacts instantly to their master's unspoken commands.*",
-            "*{0} stands by their master with newfound resolve.*",
-            "*{0} seems more attuned to their master's emotions and intent.*",
-            "*{0} moves with perfect synchronization beside their master.*",
-            "*{0} fights with the dedication of a truly loyal companion.*",
-            "*{0} carries themselves like a seasoned warrior beside their master.*"
+            "*{0} parece confiar mais em seu mestre.*",
+            "*{0} aparenta estar mais em sintonia com seu mestre.*",
+            "*{0} move-se com maior confiança ao lado de seu mestre.*",
+            "*{0} olha para seu mestre com entendimento recém-descoberto.*",
+            "*{0} segue a orientação de seu mestre mais de perto.*",
+            "*{0} parece ficar mais forte sob a liderança de seu mestre.*",
+            "*{0} e seu mestre lutam em perfeita harmonia.*",
+            "*{0} move-se com maior coordenação ao lado de seu mestre.*",
+            "*{0} observa seu mestre cuidadosamente, aprendendo com cada movimento.*",
+            "*{0} responde aos comandos com precisão aumentada.*",
+            "*{0} luta como se verdadeiramente ligado a seu mestre.*",
+            "*{0} aparenta ser mais dedicado à causa de seu mestre.*",
+            "*{0} segue seu mestre com lealdade inabalável.*",
+            "*{0} porta-se com um recém-descoberto senso de propósito.*",
+            "*{0} parece mais confiante com seu mestre ao lado.*",
+            "*{0} aparenta estar mais sintonizado com a presença de seu mestre.*",
+            "*{0} confia mais profundamente em seu mestre após a batalha.*",
+            "*{0} tornou-se mais afinado com os instintos de seu mestre.*",
+            "*{0} aprende com os movimentos de seu mestre, adaptando-se rapidamente.*",
+            "*{0} luta com a precisão de um companheiro bem treinado.*",
+            "*{0} e seu mestre movem-se como um só em batalha.*",
+            "*{0} parece ter fortalecido seu vínculo através do combate.*",
+            "*{0} observa seu mestre com admiração e compreensão.*",
+            "*{0} parece sentir uma conexão mais forte com seu mestre.*",
+            "*{0} reage instantaneamente aos comandos não falados de seu mestre.*",
+            "*{0} permanece ao lado de seu mestre com determinação renovada.*",
+            "*{0} parece mais sintonizado com as emoções e intenções de seu mestre.*",
+            "*{0} move-se com sincronização perfeita ao lado de seu mestre.*",
+            "*{0} luta com a dedicação de um companheiro verdadeiramente leal.*",
+            "*{0} porta-se como um guerreiro experiente ao lado de seu mestre.*"
         };
 
         private static readonly string[] BattleCries = new string[]
         {
-            "*{0} fights with everything they have!*",
-            "*{0} defends their master with unshakable loyalty!*",
-            "*{0} lunges at the enemy with full force!*",
-            "*{0} refuses to back down!*",
-            "*{0} charges fearlessly into battle!*",
-            "*{0} fights tooth and claw to protect their master!*",
-            "*{0} moves with incredible speed and precision!*",
-            "*{0} strikes fiercely, showing no mercy!*",
-            "*{0} launches a devastating attack!*",
-            "*{0} fights like a true warrior of the wild!*",
-            "*{0} stands their ground, refusing to falter!*",
-            "*{0} thrashes about with raw fury!*",
-            "*{0} roars in defiance as they attack!*",
-            "*{0} pushes themselves to the limit!*",
-            "*{0} is a blur of movement, overwhelming their foe!*",
-            "*{0} unleashes a powerful assault!*",
-            "*{0} gives it their all, undeterred by danger!*",
-            "*{0} fights with the might of a beast unchained!*",
-            "*{0} is relentless, never giving an inch!*",
-            "*{0} fights with unwavering determination!*",
-            "*{0} refuses to let their master come to harm!*",
-            "*{0} battles fiercely, driven by instinct!*",
-            "*{0} moves like a storm, striking again and again!*",
-            "*{0} delivers a crushing blow!*",
-            "*{0} does not hesitate, striking with full force!*",
-            "*{0} tears into their foe with savage intent!*",
-            "*{0} battles like a beast possessed!*",
-            "*{0} is relentless in their pursuit of victory!*",
-            "*{0} meets their foe head-on without fear!*",
-            "*{0} fights as if their very survival depends on it!*"
+            "*{0} luta com tudo o que tem!*",
+            "*{0} defende seu mestre com lealdade inabalável!*",
+            "*{0} investe contra o inimigo com força total!*",
+            "*{0} se recusa a recuar!*",
+            "*{0} avança destemido para a batalha!*",
+            "*{0} luta com unhas e dentes para proteger seu mestre!*",
+            "*{0} move-se com velocidade e precisão incríveis!*",
+            "*{0} ataca ferozmente, sem mostrar misericórdia!*",
+            "*{0} lança um ataque devastador!*",
+            "*{0} luta como um verdadeiro guerreiro da natureza!*",
+            "*{0} mantém sua posição, recusando-se a fraquejar!*",
+            "*{0} debate-se com fúria bruta!*",
+            "*{0} ruge em desafio enquanto ataca!*",
+            "*{0} leva-se ao limite!*",
+            "*{0} é um borrão de movimento, dominando seu oponente!*",
+            "*{0} desencadeia uma investida poderosa!*",
+            "*{0} dá tudo de si, sem se deixar abater pelo perigo!*",
+            "*{0} luta com a força de uma fera desacorrentada!*",
+            "*{0} é implacável, nunca cedendo um centímetro!*",
+            "*{0} luta com determinação inabalável!*",
+            "*{0} recusa-se a deixar seu mestre ser ferido!*",
+            "*{0} luta ferozmente, guiado pelo instinto!*",
+            "*{0} move-se como uma tempestade, golpeando repetidamente!*",
+            "*{0} desfere um golpe esmagador!*",
+            "*{0} não hesita, golpeando com força total!*",
+            "*{0} dilacera seu oponente com intenção selvagem!*",
+            "*{0} luta como uma besta possessa!*",
+            "*{0} é implacável em sua busca pela vitória!*",
+            "*{0} enfrenta seu oponente de frente, sem medo!*",
+            "*{0} luta como se sua própria sobrevivência dependesse disso!*"
         };
 
 
@@ -127,7 +127,7 @@ namespace Server.Custom.KoperPets
                 if (marks > 0)
                 {
                     owner.AddToBackpack(new MarksOfTheWilds(marks));
-                    owner.SendMessage(string.Format("You gained {0} Marks of the wilds.", marks));
+                    owner.SendMessage(string.Format("Você ganhou {0} Marcas das selvas.", marks));
                     
                     _markGainCooldowns[owner] = DateTime.UtcNow;
                 }
@@ -220,7 +220,7 @@ namespace Server.Custom.KoperPets
 
                 owner.SendMessage(
                     0x59,
-                    "Your bond with your companion reveals the primal spirit of the {0}.",mapping.FormId
+                    "Seu vínculo com seu companheiro revela o espírito primal do {0}.",mapping.FormId
                 );
 
                 owner.PlaySound(0x1F7);

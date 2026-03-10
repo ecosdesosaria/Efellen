@@ -105,7 +105,7 @@ namespace Server.Items
 		    {
 		        eable.Free();
 		    }
-			attacker.SendMessage("Your Rune Carving Knife unleashes a shockwave!");
+			attacker.SendMessage("Sua Faca de Entalhe Rúnico libera uma onda de choque!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 92);
 		}
 		public Artifact_RuneCarvingKnife( Serial serial ) : base( serial )

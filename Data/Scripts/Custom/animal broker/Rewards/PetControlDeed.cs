@@ -25,19 +25,17 @@ namespace Server.Items
 				BaseCreature k = ( BaseCreature ) target; 
 
 				if ( !k.Tamable )
-					{ 
-							from.SendMessage( "That pet is not Tamable..." );
-					} 
-					
+				{ 
+					from.SendMessage( "Esse animal não é domável..." );
+				} 
 				else if ( from.Skills[SkillName.Taming].Base  < k.MinTameSkill )
-					{ 
-							from.SendMessage( "You have no chance of controlling this animal..." );
-					} 
-		
+				{ 
+					from.SendMessage( "Você não tem chance de controlar este animal..." );
+				} 
 				else if ( k.ControlMaster != null ) 
-					{ 
-						from.SendMessage( "That is alrady tamed!" ); 
-					} 
+				{ 
+					from.SendMessage( "Isso já está domado!" ); 
+				}
 					
 				else  
 				 
@@ -46,14 +44,14 @@ namespace Server.Items
 					k.Controlled = true;
 					k.SetControlMaster( from );
 					k.ControlOrder = OrderType.Follow; 
-					from.SendMessage( "You instantly tame the pet!" );
+					from.SendMessage( "Você doma o animal instantaneamente!" );
 					m_Deed.Delete(); // Delete the deed 
 					} 
 
 			} 
          else 
          { 
-            from.SendMessage( "That is not a valid traget." );  
+            from.SendMessage( "Esse não é um alvo válido." );
          } 
       } 
    } 
@@ -98,7 +96,7 @@ namespace Server.Items
          	} 
          	else 
          	{ 
-            		from.SendMessage( "Choose the pet you wish to control." );  
+            		from.SendMessage( "Escolha o animal que você deseja controlar." );  
             		from.Target = new PetControlTarget( this ); 
           	} 
       	}    

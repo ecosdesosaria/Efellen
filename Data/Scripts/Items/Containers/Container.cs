@@ -134,13 +134,11 @@ namespace Server.Items
 			from.Target = new ContainSetTarg( from, box );
 
 			if ( box == 1 )
-				from.SendMessage( "Choose a container you want your loot gathered." );
-
+				from.SendMessage( "Escolha um recipiente onde você quer que seu butim seja reunido." );
 			else if ( box == 2 )
-				from.SendMessage( "Choose a container for your crafted items." );
-
+				from.SendMessage( "Escolha um recipiente para seus itens criados." );
 			else 
-				from.SendMessage( "Choose a container for your harvested items." );
+				from.SendMessage( "Escolha um recipiente para seus itens coletados." );
 		}
 
 		private class ContainSetTarg : Target
@@ -164,25 +162,25 @@ namespace Server.Items
 					if ( box.RootParentEntity == m_From && box.TryDropItem( m_From, dagger, false ) && m_Box == 1 )
 					{
 						m_From.ContainerLoot = box.Serial;
-						m_From.SendMessage( "Your loot container has been set." );
+						m_From.SendMessage( "Seu recipiente de loot foi definido." );
 					}
 					else if ( box.RootParentEntity == m_From && box.TryDropItem( m_From, dagger, false ) && m_Box == 2 )
 					{
 						m_From.ContainerCraft = box.Serial;
-						m_From.SendMessage( "Your crafting container has been set." );
+						m_From.SendMessage( "Seu recipiente de criação foi definido." );
 					}
 					else if ( box.RootParentEntity == m_From && box.TryDropItem( m_From, dagger, false ) && m_Box == 3 )
 					{
 						m_From.ContainerHarvest = box.Serial;
-						m_From.SendMessage( "Your harvesting container has been set." );
+						m_From.SendMessage( "Seu recipiente de coleta foi definido." );
 					}
 					else
-						m_From.SendMessage( "You must select a different container." );
+						m_From.SendMessage( "Você deve selecionar um recipiente diferente." );
 
 					dagger.Delete();
 				}
 				else
-					m_From.SendMessage( "You must select a container in your pack." );
+					m_From.SendMessage( "Você deve selecionar um recipiente em sua mochila." );
 			}
 		}
 
@@ -307,7 +305,7 @@ namespace Server.Items
 					int amount = 40;
 						if ( this is LargeHollowBook ){ amount = 50; }
 
-					from.SendMessage( "This hollow book can hold an additional {0} items or {1} stones", (amount - TotalItems), (amount - TotalWeight) );
+					from.SendMessage( "Este livro oco pode conter mais {0} itens ou {1} stones", (amount - TotalItems), (amount - TotalWeight) );
 				}
 			}
 			else
@@ -758,7 +756,7 @@ namespace Server.Items
 				return base.OnDragDropInto(from, dropped, p);
 			}
 
-			from.SendMessage("That is too big to store in here.");
+			from.SendMessage("Isso é grande demais para guardar aqui.");
 			return false;
         }
 
@@ -769,7 +767,7 @@ namespace Server.Items
 				return base.OnDragDrop(from, dropped);
 			}
 
-			from.SendMessage("That is too big to store in here.");
+			from.SendMessage("Isso é grande demais para guardar aqui.");
 			return false;
         }
 	}
@@ -852,7 +850,7 @@ namespace Server.Items
 				return base.OnDragDropInto(from, dropped, p);
 			}
 
-			from.SendMessage("That is too big to store in here.");
+			from.SendMessage("Isso é grande demais para guardar aqui.");
 			return false;
         }
 
@@ -863,7 +861,7 @@ namespace Server.Items
 				return base.OnDragDrop(from, dropped);
 			}
 
-			from.SendMessage("That is too big to store in here.");
+			from.SendMessage("Isso é grande demais para guardar aqui.");
 			return false;
         }
 	}

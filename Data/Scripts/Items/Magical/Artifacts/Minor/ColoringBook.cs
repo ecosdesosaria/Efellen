@@ -37,7 +37,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to read." );
+				from.SendMessage( "Isto precisa estar em sua mochila para ser lido." );
 				return;
 			}
 			else 
@@ -64,23 +64,23 @@ namespace Server.Items
 
 					if ( !iColor.IsChildOf( from.Backpack ) )
 					{
-						from.SendMessage( "You can only color items in your pack." );
+						from.SendMessage( "Você só pode colorir itens em sua mochila." );
 					}
 					else if ( iColor.IsChildOf( from.Backpack ) )
 					{
 						from.RevealingAction();
 						from.PlaySound( 0x1FA );
 						iColor.Hue = m_Book.Hue;
-						from.SendMessage( "You magically change the color." );
+						from.SendMessage( "Você muda magicamente a cor." );
 					}
 					else
 					{
-						from.SendMessage( "You cannot color that!" );
+						from.SendMessage( "Você não pode colorir isso!" );
 					}
 				}
 				else
 				{
-					from.SendMessage( "You cannot color that!" );
+					from.SendMessage( "Você não pode colorir isso!" );
 				}
 			}
 		}
@@ -218,7 +218,7 @@ namespace Server.Items
 					{
 						m_Book.MagicColor = GetColorListForBook( info.ButtonID );
 						m_Book.InvalidateProperties();
-						from.SendMessage( "What would you like to magically color?" );
+						from.SendMessage( "O que você gostaria de colorir magicamente?" );
 						m_Book.Hue = TheColor;
 						from.SendGump( new ColoringBookGump( from, m_Book ) );
 						from.Target = new ColorTarget( m_Book );

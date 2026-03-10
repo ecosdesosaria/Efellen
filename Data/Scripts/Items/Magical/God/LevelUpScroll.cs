@@ -138,18 +138,18 @@ namespace Server.Items
                 {
                     if (m_BlacksmithValidated || (from.Skills[SkillName.Blacksmith].Value >= LevelItems.BlacksmithSkillRequired))
                     {
-                        from.SendMessage("Which legendary artefact item would you like to enhance?");
+                        from.SendMessage("Qual item de artefato lendário você gostaria de aprimorar?");
                         from.Target = new LevelItemTarget(this); // Call our target
                     }
                     else
                     {
-                        from.SendMessage("Please target one with a base Blacksmith skill of " + LevelItems.BlacksmithSkillRequired + " or higher.");
+                        from.SendMessage("Por favor, selecione um com habilidade base de Ferreiro de " + LevelItems.BlacksmithSkillRequired + " ou superior.");
                         from.Target = new BlacksmithTarget(this); // Call our target
                     }
                 }
                 else
                 {
-				    from.SendMessage( "Which legendary artefact would you like to enhance?" );
+				    from.SendMessage( "Qual artefato lendário você gostaria de aprimorar?" );
 				    from.Target = new LevelItemTarget( this ); // Call our target
                 }
 			}
@@ -168,7 +168,7 @@ namespace Server.Items
 			{
 				if ( target is Mobile )
 				{
-					from.SendMessage( "This rune cannot enhance that!" );
+					from.SendMessage( "Esta runa não pode aprimorar isso!" );
 				}
                 else if (target is Item)
                 {
@@ -176,7 +176,7 @@ namespace Server.Items
 
                     if (item.RootParent != from || !item.IsChildOf(from.Backpack)) // Make sure its in their pack or they are wearing it
                     {
-                        from.SendMessage("The legendary artefact must be in your pack to enhance.");
+                        from.SendMessage("O artefato lendário deve estar em sua mochila para ser aprimorado.");
                     }
                     else
                     {
@@ -186,25 +186,25 @@ namespace Server.Items
 
                             if ((b.MaxLevel + m_Scroll.Value) > LevelItems.MaxLevelsCap)
                             {
-                                from.SendMessage("The level on this legendary artefact is already too high to use this rune!");
+                                from.SendMessage("O nível deste artefato lendário já é muito alto para usar esta runa!");
                             }
                             else
                             {
                                 b.MaxLevel += m_Scroll.Value;
-                                from.SendMessage("Your legendary artefact has been enhanced by " + m_Scroll.Value + " levels.");
+                                from.SendMessage("Seu artefato lendário foi aprimorado em " + m_Scroll.Value + " níveis.");
                                 m_Scroll.Delete();
 
                             }
                         }
                         else
                         {
-                            from.SendMessage("This rune cannot enhance that!");
+                            from.SendMessage("Esta runa não pode aprimorar isso!");
                         }
                     }
                 }
                 else
                 {
-                    from.SendMessage("This rune cannot enhance that!");
+                    from.SendMessage("Esta runa não pode aprimorar isso!");
                 }
 			}
 		}
@@ -226,18 +226,18 @@ namespace Server.Items
                     Mobile smith = (Mobile)target;
                     if (smith.Skills[SkillName.Blacksmith].Value < LevelItems.BlacksmithSkillRequired)
                     {
-                        from.SendMessage("This one's blacksmith skill is not high enough to enhance legendary artefacts.");
+                        from.SendMessage("A habilidade de ferreiro deste não é alta o suficiente para aprimorar artefatos lendários.");
                     }
                     else
                     {
-                        from.SendMessage("This one is a skilled blacksmith.");
+                        from.SendMessage("Este é um ferreiro habilidoso.");
                         from.SendGump(new AwaitingSmithApprovalGump(m_Scroll, from));
                         smith.SendGump(new LevelUpAcceptGump(m_Scroll, from));	
                     }
                 }
                 else
                 {
-                    from.SendMessage("This one is not a skilled blacksmith!");
+                    from.SendMessage("Este não é um ferreiro habilidoso!");
                 }
             }
         }

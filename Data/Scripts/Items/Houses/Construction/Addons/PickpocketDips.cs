@@ -25,7 +25,7 @@ namespace Server.Items
 			set
 			{
 				m_MaxSkill = value;
-				InfoData = "These dummies are used by aspiring thieves, to practice in the art of snooping and stealing from others. This dummy has the ability to train you up to " + m_MaxSkill + " skill in both stealing and snooping.";
+				InfoData = "Estes bonecos são usados por aspirantes a ladrões, para praticar a arte de espionar e roubar de outros. Este boneco tem a habilidade de treiná-lo até " + m_MaxSkill + " de habilidade tanto em roubo quanto em espionagem.";
 			}
 		}
 
@@ -91,16 +91,16 @@ namespace Server.Items
 			bool steal = true;
 
 			if ( from.Skills[SkillName.Snooping].Base >= m_MaxSkill )
-				from.SendMessage( "You are able to snoop the pack." );
+				from.SendMessage( "Você consegue espiar a mochila." );
 			else if ( from.CheckSkill( SkillName.Snooping, m_MinSkill, m_MaxSkill ) )
-				from.SendMessage( "You are able to snoop the pack." );
+				from.SendMessage( "Você consegue espiar a mochila." );
 			else
 				snoop = false;
 
 			if ( from.Skills[SkillName.Stealing].Base >= m_MaxSkill )
-				from.SendMessage( "You are able to snoop the pack." );
+				from.SendMessage( "Você consegue roubar da mochila." );
 			else if ( from.CheckSkill( SkillName.Stealing, m_MinSkill, m_MaxSkill ) )
-				from.SendMessage( "You are able to snoop the pack." );
+				from.SendMessage( "Você consegue roubar da mochila." );
 			else
 				steal = false;
 
@@ -112,10 +112,10 @@ namespace Server.Items
 				ProcessDelta();
 
 				if ( !snoop )
-					from.SendMessage( "You fail to snoop unnoticed!" );
+					from.SendMessage( "Você falha ao espiar sem ser notado!" );
 
 				if ( !steal )
-					from.SendMessage( "You fail to steal anything!" );
+					from.SendMessage( "Você falha ao roubar qualquer coisa!" );
 			}
 		}
 
@@ -126,7 +126,7 @@ namespace Server.Items
 			else if ( Swinging )
 				SendLocalizedMessageTo( from, 501815 ); // You have to wait until it stops swinging.
 			else if ( from.Skills[SkillName.Stealing].Base >= m_MaxSkill && from.Skills[SkillName.Snooping].Base >= m_MaxSkill )
-				from.SendMessage( "Your thief abilities cannot improve any further by practicing on a dummy." );
+				from.SendMessage( "Suas habilidades de ladrão não podem melhorar mais praticando em um boneco." );
 			else if ( from.Mounted )
 				SendLocalizedMessageTo( from, 501829 ); // You can't practice on this while on a mount.
 			else

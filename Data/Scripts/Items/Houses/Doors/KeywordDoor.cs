@@ -149,7 +149,7 @@ namespace Server.Items
 
                 if (m_CombatCheck && SpellHelper.CheckCombat(m))
                 {
-                    m.SendMessage(1154, "I cannot open to those in battle.");
+                    m.SendMessage(1154, "Não posso abrir para aqueles em batalha.");
                     e.Handled = true;
                     return;
                 }
@@ -169,7 +169,7 @@ namespace Server.Items
 
                 e.Handled = true;
                 this.Open = true;
-                m.SendMessage(1154, "The door has been opened.");
+                m.SendMessage(1154, "A porta foi aberta.");
 
                 if(m_QuickClose)
                     m_Timer.Start();

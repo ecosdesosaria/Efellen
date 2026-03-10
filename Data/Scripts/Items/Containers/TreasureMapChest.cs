@@ -200,7 +200,7 @@ namespace Server.Items
 
 			if ( m.Blessed )
 			{
-				m.SendMessage( "You cannot seem to take anything while in this state." );
+				m.SendMessage( "Você não consegue pegar nada neste estado." );
 				return false;
 			}
 
@@ -247,7 +247,7 @@ namespace Server.Items
 		{
 			if ( from.Blessed )
 			{
-				from.SendMessage( "You cannot seem to take anything while in this state." );
+				from.SendMessage( "Você não consegue pegar nada neste estado." );
 				return;
 			}
 

@@ -104,7 +104,7 @@ namespace Server.Items
 		    {
 		        eable.Free();
 		    }
-			attacker.SendMessage("Your Maul of the titans shatters the ground!");
+			attacker.SendMessage("Seu Malho dos titãs estilhaça o chão!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x455);
 		}
 		public Artifact_MaulOfTheTitans( Serial serial ) : base( serial )
