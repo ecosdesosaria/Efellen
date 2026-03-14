@@ -12,7 +12,7 @@ namespace Server.Items
 {
 	public class ResurrectPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "This potion can only be used on others. Dumping it on their spirits will resurrect them back to the land of the living."; } }
+		public override string DefaultDescription{ get{ return "Esta poção só pode ser usada em outros. Derramá-la sobre seus espíritos os ressuscitará de volta à terra dos vivos."; } }
 
 		[Constructable]
 		public ResurrectPotion() : base( 0x180F, PotionEffect.Resurrect )
@@ -48,7 +48,7 @@ namespace Server.Items
 			if ( m.InRange( this.GetWorldLocation(), 1 ) ) 
 			{
 				m.Target = new InternalTarget( m, this );
-				m.SendMessage( "Who would you like to resurrect!" );
+				m.SendMessage( "Quem você gostaria de ressuscitar?" );
 			} 
 			else 
 			{ 
@@ -120,7 +120,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage("They are not dead.");
+					from.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if ( hench is HenchmanWizardItem )
@@ -137,7 +137,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage("They are not dead.");
+					from.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if ( hench is HenchmanArcherItem )
@@ -154,7 +154,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage("They are not dead.");
+					from.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if (hench is HenchmanMonsterItem )
@@ -171,12 +171,12 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage("They are not dead.");
+					from.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else
 			{
-				from.SendMessage("This potion didn't seem to work.");
+				from.SendMessage("Esta poção não parece ter funcionado.");
 			}
 		}
  

@@ -6,7 +6,7 @@ namespace Server.Items
 {
     public class HairDyeBottle : Item
 	{
-		public override string DefaultDescription{ get{ return "These mixtures need to be dyed a color, before using it on your hair. If you do not dye the contents, and instead leave it a neutral color, then your hair color will return to what it previously was."; } }
+		public override string DefaultDescription{ get{ return "Estas misturas precisam ser tingidas de alguma cor, antes de usá-las em seu cabelo. Se você não tingir o conteúdo, e em vez disso deixá-lo em uma cor neutra, então a cor do seu cabelo retornará ao que era anteriormente."; } }
 
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Potion; } }
 
@@ -22,26 +22,26 @@ namespace Server.Items
 		{
 			if ( from.RaceID > 0 )
 			{
-				from.SendMessage( "You don't find this really useful." );
+				from.SendMessage( "Você não acha isso realmente útil." );
 				return;
 			}
 			else if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isto deve estar em sua mochila para usar." );
 				return;
 			}
 			else if ( this.Hue == 0 )
 			{
 				from.HairHue = from.RecordHairColor;
 				from.FacialHairHue = from.RecordBeardColor;
-				from.SendMessage("You use the neutral dye to color your hair back to normal.");
+				from.SendMessage("Você usa a tinta neutra para colorir seu cabelo de volta à cor normal.");
 				from.PlaySound( 0x5A4 );
 			}
 			else
 			{
 				from.HairHue = this.Hue;
 				from.FacialHairHue = this.Hue;
-				from.SendMessage("You dye your hair a new color.");
+				from.SendMessage("Você tinge seu cabelo de uma nova cor.");
 				from.PlaySound( 0x5A4 );
 			}
 			this.Delete();

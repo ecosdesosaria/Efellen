@@ -27,7 +27,7 @@ namespace Server.Spells.Undead
 		{
 			if ( Caster ==  m )
 			{
-				Caster.SendMessage( "You cannot heal yourself" ); // Cannot heal self.
+				Caster.SendMessage( "Você não pode curar a si mesmo" ); // Cannot heal self.
 			}
 			if ( !Caster.CanSee( m ) )
 			{

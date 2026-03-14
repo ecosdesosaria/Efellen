@@ -6,7 +6,7 @@ namespace Server.Items
 {
 	public class SuperPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "Drinking this potion will increase your strength, intelligence, and dexterity by 10 points. The effects last for about 5 minutes."; } }
+		public override string DefaultDescription{ get{ return "Beber esta poção aumentará sua força, inteligência e destreza em 10 pontos. Os efeitos duram cerca de 5 minutos."; } }
 
 		[Constructable]
 		public SuperPotion() : base( 0x180F, PotionEffect.SuperPotion )
@@ -41,7 +41,7 @@ namespace Server.Items
 				StatMod imod = m.GetStatMod( "Int" );
 				if ( smod != null && imod != null && dmod != null)
 				{
-					m.SendMessage( "You appear to be under a similar effect!" );
+					m.SendMessage( "Você parece estar sob um efeito semelhante!" );
 				}
 				else if (smod == null && imod == null && dmod == null)
 				{
@@ -53,7 +53,7 @@ namespace Server.Items
 					m.Stam = m.StamMax ;
 					BasePotion.PlayDrinkEffect( m );
 					this.Consume();
-					m.SendMessage( "You feel much more superior!" );
+					m.SendMessage( "Você se sente muito mais superior!" );
 
 					string args = String.Format("{0}\t{1}\t{2}", 10, 10, 10);
 

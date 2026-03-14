@@ -12,7 +12,7 @@ namespace Server.Items
 {
 	public abstract class BaseConfusionBlastPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "These potions, when thrown, will cause those nearby to be confused for about 5 seconds."; } }
+		public override string DefaultDescription{ get{ return "Estas poções, quando arremessadas, farão com que aqueles próximos fiquem confusos por cerca de 5 segundos."; } }
 
 		public abstract int Radius{ get; }
 
@@ -30,12 +30,12 @@ namespace Server.Items
 		{
 			if ( Core.AOS && (from.Paralyzed || from.Blessed || from.Frozen || (from.Spell != null && from.Spell.IsCasting)) )
 			{
-				from.SendMessage( "You cannot do that yet." );
+				from.SendMessage( "Você não pode fazer isso ainda." );
 				return;
 			}
 			else if ( !from.Region.AllowHarmful( from, from ) )
 			{
-				from.SendMessage( "That doesn't feel like a good idea." ); 
+				from.SendMessage( "Isso não parece ser uma boa ideia." ); 
 				return;
 			}
 
@@ -43,7 +43,7 @@ namespace Server.Items
 
 			if ( delay > 0 )
 			{
-				from.SendLocalizedMessage( 1072529, String.Format( "{0}\t{1}", delay, delay > 1 ? "seconds." : "second." ) ); // You cannot use that for another ~1_NUM~ ~2_TIMEUNITS~
+				from.SendLocalizedMessage( 1072529, String.Format( "{0}\t{1}", delay, delay > 1 ? "segundos." : "segundo." ) ); // You cannot use that for another ~1_NUM~ ~2_TIMEUNITS~
 				return;
 			}
 

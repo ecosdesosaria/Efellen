@@ -88,12 +88,12 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isto deve estar em sua mochila para usar." );
 				return;
 			}
 			else
 			{
-				from.SendMessage("Select the forge to smelt this item.");
+				from.SendMessage("Selecione a forja para fundir este item.");
 				from.Target = new InternalTarget( this );
 			}
 		}
@@ -122,7 +122,7 @@ namespace Server.Items
 					
 					if ( difficulty > from.Skills[SkillName.Mining].Value )
 					{
-						from.SendMessage("You have no idea how to smelt this item!");
+						from.SendMessage("Você não tem ideia de como fundir este item!");
 						return;
 					}
 
@@ -132,14 +132,14 @@ namespace Server.Items
 						ingot.Amount = weight;
 						from.AddToBackpack( ingot );
 						from.PlaySound( 0x208 );
-						if ( weight == 1 ){ from.SendMessage("You smelt the rusty metal into a usable iron ingot!"); }
-						else { from.SendMessage("You smelt the rusty metal into usable iron ingots!"); }
+						if ( weight == 1 ){ from.SendMessage("Você funde o metal enferrujado em um lingote de ferro utilizável!"); }
+						else { from.SendMessage("Você funde o metal enferrujado em lingotes de ferro utilizáveis!"); }
 						m_Rusted.Delete();
 					}
 					else
 					{
 						from.PlaySound( 0x208 );
-						from.SendMessage("You failed to smelt the rusty metal into anything usable!");
+						from.SendMessage("Você falhou ao fundir o metal enferrujado em algo utilizável!");
 						m_Rusted.Delete();
 					}
 				}

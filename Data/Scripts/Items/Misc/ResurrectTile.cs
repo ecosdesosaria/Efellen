@@ -29,11 +29,11 @@ namespace Server.Items
 				m.Resurrect();
 				Server.Misc.Death.Penalty( m, false );
 				m.Hidden = true;
-				m.SendMessage( "The aura here has brought you back from the dead." );
+				m.SendMessage( "A aura aqui o trouxe de volta dos mortos." );
 			}
 			else
 			{
-				m.SendMessage( "You feel a powerful life giving energy here." );
+				m.SendMessage( "Você sente uma poderosa energia vivificante aqui." );
 			}
 			return true;
 		}

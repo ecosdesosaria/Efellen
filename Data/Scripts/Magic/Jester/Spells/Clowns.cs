@@ -15,7 +15,7 @@ namespace Server.Spells.Jester
 	public class Clowns : JesterSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Clowns", "Get ready for the show!",
+				"Clowns", "Preparem-se para o show!",
 				-1,
 				0
 			);
@@ -35,7 +35,7 @@ namespace Server.Spells.Jester
 
 			if( (Caster.Followers + 1) > Caster.FollowersMax )
 			{
-				Caster.SendMessage( "You have too many followers to be clowning around." );
+				Caster.SendMessage( "Você tem muitos seguidores para ficar fazendo palhaçadas." );
 				return false;
 			}
 
@@ -50,18 +50,18 @@ namespace Server.Spells.Jester
 			}
 			else if ( (Caster.Followers + 1) > Caster.FollowersMax )
 			{
-				Caster.SendMessage( "You have too many followers to be clowning around." );
+				Caster.SendMessage( "Você tem muitos seguidores para ficar fazendo palhaçadas." );
 			}
 			else if( TransformationSpellHelper.UnderTransformation( Caster, typeof( HorrificBeastSpell ) ) )
 			{
-				Caster.SendMessage( "You cannot be clowning around while you look like that." );
+				Caster.SendMessage( "Você não pode ficar fazendo palhaçadas enquanto parece com isso." );
 			}
 			else if ( CheckSequence() )
 			{
 				Effects.SendLocationParticles( EffectItem.Create( Caster.Location, Caster.Map, EffectItem.DefaultDuration ), 0x3728, 8, 20, 0, 0, 5042, 0 );
 
 				Caster.PlaySound( Caster.Female ? 780 : 1051 );
-				Caster.Say( "*applauds*" );
+				Caster.Say( "*aplaude*" );
 
 				new Clown( Caster ).MoveToWorld( Caster.Location, Caster.Map );
 

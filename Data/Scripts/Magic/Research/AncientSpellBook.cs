@@ -8,7 +8,7 @@ namespace Server.Items
 	[FlipableAttribute( 0x65EC, 0x6711 )]
 	public class AncientSpellbook : Spellbook
 	{
-		public override string DefaultDescription{ get{ return "This book is used by archmages, where they can cast ancient spells thought to be lost forever. These cannot be simply created by scribes, but instead an archmage can use an existing spellbook and repurpose it to hold ancient magic. Some books have enhanced properties, that are only effective when the book is held."; } }
+		public override string DefaultDescription{ get{ return "Este livro é usado por arquimagos, onde eles podem lançar feitiços antigos considerados perdidos para sempre. Estes não podem ser simplesmente criados por escribas, mas sim um arquimago pode usar um livro de feitiços existente e reaproveitá-lo para conter magia antiga. Alguns livros têm propriedades aprimoradas, que só são efetivas quando o livro é segurado."; } }
 
 		public Mobile owner;
 		public string names;
@@ -50,7 +50,7 @@ namespace Server.Items
 
 			if ( owner != from )
 			{
-				from.SendMessage( "These pages appears as scribbles to you." );
+				from.SendMessage( "Estas páginas parecem rabiscos para você." );
 			}
 			else if ( Parent == from || ( pack != null && Parent == pack ) )
 			{

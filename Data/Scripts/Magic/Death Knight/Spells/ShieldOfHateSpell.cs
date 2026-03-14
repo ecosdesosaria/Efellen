@@ -37,7 +37,7 @@ namespace Server.Spells.DeathKnight
 
 			if ( m_Table.Contains( m ) )
 			{
-				Caster.LocalOverheadMessage( MessageType.Regular, 0x481, false, "That target is under the effect of that spell already." );
+				Caster.LocalOverheadMessage( MessageType.Regular, 0x481, false, "Esse alvo já está sob o efeito desse feitiço." );
 			}
 
 			if ( CheckBSequence( m ) && CheckFizzle() )
@@ -49,7 +49,7 @@ namespace Server.Spells.DeathKnight
 				if ( timer != null )
 					timer.DoExpire();
 				else
-					m.SendMessage( "You feel hatred shielding you from physical harm." );
+					m.SendMessage( "Você sente o ódio protegendo você contra danos físicos." );
             		m.PlaySound( 0x5C0 );
 					m.FixedParticles( 0x376A, 1, 29, 9961, 1152, 0, EffectLayer.Waist ); 
 
@@ -89,7 +89,7 @@ namespace Server.Spells.DeathKnight
 			if ( t == null )
 				return false;
 
-			m.SendMessage( "The shield around you dissipates..." );
+			m.SendMessage( "O escudo ao seu redor se dissipa..." );
 			m.PlaySound( 488 );
 			t.DoExpire();
 			return true;
@@ -123,7 +123,7 @@ namespace Server.Spells.DeathKnight
 
 			protected override void OnTick()
 			{
-				m_Mobile.SendMessage( "The shield around you dissipates..." );
+				m_Mobile.SendMessage( "O escudo ao seu redor se dissipa..." );
 				m_Mobile.PlaySound( 488 );
 				DoExpire();
 			}

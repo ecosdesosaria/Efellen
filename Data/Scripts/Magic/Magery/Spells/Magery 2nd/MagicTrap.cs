@@ -85,11 +85,11 @@ namespace Server.Spells.Second
 
 				if ( traps > 2 )
 				{
-					Caster.SendMessage( "There are too many magical traps in the area!" );
+					Caster.SendMessage( "Há muitas armadilhas mágicas na área!" );
 				}
 				else if ( !Caster.Region.AllowHarmful( Caster, Caster ) )
 				{
-					Caster.SendMessage( "That doesn't feel like a good idea." ); 
+					Caster.SendMessage( "Isso não parece ser uma boa ideia." ); 
 					return;
 				}
 				else
@@ -133,7 +133,7 @@ namespace Server.Spells.Second
 				}
 				else
 				{
-					from.SendMessage( "You can't trap that!" );
+					from.SendMessage( "Você não pode armadilhar isso!" );
 				}
 			}
 

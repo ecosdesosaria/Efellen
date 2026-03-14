@@ -35,7 +35,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "What do you want to use the power crystal on?" );
+				from.SendMessage( "No que você quer usar o cristal de poder?" );
 				t = new PowerTarget( this );
 				from.Target = t;
 			}
@@ -62,7 +62,7 @@ namespace Server.Items
 
 					if ( !iCrystal.IsChildOf( from.Backpack ) )
 					{
-						from.SendMessage( "You can only use this crystal on items in your pack." );
+						from.SendMessage( "Você só pode usar este cristal em itens do seu inventário." );
 					}
 					else if ( myCharges < 100 )
 					{
@@ -73,7 +73,7 @@ namespace Server.Items
 
 						if ( xCrystal.m_Charges > 100 ){ xCrystal.m_Charges = 100; }
 
-						from.SendMessage( "You charge your golem with the power crystal." );
+						from.SendMessage( "Você carrega seu golem com o cristal de poder." );
 						from.RevealingAction();
 						from.PlaySound( 0x652 );
 
@@ -83,12 +83,12 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage( "That golem is already fully charged." );
+						from.SendMessage( "Esse golem já está totalmente carregado." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "You don't think that will really do anything." );
+					from.SendMessage( "Você não acha que isso vai realmente fazer alguma coisa." );
 				}
 			}
 		}

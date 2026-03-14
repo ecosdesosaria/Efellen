@@ -63,17 +63,17 @@ namespace Server.Items
 			}
 			else if ( !from.Region.AllowHarmful( from, from ) )
 			{
-				from.SendMessage( "That doesn't feel like a good idea." ); 
+				from.SendMessage( "Isso não parece uma boa ideia." );
 				return;
 			}
 			else if ( ( from.FollowersMax - from.Followers ) < 1 )
 			{
-				from.SendMessage("You have too many followers to control the slime.");
+				from.SendMessage("Você tem muitos seguidores para controlar o slime.");
 				return;
 			}
 			else
 			{
-				from.SendMessage( "Where do you want to dump the mixture?" );
+				from.SendMessage( "Onde você quer despejar a mistura?" );
 				ThrowTarget targ = from.Target as ThrowTarget;
 
 				if ( targ != null && targ.Potion == this )
@@ -116,7 +116,7 @@ namespace Server.Items
 				if ( from.GetDistanceToSqrt( d ) > 8 )
 				{
 					nThrown = 0;
-					from.SendMessage( "That is too far away." );
+					from.SendMessage( "Isso está muito longe." );
 				}
 				else if ( !from.CanSee( d ) )
 				{
@@ -126,7 +126,7 @@ namespace Server.Items
 				else if ( (from.Paralyzed || from.Blessed || from.Frozen || (from.Spell != null && from.Spell.IsCasting)) )
 				{
 					nThrown = 0;
-					from.SendMessage( "You cannot do that yet." );
+					from.SendMessage( "Você não pode fazer isso ainda." );
 				}
 				else
 				{

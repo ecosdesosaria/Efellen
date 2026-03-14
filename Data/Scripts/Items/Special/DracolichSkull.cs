@@ -76,7 +76,7 @@ namespace Server.Items
 					if ( iAmount > 1 ){ sEnd = "s."; }
 
 					HaveGold = HaveGold + iAmount;
-					from.SendMessage( "You added " + iAmount.ToString() + " gold coin" + sEnd );
+					from.SendMessage( "Você adicionou " + iAmount.ToString() + " moeda de ouro" + sEnd );
 					dropped.Delete();
 					return true;
 				}
@@ -135,12 +135,12 @@ namespace Server.Items
 
 			if ( (m.Followers + 3) > m.FollowersMax )
 			{
-				necro.Say( "You have too many followers with you right now." );
+				necro.Say( "Você tem muitos seguidores com você no momento." );
 				return false;
 			}
 			else if ( m.Skills[SkillName.Necromancy].Base < 100 )
 			{
-				necro.Say( "You must be a pure grandmaster necromancer if you want my help." );
+				necro.Say( "Você deve ser um necromante de grande mestria se quiser minha ajuda." );
 				return false;
 			}
 
@@ -155,8 +155,8 @@ namespace Server.Items
 			dragon.MinTameSkill = 29.1;
 			dragon.ControlOrder = OrderType.Follow;
 
-			LoggingFunctions.LogGenericQuest( m, "has reanimated a skeletal dragon" );
-			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Your skeletal dragon has reanimated.", m.NetState);
+			LoggingFunctions.LogGenericQuest( m, "reanimou um dragão esquelético" );
+			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Seu dragão esquelético foi reanimado.", m.NetState);
 
 			m.PlaySound( 0x488 );
 
@@ -172,7 +172,7 @@ namespace Server.Items
 				string color = "#cacaca";
 				from.SendSound( 0x4A ); 
 
-				string sText = "<BR><BR><BR><BR><BR><BR><BR>This skull contains the essence of an undead dragon. Necromancers would take these skulls and combine it with four rare artifacts of the dead. The heart of the dead god, the eye of the mad king, the orb of the astral lich, and the mind of the planar ghost are the four relics used in this process. These are usually in long lost dungeons or ruins, and said to be last seen in small chests resting on a runic pedestal. Once these items are merged with the skull, it could be used to reanimate the bones of a long dead dragon to serve the necromancer. You have heard many rumors of these items being seen in various places. If you could get them, and bring the skull to a powerful necromancer, they may be able to help you perform the ritual needed. The necromancer will require some gold (placed onto the skull) as payment for such a spell. When reanimated, these creatures will become your bonded servant. You will have to feed it moon crystals and stable it when required. You can also perform some druidism on it without having any proficiency in the skill. This will help you with information about them. If you later feed them a ruby, they will change their skeletal form of a different style of dragon.";
+				string sText = "<BR><BR><BR><BR><BR><BR><BR>Esta caveira contém a essência de um dragão morto-vivo. Necromantes pegariam estas caveiras e as combinariam com quatro artefatos raros dos mortos. O coração do deus morto, o olho do rei louco, o orbe do lich astral e a mente do fantasma planar são as quatro relíquias usadas neste processo. Estas geralmente estão em masmorras ou ruínas há muito perdidas, e diz-se que foram vistos pela última vez em pequenos baús sobre um pedestal rúnico. Depois que esses itens forem mesclados com a caveira, ela poderia ser usada para reanimar os ossos de um dragão há muito morto para servir ao necromante. Você ouviu muitos rumores sobre esses itens serem vistos em vários lugares. Se você puder obtê-los e levar a caveira a um necromante poderoso, eles poderão ajudá-lo a realizar o ritual necessário. O necromante exigirá algum ouro (colocado na caveira) como pagamento por tal feitiço. Quando reanimadas, essas criaturas se tornarão seu servo vinculado. Você terá que alimentá-las com cristais lunares e estabulá-las quando necessário. Você também pode praticar um pouco de druidismo nelas sem ter nenhuma proficiência na habilidade. Isso o ajudará com informações sobre elas. Se mais tarde você as alimentar com um rubi, elas mudarão sua forma esquelética para um estilo diferente de dragão.";
 
 				string sRumor = skull.PieceRumor + " " + skull.PieceLocation;
 
@@ -180,8 +180,8 @@ namespace Server.Items
 				else if ( skull.HavePotionB == 0 ){ sRumor = "The eye of the mad king " + sRumor; }
 				else if ( skull.HavePotionC == 0 ){ sRumor = "The orb of the astral lich " + sRumor; }
 				else if ( skull.HavePotionD == 0 ){ sRumor = "The mind of the planar ghost " + sRumor; }
-				else if ( skull.HaveGold < skull.NeedGold ){ sRumor = "You have obtained everything except the gold."; }
-				else { sRumor = "You have obtained everything you need."; }
+				else if ( skull.HaveGold < skull.NeedGold ){ sRumor = "Você obteve tudo, exceto o ouro."; }
+				else { sRumor = "Você obteve tudo o que precisa."; }
 
 				this.Closable=true;
 				this.Disposable=true;
@@ -199,7 +199,7 @@ namespace Server.Items
 
 				AddHtml( 601, 13, 173, 20, @"<BODY><BASEFONT Color=" + color + ">Gold: " + skull.HaveGold.ToString() + "/" + skull.NeedGold.ToString() + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
-				AddHtml( 12, 43, 874, 20, @"<BODY><BASEFONT Color=" + color + ">Bring the Gathered Materials to the Black Magic Guildmaster</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 43, 874, 20, @"<BODY><BASEFONT Color=" + color + ">Traga os Materiais Coletados ao Mestre da Guilda de Magia Negra</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddHtml( 12, 76, 878, 364, @"<BODY><BASEFONT Color=" + color + ">" + sText + "</BASEFONT></BODY>", (bool)false, (bool)false);
 

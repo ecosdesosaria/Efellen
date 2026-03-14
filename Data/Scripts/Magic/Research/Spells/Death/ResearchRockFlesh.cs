@@ -46,7 +46,7 @@ namespace Server.Spells.Research
 			m.HueMod = -1;
 			m.BodyMod = 0;
 			m.RaceBody();
-			m.SendMessage( "Your flesh turns back to normal." );
+			m.SendMessage( "Sua carne volta ao normal." );
 
 			BuffInfo.RemoveBuff( m, BuffIcon.RockFlesh );
 
@@ -99,7 +99,7 @@ namespace Server.Spells.Research
 						mt.Rider = null;
 					}
 
-				Caster.SendMessage( "Your flesh turns to stone." );
+				Caster.SendMessage( "Sua carne se transforma em pedra." );
 
 				Server.Misc.Research.ConsumeScroll( Caster, true, spellID, alwaysConsume, Scroll );
 

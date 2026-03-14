@@ -123,7 +123,7 @@ namespace Server.Items
 						{
 							holy = (Item)Activator.CreateInstance( itemType );
 							m.AddToBackpack ( holy );
-							m.SendMessage( "You have the holy symbol of " + priest + "!" );
+							m.SendMessage( "Você tem o símbolo sagrado de " + priest + "!" );
 							m.FixedParticles( 0x376A, 9, 32, 5005, EffectLayer.Waist );
 							m.PlaySound( 0x1F2 );
 						}
@@ -160,7 +160,7 @@ namespace Server.Items
 							{
 								head = (Item)Activator.CreateInstance( itemType );
 								m.AddToBackpack ( head );
-								m.SendMessage( "You have the skull of " + this.Name + "!" );
+								m.SendMessage( "Você tem o crânio de " + this.Name + "!" );
 								Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 5008 );
 								Effects.PlaySound( m.Location, m.Map, 0x1ED );
 							}
@@ -183,14 +183,14 @@ namespace Server.Items
 								m.Hue = m.RecordSkinColor;
 								m.HairHue = m.RecordHairColor;
 								m.FacialHairHue = m.RecordBeardColor;
-								m.SendMessage("Your body turns back to the colors of life, and your equipment is blackened.");
+								m.SendMessage("Seu corpo volta às cores da vida, e seu equipamento é escurecido.");
 							}
 							else
 							{
 								m.Hue = 0x47E;
 								m.HairHue = 0x47E;
 								m.FacialHairHue = 0x47E;
-								m.SendMessage("Your body turned a deathly white, and your equipment is blackened.");
+								m.SendMessage("Seu corpo virou um branco mortal, e seu equipamento está negro.");
 							}
 						}
 					}
@@ -206,8 +206,8 @@ namespace Server.Items
 						m.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 						m.PlaySound( 0x1F7 );
 
-						LoggingFunctions.LogGenericQuest( m, "has acquired the power from the serpent of balance" );
-						m.SendMessage( "You have acquired the power from the Serpent of Balance." );
+						LoggingFunctions.LogGenericQuest( m, "adquiriu o poder da serpente do equilíbrio" );
+						m.SendMessage( "Você adquiriu o poder da Serpente do Equilíbrio." );
 					}
 				}
 				else if ( m.Map == Map.SerpentIsland && m.Region.IsPartOf( "the Ethereal Void" ) )
@@ -229,7 +229,7 @@ namespace Server.Items
 						{
 							if ( who is EpicCharacter )
 							{
-								who.Say("You have maintained the balance between order and chaos.");
+								who.Say("Você manteve o equilíbrio entre ordem e caos.");
 							}
 						}
 
@@ -272,7 +272,7 @@ namespace Server.Items
 												check.Name = "Reward from the Great Earth Serpent";
 												pmi.Mobile.AddToBackpack ( check );
 
-											pmi.Mobile.SendMessage("Two items have appeared in your backpack!");
+											pmi.Mobile.SendMessage("Dois itens apareceram em sua mochila!");
 											pmi.Mobile.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 											pmi.Mobile.PlaySound( 0x1F7 );
 										}
@@ -308,14 +308,14 @@ namespace Server.Items
 										check.Name = "Reward from the Great Earth Serpent";
 										m.AddToBackpack ( check );
 
-									m.SendMessage("Two items have appeared in your backpack!");
+									m.SendMessage("Dois itens apareceram em sua mochila!");
 									m.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
 									m.PlaySound( 0x1F7 );
 								}
 							}
 						}
 
-						LoggingFunctions.LogGenericQuest( m, "has maintained the balance between order and chaos" );
+						LoggingFunctions.LogGenericQuest( m, "manteve o equilíbrio entre ordem e caos" );
 					}
 				}
 				else if ( m.Region.IsPartOf( "Dungeon Rock" ) ) // EXODUS - FORGE OF VIRTUE
@@ -398,7 +398,7 @@ namespace Server.Items
 							Point3D fire = new Point3D( 710, 2209, -17 );
 							Effects.SendLocationEffect( fire, m.Map, 0x3709, 30, 10 );
 							m.PlaySound( 0x208 );
-							m.SendMessage( "You destroy the dark core of Exodus, unleashing the power." );
+							m.SendMessage( "Você destrói o núcleo sombrio de Exodus, libertando o poder." );
 
 							for ( int x = -5; x <= 5; ++x )
 							{
@@ -489,7 +489,7 @@ namespace Server.Items
 								{
 									if ( pmi.Mobile is PlayerMobile && pmi.Mobile.InRange(this.Location, 20) )
 									{
-										LoggingFunctions.LogGenericQuest( pmi.Mobile, "has destroyed the dark core of Exodus" );
+										LoggingFunctions.LogGenericQuest( pmi.Mobile, "destruiu o núcleo sombrio de Exodus" );
 										Titles.AwardFame( pmi.Mobile, 300, true );
 										if ( ((PlayerMobile)(pmi.Mobile)).KarmaLocked == true ){ Titles.AwardKarma( pmi.Mobile, -300, true ); }
 										else { Titles.AwardKarma( pmi.Mobile, 300, true ); }
@@ -518,13 +518,13 @@ namespace Server.Items
 											book.m_Hue = 0x835;
 											pmi.Mobile.AddToBackpack( book );
 
-										pmi.Mobile.SendMessage("An item has appeared in your backpack!");
+										pmi.Mobile.SendMessage("Um item apareceu em sua mochila!");
 									}
 								}
 							}
 							else
 							{
-								LoggingFunctions.LogGenericQuest( m, "has destroyed the dark core of Exodus" );
+								LoggingFunctions.LogGenericQuest( m, "destruiu o núcleo sombrio de Exodus" );
 								Titles.AwardFame( m, 300, true );
 								if ( ((PlayerMobile)m).KarmaLocked == true ){ Titles.AwardKarma( m, -300, true ); }
 								else { Titles.AwardKarma( m, 300, true ); }
@@ -552,7 +552,7 @@ namespace Server.Items
 									book.m_Points = 300;
 									book.m_Hue = 0x835;
 									m.AddToBackpack( book );
-									m.SendMessage("An item has appeared in your backpack!");
+									m.SendMessage("Um item apareceu em sua mochila!");
 							}
 						}
 					}
@@ -566,7 +566,7 @@ namespace Server.Items
 						Item shard3 = m.Backpack.FindItemByType( typeof ( ShardOfHatred ) );
 
 						m.AddToBackpack ( new GemImmortality() );
-						m.SendMessage( "The shards magically form the Gem of Immortality." );
+						m.SendMessage( "Os fragmentos formam magicamente a Gema da Imortalidade." );
 						Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 5008 );
 						Effects.PlaySound( m.Location, m.Map, 0x653 );
 
@@ -622,9 +622,9 @@ namespace Server.Items
 						int max = min + 40;
 						BaseRunicTool.ApplyAttributesTo( book, attributeCount, min, max );
 						m.AddToBackpack ( book );
-						m.SendMessage( "Kas has granted you your wish." );
+						m.SendMessage( "Kas concedeu seu desejo." );
 
-						LoggingFunctions.LogGenericQuest( m, "has become a death knight" );
+						LoggingFunctions.LogGenericQuest( m, "tornou-se um cavaleiro da morte" );
 
 						Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 5008 );
 						Effects.PlaySound( m.Location, m.Map, 0x1ED );
@@ -668,17 +668,17 @@ namespace Server.Items
 							}
 							else
 							{
-								m.SendMessage( "You need your own golden feathers to receive the ranger blessing." );
+								m.SendMessage( "Você precisa de suas próprias penas douradas para receber a bênção do ranger." );
 							}
 						}
 						else
 						{
-							m.SendMessage( "You need golden feathers to receive the ranger blessing." );
+							m.SendMessage( "Você precisa de penas douradas para receber a bênção do ranger." );
 						}
 					}
 					else
 					{
-						m.SendMessage( "Only a master explorer or ranger can be blessed here." );
+						m.SendMessage( "Apenas um explorador ou ranger mestre pode ser abençoado aqui." );
 					}
 				}
 				else if ( m.Region.IsPartOf( "the Moon's Core" ) && m.X == 5689 && m.Y == 1912 ) // MOON CORE
@@ -728,7 +728,7 @@ namespace Server.Items
 						{
 							piece1.Delete(); piece2.Delete(); piece3.Delete(); piece4.Delete(); piece5.Delete();
 
-							LoggingFunctions.LogGenericQuest( m, "has assembled the staff of ultimate power" );
+							LoggingFunctions.LogGenericQuest( m, "montou o cajado do poder supremo" );
 
 							int magic = 0;
 								if ( m.Skills[SkillName.Necromancy].Base > m.Skills[SkillName.Magery].Base ){ magic = 1; }

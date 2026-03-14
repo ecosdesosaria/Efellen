@@ -501,11 +501,11 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( !IsChildOf( from.Backpack ) && from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified ) 
-				from.SendMessage( "This must be in your backpack to identify." );
+				from.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified )
 				IDCommand( from );
 			else if ( NotIdentified )
-				from.SendMessage( "This must be appraised before you can place it in your home." );
+				from.SendMessage( "Isto deve ser avaliado antes de você poder colocá-lo em sua casa." );
 			else
 				base.OnDoubleClick( from );
 		}
@@ -525,9 +525,9 @@ namespace Server.Items
             base.AddNameProperties(list);
 
 			if ( NotIdentified )
-				list.Add( 1049644, "Appraise Before Placing in Your Home");
+				list.Add( 1049644, "Avalie Antes de Colocar em Sua Casa");
 			else
-				list.Add( 1049644, "Double Click To Place In Your Home");
+				list.Add( 1049644, "Clique Duplo para Colocar em Sua Casa");
         }
 
 		public override void Serialize( GenericWriter writer )

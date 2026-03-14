@@ -44,7 +44,7 @@ namespace Server.Spells.Elementalism
 			}
 			else if ( Worlds.RegionAllowedTeleport( Caster.Map, Caster.Location, Caster.X, Caster.Y ) == false )
 			{
-				Caster.SendMessage( "That spell does not seem to work in this place." );
+				Caster.SendMessage( "Este feitiço não parece funcionar neste lugar." );
 			}
 			else if ( SpellHelper.CheckMulti( Caster.Location, Caster.Map, !Core.AOS ) )
 			{

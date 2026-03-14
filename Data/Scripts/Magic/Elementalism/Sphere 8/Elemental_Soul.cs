@@ -72,7 +72,7 @@ namespace Server.Spells.Elementalism
             if (m.Backpack == null || !m.Backpack.CheckHold(m, iOrb, false, true, 0, 0))
             {
               iOrb.Delete();
-              m.SendMessage("You cannot cast that spell because your inventory is full.");
+              m.SendMessage("Você não pode lançar este feitiço porque seu inventário está cheio.");
               return;
             }
 
@@ -96,7 +96,7 @@ namespace Server.Spells.Elementalism
             // Create new orb
             m.PlaySound( 0x214 );
             m.FixedEffect( 0x3039, 10, 16, hue, 0 );
-            m.SendMessage( "You summon a magical orb of " + orb + " to protect your soul." );
+            m.SendMessage( "Você invoca um orbe mágico de " + orb + " para proteger sua alma." );
             iOrb.m_Owner = m;
             iOrb.Hue = color;
             iOrb.Name = "magical orb of " + orb + "";
@@ -105,7 +105,7 @@ namespace Server.Spells.Elementalism
           }
           else if ( m == Caster )
           {
-            Caster.SendMessage("You failed to summon an orb.");
+              Caster.SendMessage("Você falhou ao invocar um orbe.");
           }
           else if ( !Caster.Alive )
           {
@@ -164,7 +164,7 @@ namespace Server.Spells.Elementalism
         }
         else
         {
-          Caster.SendMessage("They are not dead.");
+          Caster.SendMessage("Eles não estão mortos.");
         }
       }
       else if ( hench is HenchmanWizardItem && CheckSequence() )
@@ -180,7 +180,7 @@ namespace Server.Spells.Elementalism
         }
         else
         {
-          Caster.SendMessage("They are not dead.");
+          Caster.SendMessage("Eles não estão mortos.");
         }
       }
       else if ( hench is HenchmanArcherItem && CheckSequence() )
@@ -196,7 +196,7 @@ namespace Server.Spells.Elementalism
         }
         else
         {
-          Caster.SendMessage("They are not dead.");
+          Caster.SendMessage("Eles não estão mortos.");
         }
       }
       else if (hench is HenchmanMonsterItem && CheckSequence() )
@@ -212,12 +212,12 @@ namespace Server.Spells.Elementalism
         }
         else
         {
-          Caster.SendMessage("They are not dead.");
+          Caster.SendMessage("Eles não estão mortos.");
         }
       }
       else
       {
-        Caster.SendMessage("This spell didn't seem to work.");
+        Caster.SendMessage("Este feitiço parece não ter funcionado.");
       }
             FinishSequence();
     }

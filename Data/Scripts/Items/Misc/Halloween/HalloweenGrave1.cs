@@ -21,7 +21,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage("Please Enter The New Name For This Grave");
+			from.SendMessage("Por Favor, Digite O Novo Nome Para Esta Sepultura");
 			from.Prompt = new RenamePrompt( this );
 		}
 
@@ -37,7 +37,7 @@ namespace Server.Items
 			public override void OnResponse( Mobile from, string text )
 			{
 				m_Sign.Name = text;
-				from.SendMessage("The Name has been changed"); 
+				from.SendMessage("O Nome foi alterado");
 			}
 		}
 

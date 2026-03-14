@@ -40,7 +40,7 @@ namespace Server.Spells.Research
 
 			if ( Caster.Backpack.FindItemByType( typeof ( Sapphire ) ) == null )
 			{
-				Caster.SendMessage( "You need a sapphire to cast this spell!" );
+				Caster.SendMessage( "Você precisa de uma safira para lançar este feitiço!" );
 				return false;
 			}
 
@@ -49,7 +49,7 @@ namespace Server.Spells.Research
 
         public override void OnCast()
         {
-			Caster.SendMessage( "Choose who you are going to summon a jewel for." );
+			Caster.SendMessage( "Escolha para quem você vai invocar uma joia." );
 			Caster.Target = new InternalTarget( this );
         }
  
@@ -61,13 +61,13 @@ namespace Server.Spells.Research
             }
 			else if ( Caster.Backpack.FindItemByType( typeof ( Sapphire ) ) == null )
 			{
-				Caster.SendMessage( "You need a sapphire to cast this spell!" );
+				Caster.SendMessage( "Você precisa de uma safira para lançar este feitiço!" );
 			}
             else if ( CheckBSequence( m, true ) )
             {
                 m.PlaySound( 0x214 );
                 m.FixedEffect( 0x376A, 10, 16, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0 );
-				m.SendMessage( "A magical jewel has been summoned to protect you from death." );
+				m.SendMessage( "Uma joia mágica foi invocada para protegê-lo da morte." );
 				Item jewel = new JewelImmortality();
 				m.AddToBackpack( jewel );
 				Item sapphire = Caster.Backpack.FindItemByType( typeof ( Sapphire ) );
@@ -98,7 +98,7 @@ namespace Server.Spells.Research
                 }
                 else if ( o is Item )
                 {
-					from.SendMessage( "This spell will not work on that." );
+					from.SendMessage( "Este feitiço não funcionará sobre isso." );
                 }
             }
  
@@ -162,7 +162,7 @@ namespace Server.Misc
 				Item rock = m.Backpack.FindItemByType( typeof ( JewelImmortality ) );
 				m.Hits = m.HitsMax;
 				m.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				m.SendMessage( "You are restored with the power of the jewel!" );
+				m.SendMessage( "Você foi restaurado com o poder da joia!" );
 				m.CurePoison( m );
 				m.PlaySound( 0x202 );
 				rock.Delete();

@@ -27,7 +27,7 @@ namespace Server.Spells.Undead
 
 			if ( Caster.Skills[CastSkill].Value < RequiredSkill )
 			{
-				Caster.SendMessage("You lack the skills to use this necromancer liquid!");
+				Caster.SendMessage("Você não tem as habilidades para usar este líquido de necromante!");
 				return false;
 			}
 

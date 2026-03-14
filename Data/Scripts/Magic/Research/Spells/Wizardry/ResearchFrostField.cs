@@ -32,7 +32,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Where do you want the field to materialize?" );
+			Caster.SendMessage( "Onde você quer que o campo se materialize?" );
 			Caster.Target = new InternalTarget( this );
 		}
 

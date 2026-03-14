@@ -42,7 +42,7 @@ namespace Server.Spells.Herbalist
 		{
 			if ( Caster.Skills[CastSkill].Value < RequiredSkill )
 			{
-				Caster.PrivateOverheadMessage(MessageType.Regular, 0x14C, false, "You lack the understanding to use this mixture.", Caster.NetState);
+				Caster.PrivateOverheadMessage(MessageType.Regular, 0x14C, false, "Você não tem o conhecimento necessário para usar esta mistura.", Caster.NetState);
 				return false;
 			}
 			else if ( Server.Misc.WeightOverloading.IsOverloaded( Caster ) )
@@ -62,15 +62,15 @@ namespace Server.Spells.Herbalist
 			}
 			else if ( Worlds.AllowEscape( Caster, Caster.Map, Caster.Location, Caster.X, Caster.Y ) == false )
 			{
-				Caster.SendMessage( "That potion does not seem to work in this place." );
+				Caster.SendMessage( "Esta poção não parece funcionar neste lugar." );
 			}
 			else if ( Worlds.RegionAllowedRecall( Caster.Map, Caster.Location, Caster.X, Caster.Y ) == false )
 			{
-				Caster.SendMessage( "That potion does not seem to work in this place." );
+				Caster.SendMessage( "Esta poção não parece funcionar neste lugar." );
 			}
 			else if ( Worlds.RegionAllowedTeleport( map, loc, loc.X, loc.Y ) == false )
 			{
-				Caster.SendMessage( "The destination seems magically unreachable." );
+				Caster.SendMessage( "O destino parece magicamente inacessível." );
 			}
 			else if ( !map.CanSpawnMobile( loc.X, loc.Y, loc.Z ) )
 			{

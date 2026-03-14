@@ -35,7 +35,7 @@ namespace Server.Items
 		public override bool DisplayWeight{ get{ return false; } }
 		public override CraftResource DefaultResource{ get{ return CraftResource.RegularLeather; } }
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Trinket; } }
-		public override string DefaultDescription{ get{ return "These ancient, magical bags were once used by aspiring scholars to cast spells with the use of rune stones. Wizards eventually learned how to wield the magic without these, but they may still be of use to those that are not magically gifted."; } }
+		public override string DefaultDescription{ get{ return "Estas antigas bolsas mágicas eram usadas por aspirantes a estudiosos para lançar feitiços com o uso de pedras rúnicas. Os magos eventualmente aprenderam a usar a magia sem elas, mas ainda podem ser úteis para aqueles que não são dotados de magia."; } }
 
 		[Constructable]
 		public MagicRuneBag() : base( 0x0E84 )
@@ -51,8 +51,8 @@ namespace Server.Items
 			from.CloseGump( typeof( MagicRuneGump ) );
 			if ( Enchanted == MagicSpell.None )
 			{
-				from.LocalOverheadMessage( MessageType.Emote, 0x916, true, "There is no magic on the bag!" );
-				from.SendMessage( "There is no magic on the bag!" );
+				from.LocalOverheadMessage( MessageType.Emote, 0x916, true, "Não há magia na bolsa!" );
+				from.SendMessage( "Não há magia na bolsa!" );
 				return false;
 			}
 			base.OnEquip( from );
@@ -90,7 +90,7 @@ namespace Server.Items
 				from.PlaySound( 0x48 );
 			}
 			else
-				from.SendMessage( "You can only use this from your pack." );
+				from.SendMessage( "Você só pode usar isso de seu inventário." );
 		}
 
 		public class MagicRuneGump : Gump
@@ -117,8 +117,8 @@ namespace Server.Items
 
 				AddImage(0, 0, 10465);
 
-				AddHtml( 12, 11, 424, 66, @"<BODY><BASEFONT Color=" + color + ">This magical bag will hold runes of power for which you can combine to cast spells from the bag. When a bag is set for a spell, it must then be equipped in order to cast it by double clicking the bag.</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 13, 370, 424, 163, @"<BODY><BASEFONT Color=" + color + ">You can add runes by dropping them onto the bag. You can use the down arrow buttons to remove the rune from the bag. To select a rune to have ready for a spell, select the button to the right of the arrow for the rune. If you have a proper combination, then the bag will be readied for a spell and can then be equipped to use. These bags always have the book to reference this unusual form of magic, and you can read the book by selecting the scroll button on the bottom right. These bags can have a certain number of charges, where a mage can recharge it for you for a fee.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 11, 424, 66, @"<BODY><BASEFONT Color=" + color + ">Esta bolsa mágica conterá runas de poder com as quais você pode combinar para lançar feitiços da bolsa. Quando uma bolsa é configurada para um feitiço, ela deve então ser equipada para ser lançada clicando duas vezes na bolsa.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 13, 370, 424, 163, @"<BODY><BASEFONT Color=" + color + ">Você pode adicionar runas soltando-as sobre a bolsa. Você pode usar os botões de seta para baixo para remover a runa da bolsa. Para selecionar uma runa para estar pronta para um feitiço, selecione o botão à direita da seta para a runa. Se você tiver uma combinação adequada, então a bolsa será preparada para um feitiço e poderá ser equipada para uso. Estas bolsas sempre têm o livro para referenciar esta forma incomum de magia, e você pode ler o livro selecionando o botão de pergaminho no canto inferior direito. Estas bolsas podem ter um certo número de cargas, onde um mago pode recarregá-la para você por uma taxa.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				if ( mBag.m_Rune_An )
 				{
@@ -534,7 +534,7 @@ namespace Server.Items
 
 						mage.CoinPurse += rpt;
 						mage.InvalidateProperties();
-						mage.SayTo( from, "I recharged the rune bag for " + rpt + " gold." );
+						mage.SayTo( from, "Recarreguei a bolsa de runas por " + rpt + " moedas de ouro." );
 
 						dropped.Delete();
 						return true;
@@ -1033,7 +1033,7 @@ namespace Server.Items
 
 			if ( success )
 			{
-				from.SendMessage( "You place the rune in the bag." );
+				from.SendMessage( "Você coloca a runa na bolsa." );
 
 				if ( from.HasGump( typeof( MagicRuneBag.MagicRuneGump ) ) )
 				{
@@ -1044,7 +1044,7 @@ namespace Server.Items
 				return true;
 			}
 
-			from.SendMessage( "That rune is already in the bag." );
+			from.SendMessage( "Essa runa já está na bolsa." );
 			return false;
 		}
 

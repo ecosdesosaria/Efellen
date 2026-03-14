@@ -280,9 +280,9 @@ namespace Server.Items
 				if ( !CheckTime( lastPostTime, (thread == null ? ThreadCreateTime : ThreadReplyTime) ) )
 				{
 					if ( thread == null )
-						from.SendMessage( "You must wait {0} before creating a new thread.", FormatTS( ThreadCreateTime ) );
+						from.SendMessage( "Você deve aguardar {0} antes de criar um novo tópico.", FormatTS( ThreadCreateTime ) );
 					else
-						from.SendMessage( "You must wait {0} before replying to another thread.", FormatTS( ThreadReplyTime ) );
+						from.SendMessage( "Você deve aguardar {0} antes de responder a outro tópico.", FormatTS( ThreadReplyTime ) );
 
 					return;
 				}

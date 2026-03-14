@@ -55,8 +55,8 @@ namespace Server.Items
 				if ( ( ( HaveShardB + HaveShardC + HaveShardD + HaveShardA ) > 3 ) && HaveGold < NeedGold )
 				{
 					int need = NeedGold - HaveGold;
-					from.SendMessage( "You still need " + need + " gold." );
-					from.SendMessage( "Choose some gold coins to add to the shard." );
+					from.SendMessage( "Você ainda precisa de " + need + " moedas de ouro." );
+					from.SendMessage( "Escolha algumas moedas de ouro para adicionar ao fragmento." );
 					from.Target = new GoldTarget( this );
 				}
 				else
@@ -84,7 +84,7 @@ namespace Server.Items
 
 					if ( !gold.IsChildOf( from.Backpack ) )
 					{
-						from.SendMessage( "You can only add gold coins from your pack." );
+						from.SendMessage( "Você só pode adicionar moedas de ouro da sua mochila." );
 					}
 					else
 					{
@@ -95,12 +95,12 @@ namespace Server.Items
 						else { m_DemonPrison.HaveGold = m_DemonPrison.HaveGold + cost; gold.Amount = gold.Amount - cost; }
 
 						from.PlaySound( 0x1FA );
-						from.SendMessage( "The gold has been added to the shard." );
+						from.SendMessage( "O ouro foi adicionado ao fragmento." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "You cannot add that to the shard." );
+					from.SendMessage( "Você não pode adicionar isso ao fragmento." );
 				}
 			}
 		}
@@ -220,7 +220,7 @@ namespace Server.Items
 
 			if ( (m.Followers + 3) > m.FollowersMax )
 			{
-				wizard.Say( "You have too many followers with you to shatter this shard." );
+				wizard.Say( "Você tem muitos seguidores com você para estilhaçar este fragmento." );
 				return false;
 			}
 
@@ -239,8 +239,8 @@ namespace Server.Items
 			daemon.MinTameSkill = 29.1;
 			daemon.ControlOrder = OrderType.Follow;
 
-			LoggingFunctions.LogGenericQuest( m, "has freed a daemon" );
-			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Your daemon has been freed from the shard.", m.NetState);
+			LoggingFunctions.LogGenericQuest( m, "libertou um demônio" );
+			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Seu demônio foi libertado do fragmento.", m.NetState);
 
 			m.PlaySound( 0x3D );
 
@@ -418,7 +418,7 @@ namespace Server.Items
 				from.SendSound( 0x4A ); 
 				string color = "#c97e75"; 
 
-				string sText = "This shard contains a trapped daemon. Warlocks would take these shards and combine them with the four crystals of daemonic power. The shard of hellfire, the shard of the abyss, the shard of souls, and the shard of the void are the four crystals used in this process. These are usually in long lost dungeons or ruins, and said to be last seen in small chests resting on a runic pedestal. Once these crystals are combined with the daemon shard, you can double click the shard and add the gold coins as funds. Once everything is gathered, you can shatter the crystal and free the daemon. The daemon will then owe a life debt to the one that freed it. These arcane skills are rarely ever used today, but you did hear rumors of these various shards being seen in certain places. If you could get them, and bring these shards to a mage or necromancer (spell casters), they may be able to help you release it as you cannot do it alone. The spell caster will require some gold as you will need the help of a particular spell caster and they will require payment for their services. This spell caster is at the location shown below. If you have any magery or necromancy skill, they may refund some of the gold for the help you may provide in the release. When released, these daemons will become your bonded ally. You will have to feed them and stable them when required. You can also perform some druidism on them without having any proficiency in the skill. This will help you with information about them, like what they want to eat.";
+				string sText = "Este fragmento contém um demônio aprisionado. Bruxos pegariam esses fragmentos e os combinariam com os quatro cristais de poder demoníaco. O fragmento do fogo do inferno, o fragmento do abismo, o fragmento das almas e o fragmento do vazio são os quatro cristais usados neste processo. Estes geralmente estão em masmorras ou ruínas há muito perdidas, e diz-se que foram vistos pela última vez em pequenos baús sobre um pedestal rúnico. Depois que esses cristais forem combinados com o fragmento do demônio, você pode clicar duas vezes no fragmento e adicionar as moedas de ouro como fundos. Quando tudo estiver reunido, você pode estilhaçar o cristal e libertar o demônio. O demônio então deverá uma dívida de vida àquele que o libertou. Essas habilidades arcanas raramente são usadas hoje em dia, mas você ouviu rumores sobre esses vários fragmentos serem vistos em certos lugares. Se você puder obtê-los e levar esses fragmentos a um mago ou necromante (conjuradores), eles poderão ajudá-lo a libertá-lo, pois você não pode fazer isso sozinho. O conjurador exigirá algum ouro, pois você precisará da ajuda de um conjurador específico e eles exigirão pagamento por seus serviços. Este conjurador está na localização mostrada abaixo. Se você tiver alguma habilidade em magia ou necromancia, eles podem reembolsar parte do ouro pela ajuda que você pode fornecer na libertação. Quando libertados, esses demônios se tornarão seu aliado vinculado. Você terá que alimentá-los e estabulá-los quando necessário. Você também pode praticar um pouco de druidismo neles sem ter nenhuma proficiência na habilidade. Isso o ajudará com informações sobre eles, como o que eles gostam de comer.";
 
 				string sRumor = shard.PieceRumor + " " + shard.PieceLocation;
 
@@ -426,8 +426,8 @@ namespace Server.Items
 				else if ( shard.HaveShardB == 0 ){ sRumor = "The shard of the abyss " + sRumor; }
 				else if ( shard.HaveShardC == 0 ){ sRumor = "The shard of souls " + sRumor; }
 				else if ( shard.HaveShardD == 0 ){ sRumor = "The shard of the void " + sRumor; }
-				else if ( shard.HaveGold < shard.NeedGold ){ sRumor = "You have obtained everything except the gold."; }
-				else { sRumor = "You have obtained everything you need."; }
+				else if ( shard.HaveGold < shard.NeedGold ){ sRumor = "Você obteve tudo, exceto o ouro."; }
+				else { sRumor = "Você obteve tudo o que precisa."; }
 
 				this.Closable=true;
 				this.Disposable=true;
@@ -664,11 +664,11 @@ namespace Server.Mobiles
 						{
 							if ( Server.Items.HiddenTrap.CheckInsuranceOnTrap( iRuined, m ) )
 							{
-								m.LocalOverheadMessage(MessageType.Emote, 1150, true, "The daemon almost rusted one of your protected items!");
+								m.LocalOverheadMessage(MessageType.Emote, 1150, true, "O demônio quase enferrujou um dos seus itens protegidos!");
 							}
 							else
 							{
-								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "The daemon rusted one of your equipped items!");
+								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "O demônio enferrujou um dos seus itens equipados!");
 								RustyJunk broke = new RustyJunk();
 								broke.ItemID = iRuined.GraphicID;
 								broke.Name = "rusted item";
@@ -686,11 +686,11 @@ namespace Server.Mobiles
 						{
 							if ( Server.Items.HiddenTrap.CheckInsuranceOnTrap( iRuined, m ) )
 							{
-								m.LocalOverheadMessage(MessageType.Emote, 1150, true, "The daemon almost rusted one of your protected items!");
+								m.LocalOverheadMessage(MessageType.Emote, 1150, true, "O demônio quase enferrujou um dos seus itens protegidos!");
 							}
 							else
 							{
-								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "The daemon rusted one of your equipped items!");
+								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "O demônio enferrujou um dos seus itens equipados!");
 								RustyJunk broke = new RustyJunk();
 								broke.ItemID = iRuined.ItemID;
 								broke.Name = "rusted item";

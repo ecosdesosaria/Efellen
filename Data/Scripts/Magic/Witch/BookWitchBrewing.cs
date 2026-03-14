@@ -66,9 +66,9 @@ namespace Server.Items
 					AddHtml( 107, 46, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>THE WITCH'S BREW</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 					AddHtml( 398, 48, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>THE WITCH'S BREW</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 
-					AddHtml( 78, 75, 248, 318, @"<BODY><BASEFONT Color=" + color + ">Witchery brewing is the art of taking morbid reagents and creating concoctions that necromancers can use in their dark magics. You would use your forensics skill to create the potions, and your necromancy skill to use them. This book explains the various mixtures you can make, as well as additional information to manage these potions effectively. Unlike other potions, these require jars as the liquid needs a thicker glass to store as it is acidic enough to dissolve bottle glass and even the wood of a keg.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 78, 75, 248, 318, @"<BODY><BASEFONT Color=" + color + ">O preparo de bruxaria é a arte de pegar reagentes mórbidos e criar poções que necromantes podem usar em suas magias sombrias. Você usaria sua habilidade de forense para criar as poções e sua habilidade de necromancia para usá-las. Este livro explica as várias misturas que você pode fazer, bem como informações adicionais para gerenciar essas poções efetivamente. Ao contrário de outras poções, estas exigem jarros, pois o líquido precisa de um vidro mais grosso para armazenar, já que é ácido o suficiente para dissolver vidro de garrafa e até a madeira de um barril.</BASEFONT></BODY>", (bool)false, (bool)false);
 
-					AddHtml( 372, 75, 248, 318, @"<BODY><BASEFONT Color=" + color + ">You will need a small cauldron to brew these concoctions. You can also get a belt pouch to store the ingredients, cauldrons, jars, potions, and this book to make them easier to carry. Single click this bag to organize it for easier use of the mixtures.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 372, 75, 248, 318, @"<BODY><BASEFONT Color=" + color + ">Você precisará de um pequeno caldeirão para preparar essas poções. Você também pode obter uma bolsa de cinto para guardar os ingredientes, caldeirões, jarros, poções e este livro para facilitar o transporte. Clique uma vez nesta bolsa para organizá-la e facilitar o uso das misturas.</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
 				else
 				{
@@ -131,7 +131,7 @@ namespace Server.Items
 			{
 				string txt = "";
 
-				txt = "This is created from a witch's brew: " + potionInfo( potion, 3 ) + " To use it, one should have a " + potionInfo( potion, 4 ) + " in Forensics and a " + potionInfo( potion, 5 ) + " in Necromancy.";
+				txt = "Isto é criado a partir de uma poção de bruxa: " + potionInfo( potion, 3 ) + " Para usá-lo, é preciso ter " + potionInfo( potion, 4 ) + " em Forense e " + potionInfo( potion, 5 ) + " em Necromancia.";
 
 				return txt;
 			}
@@ -147,22 +147,22 @@ namespace Server.Items
 				string txtIngB = "";
 				string txtIngC = "";
 
-				if ( page == 2 ){ txtName = "Eyes of the Dead Mixture"; txtIcon = "11460"; txtInfo = "Gives one the same sight of the undead, where they are able to see in the dark."; txtSklA = "10"; txtSklB = "5"; txtIngA = "Mummy Wrap"; txtIngB = "Eye of Toad"; txtIngC = ""; }
-				else if ( page == 3 ){ txtName = "Tomb Raiding Concoction"; txtIcon = "11468"; txtInfo = "Summons the spirits to unlock something for you."; txtSklA = "15"; txtSklB = "10"; txtIngA = "Maggot"; txtIngB = "Beetle Shell"; txtIngC = ""; }
-				else if ( page == 4 ){ txtName = "Disease Draught"; txtIcon = "11458"; txtInfo = "Causes one to suffer from a poisonous disease."; txtSklA = "20"; txtSklB = "15"; txtIngA = "Violet Fungus"; txtIngB = "Nox Crystal"; txtIngC = ""; }
-				else if ( page == 5 ){ txtName = "Phantasm Elixir"; txtIcon = "11465"; txtInfo = "Summons a spirit to disable a trap."; txtSklA = "25"; txtSklB = "20"; txtIngA = "Dried Toad"; txtIngB = "Gargoyle Ear"; txtIngC = ""; }
-				else if ( page == 6 ){ txtName = "Retched Air Elixir"; txtIcon = "11466"; txtInfo = "Creates a burst of harmful gas."; txtSklA = "30"; txtSklB = "25"; txtIngA = "Black Sand"; txtIngB = "Grave Dust"; txtIngC = ""; }
-				else if ( page == 7 ){ txtName = "Lich Leech Mixture"; txtIcon = "11464"; txtInfo = "Absorbs mana from the target, giving it to you in return."; txtSklA = "35"; txtSklB = "30"; txtIngA = "Dried Toad"; txtIngB = "Red Lotus"; txtIngC = ""; }
-				else if ( page == 8 ){ txtName = "Wall of Spike Draught"; txtIcon = "11470"; txtInfo = "Creates a protective wall of spikes."; txtSklA = "40"; txtSklB = "35"; txtIngA = "Bitter Root"; txtIngB = "Pig Iron"; txtIngC = ""; }
-				else if ( page == 9 ){ txtName = "Disease Curing Concoction"; txtIcon = "11459"; txtInfo = "Cures one of poisonous diseases."; txtSklA = "45"; txtSklB = "40"; txtIngA = "Wolfsbane"; txtIngB = "Swamp Berries"; txtIngC = ""; }
-				else if ( page == 10 ){ txtName = "Blood Pact Elixir"; txtIcon = "11456"; txtInfo = "Takes some of your life and bestows it upon another."; txtSklA = "50"; txtSklB = "45"; txtIngA = "Blood Rose"; txtIngB = "Daemon Blood"; txtIngC = ""; }
-				else if ( page == 11 ){ txtName = "Spectre Shadow Elixir"; txtIcon = "11467"; txtInfo = "Turns the body into an invisible ghostly form that cannot be seen."; txtSklA = "55"; txtSklB = "50"; txtIngA = "Violet Fungus"; txtIngB = "Silver Widow"; txtIngC = ""; }
-				else if ( page == 12 ){ txtName = "Ghost Phase Concoction"; txtIcon = "11461"; txtInfo = "Turns your body into ghostly matter that reappears in a nearby location."; txtSklA = "60"; txtSklB = "55"; txtIngA = "Bitter Root"; txtIngB = "Moon Crystal"; txtIngC = ""; }
-				else if ( page == 13 ){ txtName = "Demonic Fire Ooze"; txtIcon = "11457"; txtInfo = "Ignites a marked rune with power to transport one to that location."; txtSklA = "65"; txtSklB = "60"; txtIngA = "Maggot"; txtIngB = "Black Pearl"; txtIngC = ""; }
-				else if ( page == 14 ){ txtName = "Ghostly Images Draught"; txtIcon = "11462"; txtInfo = "Creates an illusionary image of you, distracting your foes."; txtSklA = "70"; txtSklB = "65"; txtIngA = "Mummy Wrap"; txtIngB = "Bloodmoss"; txtIngC = ""; }
-				else if ( page == 15 ){ txtName = "Hellish Branding Ooze"; txtIcon = "11463"; txtInfo = "Marks a rune location with symbols of evil, so you can use recalling magic on it to return to that location."; txtSklA = "75"; txtSklB = "70"; txtIngA = "Werewolf Claw"; txtIngB = "Brimstone"; txtIngC = ""; }
-				else if ( page == 16 ){ txtName = "Black Gate Draught"; txtIcon = "11455"; txtInfo = "Uses a magic rune to create a horrific black gate. Those that enter will appear at the runic location."; txtSklA = "80"; txtSklB = "75"; txtIngA = "Black Sand"; txtIngB = "Wolfsbane"; txtIngC = "Pixie Skull"; }
-				else if ( page == 17 ){ txtName = "Vampire Blood Draught"; txtIcon = "11469"; txtInfo = "Dumps vampire blood in your pack, that will resurrect you a few moments after losing your life. You can also directly resurrect others."; txtSklA = "85"; txtSklB = "80"; txtIngA = "Werewolf Claw"; txtIngB = "Bat Wing"; txtIngC = "Blood Rose"; }
+				if ( page == 2 ){ txtName = "Eyes of the Dead Mixture"; txtIcon = "11460"; txtInfo = "Dá a visão dos mortos-vivos, permitindo enxergar no escuro."; txtSklA = "10"; txtSklB = "5"; txtIngA = "Mummy Wrap"; txtIngB = "Eye of Toad"; txtIngC = ""; }
+				else if ( page == 3 ){ txtName = "Tomb Raiding Concoction"; txtIcon = "11468"; txtInfo = "Invoca os espíritos para destrancar algo para você."; txtSklA = "15"; txtSklB = "10"; txtIngA = "Maggot"; txtIngB = "Beetle Shell"; txtIngC = ""; }
+				else if ( page == 4 ){ txtName = "Disease Draught"; txtIcon = "11458"; txtInfo = "Faz com que alguém sofra de uma doença venenosa."; txtSklA = "20"; txtSklB = "15"; txtIngA = "Violet Fungus"; txtIngB = "Nox Crystal"; txtIngC = ""; }
+				else if ( page == 5 ){ txtName = "Phantasm Elixir"; txtIcon = "11465"; txtInfo = "Invoca um espírito para desativar uma armadilha."; txtSklA = "25"; txtSklB = "20"; txtIngA = "Dried Toad"; txtIngB = "Gargoyle Ear"; txtIngC = ""; }
+				else if ( page == 6 ){ txtName = "Retched Air Elixir"; txtIcon = "11466"; txtInfo = "Cria uma explosão de gás nocivo."; txtSklA = "30"; txtSklB = "25"; txtIngA = "Black Sand"; txtIngB = "Grave Dust"; txtIngC = ""; }
+				else if ( page == 7 ){ txtName = "Lich Leech Mixture"; txtIcon = "11464"; txtInfo = "Absorve mana do alvo, dando a você em troca."; txtSklA = "35"; txtSklB = "30"; txtIngA = "Dried Toad"; txtIngB = "Red Lotus"; txtIngC = ""; }
+				else if ( page == 8 ){ txtName = "Wall of Spike Draught"; txtIcon = "11470"; txtInfo = "Cria uma parede protetora de espinhos."; txtSklA = "40"; txtSklB = "35"; txtIngA = "Bitter Root"; txtIngB = "Pig Iron"; txtIngC = ""; }
+				else if ( page == 9 ){ txtName = "Disease Curing Concoction"; txtIcon = "11459"; txtInfo = "Cura alguém de doenças venenosas."; txtSklA = "45"; txtSklB = "40"; txtIngA = "Wolfsbane"; txtIngB = "Swamp Berries"; txtIngC = ""; }
+				else if ( page == 10 ){ txtName = "Blood Pact Elixir"; txtIcon = "11456"; txtInfo = "Tira um pouco da sua vida e a concede a outro."; txtSklA = "50"; txtSklB = "45"; txtIngA = "Blood Rose"; txtIngB = "Daemon Blood"; txtIngC = ""; }
+				else if ( page == 11 ){ txtName = "Spectre Shadow Elixir"; txtIcon = "11467"; txtInfo = "Transforma o corpo em uma forma fantasmagórica invisível que não pode ser vista."; txtSklA = "55"; txtSklB = "50"; txtIngA = "Violet Fungus"; txtIngB = "Silver Widow"; txtIngC = ""; }
+				else if ( page == 12 ){ txtName = "Ghost Phase Concoction"; txtIcon = "11461"; txtInfo = "Transforma seu corpo em matéria fantasmagórica que reaparece em um local próximo."; txtSklA = "60"; txtSklB = "55"; txtIngA = "Bitter Root"; txtIngB = "Moon Crystal"; txtIngC = ""; }
+				else if ( page == 13 ){ txtName = "Demonic Fire Ooze"; txtIcon = "11457"; txtInfo = "Inflama uma runa marcada com poder para transportá-lo para aquele local."; txtSklA = "65"; txtSklB = "60"; txtIngA = "Maggot"; txtIngB = "Black Pearl"; txtIngC = ""; }
+				else if ( page == 14 ){ txtName = "Ghostly Images Draught"; txtIcon = "11462"; txtInfo = "Cria uma imagem ilusória sua, distraindo seus inimigos."; txtSklA = "70"; txtSklB = "65"; txtIngA = "Mummy Wrap"; txtIngB = "Bloodmoss"; txtIngC = ""; }
+				else if ( page == 15 ){ txtName = "Hellish Branding Ooze"; txtIcon = "11463"; txtInfo = "Marca um local de runa com símbolos do mal, para que você possa usar magia de recall nela para retornar àquele local."; txtSklA = "75"; txtSklB = "70"; txtIngA = "Werewolf Claw"; txtIngB = "Brimstone"; txtIngC = ""; }
+				else if ( page == 16 ){ txtName = "Black Gate Draught"; txtIcon = "11455"; txtInfo = "Usa uma runa mágica para criar um portal negro horripilante. Aqueles que entrarem aparecerão no local rúnico."; txtSklA = "80"; txtSklB = "75"; txtIngA = "Black Sand"; txtIngB = "Wolfsbane"; txtIngC = "Pixie Skull"; }
+				else if ( page == 17 ){ txtName = "Vampire Blood Draught"; txtIcon = "11469"; txtInfo = "Despeja sangue de vampiro em sua mochila, que o ressuscitará alguns momentos após perder a vida. Você também pode ressuscitar outros diretamente."; txtSklA = "85"; txtSklB = "80"; txtIngA = "Werewolf Claw"; txtIngB = "Bat Wing"; txtIngC = "Blood Rose"; }
 
 				if ( val == 1 )
 					return txtName;
@@ -187,7 +187,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( e.Backpack ) ) 
 			{
-				e.SendMessage( "This must be in your backpack to read." );
+				e.SendMessage( "Isto precisa estar em sua mochila para ser lido." );
 			}
 			else
 			{

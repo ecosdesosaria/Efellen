@@ -26,7 +26,7 @@ namespace Server.Items
 				if ( Technology )
 					return "Those skilled in lockpicking, can use these to open technological locked items. Use the access card and select the locked items to attempt to open it.";
 
-				return "Those skilled in lockpicking, can use these to open locked items. Use the lockpick and select the locked item to attempt to open it.";
+				return "Aqueles habilidosos em arrombamento podem usar isto para abrir itens trancados. Use a gazua e selecione o item trancado para tentar abri-lo.";
 			}
 		}
 
@@ -112,7 +112,7 @@ namespace Server.Items
 					}
 					else if ( ((ILockpickable)targeted).Locked && m_Item.ItemID == 0x3A75 )
 					{
-						from.SendMessage( "You don't see a card slot on this." );
+						from.SendMessage( "Você não vê um slot para cartão neste item." );
 					}
 					else
 					{
@@ -177,8 +177,8 @@ namespace Server.Items
 					{
 						// LockLevel of 0 means that the door can't be picklocked
 						// LockLevel of -255 means it's magic locked
-						if ( m_Lockpick.ItemID == 0x3A75 ){ m_From.PrivateOverheadMessage( 0, 1150, false,  "This lock cannot be hacked by normal means.", m_From.NetState ); }
-						else { m_From.PrivateOverheadMessage( 0, 1150, false,  "This lock cannot be picked by normal means.", m_From.NetState ); }
+						if ( m_Lockpick.ItemID == 0x3A75 ){ m_From.PrivateOverheadMessage( 0, 1150, false,  "Esta fechadura não pode ser arrombada por meios normais.", m_From.NetState ); }
+						else { m_From.PrivateOverheadMessage( 0, 1150, false,  "Esta fechadura não pode ser arrombada por meios normais.", m_From.NetState ); }
 
 						return;
 					}
@@ -190,16 +190,16 @@ namespace Server.Items
 						m_From.CheckSkill( SkillName.Lockpicking, 0, m_Item.LockLevel );*/
 
 						// The LockLevel is higher thant the LockPicking of the player
-						if ( m_Lockpick.ItemID == 0x3A75 ){ m_From.PrivateOverheadMessage( 0, 1150, false,  "You don't see how that lock can be hacked.", m_From.NetState ); }
-						else { m_From.PrivateOverheadMessage( 0, 1150, false,  "You don't see how that lock can be manipulated.", m_From.NetState ); }
+						if ( m_Lockpick.ItemID == 0x3A75 ){ m_From.PrivateOverheadMessage( 0, 1150, false,  "Você não vê como essa fechadura pode ser arrombada.", m_From.NetState ); }
+						else { m_From.PrivateOverheadMessage( 0, 1150, false,  "Você não vê como essa fechadura pode ser manipulada.", m_From.NetState ); }
 						return;
 					}
 
 					if ( m_From.CheckTargetSkill( SkillName.Lockpicking, m_Item, m_Item.LockLevel, m_Item.MaxLockLevel ) )
 					{
 						// Success! Pick the lock!
-						if ( m_Lockpick.ItemID == 0x3A75 ){ m_From.PlaySound( 0x54B ); m_From.PrivateOverheadMessage( 0, 1150, false,  "Your skill at hacking worked.", m_From.NetState ); }
-						else { m_From.PlaySound( 0x4A ); m_From.PrivateOverheadMessage( 0, 1150, false,  "The lock quickly yields to your skill.", m_From.NetState ); }
+						if ( m_Lockpick.ItemID == 0x3A75 ){ m_From.PlaySound( 0x54B ); m_From.PrivateOverheadMessage( 0, 1150, false,  "Sua habilidade em hacking funcionou.", m_From.NetState ); }
+						else { m_From.PlaySound( 0x4A ); m_From.PrivateOverheadMessage( 0, 1150, false,  "A fechadura cede rapidamente à sua habilidade.", m_From.NetState ); }
 						
 						m_Item.LockPick( m_From );
 					}
@@ -208,8 +208,8 @@ namespace Server.Items
 						// The player failed to pick the lock
 						BrokeLockPickTest();
 
-						if ( m_Lockpick.ItemID == 0x3A75 ){ m_From.PrivateOverheadMessage( 0, 1150, false,  "You are unable to hack the lock.", m_From.NetState ); }
-						else { m_From.PrivateOverheadMessage( 0, 1150, false,  "You are unable to pick the lock.", m_From.NetState ); }
+						if ( m_Lockpick.ItemID == 0x3A75 ){ m_From.PrivateOverheadMessage( 0, 1150, false,  "Você não consegue hackear a fechadura.", m_From.NetState ); }
+						else { m_From.PrivateOverheadMessage( 0, 1150, false,  "Você não consegue arrombar a fechadura.", m_From.NetState ); }
 
                         // ==== Random Item Disintergration upon Failure ====
                         if (m_Item is TreasureMapChest)
@@ -267,7 +267,7 @@ namespace Server.Items
                                 i_Destroy.Delete(); m_chest.DropItem(Dust);
                             }
                             Effects.PlaySound(m_chest.Location, m_chest.Map, 0x1DE);
-                            m_chest.PublicOverheadMessage(MessageType.Regular, 2004, false, "The sound of gas escaping is heard from the chest.");
+                            m_chest.PublicOverheadMessage(MessageType.Regular, 2004, false, "Ouve-se o som de gás escapando do baú.");
                         }
 					}
 				}

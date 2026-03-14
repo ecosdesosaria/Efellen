@@ -35,7 +35,7 @@ namespace Server.Items
 
 			if ( tinkerSkill < 60.0 )
 			{
-				from.SendMessage( "You must have at least 60.0 skill in tinkering to construct a golem." );
+				from.SendMessage( "Você precisa ter pelo menos 60.0 de habilidade em tinkering para construir um golem." );
 				return;
 			}
 			else if ( (from.Followers + 4) > from.FollowersMax )
@@ -82,22 +82,22 @@ namespace Server.Items
 			{
 				case 0:
 				{
-					from.SendMessage( "You must have a power crystal to construct the golem." );
+					from.SendMessage( "Você deve ter um cristal de energia para construir o golem." );
 					break;
 				}
 				case 1:
 				{
-					from.SendMessage( "You must have 50 iron ingots to construct the golem." );
+					from.SendMessage( "Você deve ter 50 lingotes de ferro para construir o golem." );
 					break;
 				}
 				case 2:
 				{
-					from.SendMessage( "You must have 50 bronze ingots to construct the golem." );
+					from.SendMessage( "Você deve ter 50 lingotes de bronze para construir o golem." );
 					break;
 				}
 				case 3:
 				{
-					from.SendMessage( "You must have 5 gears to construct the golem." );
+					from.SendMessage( "Você deve ter 5 engrenagens para construir o golem." );
 					break;
 				}
 				default:

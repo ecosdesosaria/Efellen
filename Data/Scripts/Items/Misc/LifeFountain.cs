@@ -32,7 +32,7 @@ namespace Server.Items
 				m.Resurrect();
 				Server.Misc.Death.Penalty( m, false );
 				m.Hidden = true;
-				m.SendMessage( "The magic of the fountain has returned your life to you." );
+				m.SendMessage( "A magia da fonte devolveu sua vida a você." );
 			}
 		}
 

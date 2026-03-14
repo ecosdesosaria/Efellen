@@ -27,7 +27,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "The sheet music must be in your music book." );
+			from.SendMessage( "A partitura deve estar em seu livro de música." );;
 		}
 
 		public override void Serialize( GenericWriter writer )

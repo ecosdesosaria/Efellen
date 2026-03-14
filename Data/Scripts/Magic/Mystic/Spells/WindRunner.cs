@@ -51,16 +51,16 @@ namespace Server.Spells.Mystic
 			Item shoes = Caster.FindItemOnLayer( Layer.Shoes );
 
             if ( Caster.Mounted )
-            {
-                Caster.SendMessage( "You cannot use this ability while on a mount!" );
-            }
+			{
+				Caster.SendMessage( "Você não pode usar esta habilidade enquanto estiver montado!" );
+			}
 			else if ( shoes is Artifact_BootsofHermes )
 			{
-                Caster.SendMessage( "You cannot use this ability while wearing those magical shoes!" );
+				Caster.SendMessage( "Você não pode usar esta habilidade enquanto estiver usando esses sapatos mágicos!" );
 			}
 			else if ( (shoes is HikingBoots || shoes is LevelHikingBoots || shoes is GiftHikingBoots) && Caster.RaceID > 0 )
 			{
-                Caster.SendMessage( "You cannot use this ability while wearing hiking boots!" );
+				Caster.SendMessage( "Você não pode usar esta habilidade enquanto estiver usando botas de caminhada!" );
 			}
 			else
 			{

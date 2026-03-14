@@ -32,11 +32,11 @@ namespace Server.Spells.Mystic
 
 			if ( weapon == null || weapon is Fists )
 			{
-				Caster.SendMessage( "You must be wearing some type of pugilist gloves!" );
+				Caster.SendMessage( "Você deve estar usando algum tipo de luva de pugilista!" );
 			}
 			else if ( !( weapon is Artifact_GlovesOfThePugilist || weapon is GiftPugilistGloves || weapon is LevelPugilistGloves || weapon is PugilistGloves || weapon is PugilistGlove ) )
 			{
-				Caster.SendMessage( "You must be wearing some type of pugilist gloves!" );
+				Caster.SendMessage( "Você deve estar usando algum tipo de luva de pugilista!" );
 			}
 			else if ( CheckSequence() )
 			{

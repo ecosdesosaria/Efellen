@@ -83,7 +83,7 @@ namespace Server.Items
 							else if ( result == AddonFitResult.NotInHouse )
 								from.SendLocalizedMessage( 500274 ); // You can only place this in a house that you own!
 							else if ( result == AddonFitResult.DoorsNotClosed )
-								from.SendMessage( "You must close all house doors before placing this." );
+								from.SendMessage( "Você deve fechar todas as portas da casa antes de colocar isto." );
 							else if ( result == AddonFitResult.DoorTooClose )
 								from.SendLocalizedMessage( 500271 ); // You cannot build near the door.
 							else if ( result == AddonFitResult.NoWall )

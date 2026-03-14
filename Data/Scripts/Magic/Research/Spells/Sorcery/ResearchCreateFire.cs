@@ -42,7 +42,7 @@ namespace Server.Spells.Research
 
 			if ( fires > 1 )
 			{
-				Caster.SendMessage( "There are too many magical fires in the area!" );
+				Caster.SendMessage( "Há muitos fogos mágicos na área!" );
 			}
 			else if ( CheckSequence() )
 			{
@@ -56,7 +56,7 @@ namespace Server.Spells.Research
 
 				Caster.FixedParticles( 0x3709, 10, 30, 5052, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.LeftFoot );
 				Caster.PlaySound( 0x208 );
-				Caster.SendMessage( "You summon a magical fire at your feet." );
+				Caster.SendMessage( "Você convoca um fogo mágico sob seus pés." );
 				Item iFire = new MagicalFire(Caster,time,dmg);
 				iFire.MoveToWorld( Caster.Location, Caster.Map );
 				Server.Misc.Research.ConsumeScroll( Caster, true, spellIndex, alwaysConsume, Scroll );

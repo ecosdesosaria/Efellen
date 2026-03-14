@@ -39,27 +39,27 @@ namespace Server.Items
 			if ( this.Name == "Bell of Courage" )
 			{
 				from.PlaySound( m_Sounds[Utility.Random( m_Sounds.Length )] );
-				from.SendMessage( "You ring the bell, producing a courageous melody." );
+				from.SendMessage( "Você toca o sino, produzindo uma melodia corajosa." );
 			}
 			else if ( this.Name == "Candle of Love" )
 			{
-				from.SendMessage( "You feel the loving warmth of the flame." );
+				from.SendMessage( "Você sente o calor amoroso da chama." );
 			}
 			else if ( this.Name == "Book of Truth" )
 			{
-				from.SendMessage( "You learn a little bit more about the principles of truth." );
+				from.SendMessage( "Você aprende um pouco mais sobre os princípios da verdade." );
 			}
 			else if ( this.Name == "Scales of Ethicality" )
 			{
-				from.SendMessage( "You scale seems to weigh the ethics of the situation." );
+				from.SendMessage( "Sua balança parece pesar a ética da situação." );
 			}
 			else if ( this.Name == "Orb of Logic" )
 			{
-				from.SendMessage( "You feel a strong sense of logic from the orb." );
+				from.SendMessage( "Você sente um forte senso de lógica vindo do orbe." );
 			}
 			else if ( this.Name == "Lantern of Discipline" )
 			{
-				from.SendMessage( "The lantern glows with a disciplined light." );
+				from.SendMessage( "A lanterna brilha com uma luz disciplinada." );
 			}
 			else if ( this.ItemID == 0x1A7F )
 			{
@@ -71,7 +71,7 @@ namespace Server.Items
 			}
 			else if ( this.ItemID > 19512 && this.ItemID < 19539 )
 			{
-				from.SendMessage( "This cube holds immense magical power." );
+				from.SendMessage( "Este cubo contém um imenso poder mágico." );
 			}
 		}
 

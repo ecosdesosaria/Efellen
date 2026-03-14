@@ -114,7 +114,7 @@ namespace Server.Items
 					{
 						if ( o is BaseDoor && !((BaseDoor)o).UseLocks() )  // this seems to check house doors also
 						{
-							from.SendMessage( "This key is to unlock any container." );
+							from.SendMessage( "Esta chave serve para destrancar qualquer recipiente." );
 						}
 						else if ( o.Locked && m_Key.ItemID != 0x3A75 )
 						{

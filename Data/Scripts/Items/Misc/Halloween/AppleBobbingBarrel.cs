@@ -26,7 +26,7 @@ namespace Server.Items
 
         public override void OnDoubleClick(Mobile from)
         {
-            from.SendMessage("You dunk your head in the water trying franticly to sink your teeth into an apple!");
+            from.SendMessage("Você mergulha a cabeça na água tentando freneticamente afundar os dentes em uma maçã!");
             m_Timer = new InternalTimer(from, this);
             m_Timer.Start();
         }
@@ -64,13 +64,13 @@ namespace Server.Items
                     if (AppleChance <= .30)
                     {
                         m_Owner.AddToBackpack(new Apple(1));
-                        m_Owner.SendMessage("You bite into an apple and pull your soaking wet head out of the water!");
-                        m_Owner.PublicOverheadMessage(MessageType.Regular, 0xFE, false, "*" + m_Owner.Name + " victoriously pulls an apple from the barrel using only their teeth!*");
+                        m_Owner.SendMessage("Você morde uma maçã e tira a cabeça encharcada para fora da água!");
+                        m_Owner.PublicOverheadMessage(MessageType.Regular, 0xFE, false, "*" + m_Owner.Name + " tira vitoriosamente uma maçã do barril usando apenas os dentes!*");
                     }
                     else
                     {
-                        m_Owner.SendMessage("You fail to bite into any of the apples in the barrel...");
-                        m_Owner.PublicOverheadMessage(MessageType.Regular, 0xFE, false, "*" + m_Owner.Name + " is soaking wet without an apple to show for it...*");
+                        m_Owner.SendMessage("Você falha em morder qualquer uma das maçãs no barril...");
+                        m_Owner.PublicOverheadMessage(MessageType.Regular, 0xFE, false, "*" + m_Owner.Name + " está encharcado sem uma maçã para mostrar...*");
                     }
                 }
             }

@@ -85,7 +85,7 @@ namespace Server.Items
 			{
 				if ( current != null && current.GetType() != dropped.GetType() )
 				{
-					from.SendMessage( "You cannot mix arrows and bolts in the same quiver." );
+					from.SendMessage( "Você não pode misturar flechas e virotes na mesma aljava." );
 					return false;
 				}
 
@@ -93,7 +93,7 @@ namespace Server.Items
 
 				if ( spaceLeft <= 0 )
 				{
-					from.SendMessage( "Your quiver is already full." );
+					from.SendMessage( "Sua aljava já está cheia." );
 					return false;
 				}
 
@@ -127,14 +127,14 @@ namespace Server.Items
 						from.Backpack.DropItem( remainder );
 					}
 
-					from.SendMessage( "You add {0} ammunition to your quiver. The rest remains in your pack.", toAdd );
+					from.SendMessage( "Você adiciona {0} munição à sua aljava. O restante permanece em sua bolsa.", toAdd );
 					InvalidateWeight();
 					return true;
 				}
 				else
 				{
 					partToAdd.Delete();
-					from.SendMessage( "You could not add that to your quiver." );
+					from.SendMessage( "Você não conseguiu adicionar isso à sua aljava." );
 					return false;
 				}
 			}
@@ -615,7 +615,7 @@ namespace Server.Items
 
 			if ( spaceLeft <= 0 )
 			{
-				m_From.SendMessage("Your quiver is already full.");
+				m_From.SendMessage("Sua aljava já está cheia.");
 				return;
 			}
 
@@ -661,9 +661,9 @@ namespace Server.Items
 			}
 
 			if ( added > 0 )
-				m_From.SendMessage("You add {0} ammunition into your quiver.", added);
+				m_From.SendMessage("Você adiciona {0} munição à sua aljava.", added);
 			else
-				m_From.SendMessage("You have no suitable ammunition to organize.");
+				m_From.SendMessage("Você não tem munição adequada para organizar.");
 		}
 
 		private void GetAllAmmoInBackpack( Container container, List<Item> list, bool acceptArrows, bool acceptBolts )

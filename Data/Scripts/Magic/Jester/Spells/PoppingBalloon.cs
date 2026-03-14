@@ -10,7 +10,7 @@ namespace Server.Spells.Jester
 	public class PoppingBalloon : JesterSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Popping Balloon", "Would you like a balloon?",
+				"Popping Balloon", "Gostaria de um balão?",
 				-1,
 				0
 			);
@@ -30,7 +30,7 @@ namespace Server.Spells.Jester
 
 			if( (Caster.Followers + 3) > Caster.FollowersMax )
 			{
-				Caster.SendMessage( "You have too many followers to blow up a balloon." );
+				Caster.SendMessage( "Você tem muitos seguidores para encher um balão." );
 				return false;
 			}
 
@@ -55,7 +55,7 @@ namespace Server.Spells.Jester
 				Caster.Hidden = false;
 
 				Caster.PlaySound( Caster.Female ? 794 : 1066 );
-				Caster.Say( "*giggles*" );
+				Caster.Say( "*ri*" );
 			}
 
 			FinishSequence();

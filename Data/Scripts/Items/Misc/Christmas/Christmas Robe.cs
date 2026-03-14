@@ -30,7 +30,7 @@ namespace Server.Items
 		
 		public override bool OnEquip( Mobile from )
 		{
-			from.SendMessage( "You put on your Christmas Robe." );
+			from.SendMessage( "Você veste sua Vestimenta de Natal." );
 			
 			m_OrigHue = from.Hue;
 			from.Hue = 0x4001;
@@ -47,7 +47,7 @@ namespace Server.Items
 
 				from.Hue = m_OrigHue;
 				
-				from.SendMessage( "You remove your Christmas Robe." );
+				from.SendMessage( "Você remove sua Vestimenta de Natal." );
 			}
 
 			base.OnRemoved( parent );

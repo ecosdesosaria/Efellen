@@ -13,7 +13,7 @@ namespace Server.Items
 	[FlipableAttribute( 0x6725, 0x6726 )]
 	public class MysticSpellbook : Spellbook
 	{
-		public override string DefaultDescription{ get{ return "This book is used by mystics, in order for them to use various abilities akin to this ancient order of peaceful nomads. Dropping such scrolls onto this book will place the mystical abilities within its pages. The scrolls can lead a mystic far and wide, as they search for the places of worship and meditate to acquire the knowledge."; } }
+		public override string DefaultDescription{ get{ return "Este livro é usado por místicos, para que possam usar várias habilidades próprias desta antiga ordem de nômades pacíficos. Soltar tais pergaminhos neste livro colocará as habilidades místicas em suas páginas. Os pergaminhos podem levar um místico para longe e por toda parte, enquanto ele procura pelos locais de adoração e medita para adquirir o conhecimento."; } }
 
 		public override SpellbookType SpellbookType{ get{ return SpellbookType.Mystic; } }
 		public override int BookOffset{ get{ return 250; } }
@@ -87,7 +87,7 @@ namespace Server.Items
 
 			if ( from != owner )
 			{
-				from.SendMessage( "The book doesn't seem to open." );
+				from.SendMessage( "O livro não parece abrir." );
 			}
 			else if ( PackTest( this, from ) )
 			{
@@ -166,7 +166,7 @@ namespace Server.Items
 					MysticPack bag = new MysticPack();
 					bag.owner = from;
 					from.AddToBackpack( bag );
-					from.SendMessage( "You summon a monk's rucksack from the astral plane." );
+					from.SendMessage( "Você invoca uma mochila de monge do plano astral." );
 
 					string[] chant = new string[] {"Ahm", "Mu", "Ra", "Beh", "Cah", "Summ", "Om", "Lum"};
 						string pray_chant_1 = chant[Utility.RandomMinMax( 0, (chant.Length-1) )];
@@ -214,11 +214,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant01;
-					from.SendMessage( "You learn the secrets of astral projection." );
+					from.SendMessage( "Você aprende os segredos da projeção astral." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 			else if ( !book.HasSpell( 251 ) && from.Map == book.WritMap02 && from.X >= book.WritX102 && from.Y >= book.WritY102 && from.X <= book.WritX202 && from.Y <= book.WritY202 )
@@ -231,11 +231,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant02;
-					from.SendMessage( "You learn the secrets of astral travel." );
+					from.SendMessage( "Você aprende os segredos do transporte astral." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 			else if ( !book.HasSpell( 252 ) && from.Map == book.WritMap03 && from.X >= book.WritX103 && from.Y >= book.WritY103 && from.X <= book.WritX203 && from.Y <= book.WritY203 )
@@ -248,11 +248,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant03;
-					from.SendMessage( "You learn the secrets of creating mystical monk robes." );
+					from.SendMessage( "Você aprende os segredos da criação de vestimentas místicas de monge." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 			else if ( !book.HasSpell( 253 ) && from.Map == book.WritMap04 && from.X >= book.WritX104 && from.Y >= book.WritY104 && from.X <= book.WritX204 && from.Y <= book.WritY204 )
@@ -265,11 +265,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant04;
-					from.SendMessage( "You learn the secrets of the gentle touch." );
+					from.SendMessage( "Você aprende os segredos do toque suave." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 			else if ( !book.HasSpell( 254 ) && from.Map == book.WritMap05 && from.X >= book.WritX105 && from.Y >= book.WritY105 && from.X <= book.WritX205 && from.Y <= book.WritY205 )
@@ -282,11 +282,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant05;
-					from.SendMessage( "You learn the secrets of leaping." );
+					from.SendMessage( "Você aprende os segredos do salto." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 			else if ( !book.HasSpell( 255 ) && from.Map == book.WritMap06 && from.X >= book.WritX106 && from.Y >= book.WritY106 && from.X <= book.WritX206 && from.Y <= book.WritY206 )
@@ -299,11 +299,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant06;
-					from.SendMessage( "You learn the secrets of the psionic blast." );
+					from.SendMessage( "Você aprende os segredos da explosão psíquica." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 			else if ( !book.HasSpell( 256 ) && from.Map == book.WritMap07 && from.X >= book.WritX107 && from.Y >= book.WritY107 && from.X <= book.WritX207 && from.Y <= book.WritY207 )
@@ -316,11 +316,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant07;
-					from.SendMessage( "You learn the secrets of the psychic wall." );
+					from.SendMessage( "Você aprende os segredos da parede psíquica." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 			else if ( !book.HasSpell( 257 ) && from.Map == book.WritMap08 && from.X >= book.WritX108 && from.Y >= book.WritY108 && from.X <= book.WritX208 && from.Y <= book.WritY208 )
@@ -333,11 +333,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant08;
-					from.SendMessage( "You learn the secrets of the purity of the body." );
+					from.SendMessage( "Você aprende os segredos da pureza do corpo." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 			else if ( !book.HasSpell( 258 ) && from.Map == book.WritMap09 && from.X >= book.WritX109 && from.Y >= book.WritY109 && from.X <= book.WritX209 && from.Y <= book.WritY209 )
@@ -350,11 +350,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant09;
-					from.SendMessage( "You learn the secrets of the quivering palm." );
+					from.SendMessage( "Você aprende os segredos da palma trêmula." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 			else if ( !book.HasSpell( 259 ) && from.Map == book.WritMap10 && from.X >= book.WritX110 && from.Y >= book.WritY110 && from.X <= book.WritX210 && from.Y <= book.WritY210 )
@@ -367,11 +367,11 @@ namespace Server.Items
 					paper.owner = from;
 					from.AddToBackpack( paper );
 					speak = book.WritChant10;
-					from.SendMessage( "You learn the secrets of running like the wind." );
+					from.SendMessage( "Você aprende os segredos de correr como o vento." );
 				}
 				else
 				{
-					from.SendMessage( "You do not have a blank scroll to record what you learned." );
+					from.SendMessage( "Você não tem um pergaminho em branco para registrar o que aprendeu." );
 				}
 			}
 

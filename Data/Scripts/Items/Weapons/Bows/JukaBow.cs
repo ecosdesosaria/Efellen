@@ -29,20 +29,20 @@ namespace Server.Items
 		{
 			if ( IsModified )
 			{
-				from.SendMessage( "That has already been modified." );
+				from.SendMessage( "Isso já foi modificado." );
 			}
 			else if ( !IsChildOf( from.Backpack ) )
 			{
-				from.SendMessage( "This must be in your backpack to modify it." );
+				from.SendMessage( "Isto deve estar em sua mochila para modificá-lo." );
 			}
 			else if ( from.Skills[SkillName.Bowcraft].Base < 100.0 )
 			{
-				from.SendMessage( "Only a grandmaster bowcrafter can modify this weapon." );
+				from.SendMessage( "Apenas um grão-mestre bowcraft pode modificar esta arma." );
 			}
 			else
 			{
 				from.BeginTarget( 2, false, Targeting.TargetFlags.None, new TargetCallback( OnTargetGears ) );
-				from.SendMessage( "Select the gears you wish to use." );
+				from.SendMessage( "Selecione as engrenagens que deseja usar." );
 			}
 		}
 
@@ -52,19 +52,19 @@ namespace Server.Items
 
 			if ( g == null || !g.IsChildOf( from.Backpack ) )
 			{
-				from.SendMessage( "Those are not gears." ); // Apparently gears that aren't in your backpack aren't really gears at all. :-(
+				from.SendMessage( "Isso não são engrenagens." ); // Apparently gears that aren't in your backpack aren't really gears at all. :-(
 			}
 			else if ( IsModified )
 			{
-				from.SendMessage( "That has already been modified." );
+				from.SendMessage( "Isso já foi modificado." );
 			}
 			else if ( !IsChildOf( from.Backpack ) )
 			{
-				from.SendMessage( "This must be in your backpack to modify it." );
+				from.SendMessage( "Isto deve estar em sua mochila para modificá-lo." );
 			}
 			else if ( from.Skills[SkillName.Bowcraft].Base < 100.0 )
 			{
-				from.SendMessage( "Only a grandmaster bowcrafter can modify this weapon." );
+				from.SendMessage( "Apenas um grão-mestre em arco e flecha pode modificar esta arma." );
 			}
 			else
 			{
@@ -73,7 +73,7 @@ namespace Server.Items
 				Hue = 0x453;
 				Slayer = (SlayerName)Utility.Random( 2, 25 );
 
-				from.SendMessage( "You modify it." );
+				from.SendMessage( "Você modifica isso." );
 			}
 		}
 

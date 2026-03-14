@@ -142,7 +142,7 @@ namespace Server.Items
 
 		public override bool DisplayWeight { get { return false; } }
 		public override bool DisplayLootType { get { return Core.AOS; } }
-		public override string DefaultDescription { get { return "This book is used by mages, where they can record the magic they can unleash. Dropping such scrolls onto this book will place the spell within its pages. Some books have enhanced properties, that are only effective when the book is held."; } }
+		public override string DefaultDescription { get { return "Este livro é usado por magos, onde eles podem registrar a magia que podem desencadear. Soltar tais pergaminhos neste livro colocará o feitiço em suas páginas. Alguns livros têm propriedades aprimoradas, que só são efetivas quando o livro é segurado."; } }
 
 		public CraftAttributeInfo GetResourceAttrs()
 		{
@@ -171,11 +171,11 @@ namespace Server.Items
 		}
 
 		[Usage("AllSpells")]
-		[Description("Completely fills a targeted spellbook with scrolls.")]
+		[Description("Preenche completamente um livro de feitiços alvo com pergaminhos.")]
 		private static void AllSpells_OnCommand(CommandEventArgs e)
 		{
 			e.Mobile.BeginTarget(-1, false, TargetFlags.None, new TargetCallback(AllSpells_OnTarget));
-			e.Mobile.SendMessage("Target the spellbook to fill.");
+			e.Mobile.SendMessage("Selecione o livro de feitiços para preencher.");
 		}
 
 		private static void AllSpells_OnTarget(Mobile from, object obj)
@@ -189,7 +189,7 @@ namespace Server.Items
 				else
 					book.Content = (1ul << book.BookCount) - 1;
 
-				from.SendMessage("The spellbook has been filled.");
+				from.SendMessage("O livro de feitiços foi preenchido.");
 				CommandLogging.WriteLine(from, "{0} {1} filling spellbook {2}", from.AccessLevel, CommandLogging.Format(from), CommandLogging.Format(book));
 			}
 			else if (obj is ResearchBag)
@@ -206,7 +206,7 @@ namespace Server.Items
 			else
 			{
 				from.BeginTarget(-1, false, TargetFlags.None, new TargetCallback(AllSpells_OnTarget));
-				from.SendMessage("That is not a spellbook. Try again.");
+				from.SendMessage("Isso não é um livro de feitiços. Tente novamente.");
 			}
 		}
 
@@ -617,7 +617,7 @@ namespace Server.Items
 			{
 				if (from.Skills[SkillName.Musicianship].Base < 30)
 				{
-					from.SendMessage("Your need at least a natural neophyte skill in musicianship to equip that!");
+					from.SendMessage("Você precisa de pelo menos uma habilidade natural de neófito em música para equipar isso!");
 					return false;
 				}
 				return base.OnEquip(from);
@@ -627,7 +627,7 @@ namespace Server.Items
 			{
 				if (from.Skills[SkillName.Necromancy].Base < 30)
 				{
-					from.SendMessage("Your need at least a natural neophyte skill in necromancy to equip that!");
+					from.SendMessage("Você precisa de pelo menos uma habilidade natural de neófito em necromancia para equipar isso!");
 					return false;
 				}
 				return base.OnEquip(from);
@@ -637,7 +637,7 @@ namespace Server.Items
 			{
 				if (from.Skills[SkillName.Elementalism].Base < 30)
 				{
-					from.SendMessage("Your need at least a natural neophyte skill in elementalism to equip that!");
+					from.SendMessage("Você precisa de pelo menos uma habilidade natural de neófito em elementalismo para equipar isso!");
 					return false;
 				}
 				if (!ElementalSpell.CanUseBook(this, from, true))
@@ -650,7 +650,7 @@ namespace Server.Items
 			{
 				if (from.Skills[SkillName.Ninjitsu].Base < 30)
 				{
-					from.SendMessage("Your need at least a natural neophyte skill in ninjitsu to equip that!");
+					from.SendMessage("Você precisa de pelo menos uma habilidade natural de neófito em ninjutsu para equipar isso!");
 					return false;
 				}
 				return base.OnEquip(from);
@@ -660,7 +660,7 @@ namespace Server.Items
 			{
 				if (from.Skills[SkillName.Bushido].Base < 30)
 				{
-					from.SendMessage("Your need at least a natural neophyte skill in bushido to equip that!");
+					from.SendMessage("Você precisa de pelo menos uma habilidade natural de neófito em bushido para equipar isso!");
 					return false;
 				}
 				return base.OnEquip(from);
@@ -670,12 +670,12 @@ namespace Server.Items
 			{
 				if (from.Skills[SkillName.Knightship].Base < 30)
 				{
-					from.SendMessage("Your need at least a natural neophyte skill in knightship to equip that!");
+					from.SendMessage("Você precisa de pelo menos uma habilidade natural de neófito em cavalaria para equipar isso!");
 					return false;
 				}
 				if (from.Karma < 0)
 				{
-					from.SendMessage("Your vileness prevent you from equipping that book");
+					from.SendMessage("Sua vileza impede você de equipar este livro");
 					return false;
 				}
 				return base.OnEquip(from);
@@ -685,12 +685,12 @@ namespace Server.Items
 			{
 				if (from.Skills[SkillName.Knightship].Base < 30)
 				{
-					from.SendMessage("Your need at least a natural neophyte skill in knightship to equip that!");
+					from.SendMessage("Você precisa de pelo menos uma habilidade natural de neófito em cavalaria para equipar isso!");
 					return false;
 				}
 				if (from.Karma > 0)
 				{
-					from.SendMessage("Your pure heart prevents you from equipping that book");
+					from.SendMessage("Seu coração puro impede você de equipar este livro");
 					return false;
 				}
 				return base.OnEquip(from);
@@ -709,7 +709,7 @@ namespace Server.Items
 
 				if (from.Skills[SkillName.Magery].Base < 30 && from.Skills[SkillName.Necromancy].Base < 30)
 				{
-					from.SendMessage("Your need at least a natural neophyte skill in magery or necromancy to equip that!");
+					from.SendMessage("Você precisa de pelo menos uma habilidade natural de neófito em magia ou necromancia para equipar isso!");
 					return false;
 				}
 				return base.OnEquip(from);
@@ -717,7 +717,7 @@ namespace Server.Items
 
 			if (from.Skills[SkillName.Magery].Base < 30)
 			{
-				from.SendMessage("Your need at least a natural neophyte skill in magery to equip that!");
+				from.SendMessage("Você precisa de pelo menos uma habilidade natural de neófito em magia para equipar isso!");
 				return false;
 			}
 
@@ -734,14 +734,14 @@ namespace Server.Items
 				{
 					if (book.paper > 50000)
 					{
-						from.SendMessage("This book has too many pages already.");
+						from.SendMessage("Este livro já tem páginas demais.");
 					}
 					else
 					{
 						from.PlaySound(0x48);
 						book.paper = book.paper + dropped.Amount;
 						dropped.Delete();
-						from.SendMessage("The blank scrolls are now extra pages in your book.");
+						from.SendMessage("Os pergaminhos em branco agora são páginas extras em seu livro.");
 					}
 					return true;
 				}
@@ -751,14 +751,14 @@ namespace Server.Items
 
 					if (book.quill > 50000)
 					{
-						from.SendMessage("This book has too many quills set aside for it.");
+						from.SendMessage("Já há penas demais reservadas para este livro.");
 					}
 					else
 					{
 						from.PlaySound(0x48);
 						book.quill = book.quill + tool.UsesRemaining;
 						dropped.Delete();
-						from.SendMessage("The quills have been set aside for your book.");
+						from.SendMessage("As penas foram reservadas para o seu livro.");
 					}
 					return true;
 				}
@@ -776,7 +776,7 @@ namespace Server.Items
 				else if (HasSpell(scroll.SpellID))
 				{
 					if (this is SythSpellbook)
-						from.SendMessage("That power is already in that datacron.");
+						from.SendMessage("Esse poder já está nesse datacron.");
 					else if (this is JediSpellbook)
 						from.SendMessage("That wisdom is already in that datacron.");
 					else

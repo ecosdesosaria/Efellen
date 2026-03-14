@@ -24,13 +24,13 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Wrapped in Thick Weeds");
-			list.Add( 1049644, "Give to a alchemist or herbalist to remove"); // PARENTHESIS
+			list.Add( 1070722, "Envolto em Ervas Daninhas Grossas");
+			list.Add( 1049644, "Dê a um alquimista ou herbalista para remover"); // PARENTHESIS
         }
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This item is wrapped in weeds and cannot be used." );
+			from.SendMessage( "Este item está envolto em ervas daninhas e não pode ser usado." );
 		}
 
 		public WeededItem( Serial serial ) : base( serial )

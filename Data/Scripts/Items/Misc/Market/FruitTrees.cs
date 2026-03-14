@@ -41,7 +41,7 @@ namespace Server.Items
 
 			if ( house == null )
 			{
-				from.SendMessage("You must be on the property to pick from this tree.");
+				from.SendMessage("Você precisa estar na propriedade para colher desta árvore.");
 			}
 			else if ( from.InRange( c.Location, 2 ) )
 			{
@@ -71,7 +71,7 @@ namespace Server.Items
 						from.SendLocalizedMessage( 501017 ); // There is no more fruit on this tree
 				}
 				else
-					from.SendMessage("This is not your fruit tree.");
+					from.SendMessage("Esta não é a sua árvore de frutas.");
 			}
 			else
 				from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 1019045 ); // I can't reach that.

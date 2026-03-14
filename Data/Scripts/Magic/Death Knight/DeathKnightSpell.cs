@@ -25,28 +25,28 @@ namespace Server.Spells.DeathKnight
 
 		public static string SpellDescription( int spell )
 		{
-			string txt = "This skull holds the knowledge of Death Knight magic: ";
+			string txt = "Esta caveira contém o conhecimento da magia dos Cavaleiros da Morte: ";
 			string skl = "0";
 
-			if ( spell == 750 ){ 		skl = "40";	txt += "Banish summoned creatures back to their realm, demons back to hell, or elementals back to their plane of existence."; }
-			else if ( spell == 751 ){ 	skl = "15";	txt += "The death knight's target is healed by demonic forces for a significant amount."; }
-			else if ( spell == 752 ){ 	skl = "90";	txt += "Summons the devil to battle with the death knight."; }
-			else if ( spell == 753 ){ 	skl = "30";	txt += "The next target hit becomes marked by the grim reaper. All damage dealt to it is increased, but the death knight takes extra damage from other kinds of creatures."; }
-			else if ( spell == 754 ){ 	skl = "5";	txt += "Your hand holds the powers of a hag, where it can remove curses from items and others."; }
-			else if ( spell == 755 ){ 	skl = "70";	txt += "The death knights's enemy is scorched by a hellfire that continues to burn the enemy for a short duration."; }
-			else if ( spell == 756 ){ 	skl = "25";	txt += "Calls down a bolt of energy from Lucifer himself, and temporarily stuns the enemy."; }
-			else if ( spell == 757 ){ 	skl = "80";	txt += "The forces of Orcus surround the knight and refelecta a certain amount of magical effects back at the caster."; }
-			else if ( spell == 758 ){ 	skl = "60";	txt += "Channels hatred to form a barrier around the target, shielding them from physical harm."; }
-			else if ( spell == 759 ){ 	skl = "45";	txt += "Drains the enemy of their soul, reducing their mana for a short period of time."; }
-			else if ( spell == 760 ){ 	skl = "20";	txt += "Greatly increases the target's strength for a short period."; }
-			else if ( spell == 761 ){ 	skl = "10";	txt += "The death knight's enemy is damaged by a demonic energy from the nine hells."; }
-			else if ( spell == 762 ){ 	skl = "35";	txt += "The death knight's target has their skin regenerate health over time."; }
-			else if ( spell == 763 ){ 	skl = "50";	txt += "The death knight unleashes the forces of hell unto his nearby enemies, causing much damage."; }
+			if ( spell == 750 ){         skl = "40"; txt += "Bane criaturas invocadas de volta ao seu reino, demônios de volta ao inferno, ou elementais de volta ao seu plano de existência."; }
+			else if ( spell == 751 ){  skl = "15"; txt += "O alvo do cavaleiro da morte é curado por forças demoníacas por uma quantidade significativa."; }
+			else if ( spell == 752 ){  skl = "90"; txt += "Invoca o diabo para lutar com o cavaleiro da morte."; }
+			else if ( spell == 753 ){  skl = "30"; txt += "O próximo alvo atingido é marcado pelo ceifador. Todo dano causado a ele é aumentado, mas o cavaleiro da morte recebe dano extra de outros tipos de criaturas."; }
+			else if ( spell == 754 ){  skl = "5";  txt += "Sua mão possui os poderes de uma bruxa, onde pode remover maldições de itens e outros."; }
+			else if ( spell == 755 ){  skl = "70"; txt += "O inimigo do cavaleiro da morte é chamuscado por um fogo do inferno que continua a queimar o inimigo por uma curta duração."; }
+			else if ( spell == 756 ){  skl = "25"; txt += "Invoca um raio de energia do próprio Lúcifer e atordoa temporariamente o inimigo."; }
+			else if ( spell == 757 ){  skl = "80"; txt += "As forças de Orcus cercam o cavaleiro e refletem uma certa quantidade de efeitos mágicos de volta ao conjurador."; }
+			else if ( spell == 758 ){  skl = "60"; txt += "Canaliza o ódio para formar uma barreira ao redor do alvo, protegendo-o de dano físico."; }
+			else if ( spell == 759 ){  skl = "45"; txt += "Drena a alma do inimigo, reduzindo sua mana por um curto período de tempo."; }
+			else if ( spell == 760 ){  skl = "20"; txt += "Aumenta grandemente a força do alvo por um curto período."; }
+			else if ( spell == 761 ){  skl = "10"; txt += "O inimigo do cavaleiro da morte é danificado por uma energia demoníaca dos nove infernos."; }
+			else if ( spell == 762 ){  skl = "35"; txt += "O alvo do cavaleiro da morte tem sua pele regenerando saúde ao longo do tempo."; }
+			else if ( spell == 763 ){  skl = "50"; txt += "O cavaleiro da morte libera as forças do inferno sobre seus inimigos próximos, causando muito dano."; }
 
 			if ( skl == "0" )
 				return txt;
 
-			return txt + " It requires a Death Knight to be at least a " + skl + " in Knightship.";
+			return txt + " Requer que um Cavaleiro da Morte tenha pelo menos " + skl + " em Cavalaria.";
 		}
 
 		public override bool CheckCast()
@@ -56,27 +56,27 @@ namespace Server.Spells.DeathKnight
 
 			if ( Caster.Stam < 10 )
 			{
-				Caster.SendMessage( "You are too fatigued to do that now." );
+				Caster.SendMessage( "Você está muito fatigado para fazer isso agora." );
 				return false;
 			}
 			else if ( Caster.Karma > 0 )
 			{
-				Caster.SendMessage( "You have too much Karma to cast this spell." );
+				Caster.SendMessage( "Você tem Karma demais para lançar este feitiço." );
 				return false;
 			}
 			else if ( Caster.Skills[CastSkill].Value < RequiredSkill )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredSkill + " Knightship to cast this spell." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + RequiredSkill + " em Cavalaria para lançar este feitiço." );
 				return false;
 			}
 			else if ( GetSoulsInLantern( Caster ) < RequiredTithing )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredTithing + " Souls to cast this spell." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + RequiredTithing + " Almas para lançar este feitiço." );
 				return false;
 			}
 			else if ( Caster.Mana < GetMana() )
 			{
-				Caster.SendMessage( "You must have at least " + GetMana() + " Mana to cast this spell." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + GetMana() + " de Mana para lançar este feitiço." );
 				return false;
 			}
 
@@ -90,27 +90,27 @@ namespace Server.Spells.DeathKnight
 
 			if ( Caster.Stam < 10 )
 			{
-				Caster.SendMessage( "You are too fatigued to do that now." );
+				Caster.SendMessage( "Você está muito fatigado para fazer isso agora." );
 				return false;
 			}
 			else if ( Caster.Karma > 0 )
 			{
-				Caster.SendMessage( "You have too much Karma to cast this spell." );
+				Caster.SendMessage( "Você tem Karma demais para lançar este feitiço." );
 				return false;
 			}
 			else if ( Caster.Skills[CastSkill].Value < RequiredSkill )
 			{
-				Caster.SendMessage( "You must have at least " + RequiredSkill + " Knightship to cast this spell." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + RequiredSkill + " em Cavalaria para lançar este feitiço." );
 				return false;
 			}
 			else if ( GetSoulsInLantern( Caster ) < requiredTithing )
 			{
-				Caster.SendMessage( "You must have at least " + requiredTithing + " Souls to cast this spell." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + requiredTithing + " Almas para lançar este feitiço." );
 				return false;
 			}
 			else if ( Caster.Mana < mana )
 			{
-				Caster.SendMessage( "You must have at least " + mana + " Mana to cast this spell." );
+				Caster.SendMessage( "Você precisa ter pelo menos " + mana + " de Mana para lançar este feitiço." );
 				return false;
 			}
 
@@ -122,7 +122,7 @@ namespace Server.Spells.DeathKnight
 
 		public override void DoFizzle()
 		{
-			Caster.PrivateOverheadMessage(MessageType.Regular, 0x3B2, false, "You fail to invoke the power.", Caster.NetState);
+			Caster.PrivateOverheadMessage(MessageType.Regular, 0x3B2, false, "Você falha em invocar o poder.", Caster.NetState);
 			Caster.FixedParticles( 0x3735, 1, 30, 9503, EffectLayer.Waist );
 			Caster.PlaySound( 0x19D );
 			Caster.NextSpellTime = DateTime.Now;

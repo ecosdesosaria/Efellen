@@ -54,7 +54,7 @@ namespace Server.Spells.Herbalist
 
                 m.PlaySound( 0x5C9 );
                 m.FixedEffect( 0x54F4, 10, 16, 0, 0 );
-				m.SendMessage( "You pour the mystical mud in your pack to protect your soul." );
+				m.SendMessage( "Você derrama a lama mística em sua mochila para proteger sua alma." );
 				SoulOrb iOrb = new SoulOrb();
 				iOrb.m_Owner = m;
 				iOrb.Name = "mystical mud";
@@ -65,7 +65,7 @@ namespace Server.Spells.Herbalist
             }
             else if ( m == Caster )
             {
-				Caster.SendMessage("You failed to conjure some mystical mud.");
+				Caster.SendMessage("Você falhou em conjurar alguma lama mística.");
 			}
             else if ( !Caster.Alive )
             {
@@ -124,7 +124,7 @@ namespace Server.Spells.Herbalist
 				}
 				else
 				{
-					Caster.SendMessage("They are not dead.");
+					Caster.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if ( hench is HenchmanWizardItem && CheckSequence() )
@@ -140,7 +140,7 @@ namespace Server.Spells.Herbalist
 				}
 				else
 				{
-					Caster.SendMessage("They are not dead.");
+					Caster.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if ( hench is HenchmanArcherItem && CheckSequence() )
@@ -156,7 +156,7 @@ namespace Server.Spells.Herbalist
 				}
 				else
 				{
-					Caster.SendMessage("They are not dead.");
+					Caster.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if (hench is HenchmanMonsterItem && CheckSequence() )
@@ -172,12 +172,12 @@ namespace Server.Spells.Herbalist
 				}
 				else
 				{
-					Caster.SendMessage("They are not dead.");
+					Caster.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else
 			{
-				Caster.SendMessage("This potion didn't seem to work.");
+				Caster.SendMessage("Esta poção não parece funcionar.");
 			}
             FinishSequence();
 		}

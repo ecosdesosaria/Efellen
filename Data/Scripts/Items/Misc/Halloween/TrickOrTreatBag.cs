@@ -78,7 +78,7 @@ namespace Server.Items
 			--Uses;
 			if ( Uses == 0 )
 			{
-				from.SendMessage( "This basket cannot receive any more goodies!" );
+				from.SendMessage( "Esta cesta não pode receber mais guloseimas!" );
 				return false;
 			}
 			return true;

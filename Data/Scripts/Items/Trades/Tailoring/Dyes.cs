@@ -84,7 +84,7 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage( "That dye tub may not be redyed." );
+						from.SendMessage( "Esse tonel de tingimento não pode ser retingido." );
 					}
 				}
 				else

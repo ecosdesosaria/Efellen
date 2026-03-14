@@ -32,7 +32,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Who do you want to put to sleep?" );
+			Caster.SendMessage( "Quem você quer colocar para dormir?" );
 			Caster.Target = new InternalTarget( this );
 		}
 
@@ -61,7 +61,7 @@ namespace Server.Spells.Research
 			}
 			else if ( !CanAffect )
 			{
-				Caster.SendMessage( "This spell cannot affect supernatural creatures, golems, constructs, or elementals." );
+				Caster.SendMessage( "Este feitiço não pode afetar criaturas sobrenaturais, golems, constructos ou elementais." );
 			}
 			else if ( CheckHSequence( m ) )
 			{

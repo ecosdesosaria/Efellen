@@ -32,7 +32,7 @@ namespace Server.Spells.Research
 		public override void OnCast()
 		{
 			Caster.Target = new InternalTarget( this );
-			Caster.SendMessage( "Which demonic creature do you wish to banish?" );
+			Caster.SendMessage( "Qual criatura demoníaca você deseja banir?" );
 		}
 
 		public void Target( Mobile m )
@@ -53,22 +53,22 @@ namespace Server.Spells.Research
 
 				if (!exorcism.Slays(m))
 				{
-					Caster.SendMessage( "This spell cannot be used on this type of creature." );
+					Caster.SendMessage( "Este feitiço não pode ser usado neste tipo de criatura." );
 				}
 				else if( bc.IsBonded )
 				{
-					Caster.SendMessage("This spell cannot banish such a creature!");
+					Caster.SendMessage("Este feitiço não pode banir tal criatura!");
 				}
 				else if ( exorcism.Slays(m) && !bc.IsDispellable )
 				{
-					m.Say("Your pitiful spell amuses me, mortal!");
+					m.Say("Seu feitiço patético me diverte, mortal!");
 					m.FixedParticles( 0x5508, 10, 30, 5052, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.Head );
 					m.PlaySound( 0x653 );
 					SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100);
 				}
 				else if ( m.Fame >= 23000 )
 				{
-					m.Say("Your magic is puny in comparison to my power!");
+					m.Say("Sua magia é insignificante em comparação ao meu poder!");
 					m.FixedParticles( 0x5508, 10, 30, 5052, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.Head );
 					m.PlaySound( 0x653 );
 					SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100);
@@ -78,7 +78,7 @@ namespace Server.Spells.Research
 					int exChance = (int)(m.Fame/200)+10;
 					if ( DamagingSkill( Caster ) >= Utility.RandomMinMax( 1, exChance ) )
 					{
-						m.Say("No! You cannot banish me! I will return from the Underworld!");
+						m.Say("Não! Você não pode me banir! Voltarei do Submundo!");
 						SpellHelper.Turn(Caster, m);
 						m.FixedParticles( 0x5508, 10, 30, 5052, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.Head );
 						m.PlaySound( 0x653 );
@@ -86,7 +86,7 @@ namespace Server.Spells.Research
 					}
 					else
 					{
-						Caster.SendMessage( "You fail at your exorcism, but did cause some energy damage." );
+						Caster.SendMessage( "Você falha no seu exorcismo, mas causou algum dano de energia." );
 						m.FixedParticles( 0x5508, 10, 30, 5052, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.Head );
 						m.PlaySound( 0x653 );
 						SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100);

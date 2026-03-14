@@ -171,7 +171,7 @@ namespace Server.Spells.Necromancy
 				}
 				else if ( entry.Type == null )
 				{
-					m_From.SendMessage( "That familiar has not yet been defined." );
+					m_From.SendMessage( "Esse familiar ainda não foi definido." );
 
 					m_From.CloseGump( typeof( SummonFamiliarGump ) );
 					m_From.SendGump( new SummonFamiliarGump( m_From, SummonFamiliarSpell.Entries, m_Spell ) );

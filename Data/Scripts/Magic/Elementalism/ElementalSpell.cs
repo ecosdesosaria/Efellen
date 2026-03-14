@@ -32,13 +32,13 @@ namespace Server.Spells.Elementalism
 
 			if ( Caster.Stam < GetStam() )
 			{
-				Caster.SendMessage( "Insufficient stamina for this spell." );
+				Caster.SendMessage( "Stamina insuficiente para este feitiço." );
 				Server.Misc.IntelligentAction.FizzleSpell( Caster );
 				return false;
 			}
 			else if ( ArmorFizzle( Caster ) >= Utility.RandomMinMax(1,100) )
 			{
-				Caster.SendMessage( "You are wearing too much armor to cast that (" + ArmorFizzle( Caster ) + "%)." );
+				Caster.SendMessage( "Você está usando armadura demais para lançar isso (" + ArmorFizzle( Caster ) + "%)." );
 				Server.Misc.IntelligentAction.FizzleSpell( Caster );
 				return false;
 			}
@@ -264,9 +264,9 @@ namespace Server.Spells.Elementalism
 
 		public static string SpellDescription( int spell )
 		{
-			string txt = "This scroll contains an elemental spell, where an example of what it does is provided within the Sphere of Air Elementalism: " + DescriptionInfo( spell, 0x6717 ) + "";
+			string txt = "Este pergaminho contém um feitiço elemental, onde um exemplo do que ele faz é fornecido dentro da Esfera do Elementalismo do Ar: " + DescriptionInfo( spell, 0x6717 ) + "";
 
-			return txt + " It requires at least a " + CommonInfo( spell, 7 ) + " in Elementalism.";
+			return txt + " Ele requer pelo menos um " + CommonInfo( spell, 7 ) + " em Elementalismo.";
 		}
 
 		public static string DescriptionInfo( int id, int item )
@@ -282,86 +282,86 @@ namespace Server.Spells.Elementalism
 
 			if ( id == 300 )
 			{
-				description = "Increases your physical resistance while reducing your other resistances. Active until spell is deactivated by re-casting it.";
-				if ( elm == "air" ){ description = "Increases your energy resistance while reducing your other resistances. Active until spell is deactivated by re-casting it."; }
-				else if ( elm == "fire" ){ description = "Increases your fire resistance while reducing your other resistances. Active until spell is deactivated by re-casting it."; }
-				else if ( elm == "water" ){ description = "Increases your cold resistance while reducing your other resistances. Active until spell is deactivated by re-casting it."; }
+				description = "Aumenta sua resistência física enquanto reduz suas outras resistências. Ativo até que o feitiço seja desativado ao lançá-lo novamente.";
+				if ( elm == "air" ){ description = "Aumenta sua resistência de energia enquanto reduz suas outras resistências. Ativo até que o feitiço seja desativado ao lançá-lo novamente."; }
+				else if ( elm == "fire" ){ description = "Aumenta sua resistência de fogo enquanto reduz suas outras resistências. Ativo até que o feitiço seja desativado ao lançá-lo novamente."; }
+				else if ( elm == "water" ){ description = "Aumenta sua resistência de frio enquanto reduz suas outras resistências. Ativo até que o feitiço seja desativado ao lançá-lo novamente."; }
 			}
 			else if ( id == 301 )
 			{
-				description = "Shoots a magical bolt at a target, which deals fire and physical damage.";
-				if ( elm == "air" ){ description = "Shoots a magical bolt at a target, which deals energy and physical damage."; }
-				else if ( elm == "earth" ){ description = "Shoots a magical bolt at a target, which deals poison and physical damage."; }
-				else if ( elm == "water" ){ description = "Shoots a magical bolt at a target, which deals cold and physical damage."; }
+				description = "Dispara um raio mágico em um alvo, que causa dano de fogo e físico.";
+				if ( elm == "air" ){ description = "Dispara um raio mágico em um alvo, que causa dano de energia e físico."; }
+				else if ( elm == "earth" ){ description = "Dispara um raio mágico em um alvo, que causa dano de veneno e físico."; }
+				else if ( elm == "water" ){ description = "Dispara um raio mágico em um alvo, que causa dano de gelo e físico."; }
 			}
-			else if ( id == 302 ){ description = "Restores the target of a small amount of lost hit points."; }
-			else if ( id == 303 ){ description = "Transports the elementalist to the saftey of the Lyceum. Can cast in dungeons at higher levels."; }
+			else if ( id == 302 ){ description = "Restaura uma pequena quantidade de pontos de vida perdidos do alvo."; }
+			else if ( id == 303 ){ description = "Transporta o elementalista para a segurança do Liceu. Pode ser conjurado em masmorras em níveis mais altos."; }
 			else if ( id == 304 )
 			{
-				description = "Affects the target with flames, dealing fire damage. The closer the target is to the caster, the more damage is dealt.";
-				if ( elm == "air" ){ description = "Affects the target with a swirling wind, dealing physical and energy damage. The closer the target is to the caster, the more damage is dealt."; }
-				else if ( elm == "earth" ){ description = "Affects the target with falling rocks, dealing physical damage. The closer the target is to the caster, the more damage is dealt."; }
-				else if ( elm == "water" ){ description = "Affects the target with freezing water, dealing cold damage. The closer the target is to the caster, the more damage is dealt."; }
+				description = "Afasta o alvo com chamas, causando dano de fogo. Quanto mais próximo o alvo estiver do conjurador, mais dano é causado.";
+				if ( elm == "air" ){ description = "Afasta o alvo com um ventoinho, causando dano físico e de energia. Quanto mais próximo o alvo estiver do conjurador, mais dano é causado."; }
+				else if ( elm == "earth" ){ description = "Afasta o alvo com rochas caindo, causando dano físico. Quanto mais próximo o alvo estiver do conjurador, mais dano é causado."; }
+				else if ( elm == "water" ){ description = "Afasta o alvo com água congelante, causando dano de gelo. Quanto mais próximo o alvo estiver do conjurador, mais dano é causado."; }
 			}
-			else if ( id == 305 ){ description = "Prevents the caster from having their spells disrupted, but lowers their physical resistance and magic resistance. Active until the spell is deactivated by re-casting it."; }
+			else if ( id == 305 ){ description = "Impede que os feitiços do conjurador sejam interrompidos, mas diminui sua resistência física e resistência mágica. Ativo até que o feitiço seja desativado ao ser relançado."; }
 			else if ( id == 306 )
 			{
-				description = "Attempts to burn away poisons affecting the target.";
-				if ( elm == "air" ){ description = "Attempts to blow away poisons affecting the target."; }
-				else if ( elm == "earth" ){ description = "Attempts to cleanse poisons affecting the target."; }
-				else if ( elm == "water" ){ description = "Attempts to wash away poisons affecting the target."; }
+				description = "Tenta queimar venenos que afetam o alvo.";
+				if ( elm == "air" ){ description = "Tenta soprar para longe venenos que afetam o alvo."; }
+				else if ( elm == "earth" ){ description = "Tenta limpar venenos que afetam o alvo."; }
+				else if ( elm == "water" ){ description = "Tenta lavar venenos que afetam o alvo."; }
 			}
 			else if ( id == 307 )
 			{
-				description = "Summons a fiery phoenix that does not fight but you can ride throughout the land. The creature disappears after a set amount of time and requires a control slot.";
-				if ( elm == "air" ){ description = "Summons an air dragon that does not fight but you can ride throughout the land. The creature disappears after a set amount of time and requires a control slot."; }
-				else if ( elm == "earth" ){ description = "Summons a great bear that does not fight but you can ride throughout the land. The creature disappears after a set amount of time and requires a control slot."; }
-				else if ( elm == "water" ){ description = "Summons a water beetle that does not fight but you can ride throughout the land. The creature disappears after a set amount of time and requires a control slot."; }
+				description = "Invoca uma fênix flamejante que não luta, mas você pode montar por toda a terra. A criatura desaparece após um tempo determinado e requer um slot de controle.";
+				if ( elm == "air" ){ description = "Invoca um dragão do ar que não luta, mas você pode montar por toda a terra. A criatura desaparece após um tempo determinado e requer um slot de controle."; }
+				else if ( elm == "earth" ){ description = "Invoca um grande urso que não luta, mas você pode montar por toda a terra. A criatura desaparece após um tempo determinado e requer um slot de controle."; }
+				else if ( elm == "water" ){ description = "Invoca um besouro d'água que não luta, mas você pode montar por toda a terra. A criatura desaparece após um tempo determinado e requer um slot de controle."; }
 			}
 			else if ( id == 308 )
 			{
-				description = "A lesser fire elemental is summoned to serve the caster. The elemental disappears after a set amount of time and requires a control slot.";
-				if ( elm == "air" ){ description = "A lesser air elemental is summoned to serve the caster. The elemental disappears after a set amount of time and requires a control slot."; }
-				else if ( elm == "earth" ){ description = "A lesser earth elemental is summoned to serve the caster. The elemental disappears after a set amount of time and requires a control slot."; }
-				else if ( elm == "water" ){ description = "A lesser water elemental is summoned to serve the caster. The elemental disappears after a set amount of time and requires a control slot."; }
+				description = "Um elemental do fogo menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer um slot de controle.";
+				if ( elm == "air" ){ description = "Um elemental do ar menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer um slot de controle."; }
+				else if ( elm == "earth" ){ description = "Um elemental da terra menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer um slot de controle."; }
+				else if ( elm == "water" ){ description = "Um elemental da água menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer um slot de controle."; }
 			}
 			else if ( id == 309 )
 			{
-				description = "Shoots a ball of fire at a target, dealing some physical damage but mostly fire damage.";
-				if ( elm == "air" ){ description = "Shoots a bolt of lighting at a target, dealing some physical damage but mostly energy damage."; }
-				else if ( elm == "earth" ){ description = "Hurls a magical rock at a target, dealing physical damage."; }
-				else if ( elm == "water" ){ description = "Forces some painful water at a target, dealing some physical damage but mostly cold damage."; }
+				description = "Dispara uma bola de fogo em um alvo, causando algum dano físico, mas principalmente dano de fogo.";
+				if ( elm == "air" ){ description = "Dispara um raio em um alvo, causando algum dano físico, mas principalmente dano de energia."; }
+				else if ( elm == "earth" ){ description = "Arremessa uma rocha mágica em um alvo, causando dano físico."; }
+				else if ( elm == "water" ){ description = "Força água dolorosa em um alvo, causando algum dano físico, mas principalmente dano de gelo."; }
 			}
 			else if ( id == 310 )
 			{
-				description = "Creates a temporary wall of flame that blocks movement.";
-				if ( elm == "air" ){ description = "Creates a temporary wall of air that blocks movement."; }
-				else if ( elm == "earth" ){ description = "Creates a temporary wall of mud that blocks movement."; }
-				else if ( elm == "water" ){ description = "Creates a temporary wall of seaweed that blocks movement."; }
+				description = "Cria uma parede temporária de chamas que bloqueia o movimento.";
+				if ( elm == "air" ){ description = "Cria uma parede temporária de ar que bloqueia o movimento."; }
+				else if ( elm == "earth" ){ description = "Cria uma parede temporária de lama que bloqueia o movimento."; }
+				else if ( elm == "water" ){ description = "Cria uma parede temporária de algas que bloqueia o movimento."; }
 			}
-			else if ( id == 311 ){ description = "Caster is transported to the target location."; }
+			else if ( id == 311 ){ description = "O Conjurador é transportado para o local alvo."; }
 			else if ( id == 312 )
 			{
-				description = "Creates a wall of flame that deals fire damage to all who walk through it.";
-				if ( elm == "air" ){ description = "Creates a wall of electricity that deals energy damage to all who walk through it."; }
-				else if ( elm == "earth" ){ description = "Creates a wall of vines that deals physical and poison damage to all who walk through it."; }
-				else if ( elm == "water" ){ description = "Creates a wall of water that deals cold damage to all who walk through it."; }
+				description = "Cria uma parede de chamas que causa dano de fogo a todos que passarem por ela.";
+				if ( elm == "air" ){ description = "Cria uma parede de eletricidade que causa dano de energia a todos que passarem por ela."; }
+				else if ( elm == "earth" ){ description = "Cria uma parede de vinhas que causa dano físico e de veneno a todos que passarem por ela."; }
+				else if ( elm == "water" ){ description = "Cria uma parede de água que causa dano de gelo a todos que passarem por ela."; }
 			}
-			else if ( id == 313 ){ description = "Restores the target of a medium amount of lost hit points."; }
+			else if ( id == 313 ){ description = "Restaura uma quantidade média de pontos de vida perdidos do alvo."; }
 			else if ( id == 314 )
 			{
-				description = "Strikes the target with falling lava, which deals physical and fire damage.";
-				if ( elm == "air" ){ description = "Strikes the target with comets from the sky, which deals physical and energy damage."; }
-				else if ( elm == "earth" ){ description = "Strikes the target with falling rocks, which deals physical damage."; }
-				else if ( elm == "water" ){ description = "Strikes the target with shards of ice from above, which deals physical and cold damage."; }
+				description = "Ataca o alvo com lava caindo, que causa dano físico e de fogo.";
+				if ( elm == "air" ){ description = "Ataca o alvo com cometas do céu, que causam dano físico e de energia."; }
+				else if ( elm == "earth" ){ description = "Ataca o alvo com rochas caindo, que causam dano físico."; }
+				else if ( elm == "water" ){ description = "Ataca o alvo com estilhaços de gelo de cima, que causam dano físico e de gelo."; }
 			}
-			else if ( id == 315 ){ description = "Caster is transported to the location marked on a rune, along with their followers. If a ship key is targeted, the caster is transported to the boat the key opens."; }
+			else if ( id == 315 ){ description = "O Conjurador é transportado para a localização marcada numa runa, junto com seus seguidores. Se uma chave de navio for alvo, o conjurador é transportado para o barco que a chave abre."; }
 			else if ( id == 316 )
 			{
-				description = "Makes a flaming blast hit your target with fire damage, dependent on your elementalism and intelligence. Has a short delay.";
-				if ( elm == "air" ){ description = "Makes an electrical blast hit your target with energy damage, dependent on your elementalism and intelligence. Has a short delay."; }
-				else if ( elm == "earth" ){ description = "Makes a blast of stone hit your target with physical damage, dependent on your elementalism and intelligence. Has a short delay."; }
-				else if ( elm == "water" ){ description = "Makes a watery blast hit your target with cold damage, dependent on your elementalism and intelligence. Has a short delay."; }
+				description = "Faz uma explosão flamejante atingir seu alvo com dano de fogo, dependente de seu elementalismo e inteligência. Tem um pequeno atraso.";
+				if ( elm == "air" ){ description = "Faz uma explosão elétrica atingir seu alvo com dano de energia, dependente de seu elementalismo e inteligência. Tem um pequeno atraso."; }
+				else if ( elm == "earth" ){ description = "Faz uma explosão de pedra atingir seu alvo com dano físico, dependente de seu elementalismo e inteligência. Tem um pequeno atraso."; }
+				else if ( elm == "water" ){ description = "Faz uma explosão aquática atingir seu alvo com dano de gelo, dependente de seu elementalismo e inteligência. Tem um pequeno atraso."; }
 			}
 			else if ( id == 317 )
 			{
@@ -369,87 +369,87 @@ namespace Server.Spells.Elementalism
 				if ( elm == "air" ){ rock = "an amethyst"; }
 				else if ( elm == "earth" ){ rock = "an emerald"; }
 				else if ( elm == "water" ){ rock = "a sapphire"; }
-				description = "Harmful wizard spells cast at you will be reflected back toward the caster based on your elementalism. You will need " + rock + " to make this spell work.";
+				description = "Feitiços de magia prejudiciais lançados em você serão refletidos de volta ao conjurador com base em seu elementalismo. Você precisará de " + rock + " para fazer este feitiço funcionar.";
 			}
 			else if ( id == 318 )
 			{
-				description = "Conjures a lava ooze creature that attacks a target based off its combat strength and proximity. It disappears after a set amount of time and requires 2 control slots.";
-				if ( elm == "air" ){ description = "Conjures a starlight creature that attacks a target based off its combat strength and proximity. It disappears after a set amount of time and requires 2 control slots."; }
-				else if ( elm == "earth" ){ description = "Conjures a plant creature that attacks a target based off its combat strength and proximity. It disappears after a set amount of time and requires 2 control slots."; }
-				else if ( elm == "water" ){ description = "Conjures a watery ooze creature that attacks a target based off its combat strength and proximity. It disappears after a set amount of time and requires 2 control slots."; }
+				description = "Conjura uma criatura de lava viscosa que ataca um alvo com base em sua força de combate e proximidade. Ela desaparece após um tempo determinado e requer 2 slots de controle.";
+				if ( elm == "air" ){ description = "Conjura uma criatura de luz estelar que ataca um alvo com base em sua força de combate e proximidade. Ela desaparece após um tempo determinado e requer 2 slots de controle."; }
+				else if ( elm == "earth" ){ description = "Conjura uma criatura vegetal que ataca um alvo com base em sua força de combate e proximidade. Ela desaparece após um tempo determinado e requer 2 slots de controle."; }
+				else if ( elm == "water" ){ description = "Conjura uma criatura aquática viscosa que ataca um alvo com base em sua força de combate e proximidade. Ela desaparece após um tempo determinado e requer 2 slots de controle."; }
 			}
 			else if ( id == 319 )
 			{
-				description = "Flame strands emerge to immobilize the target for a brief amount of time. The target's magic resistance skill affects the duration of the immobilization.";
-				if ( elm == "air" ){ description = "Stars appear to immobilize the target for a brief amount of time. The target's magic resistance skill affects the duration of the immobilization."; }
-				else if ( elm == "earth" ){ description = "Vines emerge to immobilize the target for a brief amount of time. The target's magic resistance skill affects the duration of the immobilization."; }
-				else if ( elm == "water" ){ description = "Squid tentacles emerge to immobilize the target for a brief amount of time. The target's magic resistance skill affects the duration of the immobilization."; }
+				description = "Fios de chama emergem para imobilizar o alvo por um breve período de tempo. A habilidade de resistência mágica do alvo afeta a duração da imobilização.";
+				if ( elm == "air" ){ description = "Estrelas aparecem para imobilizar o alvo por um breve período de tempo. A habilidade de resistência mágica do alvo afeta a duração da imobilização."; }
+				else if ( elm == "earth" ){ description = "Vinhas emergem para imobilizar o alvo por um breve período de tempo. A habilidade de resistência mágica do alvo afeta a duração da imobilização."; }
+				else if ( elm == "water" ){ description = "Tentáculos de lula emergem para imobilizar o alvo por um breve período de tempo. A habilidade de resistência mágica do alvo afeta a duração da imobilização."; }
 			}
 			else if ( id == 320 )
 			{
-				description = "Launches a glob of searing plasma at the target, dealing significant fire damage.";
-				if ( elm == "air" ){ description = "Launches a wave of magical electricity at the target, dealing significant energy damage."; }
-				else if ( elm == "earth" ){ description = "Launches an orb of vile swamp gas at the target, dealing significant poison damage."; }
-				else if ( elm == "water" ){ description = "Launches a sphere of mystical water at the target, dealing significant cold damage."; }
+				description = "Lança uma gota de plasma ardente no alvo, causando dano significativo de fogo.";
+				if ( elm == "air" ){ description = "Lança uma onda de eletricidade mágica no alvo, causando dano significativo de energia."; }
+				else if ( elm == "earth" ){ description = "Lança um orbe de gás de pântano vil no alvo, causando dano significativo de veneno."; }
+				else if ( elm == "water" ){ description = "Lança uma esfera de água mística no alvo, causando dano significativo de gelo."; }
 			}
-			else if ( id == 321 ){ description = "Marks a rune to the elementalist’s current location. There are magic spells and abilities that can be used on the rune to teleport one to the location it is marked with."; }
+			else if ( id == 321 ){ description = "Marca uma runa na localização atual do elementalista. Existem feitiços e habilidades mágicas que podem ser usados na runa para teleportar alguém para a localização com a qual ela está marcada."; }
 			else if ( id == 322 )
 			{
-				description = "Creates a volcanic storm of molten magma, causing <br>physical and fire damage.";
-				if ( elm == "air" ){ description = "Creates a swirling storms of wind around the target, causing physical and energy damage."; }
-				else if ( elm == "earth" ){ description = "Causes a swirling storm of poison ivy around the target, dealing poison and physical damage."; }
-				else if ( elm == "water" ){ description = "Calls forth a typhoon of swirling wind and water, causing physical and cold damage."; }
+				description = "Cria uma tempestade vulcânica de magma derretido, causando dano físico e de fogo.";
+				if ( elm == "air" ){ description = "Cria tempestades de ventoinho ao redor do alvo, causando dano físico e de energia."; }
+				else if ( elm == "earth" ){ description = "Causa uma tempestade de hera venenosa ao redor do alvo, causando dano de veneno e físico."; }
+				else if ( elm == "water" ){ description = "Invoca um tufão de vento e água, causando dano físico e de gelo."; }
 			}
 			else if ( id == 323 )
 			{
-				description = "A magma elemental is summoned to serve the caster.";
-				if ( elm == "air" ){ description = "A lightning elemental is summoned to serve the caster."; }
-				else if ( elm == "earth" ){ description = "An ent is summoned to serve the caster."; }
-				else if ( elm == "water" ){ description = "An ice elemental is summoned to serve the caster."; }
+				description = "Um elemental de magma é invocado para servir o conjurador.";
+				if ( elm == "air" ){ description = "Um elemental de relâmpago é invocado para servir o conjurador."; }
+				else if ( elm == "earth" ){ description = "Um ent é invocado para servir o conjurador."; }
+				else if ( elm == "water" ){ description = "Um elemental de gelo é invocado para servir o conjurador."; }
 			}
 			else if ( id == 324 )
 			{
-				description = "Calls down a firey malestrom, damaging nearby enemies with fire damage.";
-				if ( elm == "air" ){ description = "Brings forth powerful lightning storms, damaging nearby enemies with energy damage."; }
-				else if ( elm == "earth" ){ description = "Summons piles of dirt and mud to fall onto nearby enemies, dealing physical damage."; }
-				else if ( elm == "water" ){ description = "Conjures a storm of ice shards crashing down on nearby enemies, dealing cold damage."; }
+				description = "Invoca um malestrom flamejante, danificando inimigos próximos com dano de fogo.";
+				if ( elm == "air" ){ description = "Traz poderosas tempestades de relâmpagos, danificando inimigos próximos com dano de energia."; }
+				else if ( elm == "earth" ){ description = "Invoca montes de terra e lama para cair sobre inimigos próximos, causando dano físico."; }
+				else if ( elm == "water" ){ description = "Conjura uma tempestade de estilhaços de gelo sobre inimigos próximos, causando dano de gelo."; }
 			}
 			else if ( id == 325 )
 			{
-				description = "Brings down a fire storm that affects all targets within a radius around the target location. The total physical and fire damage dealt is split amongst all targets.";
-				if ( elm == "air" ){ description = "Calls down stars that go nova and affects all targets within a radius around the target location. The total physical and energy damage dealt is split amongst all targets."; }
-				else if ( elm == "earth" ){ description = "Brings down a ball of swamp gas that affects all targets within a radius around the target location. Physical and poison damage dealt is split amongst all targets."; }
-				else if ( elm == "water" ){ description = "Brings down a hurricane that affects all targets within a radius around the target location. The total physical and cold damage dealt is split amongst all targets."; }
+				description = "Traz uma tempestade de fogo que afeta todos os alvos dentro de um raio ao redor do local alvo. O dano total físico e de fogo é dividido entre todos os alvos.";
+				if ( elm == "air" ){ description = "Invoca estrelas que explodem e afetam todos os alvos dentro de um raio ao redor do local alvo. O dano total físico e de energia é dividido entre todos os alvos."; }
+				else if ( elm == "earth" ){ description = "Traz uma bola de gás de pântano que afeta todos os alvos dentro de um raio ao redor do local alvo. O dano físico e de veneno é dividido entre todos os alvos."; }
+				else if ( elm == "water" ){ description = "Traz um furacão que afeta todos os alvos dentro de um raio ao redor do local alvo. O dano total físico e de gelo é dividido entre todos os alvos."; }
 			}
-			else if ( id == 326 ){ description = "Targeting a marked rune opens a temporary portal to the rune’s marked location. The gateway can be used by anyone to travel to that location."; }
+			else if ( id == 326 ){ description = "Mirar uma runa marcada abre um portal temporário para a localização marcada da runa. O portal pode ser usado por qualquer um para viajar para aquela localização."; }
 			else if ( id == 327 )
 			{
-				description = "Envelopes the target in a flames, causing a massive amount of physical and fire damage.";
-				if ( elm == "air" ){ description = "Conjures hurricane force winds around the target, causing a massive amount of physical and energy damage."; }
-				else if ( elm == "earth" ){ description = "Envelopes the target in a swarm of deadly bees, causing a massive amount of physical and poison damage."; }
-				else if ( elm == "water" ){ description = "Creates a wave of water to burst from the target, causing a massive amount of physical and cold damage."; }
+				description = "Envolve o alvo em chamas, causando uma quantidade massiva de dano físico e de fogo.";
+				if ( elm == "air" ){ description = "Conjura ventos de força de furacão ao redor do alvo, causando uma quantidade massiva de dano físico e de energia."; }
+				else if ( elm == "earth" ){ description = "Envolve o alvo num enxame de abelhas mortais, causando uma quantidade massiva de dano físico e de veneno."; }
+				else if ( elm == "water" ){ description = "Cria uma onda de água para explodir do alvo, causando uma quantidade massiva de dano físico e de gelo."; }
 			}
 			else if ( id == 328 )
 			{
-				description = "Calls down a fire storm onto foes near the caster, causing some physical but mostly fire damage.";
-				if ( elm == "air" ){ description = "Sends shards from a nearby star crashing down onto nearby enemies, causing some physical but mostly energy damage."; }
-				else if ( elm == "earth" ){ description = "Erupts a massive amount of mud and dirt from the ground, causing horrific physical damage to nearby foes."; }
-				else if ( elm == "water" ){ description = "Brings down a devastating shower of watery ice onto nearby enemies, causing some physical but mostly cold damage."; }
+				description = "Invoca uma tempestade de fogo sobre os inimigos próximos ao conjurador, causando algum dano físico, mas principalmente dano de fogo.";
+				if ( elm == "air" ){ description = "Envia estilhaços de uma estrela próxima sobre inimigos próximos, causando algum dano físico, mas principalmente dano de energia."; }
+				else if ( elm == "earth" ){ description = "Erupciona uma quantidade massiva de lama e terra do chão, causando dano físico horripilante aos inimigos próximos."; }
+				else if ( elm == "water" ){ description = "Traz uma chuva devastadora de gelo aquoso sobre inimigos próximos, causando algum dano físico, mas principalmente dano de gelo."; }
 			}
 			else if ( id == 329 )
 			{
-				description = "A Lord of the Flame is called upon to assist the caster.";
-				if ( elm == "air" ){ description = "A Lord of the Skies is called upon to assist the caster."; }
-				else if ( elm == "earth" ){ description = "A Lord of the Earth is called upon to assist the caster."; }
-				else if ( elm == "water" ){ description = "A Lord of the Sea is called upon to assist the caster."; }
+				description = "Um Senhor da Chama é invocado para ajudar o conjurador.";
+				if ( elm == "air" ){ description = "Um Senhor dos Céus é invocado para ajudar o conjurador."; }
+				else if ( elm == "earth" ){ description = "Um Senhor da Terra é invocado para ajudar o conjurador."; }
+				else if ( elm == "water" ){ description = "Um Senhor do Mar é invocado para ajudar o conjurador."; }
 			}
-			else if ( id == 330 ){ description = "Resurrects another or summons a magical item to resurrect yourself at a later time."; }
+			else if ( id == 330 ){ description = "Ressuscita outro ou invoca um item mágico para se ressuscitar mais tarde."; }
 			else if ( id == 331 )
 			{
-				description = "Summons a lava spirit that attacks a target based off its intelligence and proximity. It disappears after a set amount of time and requires 2 control slots.";
-				if ( elm == "air" ){ description = "Summons a cloud spirit that attacks a target based off its intelligence and proximity. It disappears after a set amount of time and requires 2 control slots."; }
-				else if ( elm == "earth" ){ description = "Summons a earth spirit that attacks a target based off its intelligence and proximity. It disappears after a set amount of time and requires 2 control slots."; }
-				else if ( elm == "water" ){ description = "Summons a water spirit that attacks a target based off its intelligence and proximity. It disappears after a set amount of time and requires 2 control slots."; }
+				description = "Invoca um espírito de lava que ataca um alvo com base em sua inteligência e proximidade. Ele desaparece após um tempo determinado e requer 2 slots de controle.";
+				if ( elm == "air" ){ description = "Invoca um espírito de nuvem que ataca um alvo com base em sua inteligência e proximidade. Ele desaparece após um tempo determinado e requer 2 slots de controle."; }
+				else if ( elm == "earth" ){ description = "Invoca um espírito da terra que ataca um alvo com base em sua inteligência e proximidade. Ele desaparece após um tempo determinado e requer 2 slots de controle."; }
+				else if ( elm == "water" ){ description = "Invoca um espírito da água que ataca um alvo com base em sua inteligência e proximidade. Ele desaparece após um tempo determinado e requer 2 slots de controle."; }
 			}
 
 			return description;
@@ -583,22 +583,22 @@ namespace Server.Spells.Elementalism
 
 					if ( element != 0 && item.ItemID == 0x6717 )
 					{
-						if ( msg ){ from.SendMessage("Your need to focus on air elemental magic to use that!"); }
+						if ( msg ){ from.SendMessage("Você precisa estar focado na magia elemental do ar para usar isso!"); }
 						return false;
 					}
 					if ( element != 1 && item.ItemID == 0x6713 )
 					{
-						if ( msg ){ from.SendMessage("Your need to focus on earth elemental magic to use that!"); }
+						if ( msg ){ from.SendMessage("Você precisa estar focado na magia elemental da terra para usar isso!"); }
 						return false;
 					}
 					if ( element != 2 && item.ItemID == 0x6719 )
 					{
-						if ( msg ){ from.SendMessage("Your need to focus on fire elemental magic to use that!"); }
+						if ( msg ){ from.SendMessage("Você precisa estar focado na magia elemental do fogo para usar isso!"); }
 						return false;
 					}
 					if ( element != 3 && item.ItemID == 0x6715 )
 					{
-						if ( msg ){ from.SendMessage("Your need to focus on water elemental magic to use that!"); }
+						if ( msg ){ from.SendMessage("Você precisa estar focado na magia elemental da água para usar isso!"); }
 						return false;
 					}
 				}

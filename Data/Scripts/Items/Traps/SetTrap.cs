@@ -70,7 +70,7 @@ namespace Server.Items
 					else
 					{
 						Effects.PlaySound( this.Location, this.Map, 0x241 );
-						if ( owner != null ){ owner.SendMessage( "Your trap seems to have been thwarted!" ); }
+						if ( owner != null ){ owner.SendMessage( "Sua armadilha parece ter sido frustrada!" ); }
 					}
 					this.Delete();
 				}

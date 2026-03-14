@@ -41,11 +41,11 @@ namespace Server.Spells.Research
 
 			if ( fires > 23 )
 			{
-				Caster.SendMessage( "There are too many magical fires in the area!" );
+				Caster.SendMessage( "Há muitos fogos mágicos na área!" );
 			}
 			else
 			{
-				Caster.SendMessage( "Where do you want to create a ring of fire?" );
+				Caster.SendMessage( "Onde você quer criar um anel de fogo?" );
 				Caster.Target = new InternalTarget( this );
 			}
 		}

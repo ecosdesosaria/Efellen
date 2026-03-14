@@ -11,7 +11,7 @@ namespace Server.Items
 {
 	public class Bandage : Item, IDyable
 	{
-		public override string DefaultDescription{ get{ return "Bandages require a good healing or veterinary skill. When you use a bandage on someone, it will begin the attempt to heal some damage. If your skills are high enough, you can cure most poisons or even bring the dead back to life."; } }
+		public override string DefaultDescription{ get{ return "Ataduras exigem uma boa habilidade de cura ou veterinária. Quando você usa uma atadura em alguém, começará a tentativa de curar algum dano. Se suas habilidades forem altas o suficiente, você pode curar a maioria dos venenos ou até mesmo trazer os mortos de volta à vida."; } }
 
 		public static int Range = 5; 
 
@@ -70,7 +70,7 @@ namespace Server.Items
 		{
 			if ( from.Blessed )
 			{
-				from.SendMessage( "You cannot use bandages while in this state." );
+				from.SendMessage( "Você não pode usar ataduras neste estado." );
 				return;
 			}
 
@@ -86,7 +86,7 @@ namespace Server.Items
 		{
 			if ( from.Blessed )
 			{
-				from.SendMessage( "You cannot use bandages while in this state." );
+				from.SendMessage( "Você não pode usar ataduras neste estado." );
 				return;
 			}
 
@@ -100,7 +100,7 @@ namespace Server.Items
 		{
 			if ( from.Blessed )
 			{
-				from.SendMessage( "You cannot use bandages while in this state." );
+				from.SendMessage( "Você não pode usar ataduras neste estado." );
 				return;
 			}
 
@@ -169,7 +169,7 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage("They are not dead.");
+						from.SendMessage("Eles não estão mortos.");
 					}
 				}
 				else if ( targeted is HenchmanWizardItem && from.Skills[SkillName.Anatomy].Value >= 80 && from.Skills[SkillName.Healing].Value >= 80 )
@@ -185,7 +185,7 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage("They are not dead.");
+						from.SendMessage("Eles não estão mortos.");
 					}
 				}
 				else if ( targeted is HenchmanArcherItem && from.Skills[SkillName.Anatomy].Value >= 80 && from.Skills[SkillName.Healing].Value >= 80 )
@@ -201,7 +201,7 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage("They are not dead.");
+						from.SendMessage("Eles não estão mortos.");
 					}
 				}
 				else if (targeted is HenchmanMonsterItem && from.Skills[SkillName.Anatomy].Value >= 80 && from.Skills[SkillName.Healing].Value >= 80 )
@@ -217,7 +217,7 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage("They are not dead.");
+						from.SendMessage("Eles não estão mortos.");
 					}
 				}
 				else
@@ -555,7 +555,7 @@ namespace Server.Items
 
 			if ( patient.Hunger < 6 && patient is PlayerMobile && patient.Alive )
 			{
-				healer.SendMessage( "You cannot heal those that are extremely hungry." );
+				healer.SendMessage( "Você não pode curar aqueles que estão extremamente famintos." );
 			}
 			else if ( patient is Golem || patient is Robot )
 			{
@@ -575,7 +575,7 @@ namespace Server.Items
 			}
 			else if (HealingCooldownTracker.IsOnVetSupplyCooldown(healer))
 			{
-				healer.SendMessage("You cannot use bandages while veterinary supplies are in use.");
+				healer.SendMessage("Você não pode usar ataduras enquanto suprimentos veterinários estão em uso.");
 			}
 			else if ( healer.CanBeBeneficial( patient, true, true ) )
 			{

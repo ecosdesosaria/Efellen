@@ -24,7 +24,7 @@ namespace Server.Items
 			InvalidateProperties();
 		}
 
-		public override string DefaultDescription{ get{ return "This potion will change many materialed items from one substance to another."; } }
+		public override string DefaultDescription{ get{ return "Esta poção transformará muitos itens materiais de uma substância para outra."; } }
 
 		[Constructable]
 		public TransmutationPotion() : base( 0x2827, PotionEffect.Transmutation )
@@ -63,7 +63,7 @@ namespace Server.Items
 		{
          	if ( m.InRange( this.GetWorldLocation(), 1 ) ) 
          	{ 
-				m.SendMessage( "What would you like to pour this on?" );
+				m.SendMessage( "No que você gostaria de derramar isto?" );
 				m.Target = new ItemTarget( this, m, m_Resource );
          	} 
          	else 
@@ -93,26 +93,26 @@ namespace Server.Items
 
 					if ( !item.IsChildOf( from.Backpack ) )
 					{
-						from.SendMessage("The item to transmutate must be in your pack!");
+						from.SendMessage("O item a ser transmutado deve estar em sua mochila!");
 					}
 					else if ( item.NotModAble || item.ArtifactLevel > 0 )
 					{
-						from.SendMessage( "This potion will not work on that!" );
+						from.SendMessage( "Esta poção não funcionará sobre isso!" );
 					}
 					else if ( ResourceMods.SetResource( item, m_Res ) )
 					{
-						from.SendMessage("The item has been changed.");
+						from.SendMessage("O item foi alterado.");
 						m_From.PlaySound( 0x240 );
 						m_Potion.Consume();
 					}
 					else
 					{
-						from.SendMessage( "This potion will not work on that!" );
+						from.SendMessage( "Esta poção não funcionará sobre isso!" );
 					}
 				}
 				else
 				{
-					from.SendMessage( "This potion will not work on that!" );
+					from.SendMessage( "Esta poção não funcionará sobre isso!" );
 				}
 			}
 		}

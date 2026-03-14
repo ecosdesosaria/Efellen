@@ -41,15 +41,15 @@ namespace Server.Spells.Research
 			}
 			else if ( m is BaseCreature && ((BaseCreature)m).IsAnimatedDead )
 			{
-				Caster.SendMessage( "This spell will have no affect on that." );
+				Caster.SendMessage( "Este feitiço não terá efeito nisso." );
 			}
 			else if ( m.IsDeadBondedPet )
 			{
-				Caster.SendMessage( "This spell will have no affect on that." );
+				Caster.SendMessage( "Este feitiço não terá efeito nisso." );
 			}
 			else if ( m is Golem )
 			{
-				Caster.SendMessage( "This spell will have no affect on that." );
+				Caster.SendMessage( "Este feitiço não terá efeito nisso." );
 			}
 			else if ( CheckBSequence( m ) )
 			{

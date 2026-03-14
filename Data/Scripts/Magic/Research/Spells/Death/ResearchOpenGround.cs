@@ -34,7 +34,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Where do you want the rip the ground open?" );
+			Caster.SendMessage( "Onde você quer abrir o chão?" );
 			Caster.Target = new InternalTarget( this );
 		}
 
@@ -56,11 +56,11 @@ namespace Server.Spells.Research
 
 				if ( pits > 0 )
 				{
-					Caster.SendMessage( "There is already an open chasm nearby!" );
+					Caster.SendMessage( "Já há um abismo aberto por perto!" );
 				}
 				else if ( Server.Misc.Worlds.NoApocalypse( Caster.Location, Caster.Map ) )
 				{
-					Caster.SendMessage( "You don't think it is wise to open a chasm in this area." ); 
+					Caster.SendMessage( "Você não acha sensato abrir um abismo nesta área." );
 					return;
 				}
 				else
@@ -156,7 +156,7 @@ namespace Server.Spells.Research
 				}
 				else
 				{
-					from.SendMessage( "The spell doesn't seem to do anything there." );
+					from.SendMessage( "O feitiço não parece fazer nada lá." );
 				}
 			}
 
@@ -258,7 +258,7 @@ namespace Server.Items
 			owner.DoHarmful( m );
 			Server.Mobiles.BaseCreature.TeleportPets( m, b, map );
 			m.MoveToWorld( p, map );
-			m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "You fall into a deep pit!");
+			m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Você cai em um abismo profundo!");
 		}
 
 		public OpenGround(Serial serial) : base(serial)

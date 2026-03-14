@@ -11,7 +11,7 @@ namespace Server.Items
 {
 	public class HairOilPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "This potion will allow you to permanently dye your hair to another color of limited choices."; } }
+		public override string DefaultDescription{ get{ return "Esta poção permite tingir permanentemente seu cabelo com uma cor diferente, dentre opções limitadas."; } }
 
 		[Constructable]
 		public HairOilPotion() : base( 0x180F, PotionEffect.HairOil )
@@ -36,7 +36,7 @@ namespace Server.Items
 		{
 			if ( from.RaceID > 0 )
 			{
-				from.SendMessage( "You don't find this really useful." );
+				from.SendMessage( "Você não acha isso realmente útil." );
 			}
 			else if ( !IsChildOf( from.Backpack ) )
 			{
@@ -70,7 +70,7 @@ namespace Server.Items
 
 				AddImage(0, 0, 9545, Server.Misc.PlayerSettings.GetGumpHue( from ));
 				AddButton(328, 9, 4017, 4017, 0, GumpButtonType.Reply, 0);
-				AddHtml( 12, 13, 293, 20, @"<BODY><BASEFONT Color=" + color + ">CHOOSE A NEW HAIR STYLE</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 13, 293, 20, @"<BODY><BASEFONT Color=" + color + ">ESCOLHA UM NOVO ESTILO DE CABELO</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int y = 45;
 
@@ -144,7 +144,7 @@ namespace Server.Items
 					{
 						m_From.HairItemID = info.ButtonID;
 						Server.Items.HairOilPotion.ConsumeCharge( m_Potion, m_From );
-						m_From.SendMessage("You have changed your hair style.");
+						m_From.SendMessage("Você mudou o estilo do seu cabelo.");
 					}
 				}
 				m_From.SendSound( 0x2D6 );

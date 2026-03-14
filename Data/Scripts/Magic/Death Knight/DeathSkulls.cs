@@ -24,7 +24,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull750( Serial serial ) : base( serial )
@@ -63,7 +63,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull751( Serial serial ) : base( serial )
@@ -102,7 +102,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull752( Serial serial ) : base( serial )
@@ -141,7 +141,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull753( Serial serial ) : base( serial )
@@ -180,7 +180,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull754( Serial serial ) : base( serial )
@@ -219,7 +219,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull755( Serial serial ) : base( serial )
@@ -258,7 +258,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull756( Serial serial ) : base( serial )
@@ -297,7 +297,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull757( Serial serial ) : base( serial )
@@ -336,7 +336,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull758( Serial serial ) : base( serial )
@@ -375,7 +375,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull759( Serial serial ) : base( serial )
@@ -414,7 +414,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull760( Serial serial ) : base( serial )
@@ -453,7 +453,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull761( Serial serial ) : base( serial )
@@ -492,7 +492,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull762( Serial serial ) : base( serial )
@@ -531,7 +531,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This skull is from a long dead death knight." );
+			from.SendMessage( "Esta caveira é de um cavaleiro da morte há muito tempo morto." );
 		}
 
 		public DeathKnightSkull763( Serial serial ) : base( serial )

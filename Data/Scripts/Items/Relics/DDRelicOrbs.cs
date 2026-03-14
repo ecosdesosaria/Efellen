@@ -50,7 +50,7 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( !IsChildOf( from.Backpack ) && from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified ) 
-				from.SendMessage( "This must be in your backpack to identify." );
+				from.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified )
 				IDCommand( from );
 			else
@@ -111,7 +111,7 @@ namespace Server.Items
 					case 50:	sThing = "a tomb";					break;
 					case 51:	sThing = "a crypt";					break;
 				}
-				from.PrivateOverheadMessage(MessageType.Regular, 0x14C, false, "Within in the ball you can see " + sThing + ".", from.NetState);
+				from.PrivateOverheadMessage(MessageType.Regular, 0x14C, false, "Dentro da bola você pode ver " + sThing + ".", from.NetState);
 			}
 		}
 

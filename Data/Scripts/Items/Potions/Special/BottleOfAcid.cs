@@ -10,7 +10,7 @@ namespace Server.Items
 	{
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Potion; } }
 
-		public override string DefaultDescription{ get{ return "These bottles of acid can not only eat through almost any locked container, but also destroy any traps on them as well."; } }
+		public override string DefaultDescription{ get{ return "Estas garrafas de ácido podem não só corroer quase qualquer recipiente trancado, mas também destruir quaisquer armadilhas neles."; } }
 
 		public override int Hue{ get { return 1167; } }
 
@@ -37,7 +37,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "What chest do you want to use the acid on?" );
+				from.SendMessage( "Em qual baú você quer usar o ácido?" );
 				t = new UnlockTarget( this );
 				from.Target = t;
 			}
@@ -61,22 +61,22 @@ namespace Server.Items
 				}
 				else if ( targeted == m_Key )
 				{
-					from.SendMessage( "This acid is to dissolve locks and traps on most chests." );
+					from.SendMessage( "Este ácido é para dissolver fechaduras e armadilhas na maioria dos baús." );
 				}
 				else if ( targeted is BaseHouseDoor )  // house door check
 				{
-					from.SendMessage( "This acid is to dissolve locks and traps on most chests." );
+					from.SendMessage( "Este ácido é para dissolver fechaduras e armadilhas na maioria dos baús." );
 				}
 				else if ( targeted is Item && ((Item)targeted).VirtualContainer )
 				{
-					from.SendMessage( "This key is to unlock almost any container." );
+					from.SendMessage( "Esta chave serve para destrancar quase qualquer recipiente." );
 				}
 				else if ( targeted is BaseDoor )
 				{
 					if ( Server.Items.DoorType.IsDungeonDoor( (BaseDoor)targeted ) )
 					{
 						if ( ((BaseDoor)targeted).Locked == false )
-							from.SendMessage( "That does not need to be unlocked." );
+							from.SendMessage( "Isso não precisa ser destrancado." );
 
 						else
 						{
@@ -89,7 +89,7 @@ namespace Server.Items
 						}
 					}
 					else
-						from.SendMessage( "That does not need to be unlocked." );
+						from.SendMessage( "Isso não precisa ser destrancado." );
 				}
 				else if ( targeted is Head )
 				{
@@ -101,11 +101,11 @@ namespace Server.Items
 						m_Key.Consume();
 						((Item)targeted).ItemID = 0x1AE0;
 						if ( (((Item)targeted).Name).Contains(" head ") ){ (((Item)targeted).Name) = (((Item)targeted).Name).Replace(" head ", " skull "); }
-						from.SendMessage( "The acid melts the skin away, leaving only a skull." );
+						from.SendMessage( "O ácido derrete a pele, deixando apenas um crânio." );
 					}
 					else
 					{
-						from.SendMessage( "Someone already used acid to melt the skin away." );
+						from.SendMessage( "Alguém já usou ácido para derreter a pele." );
 					}
 				}
 				else if ( targeted is ILockable )
@@ -118,11 +118,11 @@ namespace Server.Items
 					{
 						if ( o is BaseDoor && !((BaseDoor)o).UseLocks() )  // this seems to check house doors also
 						{
-							from.SendMessage( "This acid is to dissolve locks and traps on most chests." );
+							from.SendMessage( "Este ácido serve para dissolver fechaduras e armadilhas na maioria dos baús." );
 						}
 						else if ( targeted is TreasureMapChest )
 						{
-							from.SendMessage( "The acid seems to have done nothing to the mechanism inside." );
+							from.SendMessage( "O ácido parece não ter feito nada ao mecanismo interno." );
 							m_Key.Consume();
 						}
 						else if ( 100 >= cont2.RequiredSkill )
@@ -153,7 +153,7 @@ namespace Server.Items
 							if ( targeted is Item )
 							{
 								Item item = (Item)targeted;
-								from.SendMessage( "The acid seems to have eaten away at the mechanism inside." );
+								from.SendMessage( "O ácido parece ter corroído o mecanismo interno." );
 							}
 
 							from.RevealingAction();
@@ -174,7 +174,7 @@ namespace Server.Items
 							if ( targeted is Item )
 							{
 								Item item = (Item)targeted;
-								from.SendMessage( "The acid seems to have eaten away at the mechanism inside." );
+								from.SendMessage( "O ácido parece ter corroído o mecanismo interno." );
 							}
 
 							from.RevealingAction();
@@ -184,18 +184,18 @@ namespace Server.Items
 						}
 						else 
 						{
-							from.SendMessage( "The acid seems to have done nothing to the mechanism inside." );
+							from.SendMessage( "O ácido parece não ter feito nada ao mecanismo interno." );
 							m_Key.Consume();
 						}
 					}
 					else
 					{
-						from.SendMessage( "You don't need to use acid on that." );
+						from.SendMessage( "Você não precisa usar ácido nisso." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "This acid is to dissolve locks and traps on most chests." );
+					from.SendMessage( "Este ácido serve para dissolver fechaduras e armadilhas na maioria dos baús." );
 				}
 			}
 		}

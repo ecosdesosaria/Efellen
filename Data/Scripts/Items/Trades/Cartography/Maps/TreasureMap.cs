@@ -323,7 +323,7 @@ namespace Server.Items
 				}
 				else if ( !HasDiggingTool( from ) )
 				{
-					from.SendMessage( "You must have a digging tool to dig for treasure." );
+					from.SendMessage( "Você precisa de uma ferramenta de escavação para cavar em busca de tesouro." );
 				}
 				else if ( from.Map != map )
 				{
@@ -395,7 +395,7 @@ namespace Server.Items
 					{
 						if ( Utility.InRange( targ3D, chest3D0, 8 ) ) // We're close, but not quite
 						{
-							from.SendAsciiMessage( 0x44, "The treasure chest is very close!" );
+							from.SendAsciiMessage( 0x44, "O baú do tesouro está muito perto!" );
 						}
 						else
 						{
@@ -414,7 +414,7 @@ namespace Server.Items
 								default:				sDir = "northwest"; break;
 							}
 
-							from.SendAsciiMessage( 0x44, "Try looking for the treasure chest more to the {0}.", sDir );
+							from.SendAsciiMessage( 0x44, "Tente procurar o baú do tesouro mais para o {0}.", sDir );
 						}
 					}
 				}
@@ -762,7 +762,7 @@ namespace Server.Items
 				if ( HasDiggingTool( from ) )
 					m_Map.OnBeginDig( from );
 				else
-					from.SendMessage( "You must have a digging tool to dig for treasure." );
+					from.SendMessage( "Você precisa de uma ferramenta de escavação para cavar em busca de tesouro." );
 			}
 		}
 
@@ -821,7 +821,7 @@ namespace Server.Items
 				list.Add( 1070722, "(" + my_location + ")");
 			}
 
-            string mDesc = "Somewhere in " + Server.Lands.LandName( land ) + "<BR> " + GetName();
+            string mDesc = "Em algum lugar em " + Server.Lands.LandName( land ) + "<BR> " + GetName();
 
             list.Add(1053099, String.Format("<BASEFONT COLOR=#DDCC22>\t{0}<BASEFONT Color=#FBFBFB>", mDesc)); // for somewhere in Lodor : for somewhere in Sosaria  etc...
             
@@ -835,9 +835,9 @@ namespace Server.Items
                 int TimeLeft = 30 - Age;
 
                 if (m_Decoder != null && TimeLeft > 0)
-                    list.Add(String.Format("This map will expire in {0} days", TimeLeft));
+                    list.Add(String.Format("Este mapa expirará em {0} dias", TimeLeft));
                 else if (m_Decoder != null && TimeLeft <= 0)
-                    list.Add("This map will expire and reset very soon");                                                
+                    list.Add("Este mapa expirará e será reiniciado em breve");                                                
             }
 		}
 
@@ -846,7 +846,7 @@ namespace Server.Items
 			Point3D loc = new Point3D( m_Location.X, m_Location.Y, 0 );
 			string world = Server.Lands.LandName( Server.Lands.GetLand( m_Map, loc, m_Location.X, m_Location.Y ) );
 
-            string mDesc = "Somewhere in " + world;
+            string mDesc = "Em algum lugar em " + world;
 
 			if ( m_Completed )
 			{
@@ -1068,7 +1068,7 @@ namespace Server.Scripts.Commands
 			TreasureMap map = new TreasureMap( 6, m.Map, m.Location, m.X, m.Y );
 			(m.Backpack).DropItem( map );
 			map.Decoder = m;
-			m.SendMessage( "A treasure map was added to you pack." );
+			m.SendMessage( "Um mapa do tesouro foi adicionado à sua mochila." );
         }
     }
 }

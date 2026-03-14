@@ -31,20 +31,20 @@ namespace Server.Items
 				if ( Uses < 1 )
 				{
 					Delete();
-					from.SendMessage(32, "This have no charges so it's gone!");
+					from.SendMessage(32, "Isto não tem cargas, então acabou!");
 				}
-				from.SendMessage("Which weapon you want to try to sharpen?");
+				from.SendMessage("Qual arma você quer tentar afiar?");
 				from.Target = new ElementalSharpeningStoneTarget(this);
 			}
 			else
-				from.SendMessage("This must be in your backpack to use.");
+				from.SendMessage("Isto deve estar em sua mochila para usar.");
 		}
 		
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Can Increase A Swordsmanship Weapon's Damage");
-			list.Add( 1049644, "Even Damage To All Defenses"); // PARENTHESIS
+			list.Add( 1070722, "Pode Aumentar Maravilhosamente o Dano de uma Arma de Swordsmanship");
+			list.Add( 1049644, "Dano Igual a Todas as Defesas"); // PARENTHESIS
         }
 
 		public void Sharpening(Mobile from, object o)
@@ -53,7 +53,7 @@ namespace Server.Items
 			{
 				if ( !((Item)o).IsChildOf( from.Backpack ) )
 				{
-					from.SendMessage(32, "This must be in your backpack to sharpen");
+					from.SendMessage(32, "Isto deve estar em sua mochila para afiar");
 				}
 				else if (o is BaseSword && ((BaseSword)o).IsChildOf(from.Backpack))
 				{
@@ -63,13 +63,13 @@ namespace Server.Items
 						i_DI += 15;
 					if (i_DI >= 70)
 					{
-						from.SendMessage(32, "This weapon cannot be sharpened any further");
+						from.SendMessage(32, "Esta arma não pode ser mais afiada");
 						return;
 					}
 					else if (from.Skills[SkillName.Blacksmith].Value < 100.0)
-						from.SendMessage(32, "You need at least 100.0 blacksmith and magery to sharpen weapons with elemental power");
+						from.SendMessage(32, "Você precisa de pelo menos 100.0 em Ferraria e Magia para afiar armas com poder elemental");
 					else if (from.Skills[SkillName.Magery].Value < 100.0)
-						from.SendMessage(32, "You need at least 100.0 blacksmith and magery to sharpen weapons with elemental power");
+						from.SendMessage(32, "Você precisa de pelo menos 100.0 em Ferraria e Magia para afiar armas com poder elemental");
 					else if ( !Deleted )
 					{
 						int bonus = Utility.Random((int)(from.Skills[SkillName.Blacksmith].Value/20));
@@ -83,19 +83,19 @@ namespace Server.Items
 							weap.AosElementDamages.Poison = 20;
 							weap.AosElementDamages.Energy = 20;
 							weap.AosElementDamages.Physical = 20;
-							from.SendMessage(88, "You sharpened the weapon with {0} elemental damage increase", bonus);
+							from.SendMessage(88, "Você afiou a arma com {0} de aumento de dano elemental", bonus);
 						}
 						else
-							from.SendMessage(32, "You fail to sharpen the weapon");
+							from.SendMessage(32, "Você falhou ao afiar a arma");
 						if (Uses <= 1)
 						{
-							from.SendMessage(32, "You used up the sharpening stone");
+							from.SendMessage(32, "Você usou a pedra de afiação");
 							Delete();
 						}
 						else
 						{
 							--Uses;
-							from.SendMessage(32, "You have {0} uses left", Uses);
+							from.SendMessage(32, "Você tem {0} usos restantes", Uses);
 						}
 					}
 				}
@@ -107,11 +107,11 @@ namespace Server.Items
 						i_DI += 15;
 					if (i_DI >= 70)
 					{
-						from.SendMessage(32, "This weapon cannot be sharpened any further");
+						from.SendMessage(32, "Esta arma não pode ser mais afiada");
 						return;
 					}
 					else if (from.Skills[SkillName.Blacksmith].Value < 100.0)
-						from.SendMessage(32, "You need at least 100.0 blacksmith to sharpen weapons with elemntal power");
+						from.SendMessage(32, "Você precisa de pelo menos 100.0 em Ferraria para afiar armas com poder elemental");
 					else if ( !Deleted )
 					{
 						int bonus = Utility.Random((int)(from.Skills[SkillName.Blacksmith].Value/20));
@@ -125,19 +125,19 @@ namespace Server.Items
 							weap.AosElementDamages.Poison = 20;
 							weap.AosElementDamages.Energy = 20;
 							weap.AosElementDamages.Physical = 20;
-							from.SendMessage(88, "You sharpened the weapon with {0} elemental damange increase", bonus);
+							from.SendMessage(88, "Você afiou a arma com {0} de aumento de dano elemental", bonus);
 						}
 						else
-							from.SendMessage(32, "You fail to sharpen the weapon");
+							from.SendMessage(32, "Você falhou ao afiar a arma");
 						if (Uses <= 1)
 						{
-							from.SendMessage(32, "You used up the sharpening stone");
+							from.SendMessage(32, "Você usou a pedra de afiação");
 							Delete();
 						}
 						else
 						{
 							--Uses;
-							from.SendMessage(32, "You have {0} uses left", Uses);
+							from.SendMessage(32, "Você tem {0} usos restantes", Uses);
 						}
 					}
 				}
@@ -149,11 +149,11 @@ namespace Server.Items
 						i_DI += 15;
 					if (i_DI >= 50)
 					{
-						from.SendMessage(32, "This weapon cannot be sharpened any further");
+						from.SendMessage(32, "Esta arma não pode ser mais afiada");
 						return;
 					}
 					else if (from.Skills[SkillName.Blacksmith].Value < 100.0)
-						from.SendMessage(32, "You need at least 100.0 blacksmith to sharpen weapons with elemental power");
+						from.SendMessage(32, "Você precisa de pelo menos 100.0 em Ferraria para afiar armas com poder elemental");
 					else if ( !Deleted )
 					{
 						int bonus = Utility.Random((int)(from.Skills[SkillName.Blacksmith].Value/20));
@@ -167,30 +167,30 @@ namespace Server.Items
 							weap.AosElementDamages.Poison = 20;
 							weap.AosElementDamages.Energy = 20;
 							weap.AosElementDamages.Physical = 20;
-							from.SendMessage(88, "You sharpened the weapon with {0} elemental damange increase", bonus);
+							from.SendMessage(88, "Você afiou a arma com {0} de aumento de dano elemental", bonus);
 						}
 						else
-							from.SendMessage(32, "You fail to sharpen the weapon");
+							from.SendMessage(32, "Você falhou ao afiar a arma");
 						if (Uses <= 1)
 						{
-							from.SendMessage(32, "You used up the sharpening stone");
+							from.SendMessage(32, "Você usou a pedra de afiação");
 							Delete();
 						}
 						else
 						{
 							--Uses;
-							from.SendMessage(32, "You have {0} uses left", Uses);
+							from.SendMessage(32, "Você tem {0} usos restantes", Uses);
 						}
 					}
 				}
 				else
 				{
-					from.SendMessage(32, "You can only enhance edged weapons");
+					from.SendMessage(32, "Você só pode aprimorar armas de corte");
 				}
 			}
 			else
 			{
-				from.SendMessage(32, "You can only enhance edged weapons");
+				from.SendMessage(32, "Você só pode aprimorar armas de corte");
 			}
 		}
 

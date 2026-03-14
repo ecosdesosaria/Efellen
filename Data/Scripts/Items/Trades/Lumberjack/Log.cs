@@ -9,7 +9,7 @@ namespace Server.Items
 {
 	public abstract class BaseLog : Item
 	{
-		public override string DefaultDescription{ get{ return "These logs can be used at a saw mill, which will cut them into boards. The boards can then be used for crafting."; } }
+		public override string DefaultDescription{ get{ return "Estas toras podem ser usadas em uma serraria, que as cortará em tábuas. As tábuas podem então ser usadas para criação."; } }
 
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Crafting; } }
 
@@ -82,12 +82,12 @@ namespace Server.Items
 			}
 			else if ( from.InRange( this.GetWorldLocation(), 2 ) )
 			{
-				from.SendMessage( "Select the saw mill on which to cut the logs." );
+				from.SendMessage( "Selecione a serraria na qual cortar as toras." );
 				from.Target = new InternalTarget( this );
 			}
 			else
 			{
-				from.SendMessage( "The logs are too far away." );
+				from.SendMessage( "As toras estão muito longe." );
 			}
 		}
 
@@ -124,7 +124,7 @@ namespace Server.Items
 
 				if ( !from.InRange( m_Log.GetWorldLocation(), 2 ) )
 				{
-					from.SendMessage( "The logs are too far away." );
+					from.SendMessage( "As toras estão muito longe." );
 					return;
 				}
 

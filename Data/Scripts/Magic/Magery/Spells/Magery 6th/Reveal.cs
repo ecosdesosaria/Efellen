@@ -63,7 +63,7 @@ namespace Server.Spells.Sixth
 
 						Effects.SendLocationParticles( EffectItem.Create( item.Location, item.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, 5024, 0 );
 						Effects.PlaySound( item.Location, item.Map, 0x1FA );
-						Caster.SendMessage( "There is a trap nearby! " + sTrap + "" );
+						Caster.SendMessage( "Há uma armadilha por perto! " + sTrap + "" );
 						foundAnyone = true;
 					}
 					else if ( item is BaseDoor && (	item.ItemID == 0x35E || 
@@ -93,7 +93,7 @@ namespace Server.Spells.Sixth
 					{
 						Effects.SendLocationParticles( EffectItem.Create( item.Location, item.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, 5024, 0 );
 						Effects.PlaySound( item.Location, item.Map, 0x1FA );
-						Caster.SendMessage( "There is a hidden door nearby!" );
+						Caster.SendMessage( "Há uma porta escondida por perto!" );
 						foundAnyone = true;
 					}
 					else if ( item is HiddenTrap )
@@ -102,7 +102,7 @@ namespace Server.Spells.Sixth
 						{
 							Effects.SendLocationParticles( EffectItem.Create( item.Location, item.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, 5024, 0 );
 							Effects.PlaySound( item.Location, item.Map, 0x1FA );
-							Caster.SendMessage( "There is a hidden floor trap somewhere nearby!" );
+							Caster.SendMessage( "Há uma armadilha de chão escondida em algum lugar próximo!" );
 							foundAnyone = true;
 							HiddenTrap.DiscoverTrap( item );
 						}
@@ -163,7 +163,7 @@ namespace Server.Spells.Sixth
 			if ( !foundAnyone )
 			{
 				Caster.PlaySound( 0x1D6 );
-				Caster.SendMessage( "Your don't notice anything." );
+				Caster.SendMessage( "Você não percebe nada." );
 			}
 
 			FinishSequence();

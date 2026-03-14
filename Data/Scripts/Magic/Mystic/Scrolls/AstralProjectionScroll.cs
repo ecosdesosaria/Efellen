@@ -27,12 +27,12 @@ namespace Server.Items
 		{
 			if ( from != owner )
 			{
-				from.SendMessage( "The parchement crumbles in your hand." );
+				from.SendMessage( "O pergaminho se desfaz em sua mão." );
 				this.Delete();
 			}
 			else
 			{
-				from.SendMessage( "These writings need to be added to a monk's tome." );
+				from.SendMessage( "Estes escritos precisam ser adicionados a um tomo de monge." );
 			}
 		}
 
@@ -46,7 +46,7 @@ namespace Server.Items
 		{
 			if ( from != owner )
 			{
-				from.SendMessage( "The parchement crumbles in your hand." );
+				from.SendMessage( "O pergaminho se desfaz em sua mão." );
 				this.Delete();
 			}
 

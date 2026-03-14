@@ -8,7 +8,7 @@ namespace Server.Items
 {
     public class CanopicJar : Item
 	{
-		public override string DefaultDescription{ get{ return "These ancient jars hold the body parts of long dead pharaohs. Alchemists can sometimes use the contents to make a large abundance of potions."; } }
+		public override string DefaultDescription{ get{ return "Estes jarros antigos guardam as partes do corpo de faraós há muito mortos. Alquimistas podem às vezes usar o conteúdo para fazer uma grande quantidade de poções."; } }
 
 		public string JarOwner;
 
@@ -130,7 +130,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isso precisa estar em sua mochila para ser usado." );
 				return;
 			}
 			else
@@ -165,21 +165,21 @@ namespace Server.Items
 
 				if ( from.Skills[SkillName.Alchemy].Value < 50 )
 				{
-					from.SendMessage( "You should be at least an apprentice alchemist to try this!" );
+					from.SendMessage( "Você deve ser pelo menos um alquimista aprendiz para tentar isso!" );
 				}
 				else if ( alchemists == 0 )
 				{
-					from.SendMessage( "You need to be near a local alchemist for their help!" );
+					from.SendMessage( "Você precisa estar perto de um alquimista local para obter ajuda!" );
 				}
 				else if ( barrel == 0 )
 				{
-					from.SendMessage( "You need an empty potion keg to dump this in." );
+					from.SendMessage( "Você precisa de um barril de poção vazio para despejar isto." );
 				}
 				else
 				{
                     if (pack.ConsumeTotal(typeof(Gold), 500))
                     {
-                        from.SendMessage("You give the alchemist 500 gold for their help.");
+                        from.SendMessage("Você dá 500 moedas de ouro ao alquimista pela sua ajuda.");
                         Effects.PlaySound(from.Location, from.Map, 0x026);
 
 						if ( JarPotion == "Nightsight Potions" ){ keg.Type = PotionEffect.Nightsight; }
@@ -236,7 +236,7 @@ namespace Server.Items
                     }
                     else
                     {
-                        from.SendMessage("You will need at least 500 gold in your pack to pay the alchemist.");
+                        from.SendMessage("Você precisará de pelo menos 500 moedas de ouro em sua mochila para pagar o alquimista.");
                     }
 				}
 			}

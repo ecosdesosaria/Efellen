@@ -68,7 +68,7 @@ namespace Server.Items
 			{
 				if (!from.Backpack.ConsumeTotal(typeof(Bottle), 1))
 				{
-					from.SendMessage("You need an empty bottle to drain the fluid from the seaweed.");
+					from.SendMessage("Você precisa de uma garrafa vazia para drenar o líquido da alga.");
 					return;
 				}
 				else
@@ -107,7 +107,7 @@ namespace Server.Items
 					else if ( this.Name == "Seaweed of Greater Mana" ) { from.AddToBackpack( new GreaterManaPotion() ); }
 					else if ( this.Name == "Seaweed of Invulnerability" ) { from.AddToBackpack( new InvulnerabilityPotion() ); }
 
-					from.SendMessage("You squeeze the fluid into the bottle.");
+					from.SendMessage("Você espreme o líquido para dentro da garrafa.");
 					this.Consume();
 
 					return;
@@ -115,7 +115,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage("You fail to get any fluid from the seaweed.");
+				from.SendMessage("Você falha em obter qualquer líquido da alga.");
 				this.Consume();
 				return;
 			}
@@ -124,8 +124,8 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Squeeze To Attempt To Extract Fluid");
-			list.Add( 1049644, "Need An Empty Bottle"); // PARENTHESIS
+			list.Add( 1070722, "Esprema Para Tentar Extrair Líquido");
+			list.Add( 1049644, "Precisa de Uma Garrafa Vazia"); // PARENTHESIS
         }
 
 		public SpecialSeaweed( Serial serial ) : base( serial )

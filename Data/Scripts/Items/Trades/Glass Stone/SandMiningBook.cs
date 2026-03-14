@@ -45,16 +45,16 @@ namespace Server.Items
 			}
 			else if ( pm == null || from.Skills[SkillName.Mining].Base < 100.0 )
 			{
-				pm.SendMessage( "Only a Grandmaster Miner can learn from this book." );
+				pm.SendMessage( "Apenas um Minerador Grão-Mestre pode aprender com este livro." );
 			}
 			else if ( pm.SandMining )
 			{
-				pm.SendMessage( "You have already learned this information." );
+				pm.SendMessage( "Você já aprendeu esta informação." );
 			}
 			else
 			{
 				pm.SandMining = true;
-				pm.SendMessage( "You have learned how to mine fine sand. Target sand areas when mining to look for fine sand." );
+				pm.SendMessage( "Você aprendeu como minerar areia de qualidade. Selecione áreas de areia ao minerar para procurar areia de qualidade." );
 				Delete();
 			}
 		}

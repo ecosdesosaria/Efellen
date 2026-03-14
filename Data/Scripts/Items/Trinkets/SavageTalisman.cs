@@ -39,7 +39,7 @@ namespace Server.Items
 		{
 			if ( this.ItemOwner != from )
 			{
-				from.LocalOverheadMessage( MessageType.Emote, 0x916, true, "This talisman belongs to another!" );
+				from.LocalOverheadMessage( MessageType.Emote, 0x916, true, "Este talismã pertence a outro!" );
 				return false;
 			}
 			return true;
@@ -47,7 +47,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "Talismans are worn in the upper right slot." );
+			from.SendMessage( "Talismãs são usados no slot superior direito." );
 			return;
 		}
 

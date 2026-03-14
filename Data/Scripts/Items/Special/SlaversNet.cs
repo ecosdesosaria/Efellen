@@ -28,7 +28,7 @@ namespace Server.Items
 		public override void AddNameProperties( ObjectPropertyList list )
 		{
 			base.AddNameProperties( list );
-			list.Add( 1070722, "Used to capture tamable creatures" );
+			list.Add( 1070722, "Usado para capturar criaturas domáveis" );
 		}
 
 		public override void OnDoubleClick( Mobile from )
@@ -41,7 +41,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "Which tamable creature do you want to capture?" );
+				from.SendMessage( "Qual criatura domável você quer capturar?" );
 				t = new SlaveTarget( this );
 				from.Target = t;
 			}
@@ -69,33 +69,33 @@ namespace Server.Items
 
 						if ( i_Net.IsParagon )
 						{
-							from.SendMessage("You cannot capture a cursed creature!");
+							from.SendMessage("Você não pode capturar uma criatura amaldiçoada!");
 						}
 						else if ( !i_Net.Tamable )
 						{
-							from.SendMessage("You cannot capture that!");
+							from.SendMessage("Você não pode capturar isso!");
 						}
 						else if ( i_Net.Controlled )
 						{
-							from.SendMessage("You cannot capture a controlled creature!");
+							from.SendMessage("Você não pode capturar uma criatura controlada!");
 						}
 						else if ( ( from.Followers + slots ) > from.FollowersMax )
 						{
-							from.SendMessage("You have too many followers to capture");
-							from.SendMessage("that creature as it requires " + slots + " slots!");
+							from.SendMessage("Você tem muitos seguidores para capturar");
+							from.SendMessage("essa criatura já que ela requer " + slots + " slots!");
 						}
 						else if ( i_Net.MinTameSkill < Utility.RandomMinMax( 50, 200 ) )
 						{
 							if ( Utility.RandomBool() )
 							{
 								from.PlaySound(0x059);
-								from.SendMessage("The net has been torn to shreds!");
+								from.SendMessage("A rede foi rasgada em pedaços!");
 								m_Net.Delete();
 							}
 							else
 							{
 								from.PlaySound(0x059);
-								from.SendMessage("The net failed to capture the creature!");
+								from.SendMessage("A rede falhou em capturar a criatura!");
 							}
 						}
 						else if ( i_Net.Tamable )
@@ -107,22 +107,22 @@ namespace Server.Items
 							i_Net.ControlTarget = from;
 							i_Net.IsBonded = true;
 							i_Net.ControlOrder = OrderType.Follow;
-							from.SendMessage("You have captured the creature!");
+							from.SendMessage("Você capturou a criatura!");
 							m_Net.Delete();
 						}
 						else
 						{
-							from.SendMessage("You cannot capture that!");
+							from.SendMessage("Você não pode capturar isso!");
 						}
 					}
 					else
 					{
-						from.SendMessage("You cannot capture that!");
+						from.SendMessage("Você não pode capturar isso!");
 					}
 				}
 				else
 				{
-					from.SendMessage("You cannot capture that!");
+					from.SendMessage("Você não pode capturar isso!");
 				}
 			}
 		}

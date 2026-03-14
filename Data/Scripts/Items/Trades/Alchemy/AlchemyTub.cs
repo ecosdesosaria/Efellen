@@ -16,8 +16,8 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Place In Your Home");
-            list.Add( 1049644, "Cleans Jars And Bottles");
+			list.Add( 1070722, "Coloque Em Sua Casa");
+			list.Add( 1049644, "Limpa Jarras e Garrafas");
         } 
 
 		public AlchemyTub( Serial serial ) : base( serial )
@@ -40,12 +40,12 @@ namespace Server.Items
 		{
 			if ( this.Movable != false )
 			{
-				from.SendMessage( "This must be set in your home to use!" );
+				from.SendMessage( "Isto deve ser fixado em sua casa para usar!" );
 				return false;
 			}
 			else if ( item is Bottle || item is Jar || ( item is CrystallineJar && item.Name == "crystalline jar" ) )
 			{
-				from.SendMessage( "That is already clean!" );
+				from.SendMessage( "Isso já está limpo!" );
 				return false;
 			}
 			else
@@ -110,7 +110,7 @@ namespace Server.Items
 
 					cleaned = cleaned + plural;
 
-					from.SendMessage( "You thoroughly wash the " + cleaned + "." );
+					from.SendMessage( "Você lava bem o(a) " + cleaned + "." );
 					from.PlaySound( 0x026 );
 
 					this.Hue = Utility.RandomColor(0);
@@ -119,7 +119,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "This is for washing alchemical and herbalist containers." );
+					from.SendMessage( "Isto é para lavar recipientes alquímicos e de herbalismo." );
 					return false;
 				}
 			}

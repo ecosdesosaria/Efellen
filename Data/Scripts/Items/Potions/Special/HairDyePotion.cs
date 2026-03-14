@@ -6,7 +6,7 @@ namespace Server.Items
 {
     public class HairDyePotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "These mixtures need to be dyed a color, before using it on your hair. If you do not dye the contents, and instead leave it a neutral color, then your hair color will return to what it previously was."; } }
+		public override string DefaultDescription{ get{ return "Estas misturas precisam ser tingidas de alguma cor, antes de usá-las em seu cabelo. Se você não tingir o conteúdo, e em vez disso deixá-lo em uma cor neutra, então a cor do seu cabelo retornará ao que era anteriormente."; } }
 
         [Constructable]
         public HairDyePotion() : base( 0x180F, PotionEffect.HairDye )
@@ -27,26 +27,26 @@ namespace Server.Items
 		{
 			if ( from.RaceID > 0 )
 			{
-				from.SendMessage( "You don't find this really useful." );
+				from.SendMessage( "Você não acha isso realmente útil." );
 				return;
 			}
 			else if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isto deve estar em sua mochila para usar." );
 				return;
 			}
 			else if ( this.Hue == 0 )
 			{
 				from.HairHue = from.RecordHairColor;
 				from.FacialHairHue = from.RecordBeardColor;
-				from.SendMessage("Your hair changes color.");
+				from.SendMessage("Seu cabelo muda de cor.");
 				ConsumeCharge( this, from );
 			}
 			else
 			{
 				from.HairHue = this.Hue;
 				from.FacialHairHue = this.Hue;
-				from.SendMessage("Your hair changes color.");
+				from.SendMessage("Seu cabelo muda de cor.");
 				ConsumeCharge( this, from );
 			}
         }

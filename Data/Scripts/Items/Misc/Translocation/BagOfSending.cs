@@ -157,7 +157,7 @@ namespace Server.Items
 		{
 			if( from.Region.IsPartOf( typeof( Regions.Jail ) ) )
 			{
-				from.SendMessage( "You may not do that in jail." );
+				from.SendMessage( "Você não pode fazer isso na cadeia." );
 			}
 			else if( !this.IsChildOf( from.Backpack ) )
 			{
@@ -189,7 +189,7 @@ namespace Server.Items
 
 				if( from.Region.IsPartOf( typeof( Regions.Jail ) ) )
 				{
-					from.SendMessage( "You may not do that in jail." );
+					from.SendMessage( "Você não pode fazer isso na cadeia." );
 				}
 				else if( !m_Bag.IsChildOf( from.Backpack ) )
 				{

@@ -47,7 +47,7 @@ namespace Server.Items
 			}
 			else if ( Server.Items.BaseRace.BloodDrinker( from.RaceID ) || Server.Items.BaseRace.BrainEater( from.RaceID ) )
 			{
-				from.SendMessage( "This does not look very good to you." );
+				from.SendMessage( "Isso não parece muito bom para você." );
 			}
 			else if ( Apply( from ) )
 			{

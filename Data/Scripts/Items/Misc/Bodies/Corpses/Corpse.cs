@@ -1136,7 +1136,7 @@ namespace Server.Items
 		{
 			if ( from.Blessed && from != m_Owner )
 			{
-				from.SendMessage( "You cannot look through the corpse while in this state." );
+				from.SendMessage( "Você não pode examinar o cadáver neste estado." );
 			}
 			else
 			{

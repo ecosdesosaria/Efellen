@@ -53,7 +53,7 @@ namespace Server.Spells.Research
 					TimeSpan duration = TimeSpan.FromSeconds( (double)(DamagingSkill( Caster ) * 4) ); 
                     int amount = (int)(DamagingSkill( Caster ) / 8);
 
-					m.SendMessage( "Your resistance to fire has increased." );
+					m.SendMessage( "Sua resistência ao fogo aumentou." );
 					ResistanceMod mod1 = new ResistanceMod( ResistanceType.Fire, + amount );
 						
 					m.AddResistanceMod( mod1 );
@@ -97,7 +97,7 @@ namespace Server.Spells.Research
 			{
 				if ( m_Mobile != null )
 				{
-					m_Mobile.SendMessage( "The fire protection effect has worn off." );
+					m_Mobile.SendMessage( "O efeito de proteção contra o fogo passou." );
 					m_Mobile.PlaySound( 0x1F8 );
 					DoExpire();
 				}

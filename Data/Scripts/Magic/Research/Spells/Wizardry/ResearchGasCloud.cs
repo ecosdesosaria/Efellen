@@ -43,7 +43,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Choose where you will unleash the gas cloud." );
+			Caster.SendMessage( "Escolha onde você vai desencadear a nuvem de gás." );
 			Caster.Target = new InternalTarget( this );
 		}
 
@@ -68,7 +68,7 @@ namespace Server.Spells.Research
 				BaseCreature.Summon( new GasCloud(), false, Caster, new Point3D( p ), 0x231, duration );
 				Server.Misc.Research.ConsumeScroll( Caster, true, spellIndex, alwaysConsume, Scroll );
 
-				Caster.SendMessage( "You can double click the summoned to dispel them." );
+				Caster.SendMessage( "Você pode clicar duas vezes no criatura convocada para dissipá-la." );
 			}
 
 			FinishSequence();

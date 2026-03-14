@@ -31,7 +31,7 @@ namespace Server.Spells.Herbalist
 			}
 			else if ( !(m is Mobile) )
 			{
-				Caster.SendMessage( "Fireflies will never distract that" );
+				Caster.SendMessage( "Vaga-lumes nunca distrairão isso" );
 			}
 			else if ( CheckHSequence( m ) )
 			{
@@ -51,11 +51,11 @@ namespace Server.Spells.Herbalist
 				}
 				else if ( m is BaseCreature && ((BaseCreature)m).Uncalmable )
 				{
-					Caster.SendMessage( "Fireflies will never distract that" );
+					Caster.SendMessage( "Vaga-lumes nunca distrairão isso" );
 				}
 				else if ( CheckResisted( m ) )
 				{
-					Caster.SendMessage( "They ignore the fireflies" );
+					Caster.SendMessage( "Eles ignoram os vaga-lumes" );
 					m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
 				}
 				else
@@ -66,7 +66,7 @@ namespace Server.Spells.Herbalist
 					{
 						BaseCreature bc = (BaseCreature)m;
 
-						Caster.SendMessage( "The fireflies dazzle them out of battle" );
+						Caster.SendMessage( "Os vaga-lumes os ofuscam para fora da batalha" );
 
 						m.Combatant = null;
 						m.Warmode = false;
@@ -75,8 +75,8 @@ namespace Server.Spells.Herbalist
 					}
 					else
 					{
-						Caster.SendMessage( "The fireflies dazzle them out of battle" );
-						m.SendMessage( "You forget you were fighting while surrounded by fireflies" );
+						Caster.SendMessage( "Os vaga-lumes os ofuscam para fora da batalha" );
+						m.SendMessage( "Você esquece de que estava lutando enquanto estava cercado por vaga-lumes" );
 						m.Combatant = null;
 						m.Warmode = false;
 

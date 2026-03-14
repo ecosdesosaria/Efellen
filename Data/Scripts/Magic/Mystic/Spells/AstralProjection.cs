@@ -39,17 +39,17 @@ namespace Server.Spells.Mystic
             }
             else if (TransformationSpellHelper.UnderTransformation(Caster))
             {
-                Caster.SendMessage("You cannot enter the astral plane while in that form.");
+                Caster.SendMessage("Você não pode entrar no plano astral enquanto estiver nessa forma.");
                 return false;
             }
-			else if ( DisguiseTimers.IsDisguised( Caster ) )
-			{
-                Caster.SendMessage("You cannot enter the astral plane while disguised.");
+            else if ( DisguiseTimers.IsDisguised( Caster ) )
+            {
+                Caster.SendMessage("Você não pode entrar no plano astral enquanto estiver disfarçado.");
                 return false;
             }
             else if (!Caster.CanBeginAction(typeof(AstralProjection)))
             {
-                Caster.SendMessage("You are already in the astral plane.");
+                Caster.SendMessage("Você já está no plano astral.");
                 return false;
             }
             else
@@ -70,15 +70,15 @@ namespace Server.Spells.Mystic
             }
             else if (!Caster.CanBeginAction(typeof(AstralProjection)))
             {
-                Caster.SendMessage("You are already in the astral plane.");
+                Caster.SendMessage("Você já está no plano astral.");
             }
             else if (TransformationSpellHelper.UnderTransformation(Caster))
             {
-                Caster.SendMessage("You cannot enter the astral plane while in that form.");
+                Caster.SendMessage("Você não pode entrar no plano astral enquanto estiver nessa forma.");
             }
-			else if ( DisguiseTimers.IsDisguised( Caster ) )
-			{
-                Caster.SendMessage("You cannot enter the astral plane while disguised.");
+            else if ( DisguiseTimers.IsDisguised( Caster ) )
+            {
+                Caster.SendMessage("Você não pode entrar no plano astral enquanto estiver disfarçado.");
             }
             else if (!Caster.CanBeginAction(typeof(Server.Spells.Shinobi.Deception)) || !Caster.CanBeginAction(typeof(Server.Spells.Fifth.IncognitoSpell)) || (Caster.IsBodyMod && Caster.RaceID != Caster.BodyMod) )
             {
@@ -96,7 +96,7 @@ namespace Server.Spells.Mystic
                         Caster.PlaySound(0x655);
                         Caster.BodyValue = m_NewBody;
                         Caster.Hue = m_NewHue;
-                        Caster.SendMessage("You enter the astral plane.");
+                        Caster.SendMessage("Você entra no plano astral.");
                         Caster.Blessed = true;
 
                         StopTimer(Caster);
@@ -110,7 +110,7 @@ namespace Server.Spells.Mystic
                 }
                 else
                 {
-                    Caster.SendMessage("You are already in the astral plane.");
+                    Caster.SendMessage("Você já está no plano astral.");
                 }
             }
 

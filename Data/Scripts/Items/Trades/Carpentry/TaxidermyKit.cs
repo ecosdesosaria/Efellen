@@ -462,7 +462,7 @@ namespace Server.Items
 							case Direction.East:
 							case Direction.West:  northWall = false; westWall = true; break;
 
-							default: from.SendMessage( "Turn to face the wall on which to hang this trophy." ); return;
+							default: from.SendMessage( "Vire-se para a parede na qual pendurar este troféu." ); return;
 						}
 					}
 

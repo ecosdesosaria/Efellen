@@ -20,11 +20,11 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( IsChildOf( from.Backpack ) )
-				from.SendMessage( "You can only ignite this if it is secure in a home." );
+				from.SendMessage( "Você só pode acender isto se estiver seguro em uma casa." );
 			else if ( !from.InRange( GetWorldLocation(), 2 ) )
-				from.SendMessage( "You will need to get closer to ignite that." );
+				from.SendMessage( "Você precisará se aproximar para acender isso." );
 			else if ( Movable )
-				from.SendMessage( "You can only ignite this if it is secure in a home." );
+				from.SendMessage( "Você só pode acender isso se estiver seguro em uma casa." );
 			else
 			{
 				if ( ItemID == 0x544A ){ 	ItemID = 0x544B; Light = LightType.Circle225; 	from.SendSound( 0x208 ); }

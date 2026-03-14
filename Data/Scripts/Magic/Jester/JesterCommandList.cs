@@ -57,7 +57,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
         }
 
@@ -76,7 +76,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
 		}
 
@@ -95,7 +95,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
 		}
 
@@ -114,7 +114,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
 		}
 
@@ -133,7 +133,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
 		}
 
@@ -152,7 +152,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
 		}
 
@@ -171,7 +171,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
 		}
 
@@ -190,7 +190,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
 		}
 
@@ -209,7 +209,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
 		}
 
@@ -228,7 +228,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You are not a jester!" );
+				from.SendMessage( "Você não é um bobo da corte!" );
 			}
 		}
 	}

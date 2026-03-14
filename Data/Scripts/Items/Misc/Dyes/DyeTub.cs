@@ -413,7 +413,7 @@ namespace Server.Items
 						}
 						else if ( item.Parent is Mobile )
 						{
-							from.SendMessage( "Can't Dye armor that is equipped." );
+							from.SendMessage( "Não é possível tingir armadura que está equipada." );
 						}
 						else
 						{
@@ -433,7 +433,7 @@ namespace Server.Items
 						}
 						else if ( item.Parent is Mobile )
 						{
-							from.SendMessage( "Can't Dye weapons that are equipped." );
+							from.SendMessage( "Não é possível tingir armas que estão equipadas." );
 						}
 						else
 						{

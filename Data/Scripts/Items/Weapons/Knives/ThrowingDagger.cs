@@ -46,7 +46,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "You must be holding that weapon to use it." );
+				from.SendMessage( "Você precisa estar segurando essa arma para usá-la." );
 			}
 		}
 
@@ -67,7 +67,7 @@ namespace Server.Items
 				}
 				else if ( !from.Items.Contains( m_Dagger ) )
 				{
-					from.SendMessage( "You must be holding that weapon to use it." );
+					from.SendMessage( "Você precisa estar segurando essa arma para usá-la." );
 				}
 				else if ( targeted is Mobile )
 				{
@@ -115,7 +115,7 @@ namespace Server.Items
 
 							from.MovingEffect( m_Dagger, 0x529F, 7, 1, false, false, 0x481, 0 );
 
-							from.SendMessage( "You miss." );
+							from.SendMessage( "Você erra." );
 						}
 					}
 				}

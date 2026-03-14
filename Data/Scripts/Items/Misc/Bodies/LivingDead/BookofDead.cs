@@ -36,7 +36,7 @@ namespace Server.Items
 
                         if ( NecroSkill < 80.0 )
                         {
-                                from.SendMessage( "You must have at least 80.0 skill in Necromancy to resurect the dead." );
+                                from.SendMessage( "Você precisa ter pelo menos 80.0 de habilidade em Necromancia para ressuscitar os mortos." );
                                 return;
                         }
                         else if ( (from.Followers + 2) > from.FollowersMax )
@@ -89,38 +89,38 @@ namespace Server.Items
                         {
 				case 0:
                                 {
-                                        from.SendMessage( "You need a Dark Heart to resurrect the dead." );
-                                        break;
+                                from.SendMessage( "Você precisa de um Coração Sombrio para ressuscitar os mortos." );
+                                break;
                                 }
                                 case 1:
                                 {
-                                        from.SendMessage( "You need a severed Head to resurrect the dead." );
-                                        break;
+                                from.SendMessage( "Você precisa de uma Cabeça Decapitada para ressuscitar os mortos." );
+                                break;
                                 }
                                 case 2:
                                 {
-                                        from.SendMessage( "You need a Torso to resurrect the dead." );
-                                        break;
+                                from.SendMessage( "Você precisa de um Tronco para ressuscitar os mortos." );
+                                break;
                                 }
                                 case 3:
                                 {
-                                        from.SendMessage( "You need a Right Arm to resurrect the dead." );
-                                        break;
+                                from.SendMessage( "Você precisa de um Braço Direito para ressuscitar os mortos." );
+                                break;
                                 }
                                 case 4:
                                 {
-                                        from.SendMessage( "You need a Left Arm to resurrect the dead." );
-                                        break;
+                                from.SendMessage( "Você precisa de um Braço Esquerdo para ressuscitar os mortos." );
+                                break;
                                 }
-				case 5:
+                                case 5:
                                 {
-                                        from.SendMessage( "You need a Right Leg to resurrect the dead." );
-                                        break;
+                                from.SendMessage( "Você precisa de uma Perna Direita para ressuscitar os mortos." );
+                                break;
                                 }
-				case 6:
+                                case 6:
                                 {
-                                        from.SendMessage( "You need a Left Leg to resurrect the dead." );
-                                        break;
+                                from.SendMessage( "Você precisa de uma Perna Esquerda para ressuscitar os mortos." );
+                                break;
                                 }
                                 default:
                                 {

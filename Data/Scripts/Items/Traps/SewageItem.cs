@@ -24,13 +24,13 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Sewage Covered");
-			list.Add( 1049644, "Give to an inn or tavern servant to clean"); // PARENTHESIS
+			list.Add( 1070722, "Coberto de Esgoto");
+			list.Add( 1049644, "Dê a um servo de estalagem ou taverna para limpar"); // PARENTHESIS
         }
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This item is covered in sewage and cannot be used." );
+			from.SendMessage( "Este item está coberto de esgoto e não pode ser usado." );
 		}
 
 		public SewageItem( Serial serial ) : base( serial )

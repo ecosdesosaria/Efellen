@@ -35,8 +35,8 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Use This On The High Seas");
-			list.Add( 1049644, "Requires 100 Seafaring");
+			list.Add( 1070722, "Use Isto Em Alto-Mar");
+			list.Add( 1049644, "Requer 100 em Navegação");
         }
 
 		public override void Serialize( GenericWriter writer )
@@ -74,15 +74,15 @@ namespace Server.Items
 			}
 			else if ( from.Skills[SkillName.Seafaring].Value < 100.0 )
 			{
-				from.SendMessage("You are not skilled enough at seafaring to use this net.");
+				from.SendMessage("Você não é habilidoso o suficiente em navegação para usar esta rede.");
 			}
 			else if ( Worlds.IsOnBoat( from ) == false )
 			{
-				from.SendMessage("You'll need to be on your boat to use this net.");
+				from.SendMessage("Você precisa estar em seu barco para usar esta rede.");
 			}
 			else if ( Worlds.BoatToCloseToTown( from ) == true )
 			{
-				from.SendMessage("You'll need to go out to deeper waters to use this net.");
+				from.SendMessage("Você precisará ir para águas mais profundas para usar esta rede.");
 			}
 			else if ( IsChildOf( from.Backpack ) )
 			{

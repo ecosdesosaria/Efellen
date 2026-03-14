@@ -67,13 +67,13 @@ namespace Server.Items
 
 				if ( m_Stake.VampiresSlain >= 250 )
 				{
-					m_Mobile.SendMessage("This has killed enough vampires.");
+					m_Mobile.SendMessage("Isto já matou vampiros o suficiente.");
 					return;
 				}
 				
 				PlayerMobile mobile = (PlayerMobile) m_Mobile;
 				{
-					m_Mobile.SendMessage("What vampire do you want to stake?");
+					m_Mobile.SendMessage("Qual vampiro você quer estacar?");
 					m_Mobile.Target = new CorpseTarget( m_Stake );
 				}
             }
@@ -81,7 +81,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage("Vampire Reward: " + VampiresSlain + " Gold!");
+			from.SendMessage("Recompensa por Vampiro: " + VampiresSlain + " Ouro!");
 			from.SendGump(new SpeechGump( from, "The Vampire Scourge", SpeechFunctions.SpeechText( from, from, "Stake" ) ));
 		}
 
@@ -107,7 +107,7 @@ namespace Server.Items
 
 					if ( c.VisitedByTaxidermist == true )
 					{
-						from.SendMessage("You don't need to do that!");
+						from.SendMessage("Você não precisa fazer isso!");
 						return;
 					}
 					else
@@ -125,7 +125,7 @@ namespace Server.Items
 						{
 							m_Stake.VampiresSlain = m_Stake.VampiresSlain + score;
 								if ( m_Stake.VampiresSlain > 250 ){ m_Stake.VampiresSlain = 250; }
-									from.SendMessage("Vampire Reward: " + m_Stake.VampiresSlain + " Gold!");
+									from.SendMessage("Recompensa por Vampiro: " + m_Stake.VampiresSlain + " Ouro!");
 
 							c.VisitedByTaxidermist = true;
 							from.PlaySound( 0x13E );
@@ -133,14 +133,14 @@ namespace Server.Items
 						}
 						else 
 						{
-							from.SendMessage("You don't need to do that!");
+							from.SendMessage("Você não precisa fazer isso!");
 							return;
 						}
 					}
 				}
 				else
 				{
-					from.SendMessage("You don't need to do that!");
+					from.SendMessage("Você não precisa fazer isso!");
 					return;
 				}
 			}

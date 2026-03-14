@@ -492,11 +492,11 @@ namespace Server.Spells
 			{
 				if ( this is HolyManSpell )
 				{
-					m_Caster.SendMessage( "Your concentration is disturbed, thus ruining thy prayer." );
+					m_Caster.SendMessage( "Sua concentração é perturbada, arruinando assim sua prece." );
 				}
 				else if ( this is MysticSpell || this is JesterSpell )
 				{
-					m_Caster.SendMessage( "Your concentration is disturbed, thus ruining thy attempt." );
+					m_Caster.SendMessage( "Sua concentração é perturbada, arruinando assim seu intento." );
 				}
 				else
 				{
@@ -531,17 +531,17 @@ namespace Server.Spells
 
 			if ( m_Caster.Blessed )
 			{
-				m_Caster.SendMessage( "You cannot do that while in this state." );
+				m_Caster.SendMessage( "Você não pode fazer isso neste estado." );
 				return false;
 			}
 			if ( !CanCastSpell( m_Caster, this ) )
 			{
-				m_Caster.SendMessage( "The darkness of the Underworld seems to be affecting this spell." );
+				m_Caster.SendMessage( "A escuridão do Submundo parece estar afetando este feitiço." );
 				return false;
 			}
 			if ( !CantMixSpell( m_Caster, this ) )
 			{
-				m_Caster.SendMessage( "Elementalism, with magery or necromancy, are affecting your magic." );
+				m_Caster.SendMessage( "O elementalismo, junto com magia ou necromancia, está afetando sua magia." );
 				return false;
 			}
 			else if ( !m_Caster.CheckAlive() )

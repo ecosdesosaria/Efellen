@@ -86,16 +86,16 @@ namespace Server.Spells.Third
                 SpellHelper.Turn(this.Caster, item);
                 object root = item.RootParent;
 
-				if (item.Movable == false){ Caster.SendMessage( "That item does not seem to move." ); }
-				else if (item.Amount > 1){ Caster.SendMessage( "There are too many items stacked here to move." ); }
-				else if (item.Weight > (Caster.Int / 20)){ Caster.SendMessage( "That is to heavy to move." ); }
-				else if (item.RootParentEntity != null){ Caster.SendMessage( "You can not move objects that are inside of other objects or being worn." ); }
+				if (item.Movable == false){ Caster.SendMessage( "Esse item não parece se mover." ); }
+				else if (item.Amount > 1){ Caster.SendMessage( "Há muitos itens empilhados aqui para mover." ); }
+				else if (item.Weight > (Caster.Int / 20)){ Caster.SendMessage( "Isso é muito pesado para ser movido." ); }
+				else if (item.RootParentEntity != null){ Caster.SendMessage( "Você não pode mover objetos que estão dentro de outros objetos ou estando vestidos." ); }
 				else
 				{
 					Effects.SendLocationParticles(EffectItem.Create(item.Location, item.Map, EffectItem.DefaultDuration), 0x376A, 9, 32, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, 5022, 0);
 					Effects.PlaySound(item.Location, item.Map, 0x1F5);
 					Caster.AddToBackpack( item );
-					Caster.SendMessage( "You move the object to within your grasp and place it in your backpack."); 
+					Caster.SendMessage( "Você move o objeto para perto de você e o coloca em sua mochila." );
 				}
 			}
             this.FinishSequence();

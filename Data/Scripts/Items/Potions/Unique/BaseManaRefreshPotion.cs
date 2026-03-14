@@ -55,11 +55,11 @@ namespace Server.Items
 					Timer.DelayCall( TimeSpan.FromSeconds( Delay ), new TimerStateCallback( ReleaseManaLock ), from );
 				}
 				else
-					from.LocalOverheadMessage( MessageType.Regular, 0x22, true, "You must wait 10 seconds before using another mana potion." );
+					from.LocalOverheadMessage( MessageType.Regular, 0x22, true, "Você deve esperar 10 segundos antes de usar outra poção de mana." );
 
 			}
 			else
-				from.SendMessage( "You decide against drinking this potion, as you are already at full mana." );
+				from.SendMessage( "Você decide não beber esta poção, pois já está com mana máxima." );
 		}
 
 		private static void ReleaseManaLock( object state )

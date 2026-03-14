@@ -24,13 +24,13 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Covered in Thick Slime");
-			list.Add( 1049644, "Give to an inn or tavern servant to clean"); // PARENTHESIS
+			list.Add( 1070722, "Coberto de Limo Espesso");
+			list.Add( 1049644, "Dê a um servo de estalagem ou taverna para limpar"); // PARENTHESIS
         }
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This item is covered in slime and cannot be used." );
+			from.SendMessage( "Este item está coberto de limo e não pode ser usado." );
 		}
 
 		public SlimeItem( Serial serial ) : base( serial )

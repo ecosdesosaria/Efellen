@@ -9,7 +9,7 @@ namespace Server.Items
 {
 	public class RepairPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "If you dump this potion on armor, clothing or weapons, they will be fully repaired from any battle worn damage they sustained."; } }
+		public override string DefaultDescription{ get{ return "Se você derramar esta poção em armaduras, roupas ou armas, elas serão totalmente reparadas de qualquer dano de desgaste de batalha que sofreram."; } }
 
 		[Constructable]
 		public RepairPotion() : base( 0x180F, PotionEffect.Repair )
@@ -38,7 +38,7 @@ namespace Server.Items
 		{
          	if ( m.InRange( this.GetWorldLocation(), 1 ) ) 
          	{ 
-				m.SendMessage( "What would you like to pour this on?" );
+				m.SendMessage( "No que você gostaria de derramar isto?" );
 				m.Target = new RepairTarget( this, m );
          	} 
          	else 

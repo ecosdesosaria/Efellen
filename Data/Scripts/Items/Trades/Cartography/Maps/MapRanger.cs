@@ -21,7 +21,7 @@ namespace Server.Items
 
 	public class MapRanger : Item
 	{
-		public override string DefaultDescription{ get{ return "This is a trail map that shows a secret path to get to the location drawn on the map. You can only use these maps if you have at least an 80 in either skills of tracking or cartography. They can never be copied and they eventually wear out from use. If you double click the map while it is in your pack, you will follow the path of the map by yourself. No one will be able to follow you on your quick journey to this place. If you set the map down and double click it, then others will be able to use the map to go with you on your journey as they can double click the map left behind to follow you. The original map will be put back into your pack, while this map left behind will only remain for about 30 seconds so your comrades should make haste and follow. If a map goes to a world you have not discovered the way into on your own, then you will be warned of it."; } }
+		public override string DefaultDescription{ get{ return "Este é um mapa de trilha que mostra um caminho secreto para chegar ao local desenhado no mapa. Você só pode usar estes mapas se tiver pelo menos 80 em qualquer uma das habilidades de rastreamento ou cartografia. Eles nunca podem ser copiados e eventualmente se desgastam com o uso. Se você clicar duas vezes no mapa enquanto ele estiver em sua mochila, seguirá o caminho do mapa sozinho. Ninguém poderá segui-lo em sua jornada rápida para este lugar. Se você colocar o mapa no chão e clicar duas vezes nele, então outros poderão usar o mapa para ir com você em sua jornada, pois poderão clicar duas vezes no mapa deixado para trás para segui-lo. O mapa original será colocado de volta em sua mochila, enquanto este mapa deixado para trás permanecerá por apenas cerca de 30 segundos, então seus companheiros devem se apressar e segui-lo. Se um mapa levar a um mundo para o qual você não descobriu o caminho por conta própria, então você será avisado disso."; } }
 
 		private MapRangerEffect m_MapRangerEffect;
 		private int m_Charges;
@@ -58,7 +58,7 @@ namespace Server.Items
 		{
             base.AddNameProperties(list);
 			list.Add( 1070722, Server.Lands.LandName( Server.Lands.GetLand( m_MapDest, m_PointDest, m_PointDest.X, m_PointDest.Y ) ) );
-			list.Add( 1049644, "Use To Get To Locations Quicker");
+			list.Add( 1049644, "Use Para Chegar a Locais Mais Rápido");
         } 
 		
 		public override void OnDoubleClick( Mobile from )
@@ -78,13 +78,13 @@ namespace Server.Items
 
 			if ( from.Skills[SkillName.Tracking].Value < 80 && from.Skills[SkillName.Cartography].Value < 80 )
 			{
-				from.SendMessage( "You must be a adept ranger or cartographer to use this map." );
+				from.SendMessage( "Você precisa ser um ranger ou cartógrafo adepto para usar este mapa." );
 				return;
 			}
 			else if (	from.Region.IsPartOf( typeof( BardTownRegion ) ) || 
 						from.Region.IsPartOf( typeof( BardDungeonRegion ) ) )
 			{
-				from.SendMessage( "This won't lead you out of this place." ); 
+				from.SendMessage( "Isto não o levará para fora deste lugar." );
 				return;
 			}
 			else if (	!Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) ) && 
@@ -93,12 +93,12 @@ namespace Server.Items
 						!from.Region.IsPartOf( typeof( VillageRegion ) ) && 
 						!from.Region.IsPartOf( typeof( PublicRegion ) ) )
 			{
-				from.SendMessage( "You can only use this map outdoors." ); 
+				from.SendMessage( "Você só pode usar este mapa ao ar livre." ); 
 				return;
 			}
 			else if ( CanUseMap == false )
 			{
-				from.SendMessage( "You are unfamiliar with the world described in the map." );
+				from.SendMessage( "Você não está familiarizado com o mundo descrito no mapa." );
 				return;
 			}
 			else if ( IsChildOf( from.Backpack ) && Charges > 0 ) 
@@ -127,7 +127,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "This map is too worn from over use, and is no longer of any good." );
+				from.SendMessage( "Este mapa está muito desgastado pelo uso excessivo e não serve mais para nada." );
 				this.Delete();
 				return;
 			}
@@ -398,7 +398,7 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Double-Click To Follow The Path");
+			list.Add( 1070722, "Clique Duas Vezes Para Seguir o Caminho");
         } 
 
 		public static void MapTeleport( Mobile m, Point3D loc, Map map )
