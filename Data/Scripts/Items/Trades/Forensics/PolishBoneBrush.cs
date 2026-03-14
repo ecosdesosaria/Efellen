@@ -6,7 +6,7 @@ namespace Server.Items
 {
 	public class PolishBoneBrush : Item
 	{
-		public override string DefaultDescription{ get{ return "Sometimes, you may find various bones while adventuring in the land. This brush lets you polish those bones so they can be used as bones for crafting."; } }
+		public override string DefaultDescription{ get{ return "Às vezes, você pode encontrar vários ossos enquanto se aventura pela terra. Esta escova permite que você polia esses ossos para que possam ser usados como ossos para criação."; } }
 
 		[Constructable]
 		public PolishBoneBrush() : base( 0x1371 )
@@ -18,7 +18,7 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Polish Bones For Crafting");
+			list.Add( 1070722, "Polir Ossos Para Crafting");
         } 
 
 		public PolishBoneBrush( Serial serial ) : base( serial )
@@ -41,7 +41,7 @@ namespace Server.Items
 		{
 			if ( IsChildOf( from.Backpack ) )
 			{
-				from.SendMessage( "Which bones do you want to polish?" );
+				from.SendMessage( "Quais ossos você quer polir?" );
 				from.Target = new PickBones( this );
 			}
 			else
@@ -69,11 +69,11 @@ namespace Server.Items
 
 					if ( !bone.IsChildOf( from.Backpack ) )
 					{
-						from.SendMessage( "You can only polish bones that are in your pack." );
+						from.SendMessage( "Você só pode polir ossos que estão em sua mochila." );
 					}
 					else if ( bone is Container )
 					{
-						from.SendMessage( "You cannot polish containers." );
+						from.SendMessage( "Você não pode polir recipientes." );
 					}
 					else if ( bone.ItemID == 0xECA ){ boneCount = 4; }
 					else if ( bone.ItemID == 0xECB ){ boneCount = 4; }
@@ -139,7 +139,7 @@ namespace Server.Items
 					else if ( bone.ItemID == 0x1b15 ){ boneCount = 1; }
 					else
 					{
-						from.SendMessage( "You cannot polish that." );
+						from.SendMessage( "Você não pode polir isso." );
 					}
 
 					if ( boneCount > 0 )
@@ -173,7 +173,7 @@ namespace Server.Items
 						if ( !drop )
 							from.AddToBackpack( new BrittleSkeletal(boneCount) );
 
-						from.SendMessage( "You polish the bones so they can be used for crafting." );
+						from.SendMessage( "Você poliu os ossos para que possam ser usados para crafting." );
 						from.RevealingAction();
 						from.PlaySound( 0x04F );
 						bone.Delete();
@@ -181,7 +181,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "You cannot polish that." );
+					from.SendMessage( "Você não pode polir isso." );
 				}
 			}
 		}

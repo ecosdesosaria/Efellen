@@ -30,7 +30,7 @@ namespace Server.Misc
 
 					if ( items.Length == 0 )
 					{
-						from.SendMessage ("You need a goodie basket to go trick or treating!");
+						from.SendMessage ("Você precisa de uma cesta de guloseimas para sair de doces ou travessuras!");
 					}
 					else
 					{
@@ -48,13 +48,13 @@ namespace Server.Misc
 									{
 										from.Direction = from.GetDirectionTo( m );
 										m.Direction = m.GetDirectionTo( from );
-										m.Say ("Sorry, I do not celebrate Halloween.");
+										m.Say ("Desculpe, eu não celebro o Dia das Bruxas.");
 									}
 									else if ( ( m is BaseVendor ) && ( player.BodyMod == 0 ) )
 									{
 										from.Direction = from.GetDirectionTo( m );
 										m.Direction = m.GetDirectionTo( from );
-										m.Say ("You are not in costume so how can you go trick or treating?");
+										m.Say ("Você não está fantasiado, então como pode sair de doces ou travessuras?");
 									}
 									else if ( ( m is BaseVendor ) && ( Utility.Random ( 100 ) > 80 ) )
 									{
@@ -63,7 +63,7 @@ namespace Server.Misc
 										from.Direction = from.GetDirectionTo( m );
 										m.Direction = m.GetDirectionTo( from );
 										cont.ConsumeTotal( typeof( Gold ), m_Amount );
-										m.Say ("Sorry, I don't have anything to give you at the moment.");
+										m.Say ("Desculpe, eu não tenho nada para te dar no momento.");
 									}
 									else if ( ( m is BaseVendor ) && ( cont.ConsumeTotal( typeof( Gold ), 1 ) ) )
 									{
@@ -81,7 +81,7 @@ namespace Server.Misc
 									{
 										from.Direction = from.GetDirectionTo( m );
 										m.Direction = m.GetDirectionTo( from );
-										m.Say ("Sorry, I don't have anything to give you at the moment.");
+										m.Say ("Desculpe, eu não tenho nada para te dar no momento.");
 									}
 								}
 
@@ -92,7 +92,7 @@ namespace Server.Misc
 						}
 						if ( !foundbag )
 						{
-							from.SendMessage("Your trick-or-treat bag seems to be worn out from all the things it was filled with.");
+							from.SendMessage("Sua sacola de doces ou travessuras parece estar gasta por todas as coisas com as quais foi preenchida.");
 						}
 					}
 				}
@@ -108,7 +108,7 @@ namespace Server.Misc
 		{
 			if ( Utility.Random ( 100 ) < 10 )
 			{
-				vendor.Say ("Well, I am out of goodies, but let me give this instead. Happy Halloween.");
+				vendor.Say ("Bem, estou sem guloseimas, mas deixe-me dar isto em vez disso. Feliz Dia das Bruxas.");
 
 					int myGift = Utility.Random ( 11 );
 
@@ -217,7 +217,7 @@ namespace Server.Misc
 			}
 			else
 			{
-				vendor.Say ("Here is some candy for you. Happy Halloween.");
+				vendor.Say ("Aqui estão alguns doces para você. Feliz Dia das Bruxas.");
 				PlaceItemIn( gb, new ChocolateMonster() );
 			}
 		}

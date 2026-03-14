@@ -33,7 +33,7 @@ namespace Server.Items
 			else
 			{
 				from.BeginTarget( 2, false, TargetFlags.None, new TargetCallback( OnTarget ) );
-				from.SendMessage( "What do you wish to use the gem on?" );
+				from.SendMessage( "No que você deseja usar a gema?" );
 			}
 		}
 
@@ -80,7 +80,7 @@ namespace Server.Items
 				}
 				else if ( item.LootType == LootType.Blessed )
 				{
-					from.SendMessage( "You can only use this on exceptionally crafted robes, thigh boots, cloaks, or leather gloves." );
+					from.SendMessage( "Você só pode usar isto em vestimentas, botas de cano alto, capas ou luvas de couro excepcionalmente trabalhadas." );
 					return;
 				}
 				else if ( resource != CraftResource.None && resource != CraftResource.RegularLeather )
@@ -95,7 +95,7 @@ namespace Server.Items
 				{
 					if ( eq.CurArcaneCharges >= eq.MaxArcaneCharges )
 					{
-						from.SendMessage( "That item is already fully charged." );
+						from.SendMessage( "Esse item já está totalmente carregado." );
 					}
 					else
 					{
@@ -107,7 +107,7 @@ namespace Server.Items
 						else
 							eq.CurArcaneCharges += charges;
 
-						from.SendMessage( "You recharge the item." );
+						from.SendMessage( "Você recarrega o item." );
 						if ( Amount <= 1 )
 							Delete();
 						else Amount--;
@@ -147,24 +147,24 @@ namespace Server.Items
 
 						item.Hue = DefaultArcaneHue;
 
-						from.SendMessage( "You enhance the item with your gem." );
+						from.SendMessage( "Você melhora o item com sua gema." );
 						if ( Amount <= 1 )
 							Delete();
 						else Amount--;
 					}
 					else
 					{
-						from.SendMessage( "Only exceptional items can be enhanced with the gem." );
+						from.SendMessage( "Apenas itens excepcionais podem ser melhorados com a gema." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "You do not have enough skill in tailoring to enhance the item." );
+					from.SendMessage( "Você não tem habilidade suficiente em alfaiataria para melhorar o item." );
 				}
 			}
 			else
 			{
-				from.SendMessage( "You can only use this on exceptionally crafted robes, thigh boots, cloaks, or leather gloves." );
+				from.SendMessage( "Você só pode usar isto em vestimentas, botas de cano alto, capas ou luvas de couro excepcionalmente trabalhadas." );
 			}
 		}
 

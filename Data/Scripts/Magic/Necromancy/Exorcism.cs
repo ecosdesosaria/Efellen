@@ -30,7 +30,7 @@ namespace Server.Spells.Necromancy
 		public override void OnCast()
 		{
 			Caster.Target = new InternalTarget( this );
-			Caster.SendMessage( "Which demon or undead do you wish to exorcise from this realm?" );
+			Caster.SendMessage( "Qual demônio ou morto-vivo você deseja exorcizar deste reino?" );
 		}
 
 		public override bool CheckCast()
@@ -59,15 +59,15 @@ namespace Server.Spells.Necromancy
 
 				if (!undead.Slays(m) && !exorcism.Slays(m))
 				{
-					Caster.SendMessage( "This spell cannot be used on this type of creature." );
+					Caster.SendMessage( "Este feitiço não pode ser usado neste tipo de criatura." );
 				}
 				else if( bc.IsBonded )
 				{
-					Caster.SendMessage("This spell cannot banish such a creature!");
+					Caster.SendMessage("Este feitiço não pode banir tal criatura!");
 				}
 				else if ( exorcism.Slays(m) && !bc.IsDispellable )
 				{
-					m.Say("Your pitiful spell amuses me, mortal!");
+					m.Say("Seu feitiço patético me diverte, mortal!");
 					double damage;
 					damage = GetNewAosDamage(48, 1, 5, Caster);
 					m.FixedParticles(0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot);
@@ -76,7 +76,7 @@ namespace Server.Spells.Necromancy
 				}
 				else if ( m.Fame >= 23000 )
 				{
-					m.Say("Your magic is puny in comparison to my power!");
+					m.Say("Sua magia é insignificante em comparação ao meu poder!");
 					double damage;
 					damage = GetNewAosDamage(48, 1, 5, Caster);
 					m.FixedParticles(0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot);
@@ -90,11 +90,11 @@ namespace Server.Spells.Necromancy
 					{
 						if (undead.Slays(m))
 						{
-							m.Say("No! You cannot banish me! I will return from the Underworld!");
+							m.Say("Não! Você não pode me banir! Voltarei do Submundo!");
 						}
 						else
 						{
-							m.Say("No! You cannot kill that which is dead! I will return!");
+							m.Say("Não! Você não pode matar o que já está morto! Eu voltarei!");
 						}
 
 						SpellHelper.Turn(Caster, m);
@@ -104,7 +104,7 @@ namespace Server.Spells.Necromancy
 					}
 					else
 					{
-						Caster.SendMessage( "You fail at your exorcism, but did cause some damage." );
+						Caster.SendMessage( "Você falha em seu exorcismo, mas causa algum dano." );
 						double damage;
 						damage = GetNewAosDamage(48, 1, 5, Caster);
 						m.FixedParticles(0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot);

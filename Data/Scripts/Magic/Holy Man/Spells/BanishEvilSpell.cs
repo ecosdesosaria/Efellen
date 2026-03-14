@@ -43,21 +43,21 @@ namespace Server.Spells.HolyMan
             }
             else if (m is PlayerMobile)
             {
-                Caster.SendMessage("Your prayers cannot banish that!");
+                Caster.SendMessage("Suas preces não podem banir isso!");
             }
 			else if (!undead.Slays(m) && !exorcism.Slays(m))
 			{
-                Caster.SendMessage("Your prayers cannot banish such a creature!");
+                Caster.SendMessage("Suas preces não podem banir tal criatura!");
             }
 			else if( bc.IsBonded )
 			{
-                Caster.SendMessage("Your prayers cannot banish such a creature!");
+                Caster.SendMessage("Suas preces não podem banir tal criatura!");
 			}
             else if (CheckHSequence( m ) )
             {
 				if ( exorcism.Slays(m) && !bc.IsDispellable )
 				{
-					m.Say("Your pitiful prayers are heard by no one, mortal!");
+					m.Say("Suas preces insignificantes não são ouvidas por ninguém, mortal!");
 					double damage;
 					damage = GetNewAosDamage(48, 1, 5, Caster);
 					m.FixedParticles(0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot);
@@ -66,7 +66,7 @@ namespace Server.Spells.HolyMan
 				}
 				else if ( m.Fame >= 23000 )
 				{
-					m.Say("Your pitiful prayers are heard by no one, mortal!");
+					m.Say("Suas preces insignificantes não são ouvidas por ninguém, mortal!");
 					double damage;
 					damage = GetNewAosDamage(48, 1, 5, Caster);
 					m.FixedParticles(0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot);
@@ -82,11 +82,11 @@ namespace Server.Spells.HolyMan
 
 					if (undead.Slays(m))
 					{
-						m.Say("No! You cannot banish me! I shall return from the Underworld!");
+						m.Say("Não! Você não pode me banir! Voltarei do Submundo!");
 					}
 					else
 					{
-						m.Say("You cannot kill that which is dead! I shall return!");
+						m.Say("Você não pode matar o que já está morto! Eu voltarei!");
 					}
 
 					new InternalTimer(m).Start();

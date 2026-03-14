@@ -32,7 +32,7 @@ namespace Server.Spells.Research
 		public override void OnCast()
 		{
 			Caster.Target = new InternalTarget( this );
-			Caster.SendMessage( "Which undead creature do you wish to banish?" );
+			Caster.SendMessage( "Qual criatura morta-viva você deseja banir?" );
 		}
 
 		public void Target( Mobile m )
@@ -53,18 +53,18 @@ namespace Server.Spells.Research
 
 				if (!undead.Slays(m))
 				{
-					Caster.SendMessage( "This spell cannot be used on this type of creature." );
+					Caster.SendMessage( "Este feitiço não pode ser usado neste tipo de criatura." );
 				}
 				else if( bc.IsBonded )
 				{
-					Caster.SendMessage("This spell cannot affect such a creature!");
+					Caster.SendMessage("Este feitiço não pode afetar tal criatura!");
 				}
 				else if ( CheckHSequence(m) )
 				{
 					int exChance = (int)(m.Fame/200)+10;
 					if ( DamagingSkill( Caster ) >= Utility.RandomMinMax( 1, exChance ) )
 					{
-						m.Say("No! You cannot send me toward the light! Death is not eternal!");
+						m.Say("Não! Você não pode me enviar em direção à luz! A morte não é eterna!");
 						SpellHelper.Turn(Caster, m);
 						m.FixedParticles(0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot);
 						m.PlaySound(0x208);
@@ -72,7 +72,7 @@ namespace Server.Spells.Research
 					}
 					else
 					{
-						Caster.SendMessage( "You fail at your attempt, but did cause some energy damage." );
+						Caster.SendMessage( "Você falha em sua tentativa, mas causou algum dano de energia." );
 						m.FixedParticles(0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot);
 						m.PlaySound(0x208);
 						SpellHelper.Damage(this, m, damage, 0, 0, 0, 0, 100);

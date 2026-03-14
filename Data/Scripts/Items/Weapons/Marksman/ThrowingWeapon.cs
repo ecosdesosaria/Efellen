@@ -52,15 +52,15 @@ namespace Server.Items
 		public override void AddNameProperties( ObjectPropertyList list )
 		{
 			base.AddNameProperties( list );
-			list.Add( 1049644, "Double click to change ammo from " + ammo );
-			list.Add( 1070722, "Can Be Used With Throwing Gloves" );
+			list.Add( 1049644, "Clique duas vezes para mudar a munição de " + ammo );
+			list.Add( 1070722, "Pode Ser Usado Com Luvas de Arremesso" );
 		}
 
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to change the ammo type." );
+				from.SendMessage( "Isto deve estar em sua mochila para mudar o tipo de munição." );
 				return;
 			}
 			else
@@ -72,7 +72,7 @@ namespace Server.Items
 				else if ( ammo == "Throwing Stars" && Server.Misc.GetPlayerInfo.isJester( from ) ){ ammo = "Throwing Cards"; ItemID = 0x4C29; Name = "throwing card"; }
 				else if ( ammo == "Throwing Cards" && Server.Misc.GetPlayerInfo.isJester( from ) ){ ammo = "Throwing Tomatoes"; ItemID = 0x4C28; Name = "throwing tomato"; }
 				else { ammo = "Throwing Stones"; ItemID = 0x10B6; Name = "throwing stone"; }
-				from.SendMessage(68, "You have changed the ammo to " + ammo + ".");
+				from.SendMessage(68, "Você mudou a munição para " + ammo + ".");
 				this.InvalidateProperties();
 			}
 		}

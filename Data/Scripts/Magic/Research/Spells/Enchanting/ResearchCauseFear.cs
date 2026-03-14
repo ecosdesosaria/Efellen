@@ -32,7 +32,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Who do you want to invoke terror at?" );
+			Caster.SendMessage( "Em quem você quer invocar terror?" );
 			Caster.Target = new InternalTarget( this );
 		}
 
@@ -55,7 +55,7 @@ namespace Server.Spells.Research
 			}
 			else if ( !CanAffect )
 			{
-				Caster.SendMessage( "This spell cannot affect golems or constructs." );
+				Caster.SendMessage( "Este feitiço não pode afetar golems ou construções." );
 			}
 			else if ( CheckHSequence( m ) )
 			{
@@ -71,7 +71,7 @@ namespace Server.Spells.Research
 				if ( m is PlayerMobile )
 				{
 					m.Paralyze( duration );
-					m.SendMessage( "You are frozen in fear." );
+					m.SendMessage( "Você está congelado de medo." );
 					BuffInfo.RemoveBuff( m, BuffIcon.Fear );
 					BuffInfo.AddBuff( m, new BuffInfo( BuffIcon.Fear, 1063688, duration, m ) );
 				}

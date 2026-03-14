@@ -12,7 +12,7 @@ namespace Server.Items
 		public abstract int MinDamage { get; }
 		public abstract int MaxDamage { get; }
 
-		public override string DefaultDescription{ get{ return "These potions, when thrown, will cause around " + MinDamage + " and " + MaxDamage+ " damage to those that are near the blast."; } }
+		public override string DefaultDescription{ get{ return "Estas poções, quando arremessadas, causarão entre " + MinDamage + " e " + MaxDamage + " de dano àqueles que estiverem perto da explosão."; } }
 
 		public override bool RequireFreeHand{ get{ return false; } }
 
@@ -67,12 +67,12 @@ namespace Server.Items
 		{
 			if ( Core.AOS && (from.Paralyzed || from.Blessed || from.Frozen || (from.Spell != null && from.Spell.IsCasting)) )
 			{
-				from.SendMessage( "You cannot do that yet." );
+				from.SendMessage( "Você não pode fazer isso ainda." );
 				return;
 			}
 			else if ( !from.Region.AllowHarmful( from, from ) )
 			{
-				from.SendMessage( "That doesn't feel like a good idea." ); 
+				from.SendMessage( "Isso não parece ser uma boa ideia." ); 
 				return;
 			}
 

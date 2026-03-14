@@ -15,7 +15,7 @@ namespace Server.Items
 {
 	public class DisguiseKit : Item
 	{
-		public override string DefaultDescription{ get{ return "These disguises can be used to appear as someone else. It is helpful if you are one trying to avoid the local guards. You need to be very skilled in hiding, stealth, ninjitsu, snooping, or psychology to use these."; } }
+		public override string DefaultDescription{ get{ return "Estes disfarces podem ser usados para aparecer como outra pessoa. É útil se você está tentando evitar os guardas locais. Você precisa ser muito habilidoso em hiding, stealth, ninjitsu, snooping ou psicologia para usá-los."; } }
 
 		[Constructable]
 		public DisguiseKit() : base( 0xE05 )
@@ -58,7 +58,7 @@ namespace Server.Items
 				from.Skills[SkillName.Psychology].Base < 50 && 
 				from.Skills[SkillName.Snooping].Base < 50 )
 			{
-				from.SendMessage("You don't seem to have the skills to apply this disguise.");
+				from.SendMessage("Você não parece ter as habilidades para aplicar este disfarce.");
 				return false;
 			}
 			else if ( !from.CanBeginAction( typeof( IncognitoSpell ) ) )
@@ -68,7 +68,7 @@ namespace Server.Items
 			}
 			else if ( !from.CanBeginAction( typeof( Deception ) ) )
 			{
-				from.SendMessage("You cannot disguise yourself since you already are using deception.");
+				from.SendMessage("Você não pode se disfarçar pois já está usando um disfarce.");
 			}
 			else if ( TransformationSpellHelper.UnderTransformation( from ) )
 			{

@@ -43,7 +43,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Choose where you will unleash the vortex." );
+			Caster.SendMessage( "Escolha onde você vai desencadear o vórtice." );
 			Caster.Target = new InternalTarget( this );
 		}
 
@@ -68,7 +68,7 @@ namespace Server.Spells.Research
 				BaseCreature.Summon( new DeathVortex(), false, Caster, new Point3D( p ), 0x212, duration );
 				Server.Misc.Research.ConsumeScroll( Caster, true, spellIndex, alwaysConsume, Scroll );
 
-				Caster.SendMessage( "You can double click the summoned to dispel them." );
+				Caster.SendMessage( "Você pode clicar duas vezes no invocado para dissipá-lo." );
 			}
 
 			FinishSequence();

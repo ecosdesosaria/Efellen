@@ -25,7 +25,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "You cannot seem to wear the robe!" );
+				from.SendMessage( "Você não consegue vestir a vestimenta!" );
 				return false;
 			}
 			return true;

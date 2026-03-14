@@ -39,7 +39,7 @@ namespace Server.Spells.Fifth
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Diamond ) ) == null )
 			{
-				Caster.SendMessage( "You need a diamond to cast this spell!" );
+				Caster.SendMessage( "Você precisa de um diamante para lançar este feitiço!" );
 				return false;
 			}
 
@@ -58,7 +58,7 @@ namespace Server.Spells.Fifth
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Diamond ) ) == null )
 			{
-				Caster.SendMessage( "You need a diamond to cast this spell!" );
+				Caster.SendMessage( "Você precisa de um diamante para lançar este feitiço!" );
 			}
 			else if ( CheckSequence() )
 			{

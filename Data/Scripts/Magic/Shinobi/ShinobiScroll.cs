@@ -73,7 +73,7 @@ namespace Server.Items
 						remove = true;
 						from.AddToBackpack( item );
 						from.PlaySound( 0x249 );
-						from.SendMessage( "You already have a scroll so you toss this one out!" );
+						from.SendMessage( "Você já tem um pergaminho, então você joga este fora!" );
 					}
 				}
 				owner = from;
@@ -90,12 +90,12 @@ namespace Server.Items
 			{
 				if ( owner != from )
 				{
-					from.SendMessage( "This is not your scroll!" );
+					from.SendMessage( "Este não é seu pergaminho!" );
 					return;
 				}
 				else if ( !IsChildOf( from.Backpack ) ) 
 				{
-					from.SendMessage( "This must be in your backpack to read." );
+					from.SendMessage( "Este deve estar em seu inventário para ler." );
 					return;
 				}
 				else
@@ -111,7 +111,7 @@ namespace Server.Items
 		{
 		    if (owner == null || owner != from)
 		    {
-		        from.SendMessage("You must read this scroll before you can drop that on it.");
+		        from.SendMessage("Você precisa ler este pergaminho antes de poder soltar isso nele.");
 		        return false;
 		    }		
 
@@ -121,7 +121,7 @@ namespace Server.Items
 
 		        if (summon.Owner != from)
 		        {
-		            from.SendMessage("That was not claimed by you.");
+		            from.SendMessage("Isso não foi reivindicado por você.");
 		        }
 		        else
 		        {
@@ -139,20 +139,20 @@ namespace Server.Items
 		            if (win != "")
 		            {
 		                from.CloseGump(typeof(ShinobiScrollGump));
-		                from.SendMessage("You learned the " + win + " ability!");
+		                from.SendMessage("Você aprendeu a habilidade " + win + "!");
 		                from.PlaySound(0x4D5);
 		                dropped.Delete();
 		                InvalidateProperties();
 		            }
 		            else
 		            {
-		                from.SendMessage("That item does not belong here.");
+		                from.SendMessage("Esse item não pertence aqui.");
 		            }
 		        }
 		    }
 		    else
 		    {
-		        from.SendMessage("That item does not belong here.");
+		        from.SendMessage("Esse item não pertence aqui.");
 		    }		
 
 		    return false;

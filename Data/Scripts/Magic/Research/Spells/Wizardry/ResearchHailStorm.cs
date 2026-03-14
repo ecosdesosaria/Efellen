@@ -31,7 +31,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Choose who you want to unleaseh this storm on." );
+			Caster.SendMessage( "Escolha em quem você quer desencadear esta tempestade." );
 			Caster.Target = new InternalTarget( this );
 		}
 

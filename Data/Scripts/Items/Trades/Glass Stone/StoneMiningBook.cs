@@ -45,16 +45,16 @@ namespace Server.Items
 			}
 			else if ( pm == null || from.Skills[SkillName.Mining].Base < 100.0 )
 			{
-				from.SendMessage( "Only a Grandmaster Miner can learn from this book." );
+				pm.SendMessage( "Apenas um Minerador Grão-Mestre pode aprender com este livro." );
 			}
 			else if ( pm.StoneMining )
 			{
-				pm.SendMessage( "You have already learned this knowledge." );
+				pm.SendMessage( "Você já aprendeu esta informação." );
 			}
 			else
 			{
 				pm.StoneMining = true;
-				pm.SendMessage( "You have learned to mine for stones. Target mountains when mining to find stones." );
+				pm.SendMessage( "Você aprendeu a minerar pedras. Selecione montanhas ao minerar para procurar pedras." );
 				Delete();
 			}
 		}

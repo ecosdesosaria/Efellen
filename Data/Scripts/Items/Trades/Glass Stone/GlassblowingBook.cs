@@ -45,16 +45,16 @@ namespace Server.Items
 			}
 			else if ( pm == null || from.Skills[SkillName.Alchemy].Base < 100.0 )
 			{
-				pm.SendMessage( "Only a Grandmaster Alchemist can learn from this book." );
+				pm.SendMessage( "Apenas um Alquimista Grão-Mestre pode aprender com este livro." );
 			}
 			else if ( pm.Glassblowing )
 			{
-				pm.SendMessage( "You have already learned this information." );
+				pm.SendMessage( "Você já aprendeu esta informação." );
 			}
 			else
 			{
 				pm.Glassblowing = true;
-				pm.SendMessage( "You have learned to make items from glass. You will need to find miners to mine find sand for you to make these items." );
+				pm.SendMessage( "Você aprendeu a fazer itens de vidro. Você precisará encontrar mineradores para minerar areia para você fazer esses itens." );
 				Delete();
 			}
 		}

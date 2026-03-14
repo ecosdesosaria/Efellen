@@ -30,7 +30,7 @@ namespace Server.Items
 			if ( owner == from && from.Skills[SkillName.FistFighting].Value >= 100 && Server.Misc.GetPlayerInfo.isMonk( from ) )
 				Open( from );
 			else
-                from.SendMessage("You cannot seem to open the rucksack.");
+                from.SendMessage("Você não consegue abrir a mochila.");
 		}
 
 		public override bool OnDragDropInto( Mobile from, Item dropped, Point3D p )
@@ -40,7 +40,7 @@ namespace Server.Items
 				return base.OnDragDropInto(from, dropped, p);
 			}
 
-			from.SendMessage("You cannot seem to open the rucksack.");
+			from.SendMessage("Você não consegue abrir a mochila.");
 			return false;
         }
 
@@ -51,7 +51,7 @@ namespace Server.Items
 				return base.OnDragDrop(from, dropped);
 			}
 
-			from.SendMessage("You cannot seem to open the rucksack.");
+			from.SendMessage("Você não consegue abrir a mochila.");
 			return false;
         }
 

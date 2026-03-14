@@ -39,7 +39,7 @@ namespace Server.Spells.DeathKnight
 			{
 				m.FixedParticles( 0x3709, 10, 30, 5052, 0, 0, EffectLayer.LeftFoot );
 				m.PlaySound( 0x208 );
-				m.SendMessage( "You feel your body being scorched by demonic hellfire!" );
+				m.SendMessage( "Você sente seu corpo sendo chamuscado pelo fogo do inferno demoníaco!" );
 
 				SpellHelper.Turn( Caster, m );
 
@@ -105,7 +105,7 @@ namespace Server.Spells.DeathKnight
 			t.Stop();
 			m_Table.Remove( m );
 			m.YellowHealthbar = false;
-			m.SendMessage( "The flames die out.." );
+			m.SendMessage( "As chamas se apagam.." );
 		}
 
 		private class InternalTimer : Timer

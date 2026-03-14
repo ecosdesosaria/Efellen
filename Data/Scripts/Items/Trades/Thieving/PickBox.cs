@@ -11,7 +11,7 @@ namespace Server.Items
 	[Flipable( 0x1C0E, 0x1C0F )]
     public class PickBoxEasy : LockableContainer
     {
-		public override string DefaultDescription{ get{ return "These are locked boxes that thieves use to practice their lockpicking skills. They require a single skill point in lockpicking, and can help you learn up to 25."; } }
+		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de arrombamento. Elas exigem um único ponto de habilidade em arrombamento e podem ajudá-lo a aprender até 25."; } }
 
         [Constructable]
         public PickBoxEasy(): base( 0x1C0E )
@@ -30,7 +30,7 @@ namespace Server.Items
         public override void LockPick(Mobile from)
         {
             this.Locked = true;
-            from.SendMessage("The container relocks itself.");
+            from.SendMessage("O recipiente tranca sozinho.");
         }
 
         public PickBoxEasy(Serial serial) : base(serial)
@@ -53,7 +53,7 @@ namespace Server.Items
 	[Flipable( 0x1C0E, 0x1C0F )]
     public class PickBoxNormal : LockableContainer
     {
-		public override string DefaultDescription{ get{ return "These are locked boxes that thieves use to practice their lockpicking skills. They require a 20 lockpicking, and can help you learn up to 35."; } }
+		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de arrombamento. Elas exigem 20 em arrombamento e podem ajudá-lo a aprender até 35."; } }
 
         [Constructable]
         public PickBoxNormal(): base( 0x1C0E )
@@ -72,7 +72,7 @@ namespace Server.Items
         public override void LockPick(Mobile from)
         {
             this.Locked = true;
-            from.SendMessage("The container relocks itself.");
+            from.SendMessage("O recipiente tranca sozinho.");
         }
 
         public PickBoxNormal(Serial serial) : base(serial)
@@ -95,7 +95,7 @@ namespace Server.Items
 	[Flipable( 0x1C0E, 0x1C0F )]
     public class PickBoxDifficult : LockableContainer
     {
-		public override string DefaultDescription{ get{ return "These are locked boxes that thieves use to practice their lockpicking skills. They require a 30 lockpicking, and can help you learn up to 45."; } }
+		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de arrombamento. Elas exigem 30 em arrombamento e podem ajudá-lo a aprender até 45."; } }
 
         [Constructable]
         public PickBoxDifficult(): base( 0x1C0E )
@@ -114,7 +114,7 @@ namespace Server.Items
         public override void LockPick(Mobile from)
         {
             this.Locked = true;
-            from.SendMessage("The container relocks itself.");
+            from.SendMessage("O recipiente tranca sozinho.");
         }
 
         public PickBoxDifficult(Serial serial) : base(serial)
@@ -137,7 +137,7 @@ namespace Server.Items
 	[Flipable( 0x1C0E, 0x1C0F )]
     public class PickBoxChallenging : LockableContainer
     {
-		public override string DefaultDescription{ get{ return "These are locked boxes that thieves use to practice their lockpicking skills. They require a 40 lockpicking, and can help you learn up to 55."; } }
+		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de arrombamento. Elas exigem 40 em arrombamento e podem ajudá-lo a aprender até 55."; } }
 
         [Constructable]
         public PickBoxChallenging(): base( 0x1C0E )
@@ -156,7 +156,7 @@ namespace Server.Items
         public override void LockPick(Mobile from)
         {
             this.Locked = true;
-            from.SendMessage("The container relocks itself.");
+            from.SendMessage("O recipiente tranca sozinho.");
         }
 
         public PickBoxChallenging(Serial serial) : base(serial)
@@ -179,7 +179,7 @@ namespace Server.Items
 	[Flipable( 0x1C0E, 0x1C0F )]
     public class PickBoxHard : LockableContainer
     {
-		public override string DefaultDescription{ get{ return "These are locked boxes that thieves use to practice their lockpicking skills. They require a 50 lockpicking, and can help you learn up to 65."; } }
+		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de arrombamento. Elas exigem 50 em arrombamento e podem ajudá-lo a aprender até 65."; } }
 
         [Constructable]
         public PickBoxHard(): base( 0x1C0E )
@@ -198,7 +198,7 @@ namespace Server.Items
         public override void LockPick(Mobile from)
         {
             this.Locked = true;
-            from.SendMessage("The container relocks itself.");
+            from.SendMessage("O recipiente tranca sozinho.");
         }
 
         public PickBoxHard(Serial serial) : base(serial)

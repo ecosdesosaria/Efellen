@@ -127,7 +127,7 @@ namespace Server.Items
 			}
 			else if ( Worlds.AllowEscape( m, m.Map, m.Location, m.X, m.Y ) == false )
 			{
-				m.SendMessage( "The gate does not seem to let you enter." );
+				m.SendMessage( "O portal não parece deixar você entrar." );
 			}
 			else if ( m_TargetMap == Map.Lodor && m is PlayerMobile && ((PlayerMobile)m).Young )
 			{
@@ -150,7 +150,7 @@ namespace Server.Items
 			}
 			else
 			{
-				m.SendMessage( "This moongate does not seem to go anywhere." );
+				m.SendMessage( "Este portal lunar não parece levar a lugar nenhum." );
 			}
 		}
 
@@ -227,7 +227,7 @@ namespace Server.Items
 			if ( m_TargetMap != null )
 				BeginConfirmation( from );
 			else
-				from.SendMessage( "This moongate does not seem to go anywhere." );
+				from.SendMessage( "Este portal lunar não parece levar a lugar nenhum." );
 		}
 
 		public static bool IsInTown( Point3D p, Map map )
@@ -439,7 +439,7 @@ namespace Server.Items
 				AddBackground( 0, 0, 420, 400, 0x1453 );
 				AddBackground( 10, 10, 400, 380, 3000 );
 
-				AddHtml( 20, 40, 380, 60, @"Dost thou wish to step into the moongate? Continue to enter the gate, Cancel to stay here", false, false );
+				AddHtml( 20, 40, 380, 60, @"Desejas entrar no portal lunar? Continue para entrar no portal, Cancele para ficar aqui", false, false );
 
 				AddHtmlLocalized( 55, 110, 290, 20, 1011012, false, false ); // CANCEL
 				AddButton( 20, 110, 4005, 4007, 0, GumpButtonType.Reply, 0 );

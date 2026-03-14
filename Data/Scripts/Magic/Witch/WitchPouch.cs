@@ -26,7 +26,7 @@ namespace Server.Items
 		public override void AddNameProperties( ObjectPropertyList list )
 		{
 			base.AddNameProperties( list );
-			if ( this.Weight > 1.0 ){ list.Add( 1070722, "Single Click to Organize" ); }
+			if ( this.Weight > 1.0 ){ list.Add( 1070722, "Clique Uma Vez para Organizar" ); }
 		}
 
 		public override bool OnDragDropInto( Mobile from, Item dropped, Point3D p )
@@ -36,7 +36,7 @@ namespace Server.Items
 				return base.OnDragDropInto(from, dropped, p);
 			}
 
-			from.SendMessage("This belt pouch is for witchery brewing items.");
+			from.SendMessage("Esta bolsa de cinto é para itens de preparação de bruxaria.");
 			return false;
         }
 
@@ -47,7 +47,7 @@ namespace Server.Items
 				return base.OnDragDrop(from, dropped);
 			}
 
-			from.SendMessage("This belt pouch is for witchery brewing items.");
+			from.SendMessage("Esta bolsa de cinto é para itens de preparação de bruxaria.");
 			return false;
         }
 
@@ -72,7 +72,7 @@ namespace Server.Items
 				AddHtml( 13, 13, 300, 20, @"<BODY><BASEFONT Color=" + color + ">WITCH'S BELT POUCH</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddImage(10, 43, 11437);
 				AddButton(863, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-				AddHtml( 325, 42, 565, 142, @"<BODY><BASEFONT Color=" + color + ">This bag is only for items used in the creation of witchery brews, as well as the concoctions created by it. These items will have their weight greatly reduced while in this bag. Here you can configure a quick belt pouch for these potions. This is also the only place where you can open and close the quick belt pouch, which is a bar that will open with icons for easy potion access. You can configure the bar to be either horizontal or vertical. You can choose if you want the names of the potions to appear with a vertical bar. You have to select which potions will appear in the bar. To learn more about witchery brewing, seek out the book titled - The Witch's Brew.</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 325, 42, 565, 142, @"<BODY><BASEFONT Color=" + color + ">Esta bolsa é apenas para itens usados na criação de poções de bruxaria, bem como as poções criadas por ela. Estes itens terão seu peso muito reduzido enquanto estiverem nesta bolsa. Aqui você pode configurar uma bolsa de cinto rápida para essas poções. Este é também o único lugar onde você pode abrir e fechar a bolsa de cinto rápida, que é uma barra que abrirá com ícones para fácil acesso às poções. Você pode configurar a barra para ser horizontal ou vertical. Você pode escolher se quer que os nomes das poções apareçam com uma barra vertical. Você tem que selecionar quais poções aparecerão na barra. Para aprender mais sobre preparo de bruxaria, procure o livro intitulado - A Poção da Bruxa.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
@@ -383,7 +383,7 @@ namespace Server.Items
 
 		public static void warnMe( Mobile from )
 		{
-			string text = "You don't have that brewed!";
+			string text = "Você não tem essa poção preparada!";
 
 			from.SendMessage( text );
 			from.LocalOverheadMessage(MessageType.Emote, 1150, true, text);
@@ -391,7 +391,7 @@ namespace Server.Items
 
 		public override bool OnDragLift( Mobile from )
 		{
-			from.SendMessage( "Single click this bag to organize it." );
+			from.SendMessage( "Clique uma vez nesta bolsa para organizá-la." );
 			return base.OnDragLift( from );
 		}
 
@@ -549,7 +549,7 @@ namespace Server.Items
 				} 
 				else 
 				{
-					m_From.SendMessage( "This must be in your backpack to organize." );
+					m_From.SendMessage( "Isto deve estar em sua mochila para organizar." );
 				} 
 			} 
 		} 

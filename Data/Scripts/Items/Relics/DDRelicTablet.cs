@@ -215,7 +215,7 @@ namespace Server.Items
 
 				AddPage(0);
 				AddImage(13, 13, 102);
-				AddHtml( 61, 79, 133, 88, @"<BODY><BASEFONT Color=#111111><BIG><CENTER>Somewhere in " + stone.SearchDungeon + "<BR>Lies an Artifact</CENTER></BIG></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 61, 79, 133, 88, @"<BODY><BASEFONT Color=#111111><BIG><CENTER>Em algum lugar em " + stone.SearchDungeon + "<BR>Jaz um Artefato</CENTER></BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 38, 256, 181, 18, @"<BODY><BASEFONT Color=#111111><BIG><CENTER>" + stone.SearchItem + "</CENTER></BIG></BASEFONT></CENTER></BODY>", (bool)false, (bool)false);
 			}
 		}
@@ -228,20 +228,20 @@ namespace Server.Items
 			if (house != null && (house.Public ? house.IsBanned(e) : !house.HasAccess(e))){ CanFlip = false; }
 
 			if ( !IsChildOf( e.Backpack ) && e is PlayerMobile && ((PlayerMobile)e).DoubleClickID && NotIdentified ) 
-				e.SendMessage( "This must be in your backpack to identify." );
+				e.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( e is PlayerMobile && ((PlayerMobile)e).DoubleClickID && NotIdentified )
 				IDCommand( e );
 			else if ( CanFlip == true && house != null && this.Movable != false )
 				if ( this.ItemID == RelicFlipID1 ){ this.ItemID = RelicFlipID2; } else { this.ItemID = RelicFlipID1; }
 			else if ( !IsChildOf( e.Backpack ) ) 
-				e.SendMessage( "This must be in your backpack to read." );
+				e.SendMessage( "Isto deve estar em sua mochila para ler." );
 			else if ( e.Int >= SearchReal )
 			{
 				e.CloseGump( typeof( TabletGump ) );
 				e.SendGump( new TabletGump( e, this ) );
 			}
 			else
-				e.SendMessage( "This table looks quite old." );
+				e.SendMessage( "Esta tabuleta parece bastante antiga." );
 		}
 
 		public override void IDCommand( Mobile m )

@@ -22,13 +22,13 @@ namespace Server.Items
 				// Send message to character about their current thirst value
 				int iThirst = from.Thirst;
 				if ( iThirst < 5 )
-					from.SendMessage( "You drink the water but are still extremely thirsty" );
+					from.SendMessage( "Você bebe a água mas ainda está extremamente sedento" );
 				else if ( iThirst < 10 )
-					from.SendMessage( "You drink the water and feel less thirsty" );
+					from.SendMessage( "Você bebe a água e se sente menos sedento" );
 				else if ( iThirst < 15 )
-					from.SendMessage( "You drink the water and feel much less thirsty" ); 
+					from.SendMessage( "Você bebe a água e se sente muito menos sedento" ); 
 				else
-					from.SendMessage( "You drink the water and are no longer thirsty" );
+					from.SendMessage( "Você bebe a água e não está mais sedento" );
 
 				if ( from.Body.IsHuman && !from.Mounted )
 					from.Animate( 34, 5, 1, true, false, 0 );
@@ -37,7 +37,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "You are simply too quenched to drink any more!" );
+				from.SendMessage( "Você está simplesmente saciado demais para beber mais!" );
 				from.Thirst = 20;
 			}
 		}

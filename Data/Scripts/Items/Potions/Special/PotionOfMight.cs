@@ -10,7 +10,7 @@ namespace Server.Items
 {
 	public class PotionOfMight : Item
 	{
-		public override string DefaultDescription{ get{ return "This potion could have the ability to raise your strength."; } }
+		public override string DefaultDescription{ get{ return "Esta poção pode ter a capacidade de aumentar sua força."; } }
 
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Potion; } }
 
@@ -48,13 +48,13 @@ namespace Server.Items
 				else if ( chance >= 50 ){ up = AvailPoints( from, 2 ); }
 
 				from.RawStr = from.RawStr + up;
-				from.SendMessage( "This potions makes you feel stronger!" );
+				from.SendMessage( "Esta poção te faz sentir mais forte!" );
 				Server.Items.BasePotion.PlayDrinkEffect( from );
 				this.Consume();
 			}
 			else
 			{
-				from.SendMessage( "This potion would have no effect on you." );
+				from.SendMessage( "Esta poção não terá efeito sobre você." );
 			}
 		}
 

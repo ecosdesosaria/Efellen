@@ -178,7 +178,7 @@ namespace Server.Spells.Herbalist
 
 			public override bool OnMoveOver( Mobile m )
 			{
-				m.SendMessage("The magic of the stones prevents you from crossing.");
+				m.SendMessage("A magia das pedras impede você de atravessar.");
 				return false;
 			}
 

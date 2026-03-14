@@ -5,7 +5,7 @@ namespace Server.Items
 {
 	public class NightSightPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "These potions allow you to see better in darkness. The effect last between 15 and 25 minutes."; } }
+		public override string DefaultDescription{ get{ return "Estas poções permitem que você enxergue melhor na escuridão. O efeito dura entre 15 e 25 minutos."; } }
 
 		[Constructable]
 		public NightSightPotion() : base( 0xF06, PotionEffect.Nightsight )
@@ -48,7 +48,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "You already have nightsight." );
+				from.SendMessage( "Você já tem nightsight." );
 			}
 		}
 	}

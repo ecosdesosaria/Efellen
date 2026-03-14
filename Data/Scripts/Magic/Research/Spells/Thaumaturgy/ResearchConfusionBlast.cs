@@ -33,7 +33,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Choose a focal point for this spell." );
+			Caster.SendMessage( "Escolha um ponto focal para este feitiço." );
 			Caster.Target = new InternalTarget( this );
 		}
 
@@ -121,7 +121,7 @@ namespace Server.Spells.Research
 				defender.Paralyzed = false;
 				defender.Combatant = null;
 				BuffInfo.RemoveBuff( defender, BuffIcon.Confusion );
-				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "You recover your senses." );
+				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "Você recupera seus sentidos." );
 			}
 		}
 

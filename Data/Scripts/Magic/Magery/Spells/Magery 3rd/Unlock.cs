@@ -56,11 +56,11 @@ namespace Server.Spells.Third
 					}
 					else if ( o is BaseHouseDoor )  // house door check
 					{
-						from.SendMessage( "This spell is to unlock certain containers and other types of doors." );
+						from.SendMessage( "Este feitiço serve para destrancar certos recipientes e outros tipos de portas." );
 					}
 					else if ( o is Item && ((Item)o).VirtualContainer )
 					{
-						from.SendMessage( "This key is to unlock almost any container." );
+						from.SendMessage( "Esta chave é para destrancar quase qualquer recipiente." );
 					}
 					else if ( o is BaseDoor )
 					{
@@ -93,15 +93,15 @@ namespace Server.Spells.Third
 							from.SendLocalizedMessage( 501666 ); // You can't unlock that!
 						else if ( (this.GetType()).IsAssignableFrom(typeof(TreasureMapChest)) )
 						{
-							from.SendMessage( "A magical aura on this long lost treasure seems to negate your spell." );
+							from.SendMessage( "Uma aura mágica neste tesouro há muito perdido parece anular seu feitiço." );
 						}
 						else if ( (this.GetType()).IsAssignableFrom(typeof(ParagonChest)) )
 						{
-							from.SendMessage( "A magical aura on this long lost treasure seems to negate your spell." );
+							from.SendMessage( "Uma aura mágica neste tesouro há muito perdido parece anular seu feitiço." );
 						}
 						else if ( (this.GetType()).IsAssignableFrom(typeof(PirateChest)) )
 						{
-							from.SendMessage( "This seems to be protected from magic, but maybe a thief can get it open." );
+							from.SendMessage( "Isto parece estar protegido da magia, mas talvez um ladrão consiga abrir." );
 						}
 						else {
 							int level = (int)( Spell.ItemSkillValue( from, SkillName.Magery, false ) ) + 20;

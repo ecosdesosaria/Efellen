@@ -12,7 +12,7 @@ namespace Server.Items
 {
 	public abstract class BasePoisonPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "( " + Poison + " Strength ) This poison can be used by someone with a skill of " + (int)MinPoisoningSkill + " to " + (int)MaxPoisoningSkill + " in poisoning. You can use them on bladed weapons or dump the contents on the ground. Once on the ground, those that walk over the liquid have a chance to suffer the poison's effects."; } }
+		public override string DefaultDescription{ get{ return "( " + Poison + " de Força ) Este veneno pode ser usado por alguém com habilidade de envenenamento entre " + (int)MinPoisoningSkill + " e " + (int)MaxPoisoningSkill + ". Você pode usá-lo em armas cortantes ou derramar o conteúdo no chão. Uma vez no chão, aqueles que passarem sobre o líquido têm chance de sofrer os efeitos do veneno."; } }
 
 		public abstract Poison Poison{ get; }
 
@@ -62,17 +62,17 @@ namespace Server.Items
 				}
 				else if ( !from.Region.AllowHarmful( from, from ) )
 				{
-					from.SendMessage( "That doesn't feel like a good idea." ); 
+					from.SendMessage( "Isso não parece ser uma boa ideia." ); 
 					return;
 				}
 				else if ( Server.Items.MonsterSplatter.TooMuchSplatter( from ) )
 				{
-					from.SendMessage( "There is too much liquid on the ground already." ); 
+					from.SendMessage( "Já há muito líquido no chão." );
 					return;
 				}
 				else
 				{
-					from.SendMessage( "Where do you want to dump the poison?" );
+					from.SendMessage( "Onde você quer derramar o veneno?" );
 					ThrowTarget targ = from.Target as ThrowTarget;
 
 					if ( targ != null && targ.Potion == this )
@@ -122,7 +122,7 @@ namespace Server.Items
 				if ( from.GetDistanceToSqrt( d ) > 8 )
 				{
 					nThrown = 0;
-					from.SendMessage( "That is too far away." );
+					from.SendMessage( "Isso está muito longe." );
 				}
 				else if ( !from.CanSee( d ) )
 				{
@@ -132,7 +132,7 @@ namespace Server.Items
 				else if ( (from.Paralyzed || from.Blessed || from.Frozen || (from.Spell != null && from.Spell.IsCasting)) )
 				{
 					nThrown = 0;
-					from.SendMessage( "You cannot do that yet." );
+					from.SendMessage( "Você não pode fazer isso ainda." );
 				}
 				else
 				{

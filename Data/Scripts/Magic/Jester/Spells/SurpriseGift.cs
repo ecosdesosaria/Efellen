@@ -10,7 +10,7 @@ namespace Server.Spells.Jester
 	public class SurpriseGift : JesterSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Surprise Gift", "Here is a gift for you!",
+				"Surprise Gift", "Aqui está um presente para você!",
 				-1,
 				0
 			);
@@ -30,7 +30,7 @@ namespace Server.Spells.Jester
 
 			if( (Caster.Followers + 3) > Caster.FollowersMax )
 			{
-				Caster.SendMessage( "You have too many followers to wrap a gift." );
+				Caster.SendMessage( "Você tem muitos seguidores para embrulhar um presente." );
 				return false;
 			}
 
@@ -55,7 +55,7 @@ namespace Server.Spells.Jester
 				Caster.Hidden = false;
 
 				Caster.PlaySound( Caster.Female ? 794 : 1066 );
-				Caster.Say( "*giggles*" );
+				Caster.Say( "*ri*" );
 			}
 
 			FinishSequence();

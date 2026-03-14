@@ -36,7 +36,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isto deve estar em sua mochila para usar." );
 				return;
 			}
 			else
@@ -444,15 +444,15 @@ namespace Server.Items
 
 				if ( fool == 0 )
 				{
-					from.SendMessage( "You need to be near a local jester to add pranks!" );
+					from.SendMessage( "Você precisa estar perto de um bufão local para adicionar travessuras!" );
 				}
 				else if ( PrankPoints >= 50000 )
 				{
-					from.SendMessage( "That bag is already full of pranks." );
+					from.SendMessage( "Esta bolsa já está cheia de travessuras." );
 				}
 				else if ( ( PrankPoints + dropped.Amount ) < 50000 )
 				{
-					from.SendMessage( "You add some more gold for pranks." );
+					from.SendMessage( "Você adiciona mais ouro para travessuras." );
 					PrankPoints = PrankPoints + dropped.Amount;
 					from.PlaySound( 0x2E6 );
 					dropped.Delete();
@@ -460,7 +460,7 @@ namespace Server.Items
 				else
 				{
 					int need = 50000 - PrankPoints;
-					from.SendMessage( "You add some more gold for pranks and now the bag is full." );
+					from.SendMessage( "Você adiciona mais ouro para travessuras e agora a bolsa está cheia." );
 					PrankPoints = 50000;
 					dropped.Amount = dropped.Amount - need;
 					from.PlaySound( 0x2E6 );

@@ -54,7 +54,7 @@ namespace Server.Spells.DeathKnight
 
 			if ( m_Table.Contains( m ) )
 			{
-				Caster.LocalOverheadMessage( MessageType.Regular, 0x481, false, "That target already has this affect." );
+				Caster.LocalOverheadMessage( MessageType.Regular, 0x481, false, "Esse alvo já possui este efeito." );
 			}
 
 			else if ( CheckBSequence( m, false ) && CheckFizzle() )
@@ -66,7 +66,7 @@ namespace Server.Spells.DeathKnight
 				m_Table[m] = t;
 				m.PlaySound( 0x202 );
 				m.FixedParticles( 0x3779, 1, 46, 9502, 5, 3, EffectLayer.Waist );
-				m.SendMessage( "Your skin changes, causing your wounds to heal faster." );
+				m.SendMessage( "Sua pele muda, causando suas feridas a se curarem mais rápido." );
 				DrainSoulsInLantern( Caster, RequiredTithing );
 
 				double timer = GetKarmaPower( Caster );

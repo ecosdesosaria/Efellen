@@ -34,7 +34,7 @@ namespace Server.Spells.Herbalist
 
 			else if ( Caster.Skills[CastSkill].Value < RequiredSkill )
 			{
-				Caster.PrivateOverheadMessage(MessageType.Regular, 0x14C, false, "You lack the understanding to use this fertilizer.", Caster.NetState);
+				Caster.PrivateOverheadMessage(MessageType.Regular, 0x14C, false, "Você não tem o conhecimento necessário para usar este fertilizante.", Caster.NetState);
 				return false;
 			}
 
@@ -65,7 +65,7 @@ namespace Server.Spells.Herbalist
 				BaseCreature.Summon( new SummonedTreefellow(), false, Caster, new Point3D( p ), 0x212, duration );
 				Caster.PlaySound( 0x19 );
 
-				Caster.SendMessage( "You can double click the summoned to dispel them." );
+				Caster.SendMessage( "Você pode clicar duas vezes no invocado para dissipá-lo." );
 			}
 
 			FinishSequence();

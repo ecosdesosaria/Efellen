@@ -8,7 +8,7 @@ namespace Server.Items
 {
 	public class DurabilityPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "When you dump these potions on armor, clothing or weapons, the maximum durablity of the item increases by 10. It has no effect on items with a maximum durability greater than 50."; } }
+		public override string DefaultDescription{ get{ return "Quando você derrama estas poções em armaduras, roupas ou armas, a durabilidade máxima do item aumenta em 10. Não tem efeito em itens com durabilidade máxima maior que 50."; } }
 
 		[Constructable]
 		public DurabilityPotion() : base( 0x180F, PotionEffect.Durability )
@@ -37,7 +37,7 @@ namespace Server.Items
       	{ 
          	if ( m.InRange( this.GetWorldLocation(), 1 ) ) 
          	{ 
-				m.SendMessage( "What would you like to pour this on!" );
+				m.SendMessage( "No que você gostaria de derramar isto!" );
 				m.Target = new DurabilityTarget( this, m );
          	} 
          	else 
@@ -71,15 +71,15 @@ namespace Server.Items
 					BaseArmor repairing = (BaseArmor)targeted;
 					if ( !repairing.IsChildOf( from.Backpack ) )
 					{
-						from.SendMessage( "The item must be in your backpack to use that potion on it!" );
+						from.SendMessage( "O item precisa estar em sua mochila para usar essa poção nele!" );
 					}
 					else if ( repairing.MaxHitPoints >= 50 )
 					{
-						from.SendMessage( "This item is already too durable to be affected!" );
+						from.SendMessage( "Este item já é suficientemente durável para ser afetado!" );
 					}
 					else
 					{
-						from.SendMessage( "You add to the durability of the item!" );
+						from.SendMessage( "Você adiciona à durabilidade ao item!" );
 						repairing.MaxHitPoints += 10;
 						Server.Items.DurabilityPotion.ConsumeCharge( m_Potion, m_From );
 					}
@@ -89,15 +89,15 @@ namespace Server.Items
 					BaseWeapon repairing2 = (BaseWeapon)targeted;
 					if ( !repairing2.IsChildOf( from.Backpack ) )
 					{
-						from.SendMessage( "The item must be in your backpack to use that potion on it!" );
+						from.SendMessage( "O item precisa estar em sua mochila para usar essa poção nele!" );
 					}
 					else if ( repairing2.MaxHitPoints >= 50 )
 					{
-						from.SendMessage( "This item is already too durable to be affected!" );
+						from.SendMessage( "Este item já é suficientemente durável para ser afetado!" );
 					}
 					else
 					{
-						from.SendMessage( "You add to the durability of the item!" );
+						from.SendMessage( "Você adiciona à durabilidade ao item!" );
 						repairing2.MaxHitPoints += 10;
 						Server.Items.DurabilityPotion.ConsumeCharge( m_Potion, m_From );
 					}
@@ -107,26 +107,26 @@ namespace Server.Items
 					BaseClothing repairing = (BaseClothing)targeted;
 					if ( !repairing.IsChildOf( from.Backpack ) )
 					{
-						from.SendMessage( "The item must be in your backpack to use that potion on it!" );
+						from.SendMessage( "O item precisa estar em sua mochila para usar essa poção nele!" );
 					}
 					else if ( repairing.MaxHitPoints >= 50 )
 					{
-						from.SendMessage( "This item is already too durable to be affected!" );
+						from.SendMessage( "Este item já é suficientemente durável para ser afetado!" );
 					}
 					else
 					{
-						from.SendMessage( "You add to the durability of the item!" );
+						from.SendMessage( "Você adiciona à durabilidade ao item!" );
 						repairing.MaxHitPoints += 10;
 						Server.Items.DurabilityPotion.ConsumeCharge( m_Potion, m_From );
 					}
 				}
 				else if ( targeted is Item )
 				{
-					from.SendMessage( "This item cannot be altered!" );
+					from.SendMessage( "Este item não pode ser alterado!" );
 				}
 				else
 				{
-					from.SendMessage( "You cannot do that!" );
+					from.SendMessage( "Você não pode fazer isso!" );
 				}
 			}
 		}

@@ -23,7 +23,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol770( Serial serial ) : base( serial )
@@ -61,7 +61,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol771( Serial serial ) : base( serial )
@@ -99,7 +99,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol772( Serial serial ) : base( serial )
@@ -137,7 +137,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol773( Serial serial ) : base( serial )
@@ -175,7 +175,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol774( Serial serial ) : base( serial )
@@ -213,7 +213,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol775( Serial serial ) : base( serial )
@@ -251,7 +251,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol776( Serial serial ) : base( serial )
@@ -289,7 +289,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol777( Serial serial ) : base( serial )
@@ -327,7 +327,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol778( Serial serial ) : base( serial )
@@ -365,7 +365,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol779( Serial serial ) : base( serial )
@@ -403,7 +403,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol780( Serial serial ) : base( serial )
@@ -441,7 +441,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol781( Serial serial ) : base( serial )
@@ -479,7 +479,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol782( Serial serial ) : base( serial )
@@ -517,7 +517,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "This symbol once belonged to a great holy man." );
+			from.SendMessage( "Este símbolo pertenceu a um grande homem santo." );
 		}
 
 		public HolyManSymbol783( Serial serial ) : base( serial )

@@ -15,7 +15,7 @@ namespace Server.Items
         private static readonly TimeSpan MaxCooldown = TimeSpan.FromSeconds(9.0);
         private static readonly TimeSpan MinCooldown = TimeSpan.FromSeconds(4.5);
 
-        public override string DefaultDescription{ get{ return "Veterinary supplies require a both Veterinary and Druidism skills. When you use them on someone, it will begin the attempt to heal some damage on all of your followers. If your skills are high enough, you can cure most poisons or even bring the dead back to life."; } }
+        public override string DefaultDescription{ get{ return "Suprimentos veterinários exigem habilidades tanto de Veterinária quanto de Druidismo. Quando você os usa em alguém, começará a tentativa de curar algum dano em todos os seus seguidores. Se suas habilidades forem altas o suficiente, você pode curar a maioria dos venenos ou até mesmo trazer os mortos de volta à vida."; } }
         private static Dictionary<Mobile, DateTime> m_LastUse = new Dictionary<Mobile, DateTime>();
         
         private int m_UsesRemaining = 200;
@@ -30,8 +30,8 @@ namespace Server.Items
         public override void GetProperties(ObjectPropertyList list)
         {
             base.GetProperties(list);
-            list.Add("Veterinary Supplies");
-            list.Add("Uses Remaining: " + m_UsesRemaining.ToString());
+            list.Add("Suprimentos Veterinários");
+            list.Add("Usos Restantes: " + m_UsesRemaining.ToString());
         }
 
         [Constructable]
@@ -48,19 +48,19 @@ namespace Server.Items
         {
             if (!IsChildOf(from.Backpack))
             {
-                from.SendMessage("You must have the Veterinary Supplies in your backpack to use them.");
+                from.SendMessage("Você deve ter os Suprimentos Veterinários em sua mochila para usá-los.");
                 return;
             }
 
             if (from.Followers == 0)
             {
-                from.SendMessage("You have no followers to tend to.");
+                from.SendMessage("Você não tem seguidores para cuidar.");
                 return;
             }
           
             if (HealingCooldownTracker.IsOnBandageCooldown(from))
             {
-                from.SendMessage("You cannot use veterinary supplies while bandages are in use.");
+                from.SendMessage("Você não pode usar suprimentos veterinários enquanto ataduras estão em uso.");
                 return;
             }
            
@@ -80,7 +80,7 @@ namespace Server.Items
             if (DateTime.UtcNow < last + cooldown)
             {
                 TimeSpan remaining = (last + cooldown) - DateTime.UtcNow;
-                from.SendMessage("You must wait {0:F1} more seconds to use the Veterinary Supplies again.", remaining.TotalSeconds);
+                from.SendMessage("Você deve esperar {0:F1} segundos adicionais para usar os Suprimentos Veterinários novamente.", remaining.TotalSeconds);
                 return;
             }
 
@@ -97,13 +97,13 @@ namespace Server.Items
 
             if (Utility.RandomDouble() <= successChance)
             {
-                from.SendMessage("You begin tending to your followers... ({0:F1}s)", cooldown.TotalSeconds);
-                from.PublicOverheadMessage(MessageType.Regular, 0x22, false, String.Format("You begin tending to your followers... ({0}s)", cooldown.TotalSeconds));
+                from.SendMessage("Você começa a cuidar de seus seguidores... ({0:F1}s)", cooldown.TotalSeconds);
+                from.PublicOverheadMessage(MessageType.Regular, 0x22, false, String.Format("Você começa a cuidar de seus seguidores... ({0}s)", cooldown.TotalSeconds));
                 Timer.DelayCall(cooldown, new TimerStateCallback(ApplyVetSupplies), from);
             }
             else
             {
-                from.SendMessage("You fumble with your supplies and fail to use them properly.");
+                from.SendMessage("Você atrapalha-se com seus suprimentos e não consegue usá-los corretamente.");
                 from.FixedParticles(0x3735, 1, 30, 9502, EffectLayer.Waist);
                 from.PlaySound(0x5C); 
             }
@@ -141,7 +141,7 @@ namespace Server.Items
                             {
                                 pet.ResurrectPet();
                                 pet.FixedEffect(0x376A, 10, 16);
-                                from.SendMessage("You have resurrected {0}.", pet.Name != null ? pet.Name : "your pet");
+                                from.SendMessage("Você ressuscitou {0}.", pet.Name != null ? pet.Name : "seu animal de estimação");
                                 anyAffected = true;
                                 continue;
                             }
@@ -181,11 +181,11 @@ namespace Server.Items
                         if (didSomething)
                         {
                             m_UsesRemaining--;
-                            from.SendMessage("{0} has been tended to.{1}", pet.Name != null ? pet.Name : "A pet", healed > 0 ? String.Format(" Healed for {0}.", healed) : "");
+                            from.SendMessage("{0} foi cuidado.{1}", pet.Name != null ? pet.Name : "Um animal", healed > 0 ? String.Format(" Curado em {0}.", healed) : "");
                             anyAffected = true;
                             if (m_UsesRemaining <= 0)
                             {
-                                from.SendMessage("Your veterinary supplies have been used up.");
+                                from.SendMessage("Seus suprimentos veterinários foram usados.");
                                 Delete();
                             }
                             else
@@ -203,7 +203,7 @@ namespace Server.Items
 
             if (!anyAffected)
             {
-                from.SendMessage("None of your followers needed attention.");
+                from.SendMessage("Nenhum de seus seguidores precisou de atenção.");
             }
         }
         public override void Serialize(GenericWriter writer)

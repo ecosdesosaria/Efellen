@@ -217,7 +217,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "Someone is currently using the control panel." );
+					from.SendMessage( "Alguém está usando o painel de controle no momento." );
 					return;
 				}
 			}
@@ -513,7 +513,7 @@ namespace Server.Items
 			Effects.SendLocationEffect( new Point3D( X - 1, Y - 1, Z + 2 ), Map, 0x36B0, 4, 4 );
 			Effects.SendLocationEffect( new Point3D( X - 2, Y - 1, Z + 2 ), Map, 0x36B0, 4, 4 );
 
-			from.SendMessage( "You scrounge some gems from the wreckage." );
+			from.SendMessage( "Você junta algumas gemas dos destroços." );
 
 			for ( int i = 0; i < SideLength; i++ )
 			{

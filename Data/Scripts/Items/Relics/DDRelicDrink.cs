@@ -108,23 +108,23 @@ namespace Server.Items
 			from.PlaySound( Utility.RandomList( 0x30, 0x2D6 ) );
 
 			if ( !IsChildOf( from.Backpack ) && from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified ) 
-				from.SendMessage( "This must be in your backpack to identify." );
+				from.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified )
 				IDCommand( from );
 			else if ( Weight > 75 )
 			{
 				from.AddToBackpack( new Barrel() );
-				from.SendMessage( "You down the entire keg and are no longer thirsty." );
+				from.SendMessage( "Você esvazia o barril inteiro e não está mais com sede." );
 			}
 			else if ( Weight > 25 )
 			{
 				from.AddToBackpack( new PotionKeg() );
-				from.SendMessage( "You down the entire keg and are no longer thirsty." );
+				from.SendMessage( "Você esvazia o barril inteiro e não está mais com sede." );
 			}
 			else
 			{
 				from.AddToBackpack( new Bottle() );
-				from.SendMessage( "You drink the entire bottle and are no longer thirsty." );
+				from.SendMessage( "Você bebe todo o frasco e não está mais com sede." );
 			}
 		}
 

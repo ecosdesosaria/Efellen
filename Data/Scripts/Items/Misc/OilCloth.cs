@@ -7,7 +7,7 @@ namespace Server.Items
 {
 	public class OilCloth : Item, IScissorable, IDyable
 	{
-		public override string DefaultDescription{ get{ return "Oil clothes are mostly used by assassins to wipe poison from their blades. Some also use them on beverages in order to create fire bombs."; } }
+		public override string DefaultDescription{ get{ return "Panos oleosos são usados principalmente por assassinos para limpar veneno de suas lâminas. Alguns também os usam em bebidas para criar bombas incendiárias."; } }
 
 		public override int LabelNumber{ get{ return 1041498; } } // oil cloth
 
@@ -50,7 +50,7 @@ namespace Server.Items
         if ( DisguiseTimers.IsDisguised(from) ) // Check if the player is disguised
         {
             DisguiseTimers.RemoveDisguise(from);
-            from.SendMessage("You use the oil cloth to remove your disguise.");
+            from.SendMessage("Você usa o pano oleoso para remover seu disfarce.");
             Consume(); 
         }
         else

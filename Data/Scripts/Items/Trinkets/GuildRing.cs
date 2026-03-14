@@ -113,7 +113,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "This is not your guild ring!" );
+				from.SendMessage( "Este não é seu anel de guilda!" );
 				return false;
 			}
 			return true;

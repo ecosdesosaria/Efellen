@@ -74,7 +74,7 @@ namespace Server.Items
 					if ( iAmount > 1 ){ sEnd = "s."; }
 
 					HaveGold = HaveGold + iAmount;
-					from.SendMessage( "You added " + iAmount.ToString() + " gold coin" + sEnd );
+					from.SendMessage( "Você adicionou " + iAmount.ToString() + " moeda" + sEnd );
 					dropped.Delete();
 					return true;
 				}
@@ -194,11 +194,11 @@ namespace Server.Items
 
 			if ( (m.Followers + followers) > m.FollowersMax )
 			{
-				vet.Say( "You have too many followers with you to hatch this egg." );
+				vet.Say( "Você tem muitos seguidores com você para chocar este ovo." );
 				return false;
 			}
 
-			if ( GoldReturn > 0 ){ m.AddToBackpack( new Gold( GoldReturn ) ); vet.Say( "Here is " + GoldReturn.ToString() + " gold back for all of your help." ); }
+			if ( GoldReturn > 0 ){ m.AddToBackpack( new Gold( GoldReturn ) ); vet.Say( "Aqui estão " + GoldReturn.ToString() + " moedas de ouro de volta por toda a sua ajuda." ); }
 
 			BaseCreature dragon = new RidingDragon( "a dragon", egg.DragonBody, egg.DragonType );
 			dragon.OnAfterSpawn();
@@ -214,8 +214,8 @@ namespace Server.Items
 			string style = "dragon";
 			if ( followers == 3 ){ style = "wyrm"; dragon.Name = (dragon.Name).Replace(" dragon", " wyrm"); }
 
-			LoggingFunctions.LogGenericQuest( m, "has hatched a " + style + "" );
-			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Your " + style + " has hatched.", m.NetState);
+			LoggingFunctions.LogGenericQuest( m, "chocou um(a) " + style + "" );
+			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Seu " + style + " chocou.", m.NetState);
 
 			m.PlaySound( 0x041 );
 
@@ -233,7 +233,7 @@ namespace Server.Items
 				string sDragon = "dragon";
 					if ( egg.DragonBody == 59 ){ sDragon = "wyrm"; }
 
-				string sText = "This egg contains the embryo of a " + sDragon + ". Dwarves would take these eggs and brew the potions of the four elements to pour over the shell. The elixir of the flame, the potion of the earth, the mixture of the sea, and the oil of the winds are the four alchemical potions used in this process. Once these liquids are poured onto the shell, it could be broken by the young " + sDragon + " and the power of all the elements combined would mature the " + sDragon + " to almost be fully grown. These alchemical skills died off with the dwarven race, but you did hear rumors of these potions being seen in various places. These are usually in long lost dungeons or ruins, and said to be last seen in small chests resting on a runic pedestal. If you could get them, and bring the egg to an animal expert, they may be able to help you hatch it. The animal expert will require some gold (placed onto the egg) as you will need the help of a particular animal expert and they will require payment for their services. This animal expert is at the location shown below. If you have any veterinary skill, they may refund some of the gold for the help you may provide in the birth. When hatched and almost fully grown, these " + sDragon + "s will become your bonded pet. You will have to feed it and stable it when required. You can also perform some druidism on it without having any proficiency in the skill. This will help you with information about them, like what they want to eat.";
+				string sText = "Este ovo contém o embrião de um(a) " + sDragon + ". Anões pegariam estes ovos e preparariam as poções dos quatro elementos para derramar sobre a casca. O elixir da chama, a poção da terra, a mistura do mar e o óleo dos ventos são as quatro poções alquímicas usadas neste processo. Depois que esses líquidos são derramados sobre a casca, ela poderia ser quebrada pelo jovem " + sDragon + " e o poder de todos os elementos combinados faria o(a) " + sDragon + " amadurecer até quase estar totalmente crescido(a). Essas habilidades alquímicas morreram com a raça anã, mas você ouviu rumores sobre essas poções serem vistas em vários lugares. Elas geralmente estão em masmorras ou ruínas há muito perdidas, e diz-se que foram vistas pela última vez em pequenos baús sobre um pedestal rúnico. Se você puder obtê-las e levar o ovo a um especialista em animais, eles poderão ajudá-lo a chocá-lo. O especialista em animais exigirá algum ouro (colocado no ovo), pois você precisará da ajuda de um especialista em animais específico e eles exigirão pagamento por seus serviços. Este especialista em animais está na localização mostrada abaixo. Se você tiver alguma habilidade veterinária, eles podem reembolsar parte do ouro pela ajuda que você pode fornecer no nascimento. Quando chocado e quase totalmente crescido, este(a) " + sDragon + " se tornará seu animal de estimação vinculado. Você terá que alimentá-lo(a) e estabulá-lo(a) quando necessário. Você também pode praticar um pouco de druidismo nele(a) sem ter nenhuma proficiência na habilidade. Isso o ajudará com informações sobre ele(a), como o que ele(a) gosta de comer.";
 
 				string sRumor = egg.PieceRumor + " " + egg.PieceLocation;
 
@@ -241,8 +241,8 @@ namespace Server.Items
 				else if ( egg.HavePotionB == 0 ){ sRumor = "The potion of the earth " + sRumor; }
 				else if ( egg.HavePotionC == 0 ){ sRumor = "The mixture of the sea " + sRumor; }
 				else if ( egg.HavePotionD == 0 ){ sRumor = "The oil of the winds " + sRumor; }
-				else if ( egg.HaveGold < egg.NeedGold ){ sRumor = "You have obtained everything except the gold."; }
-				else { sRumor = "You have obtained everything you need."; }
+				else if ( egg.HaveGold < egg.NeedGold ){ sRumor = "Você obteve tudo, exceto o ouro."; }
+				else { sRumor = "Você obteve tudo o que precisa."; }
 
 				this.Closable=true;
 				this.Disposable=true;
@@ -256,7 +256,7 @@ namespace Server.Items
 				AddButton(863, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
 				AddHtml( 12, 40, 173, 20, @"<BODY><BASEFONT Color=" + color + ">Gold: " + egg.HaveGold.ToString() + "/" + egg.NeedGold.ToString() + "</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 12, 70, 874, 20, @"<BODY><BASEFONT Color=" + color + ">Bring Gathered Materials to the Animal Expert in " + egg.AnimalTrainerLocation + "</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 70, 874, 20, @"<BODY><BASEFONT Color=" + color + ">Traga os Materiais Coletados ao Especialista em Animais em " + egg.AnimalTrainerLocation + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 12, 100, 874, 20, @"<BODY><BASEFONT Color=" + color + ">" + sRumor + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddHtml( 12, 339, 878, 251, @"<BODY><BASEFONT Color=" + color + ">" + sText + "</BASEFONT></BODY>", (bool)false, (bool)false);

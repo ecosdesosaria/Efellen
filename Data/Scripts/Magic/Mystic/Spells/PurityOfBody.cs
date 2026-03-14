@@ -47,7 +47,7 @@ namespace Server.Spells.Mystic
 					}
 					else
 					{
-						Caster.SendMessage( "You failed to purify your body!" );
+						Caster.SendMessage( "Você falhou em purificar seu corpo!" );
 					}
 				}
 

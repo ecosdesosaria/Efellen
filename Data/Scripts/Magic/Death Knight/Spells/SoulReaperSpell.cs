@@ -65,7 +65,7 @@ namespace Server.Spells.DeathKnight
 
 				m.FixedParticles( 0x374A, 10, 15, 5032, EffectLayer.Head );
 				m.PlaySound( 0x1F8 );
-				m.SendMessage( "You feel your soul weakening." );
+				m.SendMessage( "Você sente sua alma enfraquecendo." );
 
 				DrainSoulsInLantern( Caster, RequiredTithing );
 			}
@@ -93,7 +93,7 @@ namespace Server.Spells.DeathKnight
 				{
 					Stop();
 					m_Table.Remove( m_Owner );
-					m_Owner.SendMessage( "Your soul begins to recover." );
+					m_Owner.SendMessage( "Sua alma começa a se recuperar." );
 				}
 				else if ( m_Owner.Mana < 10 )
 				{

@@ -37,22 +37,22 @@ namespace Server.Spells.Elementalism
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Amethyst ) ) == null && elm == "air" )
 			{
-				Caster.SendMessage( "You need an amethyst to cast this spell!" );
+				Caster.SendMessage( "Você precisa de uma ametista para lançar este feitiço!" );
 				return false;
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Emerald ) ) == null && elm == "earth" )
 			{
-				Caster.SendMessage( "You need an emerald to cast this spell!" );
+				Caster.SendMessage( "Você precisa de uma esmeralda para lançar este feitiço!" );
 				return false;
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Ruby ) ) == null && elm == "fire" )
 			{
-				Caster.SendMessage( "You need a ruby to cast this spell!" );
+				Caster.SendMessage( "Você precisa de um rubi para lançar este feitiço!" );
 				return false;
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Sapphire ) ) == null && elm == "water" )
 			{
-				Caster.SendMessage( "You need a sapphire to cast this spell!" );
+				Caster.SendMessage( "Você precisa de uma safira para lançar este feitiço!" );
 				return false;
 			}
 
@@ -73,19 +73,19 @@ namespace Server.Spells.Elementalism
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Amethyst ) ) == null && elm == "air" )
 			{
-				Caster.SendMessage( "You need an amethyst to cast this spell!" );
+				Caster.SendMessage( "Você precisa de uma ametista para lançar este feitiço!" );
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Emerald ) ) == null && elm == "earth" )
 			{
-				Caster.SendMessage( "You need an emerald to cast this spell!" );
+				Caster.SendMessage( "Você precisa de uma esmeralda para lançar este feitiço!" );
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Ruby ) ) == null && elm == "fire" )
 			{
-				Caster.SendMessage( "You need a ruby to cast this spell!" );
+				Caster.SendMessage( "Você precisa de um rubi para lançar este feitiço!" );
 			}
 			else if ( Caster.Backpack.FindItemByType( typeof ( Sapphire ) ) == null && elm == "water" )
 			{
-				Caster.SendMessage( "You need a sapphire to cast this spell!" );
+				Caster.SendMessage( "Você precisa de uma safira para lançar este feitiço!" );
 			}
 			else if ( CheckSequence() )
 			{

@@ -35,15 +35,15 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) )
 			{
-				from.SendMessage( "This must be in your pack to do any research. " + Research.GetMaxSchoolResearched( this ) + " - " + Research.GetMaxCircleResearched( this ) + "" );
+				from.SendMessage( "Isto deve estar em sua mochila para fazer qualquer pesquisa. " + Research.GetMaxSchoolResearched( this ) + " - " + Research.GetMaxCircleResearched( this ) + "" );
 			}
 			else if ( from.Skills[SkillName.Inscribe].Value < 30 )
 			{
-				from.SendMessage( "You cannot understand anything that is in this bag." );
+				from.SendMessage( "Você não consegue entender nada que está nesta bolsa." );
 			}
 			else if ( BagOwner != from )
 			{
-				from.SendMessage( "This bag doesn't belong to you so you throw it out." );
+				from.SendMessage( "Esta bolsa não pertence a você, então você a joga fora." );
 				bool remove = true;
 				foreach ( Account a in Accounts.GetAccounts() )
 				{
@@ -89,7 +89,7 @@ namespace Server.Items
 				{
 					if ( BagScrolls > 50000 )
 					{
-						from.SendMessage( "This pack can only hold 50000 blank scrolls." );
+						from.SendMessage( "Esta mochila só pode conter 50000 pergaminhos em branco." );
 					}
 					else
 					{
@@ -100,7 +100,7 @@ namespace Server.Items
 						if ( need >= have ){ BagScrolls = BagScrolls + have; dropped.Delete(); }
 						else { BagScrolls = 50000; dropped.Amount = dropped.Amount - need; }
 
-						from.SendMessage( "The blank scrolls have been added to your pack." );
+						from.SendMessage( "Os pergaminhos em branco foram adicionados à sua mochila." );
 
 						if( from.HasGump( typeof(ResearchGump)) )
 						{
@@ -115,7 +115,7 @@ namespace Server.Items
 
 					if ( BagQuills > 50000 )
 					{
-						from.SendMessage( "This pack can only hold 50000 quills." );
+						from.SendMessage( "Esta mochila só pode conter 50000 penas." );
 					}
 					else
 					{
@@ -124,7 +124,7 @@ namespace Server.Items
 						dropped.Delete();
 						if ( BagQuills > 50000 ){ BagQuills = 50000; }
 
-						from.SendMessage( "The quills have been added to your pack." );
+						from.SendMessage( "As penas foram adicionadas à sua mochila." );
 
 						if( from.HasGump( typeof(ResearchGump)) )
 						{
@@ -256,7 +256,7 @@ namespace Server.Items
 					}
 
 					book.Delete();
-					from.SendMessage( "Using your research, you make a new spellbook." );
+					from.SendMessage( "Usando sua pesquisa, você cria um novo livro de feitiços." );
 					
 					from.AddToBackpack( rune );
 					from.PlaySound( 0x55 );
@@ -480,7 +480,7 @@ namespace Server.Items
 					AddImage(515, 626, icon);
 					AddHtml( 562, 636, 50, 20, @"<BODY><BASEFONT Color=" + color + ">" + Rune + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
-					string msg = "You have found all of the Cubes of Power.";
+					string msg = "Você encontrou todos os Cubos de Poder.";
 					if ( missing != "" ){ msg = "The Cube of " + missing + " is said to be in " + bag.RuneLocation + " in " + Server.Lands.LandName( bag.RuneWorld ) + "."; }
 					AddHtml( 104, 117, 778, 20, @"<BODY><BASEFONT Color=" + color + ">" + msg + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
@@ -597,7 +597,7 @@ namespace Server.Items
 						AddButton(710+n, 490, 4011, 4011, 300+spellName, GumpButtonType.Reply, 0);
 					} spellName++;
 
-					string msg = "You have researched all of the " + spellCircle + " circle magery spells.";
+					string msg = "Você pesquisou todos os feitiços do círculo " + spellCircle + ".";
 					string nextSpell = Research.NextWizardry( bag );
 
 					if ( bag.BagMessage > 0 )
@@ -606,7 +606,7 @@ namespace Server.Items
 					}
 					else if ( nextSpell != "" )
 					{
-						msg = "To learn the " + nextSpell + " spell you need to find " + bag.SpellsMageItem + " at " + bag.SpellsMageLocation + " in " + Server.Lands.LandName( bag.SpellsMageWorld ) + ".";
+						msg = "Para aprender o feitiço " + nextSpell + " você precisa encontrar " + bag.SpellsMageItem + " em " + bag.SpellsMageLocation + " em " + Server.Lands.LandName( bag.SpellsMageWorld ) + ".";
 					}
 
 					AddHtml( 111+n, 278, 760, 45, @"<BODY><BASEFONT Color=" + color + ">" + msg + "</BASEFONT></BODY>", (bool)false, (bool)false);
@@ -723,7 +723,7 @@ namespace Server.Items
 						AddHtml( 700+n, 445, 176, 20, @"<BODY><BASEFONT Color=" + color + ">" + Research.ScrollInformation( spellName+64, 2 ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 					} spellName++;
 
-					string msg = "You have researched all of the necromancy spells.";
+					string msg = "Você pesquisou todos os feitiços de necromancia.";
 					string nextSpell = Research.NextNecromancy( bag );
 
 					if ( bag.BagMessage > 0 )
@@ -732,7 +732,7 @@ namespace Server.Items
 					}
 					else if ( nextSpell != "" )
 					{
-						msg = "To learn the " + nextSpell + " spell you need to find " + bag.SpellsNecroItem + " at " + bag.SpellsNecroLocation + " in " + Server.Lands.LandName( bag.SpellsNecroWorld ) + ".";
+						msg = "Para aprender o feitiço " + nextSpell + " você precisa encontrar " + bag.SpellsNecroItem + " em " + bag.SpellsNecroLocation + " em " + Server.Lands.LandName( bag.SpellsNecroWorld ) + ".";
 					}
 
 					AddHtml( 113+n, 160, 760, 45, @"<BODY><BASEFONT Color=" + color + ">" + msg + "</BASEFONT></BODY>", (bool)false, (bool)false);
@@ -846,7 +846,7 @@ namespace Server.Items
 						AddButton(710+r, 490, 4011, 4011, 500+spellName, GumpButtonType.Reply, 0);
 					} spellName+=8;
 
-					string msg = "You have researched all of the ancient " + spellCircle + " magic.";
+					string msg = "Você pesquisou toda a magia antiga de " + spellCircle + ".";
 					string nextSpell = Research.NextResearch( bag );
 
 					if ( bag.BagMessage > 0 )
@@ -855,7 +855,7 @@ namespace Server.Items
 					}
 					else if ( nextSpell != "" )
 					{
-						msg = "To learn the magic of " + nextSpell + " you need to find " + bag.ResearchItem + " at " + bag.ResearchLocation + " in " + Server.Lands.LandName( bag.ResearchWorld ) + ".";
+						msg = "Para aprender a magia de " + nextSpell + " você precisa encontrar " + bag.ResearchItem + " em " + bag.ResearchLocation + " em " + Server.Lands.LandName( bag.ResearchWorld ) + ".";
 					}
 
 					AddHtml( 111+r, 278, 760, 45, @"<BODY><BASEFONT Color=" + color + ">" + msg + "</BASEFONT></BODY>", (bool)false, (bool)false);

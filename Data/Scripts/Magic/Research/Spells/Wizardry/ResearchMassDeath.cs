@@ -31,7 +31,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Choose a focal point for this spell." );
+			Caster.SendMessage( "Escolha um ponto focal para este feitiço." );
 			Caster.Target = new InternalTarget( this );
 		}
 
@@ -45,7 +45,7 @@ namespace Server.Spells.Research
 			}
 			else if ( Server.Misc.Worlds.NoApocalypse( Caster.Location, Caster.Map ) )
 			{
-				Caster.SendMessage( "You don't think it is wise to cast this here." ); 
+				Caster.SendMessage( "Você não acha sensato conjurar isto aqui." ); 
 				return;
 			}
 			else if ( SpellHelper.CheckTown( p, Caster ) && CheckSequence() )

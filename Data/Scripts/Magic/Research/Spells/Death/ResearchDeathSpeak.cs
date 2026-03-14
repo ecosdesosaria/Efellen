@@ -106,11 +106,11 @@ namespace Server.Spells.Research
 
 					KarmaMod( Caster, ((int)RequiredSkill+RequiredMana) );
 
-					Caster.SendMessage( "You speak in strange tongues to the soul of the dead supernatural creature." );
+					Caster.SendMessage( "Você fala em línguas estranhas com a alma da criatura sobrenatural morta." );
 				}
 				else
 				{
-					Caster.SendMessage( "You fail to speak to any dead supernatural creatures in the area." );
+					Caster.SendMessage( "Você falha em falar com qualquer criatura sobrenatural morta na área." );
 					Caster.PlaySound( 0x1D6 );
 				}
 			}

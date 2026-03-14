@@ -89,7 +89,7 @@ namespace Server.Misc
 
 		public static string BagOrBook()
 		{
-			return "Since you can cast these ancient spells with the contents of your research bag, or an ancient spellbook, you need to make a decision which option you are going to use. By default, magic is assumed to be unleashed by using the research bag. If you want to use an ancient spellbook instead, go into the HELP section of your PAPERDOLL. Choose the SETTINGS section where you can check the box for the ANCIENT SPELLBOOK. Uncheck the box if you wish to use the contents of your research bag instead.";
+			return "Já que você pode lançar estes feitiços antigos com o conteúdo de sua bolsa de pesquisa, ou com um livro de feitiços antigos, você precisa decidir qual opção irá usar. Por padrão, presume-se que a magia é desencadeada usando a bolsa de pesquisa. Se você quiser usar um livro de feitiços antigos, vá para a seção AJUDA do seu PAPERDOLL. Escolha a seção CONFIGURAÇÕES onde você pode marcar a caixa para o LIVRO DE FEITIÇOS ANTIGOS. Desmarque a caixa se preferir usar o conteúdo da sua bolsa de pesquisa.";
 		}
 	}
 
@@ -383,9 +383,9 @@ namespace Server.Misc
 					Server.Misc.Research.SetPrepared( bag, spellIndex, -1 );
 					int remaining = Server.Misc.Research.GetPrepared( bag, spellIndex );
 
-					if ( remaining == 1 ){ from.SendMessage( "You have 1 scroll left for this spell." ); }
-					else if ( remaining < 1 ){ from.SendMessage( "You have no scrolls left for this spell." ); }
-					else if ( remaining < 11 ){ from.SendMessage( "You have " + remaining + " scrolls left for this spell." ); }
+					if ( remaining == 1 ){ from.SendMessage( "Você tem 1 pergaminho restante para este feitiço." ); }
+					else if ( remaining < 1 ){ from.SendMessage( "Você não tem mais pergaminhos para este feitiço." ); }
+					else if ( remaining < 11 ){ from.SendMessage( "Você tem " + remaining + " pergaminhos restantes para este feitiço." ); }
 
 					if ( from.HasGump( typeof( Server.Items.ResearchBag.ResearchGump ) ) ) {
 						from.CloseGump( typeof( Server.Items.ResearchBag.ResearchGump ) );
@@ -531,10 +531,10 @@ namespace Server.Misc
 			}
 
 			string runic = RuneName( cube, 1 );
-			from.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found the Cube of " + runic + "!");
-			Server.Items.QuestSouvenir.GiveReward( from, "Cube of " + runic + "", 0, RuneIndex( RuneName( cube, 0 ), 0 ) );
+			from.LocalOverheadMessage(MessageType.Emote, 1150, true, "Você encontrou o Cubo de " + runic + "!");
+			Server.Items.QuestSouvenir.GiveReward( from, "Cubo de " + runic + "", 0, RuneIndex( RuneName( cube, 0 ), 0 ) );
 			from.SendSound( 0x3D );
-			LoggingFunctions.LogGeneric( from, "has found the Cube of " + runic + "." );
+			LoggingFunctions.LogGeneric( from, "encontrou o Cubo de " + runic + "." );
 		}
 
 		public static bool SearchResult( Mobile from, ResearchBag bag ) /////////////////////////////////////////////////////////////////////////////
@@ -577,7 +577,7 @@ namespace Server.Misc
 		{
 			if ( bag.BagInk >= 50000 )
 			{
-				from.SendMessage( "This pack can only hold 50000 bottles of octupus ink so you dump out what you found." );
+				from.SendMessage( "Esta mochila só pode conter 50000 garrafas de tinta de polvo, então você joga fora o que encontrou." );
 			}
 			else
 			{
@@ -591,7 +591,7 @@ namespace Server.Misc
 				bag.BagInk = bag.BagInk + qty;
 				if ( bag.BagInk > 50000 ){ bag.BagInk = 50000; }
 
-				from.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found some octopus ink!");
+				from.LocalOverheadMessage(MessageType.Emote, 1150, true, "Você encontrou um pouco de tinta de polvo!");
 				from.SendSound( 0x3D );
 			}
 
@@ -616,140 +616,140 @@ namespace Server.Misc
 			string regs = "false";
 
 			if ( index == 1 ){ circle = "1"; name = "Conjure"; school = "Conjuration"; words = "kal xen"; reagents = "Moon Crystal, Fairy Egg"; mana = "10"; skill = "15";
-				init = "610"; regs = "true"; description = "The magic of this spell will conjure a random item of minor significance, but it may be significant dependent on the caster's current motivations. Due to the creative nature of the spell, something needs to be destroyed in turn. That means that the spell scroll will always crumble to dust when cast."; }
+				init = "610"; regs = "true"; description = "A magia deste feitiço conjurará um item aleatório de importância menor, mas pode ser significativo dependendo das motivações atuais do conjurador. Devido à natureza criativa do feitiço, algo precisa ser destruído em troca. Isso significa que o pergaminho do feitiço sempre se desfará em pó quando conjurado."; }
 			else if ( index == 2 ){ circle = "1"; name = "Death Speak"; school = "Death"; words = "kal wis corp"; reagents = "Grave Dust, Pixie Skull"; mana = "5"; skill = "10";
-				init = "614"; description = "This spell allows you to communicate with recently slain supernatural foes. If you can speak to their souls, you have the potential to restore a part of yourself. The restoration goes in order of mana, stamina, and health. The amount restored is dependent on the power of the caster and the fame of the slain creature. The caster may lose some karma if they attempt this."; }
+				init = "614"; description = "Este feitiço permite que você se comunique com inimigos sobrenaturais recentemente abatidos. Se você puder falar com suas almas, tem o potencial de restaurar uma parte de si mesmo. A restauração ocorre na ordem de mana, vigor e vida. A quantidade restaurada depende do poder do conjurador e da fama da criatura abatida. O conjurador pode perder algum karma se tentar isto."; }
 			else if ( index == 3 ){ circle = "1"; name = "Sneak"; school = "Enchanting"; words = "por ex tym"; reagents = "Fairy Egg, Pixie Skull"; mana = "10"; skill = "10";
-				init = "648"; description = "Hides the target and allows them to sneak around for 2-8 minutes. They can still be discovered, however, and they cannot sneak well in heavy armor."; }
+				init = "648"; description = "Esconde o alvo e permite que ele se mova furtivamente por 2-8 minutos. Eles ainda podem ser descobertos, no entanto, e não podem se esconder bem com armaduras pesadas."; }
 			else if ( index == 4 ){ circle = "1"; name = "Create Fire"; school = "Sorcery"; words = "in flam ylem"; reagents = "Brimstone, Mandrake Root, Ginseng"; mana = "5"; skill = "15";
-				init = "611"; description = "Creates a magical fire at the caster's feet. When anything approaches the fire, they will take 2-20 points of fire damage every couple of seconds. The magical fire can last between 15-200 seconds dependent on the power of the caster."; }
+				init = "611"; description = "Cria um fogo mágico aos pés do conjurador. Quando algo se aproxima do fogo, sofrerá 2-20 pontos de dano de fogo a cada dois segundos. O fogo mágico pode durar entre 15-200 segundos dependendo do poder do conjurador."; }
 			else if ( index == 5 ){ circle = "1"; name = "Electrical Elemental"; school = "Summoning"; words = "uus grav"; reagents = "Silver Widow, Sulfurous Ash"; mana = "40"; skill = "70";
-				init = "655"; description = "Summons an electrial elemental that is controlled by the caster for 8-25 minutes."; }
+				init = "655"; description = "Invoca um elemental elétrico que é controlado pelo conjurador por 8-25 minutos."; }
 			else if ( index == 6 ){ circle = "1"; name = "Confusion Blast"; school = "Thaumaturgy"; words = "in quas wis"; reagents = "Mandrake Root, Pixie Skull, Fairy Egg"; mana = "15"; skill = "40";
-				init = "609"; description = "Those within the confusion blast could suffer from the effects for 5-20 seconds before they regain their senses."; }
+				init = "609"; description = "Aqueles dentro da explosão de confusão podem sofrer os efeitos por 5-20 segundos antes de recuperarem os sentidos."; }
 			else if ( index == 7 ){ circle = "1"; name = "See Truth"; school = "Theurgy"; words = "an quas lor"; reagents = "Grave Dust, Sea Salt, Fairy Egg"; mana = "60"; skill = "20";
-				init = "645"; description = "This magic is an ancient form of that which gypsies use to see the truth in things. If you cast this spell on a book or parchment that you feel may be falsely written, you may learn the truth of things."; }
+				init = "645"; description = "Esta magia é uma forma antiga daquela que os ciganos usam para ver a verdade nas coisas. Se você lançar este feitiço em um livro ou pergaminho que acha que pode ser escrito falsamente, poderá aprender a verdade das coisas."; }
 			else if ( index == 8 ){ circle = "1"; name = "Icicle"; school = "Wizardry"; words = "ex des bet"; reagents = "Moon Crystal, Pig Iron"; mana = "10"; skill = "15";
-				init = "632"; description = "Throws a magical icicle at your enemies that can cause up to 80 points of cold damage."; }
+				init = "632"; description = "Lança um estalactite mágico em seus inimigos que pode causar até 80 pontos de dano de gelo."; }
 
 			else if ( index == 9 ){ circle = "2"; name = "Extinguish"; school = "Conjuration"; words = "an flam"; reagents = "Nightshade, Sea Salt, Black Pearl"; mana = "20"; skill = "35";
-				init = "624"; description = "Calls forth waves of water that can cause up to 12-125 points of cold and physical damage. It will do twice the amount of damage toward creatures that suffer from flame extinguishing enchanted weapons."; }
+				init = "624"; description = "Invoca ondas de água que podem causar 12-125 pontos de dano de gelo e físico. Causará o dobro de dano contra criaturas que sofrem de armas encantadas com extinção de chamas."; }
 			else if ( index == 10 ){ circle = "2"; name = "Rock Flesh"; school = "Death"; words = "rel sanct ylem"; reagents = "Moon Crystal, Garlic, Pig Iron, Black Pearl"; mana = "10"; skill = "15";
-				init = "644"; description = "With this spell, the caster gains an innate resistance to damage by transforming the very flesh into a substance as strong as stone for 1-16 minutes of a 90% physical resistance. The caster may lose some karma if they attempt this."; }
+				init = "644"; description = "Com este feitiço, o conjurador ganha uma resistência inata ao dano transformando a própria carne em uma substância tão forte quanto pedra por 1-16 minutos com 90% de resistência física. O conjurador pode perder algum karma se tentar isto."; }
 			else if ( index == 11 ){ circle = "2"; name = "Mass Might"; school = "Enchanting"; words = "in vas por"; reagents = "Fairy Egg, Butterfly Wings"; mana = "99"; skill = "66";
-				init = "638"; description = "Increases the casters strength for up to 8 minutes, and it will also affect the caster's allies that are no more than 10 spaces away."; }
+				init = "638"; description = "Aumenta a força do conjurador por até 8 minutos, e também afetará os aliados do conjurador que estejam a não mais de 10 espaços de distância."; }
 			else if ( index == 12 ){ circle = "2"; name = "Endure Cold"; school = "Sorcery"; words = "vas sanct flam"; reagents = "Spiders Silk, Moon Crystal"; mana = "15"; skill = "20";
-				init = "619"; description = "Increases the casters cold resistance for up to 8 minutes, and it will also affect the caster's allies that are no more than 3 spaces away."; }
+				init = "619"; description = "Aumenta a resistência ao frio do conjurador por até 8 minutos, e também afetará os aliados do conjurador que estejam a não mais de 3 espaços de distância."; }
 			else if ( index == 13 ){ circle = "2"; name = "Weed Elemental"; school = "Summoning"; words = "uus kal"; reagents = "Red Lotus, Nightshade"; mana = "40"; skill = "70";
-				init = "660"; description = "Summons a weed elemental that is controlled by the caster for 8-25 minutes."; }
+				init = "660"; description = "Invoca um elemental de erva daninha que é controlado pelo conjurador por 8-25 minutos."; }
 			else if ( index == 14 ){ circle = "2"; name = "Spawn Creatures"; school = "Thaumaturgy"; words = "vas kal xen"; reagents = "Ginseng, Grave Dust, Pixie Skull"; mana = "20"; skill = "45";
-				init = "652"; description = "Summons random creatures that are controlled by the caster for 8-25 minutes."; }
+				init = "652"; description = "Invoca criaturas aleatórias que são controladas pelo conjurador por 8-25 minutos."; }
 			else if ( index == 15 ){ circle = "2"; name = "Healing Touch"; school = "Theurgy"; words = "in mani"; reagents = "Garlic, Ginseng, Fairy Egg, Pixie Skull"; mana = "15"; skill = "30";
-				init = "631"; description = "Heals the one touched, restoring 12-125 hit points. You need to be close to your target, however."; }
+				init = "631"; description = "Cura aquele que é tocado, restaurando 12-125 pontos de vida. Você precisa estar perto do seu alvo, no entanto."; }
 			else if ( index == 16 ){ circle = "2"; name = "Snow Ball"; school = "Wizardry"; words = "ex des in"; reagents = "Black Pearl, Moon Crystal"; mana = "10"; skill = "10";
-				init = "649"; description = "Throws a magical snow ball toward your enemy, which can cause 2-80 points of cold damage."; }
+				init = "649"; description = "Lança uma bola de neve mágica em direção ao seu inimigo, que pode causar 2-80 pontos de dano de gelo."; }
 
 			else if ( index == 17 ){ circle = "3"; name = "Clone"; school = "Conjuration"; words = "in quas xen"; reagents = "Gargoyle Ear, Fairy Egg"; mana = "25"; skill = "45";
-				init = "607"; description = "Creates a clone of the caster that will appear and distract your enemies while you remain hidden from view."; }
+				init = "607"; description = "Cria um clone do conjurador que aparecerá e distrairá seus inimigos enquanto você permanece escondido da vista."; }
 			else if ( index == 18 ){ circle = "3"; name = "Grant Peace"; school = "Death"; words = "in vas corp"; reagents = "Pixie Skull, Grave Dust"; mana = "35"; skill = "75";
-				init = "629"; description = "This spell can grant an undead creature the true and final death. If they cannot be laid to rest, then they may take 50-200 points of energy damage."; }
+				init = "629"; description = "Este feitiço pode conceder a uma criatura morta-viva a morte verdadeira e final. Se eles não puderem ser enterrados, então podem sofrer 50-200 pontos de dano de energia."; }
 			else if ( index == 19 ){ circle = "3"; name = "Sleep"; school = "Enchanting"; words = "in zu tym"; reagents = "Fairy Egg, Mandrake Root, Sea Salt"; mana = "15"; skill = "40";
-				init = "646"; description = "This spell can put a foe to sleep from 10-60 seconds, but taking actions against them will likely wake them up from their slumber. This spell cannot affect supernatural creatures, constructs, golems, or elementals."; }
+				init = "646"; description = "Este feitiço pode colocar um inimigo para dormir por 10-60 segundos, mas tomar ações contra eles provavelmente os acordará de seu sono. Este feitiço não pode afetar criaturas sobrenaturais, constructos, golems ou elementais."; }
 			else if ( index == 20 ){ circle = "3"; name = "Endure Heat"; school = "Sorcery"; words = "sanct flam"; reagents = "Swamp Berries, Gargoyle Ear"; mana = "15"; skill = "20";
-				init = "620"; description = "Increases the casters fire resistance for up to 8 minutes, and it will also affect the caster's allies that are no more than 3 spaces away."; }
+				init = "620"; description = "Aumenta a resistência ao fogo do conjurador por até 8 minutos, e também afetará os aliados do conjurador que estejam a não mais de 3 espaços de distância."; }
 			else if ( index == 21 ){ circle = "3"; name = "Ice Elemental"; school = "Summoning"; words = "uus ex des"; reagents = "Sea Salt, Moon Crystal"; mana = "40"; skill = "70";
-				init = "657"; description = "Summons an ice elemental that is controlled by the caster for 8-25 minutes."; }
+				init = "657"; description = "Invoca um elemental de gelo que é controlado pelo conjurador por 8-25 minutos."; }
 			else if ( index == 22 ){ circle = "3"; name = "Ethereal Travel"; school = "Thaumaturgy"; words = "ort grav por"; reagents = "Black Pearl, Gargoyle Ear, Red Lotus"; mana = "20"; skill = "35";
-				init = "622"; description = "Caster is transported to the location marked on the recall rune. One can use this spell on a ship key to travel to a boat's location if the boat is not dry docked. The caster will appear at the destination in a hidden state."; }
+				init = "622"; description = "O conjurador é transportado para a localização marcada na runa de recall. Pode-se usar este feitiço em uma chave de navio para viajar para a localização de um barco se o barco não estiver em doca seca. O conjurador aparecerá no destino em estado oculto."; }
 			else if ( index == 23 ){ circle = "3"; name = "Wizard Eye"; school = "Theurgy"; words = "por ort wis"; reagents = "Eye of Toad, Silver Widow, Gargoyle Ear, Black Pearl"; mana = "30"; skill = "50";
-				init = "663"; description = "This spell allows the caster to identify items that have origins that are unknown to others."; }
+				init = "663"; description = "Este feitiço permite que o conjurador identifique itens que têm origens desconhecidas para outros."; }
 			else if ( index == 24 ){ circle = "3"; name = "Frost Field"; school = "Wizardry"; words = "in ex des"; reagents = "Moon Crystal, Eye of Toad, Spiders Silk"; mana = "15"; skill = "30";
-				init = "627"; description = "Creates a wall of frost that can cause 2-16 points of cold damage per second to anyone within it."; }
+				init = "627"; description = "Cria uma parede de gelo que pode causar 2-16 pontos de dano de gelo por segundo a qualquer pessoa dentro dela."; }
 
 			else if ( index == 25 ){ circle = "4"; name = "Create Gold"; school = "Conjuration"; words = "rel ylem"; much = "true"; reagents = "Unicorn Horn, Sea Salt, Ginseng, Golden Serpent Venom"; mana = "35"; skill = "55";
-				init = "612"; regs = "true"; description = "Originally created by the fiendish imp Rumpelstiltskin, this spell allows the caster to turn armor or weapons into gold. They can also transmute varying ingots into golden ingots, as well as turn coins into golden coins. Coins will often be destroyed during the transmutation process, but the better the skill of the archmage the less that is lost. This spell is powerful enough that the scroll will always crumble to dust when cast."; }
+				init = "612"; regs = "true"; description = "Originalmente criado pelo diabólico duende Rumpelstiltskin, este feitiço permite que o conjurador transforme armaduras ou armas em ouro. Eles também podem transmutar vários lingotes em lingotes de ouro, bem como transformar moedas em moedas de ouro. Moedas frequentemente serão destruídas durante o processo de transmutação, mas quanto melhor a habilidade do arquimago, menos é perdido. Este feitiço é poderoso o suficiente para que o pergaminho sempre se desfaça em pó quando conjurado."; }
 			else if ( index == 26 ){ circle = "4"; name = "Animate Bones"; school = "Death"; words = "kal corp xen"; reagents = "Bat Wing, Grave Dust, Pixie Skull"; mana = "40"; skill = "70";
-				init = "653"; description = "Animates the bones of a mighty skeletal warrior that will fight for the caster for 8-25 minutes. The caster may lose some karma if they attempt this."; }
+				init = "653"; description = "Anima os ossos de um poderoso guerreiro esquelético que lutará pelo conjurador por 8-25 minutos. O conjurador pode perder algum karma se tentar isto."; }
 			else if ( index == 27 ){ circle = "4"; name = "Cause Fear"; school = "Enchanting"; words = "quas wis tym"; reagents = "Bloodmoss, Daemon Blood, Red Lotus"; mana = "35"; skill = "45";
-				init = "605"; description = "The caster can cause fear in a foe, causing them to flee from you for 10-60 seconds. This spell does not work on golems or constructs."; }
+				init = "605"; description = "O conjurador pode causar medo em um inimigo, fazendo-o fugir de você por 10-60 segundos. Este feitiço não funciona em golems ou constructos."; }
 			else if ( index == 28 ){ circle = "4"; name = "Ignite"; school = "Sorcery"; words = "in flam"; reagents = "Brimstone, Sulfurous Ash, Black Pearl"; mana = "30"; skill = "40";
-				init = "633"; description = "Calls forth columns of fire that can cause up to 15-125 points of fire and physical damage. It will do twice the amount of damage toward creatures that suffer from watery grave or neptune's bane enchanted weapons."; }
+				init = "633"; description = "Invoca colunas de fogo que podem causar até 15-125 pontos de dano de fogo e físico. Causará o dobro de dano contra criaturas que sofrem de armas encantadas com sepultura aquática ou flagelo de Netuno."; }
 			else if ( index == 29 ){ circle = "4"; name = "Mud Elemental"; school = "Summoning"; words = "uus des ylem"; reagents = "Pig Iron, Mandrake Root"; mana = "40"; skill = "70";
-				init = "658"; description = "Summons a mud elemental that is controlled by the caster for 8-25 minutes."; }
+				init = "658"; description = "Invoca um elemental de lama que é controlado pelo conjurador por 8-25 minutos."; }
 			else if ( index == 30 ){ circle = "4"; name = "Banish Daemon"; school = "Thaumaturgy"; words = "an flam corp xen"; reagents = "Gargoyle Ear, Demon Claw"; mana = "40"; skill = "80";
-				init = "603"; description = "This spell can send a demonic creature back to the plane of hell from which they spawned. If they cannot be banished, then they may take 50-200 points of energy damage."; }
+				init = "603"; description = "Este feitiço pode enviar uma criatura demoníaca de volta ao plano infernal de onde surgiu. Se eles não puderem ser banidos, então podem sofrer 50-200 pontos de dano de energia."; }
 			else if ( index == 31 ){ circle = "4"; name = "Fade from Sight"; school = "Theurgy"; words = "quas an lor"; reagents = "Red Lotus, Nox Crystal"; mana = "15"; skill = "50";
-				init = "625"; description = "This spell will cause the caster to fade from the view of others, while at the same time moving them to a different location."; }
+				init = "625"; description = "Este feitiço fará com que o conjurador desapareça da vista de outros, enquanto ao mesmo tempo o move para um local diferente."; }
 			else if ( index == 32 ){ circle = "4"; name = "Gas Cloud"; school = "Wizardry"; words = "in hur grav"; reagents = "Nightshade, Silver Widow, Swamp Berries, Silver Serpent Venom"; mana = "25"; skill = "45";
-				init = "621"; description = "Creates a gaseous cloud of poison mist that will consume nearby enemies in the venomous vapor for 1-3 minutes."; }
+				init = "621"; description = "Cria uma nuvem gasosa de névoa venenosa que consumirá inimigos próximos no vapor venenoso por 1-3 minutos."; }
 
 			else if ( index == 33 ){ circle = "5"; name = "Swarm"; school = "Conjuration"; words = "kal bet xen"; reagents = "Beetle Shell, Silver Widow, Fairy Egg"; mana = "15"; skill = "40";
-				init = "661"; description = "Unleashes a swarm of insects at your enemies for 1-3 minutes."; }
+				init = "661"; description = "Libera um enxame de insetos em seus inimigos por 1-3 minutos."; }
 			else if ( index == 34 ){ circle = "5"; name = "Mask of Death"; school = "Death"; words = "quas corp"; reagents = "Lich Dust, Grave Dust, Pixie Skull"; mana = "70"; skill = "90";
-				init = "636"; description = "Creates a mask for the caster that when worn the undead will see you as one of their own and ignore them. The mask remains on this plane of existence for 6-15 minutes before it returns to the realm from which it came. If you attack an undead creature while wearing the mask, it will vanish and you will have to face your foe. The caster may lose some karma if they attempt this."; }
+				init = "636"; description = "Cria uma máscara para o conjurador que, quando usada, fará com que os mortos-vivos o vejam como um deles e o ignorem. A máscara permanece neste plano de existência por 6-15 minutos antes de retornar ao reino de onde veio. Se você atacar uma criatura morta-viva enquanto usa a máscara, ela desaparecerá e você terá que enfrentar seu inimigo. O conjurador pode perder algum karma se tentar isto."; }
 			else if ( index == 35 ){ circle = "5"; name = "Enchant"; school = "Enchanting"; words = "ort ylem tym"; reagents = "Pixie Skull, Fairy Egg, Dragon Tooth, Moon Crystal"; mana = "45"; skill = "75";
-				init = "618"; description = "This can greatly increase a weapon's damage by enchanting it for 15-60 minutes. A power orb is summoned and placed in the caster's pack that gives the enchantment strength until the spell wears off."; }
+				init = "618"; description = "Isto pode aumentar muito o dano de uma arma encantando-a por 15-60 minutos. Um orbe de poder é invocado e colocado na mochila do conjurador que dá a força do encantamento até que o feitiço acabe."; }
 			else if ( index == 36 ){ circle = "5"; name = "Flame Bolt"; school = "Sorcery"; words = "in ort flam"; reagents = "Brimstone, Sulfurous Ash"; mana = "15"; skill = "30";
-				init = "626"; description = "Throws a magical bolt of flame at your enemies that can cause 12-100 points of fire damage."; }
+				init = "626"; description = "Lança um raio mágico de chama em seus inimigos que pode causar 12-100 pontos de dano de fogo."; }
 			else if ( index == 37 ){ circle = "5"; name = "Gem Elemental"; school = "Summoning"; words = "uus sanct"; reagents = "Moon Crystal, Pig Iron"; mana = "50"; skill = "80";
-				init = "656"; description = "Summons a gem rock elemental that is controlled by the caster for 8-25 minutes."; }
+				init = "656"; description = "Invoca um elemental de rocha de gema que é controlado pelo conjurador por 8-25 minutos."; }
 			else if ( index == 38 ){ circle = "5"; name = "Call Destruction"; school = "Thaumaturgy"; words = "kal vas grav por"; much = "true"; reagents = "Bat Wing, Black Pearl, Brimstone, Pig Iron"; mana = "25"; skill = "40";
-				init = "604"; regs = "true"; description = "Damages nearby enemies with an destructive force that causes mostly physical harm and some damage from energy. If you hit more than one enemy, the damage amount is doubled and divided amongst each enemy evenly. The damage dealt is between 8-50 points, with the addition of half the available hit points of the caster. After the destruction is unleashed, the caster will lose half of their remaining hit points."; }
+				init = "604"; regs = "true"; description = "Dano a inimigos próximos com uma força destrutiva que causa principalmente dano físico e algum dano de energia. Se você acertar mais de um inimigo, a quantidade de dano é dobrada e dividida igualmente entre cada inimigo. O dano causado é entre 8-50 pontos, com a adição de metade dos pontos de vida disponíveis do conjurador. Após a destruição ser desencadeada, o conjurador perderá metade de seus pontos de vida restantes."; }
 			else if ( index == 39 ){ circle = "5"; name = "Divination"; school = "Theurgy"; words = "in wis tym"; reagents = "Ginseng, Daemon Blood, Eye of Toad"; mana = "30"; skill = "50";
-				init = "617"; description = "One can cast this spell on most creatures and learn things about them that are not commonly know by others."; }
+				init = "617"; description = "Pode-se lançar este feitiço na maioria das criaturas e aprender coisas sobre elas que não são comumente conhecidas por outros."; }
 			else if ( index == 40 ){ circle = "5"; name = "Frost Strike"; school = "Wizardry"; words = "ex des corp"; reagents = "Moon Crystal, Grave Dust"; mana = "40"; skill = "67";
-				init = "628"; description = "Damages an enemy with a column of frost crystals that causes 35-125 points of cold damage."; }
+				init = "628"; description = "Dano a um inimigo com uma coluna de cristais de gelo que causa 35-125 pontos de dano de gelo."; }
 
 			else if ( index == 41 ){ circle = "6"; name = "Magic Steed"; school = "Conjuration"; words = "in xen tym"; reagents = "Bat Wing, Butterfly Wings"; mana = "30"; skill = "50";
-				init = "635"; description = "Lures a horse to the caster's location where it can be ridden for 8-25 minutes."; }
+				init = "635"; description = "Atrai um cavalo para a localização do conjurador onde pode ser montado por 8-25 minutos."; }
 			else if ( index == 42 ){ circle = "6"; name = "Create Golem"; school = "Death"; words = "in ort ylem xen"; reagents = "Pixie Skull, Grave Dust, Daemon Blood"; mana = "40"; skill = "70";
-				init = "613"; description = "Creates a mighty flesh golem that will follow the commands of the cast for 8-25 minutes. The caster may lose some karma if they attempt this."; }
+				init = "613"; description = "Cria um poderoso golem de carne que seguirá os comandos do conjurador por 8-25 minutos. O conjurador pode perder algum karma se tentar isto."; }
 			else if ( index == 43 ){ circle = "6"; name = "Sleep Field"; school = "Enchanting"; words = "in zu grav tym"; reagents = "Fairy Egg, Mandrake Root, Sea Salt, Grave Dust"; mana = "30"; skill = "60";
-				init = "647"; description = "This spell will create a field that will put entering foes to sleep for 10-60 seconds, but taking actions against them will likely wake them up from their slumber. This spell cannot affect supernatural creatures, constructs, golems, or elementals."; }
+				init = "647"; description = "Este feitiço criará um campo que colocará inimigos que entrarem para dormir por 10-60 segundos, mas tomar ações contra eles provavelmente os acordará de seu sono. Este feitiço não pode afetar criaturas sobrenaturais, constructos, golems ou elementais."; }
 			else if ( index == 44 ){ circle = "6"; name = "Conflagration"; school = "Sorcery"; words = "kal vas flam corp xen"; reagents = "Sulfurous Ash, Brimstone, Gargoyle Ear"; mana = "20"; skill = "35";
-				init = "608"; description = "Creates a huge inferno that can cause 2-16 points of fire damage per second to anyone within it."; }
+				init = "608"; description = "Cria um enorme inferno que pode causar 2-16 pontos de dano de fogo por segundo a qualquer pessoa dentro dele."; }
 			else if ( index == 45 ){ circle = "6"; name = "Acid Elemental"; school = "Summoning"; words = "uus corp"; reagents = "Swamp Berries, Nox Crystal, Beetle Shell, Eye of Toad"; mana = "50"; skill = "82";
-				init = "650"; description = "Summons an acid elemental that is controlled by the caster for 8-25 minutes."; }
+				init = "650"; description = "Invoca um elemental de ácido que é controlado pelo conjurador por 8-25 minutos."; }
 			else if ( index == 46 ){ circle = "6"; name = "Meteor Shower"; school = "Thaumaturgy"; words = "kal des flam ylem"; reagents = "Blood Moss, Brimstone, Mandrake Root, Black Pearl"; mana = "40"; skill = "70";
-				init = "640"; description = "Damages nearby enemies with falling meteorites that hit for physical damage (with some fire and energy damage) split between the enemies. If you only hit one enemy, the enemy takes between 35-125 points of damage, but if you hit more than one enemy, the damage amount is doubled and divided amongst each enemy evenly."; }
+				init = "640"; description = "Dano a inimigos próximos com meteoritos caindo que causam dano físico (com algum dano de fogo e energia) dividido entre os inimigos. Se você acertar apenas um inimigo, o inimigo sofre entre 35-125 pontos de dano, mas se você acertar mais de um inimigo, a quantidade de dano é dobrada e dividida igualmente entre cada inimigo."; }
 			else if ( index == 47 ){ circle = "6"; name = "Intervention"; school = "Theurgy"; words = "in sanct an jux"; reagents = "Moon Crystal, Brimstone, Nightshade, Fairy Egg"; mana = "25"; skill = "50";
-				init = "634"; description = "This is one of those rare spells that call upon the favor of the gods. When the spell is invoked, the caster is empowered with 10-50 additional points in their resistances. They are also protected from magery spell attack damage for 25-125 points. The effects last between 10-50 minutes."; }
+				init = "634"; description = "Este é um daqueles feitiços raros que invocam o favor dos deuses. Quando o feitiço é invocado, o conjurador é fortalecido com 10-50 pontos adicionais em suas resistências. Eles também são protegidos de dano de ataque de feitiços de magia por 25-125 pontos. Os efeitos duram entre 10-50 minutos."; }
 			else if ( index == 48 ){ circle = "6"; name = "Hail Storm"; school = "Wizardry"; words = "vas ex des"; reagents = "Fairy Egg, Moon Crystal"; mana = "25"; skill = "55";
-				init = "630"; description = "Creates a storm of ice around an enemy, causing 28-125 points of cold damage."; }
+				init = "630"; description = "Cria uma tempestade de gelo ao redor de um inimigo, causando 28-125 pontos de dano de gelo."; }
 
 			else if ( index == 49 ){ circle = "7"; name = "Aerial Servant"; school = "Conjuration"; words = "kal ort xen"; reagents = "Butterfly Wings, Gargoyle Ear, Pegasus Feather"; mana = "50"; skill = "80";
-				init = "600"; description = "Calls upon a mystical servant from the ethereal plane to aid the caster by carrying items for 1-3 hours."; }
+				init = "600"; description = "Invoca um servo místico do plano etéreo para ajudar o conjurador carregando itens por 1-3 horas."; }
 			else if ( index == 50 ){ circle = "7"; name = "Open Ground"; school = "Death"; words = "des por ylem"; much = "true"; reagents = "Brimstone, Grave Dust, Pig Iron, Mandrake Root"; mana = "65"; skill = "85";
-				init = "641"; regs = "true"; description = "Opens a huge hole in the ground that can cause anyone that goes near it to fall in. Creatures may fall to their deaths and never be seen again, while advenuterers will fall into the huge chasm below. If an adventurer has comrades, familiars, summons, or tamed beasts that stumble into the chasm, then the adventurer will fall in after them. This spell is powerful enough that the scroll will always crumble to dust when cast. The caster may lose some karma if they attempt this."; }
+				init = "641"; regs = "true"; description = "Abre um enorme buraco no chão que pode fazer qualquer um que se aproxime cair. Criaturas podem cair para a morte e nunca mais serem vistas, enquanto aventureiros cairão no imenso abismo abaixo. Se um aventureiro tem companheiros, familiares, invocações ou feras domadas que tropeçam no abismo, então o aventureiro cairá atrás deles. Este feitiço é poderoso o suficiente para que o pergaminho sempre se desfaça em pó quando conjurado. O conjurador pode perder algum karma se tentar isto."; }
 			else if ( index == 51 ){ circle = "7"; name = "Charm"; school = "Enchanting"; words = "an xen ex"; reagents = "Enchanted Seaweed, Fairy Egg, Pixie Skull"; mana = "60"; skill = "82";
-				init = "606"; description = "This spell can charm either aggressive monsters or those of animialistic natures. When charmed, their evil or neutral tendencies are wiped from their mind and they will attack evil creatures. This charm will only last for up to a minute before they come to their senses."; }
+				init = "606"; description = "Este feitiço pode encantar monstros agressivos ou aqueles de naturezas animais. Quando encantados, suas tendências malignas ou neutras são apagadas de sua mente e eles atacarão criaturas malignas. Este encanto durará apenas até um minuto antes que eles recuperem os sentidos."; }
 			else if ( index == 52 ){ circle = "7"; name = "Explosion"; school = "Sorcery"; words = "vas ort flam"; reagents = "Fairy Egg, Brimstone, Sulfurous Ash"; mana = "30"; skill = "60";
-				init = "623"; description = "Damages nearby enemies with an explosive force consisting of mostly heat and some physical damage. If you only hit one enemy, the enemy takes between 35-125 points of damage, but if you hit more than one enemy, the damage amount is doubled and divided amongst each enemy evenly."; }
+				init = "623"; description = "Dano a inimigos próximos com uma força explosiva consistindo principalmente de calor e algum dano físico. Se você acertar apenas um inimigo, o inimigo sofre entre 35-125 pontos de dano, mas se você acertar mais de um inimigo, a quantidade de dano é dobrada e dividida igualmente entre cada inimigo."; }
 			else if ( index == 53 ){ circle = "7"; name = "Poison Elemental"; school = "Summoning"; words = "uus nox"; reagents = "Nightshade, Nox Crystal, Silver Serpent Venom, Silver Widow"; mana = "50"; skill = "86";
-				init = "659"; description = "Summons a poison elemental that is controlled by the caster for 8-25 minutes."; }
+				init = "659"; description = "Invoca um elemental de veneno que é controlado pelo conjurador por 8-25 minutos."; }
 			else if ( index == 54 ){ circle = "7"; name = "Invoke Devil"; school = "Thaumaturgy"; words = "uus flam corp xen"; reagents = "Daemon Blood, Eye of Toad, Brimstone, Demon Claw"; mana = "60"; skill = "95";
-				init = "654"; description = "Calls forth a devil from the realms of hell to serve the caster for 2-8 minutes. The caster may lose some karma if they attempt this."; }
+				init = "654"; description = "Invoca um diabo dos reinos do inferno para servir o conjurador por 2-8 minutos. O conjurador pode perder algum karma se tentar isto."; }
 			else if ( index == 55 ){ circle = "7"; name = "Air Walk"; school = "Theurgy"; words = "vas hur por"; reagents = "Spiders Silk, Pixie Skull, Butterfly Wings"; mana = "55"; skill = "65";
-				init = "601"; description = "This spell creates an apple high cushion of air under the caster's feet for 20-80 minutes. When moving on this cushion of air, the caster can avoid almost any floor trap even if they are hidden. It does not help the caster avoid stone face traps or exploding mushrooms, nor does it avoid traps placed on containers. Any harmful liquids on a floor can also be avoided."; }
+				init = "601"; description = "Este feitiço cria uma almofada de ar alta sob os pés do conjurador por 20-80 minutos. Ao se mover sobre esta almofada de ar, o conjurador pode evitar quase qualquer armadilha de chão, mesmo que estejam escondidas. Não ajuda o conjurador a evitar armadilhas de rosto de pedra ou cogumelos explosivos, nem evita armadilhas colocadas em recipientes. Quaisquer líquidos nocivos no chão também podem ser evitados."; }
 			else if ( index == 56 ){ circle = "7"; name = "Avalanche"; school = "Wizardry"; words = "ex vas des"; reagents = "Blood Moss, Spiders Silk, Mandrake Root, Moon Crystal"; mana = "40"; skill = "70";
-				init = "602"; description = "Damages nearby enemies with falling ice and snow that hit for cold damage split between the enemies. If you only hit one enemy, the enemy takes between 35-125 points of damage, but if you hit more than one enemy, the damage amount is doubled and divided amongst each enemy evenly."; }
+				init = "602"; description = "Dano a inimigos próximos com gelo e neve caindo que causam dano de gelo dividido entre os inimigos. Se você acertar apenas um inimigo, o inimigo sofre entre 35-125 pontos de dano, mas se você acertar mais de um inimigo, a quantidade de dano é dobrada e dividida igualmente entre cada inimigo."; }
 
 			else if ( index == 57 ){ circle = "8"; name = "Death Vortex"; school = "Conjuration"; words = "vas corp hur"; reagents = "Daemon Blood, Eye of Toad, Unicorn Horn"; mana = "60"; skill = "90";
-				init = "615"; description = "Creates a swirling mass of black death that spreads disease and unleashes electrical force on nearby enemies for 1-3 minutes."; }
+				init = "615"; description = "Cria uma massa rodopiante de morte negra que espalha doenças e libera força elétrica sobre inimigos próximos por 1-3 minutos."; }
 			else if ( index == 58 ){ circle = "8"; name = "Withstand Death"; school = "Death"; words = "vas an corp"; much = "true"; reagents = "Phoenix Feather, Demigod Blood, Enchanted Seaweed, Ghostly Dust"; mana = "70"; skill = "90";
-				init = "662"; regs = "true"; description = "This spell was lost to the ages, but legends tell of King Wolfgang learning the secrets of this spell and creating the gem of immortality. The caster, if they can find all of the reagents needed, should be able to create a gem almost similar to that. If one is holding the jewel that is created, and they meet an untimely end, they will be restored to full health instead as the jewel vanishes from this plane of existence. You will need a sapphire to imbue the magic in for this spell to work. This spell is powerful enough that the scroll will always crumble to dust when cast."; }
+				init = "662"; regs = "true"; description = "Este feitiço foi perdido ao longo dos tempos, mas lendas contam que o Rei Wolfgang aprendeu os segredos deste feitiço e criou a gema da imortalidade. O conjurador, se conseguir encontrar todos os reagentes necessários, deve ser capaz de criar uma gema quase similar a essa. Se alguém estiver segurando a joia que é criada, e encontrar um fim prematuro, será restaurado à saúde completa enquanto a joia desaparece deste plano de existência. Você precisará de uma safira para imbuir a magia para este feitiço funcionar. Este feitiço é poderoso o suficiente para que o pergaminho sempre se desfaça em pó quando conjurado."; }
 			else if ( index == 59 ){ circle = "8"; name = "Mass Sleep"; school = "Enchanting"; words = "vas zu tym"; reagents = "Fairy Egg, Mandrake Root, Enchanted Seaweed, Lich Dust"; mana = "50"; skill = "85";
-				init = "639"; regs = "true"; description = "This spell will cause nearby foes to sleep for 10-60 seconds, but taking actions against them will likely wake them up from their slumber. This spell cannot affect supernatural creatures, constructs, golems, or elementals. This spell is powerful enough that the scroll will always crumble to dust when cast."; }
+				init = "639"; regs = "true"; description = "Este feitiço fará com que inimigos próximos durmam por 10-60 segundos, mas tomar ações contra eles provavelmente os acordará de seu sono. Este feitiço não pode afetar criaturas sobrenaturais, constructos, golems ou elementais. Este feitiço é poderoso o suficiente para que o pergaminho sempre se desfaça em pó quando conjurado."; }
 			else if ( index == 60 ){ circle = "8"; name = "Ring of Fire"; school = "Sorcery"; words = "in flam an por"; reagents = "Brimstone, Pig Iron, Daemon Blood"; mana = "55"; skill = "85";
-				init = "643"; description = "This spell creates a ring of fire at a chosen location, where demonic creatures cannot pass. Any demonic creature that touches the flames will be unable to cast spells, but they may still perform any special attacks they may have. The ring can last up to 50 seconds before extinguishing itself, and there is a chance that the demon can traverse the flaming circle if cast on uneven terrain."; }
+				init = "643"; description = "Este feitiço cria um anel de fogo em um local escolhido, onde criaturas demoníacas não podem passar. Qualquer criatura demoníaca que tocar as chamas ficará incapaz de lançar feitiços, mas ainda poderá realizar quaisquer ataques especiais que possam ter. O anel pode durar até 50 segundos antes de se extinguir, e há uma chance de que o demônio possa atravessar o círculo flamejante se for lançado em terreno irregular."; }
 			else if ( index == 61 ){ circle = "8"; name = "Blood Elemental"; school = "Summoning"; words = "uus mani"; reagents = "Black Pearl, Bloodmoss, Dragon Blood, Daemon Blood"; mana = "50"; skill = "90";
-				init = "651"; description = "Summons a blood elemental that is controlled by the caster for 8-25 minutes."; }
+				init = "651"; description = "Invoca um elemental de sangue que é controlado pelo conjurador por 8-25 minutos."; }
 			else if ( index == 62 ){ circle = "8"; name = "Armageddon"; school = "Thaumaturgy"; words = "in vas ort corp"; much = "true"; reagents = "Butterfly Wings, Black Pearl, Demigod Blood, Demon Claw"; mana = "80"; skill = "100";
-				init = "616"; description = "Over 700,000 years ago, the Xorinite Wisp gave the original version of this spell to a mage named Zog who was foolish enough to cast it, and all life was destroyed. What Zog may have done to enhance the spell is unknown, but this one is a much more minor version of that spell. Once it is cast, it destroys all creatures (often destroying their corpses) in a 20 space radius. It also kills the one casting it. Only the biggest fool, full of madness, would dare to cast this spell. The caster may lose some karma if they attempt this and the spell is powerful enough that the scroll will always crumble to dust when cast."; }
+				init = "616"; description = "Há mais de 700.000 anos, a Aparição Xorinita deu a versão original deste feitiço a um mago chamado Zog que foi tolo o suficiente para conjurá-lo, e toda a vida foi destruída. O que Zog pode ter feito para aprimorar o feitiço é desconhecido, mas este é uma versão muito menor daquele feitiço. Uma vez conjurado, ele destrói todas as criaturas (frequentemente destruindo seus cadáveres) num raio de 20 espaços. Também mata aquele que o conjura. Apenas o maior tolo, cheio de loucura, ousaria conjurar este feitiço. O conjurador pode perder algum karma se tentar isto e o feitiço é poderoso o suficiente para que o pergaminho sempre se desfaça em pó quando conjurado."; }
 			else if ( index == 63 ){ circle = "8"; name = "Restoration"; school = "Theurgy"; words = "vas in mani"; reagents = "Butterfly Wings, Garlic, Enchanted Seaweed"; mana = "50"; skill = "80";
-				init = "642"; description = "This spell can restore 12-125 points in health, stamina, and mana."; }
+				init = "642"; description = "Este feitiço pode restaurar 12-125 pontos de vida, vigor e mana."; }
 			else if ( index == 64 ){ circle = "8"; name = "Mass Death"; school = "Wizardry"; words = "vas corp"; much = "true"; reagents = "Pixie Skull, Bat Wing, Dragon Tooth"; mana = "55"; skill = "90";
-				init = "637"; regs = "true"; description = "Damages nearby enemies with deathly magics summoned from the void. If you hit more than one enemy, the damage amount is doubled and divided amongst each enemy evenly. The damage dealt is between 45-125 points, with the addition of the available hit points of the caster. After the mass death is unleashed, the caster will have a single hit point remaining. The caster may lose some karma if they attempt this. This spell is powerful enough that the scroll will always crumble to dust when cast."; }
+				init = "637"; regs = "true"; description = "Dano a inimigos próximos com magias mortais invocadas do vazio. Se você acertar mais de um inimigo, a quantidade de dano é dobrada e dividida igualmente entre cada inimigo. O dano causado é entre 45-125 pontos, com a adição dos pontos de vida disponíveis do conjurador. Após a morte em massa ser desencadeada, o conjurador terá um único ponto de vida restante. O conjurador pode perder algum karma se tentar isto. Este feitiço é poderoso o suficiente para que o pergaminho sempre se desfaça em pó quando conjurado."; }
 
 			if ( slice == 1 ){ value = circle; }
 			else if ( slice == 2 ){ value = name; }
@@ -1118,27 +1118,27 @@ namespace Server.Misc
 
 			if ( from.Mana < mana )
 			{
-				msg = "You lack the mana to scribe this spell to parchment."; canMake = false;
+				msg = "Você não tem mana suficiente para escrever este feitiço em pergaminho."; canMake = false;
 			}
 			else if ( from.Skills[SkillName.Inscribe].Value < skill )
 			{
-				msg = "You lack the skill to scribe this spell to parchment."; canMake = false;
+				msg = "Você não tem habilidade suficiente para escrever este feitiço em pergaminho."; canMake = false;
 			}
 			else if ( bag.BagInk < ink )
 			{
-				msg = "You do not have enough octopus ink in your bag."; canMake = false;
+				msg = "Você não tem tinta de polvo suficiente em sua bolsa."; canMake = false;
 			}
 			else if ( bag.BagQuills < 1 )
 			{
-				msg = "You need at least one quill in your bag."; canMake = false;
+				msg = "Você precisa de pelo menos uma pena em sua bolsa."; canMake = false;
 			}
 			else if ( bag.BagScrolls < 1 )
 			{
-				msg = "You need at least one blank scroll in your bag."; canMake = false;
+				msg = "Você precisa de pelo menos um pergaminho em branco em sua bolsa."; canMake = false;
 			}
 			else if ( !CheckReagents( from, spell, false, false, 1 ) )
 			{
-				msg = "You do not have the right reagents to scribe this spell."; canMake = false;
+				msg = "Você não tem os reagentes certos para escrever este feitiço."; canMake = false;
 			}
 			else if ( from.Skills[SkillName.Inscribe].Value < Utility.RandomMinMax( skill-25, skill+25 ) && canMake )
 			{
@@ -1150,7 +1150,7 @@ namespace Server.Misc
 				if ( from.Skills[SkillName.Inscribe].Value < Utility.RandomMinMax( 0, 125 ) ){ bag.BagQuills = bag.BagQuills - 1; if ( bag.BagQuills < 1 ){ bag.BagQuills = 0; } }
 				if ( from.Skills[SkillName.Inscribe].Value < Utility.RandomMinMax( 0, 125 ) ){ CheckReagents( from, spell, true, false, 1 ); }
 				from.PlaySound(0x249);
-				msg = "You fail to scribe the " + name + " scroll and some of your materials may be lost.";
+				msg = "Você falha ao escrever o pergaminho de " + name + " e alguns dos seus materiais podem ser perdidos.";
 			}
 
 			if ( canMake )
@@ -1163,7 +1163,7 @@ namespace Server.Misc
 				CheckReagents( from, spell, true, false, 1 );
 				from.PlaySound(0x249);
 				GiveScroll( spell, from );
-				bag.BagMsgString = "You successfully scribe the " + name + " scroll.";
+				bag.BagMsgString = "Você escreveu com sucesso o pergaminho de " + name + ".";
 				bag.BagMessage = 2;
 				bag.InvalidateProperties();
 			}
@@ -1244,9 +1244,9 @@ namespace Server.Misc
 				bag.SpellsMagery = got;
 			}
 
-			from.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found " + bag.SpellsMageItem + "!");
+			from.LocalOverheadMessage(MessageType.Emote, 1150, true, "Você encontrou " + bag.SpellsMageItem + "!");
 			from.SendSound( 0x3D );
-			LoggingFunctions.LogGeneric( from, "has found " + bag.SpellsMageItem + "." );
+			LoggingFunctions.LogGeneric( from, "encontrou " + bag.SpellsMageItem + "." );
 
 			if ( magic > 63 )
 			{
@@ -1337,9 +1337,9 @@ namespace Server.Misc
 				bag.SpellsNecromancy = got;
 			}
 
-			from.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found " + bag.SpellsNecroItem + "!");
+			from.LocalOverheadMessage(MessageType.Emote, 1150, true, "Você encontrou " + bag.SpellsNecroItem + "!");
 			from.SendSound( 0x3D );
-			LoggingFunctions.LogGeneric( from, "has found " + bag.SpellsNecroItem + "." );
+			LoggingFunctions.LogGeneric( from, "encontrou " + bag.SpellsNecroItem + "." );
 
 			if ( magic > 16 )
 			{
@@ -1374,7 +1374,7 @@ namespace Server.Misc
 				int entry = 1;
 				foreach (string spell in spells)
 				{
-					if ( spell == "0" && check ){ scroll = SpellInformation( entry, 2 ) + " from the School of " + SpellInformation( entry, 3 ); check = false; }
+					if ( spell == "0" && check ){ scroll = SpellInformation( entry, 2 ) + " da Escola de " + SpellInformation( entry, 3 ); check = false; }
 					else if ( spell == "1" ){ count++; }
 					entry++;
 				}
@@ -1430,9 +1430,9 @@ namespace Server.Misc
 				bag.ResearchSpells = got;
 			}
 
-			from.LocalOverheadMessage(MessageType.Emote, 1150, true, "You found " + bag.ResearchItem + "!");
+			from.LocalOverheadMessage(MessageType.Emote, 1150, true, "Você encontrou " + bag.ResearchItem + "!");
 			from.SendSound( 0x3D );
-			LoggingFunctions.LogGeneric( from, "has found " + bag.ResearchItem + "." );
+			LoggingFunctions.LogGeneric( from, "encontrou " + bag.ResearchItem + "." );
 
 			if ( magic > 63 )
 			{
@@ -1465,27 +1465,27 @@ namespace Server.Misc
 
 			if ( from.Mana < mana )
 			{
-				msg = "You lack the mana to scribe this spell to parchment."; canMake = false;
+				msg = "Você não tem mana suficiente para escrever este feitiço no pergaminho."; canMake = false;
 			}
 			else if ( from.Skills[SkillName.Inscribe].Value < skill )
 			{
-				msg = "You lack the skill to scribe this spell to parchment."; canMake = false;
+				msg = "Você não tem a habilidade necessária para escrever este feitiço no pergaminho."; canMake = false;
 			}
 			else if ( bag.BagQuills < 1 )
 			{
-				msg = "You need at least one quill in your bag."; canMake = false;
+				msg = "Você precisa de pelo menos uma pena em sua mochila."; canMake = false;
 			}
 			else if ( bag.BagScrolls < 1 )
 			{
-				msg = "You need at least one blank scroll in your bag."; canMake = false;
+				msg = "Você precisa de pelo menos um pergaminho em branco em sua mochila."; canMake = false;
 			}
 			else if ( !CheckReagents( from, spell, false, true, 1 ) )
 			{
-				msg = "You do not have the right reagents to scribe this spell."; canMake = false;
+				msg = "Você não tem os reagentes certos para escrever este feitiço."; canMake = false;
 			}
 			else if ( GetPrepared( bag, spell ) >= 500 )
 			{
-				msg = "You have too many of these spells in your bag already."; canMake = false;
+				msg = "Você já tem muitos desses feitiços em sua mochila."; canMake = false;
 			}
 			else if ( from.Skills[SkillName.Inscribe].Value < Utility.RandomMinMax( skill-25, skill+25 ) && canMake )
 			{
@@ -1496,7 +1496,7 @@ namespace Server.Misc
 				if ( from.Skills[SkillName.Inscribe].Value < Utility.RandomMinMax( 0, 125 ) ){ bag.BagQuills = bag.BagQuills - 1; if ( bag.BagQuills < 1 ){ bag.BagQuills = 0; } }
 				if ( from.Skills[SkillName.Inscribe].Value < Utility.RandomMinMax( 0, 125 ) ){ CheckReagents( from, spell, true, true, 1 ); }
 				from.PlaySound(0x249);
-				msg = "You fail to scribe the " + name + " scroll and some of your materials may be lost.";
+				msg = "Você falha ao escrever o pergaminho de " + name + " e alguns dos seus materiais podem ser perdidos.";
 			}
 
 			if ( canMake )
@@ -1508,7 +1508,7 @@ namespace Server.Misc
 				CheckReagents( from, spell, true, true, 1 );
 				from.PlaySound(0x249);
 				SetPrepared( bag, spell, 1 );
-				bag.BagMsgString = "You successfully scribe the " + name + " scroll.";
+				bag.BagMsgString = "Você escreveu com sucesso o pergaminho de " + name + ".";
 				bag.BagMessage = 2;
 				bag.InvalidateProperties();
 			}
@@ -1539,27 +1539,27 @@ namespace Server.Misc
 
 				if ( from.Mana < mana && manaCheck)
 				{
-					msg = "You lack the mana to scribe this spell to parchment."; canMake = false; stopAll = true;
+					msg = "Você não tem mana suficiente para escrever este feitiço no pergaminho."; canMake = false; stopAll = true;
 				}
 				else if ( from.Skills[SkillName.Inscribe].Value < skill )
 				{
-					msg = "You lack the skill to scribe this spell to parchment."; canMake = false; stopAll = true;
+					msg = "Você não tem a habilidade necessária para escrever este feitiço no pergaminho."; canMake = false; stopAll = true;
 				}
 				else if ( bag.BagQuills < 1 )
 				{
-					msg = "You need at least one quill in your bag."; canMake = false; stopAll = true;
+					msg = "Você precisa de pelo menos uma pena em sua mochila."; canMake = false; stopAll = true;
 				}
 				else if ( bag.BagScrolls < 1 )
 				{
-					msg = "You need at least one blank scroll in your bag."; canMake = false; stopAll = true;
+					msg = "Você precisa de pelo menos um pergaminho em branco em sua mochila."; canMake = false; stopAll = true;
 				}
 				else if ( !CheckReagents( from, spell, false, true, reagents+1 ) )
 				{
-					msg = "You do not have the right reagents to scribe this spell."; canMake = false; stopAll = true;
+					msg = "Você não tem os reagentes certos para escrever este feitiço."; canMake = false; stopAll = true;
 				}
 				else if ( GetPrepared( bag, spell ) >= 500 )
 				{
-					msg = "You have too many of these spells in your bag already."; canMake = false; stopAll = true;
+					msg = "Você já tem muitos desses feitiços em sua mochila."; canMake = false; stopAll = true;
 				}
 				else if ( from.Skills[SkillName.Inscribe].Value < Utility.RandomMinMax( skill-25, skill+25 ) && canMake )
 				{
@@ -1570,7 +1570,7 @@ namespace Server.Misc
 					if ( from.Skills[SkillName.Inscribe].Value < Utility.RandomMinMax( 0, 125 ) ){ bag.BagQuills = bag.BagQuills - 1; if ( bag.BagQuills < 1 ){ bag.BagQuills = 0; } }
 					if ( from.Skills[SkillName.Inscribe].Value < Utility.RandomMinMax( 0, 125 ) ){ reagents++; }
 					playSound = true;
-					msg = "You fail to scribe the " + name + " scrolls and some of your materials may be lost.";
+					msg = "Você falha ao escrever o pergaminho de " + name + " e alguns dos seus materiais podem ser perdidos.";
 				}
 
 				if ( canMake )
@@ -1588,8 +1588,8 @@ namespace Server.Misc
 
 			if ( reagents > 0 ){ CheckReagents( from, spell, true, true, reagents ); }
 
-			if ( total == 1 ){ bag.BagMsgString = "You successfully scribe a single " + name + " scroll."; bag.BagMessage = 2; }
-			else if ( total > 0 ){ bag.BagMsgString = "You successfully scribe " + total + " " + name + " scrolls."; bag.BagMessage = 2; }
+			if ( total == 1 ){ bag.BagMsgString = "Você escreveu com sucesso um único pergaminho de " + name + "."; bag.BagMessage = 2; }
+			else if ( total > 0 ){ bag.BagMsgString = "Você escreveu com sucesso " + total + " pergaminhos de " + name + "."; bag.BagMessage = 2; }
 			else { bag.BagMsgString = msg; bag.BagMessage = 1; }
 			if ( playSound ){ from.PlaySound(0x249); }
 			bag.InvalidateProperties();

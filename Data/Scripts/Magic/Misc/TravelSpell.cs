@@ -74,15 +74,15 @@ namespace Server.Spells.Magical
 			}
 			else if ( Worlds.AllowEscape( Caster, Caster.Map, Caster.Location, Caster.X, Caster.Y ) == false )
 			{
-				Caster.SendMessage( "That spell does not seem to work in this place." );
+				Caster.SendMessage( "Este feitiço não parece funcionar neste lugar." );
 			}
 			else if ( Worlds.RegionAllowedRecall( Caster.Map, Caster.Location, Caster.X, Caster.Y ) == false )
 			{
-				Caster.SendMessage( "That spell does not seem to work in this place." );
+				Caster.SendMessage( "Este feitiço não parece funcionar neste lugar." );
 			}
 			else if ( Worlds.RegionAllowedTeleport( map, loc, loc.X, loc.Y ) == false )
 			{
-				Caster.SendMessage( "The destination seems magically unreachable." );
+				Caster.SendMessage( "O destino parece ser magicamente inacessível." );
 			}
 			else if ( !SpellHelper.CheckTravel( Caster, map, loc, TravelCheckType.RecallTo ) )
 			{

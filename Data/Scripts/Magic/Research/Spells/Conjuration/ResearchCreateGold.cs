@@ -31,7 +31,7 @@ namespace Server.Spells.Research
 		{
 			if ( CheckSequence() )
 			{
-				Caster.SendMessage( "What item do you want to transmute into gold?" );
+				Caster.SendMessage( "Qual item você quer transmutar em ouro?" );
 				Caster.Target = new InternalTarget( this, spellID, Scroll, alwaysConsume );
 			}
 
@@ -81,7 +81,7 @@ namespace Server.Spells.Research
 				}
 				else
 				{
-					from.SendMessage( "You decide against transmuting such a thing." );
+					from.SendMessage( "Você decide não transmutar tal coisa." );
 				}
 				m_Owner.FinishSequence();
 			}
@@ -104,7 +104,7 @@ namespace Server.Spells.Research
 					gold.Amount = item.Amount;
 					from.AddToBackpack( gold );
 					item.Delete();
-					from.SendMessage( "You turn that into " + gold.Amount + " gold coins." );
+					from.SendMessage( "Você transforma isso em " + gold.Amount + " moedas de ouro." );
 				}
 				else if ( item is DDRelicCoins )
 				{
@@ -117,7 +117,7 @@ namespace Server.Spells.Research
 					from.AddToBackpack( gold );
 
 					item.Delete();
-					from.SendMessage( "You turn that into " + value + " gold coins." );
+					from.SendMessage( "Você transforma isso em " + value + " moedas de ouro." );
 
 				}
 				else if ( item is DDCopper )
@@ -131,7 +131,7 @@ namespace Server.Spells.Research
 					from.AddToBackpack( gold );
 
 					item.Delete();
-					from.SendMessage( "You turn that into " + gold.Amount + " gold coins." );
+					from.SendMessage( "Você transforma isso em " + gold.Amount + " moedas de ouro." );
 				}
 				else if ( item is DDSilver )
 				{
@@ -144,15 +144,15 @@ namespace Server.Spells.Research
 					from.AddToBackpack( gold );
 
 					item.Delete();
-					from.SendMessage( "You turn that into " + gold.Amount + " gold coins." );
+					from.SendMessage( "Você transforma isso em " + gold.Amount + " moedas de ouro." );
 				}
 				else if ( ResourceMods.SetResource( item, CraftResource.Gold ) )
 				{
-					from.SendMessage( "You turn that item into gold." );
+					from.SendMessage( "Você transforma esse item em ouro." );
 				}
 				else if ( ResourceMods.ResourceToGold( item, from ) )
 				{
-					from.SendMessage( "You turn that item into gold ingots." );
+					from.SendMessage( "Você transforma esse item em lingotes de ouro." );
 				}
 			}
 		}

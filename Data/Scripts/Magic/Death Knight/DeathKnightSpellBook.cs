@@ -8,7 +8,7 @@ namespace Server.Items
 	[FlipableAttribute( 0x6721, 0x6722 )]
 	public class DeathKnightSpellbook : Spellbook
 	{
-		public override string DefaultDescription{ get{ return "This vile book can contain magic used by death knights. Fillings its pages can only be achieved by finding the resting places of long dead death knights."; } }
+		public override string DefaultDescription{ get{ return "Este livro vil pode conter magia usada por cavaleiros da morte. Preencher suas páginas só pode ser alcançado encontrando os locais de descanso de cavaleiros da morte há muito mortos."; } }
 
 		public Mobile owner;
 
@@ -55,7 +55,7 @@ namespace Server.Items
 
 			if ( owner != from )
 			{
-				from.SendMessage( "These pages appears as scribbles to you." );
+				from.SendMessage( "Estas páginas parecem rabiscos para você." );
 			}
 			else if ( Parent == from || ( pack != null && Parent == pack ) )
 			{

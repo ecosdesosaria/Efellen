@@ -12,7 +12,7 @@ namespace Server.Items
 {
 	public class CrystallineJar : Item
 	{
-		public override string DefaultDescription{ get{ return "These jars are made of a special, crystalline glass. They are mainly used to collecting liquid from strange puddles on the ground. Such puddles are often created from creatures that produce such liquid. They can also collect holy water."; } }
+		public override string DefaultDescription{ get{ return "Estes jarros são feitos de um vidro especial e cristalino. Eles são usados principalmente para coletar líquido de poças estranhas no chão. Tais poças são frequentemente criadas por criaturas que produzem tal líquido. Eles também podem coletar água benta."; } }
 
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Potion; } }
 
@@ -31,7 +31,7 @@ namespace Server.Items
 
 			if ( this.Name == "crystalline flask" )
 			{
-				list.Add( 1070722, "Holds Odd Substances" );
+				list.Add( 1070722, "Guarda Substâncias Estranhas" );
 			}
 		}
 
@@ -45,23 +45,23 @@ namespace Server.Items
 			}
 			else if ( this.Name == "crystalline flask" )
 			{
-				from.SendMessage( "What do you want to scoop into the flask?" );
+				from.SendMessage( "O que você quer pegar com o frasco?" );
 				t = new ScoopTarget( this );
 				from.Target = t;
 			}
 			else if ( !from.Region.AllowHarmful( from, from ) )
 			{
-				from.SendMessage( "That doesn't feel like a good idea." ); 
+				from.SendMessage( "Isso não parece uma boa ideia." ); 
 				return;
 			}
 			else if ( Server.Items.MonsterSplatter.TooMuchSplatter( from ) )
 			{
-				from.SendMessage( "There is too much liquid on the ground already." ); 
+				from.SendMessage( "Já há muito líquido no chão." ); 
 				return;
 			}
 			else
 			{
-				from.SendMessage( "Where do you want to dump the contents?" );
+				from.SendMessage( "Onde você quer despejar o conteúdo?" );
 				ThrowTarget targ = from.Target as ThrowTarget;
 
 				if ( targ != null && targ.Potion == this )
@@ -89,18 +89,18 @@ namespace Server.Items
 
 					if ( from.GetDistanceToSqrt( new Point3D( iJar.X, iJar.Y, iJar.Z ) ) > 2 )
 					{
-						from.SendMessage( "That is too far away." );
+						from.SendMessage( "Isso está muito longe." );
 					}
 					else if ( (from.Paralyzed || from.Blessed || from.Frozen || (from.Spell != null && from.Spell.IsCasting)) )
 					{
-						from.SendMessage( "You cannot do that yet." );
+						from.SendMessage( "Você não pode fazer isso ainda." );
 					}
 					else if ( iJar is MonsterSplatter )
 					{
 						MonsterSplatter mJar = (MonsterSplatter)iJar;
 						if ( mJar.owner is PlayerMobile )
 						{
-							from.SendMessage( "That is too diluted to scoop up." );
+							from.SendMessage( "Isso está muito diluído para pegar." );
 						}
 						else
 						{
@@ -121,12 +121,12 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage( "This flask is meant for other substances." );
+						from.SendMessage( "Este frasco é feito para outras substâncias." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "This flask is meant for other substances." );
+					from.SendMessage( "Este frasco é feito para outras substâncias." );
 				}
 			}
 		}
@@ -163,7 +163,7 @@ namespace Server.Items
 				if ( from.GetDistanceToSqrt( d ) > 8 )
 				{
 					nThrown = 0;
-					from.SendMessage( "That is too far away." );
+					from.SendMessage( "Isso está muito longe." );
 				}
 				else if ( !from.CanSee( d ) )
 				{
@@ -173,7 +173,7 @@ namespace Server.Items
 				else if ( (from.Paralyzed || from.Blessed || from.Frozen || (from.Spell != null && from.Spell.IsCasting)) )
 				{
 					nThrown = 0;
-					from.SendMessage( "You cannot do that yet." );
+					from.SendMessage( "Você não pode fazer isso ainda." );
 				}
 				else
 				{

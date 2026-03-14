@@ -11,7 +11,7 @@ namespace Server.Items
 {
     public class AutoResPotion : Item
     {
-		public override string DefaultDescription{ get{ return "Drink this potion while you are still in the land of the living. If you reach an untimely end, you will automatically be resurrected within 10 seconds. It is best to guide your spirit to a safe place before that occurs, or you could suffer the same fate again."; } }
+		public override string DefaultDescription{ get{ return "Beba esta poção enquanto ainda está na terra dos vivos. Se você encontrar um fim prematuro, será automaticamente ressuscitado dentro de 10 segundos. É melhor guiar seu espírito para um lugar seguro antes que isso ocorra, ou você poderá sofrer o mesmo destino novamente."; } }
 
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Potion; } }
 
@@ -66,7 +66,7 @@ namespace Server.Items
 
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isto deve estar em sua mochila para usar." );
 				return;
 			}
 			else if( from != null && this != null && !m_ResList.ContainsKey(from))
@@ -74,13 +74,13 @@ namespace Server.Items
 				if(!m_ResList.ContainsValue(this))
 				{
 					m_ResList.Add(from, this);
-					from.SendMessage("You feel the spirits watching you, awaiting to send you back to your body.");
+					from.SendMessage("Você sente os espíritos observando você, aguardando para enviá-lo de volta ao seu corpo.");
 				}
 				else
-					from.SendMessage("The spirits of this potion are watching another");
+					from.SendMessage("Os espíritos desta poção estão observando outro");
 			}
 			else
-				from.SendMessage("The spirits watch you already.");
+				from.SendMessage("Os espíritos já observam você.");
 		}
 		
 		private static void EventSink_Death(PlayerDeathEventArgs e)
@@ -116,7 +116,7 @@ namespace Server.Items
                 if (owner.Alive || arp.m_Charges < 1)
                     return;
 
-                owner.SendMessage("You died under the watch of the spirits, they have offered you another chance at life.");
+                owner.SendMessage("Você morreu sob a vigília dos espíritos, e eles lhe ofereceram outra chance de vida.");
                 owner.Resurrect();
 				Server.Misc.Death.Penalty( owner, false );
 

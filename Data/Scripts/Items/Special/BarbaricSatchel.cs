@@ -51,7 +51,7 @@ namespace Server.Items
 			}
 			else if ( !MyServerSettings.AlterArtifact( dropped ) )
 			{
-				from.SendMessage( "This cannot be used on artifacts!" );
+				from.SendMessage( "Isto não pode ser usado em artefatos!" );
 			}
 			else
 			{
@@ -202,7 +202,7 @@ namespace Server.Items
 			BarbaricSatchel pack = new BarbaricSatchel();
 			pack.owner = from;
 			from.AddToBackpack( pack );
-			from.SendMessage( "A barbaric satchel has been added to your pack." );
+			from.SendMessage( "Uma algibeira bárbara foi adicionada à sua mochila." );
 		}
 
 		public class BarbaricSatchelGump : Gump
@@ -276,7 +276,7 @@ namespace Server.Items
 				this.Resizable=false;
 
 				AddPage(0);
-				AddHtml( 10, 7, 434, 20, @"<BODY><BASEFONT Color=" + color + ">What do you want to change the item into?</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 10, 7, 434, 20, @"<BODY><BASEFONT Color=" + color + ">No que você quer transformar o item?</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				if ( make == "robe" )
 				{
@@ -538,7 +538,7 @@ namespace Server.Items
 
 			from.SendSound( 0x55 );
 			from.AddToBackpack( item );
-			from.SendMessage( "The item has been changed." );
+			from.SendMessage( "O item foi transformado." );
 		}
 
 		public static string GetRandomBarbaric()

@@ -48,7 +48,7 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "These tools must be in your backpack to use." );
+				from.SendMessage( "Estas ferramentas devem estar em sua mochila para usar." );
 				return;
 			}
 			else if ( Limits > 0 )
@@ -63,11 +63,11 @@ namespace Server.Items
 
 				if ( traps > 2 )
 				{
-					from.SendMessage( "There are too many traps in the area!" );
+					from.SendMessage( "Há muitas armadilhas na área!" );
 				}
 				else if ( !from.Region.AllowHarmful( from, from ) )
 				{
-					from.SendMessage( "That doesn't feel like a good idea." ); 
+					from.SendMessage( "Isso não parece uma boa ideia." ); 
 					return;
 				}
 				else if ( from.Skills[SkillName.RemoveTrap].Value > 0 )
@@ -87,7 +87,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.SendMessage( "You cannot figure out how these tools work!" );
+					from.SendMessage( "Você não consegue descobrir como estas ferramentas funcionam!" );
 					return;
 				}
 			}

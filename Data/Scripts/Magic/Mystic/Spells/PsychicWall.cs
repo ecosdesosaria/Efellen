@@ -34,7 +34,7 @@ namespace Server.Spells.Mystic
 
 			if ( Caster.MagicDamageAbsorb > 0 )
 			{
-				Caster.SendMessage( "Your mind is already protected!" );
+				Caster.SendMessage( "Sua mente já está protegida!" );
 				return false;
 			}
 
@@ -49,7 +49,7 @@ namespace Server.Spells.Mystic
 
 			if ( Caster.MagicDamageAbsorb > 0 )
 			{
-				Caster.SendMessage( "Your mind is already protected!" );
+				Caster.SendMessage( "Sua mente já está protegida!" );
 			}
 			else if ( CheckSequence() )
 			{

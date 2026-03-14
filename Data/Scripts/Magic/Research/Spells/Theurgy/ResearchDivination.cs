@@ -35,7 +35,7 @@ namespace Server.Spells.Research
 		public override void OnCast()
 		{
 			Caster.Target = new InternalTarget( this );
-			Caster.SendMessage( "Who do you want to seek divine knowledge on?" );
+			Caster.SendMessage( "Sobre quem você quer buscar conhecimento divino?" );
 		}
 
 		public void Target( Mobile m )
@@ -57,14 +57,14 @@ namespace Server.Spells.Research
 				}
 				else if ( m is HenchmanMonster || m is HenchmanWizard || m is HenchmanFighter || m is HenchmanArcher )
 				{
-					Caster.SendMessage( "This spell can really tell you nothing of importance for this one." );
+					Caster.SendMessage( "Este feitiço realmente não pode lhe dizer nada de importante sobre este." );
 				}
 				else if (	m is BaseVendor || m is BasePerson || m is Citizens || m is PackBeast || 
 							m is FrankenPorter || m is FrankenFighter || m is HenchmanFamiliar || m is AerialServant || 
 							m is GolemPorter || m is Robot || m is GolemFighter || m is HenchmanArcher || 
 							m is HenchmanMonster || m is HenchmanFighter || m is HenchmanWizard )
 				{
-					Caster.SendMessage( "This spell can really tell you nothing of importance for this one." );
+					Caster.SendMessage( "Este feitiço realmente não pode lhe dizer nada de importante sobre este." );
 				}
 				else
 				{
@@ -86,7 +86,7 @@ namespace Server.Spells.Research
 					}
 					else
 					{
-						Caster.SendMessage( "This spell doesn't seem to work on that." );
+						Caster.SendMessage( "Este feitiço não parece funcionar nisso." );
 					}
 				}
 

@@ -6,7 +6,7 @@ namespace Server.Items
 {
     public class NecroSkinPotion : Item
 	{
-		public override string DefaultDescription{ get{ return "Dumping this dust on yourself, will make your skin and hair ghostly white. Only a grandmaster necromancer is able to use this. If you already are ghostly white, and you use this dust again, you will have your skin and hair return to what it was."; } }
+		public override string DefaultDescription{ get{ return "Jogar este pó em si mesmo deixará sua pele e cabelo brancos fantasmagóricos. Apenas um necromante grão-mestre pode usar isto. Se você já está branco fantasmagórico e usar este pó novamente, sua pele e cabelo retornarão ao que eram."; } }
 
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Potion; } }
 
@@ -20,20 +20,20 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Will Turn A Grandmaster Necromancer's Skin & Hair Ghostly White");
-			list.Add( 1049644, "Double Click To Eat The Dust");
+			list.Add( 1070722, "Deixará a Pele e o Cabelo de um Necromante Grão-Mestre Brancos Fantasmagóricos");
+			list.Add( 1049644, "Clique Duas Vezes Para Comer o Pó");
         } 
 
         public override void OnDoubleClick(Mobile from)
 		{
 			if ( from.RaceID != 0 )
 			{
-				from.SendMessage( "You don't find this really useful." );
+				from.SendMessage( "Você não acha isso realmente útil." );
 				return;
 			}
 			else if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isto deve estar na sua mochila para ser usado." );
 				return;
 			}
 			else if ( from.Hue == 0x47E || from.Hue == 0xB70 )
@@ -41,18 +41,18 @@ namespace Server.Items
 				from.Hue = from.RecordSkinColor;
 				from.HairHue = from.RecordHairColor;
 				from.FacialHairHue = from.RecordBeardColor;
-				from.SendMessage("Your body turns back to the colors of life.");
+				from.SendMessage("Seu corpo volta às cores da vida.");
 			}
 			else if ( from.Skills[SkillName.Necromancy].Base >= 100 )
 			{
 				from.Hue = 0xB70;
 				from.HairHue = Utility.RandomList( 0, 0x497 );
 				from.FacialHairHue = from.HairHue;
-				from.SendMessage("Your body turns a ghostly white.");
+				from.SendMessage("Seu corpo se transforma em branco fantasmagórico.");
 			}
 			else
 			{
-				from.SendMessage("You eat the skull dust, leaving your mouth dry.");
+				from.SendMessage("Você come o pó de caveira, deixando sua boca seca.");
 				from.Thirst = 0;
 			}
 			this.Delete();

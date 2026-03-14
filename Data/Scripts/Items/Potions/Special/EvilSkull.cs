@@ -8,7 +8,7 @@ namespace Server.Items
 {
 	public class EvilSkull : Item
 	{
-		public override string DefaultDescription{ get{ return "These skulls are found from the final deathly remains of skeletal wizards. If you use it, it will crumble into dust that you breathe in, restoring your mana. Doing so, however, will be quite the vile act and your karma would be affected."; } }
+		public override string DefaultDescription{ get{ return "Estes crânios são encontradas nos restos mortais finais de magos esqueletais. Se você usá-lo, ele se desfará em pó que você inalará, restaurando sua mana. Fazer isso, no entanto, será um ato bastante vil e seu karma será afetado."; } }
 
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Potion; } }
 
@@ -25,21 +25,21 @@ namespace Server.Items
 		{
 			if ( !IsChildOf( from.Backpack ) ) 
 			{
-				from.SendMessage( "This must be in your backpack to use." );
+				from.SendMessage( "Isto deve estar em sua mochila para usar." );
 				return;
 			}
 			else
 			{
 				if ( from.Mana < from.ManaMax )
 				{
-					from.SendMessage( "The skull crumbles into dust, magically restoring your mana." );
+					from.SendMessage( "O crânio se desfaz em pó, restaurando magicamente sua mana." );
 					from.Mana = from.ManaMax;
 					from.PlaySound( 0x1FA );
 					Misc.Titles.AwardKarma( from, -100, true );
 				}
 				else
 				{
-					from.SendMessage( "The skull crumbles into dust." );
+					from.SendMessage( "O crânio se desfaz em pó." );
 				}
 
 				this.Delete();

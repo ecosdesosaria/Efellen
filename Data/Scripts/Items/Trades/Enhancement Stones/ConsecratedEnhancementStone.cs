@@ -38,20 +38,20 @@ namespace Server.Items
 				if ( Uses < 1 )
 				{
 					Delete();
-					from.SendMessage(32, "This have no charges so it's gone!");
+					from.SendMessage(32, "Isto não tem cargas, então acabou!");
 				}
-				from.SendMessage("Which weapon you want to try to enhance?");
+				from.SendMessage("Qual arma você quer tentar aprimorar?");
 				from.Target = new ConsecratedEnhancementStoneTarget(this);
 			}
 			else
-				from.SendMessage("This must be in your backpack to use.");
+				from.SendMessage("Isto deve estar em sua mochila para usar.");
 		}
 
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Can Increase A Weapon's Damage");
-			list.Add( 1049644, "Will Bless The Weapon"); // PARENTHESIS
+			list.Add( 1070722, "Pode Aumentar o Dano de Uma Arma");
+			list.Add( 1049644, "Abençoará a Arma"); // PARENTHESIS
         }
 
 		public void Enhancement(Mobile from, object o)
@@ -60,7 +60,7 @@ namespace Server.Items
 			{
 				if ( !((Item)o).IsChildOf( from.Backpack ) )
 				{
-					from.SendMessage(32, "This must be in your backpack to enhance");
+					from.SendMessage(32, "Isto deve estar em sua mochila para aprimorar");
 				}
 				else if (o is BaseWeapon && ((BaseWeapon)o).IsChildOf(from.Backpack))
 				{
@@ -70,13 +70,13 @@ namespace Server.Items
 						i_DI += 15;
 					if (i_DI >= 70)
 					{
-						from.SendMessage(32, "This weapon cannot be enhanced any further");
+						from.SendMessage(32, "Esta arma não pode ser aprimorada mais");
 						return;
 					}
 					else if (from.Skills[SkillName.Blacksmith].Value < 80.0)
-						from.SendMessage(32, "You need at least 80.0 blacksmith and 80.0 knightship to enhance weapons with this stone");
+						from.SendMessage(32, "Você precisa de pelo menos 80.0 em Ferraria e 80.0 em Cavalaria para aprimorar armas com esta pedra");
 					else if (from.Skills[SkillName.Knightship].Value < 80.0)
-						from.SendMessage(32, "You need at least 80.0 blacksmith and 80 knightship to enhance weapons with this stone");
+						from.SendMessage(32, "Você precisa de pelo menos 80.0 em Ferraria e 80.0 em Cavalaria para aprimorar armas com esta pedra");
 					else if ( !Deleted )
 					{
 						int bonus = Utility.Random((int)(from.Skills[SkillName.Blacksmith].Value/10));
@@ -87,30 +87,30 @@ namespace Server.Items
 							weap.Attributes.WeaponDamage += bonus;
 							weap.Consecrated = true;
 							weap.LootType = LootType.Blessed;
-							from.SendMessage(88, "You enhanced the weapon with {0} damange increase", bonus);
+							from.SendMessage(88, "Você aprimorou a arma com {0} de aumento de dano", bonus);
 						}
 						else
-							from.SendMessage(32, "You fail to enhance the weapon");
+							from.SendMessage(32, "Você falhou ao aprimorar a arma");
 						if (Uses <= 1)
 						{
-							from.SendMessage(32, "You used up the Enhancement stone");
+							from.SendMessage(32, "Você usou a pedra de aprimoramento");
 							Delete();
 						}
 						else
 						{
 							--Uses;
-							from.SendMessage(32, "You have {0} uses left", Uses);
+							from.SendMessage(32, "Você tem {0} usos restantes", Uses);
 						}
 					}
 				}
 				else
 				{
-					from.SendMessage(32, "You can only enhance weapons");
+					from.SendMessage(32, "Você só pode aprimorar armas");
 				}
 			}
 			else
 			{
-				from.SendMessage(32, "You cannot enhance that");
+				from.SendMessage(32, "Você não pode aprimorar isso");
 			}
 		}
 

@@ -33,12 +33,12 @@ namespace Server.Spells.Shinobi
 		{
 			if ( !Caster.CanBeginAction( typeof( IncognitoSpell ) ) )
 			{
-				Caster.SendMessage( "You are already in a disguise!" );
+				Caster.SendMessage( "Você já está disfarçado!" );
 				return false;
 			}
 			else if ( !Caster.CanBeginAction( typeof( Deception ) ) )
 			{
-				Caster.SendMessage( "You are already in a disguise!" );
+				Caster.SendMessage( "Você já está disfarçado!" );
 				return false;
 			}
 
@@ -49,15 +49,15 @@ namespace Server.Spells.Shinobi
 		{
 			if ( !Caster.CanBeginAction( typeof( Deception ) ) )
 			{
-				Caster.SendMessage( "You are already in a disguise!" );
+				Caster.SendMessage( "Você já está disfarçado!" );
 			}
 			else if ( !Caster.CanBeginAction( typeof( IncognitoSpell ) ) )
 			{
-				Caster.SendMessage( "You are already in a disguise!" );
+				Caster.SendMessage( "Você já está disfarçado!" );
 			}
 			else if ( DisguiseTimers.IsDisguised( Caster ) )
 			{
-				Caster.SendMessage( "You can't do that while disguised.!" );
+				Caster.SendMessage( "Você não pode fazer isso enquanto estiver disfarçado!" );
 			}
 			else if ( !Caster.CanBeginAction( typeof( PolymorphSpell ) ) || ( Caster.IsBodyMod && Caster.RaceID != Caster.BodyMod ) )
 			{

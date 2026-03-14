@@ -749,13 +749,13 @@ namespace Server.Items
 				if( RequiredRace == Race.Elf )
 					from.SendLocalizedMessage( 1072203 ); // Only Elves may use this.
 				else
-					from.SendMessage( "Only {0} may use this.", RequiredRace.PluralName );
+					from.SendMessage( "Apenas {0} podem usar isto.", RequiredRace.PluralName );
 
 				return false;
 			}
 			else if ( from.Dex < DexRequirement )
 			{
-				from.SendMessage( "You are not nimble enough to equip that." );
+				from.SendMessage( "Você não é ágil o suficiente para equipar isso." );
 				return false;
 			} 
 			else if ( from.Str < AOS.Scale( StrRequirement, 100 - GetLowerStatReq() ) )
@@ -765,7 +765,7 @@ namespace Server.Items
 			}
 			else if ( from.Int < IntRequirement )
 			{
-				from.SendMessage( "You are not intelligent enough to equip that." );
+				from.SendMessage( "Você não é inteligente o suficiente para equipar isso." );
 				return false;
 			}
 			else if ( !from.CanBeginAction( typeof( BaseWeapon ) ) )
@@ -1458,7 +1458,7 @@ namespace Server.Items
 
 				int tellBonus = (int)(sneakBonus * 100);
 
-				attacker.SendMessage( "You perform a sneak attack for " + tellBonus + "% more damage!" );
+				attacker.SendMessage( "Você realiza um ataque furtivo com " + tellBonus + "% a mais de dano!" );
 				pm.SneakDamage = false;
 			}
 
@@ -1526,7 +1526,7 @@ namespace Server.Items
 
 				if ( Utility.Random( 5 ) == 1 && attacker is PlayerMobile )
 				{
-					attacker.SendMessage( "This weapon seems to be doing quite well against this enemy." );
+					attacker.SendMessage( "Esta arma parece estar funcionando muito bem contra este inimigo." );
 				}
 			}
 
@@ -2347,7 +2347,7 @@ namespace Server.Items
 
 			if ( necro < 30 && mages < 30 && ellys < 30 )
 			{
-				from.SendMessage ("You are not a powerful enough " + job + " to use this!");
+				from.SendMessage ("Você não é um " + job + " poderoso o suficiente para usar isto!");
 				return false;
 			}
 			return true;

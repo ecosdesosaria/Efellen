@@ -37,7 +37,7 @@ namespace Server.Spells.Fifth
 			}
 			else if ( !Caster.CanBeginAction( typeof( Deception ) ) )
 			{
-				Caster.SendMessage( "You are already disguised!" );
+				Caster.SendMessage( "Você já está disfarçado!" );
 				return false;
 			}
 
@@ -52,7 +52,7 @@ namespace Server.Spells.Fifth
 			}
 			else if ( !Caster.CanBeginAction( typeof( Deception ) ) )
 			{
-				Caster.SendMessage( "You are already disguised!" );
+				Caster.SendMessage( "Você já está disfarçado!" );
 			}
 			else if ( DisguiseTimers.IsDisguised( Caster ) )
 			{

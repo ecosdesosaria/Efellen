@@ -53,7 +53,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You did not learn that ability." );
+				from.SendMessage( "Você não aprendeu essa habilidade." );
 			}
         }
 
@@ -72,7 +72,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You did not learn that ability." );
+				from.SendMessage( "Você não aprendeu essa habilidade." );
 			}
 		}
 
@@ -91,7 +91,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You did not learn that ability." );
+				from.SendMessage( "Você não aprendeu essa habilidade." );
 			}
 		}
 
@@ -110,7 +110,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You did not learn that ability." );
+				from.SendMessage( "Você não aprendeu essa habilidade." );
 			}
 		}
 
@@ -129,7 +129,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You did not learn that ability." );
+				from.SendMessage( "Você não aprendeu essa habilidade." );
 			}
 		}
 
@@ -148,7 +148,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You did not learn that ability." );
+				from.SendMessage( "Você não aprendeu essa habilidade." );
 			}
 		}
 
@@ -167,7 +167,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You did not learn that ability." );
+				from.SendMessage( "Você não aprendeu essa habilidade." );
 			}
 		}
 
@@ -186,7 +186,7 @@ namespace Server.Scripts.Commands
 			}
 			else
 			{
-				from.SendMessage( "You did not learn that ability." );
+				from.SendMessage( "Você não aprendeu essa habilidade." );
 			}
 		}
 	}

@@ -24,7 +24,7 @@ namespace Server.Items
 			get
 			{
 				if ( HarvestSystem == Lumberjacking.System )
-					return "When holding this in your hand, you can use it to select a tree you wish to chop. Doing this may help you gather some wood.";
+					return "Quando segurado em sua mão, você pode usá-lo para selecionar uma árvore que deseja cortar. Fazer isso pode ajudá-lo a coletar um pouco de madeira.";
 
 				return null;
 			}
@@ -141,10 +141,10 @@ namespace Server.Items
 
 				if ( mod == null )
 				{
-					defender.SendMessage( "You receive a concussion blow!" );
+					defender.SendMessage( "Você recebeu um golpe de concussão!" );
 					defender.AddStatMod( new StatMod( StatType.Int, "Concussion", -(defender.RawInt / 2), TimeSpan.FromSeconds( 30.0 ) ) );
 
-					attacker.SendMessage( "You deliver a concussion blow!" );
+					attacker.SendMessage( "Você deu um golpe de concussão!" );
 					attacker.PlaySound( 0x11C );
 				}
 			}

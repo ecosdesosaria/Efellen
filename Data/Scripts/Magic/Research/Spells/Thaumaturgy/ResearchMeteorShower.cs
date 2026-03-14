@@ -30,7 +30,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Where do you want to call down the meteors?" );
+			Caster.SendMessage( "Onde você quer invocar os meteoros?" );
 			Caster.Target = new InternalTarget( this );
 		}
 

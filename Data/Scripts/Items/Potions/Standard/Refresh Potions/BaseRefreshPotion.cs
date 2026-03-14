@@ -41,7 +41,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "You decide against drinking this potion, as you are already at full stamina." );
+				from.SendMessage( "Você decide não beber esta poção, pois já está com vigor máximo." );
 			}
 		}
 	}

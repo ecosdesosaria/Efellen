@@ -35,15 +35,15 @@ namespace Server.Spells.Elementalism
 			}
 			else if (Caster.Region.IsPartOf(typeof(PublicRegion)))
 			{
-				Caster.SendMessage("You cannot cast this here.");
+				Caster.SendMessage("Você não pode conjurar isto aqui.");
 			}
 			else if (Server.Misc.Worlds.IsOnBoat(Caster))
 			{
-				Caster.SendMessage("You cannot cast this near a boat.");
+				Caster.SendMessage("Você não pode conjurar isto perto de um barco.");
 			}
 			else if (inCombat)
 			{
-				Caster.SendMessage("You cannot cast this while in combat.");
+				Caster.SendMessage("Você não pode conjurar isto enquanto está em combate.");
 			}
 			else if (Caster.Region.IsPartOf(typeof(DungeonHomeRegion)))
 			{
@@ -59,7 +59,7 @@ namespace Server.Spells.Elementalism
 						!Caster.Region.IsPartOf(typeof(OutDoorBadRegion)) &&
 						!Caster.Region.IsPartOf(typeof(VillageRegion)))
 			{
-				Caster.SendMessage("You are only skilled enough to cast this spell outdoors.");
+				Caster.SendMessage("Você só tem habilidade suficiente para conjurar este feitiço ao ar livre.");
 			}
 			else if (Caster.Skills[SkillName.Elementalism].Value >= 90 &&
 						!Caster.Region.IsPartOf(typeof(DungeonRegion)) &&
@@ -69,7 +69,7 @@ namespace Server.Spells.Elementalism
 						!Caster.Region.IsPartOf(typeof(OutDoorBadRegion)) &&
 						!Caster.Region.IsPartOf(typeof(VillageRegion)))
 			{
-				Caster.SendMessage("You can only cast this spell outdoors or in dungeons.");
+				Caster.SendMessage("Você só pode conjurar este feitiço ao ar livre ou em dungeons.");
 			}
 			else
 			{

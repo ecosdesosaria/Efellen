@@ -33,7 +33,7 @@ namespace Server.Spells.Shinobi
 		{
 			if ( !Caster.Paralyzed && !Caster.Frozen )
 			{
-				Caster.SendMessage( "You are not held captive!" );
+				Caster.SendMessage( "Você não está mantido em cativeiro!" );
 			}
 			else if ( CheckBSequence( Caster ) )
 			{
@@ -45,12 +45,12 @@ namespace Server.Spells.Shinobi
 					Caster.Paralyzed = false;
 					Caster.Frozen = false;
 					BuffInfo.CleanupIcons( Caster, true );
-					Caster.SendMessage( "You freed yourself!" );
+					Caster.SendMessage( "Você se libertou!" );
 				}
 				else
 				{
 					Caster.PlaySound( Caster.Female ? 815 : 1089 );
-					Caster.SendMessage( "You failed to free yourself!" );
+					Caster.SendMessage( "Você falhou em se libertar!" );
 				}
 			}
 

@@ -84,7 +84,7 @@ namespace Server.Items
 		{
 			if ( !from.InRange( GetWorldLocation(), 3 ) )
 			{
-				from.SendMessage( "You will have to get closer to take liquid from the cauldron." );
+				from.SendMessage( "Você precisará se aproximar para pegar líquido do caldeirão." );
 			}
 			else if ( m_Uses > 0 )
 			{
@@ -98,7 +98,7 @@ namespace Server.Items
 						else { iBottle.Consume(); }
 
 						from.PlaySound( 0x4E );
-						from.SendMessage( "You fill a potion bottle with the liquid from the cauldron." );
+						from.SendMessage( "Você enche uma garrafa de poção com o líquido do caldeirão." );
 						this.m_Uses = this.m_Uses - 1;
 
 						if ( m_Pool == 0 ){ from.AddToBackpack( new NightSightPotion() ); }
@@ -142,7 +142,7 @@ namespace Server.Items
 					}
 					else
 					{
-						from.SendMessage( "You do not have an empty potion bottle to draw liquid from the cauldron." );
+						from.SendMessage( "Você não tem uma garrafa de poção vazia para tirar líquido do caldeirão." );
 					}
 
 				}

@@ -77,15 +77,15 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( !IsChildOf( from.Backpack ) && from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified ) 
-				from.SendMessage( "This must be in your backpack to identify." );
+				from.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified )
 				IDCommand( from );
 			else if ( !IsChildOf( from.Backpack ) )
-				from.SendMessage( "This must be in your backpack to flip." );
+				from.SendMessage( "Isto deve estar em sua mochila para virar." );
 			else
 				if ( this.ItemID == RelicFlipID1 ){ this.ItemID = RelicFlipID2; } else { this.ItemID = RelicFlipID1; }
 
-			from.SendMessage( "This instrument is quite old and cannot be played." );
+			from.SendMessage( "Este instrumento é bastante antigo e não pode ser tocado." );
 		}
 
 		public override void IDCommand( Mobile m )

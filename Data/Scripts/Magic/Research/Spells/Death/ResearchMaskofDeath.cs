@@ -55,7 +55,7 @@ namespace Server.Spells.Research
 
 				Caster.PlaySound( 0x1ED );
 				Caster.FixedParticles( 0x376A, 9, 32, 5008, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.Waist );
-				Caster.SendMessage( "You summon the mask of death into your pack." );
+				Caster.SendMessage( "Você invoca a máscara da morte em sua mochila." );
 				Item iMask = new DeathlyMask(Caster,time);
 				Caster.AddToBackpack( iMask );
 				Server.Misc.Research.ConsumeScroll( Caster, true, spellIndex, alwaysConsume, Scroll );
@@ -161,7 +161,7 @@ namespace Server.Items
 				{
 					DeathlyMask masks = (DeathlyMask)i_item;
 					Mobile from = masks.owner;
-					from.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "The mask of death has vanished.");
+					from.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "A máscara da morte desapareceu.");
 					from.PlaySound( 0x1F0 );
 					i_item.Delete();
 				}

@@ -73,7 +73,7 @@ namespace Server
 
 				if ( !VendorCanID( examine.NotIDSource, m ) )
 				{
-					vendor.SayTo(from, "I cannot identify that.");
+					vendor.SayTo(from, "Não consigo identificar isso.");
 					return;
 				}
 			}
@@ -94,44 +94,44 @@ namespace Server
 						if ( from.Skills[SkillName.Mercantile].Base < 50 && Utility.RandomBool() )
 							from.CheckSkill( SkillName.Mercantile, 0, 100 );
 
-						string estimate = "You could maybe get";
+						string estimate = "Você talvez consiga";
 						switch ( Utility.RandomMinMax( 0, 10 ) )
 						{
-							case 0:	estimate = "This could perhaps bring";		break;
-							case 1:	estimate = "One could want this for";		break;
-							case 2:	estimate = "This may be worth";				break;
-							case 3:	estimate = "Selling this would gain you";	break;
-							case 4:	estimate = "This could be worth";			break;
-							case 5:	estimate = "You might sell it for";			break;
-							case 6:	estimate = "This could be sold for about";	break;
-							case 7:	estimate = "Someone may take this for";		break;
-							case 8:	estimate = "This could fetch a price of";	break;
-							case 9:	estimate = "These are usually worth about";	break;
+							case 0: estimate = "Isto poderia talvez render"; break;
+							case 1: estimate = "Alguém poderia querer isto por"; break;
+							case 2: estimate = "Isto pode valer"; break;
+							case 3: estimate = "Vender isto te daria"; break;
+							case 4: estimate = "Isto poderia valer"; break;
+							case 5: estimate = "Você talvez venda por"; break;
+							case 6: estimate = "Isto poderia ser vendido por cerca de"; break;
+							case 7: estimate = "Alguém pode levar isto por"; break;
+							case 8: estimate = "Isto poderia alcançar um preço de"; break;
+							case 9: estimate = "Estes geralmente valem cerca de"; break;
 						}
-						from.SendMessage( "" + estimate + " " + gold + " gold." );
+						from.SendMessage( "" + estimate + " " + gold + " ouro." );
 						return;
 					}
 				}
-				from.SendMessage( "That is already identified." );
+				from.SendMessage( "Isso já está identificado." );
 				return;
 			}
 			else if ( vendor == null && skill != skills )
 			{
-				from.SendMessage( "That is not the correct skill to identify that." );
+				from.SendMessage( "Essa não é a habilidade correta para identificar isso." );
 				return;
 			}
 			else if ( vendor == null && examine.NotIDAttempts > 5 )
 			{
-				from.SendMessage( "Only a vendor can identify this item now as too many attempts were made." );
+				from.SendMessage( "Apenas um vendedor pode identificar este item agora, pois muitas tentativas foram feitas." );
 				return;
 			}
 
 			if ( !examine.Movable && vendor == null )
-				from.SendMessage( "That cannot move so you cannot identify it." );
+				from.SendMessage( "Isso não pode ser movido, então você não pode identificá-lo." );
 			else if ( !from.InRange( examine.GetWorldLocation(), 3 ) && vendor == null )
-				from.SendMessage( "You will need to get closer to identify that." );
+				from.SendMessage( "Você precisará se aproximar para identificar isso." );
 			else if ( !(examine.IsChildOf( from.Backpack )) && vendor == null ) 
-				from.SendMessage( "This must be in your backpack to identify." );
+				from.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( examine is Food && examine.NotIDSkill == IDSkill.Tasting && vendor == null )
 			{
 				Food food = (Food)examine;
@@ -151,25 +151,25 @@ namespace Server
 				if ( vendor != null && examine is NotIdentified )
 				{
 					string var = NotIdentified.IDVirConItem( (NotIdentified)examine, from );
-					vendor.SayTo( from, "That appears to be the " + var + "." );
+					vendor.SayTo( from, "Isso parece ser " + var + "." );
 				}
 				else if ( from.CheckTargetSkill( skill, examine, -5, 125 ) )
 				{
 					if ( examine is NotIdentified )
 					{
 						string var = NotIdentified.IDVirConItem( (NotIdentified)examine, from );
-						from.SendMessage( "You identify the " + var + "." );
+						from.SendMessage( "Você identifica " + var + "." );
 					}
 					else
 					{
 						examine.NotIdentified = false;
 
 						if ( examine.NotIDSource == Identity.Armor || examine.NotIDSource == Identity.Weapon )
-							from.SendMessage( "That is too old to be used in battle." );
+							from.SendMessage( "Isso é muito antigo para ser usado em batalha." );
 						else if ( examine.NotIDSource == Identity.Music )
-							from.SendMessage( "That is too old to be played." );
+							from.SendMessage( "Isso é muito antigo para ser tocado." );
 
-						from.SendMessage( "That is probably worth about " + examine.CoinPrice + " gold." );
+						from.SendMessage( "Isso provavelmente vale cerca de " + examine.CoinPrice + " ouro." );
 					}
 				}
 				else if ( vendor == null )
@@ -183,20 +183,20 @@ namespace Server
 					{
 						examine.CoinPrice = Utility.RandomMinMax( 5, 25 );
 						examine.NotIdentified = false;
-						from.SendMessage( "You cannot really seem to fully identify it." );
+						from.SendMessage( "Você não parece conseguir identificá-lo completamente." );
 
 						if ( examine.NotIDSource == Identity.Armor || examine.NotIDSource == Identity.Weapon )
-							from.SendMessage( "That is too old to be used in battle." );
+							from.SendMessage( "Isso é muito antigo para ser usado em batalha." );
 						else if ( examine.NotIDSource == Identity.Music )
-							from.SendMessage( "That is too old to be played." );
+							from.SendMessage( "Isso é muito antigo para ser tocado." );
 
-						from.SendMessage( "Maybe you can get " + examine.CoinPrice + " gold for it." );
+						from.SendMessage( "Talvez você possa obter " + examine.CoinPrice + " ouro por ele." );
 					}
 				}
 			}
 			else
 			{
-				from.SendMessage( "That item does not need to be identified." );
+				from.SendMessage( "Esse item não precisa ser identificado." );
 			}
 		}
 

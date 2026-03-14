@@ -34,12 +34,12 @@ namespace Server.Spells.Chivalry
 
 			if ( Caster.Stam < 10 )
 			{
-				Caster.SendMessage( "You are too fatigued to do that now." );
+				Caster.SendMessage( "Você está muito fatigado para fazer isso agora." );
 				return false;
 			}
 			else if ( Caster.Karma < 0 )
 			{
-				Caster.SendMessage( "You do not have enough Karma to use this ability." );
+				Caster.SendMessage( "Você não tem Karma suficiente para usar esta habilidade." );
 				return false;
 			}
 			else if ( Caster.TithingPoints < RequiredTithing )
@@ -67,12 +67,12 @@ namespace Server.Spells.Chivalry
 
 			if ( Caster.Stam < 10 )
 			{
-				Caster.SendMessage( "You are too fatigued to do that now." );
+				Caster.SendMessage( "Você está muito fatigado para fazer isso agora." );
 				return false;
 			}
 			else if ( Caster.Karma < 0 )
 			{
-				Caster.SendMessage( "You do not have enough Karma to use this ability." );
+				Caster.SendMessage( "Você não tem Karma suficiente para usar esta habilidade." );
 				return false;
 			}
 			else if ( Caster.TithingPoints < requiredTithing )

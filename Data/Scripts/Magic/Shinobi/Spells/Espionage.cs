@@ -55,11 +55,11 @@ namespace Server.Spells.Shinobi
 					}
 					else if ( o is BaseHouseDoor )  // house door check
 					{
-						from.SendMessage( "This ability is to unlock certain containers and other types of doors." );
+						from.SendMessage( "Esta habilidade serve para destrancar certos recipientes e outros tipos de portas." );
 					}
 					else if ( o is Item && ((Item)o).VirtualContainer )
 					{
-						from.SendMessage( "This key is to unlock almost any container." );
+						from.SendMessage( "Esta chave serve para destrancar quase qualquer recipiente." );
 					}
 					else if ( o is BaseDoor )
 					{
@@ -85,22 +85,22 @@ namespace Server.Spells.Shinobi
 						LockableContainer cont = (LockableContainer)o;
 
 						if ( Multis.BaseHouse.CheckSecured( cont ) ) 
-							from.SendMessage( "You cannot use this ability on a secure item!" );
+							from.SendMessage( "Você não pode usar esta habilidade em um item seguro!" );
 						else if ( !cont.Locked )
 							from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 503101 ); // That did not need to be unlocked.
 						else if ( cont.LockLevel == 0 )
 							from.SendLocalizedMessage( 501666 ); // You can't unlock that!
 						else if ( (this.GetType()).IsAssignableFrom(typeof(TreasureMapChest)) )
 						{
-							from.SendMessage( "A magical aura on this long lost treasure will always be too much for your abilities." );
+							from.SendMessage( "Uma aura mágica neste tesouro há muito perdido será sempre demais para suas habilidades." );
 						}
 						else if ( (this.GetType()).IsAssignableFrom(typeof(ParagonChest)) )
 						{
-							from.SendMessage( "A magical aura on this long lost treasure will always be too much for your abilities." );
+							from.SendMessage( "Uma aura mágica neste tesouro há muito perdido será sempre demais para suas habilidades." );
 						}
 						else if ( (this.GetType()).IsAssignableFrom(typeof(PirateChest)) )
 						{
-							from.SendMessage( "This seems to be protected from magic, but maybe an actual lock picker can get it open." );
+							from.SendMessage( "Esta parece ser protegida contra magia, mas talvez um verdadeiro arrombador consiga abri-la." );
 						}
 						else {
 							int level = (int)(from.Skills[SkillName.Ninjitsu].Value) + 20;
@@ -114,7 +114,7 @@ namespace Server.Spells.Shinobi
 									cont.LockLevel = cont.RequiredSkill - 10;
 							}
 							else
-								from.SendMessage( "Your ability does not seem to have an effect on that lock!" );
+								from.SendMessage( "Suas habilidades não parecem ter efeito sobre essa trava!" );
 						}		
 					}
 				}

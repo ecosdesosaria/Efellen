@@ -41,7 +41,7 @@ namespace Server.Spells.First
 				if ( Server.Items.BaseRace.BloodDrinker( Caster.RaceID ) )
 				{
 					Caster.AddToBackpack( new BloodyDrink() );
-					Caster.SendMessage( "Some fresh blood magically appears in your backpack." );
+					Caster.SendMessage( "Um pouco de sangue fresco aparece magicamente em sua mochila." );
 
 					Caster.FixedParticles( 0, 10, 5, 2003, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.RightHand );
 					Caster.PlaySound( 0x1E2 );
@@ -49,7 +49,7 @@ namespace Server.Spells.First
 				else if ( Server.Items.BaseRace.BrainEater( Caster.RaceID ) )
 				{
 					Caster.AddToBackpack( new FreshBrain() );
-					Caster.SendMessage( "Some fresh brains magically appears in your backpack." );
+					Caster.SendMessage( "Alguns cérebros frescos aparecem magicamente em sua mochila." );
 
 					Caster.FixedParticles( 0, 10, 5, 2003, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.RightHand );
 					Caster.PlaySound( 0x1E2 );
@@ -63,7 +63,7 @@ namespace Server.Spells.First
 					{
 						Caster.AddToBackpack( food );
 						Caster.AddToBackpack( new WaterBottle() );
-						Caster.SendMessage( "Some food and drink magically appear in your backpack." );
+						Caster.SendMessage( "Alguns alimentos e bebidas aparecem magicamente em sua mochila." );
 						Caster.FixedParticles( 0, 10, 5, 2003, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.RightHand );
 						Caster.PlaySound( 0x1E2 );
 					}

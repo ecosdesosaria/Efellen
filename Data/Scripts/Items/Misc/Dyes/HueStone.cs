@@ -39,18 +39,18 @@ namespace Server.Items
 			{
 				string sCount = "charges";
 				if ( NCharges == 1 ){ sCount = "charge"; }
-				from.SendMessage( "This stone has " + NCharges + " " + sCount + "." );
+				from.SendMessage( "Esta pedra tem " + NCharges + " " + sCount + "." );
 
 				if ( NCharges > 0 )
 				{
-					from.SendMessage( "Choose an item you wish to change to the same color as the illusionist stone." );
-					from.SendMessage( "The item must be in your pack to change it`s color." );
+					from.SendMessage( "Escolha um item que deseja mudar para a mesma cor da pedra do ilusionista." );
+					from.SendMessage( "O item deve estar em sua mochila para mudar sua cor." );
 					from.Target = new WHueTarget( this );
 				}
 				else
 				{
-					from.SendMessage( "There is not enough charges to use this illusionist stone." );
-					from.SendMessage( "You must target 500 gold to charge the stone." );
+					from.SendMessage( "Não há cargas suficientes para usar esta pedra do ilusionista." );
+					from.SendMessage( "Você deve selecionar 500 moedas de ouro para carregar a pedra." );
 					from.Target = new WHueTarget( this );
 				}
 			}
@@ -135,7 +135,7 @@ namespace Server.Items
 
 					m_Dye.NType = iStone.Name;
 
-					from.SendMessage( "The Illusionist Stone magically changed color." );
+					from.SendMessage( "A Pedra do Ilusionista mudou magicamente de cor." );
 				}
 				else if ( obj is Item )
 				{
@@ -147,7 +147,7 @@ namespace Server.Items
 
 					if ( !iDye.IsChildOf( from.Backpack ) && !backpack )
 					{
-						from.SendMessage( "You can only use this stone on things in your pack." );
+						from.SendMessage( "Você só pode usar esta pedra em coisas em sua mochila." );
 					}
 					else if ( ( iDye is Gold ) && ( iDye.Amount > 499 ) )
 					{
@@ -166,11 +166,11 @@ namespace Server.Items
 						from.PlaySound( 0x2E6 );
 						string sCount = "charges";
 							if ( m_Dye.NCharges == 1 ){ sCount = "charge"; }
-						from.PrivateOverheadMessage( MessageType.Regular, 0x44, false, "This stone now has " + m_Dye.NCharges.ToString() + " " + sCount + ".", from.NetState );
+						from.PrivateOverheadMessage( MessageType.Regular, 0x44, false, "Esta pedra agora tem " + m_Dye.NCharges.ToString() + " " + sCount + ".", from.NetState );
 					}
 					else if ( ( iDye is Gold ) && ( iDye.Amount < 500 ) )
 					{
-						from.PrivateOverheadMessage( MessageType.Regular, 0x44, false, "I do not have enough gold to charge this stone.", from.NetState );
+						from.PrivateOverheadMessage( MessageType.Regular, 0x44, false, "Não tenho ouro suficiente para carregar esta pedra.", from.NetState );
 					}
 					else if ( ( iDye.IsChildOf( from.Backpack ) || backpack ) && m_Dye.NCharges > 0 )
 					{
@@ -196,16 +196,16 @@ namespace Server.Items
 					}
 					else if ( m_Dye.NCharges < 1 )
 					{
-						from.PrivateOverheadMessage( MessageType.Regular, 0x44, false, "This illusionist stone has no charges.", from.NetState );
+						from.PrivateOverheadMessage( MessageType.Regular, 0x44, false, "Esta pedra do ilusionista não tem cargas.", from.NetState );
 					}
 					else
 					{
-						from.SendMessage( "You cannot use the stone on that." );
+						from.SendMessage( "Você não pode usar a pedra sobre isso." );
 					}
 				}
 				else
 				{
-					from.SendMessage( "You cannot use the stone on that." );
+					from.SendMessage( "Você não pode usar a pedra nisso." );
 				}
 			}
 		}
@@ -213,8 +213,8 @@ namespace Server.Items
 		public override void AddNameProperties( ObjectPropertyList list )
 		{
 			base.AddNameProperties( list );
-			list.Add( 1070722, "Double Click To Use. Target This Stone To Change It`s Color, Gold To Charge The Stone, Or An Item In Your Pack To Change It`s Color." );
-			list.Add( 1049644, "500 Gold Per Charge - This Stone Changes Items To Match It`s Color." );
+			list.Add( 1070722, "Clique Duas Vezes Para Usar. Selecione Esta Pedra Para Mudar Sua Cor, Ouro Para Carregar A Pedra, Ou Um Item Em Sua Mochila Para Mudar Sua Cor." );
+			list.Add( 1049644, "500 Moedas de Ouro Por Carga - Esta Pedra Muda Itens Para Corresponder à Sua Cor." );
 		}
 
 		public HueStone( Serial serial ) : base( serial )

@@ -37,7 +37,7 @@ namespace Server.Items
 
 		public override CraftResource DefaultResource{ get{ return CraftResource.RegularLeather; } }
 
-		public override string DefaultDescription{ get{ return "These books are a way to store multiple marked location runes. Locations are added to a book by dropping a marked rune onto the book, where each book will hold a total of 16 locations. The complete instructions for using the book are on the last two pages of the book text."; } }
+		public override string DefaultDescription{ get{ return "Estes livros são uma forma de armazenar múltiplas runas de localização marcada. Locais são adicionados a um livro soltando uma runa marcada sobre o livro, onde cada livro conterá um total de 16 locais. As instruções completas para usar o livro estão nas duas últimas páginas do texto do livro."; } }
 
 		public override void DefaultMainHue( Item item )
 		{

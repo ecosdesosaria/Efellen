@@ -36,7 +36,7 @@ namespace Server.Items
 				return base.OnDragDropInto(from, dropped, p);
 			}
 
-			from.SendMessage("This belt pouch is for witchery brewing items.");
+			from.SendMessage("Esta bolsa de cinto é para itens de preparação de bruxaria.");
 			return false;
         }
 
@@ -47,7 +47,7 @@ namespace Server.Items
 				return base.OnDragDrop(from, dropped);
 			}
 
-			from.SendMessage("This belt pouch is for druidic herbalism items.");
+			from.SendMessage("Esta bolsa de cinto é para itens de herbalismo druídico.");
 			return false;
         }
 
@@ -383,7 +383,7 @@ namespace Server.Items
 
 		public static void warnMe( Mobile from )
 		{
-			string text = "You don't have that mixture!";
+			string text = "Você não tem essa mistura!";
 
 			from.SendMessage( text );
 			from.LocalOverheadMessage(MessageType.Emote, 1150, true, text);
@@ -391,7 +391,7 @@ namespace Server.Items
 
 		public override bool OnDragLift( Mobile from )
 		{
-			from.SendMessage( "Single click this bag to organize it." );
+			from.SendMessage( "Clique uma vez nesta bolsa para organizá-la." );
 			return base.OnDragLift( from );
 		}
 
@@ -542,7 +542,7 @@ namespace Server.Items
 				} 
 				else 
 				{
-					m_From.SendMessage( "This must be in your backpack to organize." );
+					m_From.SendMessage( "Esta deve estar em sua mochila para ser organizada." );
 				} 
 			} 
 		} 

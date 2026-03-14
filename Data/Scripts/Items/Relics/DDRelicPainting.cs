@@ -159,14 +159,14 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( !IsChildOf( from.Backpack ) && from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified ) 
-				from.SendMessage( "This must be in your backpack to identify." );
+				from.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified )
 				IDCommand( from );
 			else if ( !IsChildOf( from.Backpack ) )
-				from.SendMessage( "This must be in your backpack to flip." );
+				from.SendMessage( "Isto deve estar em sua mochila para virar." );
 			else if ( this.Name.Contains(" (covered in muck)") )
 			{
-				from.SendMessage( "You clear the muck from the painting." );
+				from.SendMessage( "Você limpa a sujeira da pintura." );
 				this.Hue = 0;
 				if ( ItemID >= 0x5377 && ItemID <= 0x5390 ){ Hue = Utility.RandomList( 0xABE, 0x4A7, 0x747, 0x96C, 0x7DA, 0x415, 0x908, 0x712, 0x1CD, 0x9C2, 0x843, 0x750, 0xA94, 0x973, 0xA3A ); }
 				this.Name = this.Name.Replace(" (covered in muck)", "");

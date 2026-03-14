@@ -29,7 +29,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage("The crystal slightly vibrates and feels warm to the touch.");
+				from.SendMessage("O cristal vibra levemente e parece quente ao toque.");
 			}
         }
 
@@ -55,7 +55,7 @@ namespace Server.Items
 				{
 					string where = "the Sorcerer Cave in Sosaria";
 					if ( from.Map == Map.Sosaria ){ where = "the Conjurerer's Cave in Lodoria"; }
-					AddHtml( 13, 43, 581, 333, @"<BODY><BASEFONT Color=" + color + ">There are only two crystals like this ever discovered. The one here and the other in " + where + ". Sages have figured out that these can affect the powers of magic within a spellcaster and even some magical items. Sometimes elementalists seek out these crystals to forget the magic they learned, so they can focus their studies on magery or necromancy. Sometimes a mage or necromancer wants to abandon their pursuits and study elemental magic. Since elemental magic interferes with that of necromancy and magery, as well as those two doing the same toward elementalism, the crystals in these caves help them learn the other. Use the arrow button below to navigate the crystal, and be sure of your choices before calling upon the crystal's power.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 13, 43, 581, 333, @"<BODY><BASEFONT Color=" + color + ">Existem apenas dois cristais como este já descobertos. O daqui e o outro em " + where + ". Sábios descobriram que eles podem afetar os poderes da magia dentro de um conjurador e até mesmo alguns itens mágicos. Às vezes, elementalistas procuram esses cristais para esquecer a magia que aprenderam, para que possam focar seus estudos em magia ou necromancia. Às vezes, um mago ou necromante quer abandonar suas buscas e estudar magia elemental. Já que a magia elemental interfere com a da necromancia e magia, assim como essas duas fazem o mesmo em relação ao elementalismo, os cristais nessas cavernas os ajudam a aprender a outra. Use o botão de seta abaixo para navegar pelo cristal e certifique-se de suas escolhas antes de invocar o poder do cristal.</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddButton(567, 359, 4005, 4005, 2, GumpButtonType.Reply, 0);
 				}
 				else if ( page == 2 )
@@ -85,7 +85,7 @@ namespace Server.Items
 					AddHtml( 136, y, 357, 20, @"<BODY><BASEFONT Color=" + color + ">Cancel</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddButton(95, y, 4020, 4020, 0, GumpButtonType.Reply, 0);
 
-					AddHtml( 13, 43, 581, 134, @"<BODY><BASEFONT Color=" + color + ">This crystal emits a powerful magic that can make the most skilled spellcasters forget the knowledge they learned. Most visit this place to pursue a normal life, free from magic. Others choose to practice magic in schools that do not allow one with the other, so they seek out this place to wipe their minds and start anew.</BASEFONT></BODY>", (bool)false, (bool)false);
+					AddHtml( 13, 43, 581, 134, @"<BODY><BASEFONT Color=" + color + ">Este cristal emite uma magia poderosa que pode fazer os conjuradores mais habilidosos esquecerem o conhecimento que aprenderam. A maioria visita este lugar para buscar uma vida normal, livre de magia. Outros escolhem praticar magia em escolas que não permitem uma com a outra, então eles procuram este lugar para limpar suas mentes e começar de novo.</BASEFONT></BODY>", (bool)false, (bool)false);
 
 					AddButton(9, 358, 4014, 4014, 1, GumpButtonType.Reply, 0);
 				}

@@ -6,7 +6,7 @@ namespace Server.Items
 {
 	public abstract class BaseClothMaterial : Item, IDyable
 	{
-		public override string DefaultDescription{ get{ return "You can use these on a loom, which will produce cloth you can use for tailoring."; } }
+		public override string DefaultDescription{ get{ return "Você pode usar isto em um tear, que produzirá tecido que você pode usar para alfaiataria."; } }
 
 		public BaseClothMaterial( int itemID ) : this( itemID, 1 )
 		{
@@ -123,11 +123,11 @@ namespace Server.Items
 							from.AddToBackpack( create );
 
 							from.SendLocalizedMessage( 500368 ); // You create some cloth and put it in your backpack.
-							if ( loom.Phase > 0 ){ from.SendMessage( "The loom still has some incomplete cloth started." ); }
+							if ( loom.Phase > 0 ){ from.SendMessage( "O tear ainda tem algum tecido incompleto iniciado." ); }
 						}
 						else
 						{
-							from.SendMessage( "You don't have enough to create a bolt of cloth." );
+							from.SendMessage( "Você não tem o suficiente para criar uma peça de tecido." );
 						}
 					}
 				}

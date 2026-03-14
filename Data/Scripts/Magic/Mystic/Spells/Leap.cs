@@ -38,7 +38,7 @@ namespace Server.Spells.Mystic
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Choose a spot to leap to." );
+			Caster.SendMessage( "Escolha um local para saltar." );
 			Caster.Target = new InternalTarget( this );
 		}
 

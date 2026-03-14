@@ -170,7 +170,7 @@ namespace Server.Spells.Chivalry
 						{
 							caster.AddToBackpack ( item );
 						}
-					caster.PrivateOverheadMessage(MessageType.Regular, 1153, false, "The curse has been lifted from the books.", caster.NetState);
+					caster.PrivateOverheadMessage(MessageType.Regular, 1153, false, "A maldição foi removida dos livros.", caster.NetState);
 					o.Delete();
 				}
 				else if ( o is CurseItem )
@@ -187,7 +187,7 @@ namespace Server.Spells.Chivalry
 						}
 					string curseName = o.Name;
 						if ( curseName == ""){ curseName = "item"; }
-					caster.PrivateOverheadMessage(MessageType.Regular, 1153, false, "The curse has been lifted from the " + curseName + ".", caster.NetState);
+					caster.PrivateOverheadMessage(MessageType.Regular, 1153, false, "A maldição foi removida do " + curseName + ".", caster.NetState);
 					o.Delete();
 				}
 
@@ -199,7 +199,7 @@ namespace Server.Spells.Chivalry
 			{
 				caster.PlaySound( 0x1DF );
 				if ( o is BookBox || o is CurseItem )
-					caster.SendMessage("You fail to lift the curse.");
+					caster.SendMessage("Você falhou em remover a maldição.");
 			}
 
 			FinishSequence();

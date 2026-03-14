@@ -10,7 +10,7 @@ namespace Server.Spells.Jester
 	public class CanOfSnakes : JesterSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Can of Snakes", "How about some nuts?",
+				"Can of Snakes", "Que tal algumas nozes?",
 				-1,
 				0
 			);
@@ -30,7 +30,7 @@ namespace Server.Spells.Jester
 
 			if( (Caster.Followers + 1) > Caster.FollowersMax )
 			{
-				Caster.SendMessage( "You have too many followers to open that can." );
+				Caster.SendMessage( "Você tem muitos seguidores para abrir essa lata." );
 				return false;
 			}
 
@@ -72,7 +72,7 @@ namespace Server.Spells.Jester
 				if ( qty > 2 ){ FoolHue = Utility.RandomColor(0); Server.Mobiles.SummonedJoke.MakeJoker( Caster, p, FoolPoisons, FoolName, FoolBody, FoolHue, FoolSound, FoolPhys, FoolCold, FoolFire, FoolPois, FoolEngy ); }
 
 				Caster.PlaySound( Caster.Female ? 793 : 1065 );
-				Caster.Say( "*gasp!*" );
+				Caster.Say( "*suspiro!*" );
 			}
 
 			FinishSequence();

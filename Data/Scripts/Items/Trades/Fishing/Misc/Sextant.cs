@@ -279,7 +279,7 @@ namespace Server.Items
 
 	public class Sextant : Item
 	{
-		public override string DefaultDescription{ get{ return "Sextants are used to gaze at the stars and determine your location. If you are carrying a sextant, and you examine items like a treasure map or a parchment with sextant coordinates on it, you may be able to open a world map to see the location. These maps will have a red pin for the location. If you are traveling in that world, you will see a blue pin to where you are."; } }
+		public override string DefaultDescription{ get{ return "Sextantes são usados para observar as estrelas e determinar sua localização. Se você estiver carregando um sextante e examinar itens como um mapa do tesouro ou um pergaminho com coordenadas de sextante, você poderá abrir um mapa mundi para ver a localização. Esses mapas terão um alfinete vermelho para a localização. Se você estiver viajando naquele mundo, verá um alfinete azul para onde você está."; } }
 
 		[Constructable]
 		public Sextant() : base( 0x1058 )
@@ -312,17 +312,17 @@ namespace Server.Items
 			int xMins = 0, yMins = 0;
 			bool xEast = false, ySouth = false;
 
-			if ( from.Land == Land.Underworld && !(this is MagicSextant) ){ from.SendMessage( "You will need a magical sextant to see the stars through the cavern ceiling!" ); } 
+			if ( from.Land == Land.Underworld && !(this is MagicSextant) ){ from.SendMessage( "Você precisará de um sextante mágico para ver as estrelas através do teto da caverna!" ); } 
 			else if ( Sextant.Format( from.Location, from.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 			{
-				string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
+				string location = String.Format( "{0}� {1}'{2}, {3}� {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
 				from.LocalOverheadMessage( MessageType.Regular, from.SpeechHue, false, location );
 			}
-			else if ( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) == "Ravendark Woods" ) { from.SendMessage( "You can't use a sextant as the sun and stars are blocked by the evil darkness here!" ); }
-			else if ( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) == "the Village of Ravendark" ) { from.SendMessage( "You can't use a sextant as the sun and stars are blocked by the evil darkness here!" ); }
-			else if ( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) == "the Ranger Outpost" ) { from.SendMessage( "You can't use a sextant as the mountain clouds block the sky!" ); } 
-			else if ( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) == "the Valley of Dark Druids" ) { from.SendMessage( "The druids mask this valley with thick clouds!" ); } 
-			else { from.SendMessage( "The sextant does not seem to work here!" ); } 
+			else if ( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) == "Ravendark Woods" ) { from.SendMessage( "Você não pode usar um sextante, pois o sol e as estrelas estão bloqueados pela escuridão maligna aqui!" ); }
+			else if ( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) == "the Village of Ravendark" ) { from.SendMessage( "Você não pode usar um sextante, pois o sol e as estrelas estão bloqueados pela escuridão maligna aqui!" ); }
+			else if ( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) == "the Ranger Outpost" ) { from.SendMessage( "Você não pode usar um sextante, pois as nuvens da montanha bloqueiam o céu!" ); } 
+			else if ( Server.Misc.Worlds.GetRegionName( from.Map, from.Location ) == "the Valley of Dark Druids" ) { from.SendMessage( "Os druidas mascaram este vale com nuvens espessas!" ); } 
+			else { from.SendMessage( "O sextante não parece funcionar aqui!" ); } 
 		}
 
 		public static bool ComputeMapDetails( Map map, int x, int y, out int xCenter, out int yCenter, out int xWidth, out int yHeight )

@@ -247,7 +247,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage( "Trinkets are equipped on your hip." );
+			from.SendMessage( "Trinkets são equipadas em seu quadril." );
 			return;
 		}
 

@@ -71,7 +71,7 @@ namespace Server.Spells.Fifth
 
 				BaseCreature.Summon( new BladeSpirits(), false, Caster, new Point3D( p ), 0x212, duration );
 
-				Caster.SendMessage( "You can double click the summoned to dispel them." );
+				Caster.SendMessage( "Você pode clicar duas vezes no invocado para dissipá-lo." );
 			}
 
 			FinishSequence();

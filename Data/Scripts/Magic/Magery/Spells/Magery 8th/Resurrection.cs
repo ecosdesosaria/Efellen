@@ -57,7 +57,7 @@ namespace Server.Spells.Eighth
 
                 m.PlaySound( 0x214 );
                 m.FixedEffect( 0x376A, 10, 16, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0 );
-				m.SendMessage( "You summon a magical orb to protect your soul." );
+				m.SendMessage( "Você invoca um orbe mágico para proteger sua alma." );
 				SoulOrb iOrb = new SoulOrb();
 				iOrb.m_Owner = m;
 				m.AddToBackpack( iOrb );
@@ -65,7 +65,7 @@ namespace Server.Spells.Eighth
             }
             else if ( m == Caster )
             {
-				Caster.SendMessage("You failed to summon an orb.");
+				Caster.SendMessage("Você falhou ao invocar um orbe.");
 			}
             else if ( !Caster.Alive )
             {
@@ -124,7 +124,7 @@ namespace Server.Spells.Eighth
 				}
 				else
 				{
-					Caster.SendMessage("They are not dead.");
+					Caster.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if ( hench is HenchmanWizardItem && CheckSequence() )
@@ -140,7 +140,7 @@ namespace Server.Spells.Eighth
 				}
 				else
 				{
-					Caster.SendMessage("They are not dead.");
+					Caster.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if ( hench is HenchmanArcherItem && CheckSequence() )
@@ -156,7 +156,7 @@ namespace Server.Spells.Eighth
 				}
 				else
 				{
-					Caster.SendMessage("They are not dead.");
+					Caster.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else if (hench is HenchmanMonsterItem && CheckSequence() )
@@ -172,12 +172,13 @@ namespace Server.Spells.Eighth
 				}
 				else
 				{
-					Caster.SendMessage("They are not dead.");
+					Caster.SendMessage("Eles não estão mortos.");
 				}
 			}
 			else
 			{
-				Caster.SendMessage("This spell didn't seem to work.");
+				Caster.SendMessage("Este feitiço não parece funcionar.");
+
 			}
             FinishSequence();
 		}

@@ -10,7 +10,7 @@ namespace Server.Spells.Jester
 	public class RabbitInAHat : JesterSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Rabbit in a Hat", "What's in the hat?",
+				"Rabbit in a Hat", "O que tem no chapéu?",
 				-1,
 				0
 			);
@@ -30,7 +30,7 @@ namespace Server.Spells.Jester
 
 			if( (Caster.Followers + 1) > Caster.FollowersMax )
 			{
-				Caster.SendMessage( "You have too many followers to reach into the hat." );
+				Caster.SendMessage( "Você tem muitos seguidores para colocar a mão no chapéu." );
 				return false;
 			}
 

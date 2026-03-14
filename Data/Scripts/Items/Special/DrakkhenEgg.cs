@@ -56,7 +56,7 @@ namespace Server.Items
 					if ( iAmount > 1 ){ sEnd = "s."; }
 
 					HaveGold = HaveGold + iAmount;
-					from.SendMessage( "You added " + iAmount.ToString() + " gold coin" + sEnd );
+					from.SendMessage( "Você adicionou " + iAmount.ToString() + " moeda" + sEnd );
 					dropped.Delete();
 					return true;
 				}
@@ -71,12 +71,12 @@ namespace Server.Items
 
 			if ( egg.HaveGold < 50000 )
 			{
-				druid.Say( "You do not have enough gold for me to perform this service." );
+				druid.Say( "Você não tem ouro suficiente para eu realizar este serviço." );
 				return false;
 			}
 			else if ( (m.Followers + 2) > m.FollowersMax )
 			{
-				druid.Say( "You have too many followers with you to crack this crystal." );
+				druid.Say( "Você tem muitos seguidores com você para quebrar este cristal." );
 				return false;
 			}
 
@@ -90,8 +90,8 @@ namespace Server.Items
 			drakkhen.Tamable = true;
 			drakkhen.ControlOrder = OrderType.Follow;
 
-			LoggingFunctions.LogGenericQuest( m, "has cracked open a drakkhen crystal" );
-			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Your drakkhen is freed.", m.NetState);
+			LoggingFunctions.LogGenericQuest( m, "quebrou um cristal de drakkhen" );
+			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Seu drakkhen está livre.", m.NetState);
 
 			m.PlaySound( 0x041 );
 
@@ -126,15 +126,15 @@ namespace Server.Items
 				this.Resizable=false;
 
 				int need = 50000 - egg.HaveGold;
-				string cost = " Place " + need + " more gold onto the crystal and give it to a druid.";
-				if ( egg.HaveGold >= 50000 ){ cost = " You can now give this to a druid as you have enough gold."; }
+				string cost = " Coloque " + need + " mais ouro no cristal e entregue-o a um druida.";
+				if ( egg.HaveGold >= 50000 ){ cost = " Agora você pode entregar isto a um druida pois tem ouro suficiente."; }
 
 				AddPage(0);
 
 				AddImage(0, 0, 7016, Server.Misc.PlayerSettings.GetGumpHue( from ));
 				AddHtml( 12, 11, 420, 20, @"<BODY><BASEFONT Color=" + color + ">DRAKKHEN CRYSTAL</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddButton(546, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-				AddHtml( 12, 42, 561, 297, @"<BODY><BASEFONT Color=" + color + "><BR><BR><BR>You have heard tales of these gems. These rare crystals come from the mighty dragon-kin beasts in which this was found. Within it lies the infant version of the creature, but only the local druids know how to safely release it from this encased gem. If you could find such a druid, and you want to release the creature, then be ready to give 50000 gold in tribute as the druid will not do such a thing out of the kindness of their heart. When the drakkhen is released, it will be very young and only half as powerful as a drake. You can ride them if you wish but it takes centuries for them to grow as mighty as the one this was taken from, so they will never be as strong. They are rare beasts nonetheless." + cost + "</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 42, 561, 297, @"<BODY><BASEFONT Color=" + color + "><BR><BR><BR>Você ouviu contos sobre estas gemas. Estes cristais raros vêm das poderosas bestas dragão-kin das quais isto foi encontrado. Dentro dele jaz a versão infantil da criatura, mas apenas os druidas locais sabem como libertá-la com segurança desta gema encapsulada. Se você puder encontrar tal druida e quiser libertar a criatura, então esteja pronto para dar 50000 moedas de ouro em tributo, pois o druida não fará tal coisa por bondade de coração. Quando o drakkhen for libertado, será muito jovem e apenas metade tão poderoso quanto um drake. Você pode montá-lo se quiser, mas leva séculos para que cresçam tão poderosos quanto aquele de quem isto foi tirado, então eles nunca serão tão fortes. No entanto, são bestas raras." + cost + "</BASEFONT></BODY>", (bool)false, (bool)false);
 			}
 
 			public override void OnResponse(NetState state, RelayInfo info)
@@ -192,7 +192,7 @@ namespace Server.Items
 					if ( iAmount > 1 ){ sEnd = "s."; }
 
 					HaveGold = HaveGold + iAmount;
-					from.SendMessage( "You added " + iAmount.ToString() + " gold coin" + sEnd );
+					from.SendMessage( "Você adicionou " + iAmount.ToString() + " moeda" + sEnd );
 					dropped.Delete();
 					return true;
 				}
@@ -207,12 +207,12 @@ namespace Server.Items
 
 			if ( egg.HaveGold < 50000 )
 			{
-				druid.Say( "You do not have enough gold for me to perform this service." );
+				druid.Say( "Você não tem ouro suficiente para eu realizar este serviço." );
 				return false;
 			}
 			else if ( (m.Followers + 2) > m.FollowersMax )
 			{
-				druid.Say( "You have too many followers with you to crack this crystal." );
+				druid.Say( "Você tem muitos seguidores com você para quebrar este cristal." );
 				return false;
 			}
 
@@ -226,8 +226,8 @@ namespace Server.Items
 			drakkhen.Tamable = true;
 			drakkhen.ControlOrder = OrderType.Follow;
 
-			LoggingFunctions.LogGenericQuest( m, "has cracked open a drakkhen crystal" );
-			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Your drakkhen is freed.", m.NetState);
+			LoggingFunctions.LogGenericQuest( m, "quebrou um cristal de drakkhen" );
+			m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Seu drakkhen foi libertado.", m.NetState);
 
 			m.PlaySound( 0x041 );
 
@@ -262,15 +262,15 @@ namespace Server.Items
 				this.Resizable=false;
 
 				int need = 50000 - egg.HaveGold;
-				string cost = " Place " + need + " more gold onto the crystal and give it to a druid.";
-				if ( egg.HaveGold >= 50000 ){ cost = " You can now give this to a druid as you have enough gold."; }
+				string cost = " Coloque " + need + " mais ouro sobre o cristal e entregue-o a um druida.";
+				if ( egg.HaveGold >= 50000 ){ cost = " Agora você pode entregar isto a um druida já que tem ouro suficiente."; }
 
 				AddPage(0);
 
 				AddImage(0, 0, 7016, Server.Misc.PlayerSettings.GetGumpHue( from ));
 				AddHtml( 12, 11, 420, 20, @"<BODY><BASEFONT Color=" + color + ">DRAKKHEN CRYSTAL</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddButton(546, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-				AddHtml( 12, 42, 561, 297, @"<BODY><BASEFONT Color=" + color + "><BR><BR><BR>You have heard tales of these gems. These rare crystals come from the mighty dragon-kin beasts in which this was found. Within it lies the infant version of the creature, but only the local druids know how to safely release it from this encased gem. If you could find such a druid, and you want to release the creature, then be ready to give 50000 gold in tribute as the druid will not do such a thing out of the kindness of their heart. When the drakkhen is released, it will be very young and only half as powerful as a drake. You can ride them if you wish but it takes centuries for them to grow as mighty as the one this was taken from, so they will never be as strong. They are rare beasts nonetheless." + cost + "</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 12, 42, 561, 297, @"<BODY><BASEFONT Color=" + color + "><BR><BR><BR>Você ouviu contos sobre estas gemas. Estes cristais raros vêm das poderosas bestas dragão-kin das quais isto foi encontrado. Dentro dele jaz a versão infantil da criatura, mas apenas os druidas locais sabem como libertá-la com segurança desta gema encapsulada. Se você puder encontrar tal druida e quiser libertar a criatura, então esteja pronto para dar 50000 moedas de ouro em tributo, pois o druida não fará tal coisa por bondade de coração. Quando o drakkhen for libertado, será muito jovem e apenas metade tão poderoso quanto um drake. Você pode montá-lo se quiser, mas leva séculos para que cresçam tão poderosos quanto aquele de quem isto foi tirado, então eles nunca serão tão fortes. No entanto, são bestas raras." + cost + "</BASEFONT></BODY>", (bool)false, (bool)false);
 			}
 
 			public override void OnResponse(NetState state, RelayInfo info)

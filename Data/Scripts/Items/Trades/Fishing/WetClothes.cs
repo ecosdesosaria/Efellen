@@ -75,12 +75,12 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Squeeze Out Water To Dry");
+			list.Add( 1070722, "Esprema Para Secar");
         }
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			from.SendMessage("You squeeze out the water.");
+			from.SendMessage("Você espreme a água para fora.");
 			from.PlaySound( 0x026 );
 
 			if ( this.ItemID == 0x1517 || this.ItemID == 0x1518 ){ from.AddToBackpack( new Shirt( Utility.RandomDyedHue() ) ); }

@@ -70,15 +70,15 @@ namespace Server.Spells.Necromancy
 
 					if ( undead.Slays(m) )
 					{
-						Caster.SendMessage( "You cannot animate supernatural creatures!" );
+						Caster.SendMessage( "Você não pode animar criaturas sobrenaturais!" );
 					}
 					else if ( golems.Slays(m) )
 					{
-						Caster.SendMessage( "You cannot animate constructs!" );
+						Caster.SendMessage( "Você não pode animar constructos!" );
 					}
 					else if ( level_corpse > level_caster )
 					{
-						Caster.SendMessage( "You are not powerful enough to animate that!" );
+						Caster.SendMessage( "Você não é poderoso o suficiente para animar isso!" );
 					}
 					else if ( slots_limit >= slots_max )
 					{

@@ -32,7 +32,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Who do you want to charm?" );
+			Caster.SendMessage( "Quem você quer encantar?" );
 			Caster.Target = new InternalTarget( this );
 		}
 
@@ -58,13 +58,13 @@ namespace Server.Spells.Research
 			else if ( m is PlayerMobile )
 			{
 				m.Paralyze( TimeSpan.FromSeconds( (DamagingSkill( Caster ) / 4) ) );
-				m.SendMessage( "You are charmed." );
+				m.SendMessage( "Você foi encantado." );
 				BuffInfo.RemoveBuff( m, BuffIcon.Charm );
 				BuffInfo.AddBuff( m, new BuffInfo( BuffIcon.Charm, 1063686, TimeSpan.FromSeconds( (DamagingSkill( Caster ) / 4) ), m ) );
 			}
 			else if ( !CanAffect )
 			{
-				Caster.SendMessage( "You cannot charm supernatural creatures, golems, constructs, or elementals." );
+				Caster.SendMessage( "Você não pode encantar criaturas sobrenaturais, golems, constructos ou elementais." );
 			}
 			else if ( m is BaseCreature )
 			{
@@ -75,15 +75,15 @@ namespace Server.Spells.Research
 
 				if ( bc.ControlMaster != null )
 				{
-					Caster.SendMessage( "That is already controlled by another." );
+					Caster.SendMessage( "Isso já está controlado por outro." );
 				}
 				else if ( bc.FightMode != FightMode.Closest && bc.FightMode != FightMode.Aggressor )
 				{
-					Caster.SendMessage( "These charms will not work very well on that." );
+					Caster.SendMessage( "Esses encantos não funcionarão muito bem sobre isso." );
 				}
 				else if ( mFame > pFame )
 				{
-					Caster.SendMessage( "That creature is too powerful for you to charm." );
+					Caster.SendMessage( "Essa criatura é poderosa demais para você encantar." );
 				}
 				else if ( CheckHSequence( m ) )
 				{
@@ -110,7 +110,7 @@ namespace Server.Spells.Research
 			}
 			else
 			{
-				Caster.SendMessage( "This spell cannot affect that." );
+				Caster.SendMessage( "Este feitiço não pode afetar isso." );
 			}
 		}
 

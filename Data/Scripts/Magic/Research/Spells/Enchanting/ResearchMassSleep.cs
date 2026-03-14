@@ -31,7 +31,7 @@ namespace Server.Spells.Research
 
 		public override void OnCast()
 		{
-			Caster.SendMessage( "Choose a focal point for this spell." );
+			Caster.SendMessage( "Escolha um ponto focal para este feitiço." );
 			Caster.Target = new InternalTarget( this );
 		}
 

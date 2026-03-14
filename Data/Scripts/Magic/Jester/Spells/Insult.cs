@@ -11,7 +11,7 @@ namespace Server.Spells.Jester
 	public class Insult : JesterSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Insult", "You know what?",
+				"Insult", "Sabe de uma coisa?",
 				-1,
 				0
 			);
@@ -73,10 +73,10 @@ namespace Server.Spells.Jester
 					case 2: Caster.PlaySound( 792 ); break;
 				};
 
-				if ( Utility.RandomBool() ){ Effects.PlaySound( m.Location, m.Map, m.Female ? 0x31B : 0x42B ); m.Say( "*groans*" ); }
-				else { Effects.PlaySound( m.Location, m.Map, m.Female ? 0x338 : 0x44A ); m.Say( "*growls*" ); }
+				if ( Utility.RandomBool() ){ Effects.PlaySound( m.Location, m.Map, m.Female ? 0x31B : 0x42B ); m.Say( "*rosna*" ); }
+				else { Effects.PlaySound( m.Location, m.Map, m.Female ? 0x338 : 0x44A ); m.Say( "*rosna*" ); }
 
-				m.SendMessage( "You have been quite insulted!" );
+				m.SendMessage( "Você foi bastante insultado!" );
 			}
 
 			FinishSequence();
@@ -216,7 +216,7 @@ namespace Server.Spells.Jester
 				{
 					Stop();
 					m_Table.Remove( m_Owner );
-					m_Owner.SendMessage( "The insult is wearing off." );
+					m_Owner.SendMessage( "O insulto está passando." );
 				}
 				else if ( m_Owner.Mana < m_Loss )
 				{

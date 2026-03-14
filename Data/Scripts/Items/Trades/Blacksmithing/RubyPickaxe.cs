@@ -103,26 +103,26 @@ namespace Server.Items
 
 				if ( from.Skills[SkillName.Mining].Base < 90 )
 				{
-					from.SendMessage("You must be a master miner to use this pickaxe!");
+					from.SendMessage("Você precisa ser um mestre mineiro para usar esta picareta!");
 				}
 				else if ( hydra > 0 )
 				{
-					from.SendMessage("You cannot dig here while the hydra is nearby!");
+					from.SendMessage("Você não pode cavar aqui enquanto a hidra está por perto!");
 				}
 				else if ( from.Mounted )
 				{
-					from.SendMessage("You cannot dig while riding.");
+					from.SendMessage("Você não pode cavar enquanto está montado.");
 				}
 				else if ( from.IsBodyMod && !from.Body.IsHuman && from.RaceID < 1 )
 				{
-					from.SendMessage("You cannot dig while polymorphed.");
+					from.SendMessage("Você não pode cavar enquanto está polimorfado.");
 				}
 				else if ( Charges > 0 && from.Region.IsPartOf( "the Caddellite Crater" ) )
 				{
 					ConsumeCharge( from );
 					from.PlaySound( 0x125 );
 					from.Animate( 11, 5, 1, true, false, 0 );
-					from.SendMessage("You dig up a chunk of caddellite ore from the meteor!");
+					from.SendMessage("Você escava um pedaço de minério de caddellite do meteoro!");
 					from.AddToBackpack( new CaddelliteStone( Utility.RandomMinMax(1,3)) );
 					this.HitPoints = this.HitPoints - 5;
 					this.MaxHitPoints = this.MaxHitPoints - 5;
@@ -132,11 +132,11 @@ namespace Server.Items
 				}
 				else if ( Charges < 1 )
 				{
-					from.SendMessage("This pickaxe is too worn to dig caddellite!");
+					from.SendMessage("Esta picareta está muito gasta para cavar caddelita!");
 				}
 				else
 				{
-					from.SendMessage("There is no caddellite meteor nearby to dig!");
+					from.SendMessage("Não há nenhum meteoro de caddellite próximo para cavar!");
 				}
 			}
 			else

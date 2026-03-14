@@ -31,7 +31,7 @@ namespace Server.Items
 				int nPay = (int)(dropped.Weight*5);
 				if ( pc.NpcGuild == NpcGuild.BlacksmithsGuild ){ nPay = (int)(dropped.Weight*10); }
 				from.AddToBackpack ( new Gold( nPay ) );
-				from.SendMessage("You are paid " + nPay.ToString() + " gold.");
+				from.SendMessage("Você recebe " + nPay.ToString() + " moedas de ouro.");
 				from.PlaySound( 0x042 );
 				dropped.Delete();
 			}

@@ -8,7 +8,7 @@ namespace Server.Items
 	[FlipableAttribute( 0x672B, 0x672C )]
 	public class HolyManSpellbook : Spellbook
 	{
-		public override string DefaultDescription{ get{ return "This holy book can contain magic used by priests. Fillings its pages can only be achieved by finding the resting places of virtuous people from long ago."; } }
+		public override string DefaultDescription{ get{ return "Este livro sagrado pode conter magia usada por sacerdotes. Preencher suas páginas só pode ser alcançado encontrando os locais de descanso de pessoas virtuosas de muito tempo atrás."; } }
 
 		public Mobile owner;
 
@@ -57,7 +57,7 @@ namespace Server.Items
 
 			if ( owner != from )
 			{
-				from.SendMessage( "These pages appears as scribbles to you." );
+				from.SendMessage( "Estas páginas parecem rabiscos para você." );
 			}
 			else if ( Parent == from || ( pack != null && Parent == pack ) )
 			{

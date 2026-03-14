@@ -103,7 +103,7 @@ namespace Server.Items
 					}
 					else if ( nTrapType == 1 && SavingThrow( m, "Magic", true, this ) == false ) // REVEALING TRAP
 					{
-						textSay = "You triggered a magical revealing trap!";
+						textSay = "Você ativou uma armadilha mágica reveladora!";
 						textLog = "a revealing trap";
 			
 						if ( m.Hidden != false ){ m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay); sTrapType = textLog; }
@@ -114,7 +114,7 @@ namespace Server.Items
 
 						if ( HowBad == 1 )
 						{
-							textSay = "You tripped over a wire and dropped your backpack!";
+							textSay = "Você tropeçou em um fio e derrubou sua mochila!";
 							textLog = "a trip wire trap";
 				
 							int nDrop = 0;
@@ -142,7 +142,7 @@ namespace Server.Items
 						}
 						else
 						{
-							textSay = "You tripped over a wire and dropped one of your equipped items!";
+							textSay = "Você tropeçou em um fio e derrubou um de seus itens equipados!";
 							textLog = "a trip wire trap";
 				
 							Item iTripped = GetMyItem( m );
@@ -158,7 +158,7 @@ namespace Server.Items
 					}
 					else if ( nTrapType == 3 && SavingThrow( m, "Magic", true, this ) == false ) // COINS TO LEAD TRAP
 					{
-						textSay = "A trap triggered, making your coins heavier!";
+						textSay = "Uma armadilha foi ativada, deixando suas moedas mais pesadas!";
 						textLog = "a transmutation trap";
 			
 						Container cont = m.Backpack;
@@ -199,7 +199,7 @@ namespace Server.Items
 					}
 					else if ( nTrapType == 4 && SavingThrow( m, "Magic", true, this ) == false ) // LOSE ITEM TRAP
 					{
-						textSay = "A trap triggered, almost ruining one of your protected items!";
+						textSay = "Uma armadilha foi ativada, quase estragando um dos seus itens protegidos!";
 						textLog = "a destructive trap";
 			
 
@@ -214,7 +214,7 @@ namespace Server.Items
 							}
 							else
 							{
-								textSay = "A trap triggered, rusting one of your equipped items!";
+								textSay = "Uma armadilha foi ativada, enferrujando um dos seus itens equipados!";
 					
 								int Rusted = 0;
 								if ( iRuined is BaseWeapon )
@@ -249,7 +249,7 @@ namespace Server.Items
 								}
 								if ( Rusted == 0 )
 								{
-									textSay = "A trap triggered, ruining one of your equipped items!";
+									textSay = "Uma armadilha foi ativada, estragando um dos seus itens equipados!";
 						
 									m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
 									BrokenGear broke = new BrokenGear();
@@ -273,7 +273,7 @@ namespace Server.Items
 						{
 							if ( m.RawStr > 10 )
 							{
-								textSay = "A trap triggered, making you feel weaker!";
+								textSay = "Uma armadilha foi ativada, fazendo você se sentir mais fraco!";
 								textLog = "a weakness trap";
 					
 								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -287,7 +287,7 @@ namespace Server.Items
 						{
 							if ( m.RawDex > 10 )
 							{
-								textSay = "A trap triggered, making you feel sluggish!";
+								textSay = "Uma armadilha foi ativada, fazendo você se sentir lerdo!";
 								textLog = "a slowness trap";
 					
 								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -301,7 +301,7 @@ namespace Server.Items
 						{
 							if ( m.RawInt > 10 )
 							{
-								textSay = "A trap triggered, making your mind cloudy!";
+								textSay = "Uma armadilha foi ativada, deixando sua mente nublada!";
 								textLog = "a mind numbing trap";
 					
 								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -314,7 +314,7 @@ namespace Server.Items
 					}
 					else if ( nTrapType == 6 && SavingThrow( m, "Poison", true, this ) == false ) // POISON TRAP
 					{
-						textSay = "A trap triggered, making you feel ill!";
+						textSay = "Uma armadilha foi ativada, fazendo você se sentir doente!";
 						textLog = "a poison gas trap";
 			
 						int itHurts = m.PoisonResistance;
@@ -347,7 +347,7 @@ namespace Server.Items
 
 						if ( nStat == 1 )
 						{
-							textSay = "A trap triggered, making you feel near dead!";
+							textSay = "Uma armadilha foi ativada, fazendo você se sentir quase morto!";
 							textLog = "a life draining trap";
 				
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -358,7 +358,7 @@ namespace Server.Items
 						}
 						else if ( nStat == 2 )
 						{
-							textSay = "A trap triggered, making you feel really tired!";
+							textSay = "Uma armadilha foi ativada, fazendo você se sentir muito cansado!";
 							textLog = "a stamina draining trap";
 				
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -369,7 +369,7 @@ namespace Server.Items
 						}
 						else
 						{
-							textSay = "A trap triggered, draining your mana!";
+							textSay = "Uma armadilha foi ativada, drenando sua mana!";
 							textLog = "a mana draining trap";
 				
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -406,7 +406,7 @@ namespace Server.Items
 						}
 						if ( nAmount > 0 )
 						{
-							textSay = "A trap triggered, making your gems fuse together!";
+							textSay = "Uma armadilha foi ativada, fazendo seus gemas se fundirem!";
 							textLog = "a lode stone trap";
 				
 							RuinedGems rocks = new RuinedGems();
@@ -439,7 +439,7 @@ namespace Server.Items
 
 						if ( nAmount > 0 )
 						{
-							textSay = "You walked into a toxic cloud, ruining your reagents!";
+							textSay = "Você entrou em uma nuvem tóxica, estragando seus reagentes!";
 							textLog = "a toxic cloud trap";
 
 							RottedReagents regs = new RottedReagents();
@@ -479,7 +479,7 @@ namespace Server.Items
 								{
 									if ( CheckInsuranceOnTrap( i, m ) )
 									{
-										m.LocalOverheadMessage(MessageType.Emote, 1150, true, "One of your books was almost magically bound!");
+										m.LocalOverheadMessage(MessageType.Emote, 1150, true, "Um dos seus livros quase foi magicamente encadernado!");
 									}
 									else
 									{
@@ -507,7 +507,7 @@ namespace Server.Items
 
 							m.AddToBackpack ( box );
 
-							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "A trap triggered, locking your books in a magic box!");
+							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Uma armadilha foi ativada, trancando seus livros em uma caixa mágica!");
 							m.FixedParticles( 0x374A, 10, 15, 5028, EffectLayer.Waist );
 							m.PlaySound( 0x1E1 );
 							sTrapType = "a book bound trap";
@@ -515,7 +515,7 @@ namespace Server.Items
 					}
 					else if ( nTrapType == 11 && SavingThrow( m, "Magic", true, this ) == false ) // TELEPORT TRAP
 					{
-						textSay = "A trap triggered, teleporting you away from here!";
+						textSay = "Uma armadilha foi ativada, teleportando você para longe daqui!";
 						textLog = "a teleportation trap";
 			
 						Point3D p = Worlds.GetRandomLocation( m.Land, "land" );
@@ -537,7 +537,7 @@ namespace Server.Items
 						if ( FameLoss > 0 )
 						{
 							m.Fame = FameLoss;
-							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "A trap triggered, causing some of your deeds to be forgotten!");
+							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Uma armadilha foi ativada, fazendo com que alguns de seus feitos sejam esquecidos!");
 							m.FixedParticles( 0x374A, 10, 15, 5032, EffectLayer.Head );
 							m.PlaySound( 0x1F8 );
 							sTrapType = "a forgotten fame trap";
@@ -552,11 +552,11 @@ namespace Server.Items
 						{
 							if ( Mobile.InsuranceEnabled && CheckInsuranceOnTrap( iCursed, m ) )
 							{
-								m.LocalOverheadMessage(MessageType.Emote, 1150, true, "One of your protected items was almost cursed!");
+								m.LocalOverheadMessage(MessageType.Emote, 1150, true, "Um dos seus itens protegidos quase foi amaldiçoado!");
 							}
 							else
 							{
-								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "A trap triggered, putting a curse on one of your equipped items!");
+								m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Uma armadilha foi ativada, colocando uma maldição em um de seus itens equipados!");
 								m.FixedParticles( 0x374A, 10, 15, 5028, EffectLayer.Waist );
 								m.PlaySound( 0x1E1 );
 
@@ -577,7 +577,7 @@ namespace Server.Items
 						if ( Utility.RandomMinMax( 1, 2 ) == 1 ){ Effects.SendLocationEffect( this.Location, this.Map, 4506 + 1, 18, 3, 0, 0 ); }
 						else { Effects.SendLocationEffect( this.Location, this.Map, 4512 + 1, 18, 3, 0, 0 ); }
 						Effects.PlaySound( this.Location, this.Map, 0x22C );
-						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "You triggered a spike trap!");
+						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Você ativou uma armadilha de espinhos!");
 						int itHurts = (int)( (Utility.RandomMinMax(50,200) * ( 100 - m.PhysicalResistance ) ) / 100 );
 						m.Damage( itHurts, m );
 						sTrapType = "a spike trap";
@@ -587,14 +587,14 @@ namespace Server.Items
 						if ( Utility.RandomMinMax( 1, 2 ) == 1 ){ Effects.SendLocationEffect( this.Location, this.Map, 0x11AC + 1, 6, 3, 0, 0 ); }
 						else { Effects.SendLocationEffect( this.Location, this.Map, 0x11B1 + 1, 6, 3, 0, 0 ); }
 						Effects.PlaySound( this.Location, this.Map, 0x21C );
-						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "You triggered a saw blade trap!");
+						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Você ativou uma armadilha de lâmina serrilhada!");
 						int itHurts = (int)( (Utility.RandomMinMax(50,200) * ( 100 - m.PhysicalResistance ) ) / 100 );
 						m.Damage( itHurts, m );
 						sTrapType = "a saw blade trap";
 					}
 					else if ( nTrapType == 16 && SavingThrow( m, "Fire", true, this ) == false ) // FLAME TRAP
 					{
-						textSay = "You triggered a fire trap!";
+						textSay = "Você ativou uma armadilha de fogo!";
 						textLog = "a fire trap";
 			
 						Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3709, 10, 30, 5052 );
@@ -608,14 +608,14 @@ namespace Server.Items
 					{
 						Effects.SendLocationEffect( this.Location, this.Map, 0x1D99, 48, 2, 0, 0 );
 						Effects.PlaySound( this.Location, this.Map, 0x22C );
-						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "You triggered a giant spike trap!");
+						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Você ativou uma armadilha de espinhos gigantes!");
 						int itHurts = (int)( (Utility.RandomMinMax(50,200) * ( 100 - m.PhysicalResistance ) ) / 100 );
 						m.Damage( itHurts, m );
 						sTrapType = "a giant spike trap";
 					}
 					else if ( nTrapType == 18 && SavingThrow( m, "Fire", true, this ) == false ) // EXPLOSION TRAP
 					{
-						textSay = "You triggered an explosion trap!";
+						textSay = "Você ativou uma armadilha de explosão!";
 						textLog = "an explosion trap";
 			
 						m.FixedParticles( 0x36BD, 20, 10, 5044, EffectLayer.Head );
@@ -627,7 +627,7 @@ namespace Server.Items
 					}
 					else if ( nTrapType == 19 && SavingThrow( m, "Energy", true, this ) == false ) // ELECTRICAL TRAP
 					{
-						textSay = "You triggered an electrical trap!";
+						textSay = "Você ativou uma armadilha elétrica!";
 						textLog = "an electrical trap";
 			
 						m.BoltEffect( 0 );
@@ -674,7 +674,7 @@ namespace Server.Items
 							}
 							if ( nAmount > 0 )
 							{
-								textSay = "You tripped over a wire and broke all of your " + sTripped + "!";
+								textSay = "Você tropeçou em um fio e quebrou todos os seus " + sTripped + "!";
 								textLog = "a trip wire trap";
 					
 								Shaft wood = new Shaft();
@@ -714,7 +714,7 @@ namespace Server.Items
 
 							Effects.SendLocationEffect( this.Location, this.Map, 0x11A8 - 2, 16, 3, 0, 0 );
 							Effects.PlaySound( this.Location, this.Map, 0x231 );
-							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "You walked into a noxious cloud, tainting your bandages!");
+							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Você entrou em uma nuvem nociva, contaminando suas bandagens!");
 
 							sTrapType = "a noxious cloud trap";
 						}
@@ -740,7 +740,7 @@ namespace Server.Items
 
 						if ( nBroken > 0 )
 						{
-							textSay = "You tripped over a wire and broke all of your potion bottles!";
+							textSay = "Você tropeçou em um fio e quebrou todos os seus frascos de poção!";
 							textLog = "a trip wire trap";
 				
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -776,7 +776,7 @@ namespace Server.Items
 
 						if ( puddle > 0 )
 						{
-							textSay = "A trap triggered, melting all of your jewelry!";
+							textSay = "Uma armadilha foi ativada, derretendo todas as suas joias!";
 							textLog = "a jewelry melting trap";
 				
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, textSay);
@@ -791,7 +791,7 @@ namespace Server.Items
 					}
 					else if ( nTrapType == 24 && SavingThrow( m, "Agility", true, this ) == false ) // PIT TRAP
 					{
-						textSay = "A fall into a deep pit!";
+						textSay = "Uma queda em um poço profundo!";
 						textLog = "a deep pit";
 
 						string sX = m.X.ToString();
@@ -815,7 +815,7 @@ namespace Server.Items
 					else if ( nTrapType == 25 && m.Karma != 0 && SavingThrow( m, "Magic", true, this ) == false ) // ALIGNMENT TRAP
 					{
 						m.Karma = 0;
-						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "A trap triggered, warping your morality back to a blank slate!");
+						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Uma armadilha foi ativada, distorcendo sua moralidade de volta a um estado neutro!");
 						m.FixedParticles( 0x374A, 10, 15, 5028, EffectLayer.Waist );
 						m.PlaySound( 0x1E1  );
 						sTrapType = "a mind warping trap";
@@ -845,7 +845,7 @@ namespace Server.Items
 						DisableTrap( this );
 						this.Name = "a broken trap";
 						m.PlaySound( 0x41 ); // glass breaking
-						m.SendMessage( "You stepped on a trap but lucky for you it broke!");
+						m.SendMessage( "Você pisou em uma armadilha mas sorte sua ela se quebrou!");
 					}	
 					else
 						DitchTrap( this );
@@ -984,7 +984,7 @@ namespace Server.Items
 			{
 				if ( isTrap )
 				{
-					string textSay = "You got near a hidden trap, but with your " + area + "...you avoid it.";
+					string textSay = "Você chegou perto de uma armadilha escondida, mas com seu " + area + "... você a evita.";
 					m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 					m.PlaySound( m.Female ? 778 : 1049 );
 
@@ -1048,7 +1048,7 @@ namespace Server.Items
 			{
 				if ( item.Weight <= 2.0 && HiddenTrap.SeeIfTrapActive( item ) && m.CheckSkill( SkillName.Searching, 0, 125 ) )
 				{
-					string textSay = "There is a hidden floor trap beneath your feet!";
+					string textSay = "Há uma armadilha oculta no chão sob seus pés!";
 					
 					m.PlaySound( m.Female ? 778 : 1049 ); m.Say( "*ah!*" );
 					m.SendMessage( textSay );
@@ -1121,11 +1121,11 @@ namespace Server.Items
 				{
 					if ( Trap is MushroomTrap )
 					{
-						m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "You got near a strange mushroom, but your skill in removing traps has helped you avoid it.");
+						m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "Você chegou perto de um cogumelo estranho, mas sua habilidade em remover armadilhas o ajudou a evitá-lo.");
 					}
 					else
 					{
-						textSay = "You got near a hidden trap, but your skill in removing traps has helped you disable it.";
+						textSay = "Você chegou perto de uma armadilha escondida, mas sua habilidade em remover armadilhas o ajudou a desativá-la.";
 						m.PlaySound( m.Female ? 0x32E : 0x440 );
 						m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 						m.PlaySound( 0x241 );
@@ -1148,11 +1148,11 @@ namespace Server.Items
 						{
 							if ( Trap is MushroomTrap )
 							{
-								m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "You got near a strange mushroom, but the magic of your orb has helped you avoid it.");
+								m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "Você chegou perto de um cogumelo estranho, mas a magia da sua orbe o ajudou a evitá-lo.");
 							}
 							else
 							{
-								textSay = "You got near a hidden trap, but the magic of your orb has disabled it.";
+								textSay = "Você chegou perto de uma armadilha escondida, mas a magia da sua orbe a desativou.";
 								m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 							}
 							m.PlaySound( 0x1F0 );
@@ -1164,11 +1164,11 @@ namespace Server.Items
 				{
 					if ( Trap is MushroomTrap )
 					{
-						m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "You got near a strange mushroom, but with luck on your side...you avoid it.");
+						m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "Você chegou perto de um cogumelo estranho, mas com a sorte ao seu lado... você o evita.");
 					}
 					else
 					{
-						textSay = "You got near a hidden trap, but with luck on your side...it broke.";
+						textSay = "Você chegou perto de uma armadilha escondida, mas com a sorte ao seu lado... ela se quebrou.";
 						m.PlaySound( 0x241 ); 
 						m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 					}
@@ -1189,11 +1189,11 @@ namespace Server.Items
 							{
 								if ( Trap is MushroomTrap )
 								{
-									m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "You break your ten foot pole, but avoid the strange mushroom nearby.");
+									m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "Você quebra sua vara de dez pés, mas evita o cogumelo estranho por perto.");
 								}
 								else
 								{
-									textSay = "You tap your ten foot pole, disabling a hidden trap and breaking the pole.";
+									textSay = "Você toca sua vara de dez pés, desativando uma armadilha escondida e quebrando a vara.";
 									m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 								}
 							}
@@ -1201,11 +1201,11 @@ namespace Server.Items
 							{
 								if ( Trap is MushroomTrap )
 								{
-									m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "You tap your ten foot pole, avoiding a strange mushroom nearby.");
+									m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "Você toca sua vara de dez pés, evitando um cogumelo estranho por perto.");
 								}
 								else
 								{
-									textSay = "You tap your ten foot pole, disabling a hidden trap.";
+									textSay = "Você toca sua vara de dez pés, desativando uma armadilha escondida.";
 									m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 								}
 								poles.InvalidateProperties();

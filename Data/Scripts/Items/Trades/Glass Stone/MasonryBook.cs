@@ -45,16 +45,16 @@ namespace Server.Items
 			}
 			else if ( pm == null || from.Skills[SkillName.Carpentry].Base < 100.0 )
 			{
-				pm.SendMessage( "Only a Grandmaster Carpenter can learn from this book." );
+				pm.SendMessage( "Apenas um Carpinteiro Grão-Mestre pode aprender com este livro." );
 			}
 			else if ( pm.Masonry )
 			{
-				pm.SendMessage( "You have already learned this information." );
+				pm.SendMessage( "Você já aprendeu esta informação." );
 			}
 			else
 			{
 				pm.Masonry = true;
-				pm.SendMessage( "You have learned to make items from stone. You will need miners to gather stones for you to make these items." );
+				pm.SendMessage( "Você aprendeu a fazer itens de pedra. Você precisará encontrar mineradores para minerar pedras para você fazer esses itens." );
 				Delete();
 			}
 		}

@@ -71,7 +71,7 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( !IsChildOf( from.Backpack ) && from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified ) 
-				from.SendMessage( "This must be in your backpack to identify." );
+				from.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified )
 				IDCommand( from );
 			else
@@ -177,7 +177,7 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( !IsChildOf( from.Backpack ) && from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified ) 
-				from.SendMessage( "This must be in your backpack to identify." );
+				from.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified )
 				IDCommand( from );
 			else
@@ -279,7 +279,7 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( !IsChildOf( from.Backpack ) && from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified ) 
-				from.SendMessage( "This must be in your backpack to identify." );
+				from.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( from is PlayerMobile && ((PlayerMobile)from).DoubleClickID && NotIdentified )
 				IDCommand( from );
 			else
