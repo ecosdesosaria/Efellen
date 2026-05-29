@@ -162,11 +162,11 @@ namespace Server
 
 	// You can increase the rate that stats gain from 50.0 (slow) to 10.0 (fast).
 
-		public static double S_StatGain = 25.0;
+		public static double S_StatGain = 15.0;
 
 	// How many minutes between stat gains which helps with the above setting. This can be between 5.0 to 60.0 minutes.
 
-		public static double S_StatGainDelay = 15.0;
+		public static double S_StatGainDelay = 10.0;
 
 	// If true, new characters can choose to take the alien origin route.
 	// This is a play style where one can choose to enter a transporter and be a character that crashed
