@@ -529,9 +529,9 @@ namespace Server
 	// default levels. As gameplay occurs, this value can increase for a vendor as you buy things from them, or pay for services they offer.
 
 		public static bool S_RichMerchants = false;
-		public static bool S_UseRemainingGold = false;
+		public static bool S_UseRemainingGold = true;
 		public static int S_MinMerchant = 500;
-		public static int S_MaxMerchant = 1000;
+		public static int S_MaxMerchant = 4000;
 
 	// This setting is the percentage to decrease the prices of items that player characters sell to vendors. Zero disables this.
 
