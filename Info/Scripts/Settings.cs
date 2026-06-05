@@ -355,7 +355,7 @@ namespace Server
 
 	// This decimal number can be adjusted to set the maximum skill one can gain from pickpocket dips.
 
-		public static double S_PickDips = 50.0;
+		public static double S_PickDips = 30.0;
 
 	// This whole number (default '1') can be set from 1-100, where it multiplies the skill gain check on training
 	// dummies, pickpocket dips, and archery buttes. Setting this greater than one will enable macroing.
@@ -531,7 +531,7 @@ namespace Server
 		public static bool S_RichMerchants = false;
 		public static bool S_UseRemainingGold = true;
 		public static int S_MinMerchant = 500;
-		public static int S_MaxMerchant = 4000;
+		public static int S_MaxMerchant = 1500;
 
 	// This setting is the percentage to decrease the prices of items that player characters sell to vendors. Zero disables this.
 
