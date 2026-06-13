@@ -12,7 +12,7 @@ namespace Server.Mobiles
 		public ZornTheBlacksmith() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = "Zorn";
-			Title = "the blacksmith";
+			Title = "o ferreiro";
 			Body = 75;
 			BaseSoundID = 609;
 			Hue = 0;

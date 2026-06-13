@@ -173,7 +173,7 @@ namespace Server.Mobiles
                 ThiefNote job = (ThiefNote)note;
                 m.AddToBackpack(note);
                 m.PlaySound(0x249);
-                SayTo(m, "Hmmm...you already have a job from " + job.NoteItemPerson + ". Here is a copy if you lost it.");
+                SayTo(m, "Hmmm... você já tem um trabalho de " + job.NoteItemPerson + ". Aqui está uma cópia se você a perdeu.");
             }
             else
             {
@@ -181,7 +181,7 @@ namespace Server.Mobiles
                 Server.Items.ThiefNote.SetupNote(task, m);
                 m.AddToBackpack(task);
                 m.PlaySound(0x249);
-                SayTo(m, "Here is something I think you can handle.");
+                SayTo(m, "Aqui está algo que acredito que você possa lidar.");
             }
         }
 
