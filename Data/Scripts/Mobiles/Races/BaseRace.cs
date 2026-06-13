@@ -991,6 +991,19 @@ namespace Server.Items
 
 				if ( m.FindItemOnLayer( Layer.Special ) == null )
 					CreateRace( m, m.RaceID, false );
+				// NEW CODE
+				else
+				{
+					BaseRace race = m.FindItemOnLayer( Layer.Special ) as BaseRace;
+					if ( race != null && (race.SpeciesID == 605 || race.SpeciesID == 606) )
+					{
+						race.Hue = 1316;
+						m.Hue = 1316;
+						m.HueMod = 1316;
+						m.HairHue = 1150;
+					}
+				}
+				// END NEW CODE
 
 				if ( LevelUp )
 					SetProperties( m );
@@ -1801,6 +1814,19 @@ namespace Server.Items
 					m_OriginalHue = reader.ReadInt();
 					m_OriginalHairHue = reader.ReadInt();
 				}
+				// NEW CODE
+				if ( SpeciesID == 605 || SpeciesID == 606 )
+				{
+					this.Hue = 1316;
+					if ( Parent is Mobile )
+					{
+						Mobile m = (Mobile)Parent;
+						m.Hue = 1316;
+						m.HueMod = 1316;
+						m.HairHue = 1150;
+					}
+				}
+				// END NEW CODE
 			}
 			catch ( Exception e )
 			{
@@ -1822,6 +1848,15 @@ namespace Server.Items
 				m_AosSkillBonuses.AddTo( mob );
 				AddStatBonuses( mob );
 				mob.CheckStatTimers();
+				// NEW CODE
+				if ( SpeciesID == 605 || SpeciesID == 606 )
+				{
+					this.Hue = 1316;
+					mob.Hue = 1316;
+					mob.HueMod = 1316;
+					mob.HairHue = 1150;
+				}
+				// END NEW CODE
 			}
 
 			base.OnAdded( parent );

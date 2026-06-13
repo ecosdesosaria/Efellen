@@ -17,7 +17,7 @@ namespace Server.Mobiles
 		[Constructable] 
 		public TownGuards() : base( ) 
 		{
-			Title = "the guard";
+			Title = "o guarda";
 			NameHue = 1154;
 			SetStr( 3000, 3000 );
 			SetDex( 3000, 3000 );
