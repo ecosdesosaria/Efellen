@@ -24,7 +24,7 @@ namespace Server.Items
 				Console.WriteLine("HikingBoots - Monster (non-Drow), giving mount speed");
 				if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, Region.Find( from.Location, from.Map ) ) )
 				{
-					//from.Send(SpeedControl.Disable);
+					from.Send(SpeedControl.Disable); // comenta isso se nao funcionar.
 					Weight = 5.0;
 				}
 				else
