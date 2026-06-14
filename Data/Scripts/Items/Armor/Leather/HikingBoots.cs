@@ -17,15 +17,17 @@ namespace Server.Items
 
 		public override bool OnEquip( Mobile from )
 		{
-			Console.WriteLine("HikingBoots OnEquip - RaceID: " + from.RaceID);
-			from.Send(SpeedControl.Disable);
+			Console.WriteLine("=== HikingBoots OnEquip ===");
+			Console.WriteLine("RaceID: " + from.RaceID);
+			Console.WriteLine("Is Drow? " + (from.RaceID == 605 || from.RaceID == 606));
+			
 			if ( from.RaceID > 0 && from.RaceID != 605 && from.RaceID != 606 )
 			{
-				Console.WriteLine("HikingBoots - Monster (non-Drow), giving mount speed");
+				Console.WriteLine("Path: Monster (non-Drow) - giving mount speed");
 				if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, Region.Find( from.Location, from.Map ) ) )
 				{
-					from.Send(SpeedControl.Disable); // comenta isso se nao funcionar.
 					Weight = 5.0;
+					from.Send(SpeedControl.Disable);
 				}
 				else
 				{
@@ -35,22 +37,31 @@ namespace Server.Items
 			}
 			else
 			{
-				Console.WriteLine("HikingBoots - Human or Drow, normal speed");
+				Console.WriteLine("Path: Human or Drow - NO speed control");
 				Weight = 3.0;
-				from.Send(SpeedControl.Disable); 
+				// Don't send any SpeedControl
 			}
+			
 			return base.OnEquip(from);
 		}
 
 		public override void OnRemoved( object parent )
 		{
+			Console.WriteLine("=== HikingBoots OnRemoved ===");
 			if ( parent is Mobile )
 			{
 				Mobile from = (Mobile)parent;
-				if (from == null || from.Deleted) return;
-				from.Send(SpeedControl.Disable);
-
-				//if ( from.RaceID > 0 && from.RaceID != 605 && from.RaceID != 606 ){ from.Send(SpeedControl.Disable); }
+				Console.WriteLine("RaceID: " + from.RaceID);
+				
+				if ( from.RaceID > 0 && from.RaceID != 605 && from.RaceID != 606 )
+				{
+					Console.WriteLine("Resetting speed for monster");
+					from.Send(SpeedControl.Disable);
+				}
+				else
+				{
+					Console.WriteLine("Human or Drow - no reset needed");
+				}
 			}
 			base.OnRemoved(parent);
 		}
