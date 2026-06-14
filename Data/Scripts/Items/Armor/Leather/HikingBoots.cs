@@ -17,11 +17,12 @@ namespace Server.Items
 
 		public override bool OnEquip( Mobile from )
 		{
+			from.Send(SpeedControl.Disable);
 			if ( from.RaceID > 0 && from.RaceID != 605 && from.RaceID != 606 )
 			{
 				if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, Region.Find( from.Location, from.Map ) ) )
 				{
-					from.Send(SpeedControl.Disable);
+					//from.Send(SpeedControl.Disable);
 					Weight = 5.0;
 				}
 				else
@@ -29,6 +30,10 @@ namespace Server.Items
 					Weight = 3.0;
 					from.Send(SpeedControl.MountSpeed);
 				}
+			}
+			else
+			{
+				Weight = 5.0;
 			}
 			return base.OnEquip(from);
 		}
@@ -39,7 +44,9 @@ namespace Server.Items
 			{
 				Mobile from = (Mobile)parent;
 				if (from == null || from.Deleted) return;
-				if ( from.RaceID > 0 && from.RaceID != 605 && from.RaceID != 606 ){ from.Send(SpeedControl.Disable); }
+				from.Send(SpeedControl.Disable);
+
+				//if ( from.RaceID > 0 && from.RaceID != 605 && from.RaceID != 606 ){ from.Send(SpeedControl.Disable); }
 			}
 			base.OnRemoved(parent);
 		}
