@@ -17,9 +17,11 @@ namespace Server.Items
 
 		public override bool OnEquip( Mobile from )
 		{
+			Console.WriteLine("HikingBoots OnEquip - RaceID: " + from.RaceID);
 			from.Send(SpeedControl.Disable);
 			if ( from.RaceID > 0 && from.RaceID != 605 && from.RaceID != 606 )
 			{
+				Console.WriteLine("HikingBoots - Monster (non-Drow), giving mount speed");
 				if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, Region.Find( from.Location, from.Map ) ) )
 				{
 					//from.Send(SpeedControl.Disable);
@@ -33,7 +35,9 @@ namespace Server.Items
 			}
 			else
 			{
-				Weight = 5.0;
+				Console.WriteLine("HikingBoots - Human or Drow, normal speed");
+				Weight = 3.0;
+				from.Send(SpeedControl.Disable); 
 			}
 			return base.OnEquip(from);
 		}
