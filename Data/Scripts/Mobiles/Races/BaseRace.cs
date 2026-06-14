@@ -1004,7 +1004,11 @@ namespace Server.Items
 					}
 				}
 				// END NEW CODE
-
+				if ( m.RaceID == 605 || m.RaceID == 606 )
+				{
+					// Clear any saved speed control
+					m.Send(SpeedControl.Disable);
+				}
 				if ( LevelUp )
 					SetProperties( m );
 
