@@ -17,19 +17,30 @@ namespace Server.Items
 
 		public override bool OnEquip( Mobile from )
 		{
-			bool canRideMounts = (from.RaceID == 0 || from.RaceID == 605 || from.RaceID == 606);
+			bool result = base.OnEquip( from );
+			
+			from.Send(SpeedControl.Disable);
 
-			if ( from.RaceID > 0 && !canRideMounts ) 
+			if ( from.RaceID > 0 ) 
 			{
-				if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, Region.Find( from.Location, from.Map ) ) )
+				bool canRideMounts = (from.RaceID == 0 || from.RaceID == 605 || from.RaceID == 606);
+				if ( !canRideMounts )
 				{
-					from.Send(SpeedControl.Disable);
-					Weight = 5.0;
+					if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, Region.Find( from.Location, from.Map ) ) )
+					{
+						from.Send(SpeedControl.Disable);
+						Weight = 5.0;
+					}
+					else
+					{
+						Weight = 3.0;
+						from.Send(SpeedControl.MountSpeed);
+					}
 				}
 				else
 				{
 					Weight = 3.0;
-					from.Send(SpeedControl.MountSpeed);
+					from.Send(SpeedControl.Disable);
 				}
 			}
 			// NEW
@@ -39,7 +50,8 @@ namespace Server.Items
 				from.Send(SpeedControl.Disable);
 			}
 			// END NEW
-			return base.OnEquip(from);
+			//return base.OnEquip(from);
+			return result;
 		}
 
 		public override void OnRemoved( object parent )
