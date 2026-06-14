@@ -17,41 +17,20 @@ namespace Server.Items
 
 		public override bool OnEquip( Mobile from )
 		{
-			bool result = base.OnEquip( from );
-			
-			from.Send(SpeedControl.Disable);
-
-			if ( from.RaceID > 0 ) 
+			if ( from.RaceID > 0 && from.RaceID != 605 && from.RaceID != 606 )
 			{
-				bool canRideMounts = (from.RaceID == 0 || from.RaceID == 605 || from.RaceID == 606);
-				if ( !canRideMounts )
+				if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, Region.Find( from.Location, from.Map ) ) )
 				{
-					if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( from, Region.Find( from.Location, from.Map ) ) )
-					{
-						from.Send(SpeedControl.Disable);
-						Weight = 5.0;
-					}
-					else
-					{
-						Weight = 3.0;
-						from.Send(SpeedControl.MountSpeed);
-					}
+					from.Send(SpeedControl.Disable);
+					Weight = 5.0;
 				}
 				else
 				{
 					Weight = 3.0;
-					from.Send(SpeedControl.Disable);
+					from.Send(SpeedControl.MountSpeed);
 				}
 			}
-			// NEW
-			else
-			{
-				Weight = 3.0;
-				from.Send(SpeedControl.Disable);
-			}
-			// END NEW
-			//return base.OnEquip(from);
-			return result;
+			return base.OnEquip(from);
 		}
 
 		public override void OnRemoved( object parent )
@@ -59,9 +38,7 @@ namespace Server.Items
 			if ( parent is Mobile )
 			{
 				Mobile from = (Mobile)parent;
-				if (from == null || from.Deleted) return;
-				//if ( from.RaceID > 0 ){ from.Send(SpeedControl.Disable); }
-				from.Send(SpeedControl.Disable);
+				if ( from.RaceID > 0 && from.RaceID != 605 && from.RaceID != 606 ){ from.Send(SpeedControl.Disable); }
 			}
 			base.OnRemoved(parent);
 		}
