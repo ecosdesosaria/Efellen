@@ -5,7 +5,7 @@ namespace Server.Items
 {
 	public abstract class BaseStrengthPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "This potion will give one an extra " + StrOffset.ToString() + " strength for a duration of...<BR><BR>" + Duration.ToString() + " (HH:MM:SS)"; } }
+		public override string DefaultDescription{ get{ return "Esta poção concederá a alguém " + StrOffset.ToString() + " extras de força por uma duração de...<BR><BR>" + Duration.ToString() + " (HH:MM:SS)"; } }
 
 		public abstract int StrOffset{ get; }
 		public abstract TimeSpan Duration{ get; }

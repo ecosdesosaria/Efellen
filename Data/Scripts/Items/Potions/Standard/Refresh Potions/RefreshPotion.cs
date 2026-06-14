@@ -5,7 +5,7 @@ namespace Server.Items
 {
 	public class RefreshPotion : BaseRefreshPotion
 	{
-		public override string DefaultDescription{ get{ return "These potions will recover about 25 percent of your stamina."; } }
+		public override string DefaultDescription{ get{ return "Estas poções irão recuperar cerca de 25 por cento do seu vigor."; } }
 
 		public override double Refresh{ get{ return 0.25; } }
 
