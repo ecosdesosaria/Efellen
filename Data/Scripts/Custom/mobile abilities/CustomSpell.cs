@@ -414,7 +414,7 @@ namespace Server.CustomSpells
             m_CurrentSpellHue = m_HueModifier != 0 ? m_HueModifier : spell.DefaultHue;
             
             m_Mobile.Frozen = true;
-            m_Mobile.PublicOverheadMessage(Server.Network.MessageType.Emote, 0x3B2, false, "*starts channeling a spell*");
+            m_Mobile.PublicOverheadMessage(Server.Network.MessageType.Emote, 0x3B2, false, "*começa a canalizar um feitiço*");
 
             double castTime = GetCastTime();
             m_ChannelTimer = Timer.DelayCall(TimeSpan.FromSeconds(castTime), 

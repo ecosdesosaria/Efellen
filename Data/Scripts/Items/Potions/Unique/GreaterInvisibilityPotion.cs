@@ -10,7 +10,7 @@ namespace Server.Items
 {
 	public class GreaterInvisibilityPotion : BasePotion
 	{
-		public override string DefaultDescription{ get{ return "Drinking this potion will make you invisible, and also give you mastery skill in both hiding and stealth. These potions do not allow one to stealth in heavy armor. The potion's effect lasts for 3 minutes."; } }
+		public override string DefaultDescription{ get{ return "Beber esta poção o tornará invisível e também lhe concederá maestria em furtividade e discrição. Estas poções não permitem que alguém se mova furtivamente com armaduras pesadas. O efeito da poção dura 3 minutos."; } }
 
 		[Constructable]
 		public GreaterInvisibilityPotion() : base( 0x180F, PotionEffect.InvisibilityGreater )

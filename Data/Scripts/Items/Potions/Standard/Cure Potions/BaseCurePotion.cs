@@ -43,7 +43,7 @@ namespace Server.Items
 					poison = "" + li.Poison + "";
 				}
 
-				return "These potions can perhaps cure up to " + poison + " Poison you are suffering from.";
+				return "Estas poções talvez possam curar até " + poison + " de Veneno do qual você está sofrendo.";
 			}
 		}
 
