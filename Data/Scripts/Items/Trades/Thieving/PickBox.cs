@@ -24,7 +24,6 @@ namespace Server.Items
             MaxLockLevel = 25;
             RequiredSkill = 1;
             Weight = 4.0;
-			Movable = false;
         }
 
         public override void LockPick(Mobile from)
@@ -66,7 +65,6 @@ namespace Server.Items
             MaxLockLevel = 35;
             RequiredSkill = 20;
             Weight = 4.0;
-			Movable = false;
         }
 
         public override void LockPick(Mobile from)
@@ -108,7 +106,6 @@ namespace Server.Items
             MaxLockLevel = 45;
             RequiredSkill = 30;
             Weight = 4.0;
-			Movable = false;
         }
 
         public override void LockPick(Mobile from)
@@ -150,7 +147,6 @@ namespace Server.Items
             MaxLockLevel = 55;
             RequiredSkill = 40;
             Weight = 4.0;
-			Movable = false;
         }
 
         public override void LockPick(Mobile from)
@@ -179,7 +175,7 @@ namespace Server.Items
 	[Flipable( 0x1C0E, 0x1C0F )]
     public class PickBoxHard : LockableContainer
     {
-		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de arrombamento. Elas exigem 50 em arrombamento e podem ajudá-lo a aprender até 65."; } }
+		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de lockpicking. Elas exigem 50 em lockpicking e podem ajudá-lo a aprender até 65."; } }
 
         [Constructable]
         public PickBoxHard(): base( 0x1C0E )
@@ -192,7 +188,6 @@ namespace Server.Items
             MaxLockLevel = 65;
             RequiredSkill = 50;
             Weight = 4.0;
-			Movable = false;
         }
 
         public override void LockPick(Mobile from)
@@ -202,6 +197,129 @@ namespace Server.Items
         }
 
         public PickBoxHard(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write((int)0); // version
+        }
+
+         public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
+	/////////////////////////////////////////////////////////////////////////////////////////
+	[Flipable( 0x1C0E, 0x1C0F )]
+    public class PickBoxVeryHard : LockableContainer
+    {
+		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de lockpicking. Elas exigem 60 em lockpicking e podem ajudá-lo a aprender até 75."; } }
+
+        [Constructable]
+        public PickBoxVeryHard(): base( 0x1C0E )
+        {
+			Name = "Locked Box";
+			InfoText1 = "Very Hard Lock";
+			Hue = 0xB61;
+            Locked = true;
+            LockLevel = 60;
+            MaxLockLevel = 75;
+            RequiredSkill = 60;
+            Weight = 4.0;
+        }
+
+        public override void LockPick(Mobile from)
+        {
+            this.Locked = true;
+            from.SendMessage("The container relocks itself.");
+        }
+
+        public PickBoxVeryHard(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
+	/////////////////////////////////////////////////////////////////////////////////////////
+	[Flipable( 0x1C0E, 0x1C0F )]
+    public class PickBoxExtreme : LockableContainer
+    {
+		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de lockpicking. Elas exigem 70 em lockpicking e podem ajudá-lo a aprender até 85."; } }
+
+        [Constructable]
+        public PickBoxExtreme(): base( 0x1C0E )
+        {
+			Name = "Locked Box";
+			InfoText1 = "Extreme Lock";
+			Hue = 0xB61;
+            Locked = true;
+            LockLevel = 70;
+            MaxLockLevel = 85;
+            RequiredSkill = 70;
+            Weight = 4.0;
+        }
+
+        public override void LockPick(Mobile from)
+        {
+            this.Locked = true;
+            from.SendMessage("The container relocks itself.");
+        }
+
+        public PickBoxExtreme(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
+	/////////////////////////////////////////////////////////////////////////////////////////
+	[Flipable( 0x1C0E, 0x1C0F )]
+    public class PickBoxMaster : LockableContainer
+    {
+		public override string DefaultDescription{ get{ return "Estas são caixas trancadas que ladrões usam para praticar suas habilidades de lockpicking. Elas exigem 80 em lockpicking e podem ajudá-lo a aprender até 95."; } }
+
+        [Constructable]
+        public PickBoxMaster(): base( 0x1C0E )
+        {
+			Name = "Locked Box";
+			InfoText1 = "Master Lock";
+			Hue = 0xB61;
+            Locked = true;
+            LockLevel = 80;
+            MaxLockLevel = 95;
+            RequiredSkill = 80;
+            Weight = 4.0;
+        }
+
+        public override void LockPick(Mobile from)
+        {
+            this.Locked = true;
+            from.SendMessage("The container relocks itself.");
+        }
+
+        public PickBoxMaster(Serial serial) : base(serial)
         {
         }
 

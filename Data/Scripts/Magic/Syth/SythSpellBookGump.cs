@@ -60,9 +60,6 @@ namespace Server.Gumps
 				AddHtml( 360, 135, 70, 20, @"<BODY><BASEFONT Color=#FF0000>Power:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 460, 135, 55, 20, @"<BODY><BASEFONT Color=#00FF06>" + ((int)(Server.Spells.Syth.SythSpell.GetSythDamage(from))) + "</BASEFONT></BODY>", (bool)false, (bool)false);
 
-				if ( Server.Misc.GetPlayerInfo.isSyth ( from, true ) ){ AddHtml( 310, 85, 183, 20, @"<BODY><BASEFONT Color=#00FF06>You Are One With The Syth</BASEFONT></BODY>", (bool)false, (bool)false); }
-				else { AddHtml( 310, 85, 183, 20, @"<BODY><BASEFONT Color=#FF0000>You Are Not A Syth!</BASEFONT></BODY>", (bool)false, (bool)false); }
-
 				AddHtml( 105, 236, 246, 20, @"<BODY><BASEFONT Color=#FF0000>Open Horizontal Quick Bar</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddButton(60, 236, 4005, 4005, 3, GumpButtonType.Reply, 0);
 				AddHtml( 105, 276, 246, 20, @"<BODY><BASEFONT Color=#FF0000>Open Vertical Quick Bar</BASEFONT></BODY>", (bool)false, (bool)false);
@@ -185,11 +182,7 @@ namespace Server.Gumps
 
 				Region reg = Region.Find( from.Location, from.Map );
 
-				if ( !Server.Misc.GetPlayerInfo.isSyth ( from, false ) || from.Skills[SkillName.Psychology].Value < 100 || from.Skills[SkillName.Tactics].Value < 100 || from.Skills[SkillName.Swords].Value < 100 || from.Fame < 15000 || from.Karma > -15000 )
-				{ 
-					AddHtml( 281, 182, 430, 20, @"<BODY><BASEFONT Color=#FF0000>You lack the attributes as a Syth to construct a laser sword.</BASEFONT></BODY>", (bool)false, (bool)false);
-				}
-				else if ( !( reg.IsPartOf( "the Tomb of Malak the Syth Lord" ) ) )
+				if ( !( reg.IsPartOf( "the Tomb of Malak the Syth Lord" ) ) )
 				{ 
 					AddHtml( 281, 182, 430, 20, @"<BODY><BASEFONT Color=#FF0000>You need to be at Malak's tomb to construct a laser sword.</BASEFONT></BODY>", (bool)false, (bool)false);
 				}
@@ -261,19 +254,6 @@ namespace Server.Gumps
 					if ( Sextants.HasSextant( from ) && xc > 0 && !HasSpell( from, page ) )
 						AddButton(104, 585, 10461, 10461, 98000+page, GumpButtonType.Reply, 0);
 				}
-
-				if ( Server.Misc.GetPlayerInfo.isSyth ( from, true ) )
-				{
-					if ( Server.Spells.Syth.SythSpell.GetSythSkill( from, ( Int32.Parse( Server.Spells.Syth.SythSpell.SpellInfo( page, 2 ) ) ) ) )
-					{
-						AddHtml( 352, 226, 300, 20, @"<BODY><BASEFONT Color=#00FF06>You Are One With The Syth</BASEFONT></BODY>", (bool)false, (bool)false);
-					}
-					else
-					{
-						AddHtml( 352, 226, 300, 20, @"<BODY><BASEFONT Color=#FF0000>Your Syth Powers Are Not Strong Enough!</BASEFONT></BODY>", (bool)false, (bool)false);
-					}
-				}
-				else { AddHtml( 352, 226, 300, 20, @"<BODY><BASEFONT Color=#FF0000>You Are Not A Syth!</BASEFONT></BODY>", (bool)false, (bool)false); }
 			}
 		}
 

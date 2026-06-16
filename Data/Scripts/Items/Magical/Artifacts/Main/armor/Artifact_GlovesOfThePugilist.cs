@@ -22,8 +22,8 @@ namespace Server.Items
 			WeaponAttributes.ResistEnergyBonus = 5;
 			WeaponAttributes.ResistFireBonus = 5;
 			WeaponAttributes.ResistPoisonBonus = 5;
-			MinDamage = MinDamage + 2;
-			MaxDamage = MaxDamage + 2;
+			MinDamage = MinDamage + 3;
+			MaxDamage = MaxDamage + 3;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "" );
 		}

@@ -16,19 +16,19 @@ namespace Server.Mobiles
 			BaseSoundID = 451;
             Hue = 0x85;
 
-			SetStr( 396, 450 );
+			SetStr( 296, 350 );
 			SetDex( 276, 325 );
 			SetInt( 36, 60 );
 
-			SetHits( 418, 550 );
+			SetHits( 480 );
 
-			SetDamage( 18, 24 );
+			SetDamage( 14, 19 );
 
 			SetDamageType( ResistanceType.Physical, 40 );
 			SetDamageType( ResistanceType.Fire, 60 );
 
 			SetResistance( ResistanceType.Physical, 45 );
-			SetResistance( ResistanceType.Fire, 75 );
+			SetResistance( ResistanceType.Fire, 70 );
 			SetResistance( ResistanceType.Cold, 50 );
 			SetResistance( ResistanceType.Poison, 60 );
 			SetResistance( ResistanceType.Energy, 50 );

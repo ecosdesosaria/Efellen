@@ -1,0 +1,54 @@
+using System;
+using System.Collections;
+using Server.Network;
+using Server.Targeting;
+using Server.Prompts;
+
+namespace Server.Items
+{
+	public class DelsEverlastingWedge : Item
+	{
+		public override double DefaultWeight
+		{
+			get { return 1.0; }
+		}
+
+		[Constructable]
+		public DelsEverlastingWedge() : base( 0x97D )
+		{
+			Hue = 0;
+			Name = "Delceri's Everlasting Wedge";
+			ArtifactLevel = 2;
+		}
+
+		public override void OnDoubleClick( Mobile from )
+		{
+			from.Hunger = 20;
+			from.SendMessage( "Você dá uma mordida saudável no queijo... e ele magicamente se refaz." );
+
+			from.PlaySound( Utility.Random( 0x3A, 3 ) );
+
+			if ( from.Body.IsHuman && !from.Mounted )
+				from.Animate( 34, 5, 1, true, false, 0 );
+		}
+
+		public DelsEverlastingWedge( Serial serial ) : base( serial )
+		{
+		}
+
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+			writer.Write( (int) 0 ); // version
+		}
+
+		public override void Deserialize( GenericReader reader )
+		{
+			base.Deserialize( reader );
+			int version = reader.ReadInt();
+			ItemID = 0x97D;
+			Hue = 0;
+			ArtifactLevel = 2;
+		}
+	}
+}

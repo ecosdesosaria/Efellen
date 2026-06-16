@@ -109,9 +109,9 @@ namespace Server.Spells.HolyMan
 				dest = m;
 				source = from;
 				Priority = TimerPriority.FiftyMS;
-				Expire = DateTime.Now + TimeSpan.FromSeconds( 30.0 );
+				Expire = DateTime.Now + TimeSpan.FromSeconds( 45.0 );
 				BuffInfo.RemoveBuff( m, BuffIcon.SacredBoon );
-				BuffInfo.AddBuff( m, new BuffInfo( BuffIcon.SacredBoon, 1063534, TimeSpan.FromSeconds( 30.0 ), m ) );
+				BuffInfo.AddBuff( m, new BuffInfo( BuffIcon.SacredBoon, 1063534, TimeSpan.FromSeconds( 45.0 ), m ) );
 			}
 
 			protected override void OnTick()
@@ -127,7 +127,7 @@ namespace Server.Spells.HolyMan
 
 				if ( DateTime.Now >= NextTick )
 				{
-					double heal = 1 + ( source.Skills[SkillName.Healing].Value / 25.0 ) + ( source.Skills[SkillName.Spiritualism].Value / 25.0 );
+					double heal = 1 + ( source.Skills[SkillName.Healing].Value / 33.0 ) + ( source.Skills[SkillName.Spiritualism].Value / 33.0 );
 
 					dest.Heal( MyServerSettings.PlayerLevelMod( (int)heal, dest ) );
 

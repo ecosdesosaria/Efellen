@@ -180,8 +180,8 @@ namespace Server.SkillHandlers
 						if ( music > 100.0 )
 							diff -= (music - 100.0) * 0.5;
 
-						double minSkill = diff - 25;
-						double maxSkill = diff + 25;
+						double minSkill = diff - 25 > 125? 125 : diff - 25;
+						double maxSkill = diff + 25 > 125 ? 125 : diff + 25;
 
 						if ( from.Skills[SkillName.Discordance].Value < minSkill )
 						{

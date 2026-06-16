@@ -537,14 +537,15 @@ namespace Server
 				typeof( Artifact_ArmsOfInsight ), 	typeof( Artifact_BurglarsBandana ), 	typeof( Artifact_DivineCountenance ), 	typeof( Artifact_GandalfsRobe ), 	typeof( Artifact_HelmOfBrilliance ), 	typeof( Artifact_JackalsLeggings ),		typeof( Artifact_PowerSurge ), 	typeof( Artifact_ShadowDancerGloves ), 	typeof( Artifact_TitansHammer ), 	typeof( QuiverOfIce ), 	
 				typeof( Artifact_ArmsOfNobility ), 	typeof( Artifact_Calm ), 	typeof( Artifact_DivineGloves ), 	typeof( Artifact_StaffOfTheWyrmSpeaker ), 	typeof( Artifact_HelmOfInsight ), 	typeof( Artifact_JackalsTunic ), 	typeof( Artifact_MaulOfTheTitans ), 	typeof( Artifact_ShadowDancerGorget ), 	typeof( Artifact_TorchOfTrapFinding ), 	typeof( QuiverOfInfinity ), 	
 				typeof( Artifact_ArmsOfTheFallenKing ), 	typeof( Artifact_CandleCold ), 	typeof( Artifact_DivineGorget ), 	typeof( Artifact_GauntletsOfNobility ), typeof( Artifact_HelmOfSwiftness ), 	typeof( Artifact_JadeScimitar ), 	typeof( Artifact_MelisandesCorrodedHatchet ), 	typeof( Artifact_RaedsGlory ), 	typeof( Artifact_ShadowDancerLeggings ), 	typeof( Artifact_TotemArms ), 	typeof( QuiverOfLightning ), 
-				typeof ( Artifact_GlovesOfThePiper ), typeof ( Artifact_PiedPiperFeatheredHat ), typeof ( Artifact_ShirtOfThePiper ), typeof ( Artifact_BootsOfThePiper ), typeof ( Artifact_TrousersOfThePiper ), typeof ( Artifact_NatureVengeanceMask ), typeof ( Artifact_NatureVengeanceCoat ), typeof ( Artifact_NatureVengeanceLeggings ), typeof ( Artifact_NatureVengeanceArms ), typeof ( Artifact_NatureVengeanceGloves ),
-				typeof ( Artifact_ProtectoroftheWildsChestplate ), typeof ( Artifact_ProtectoroftheWildsLeggings ), typeof ( Artifact_ProtectoroftheWildsGloves ), typeof ( Artifact_ProtectoroftheWildsArms ), typeof( Artifact_CoatOfTheDreadPirate), typeof(Artifact_TyrantOfTheReefs),
-				typeof ( Artifact_ProtectoroftheWildsHelmet ), typeof ( Artifact_ProwleroftheWildsHelmet ), typeof ( Artifact_ProwleroftheWildsLegging ), typeof ( Artifact_ProwleroftheWildsGloves ), typeof(Artifact_TalismanOfTheAlbatroz),typeof(Artifact_ReachOfTheDepths),
-				typeof ( Artifact_ProwleroftheWildsTunic ), typeof ( Artifact_ProwleroftheWildsArms ), typeof ( Artifact_RobeOfWilds ), typeof ( Artifact_RobeOfWildLegion ), typeof ( Artifact_StaffoftheWoodlands ), typeof ( Artifact_BowOfTheProwler ), typeof ( Artifact_BladeOfTheWilds ), typeof ( Artifact_WhistleofthePiper ),
+				typeof( Artifact_GlovesOfThePiper ), typeof ( Artifact_PiedPiperFeatheredHat ), typeof ( Artifact_ShirtOfThePiper ), typeof ( Artifact_BootsOfThePiper ), typeof ( Artifact_TrousersOfThePiper ), typeof ( Artifact_NatureVengeanceMask ), typeof ( Artifact_NatureVengeanceCoat ), typeof ( Artifact_NatureVengeanceLeggings ), typeof ( Artifact_NatureVengeanceArms ), typeof ( Artifact_NatureVengeanceGloves ),
+				typeof( Artifact_ProtectoroftheWildsChestplate ), typeof ( Artifact_ProtectoroftheWildsLeggings ), typeof ( Artifact_ProtectoroftheWildsGloves ), typeof ( Artifact_ProtectoroftheWildsArms ), typeof( Artifact_CoatOfTheDreadPirate), typeof(Artifact_TyrantOfTheReefs),
+				typeof( Artifact_ProtectoroftheWildsHelmet ), typeof ( Artifact_ProwleroftheWildsHelmet ), typeof ( Artifact_ProwleroftheWildsLegging ), typeof ( Artifact_ProwleroftheWildsGloves ), typeof(Artifact_TalismanOfTheAlbatroz),typeof(Artifact_ReachOfTheDepths),
+				typeof( Artifact_ProwleroftheWildsTunic ), typeof ( Artifact_ProwleroftheWildsArms ), typeof ( Artifact_RobeOfWilds ), typeof ( Artifact_RobeOfWildLegion ), typeof ( Artifact_StaffoftheWoodlands ), typeof ( Artifact_BowOfTheProwler ), typeof ( Artifact_BladeOfTheWilds ), typeof ( Artifact_WhistleofthePiper ),
 				typeof( Artifact_CrownOfBrillance), typeof( Artifact_BeltofHaste ), typeof( Artifact_WidowsWhistle), typeof(Artifact_BeltofGiantsStrength), typeof( Artifact_MemoryOfFrost ), typeof( Artifact_ChainBreaker ), typeof( Artifact_EarringsOfAllurement ), typeof (Artifact_RingOfAllurement), typeof ( Artifact_NecklaceOfAllurement ),
 				typeof( Artifact_SenseisWalkingStick), typeof( Artifact_StaffOfBlasting), typeof (Artifact_ScepterOfBlasting), typeof( Artifact_SilksOfAllurement ), typeof ( Artifact_TemptationOfSune ),
-				typeof( Artifact_ShacklesOfBhaal ), typeof( Artifact_ProtectoroftheWildsGorget ), typeof( Artifact_NatureMasterGorget ), typeof( Artifact_NatureVengeanceGorget ), 
-				typeof( Artifact_ShieldOfAmaunator ), typeof( Artifact_StormKingsShield )
+				typeof( Artifact_ShacklesOfBhaal ), typeof( Artifact_ProtectoroftheWildsGorget ), typeof( Artifact_NatureMasterGorget ), typeof( Artifact_NatureVengeanceGorget ),  typeof(Artifact_SpiritBreaker),
+				typeof( Artifact_ShieldOfAmaunator ), typeof( Artifact_StormKingsShield ), typeof( Artifact_RememberanceOfHereafter), typeof( Artifact_EndOfHope ), typeof( Artifact_SpellBreaker ), typeof(Artifact_UgmarLastWord), typeof(Artifact_MelodyOfTriumph),
+				typeof( Artifact_BootsOfFanaedar ), typeof( Artifact_AmuletOfFanaedar ), typeof( Artifact_ThievesTorment),
 				
 			};
 		public static Type[] ArtyTypes{ get{ return m_ArtyTypes; } }
@@ -626,11 +627,10 @@ namespace Server
 				typeof( MountedPixieGreenDeed ),	typeof( DecoBrimstone ),			typeof( Lockpicks ),			typeof( DecoTarot6 ),
 				typeof( MountedPixieLimeDeed ),		typeof( DecoDragonsBlood ),			typeof( ToolKit ),				typeof( DecoTarot7 ),
 				typeof( MountedPixieOrangeDeed ),	typeof( DecoDragonsBlood2 ),		typeof( UnfinishedBarrel ),		typeof( Cards ),
-				typeof( SacrificialAltarDeed ),		typeof( DecoEyeOfNewt ),			typeof( DecoRock2 ),			typeof( Cards2 ),
-				typeof( UnsettlingPortraitDeed ),	typeof( DecoGarlic ),				typeof( DecoRocks ),			typeof( Cards3 ),
-				typeof( GuillotineDeed ),			typeof( DecoGarlic2 ),				typeof( DecoRocks2 ),			typeof( Cards4 ),
-				typeof( WindSpirit ),				typeof( DecoGarlicBulb ),			typeof( DecoRock ),				typeof( DecoCards5 ),
-				typeof( SuitOfGoldArmorDeed ),		typeof( DecoGarlicBulb2 ),			typeof( DecoFlower ),			typeof( PlayingCards ),
+				typeof( SacrificialAltarDeed ),		typeof( Cards2 ),
+				typeof( UnsettlingPortraitDeed ),	typeof( Cards3 ),					typeof( GuillotineDeed ),			typeof( Cards4 ),
+				typeof( WindSpirit ),				typeof( DecoCards5 ),
+				typeof( SuitOfGoldArmorDeed ),		typeof( DecoFlower ),				typeof( PlayingCards ),
 				typeof( SuitOfSilverArmorDeed ),	typeof( DecoGinseng ),				typeof( DecoFlower2 ),			typeof( PlayingCards2 ),
 				typeof( WoodenCoffinDeed ),			typeof( DecoGinseng2 ),				typeof( JokeBook ),				typeof( HorseArmor ),
 				typeof( Dice4 ),					typeof( Dice6 ),					typeof( Dice8 ),				typeof( Dice10 ),
@@ -639,7 +639,8 @@ namespace Server
 				typeof( PandorasBox ),				typeof( ColoringBook ),				typeof( EverlastingBottle ),	typeof( EverlastingLoaf ),
 				typeof( GemOfSeeing ),				typeof( SlayerDeed ),				typeof( LuckyHorseShoes ),		typeof( FireHorn ),
 				typeof( SmallBagofHolding ),		typeof( MediumBagofHolding ),		typeof( LargeBagofHolding ),	typeof( BagOfHolding ),
-				typeof( DruidMirror ),				typeof( SpecialJars ),				typeof( EvilItems ),			typeof( MagicSkeltonsKey)
+				typeof( DruidMirror ),				typeof( SpecialJars ),				typeof( EvilItems ),			typeof( MagicSkeltonsKey),
+				typeof( DelsEverlastingWedge )
 			};
 		public static Type[] SArtyTypes{ get{ return m_SArtyTypes; } }
 
@@ -1209,16 +1210,16 @@ namespace Server
 			return Construct( m_ArtyTypes );
 		}
 
-		public static bool isBag( Item i )
+		public static bool ShouldRerollBagOfHolding(Mobile m, Item i )
 		{
-			if ( i is SmallBagofHolding )
-				return true;
-			else if ( i is MediumBagofHolding )
-				return true;
-			else if ( i is LargeBagofHolding )
-				return true;
-			else if ( i is BagOfHolding )
-				return true;
+			if ( m == null )
+				return false;
+			// Rare. Re-roll these half the time
+			if ( i is SmallBagofHolding
+				|| i is MediumBagofHolding
+				|| i is LargeBagofHolding
+				|| i is BagOfHolding )
+				return Utility.RandomBool();
 
 			return false;
 		}
@@ -1232,28 +1233,12 @@ namespace Server
 			else
 				i = Construct( m_SArtyTypes );
 				
-			if ( m != null && isBag( i ) )
+			if ( m != null && ShouldRerollBagOfHolding(m, i ) )
 			{
-				bool bagged = false;
-
-				if ( m != null && m.Backpack != null )
-				{
-					List<Item> list = new List<Item>();
-					(m.Backpack).RecurseItems( list );
-					foreach ( Item im in list )
-					{
-						if ( isBag( im ) )
-							bagged = true;
-					}
-				}
-
-				if ( bagged )
-				{
 					i.Delete();
 					i = Construct( m_SArtyTypes );
-				}
 			}
-			else if ( Utility.RandomBool() && isBag( i ) )
+			else if ( Utility.RandomBool() && ShouldRerollBagOfHolding( m, i ) )
 			{
 				i.Delete();
 				i = Construct( m_SArtyTypes );

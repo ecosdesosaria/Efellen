@@ -110,7 +110,7 @@ namespace Server.Engines.Craft
 
 				CraftResource resource = context.CraftingResource;
 
-				if ( system is DefDraconic && !( resource >= CraftResource.RedScales && resource <= CraftResource.KraytScales ) )
+				if ( system is DefDraconic && !( resource >= CraftResource.RedScales ) )
 				{
 					resource = CraftResource.RedScales;
 					context.CraftingResource = CraftResource.RedScales;

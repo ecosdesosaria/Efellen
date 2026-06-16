@@ -23,12 +23,25 @@ namespace Server.Items
 			AosElementDamages.Physical = 50;
 			AosElementDamages.Poison = 50;
 			ArtifactLevel = 2;
-			Server.Misc.Arty.ArtySetup( this, "Dripping With Venom" );
+			Server.Misc.Arty.ArtySetup( this, "Gotejando Veneno" );
 		}
+
+		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
+        {
+            phys = 0;
+            cold = 0;
+            fire = 0;
+            nrgy = 0;
+            pois = 100;
+            chaos = 0;
+            direct = 0;
+        }
 
 		public override void OnHit( Mobile attacker, Mobile defender, double damageBonus )
 		{
-			base.OnHit( attacker, defender, damageBonus );
+			base.OnHit(attacker, defender, damageBonus);
+			if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
 			if (Utility.RandomDouble() > 0.25)
 				return;
@@ -81,6 +94,7 @@ namespace Server.Items
 			    else if (chosen == Poison.Lethal)
     		        Misc.Titles.AwardKarma(attacker, -90, true);
     		}
+			
 		}
 
 		public Artifact_DaggerOfVenom( Serial serial ) : base( serial )

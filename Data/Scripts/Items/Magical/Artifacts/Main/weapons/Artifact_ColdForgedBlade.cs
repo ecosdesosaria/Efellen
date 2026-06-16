@@ -27,9 +27,8 @@ namespace Server.Items
         public override void OnHit(Mobile attacker, Mobile defender, double damage)
         {
             base.OnHit(attacker, defender, damage);
-
-            if (attacker == null || defender == null)
-                return;
+            if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
             if (defender.Alive || defender.Hits > 0)
                 return;
@@ -47,9 +46,10 @@ namespace Server.Items
                 return;
 
             ApplyArtifactBuff(attacker);
-           attacker.SendMessage(33, "A fada caída te fortalece!");
+            attacker.SendMessage(33, "A fada caída te fortalece!");
             attacker.PlaySound(0x1E9);
             m_NextArtifactBuff = DateTime.UtcNow + TimeSpan.FromMinutes(5.0);
+            
         }
 
         private static SlayerEntry s_FeyEntry = null;

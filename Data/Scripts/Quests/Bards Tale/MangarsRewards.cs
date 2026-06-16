@@ -11,14 +11,12 @@ namespace Server.Items
 			Hue = 0x497;
 			ItemID = 0x26AE;
 			Name = "Mangar's Robe";
-			Attributes.LowerManaCost = 25;
-			Attributes.LowerRegCost = 25;
+			Attributes.LowerManaCost = 10;
+			Attributes.LowerRegCost = 10;
 			SkillBonuses.SetValues( 0, SkillName.Psychology, 10 );
 			SkillBonuses.SetValues( 1, SkillName.Magery, 10 );
 			SkillBonuses.SetValues( 2, SkillName.MagicResist, 10 );
 			SkillBonuses.SetValues( 3, SkillName.Meditation, 10 );
-			Attributes.RegenMana = 10;
-			Attributes.BonusInt = 10;
 			ArtifactLevel = 2;
 		}
 
@@ -48,14 +46,12 @@ namespace Server.Items
 			Hue = 0x497;
 			ItemID = 0x26AE;
 			Name = "Mangar's Robe";
-			Attributes.LowerManaCost = 25;
-			Attributes.LowerRegCost = 25;
+			Attributes.LowerManaCost = 10;
+			Attributes.LowerRegCost = 10;
 			SkillBonuses.SetValues( 0, SkillName.Spiritualism, 10 );
 			SkillBonuses.SetValues( 1, SkillName.Necromancy, 10 );
 			SkillBonuses.SetValues( 2, SkillName.MagicResist, 10 );
 			SkillBonuses.SetValues( 3, SkillName.Meditation, 10 );
-			Attributes.RegenMana = 10;
-			Attributes.BonusInt = 10;
 			ArtifactLevel = 2;
 		}
 
@@ -85,14 +81,12 @@ namespace Server.Items
 			Hue = 0x497;
 			ItemID = 0x26AE;
 			Name = "Mangar's Robe";
-			Attributes.LowerManaCost = 25;
-			Attributes.LowerRegCost = 25;
+			Attributes.LowerManaCost = 10;
+			Attributes.LowerRegCost = 10;
 			SkillBonuses.SetValues( 0, SkillName.Elementalism, 10 );
 			SkillBonuses.SetValues( 1, SkillName.Focus, 10 );
 			SkillBonuses.SetValues( 2, SkillName.MagicResist, 10 );
 			SkillBonuses.SetValues( 3, SkillName.Meditation, 10 );
-			Attributes.RegenMana = 10;
-			Attributes.BonusInt = 10;
 			ArtifactLevel = 2;
 		}
 
@@ -127,7 +121,7 @@ namespace Server.Items
 			SkillBonuses.SetValues( 2, SkillName.Discordance, 10 );
 			SkillBonuses.SetValues( 3, SkillName.Peacemaking, 10 );
 			Attributes.RegenMana = 10;
-			Attributes.BonusDex = 10;
+			Attributes.BonusDex = 5;
 			ArtifactLevel = 2;
 		}
 

@@ -31,18 +31,19 @@ namespace Server.Mobiles
 			Body = Utility.RandomList( 173, 460 );
 			BaseSoundID = 0x388;
             Hue = 0x0672;
-			SetStr( 576, 620 );
-			SetDex( 636 );
-			SetInt( 336 );
+			SetStr( 600 );
+			SetDex( 436 );
+			SetInt( 136 );
 
-			SetHits( 860 );
+			SetHits( 820 );
 			SetMana( 0 );
 
-			SetDamage( 18, 24 );
+			SetDamage( 15, 21 );
 
-			SetDamageType( ResistanceType.Poison, 100 );
+			SetDamageType( ResistanceType.Physical, 20 );
+			SetDamageType( ResistanceType.Poison, 80 );
 
-			SetResistance( ResistanceType.Physical, 80 );
+			SetResistance( ResistanceType.Physical, 70 );
 			SetResistance( ResistanceType.Poison, 100 );
 			SetResistance( ResistanceType.Fire, 40 );
 			SetResistance( ResistanceType.Cold, 40 );

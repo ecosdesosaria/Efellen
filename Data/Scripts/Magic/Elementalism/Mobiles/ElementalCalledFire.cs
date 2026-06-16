@@ -29,7 +29,7 @@ namespace Server.Mobiles
 			SetDex( 100 );
 			SetInt( 50 );
 
-			SetDamage( 6, 10 );
+			SetDamage( 5, 9 );
 
 			SetDamageType( ResistanceType.Physical, 0 );
 			SetDamageType( ResistanceType.Fire, 100 );
@@ -48,7 +48,7 @@ namespace Server.Mobiles
 			SetSkill( SkillName.FistFighting, 40.0 );
 
 			VirtualArmor = 20;
-			ControlSlots = 1;
+			ControlSlots = 2;
 
 			AddItem( new LighterSource() );
 		}

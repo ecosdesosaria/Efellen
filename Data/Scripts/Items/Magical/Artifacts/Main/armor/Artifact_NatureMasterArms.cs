@@ -23,6 +23,7 @@ namespace Server.Items
 			SkillBonuses.SetValues( 1, SkillName.Taming, 5 );
 			SkillBonuses.SetValues( 2, SkillName.Druidism, 5 );
 			SkillBonuses.SetValues( 3, SkillName.Veterinary, 5 );
+			ArmorAttributes.MageArmor = 1;
 			Attributes.Luck = 100;
 			Attributes.DefendChance = 5;
 			ArtifactLevel = 2;

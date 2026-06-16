@@ -192,16 +192,12 @@ namespace Server.Mobiles
 				"*Balança sua cauda massiva!*"
 			);
 			PlaySound(0x64E);
-			List<Mobile> targets = new List<Mobile>();
 			IPooledEnumerable eable = GetMobilesInRange(1);
 			foreach (Mobile m in eable)
 			{
-				if (m != this && m.Player && m.Alive && CanBeHarmful(m))
-					targets.Add(m);
-			}
-			eable.Free();
-			foreach (Mobile m in targets)
-			{
+				if (m == this || !m.Player || m.Deleted || !m.Alive || !CanBeHarmful(m))
+					continue;
+				
 				DoHarmful(m);
 				bool wasMounted = false;
 				IMount mount = m.Mount;
@@ -230,6 +226,7 @@ namespace Server.Mobiles
 				AOS.Damage(m, this, damage, 100, 0, 0, 0, 0);
 				m.FixedParticles(0x36BD, 20, 10, 5044, EffectLayer.Head);
 			}
+			eable.Free();
 		}
 
 		public override bool OnBeforeDeath()
@@ -286,7 +283,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
 			for ( int i = 0; i < 4; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );

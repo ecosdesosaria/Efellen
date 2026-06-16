@@ -83,7 +83,7 @@ namespace Server.Spells.DeathKnight
 				int nBenefit = 0;
 				if ( Caster is PlayerMobile )
 				{
-					nBenefit = (int)( GetKarmaPower( Caster ) / 5 );
+					nBenefit = (int)( GetKarmaPower( Caster ) / 4 );
 				}
 
 				damage = GetNewAosDamage( 32, 1, 4, Caster.Player && playerVsPlayer ) + nBenefit;

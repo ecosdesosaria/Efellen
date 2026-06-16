@@ -1122,10 +1122,6 @@ namespace Server.Mobiles
 				{
 					Server.Items.OrbOfTheAbyss.ChangeOrb( from, this, dropped );
 				}
-				else if ( dropped is RobotSchematics && ( this is Tinker || this is TinkerGuildmaster ) )
-				{
-					Server.Items.RobotSchematics.ProcessRobotBook( from, this, dropped );
-				}
 				else if ( dropped is DragonEgg && ( this is AnimalTrainer || this is Veterinarian ) )
 				{
 					Server.Items.DragonEgg.ProcessDragonEgg( from, this, dropped );

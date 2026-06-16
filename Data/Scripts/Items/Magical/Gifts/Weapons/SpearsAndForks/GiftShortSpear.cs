@@ -7,7 +7,7 @@ namespace Server.Items
 	[FlipableAttribute( 0x1403, 0x1402 )]
     public class GiftShortSpear : BaseGiftSpear
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ShadowStrike; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.StunningStrike; } }
 		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
 		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.AchillesStrike; } }
 		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.EarthStrike; } }

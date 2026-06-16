@@ -1,639 +1,804 @@
 using System;
-using Server; 
-using Server.Network;
-using System.Collections; 
+using System.Collections;
+using Server;
+using Server.Gumps;
 using Server.Items;
 using Server.Misc;
-using Server.Gumps;
+using Server.Network;
 
 namespace Server.Items
 {
-	public class SearchBook : Item
-	{
-		public Mobile owner;
-		public int LegendLore;
+    public enum ArtifactCategory
+    {
+        OneHandedWeapons = 0,
+        TwoHandedWeapons = 1,
+        RangedWeapons = 2,
+        JewelryTrinkets = 3,
+        ArmorShields = 4,
+        Clothing = 5
+    }
 
-		[CommandProperty( AccessLevel.GameMaster )]
-		public Mobile Owner { get{ return owner; } set{ owner = value; } }
+    public class ArtifactEntry
+    {
+        public string TypeName;
+        public string DisplayName;
+        public ArtifactCategory Category;
 
-		[CommandProperty(AccessLevel.Owner)]
-		public int Legend_Lore { get { return LegendLore; } set { LegendLore = value; InvalidateProperties(); } }
+        public ArtifactEntry(string typeName, string displayName, ArtifactCategory category)
+        {
+            TypeName = typeName;
+            DisplayName = displayName;
+            Category = category;
+        }
+    }
 
-		[Constructable]
-		public SearchBook( Mobile from, int paid ) : base( 0x22C5 )
-		{
-			this.owner = from;
-			LegendLore = ( paid / 1000 ) - 4;
-			Weight = 1.0;
-			Hue = 0x978;
-			Name = "Artifact Encyclopedia";
-		}
+    // =========================================================================
+    public class SearchBook : Item
+    {
+        public static readonly ArtifactEntry[] AllArtifacts = new ArtifactEntry[]
+        {
+            // ----- One-Handed Weapons -----
+            new ArtifactEntry( "Artifact_BladeDance",                 "Blade Dance",                       ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_BladeOfInsanity",            "Blade of Insanity",                 ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_ConansSword",                "Blade of the Cimmerian",            ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_BladeOfTheWilds",            "Blade of the Wilds",                ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_BlazeOfDeath",               "Blaze of Death",                    ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_CaptainQuacklebushsCutlass", "Captain Quacklebush's Cutlass",     ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_ColdBlood",                  "Cold Blood",                        ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_ColdForgedBlade",            "Cold Forged Blade",                 ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_DaggerOfVenom",              "Dagger of Venom",                   ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_FangOfRactus",               "Fang of Ractus",                    ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_FleshRipper",                "Flesh Ripper",                      ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_Fury",                       "Fury",                              ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_GiantBlackjack",             "Giant Blackjack",                   ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_JadeScimitar",               "Jade Scimitar",                     ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_LuminousRuneBlade",          "Luminous Rune Blade",               ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_MelisandesCorrodedHatchet",  "Melisande's Corroded Hatchet",      ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_OblivionsNeedle",            "Oblivion Needle",                   ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_Pacify",                     "Pacify",                            ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_PixieSwatter",               "Pixie Swatter",                     ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_RaedsGlory",                 "Raed's Glory",                      ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_Retort",                     "Retort",                            ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_RuneCarvingKnife",           "Rune Carving Knife",                ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_ShardThrasher",              "Shard Thrasher",                    ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_SoulSeeker",                 "Soul Seeker",                       ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_GlassSword",                 "Sword of Shattered Hopes",          ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_TalonBite",                  "Talon Bite",                        ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_VampireKiller",              "Vampire Killer",                    ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_ZyronicClaw",                "Zyronic Claw",                      ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_UgmarLastWord",              "Ugmar's Last Word",                 ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_ChainBreaker",               "Chain Breaker",                     ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_SenseisWalkingStick",        "Sensei's Walking Stick",            ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_MinersPickaxe",              "Miner's Pickaxe",                   ArtifactCategory.OneHandedWeapons ),
+              new ArtifactEntry( "Artifact_BreathOfTheDead",            "Breath of the Dead",                ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_AngeroftheGods",             "Anger of the Gods",                 ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_RodOfResurrection",          "Rod Of Resurrection",               ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_Stormbringer",               "Stormbringer",                      ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_ScepterOfBlasting",          "Scepter of Blasting",               ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_WhistleofthePiper",          "Whistle of the Pied Piper",         ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_WintersGrip",                "Arctic Death Dealer",               ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_EnchantedTitanLegBone",      "Enchanted Pirate Rapier",           ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_MelodyOfTriumph",      "Enchanted Pirate Rapier",                 ArtifactCategory.OneHandedWeapons ),
+         
+		    // ----- Two-Handed Weapons -----
+			new ArtifactEntry( "Artifact_Calm",                       "Calm",                              ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_Annihilation",               "Annihilation",                      ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_SpellBreaker",               "Spellbreaker",                      ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_SpiritBreaker",              "Spiritbreaker",                     ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_EndOfHope",                  "End of Hope",                       ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_AchillesSpear",              "Achille's Spear",                   ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_AxeOfTheHeavens",            "Axe of the Heavens",                ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_AxeoftheMinotaur",           "Axe of the Minotaur",               ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_TheBeserkersMaul",           "Berserker's Maul",                  ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_BoneCrusher",                "Bone Crusher",                      ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_Boomstick",                  "Boomstick",                         ArtifactCategory.TwoHandedWeapons ),
+              new ArtifactEntry( "Artifact_Excalibur",                  "Excalibur",                         ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_FortunateBlades",            "Fortunate Blades",                  ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_VampiricDaisho",             "Vampiric Daisho",                   ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_DarkLordsPitchfork",         "Dark Lord's PitchFork",             ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_GrimReapersScythe",          "Grim Reaper's Scythe",              ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_HammerofThor",               "Hammer of Thor",                    ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_HolyLance",                  "Holy Lance",                        ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_KamiNarisIndestructableDoubleAxe", "Kami-Naris Indestructable Axe", ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_MaulOfTheTitans",            "Maul of the Titans",                ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_TheDragonSlayer",            "Slayer of Dragons",                 ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_StaffOfPower",               "Staff of Power",                    ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_StaffOfTheMagi",             "Staff of the Magi",                 ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_StaffoftheWoodlands",        "Staff of the Woodlands",            ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_StaffOfTheWyrmSpeaker",      "Merlin's Mystical Staff",           ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_TitansHammer",               "Titan's Hammer",                    ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_WrathOfTheDryad",            "Wrath of the Dryad",                ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_StaffOfBlasting",            "Staff of Blasting",                 ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_SerpentCoil",                "Serpent's Coil",                    ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_MemoryOfFrost",              "Memory of Frost",                   ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_TyrantOfTheReefs",           "Tyrant of the Reefs",               ArtifactCategory.TwoHandedWeapons ),
+             new ArtifactEntry( "Artifact_MagiciansIllusion",          "Magician's Illusion",               ArtifactCategory.TwoHandedWeapons ),
+            // ----- Ranged Weapons & quivers -----
+			new ArtifactEntry( "Artifact_WidowsWhistle",              "Widow's Whistle",                   ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_TheNightReaper",             "Night Reaper",                      ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_Windsong",                   "Windsong",                          ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_Frostbringer",               "Frostbringer",                      ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_WildfireBow",                "Wildfire Bow",                      ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_BowOfTheTribalKing",         "Bow of the Juka King",              ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_BowofthePhoenix",            "Bow of the Phoenix",                ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_BowOfTheProwler",            "Bow of the Prowler",                ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_TheDryadBow",                "Dryad Bow",                         ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_LongShot",                   "Long Shot",                         ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_NoxBow",                     "Nox Ranger's Light Crossbow",       ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_NoxRangersHeavyCrossbow",    "Nox Ranger's Heavy Crossbow",       ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_ReachOfTheDepths",           "Reach of the Depths",               ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "QuiverOfBlight",                      "Quiver of Blight",                  ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "QuiverOfFire",                        "Quiver of Fire",                    ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "QuiverOfIce",                         "Quiver of Ice",                     ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "QuiverOfInfinity",                    "Quiver of Infinity",                ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "QuiverOfLightning",                   "Quiver of Lightning",               ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "QuiverOfRage",                        "Quiver of Rage",                    ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "QuiverOfElements",                    "Quiver of the Elements",            ArtifactCategory.RangedWeapons ),
+            new ArtifactEntry( "Artifact_Pestilence",                 "Pestilence",                        ArtifactCategory.RangedWeapons ),
+            // ----- Jewelry & Trinkets -----
+			new ArtifactEntry( "Artifact_TotemOfVoid",                "Totem of the Void",                 ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_EssenceOfBattle",            "Essence of Battle",                 ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "HornOfKingTriton",                    "Horn of King Triton",               ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "IolosLute",                           "Iolo's Lute",                       ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "GwennosHarp",                         "Gwenno's Harp",                     ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_AlchemistsBauble",           "Alchemist's Bauble",                ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_BraceletOfHealth",           "Bracelet of Health",                ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_BraceletOfTheElements",      "Bracelet of the Elements",          ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_BraceletOfTheVile",          "Bracelet of the Vile",              ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_CrimsonCincture",            "Crimson Cincture",                  ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_DjinnisRing",                "Djinni's Ring",                     ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_EarringsOfHealth",           "Earrings of Health",                ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_EarringsOfTheElements",      "Earrings of the Elements",          ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_EarringsOfTheMagician",      "Earrings of the Magician",          ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_EarringsOfTheVile",          "Earrings of the Vile",              ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_LuckyEarrings",              "Lucky Earrings",                    ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_LuckyNecklace",              "Lucky Necklace",                    ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_MagesBand",                  "Mage's Band",                       ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_NoxNightlight",              "Nox Nightlight",                    ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_OrnamentOfTheMagician",      "Ornament of the Magician",          ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_PendantOfTheMagi",           "Pendant of the Magi",               ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_PowerSurge",                 "Lantern of Power",                  ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_ResilientBracer",            "Resillient Bracer",                 ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_RingOfHealth",               "Ring of Health",                    ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_RingOfProtection",           "Ring of Protection",                ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_RingOfTheElements",          "Ring of the Elements",              ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_RingOfTheMagician",          "Ring of the Magician",              ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_RingOfTheVile",              "Ring of the Vile",                  ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_ShimmeringTalisman",         "Shimmering Talisman",               ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_SpiritOfTheTotem",           "Spirit of the Totem",               ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_TalismanOfTheAlbatroz",      "Talisman of the Albatroz",          ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_TorchOfTrapFinding",         "Torch of Trap Burning",             ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_WarriorsClasp",              "Warrior's Clasp",                   ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_EternalFlame",               "Eternal Flame",                     ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_GrimReapersLantern",         "Grim Reaper's Lantern",             ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_EarringsOfAllurement",       "Earrings of Allurement",            ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_RingOfAllurement",           "Ring of Allurement",                ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_NecklaceOfAllurement",       "Necklace of Allurement",            ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_BeltOfHaste",                "Belt of Haste",                     ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_BeltofGiantsStrength",       "Belt of Giant's Strength",          ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_BeltofHercules",             "Belt of Hercules",                  ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_RememberanceOfHereafter",    "Rememberance of Hereafter",         ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_ShacklesOfBhaal",            "Shackles of Bhaal",                 ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Arty_LithosTome",                     "Tome of the Mountain King",         ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Arty_HydrosLexicon",                  "Lexicon of the Lurker",             ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Arty_StratosManual",                  "Manual of the Mystic Voice",        ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Arty_OssianGrimoire",                 "Ossian Grimoire",                   ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Arty_PyrosGrimoire",                  "Grimoire of the Daemon King",       ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Arty_BookOfKnowledge",                "Book Of Knowledge",                 ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_CandleCold",                 "Candle of Cold Light",              ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_CandleEnergy",               "Candle of Energized Light",         ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_CandleFire",                 "Candle of Fire Light",              ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_CandleNecromancer",          "Candle of Ghostly Light",           ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_CandlePoison",               "Candle of Poisonous Light",         ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_CandleWizard",               "Candle of Wizardly Light",          ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_AuraOfShadows",              "Aura Of Shadows",                   ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_BloodwoodSpirit",            "Bloodwood Spirit",                  ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_ArcticBeacon",               "Winter Beacon",                     ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry( "Artifact_ThievesTorment",             "Thieves' Torment",                  ArtifactCategory.JewelryTrinkets ),
+            new ArtifactEntry("Artifact_AmuletOfFanaedar",            "Amulet of Fanaedar",                ArtifactCategory.JewelryTrinkets ),
+            // ----- Armor & Shields -----
+			new ArtifactEntry( "Artifact_DupresCollar",               "Dupre's Collar",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GladiatorsCollar",           "Gladiator's Collar",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_MidnightBracers",            "Midnight Bracers",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_SongWovenMantle",            "Song Woven Mantle",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_Indecency",                  "Indecency",                         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_InquisitorsResolution",      "Inquisitor's Resolution",           ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_VioletCourage",              "Violet Courage",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GuantletsOfOgreStrength",    "Gauntlets of Anger",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_AbysmalGloves",              "Abysmal Gloves",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_AchillesShield",             "Achille's Shield",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_Aegis",                      "Aegis",                             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_AegisOfGrace",               "Aegis of Grace",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArcaneArms",                 "Arcane Arms",                       ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArcaneCap",                  "Arcane Cap",                        ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArcaneGloves",               "Arcane Gloves",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArcaneGorget",               "Arcane Gorget",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArcaneLeggings",             "Arcane Leggings",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArcaneShield",               "Arcane Shield",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArcaneTunic",                "Arcane Tunic",                      ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmorOfFortune",             "Armor of Fortune",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmorOfInsight",             "Armor of Insight",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmorOfNobility",            "Armor of Nobility",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmsOfAegis",                "Arms of Aegis",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmsOfFortune",              "Arms of Fortune",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmsOfInsight",              "Arms of Insight",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmsOfNobility",             "Arms of Nobility",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmsOfTheFallenKing",        "Arms of the Fallen King",           ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmsOfTheHarrower",          "Arms of the Harrower",              ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ArmsOfToxicity",             "Arms Of Toxicity",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_CapOfFortune",               "Cap of Fortune",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_CapOfTheFallenKing",         "Cap of the Fallen King",            ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_CoifOfBane",                 "Coif of Bane",                      ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_CoifOfFire",                 "Coif of Fire",                      ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_CrownOfTalKeesh",            "Crown of Tal'Keesh",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_CrownOfBrillance",           "Crown of Brillance",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_DarkGuardiansChest",         "Dark Guardian's Chest",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_DarkNeck",                   "Dark Neck",                         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_DivineArms",                 "Divine Arms",                       ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_DivineGloves",               "Divine Gloves",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_DivineGorget",               "Divine Gorget",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_DivineLeggings",             "Divine Leggings",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_DivineTunic",                "Divine Tunic",                      ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_DupresShield",               "Dupre's Shield",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_EvilMageGloves",             "Evil Mage Gloves",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_FeyLeggings",                "Fey Leggings",                      ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_Fortifiedarms",              "Fortified Arms",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_MarbleShield",               "Gargoyle Shield",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GauntletsOfNobility",        "Gauntlets of Nobility",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfAegis",              "Gloves of Aegis",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfCorruption",         "Gloves Of Corruption",              ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfDexterity",          "Gloves of Dexterity",               ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfFortune",            "Gloves of Fortune",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfInsight",            "Gloves of Insight",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfRegeneration",       "Gloves Of Regeneration",            ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfTheFallenKing",      "Gloves of the Fallen King",         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfTheHarrower",        "Gloves of the Harrower",            ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfThePugilist",        "Gloves of the Pugilist",            ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GorgetOfAegis",              "Gorget of Aegis",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GorgetOfFortune",            "Gorget of Fortune",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GorgetOfInsight",            "Gorget of Insight",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HeartOfTheLion",             "Heart of the Lion",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HellForgedArms",             "Hell Forged Arms",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HelmOfAegis",                "Helm of Aegis",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HelmOfBrilliance",           "Helm of Brilliance",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HelmOfInsight",              "Helm of Insight",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HelmOfSwiftness",            "Helm of Swiftness",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ConansHelm",                 "Helm of the Cimmerian",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HolyKnightsArmPlates",       "Holy Knight's Arm Plates",          ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HolyKnightsBreastplate",     "Holy Knight's Breastplate",         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HolyKnightsGloves",          "Holy Knight's Gloves",              ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HolyKnightsGorget",          "Holy Knight's Gorget",              ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HolyKnightsLegging",         "Holy Knight's Legging",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HolyKnightsPlateHelm",       "Holy Knight's Plate Helm",          ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HuntersArms",                "Hunter's Arms",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HuntersGloves",              "Hunter's Gloves",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HuntersGorget",              "Hunter's Gorget",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HuntersHeaddress",           "Hunter's Headdress",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HuntersLeggings",            "Hunter's Leggings",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_HuntersTunic",               "Hunter's Tunic",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_InquisitorsArms",            "Inquisitor's Arms",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_InquisitorsGorget",          "Inquisitor's Gorget",               ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_InquisitorsHelm",            "Inquisitor's Helm",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_InquisitorsLeggings",        "Inquisitor's Leggings",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_InquisitorsTunic",           "Inquisitor's Tunic",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_IronwoodCrown",              "Ironwood Crown",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_JackalsArms",                "Jackal's Arms",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_JackalsCollar",              "Jackal's Collar",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_JackalsGloves",              "Jackal's Gloves",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_JackalsHelm",                "Jackal's Helm",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_JackalsLeggings",            "Jackal's Leggings",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_JackalsTunic",               "Jackal's Tunic",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_KodiakBearMask",             "Kodiak Bear Mask",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LegsOfFortune",              "Legging of Fortune",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LegsOfInsight",              "Legging of Insight",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LeggingsOfAegis",            "Leggings of Aegis",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LeggingsOfBane",             "Leggings of Bane",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LeggingsOfDeceit",           "Leggings Of Deceit",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LeggingsOfEnlightenment",    "Leggings Of Enlightenment",         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LeggingsOfFire",             "Leggings of Fire",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LegsOfTheFallenKing",        "Leggings of the Fallen King",       ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LegsOfTheHarrower",          "Leggings of the Harrower",          ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LegsOfNobility",             "Legs of Nobility",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_DeathsMask",                 "Mask of Death",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_MidnightGloves",             "Midnight Gloves",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_MidnightHelm",               "Midnight Helm",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_MidnightLegs",               "Midnight Leggings",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_MidnightTunic",              "Midnight Tunic",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_NatureVengeanceMask",        "Mask of Natural Vengeance",         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_NatureVengeanceArms",        "Arms of Natural Vengeance",         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_NatureVengeanceGloves",      "Gloves of Natural Vengeance",       ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_NatureVengeanceLeggings",    "Leggings of Natural Vengeance",     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_NatureVengeanceGorget",      "Nature's Vengeance Gorget",         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_OrcChieftainHelm",           "Orc Chieftain Helm",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_OrcishVisage",               "Orcish Visage",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_OrnateCrownOfTheHarrower",   "Ornate Crown of the Harrower",      ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProwleroftheWildsLegging",   "Leggings of the Prowler",           ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProwleroftheWildsHelmet",    "Mask of the Prowler",               ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProwleroftheWildsGloves",    "Gloves of the Prowler",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProwleroftheWildsTunic",     "Tunic of the Prowler",              ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProwleroftheWildsArms",      "Arms of the Prowler",               ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProtectoroftheWildsChestplate", "Chestplate of the Wilds",        ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProtectoroftheWildsLeggings","Leggings of the Wilds",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProtectoroftheWildsGloves",  "Gloves of the Wilds",               ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProtectoroftheWildsArms",    "Arms of the Wilds",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProtectoroftheWildsHelmet",  "Helmet of the Wilds",               ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ProtectoroftheWildsGorget",  "Gorget of the Protector of the Wilds", ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_NatureMasterGorget",         "Nature Master's Gorget",            ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_RoyalGuardsGorget",          "Royal Guardian's Gorget",           ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_RoyalGuardsChestplate",      "Royal Guard's Chest Plate",         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_LeggingsOfEmbers",           "Royal Leggings of Embers",          ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_SamuraiHelm",                "Ancient Samurai Helm",              ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ShadowDancerArms",           "Shadow Dancer Arms",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ShadowDancerCap",            "Shadow Dancer Cap",                 ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ShadowDancerGloves",         "Shadow Dancer Gloves",              ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ShadowDancerGorget",         "Shadow Dancer Gorget",              ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ShadowDancerLeggings",       "Shadow Dancer Leggings",            ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ShadowDancerTunic",          "Shadow Dancer Tunic",               ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ShroudOfDeciet",             "Shroud of Deceit",                  ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ShieldOfInvulnerability",    "Shield of Invulnerability",         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_ShieldOfAmaunator",          "Shield of Amaunator",               ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_StormKingsShield",           "Storm King's Shield",               ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_StitchersMittens",           "Stitcher's Mittens",                ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TotemArms",                  "Totem Arms",                        ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TotemGloves",                "Totem Gloves",                      ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TotemGorget",                "Totem Gorget",                      ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TotemLeggings",              "Totem Leggings",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TotemTunic",                 "Totem Tunic",                       ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TunicOfAegis",               "Tunic of Aegis",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TunicOfBane",                "Tunic of Bane",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TunicOfFire",                "Tunic of Fire",                     ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TunicOfTheFallenKing",       "Tunic of the Fallen King",          ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_TunicOfTheHarrower",         "Tunic of the Harrower",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_VoiceOfTheFallenKing",       "Voice of the Fallen King",          ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_YashimotosHatsuburi",        "Yashimoto's Hatsuburi",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_GlovesOfThePiper",           "Gloves of the Pied Piper",          ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_SpellWovenBritches",         "Spell Woven Britches",              ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_AngelicEmbrace",             "Angelic Embrace",                   ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_BrambleCoat",                "Bramble Coat",                      ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_NatureVengeanceCoat",        "Coat of Natural Vengeance",         ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_WizardsPants",               "Wizard's Pants",                    ArtifactCategory.ArmorShields ),
+            // ----- Clothing -----
+			new ArtifactEntry( "Artifact_EmbroideredOakLeafCloak",    "Embroidered Oak Leaf Cloak",        ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_CircletOfTheSorceress",      "Circlet Of The Sorceress",          ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_DetectiveBoots",             "Detective Boots of the Royal Guard", ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_DivineCountenance",          "Divine Countenance",                ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_HatOfTheMagi",               "Hat of the Magi",                   ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_MagiciansMempo",             "Magician's Mempo",                  ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_PadsOfTheCuSidhe",           "Pads of the Cu Sidhe",              ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_PolarBearBoots",             "Polar Bear Boots",                  ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_GeishasObi",                 "Geishas Obi",                       ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_JesterHatofChuckles",        "Jester Hat of Chuckles",            ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_AcidProofRobe",              "Acidic Robe",                       ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_ArcanicRobe",                "Arcanic Robe",                      ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_BeggarsRobe",                "Beggar's Robe",                     ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_BootsofHermes",              "Boots of Hermes",                   ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_BootsofPyros",               "Boots of the Daemon King",          ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_BootsofHydros",              "Boots of the Lurker",               ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_BootsofLithos",              "Boots of the Mountain King",        ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_BootsofStratos",             "Boots of the Mystic Voice",         ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_BootsOfThePiper",            "Boots of the Pied Piper",           ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_BurglarsBandana",            "Burglar's Bandana",                 ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_CaptainJohnsHat",            "Captain John's Hat",                ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_CloakOfTheRogue",            "Cloak of the Rogue",                ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_CoatOfTheDreadPirate",       "Coat of the Dread Pirate",          ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_ConansLoinCloth",            "Loin Cloth of the Cimmerian",       ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_DreadPirateHat",             "Dread Pirate Hat",                  ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_FurCapeOfTheSorceress",      "Fur Cape Of The Sorceress",         ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_GrimReapersMask",            "Grim Reaper's Mask",                ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_GrimReapersRobe",            "Grim Reaper's Robe",                ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_SamaritanRobe",              "Good Samaritan Robe",               ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_HoodedShroudOfShadows",      "Hooded Shroud of Shadows",          ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_JinBaoriOfGoodFortune",      "Jin-Baori Of Good Fortune",         ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_LieutenantOfTheBritannianRoyalGuard", "Royal Guard Sash",         ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_MantleofPyros",              "Mantle of the Daemon King",         ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_MantleofHydros",             "Mantle of the Lurker",              ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_MantleofLithos",             "Mantle of the Mountain King",       ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_MantleofStratos",            "Mantle of the Mystic Voice",        ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_GandalfsHat",                "Merlin's Mystical Hat",             ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_GandalfsRobe",               "Merlin's Mystical Robe",            ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_ANecromancerShroud",         "Necromancer Shroud",                ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_VampiresRobe",               "Nosferatu's Robe",                  ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_PiedPiperFeatheredHat",      "Pied Piper's Feathered Hat",        ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_PolarBearCape",              "Polar Bear Cape",                   ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_PolarBearMask",              "Spirit of the Polar Bear",          ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_TheRobeOfBritanniaAri",      "Robe of Sosaria",                   ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeOfTeleportation",        "Robe Of Teleportation",             ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeofPyros",                "Robe of the Daemon King",           ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeOfTheEclipse",           "Robe of the Eclipse",               ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeOfTheEquinox",           "Robe of the Equinox",               ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeofHydros",               "Robe of the Lurker",                ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeofLithos",               "Robe of the Mountain King",         ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeofStratos",              "Robe of the Mystic Voice",          ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeOfTreason",              "Robe Of Treason",                   ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeOfWilds",                "Robe of the Wilds",                 ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobeOfWildLegion",           "Robe of the Wild Legion",           ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_RobinHoodsFeatheredHat",     "Robin Hood's Feathered Hat",        ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_ShirtOfThePiper",            "Shirt of the Pied Piper",           ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_SilksOfAllurement",          "Silks of Allurement",               ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_TemptationOfSune",           "Temptation of Sune",                ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_TrousersOfThePiper",         "Trousers of the Pied Piper",        ArtifactCategory.Clothing ),
+            new ArtifactEntry( "Artifact_BootsOfFanaedar",            "Boots of Fanaedar",                 ArtifactCategory.Clothing )
+        };
 
-		public override void OnDoubleClick( Mobile from )
-		{
-			if ( !IsChildOf( from.Backpack ) ) 
-			{
-				from.SendMessage( "This must be in your backpack to read." );
-				return;
-			}
-			else if ( this.owner != from  )
-			{
-				from.SendMessage( "This is not your book." );
-				return;
-			}
-			else 
-			{
-				from.SendSound( 0x55 );
-				from.CloseGump( typeof( SearchBookGump ) );
-				from.SendGump( new SearchBookGump( from, this, 0 ) );
-			}
-		}
-
-        public override void AddNameProperties(ObjectPropertyList list)
-		{
-            base.AddNameProperties(list);
-			if ( owner != null ){ list.Add( 1070722, "Belongs to " + owner.Name + "" ); }
-
-			string sLegend = LegendLore.ToString();
-            list.Add( 1049644, "Legend Lore: Level " + sLegend + "");
+        public static ArrayList GetEntriesForCategory(ArtifactCategory cat)
+        {
+            ArrayList result = new ArrayList();
+            for (int i = 0; i < AllArtifacts.Length; i++)
+            {
+                if (AllArtifacts[i].Category == cat)
+                    result.Add(AllArtifacts[i]);
+            }
+            return result;
         }
 
-		public class SearchBookGump : Gump
-		{
-			private SearchBook m_Book;
+        public static string CategoryLabel(ArtifactCategory cat)
+        {
+            switch (cat)
+            {
+                case ArtifactCategory.OneHandedWeapons: return "One-Handed Weapons";
+                case ArtifactCategory.TwoHandedWeapons: return "Two-Handed Weapons";
+                case ArtifactCategory.RangedWeapons: return "Ranged Weapons & Quivers";
+                case ArtifactCategory.JewelryTrinkets: return "Jewelry & Trinkets";
+                case ArtifactCategory.ArmorShields: return "Armor & Shields";
+                case ArtifactCategory.Clothing: return "Clothing";
+                default: return "Unknown";
+            }
+        }
 
-			public SearchBookGump( Mobile from, SearchBook wikipedia, int page ): base( 100, 100 )
-			{
-				m_Book = wikipedia;
-				string color = "#d6c382";
+        public Mobile owner;
+        public int LegendLore;
 
-				int NumberOfArtifacts = 365; // SEE LISTING BELOW AND MAKE SURE IT MATCHES THE AMOUNT
-				decimal PageCount = NumberOfArtifacts / 16;
-				int TotalBookPages = ( 100000 ) + ( (int)Math.Ceiling( PageCount ) );
+        [CommandProperty(AccessLevel.GameMaster)]
+        public Mobile Owner { get { return owner; } set { owner = value; } }
 
-				this.Closable=true;
-				this.Disposable=true;
-				this.Dragable=true;
-				this.Resizable=false;
+        [CommandProperty(AccessLevel.Owner)]
+        public int Legend_Lore { get { return LegendLore; } set { LegendLore = value; InvalidateProperties(); } }
 
-				AddPage(0);
+        [Constructable]
+        public SearchBook(Mobile from, int paid) : base(0x22C5)
+        {
+            owner = from;
+            LegendLore = (paid / 1000) - 4;
+            Weight = 1.0;
+            Hue = 0x978;
+            Name = "Artifact Encyclopedia";
+        }
 
-				AddImage(0, 0, 7005);
-				AddImage(0, 0, 7006);
-				AddImage(0, 0, 7024, 2736);
-				AddButton(590, 48, 4017, 4017, 0, GumpButtonType.Reply, 0);
+        public override void OnDoubleClick(Mobile from)
+        {
+            if (!IsChildOf(from.Backpack))
+            {
+                from.SendMessage("This must be in your backpack to read.");
+                return;
+            }
+            if (owner != from)
+            {
+                from.SendMessage("This is not your book.");
+                return;
+            }
 
-				int subItem = page * 16;
+            from.SendSound(0x55);
+            from.CloseGump(typeof(CategoryGump));
+            from.CloseGump(typeof(CategoryItemsGump));
+            from.CloseGump(typeof(ConfirmGump));
+            from.SendGump(new CategoryGump(from, this));
+        }
 
-				int showItem1 = subItem + 1;
-				int showItem2 = subItem + 2;
-				int showItem3 = subItem + 3;
-				int showItem4 = subItem + 4;
-				int showItem5 = subItem + 5;
-				int showItem6 = subItem + 6;
-				int showItem7 = subItem + 7;
-				int showItem8 = subItem + 8;
-				int showItem9 = subItem + 9;
-				int showItem10 = subItem + 10;
-				int showItem11 = subItem + 11;
-				int showItem12 = subItem + 12;
-				int showItem13 = subItem + 13;
-				int showItem14 = subItem + 14;
-				int showItem15 = subItem + 15;
-				int showItem16 = subItem + 16;
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            if (owner != null)
+                list.Add(1070722, "Belongs to " + owner.Name);
 
-				int page_prev = ( 100000 + page ) - 1;
-					if ( page_prev < 100000 ){ page_prev = TotalBookPages; }
-				int page_next = ( 100000 + page ) + 1;
-					if ( page_next > TotalBookPages ){ page_next = 100000; }
+            list.Add(1049644, "Legend Lore: Level " + LegendLore.ToString());
+        }
 
-				AddButton(75, 374, 4014, 4014, page_prev, GumpButtonType.Reply, 0);
-				AddButton(590, 375, 4005, 4005, page_next, GumpButtonType.Reply, 0);
+        public SearchBook(Serial serial) : base(serial) { }
 
-				AddHtml( 77, 49, 259, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>ARTIFACTS</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write((int)1);
+            writer.Write((Mobile)owner);
+            writer.Write(LegendLore);
+        }
 
-				///////////////////////////////////////////////////////////////////////////////////
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+            owner = reader.ReadMobile();
+            LegendLore = reader.ReadInt();
+        }
 
-				int x = 115;
-				int y = 64;
-				int s = 64;
-				int z = 34;
-
-				y=y+z;
-				if ( GetArtifactListForBook( showItem1, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem1, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem2, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem2, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem3, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem3, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem4, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem4, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem5, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem5, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem6, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem6, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem7, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem7, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem8, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem8, GumpButtonType.Reply, 0); } y=s-3;
-				y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem1, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem2, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem3, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem4, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem5, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem6, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem7, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem8, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=s-3;
-
-				///////////////////////////////////////////////////////////////////////////////////
-
-				x = 407;
-				y = s;
-
-				y=y+z;
-				if ( GetArtifactListForBook( showItem9, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem9, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem10, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem10, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem11, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem11, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem12, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem12, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem13, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem13, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem14, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem14, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem15, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem15, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetArtifactListForBook( showItem16, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem16, GumpButtonType.Reply, 0); } y=s-3;
-				y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem9, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem10, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem11, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem12, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem13, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem14, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem15, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetArtifactListForBook( showItem16, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=s-3;
-			}
-
-			public override void OnResponse( NetState state, RelayInfo info )
-			{
-				Mobile from = state.Mobile; 
-
-				from.SendSound( 0x55 );
-
-				if ( info.ButtonID >= 100000 )
-				{
-					int page = info.ButtonID - 100000;
-					from.SendGump( new SearchBookGump( from, m_Book, page ) );
-				}
-				else if (info.ButtonID >= 1 && info.ButtonID != null)
-				{
-					from.SendGump(new ConfirmGump(from, info.ButtonID, m_Book));
-				}
-			}
-		}
-
-		public class ConfirmGump : Gump
-		{
-			private SearchBook m_Book;
-		    private Mobile m_User;
-		    private int m_ButtonID;
-
-			private static bool gumpOpened = false;
-
-		    public ConfirmGump(Mobile user, int buttonID, SearchBook wikipedia) : base(50, 50)
-		    {
-		    	if (gumpOpened)
-            		return;
-				
-				gumpOpened = true; 
-
-				m_Book = wikipedia;
-		        m_User = user;
-		        m_ButtonID = buttonID;
-				Closable = true;
-    		    Disposable = true;
-    		    Dragable = true;
-	    	    Resizable = false;
-
-				AddBackground(0, 0, 400, 160, 9270);
-
-				AddLabel(30, 20, 2120, "Are you sure you want to search for The");
-			    AddLabel(30, 40, 2120, GetArtifactListForBook(m_ButtonID, 1) + " ?");
-    			AddLabel(30, 70, 2120, "Confirming will consume your Artifact Encyclopedia");
-
-			
-   				AddButton(80, 120, 4005, 4007, 1, GumpButtonType.Reply, 0); // Yes
-    			AddLabel(115, 122, 2120, "Yes");
-
-    			AddButton(200, 120, 4017, 4019, 0, GumpButtonType.Reply, 0); // No
-    			AddLabel(235, 122, 2120, "No");
-		    
-			}
-
-		    public override void OnResponse(NetState sender, RelayInfo info)
-		    {
-		        if (info.ButtonID == 1) // Yes
-		        {
-		            string sType = GetArtifactListForBook(m_ButtonID, 2);
-		            string sName = GetArtifactListForBook(m_ButtonID, 1);
-		            if (sName != "")
-		            {
-		                m_User.AddToBackpack(new SearchPage(m_User, m_Book.LegendLore, sType, sName));
-		                m_User.SendMessage("You tear the page out of the book.");
-		                m_Book.Delete();
-		            }
-		        }
-		        m_User.CloseGump(typeof(SearchBookGump));
-				m_User.CloseGump(typeof(ConfirmGump));
-				gumpOpened = false;
-			}
-		}
-
-		public SearchBook( Serial serial ) : base( serial )
-		{
-		}
-
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-			writer.Write( (int)1 ); // version
-			writer.Write( (Mobile)owner );
-            writer.Write( LegendLore );
-		}
-
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-			int version = reader.ReadInt();
-			owner = reader.ReadMobile();
-			LegendLore = reader.ReadInt();
-		}
-
-		public static string GetArtifactListForBook( int artifact, int part )
-		{
-			string item = "";
-			string name = "";
-			int arty = 1;
-
-			if ( artifact == arty) { name="Artifact_AbysmalGloves"; item="Abysmal Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_AchillesShield"; item="Achille's Shield"; } arty++;
-			if ( artifact == arty) { name="Artifact_AchillesSpear"; item="Achille's Spear"; } arty++;
-			if ( artifact == arty) { name="Artifact_AcidProofRobe"; item="Acidic Robe"; } arty++;
-			if ( artifact == arty) { name="Artifact_Aegis"; item="Aegis"; } arty++;
-			if ( artifact == arty) { name="Artifact_AegisOfGrace"; item="Aegis of Grace"; } arty++;
-			if ( artifact == arty) { name="Artifact_AlchemistsBauble"; item="Alchemist's Bauble"; } arty++;
-			if ( artifact == arty) { name="Artifact_SamuraiHelm"; item="Ancient Samurai Helm"; } arty++;
-			if ( artifact == arty) { name="Artifact_AngelicEmbrace"; item="Angelic Embrace"; } arty++;
-			if ( artifact == arty) { name="Artifact_AngeroftheGods"; item="Anger of the Gods"; } arty++;
-			if ( artifact == arty) { name="Artifact_Annihilation"; item="Annihilation"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArcaneArms"; item="Arcane Arms"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArcaneCap"; item="Arcane Cap"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArcaneGloves"; item="Arcane Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArcaneGorget"; item="Arcane Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArcaneLeggings"; item="Arcane Leggings"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArcaneShield"; item="Arcane Shield"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArcaneTunic"; item="Arcane Tunic"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArcanicRobe"; item="Arcanic Robe"; } arty++;
-			if ( artifact == arty) { name="Artifact_WintersGrip"; item="Arctic Death Dealer"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmorOfFortune"; item="Armor of Fortune"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmorOfInsight"; item="Armor of Insight"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmorOfNobility"; item="Armor of Nobility"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmsOfAegis"; item="Arms of Aegis"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmsOfFortune"; item="Arms of Fortune"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmsOfInsight"; item="Arms of Insight"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmsOfNobility"; item="Arms of Nobility"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmsOfTheFallenKing"; item="Arms of the Fallen King"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmsOfTheHarrower"; item="Arms of the Harrower"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArmsOfToxicity"; item="Arms Of Toxicity"; } arty++;
-			if ( artifact == arty) { name="Artifact_AuraOfShadows"; item="Aura Of Shadows"; } arty++;
-			if ( artifact == arty) { name="Artifact_AxeOfTheHeavens"; item="Axe of the Heavens"; } arty++;
-			if ( artifact == arty) { name="Artifact_AxeoftheMinotaur"; item="Axe of the Minotaur"; } arty++;
-			if ( artifact == arty) { name="Artifact_BeggarsRobe"; item="Beggar's Robe"; } arty++;
-			if ( artifact == arty) { name="Artifact_BeltofHercules"; item="Belt of Hercules"; } arty++;
-			if ( artifact == arty) { name="Artifact_TheBeserkersMaul"; item="Berserker's Maul"; } arty++;
-			if ( artifact == arty) { name="Artifact_BladeDance"; item="Blade Dance"; } arty++;
-			if ( artifact == arty) { name="Artifact_BladeOfInsanity"; item="Blade of Insanity"; } arty++;
-			if ( artifact == arty) { name="Artifact_ConansSword"; item="Blade of the Cimmerian"; } arty++;
-			if ( artifact == arty) { name="Artifact_BladeOfTheWilds"; item="Blade of the Wilds";} arty++;
-			if ( artifact == arty) { name="Artifact_BlazeOfDeath"; item="Blaze of Death"; } arty++;
-			if ( artifact == arty) { name="Artifact_BloodwoodSpirit"; item="Bloodwood Spirit"; } arty++;
-			if ( artifact == arty) { name="Artifact_BoneCrusher"; item="Bone Crusher"; } arty++;
-			if ( artifact == arty) { name="Artifact_Boomstick"; item="Boomstick"; } arty++;
-			if ( artifact == arty) { name="Artifact_BootsofHermes"; item="Boots of Hermes"; } arty++;
-			if ( artifact == arty) { name="Artifact_BootsofPyros"; item="Boots of the Daemon King"; } arty++;
-			if ( artifact == arty) { name="Artifact_BootsofHydros"; item="Boots of the Lurker"; } arty++;
-			if ( artifact == arty) { name="Artifact_BootsofLithos"; item="Boots of the Mountain King"; } arty++;
-			if ( artifact == arty) { name="Artifact_BootsofStratos"; item="Boots of the Mystic Voice"; } arty++;
-			if ( artifact == arty) { name="Artifact_BootsOfThePiper"; item="Boots of the Pied Piper";} arty++;
-			if ( artifact == arty) { name="Artifact_BowOfTheTribalKing"; item="Bow of the Juka King"; } arty++;
-			if ( artifact == arty) { name="Artifact_BowofthePhoenix"; item="Bow of the Phoenix"; } arty++;
-			if ( artifact == arty) { name="Artifact_BowOfTheProwler"; item="Bow of the Prowler";} arty++;
-			if ( artifact == arty) { name="Artifact_BraceletOfHealth"; item="Bracelet of Health"; } arty++;
-			if ( artifact == arty) { name="Artifact_BraceletOfTheElements"; item="Bracelet of the Elements"; } arty++;
-			if ( artifact == arty) { name="Artifact_BraceletOfTheVile"; item="Bracelet of the Vile"; } arty++;
-			if ( artifact == arty) { name="Artifact_BrambleCoat"; item="Bramble Coat"; } arty++;
-			if ( artifact == arty) { name="Artifact_BreathOfTheDead"; item="Breath of the Dead"; } arty++;
-			if ( artifact == arty) { name="Artifact_BurglarsBandana"; item="Burglar's Bandana"; } arty++;
-			if ( artifact == arty) { name="Artifact_Calm"; item="Calm"; } arty++;
-			if ( artifact == arty) { name="Artifact_CandleCold"; item="Candle of Cold Light"; } arty++;
-			if ( artifact == arty) { name="Artifact_CandleEnergy"; item="Candle of Energized Light"; } arty++;
-			if ( artifact == arty) { name="Artifact_CandleFire"; item="Candle of Fire Light"; } arty++;
-			if ( artifact == arty) { name="Artifact_CandleNecromancer"; item="Candle of Ghostly Light"; } arty++;
-			if ( artifact == arty) { name="Artifact_CandlePoison"; item="Candle of Poisonous Light"; } arty++;
-			if ( artifact == arty) { name="Artifact_CandleWizard"; item="Candle of Wizardly Light"; } arty++;
-			if ( artifact == arty) { name="Artifact_CapOfFortune"; item="Cap of Fortune"; } arty++;
-			if ( artifact == arty) { name="Artifact_CapOfTheFallenKing"; item="Cap of the Fallen King"; } arty++;
-			if ( artifact == arty) { name="Artifact_CaptainJohnsHat"; item="Captain John's Hat"; } arty++;
-			if ( artifact == arty) { name="Artifact_CaptainQuacklebushsCutlass"; item="Captain Quacklebush's Cutlass"; } arty++;
-			if ( artifact == arty) { name="Artifact_CircletOfTheSorceress"; item="Circlet Of The Sorceress"; } arty++;
-			if ( artifact == arty) { name="Artifact_CloakOfTheRogue"; item="Cloak of the Rogue"; } arty++;
-			if ( artifact == arty) { name="Artifact_CoatOfTheDreadPirate";item="Coat of the Dread Pirate";} arty++;
-			if ( artifact == arty) { name="Artifact_CoifOfBane"; item="Coif of Bane"; } arty++;
-			if ( artifact == arty) { name="Artifact_CoifOfFire"; item="Coif of Fire"; } arty++;
-			if ( artifact == arty) { name="Artifact_ColdBlood"; item="Cold Blood"; } arty++;
-			if ( artifact == arty) { name="Artifact_ColdForgedBlade"; item="Cold Forged Blade"; } arty++;
-			if ( artifact == arty) { name="Artifact_CrimsonCincture"; item="Crimson Cincture"; } arty++;
-			if ( artifact == arty) { name="Artifact_CrownOfTalKeesh"; item="Crown of Tal'Keesh"; } arty++;
-			if ( artifact == arty) { name="Artifact_DaggerOfVenom"; item="Dagger of Venom"; } arty++;
-			if ( artifact == arty) { name="Artifact_DarkGuardiansChest"; item="Dark Guardian's Chest"; } arty++;
-			if ( artifact == arty) { name="Artifact_DarkLordsPitchfork"; item="Dark Lord's PitchFork"; } arty++;
-			if ( artifact == arty) { name="Artifact_DarkNeck"; item="Dark Neck"; } arty++;
-			if ( artifact == arty) { name="Artifact_DetectiveBoots"; item="Detective Boots of the Royal Guard"; } arty++;
-			if ( artifact == arty) { name="Artifact_DivineArms"; item="Divine Arms"; } arty++;
-			if ( artifact == arty) { name="Artifact_DivineCountenance"; item="Divine Countenance"; } arty++;
-			if ( artifact == arty) { name="Artifact_DivineGloves"; item="Divine Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_DivineGorget"; item="Divine Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_DivineLeggings"; item="Divine Leggings"; } arty++;
-			if ( artifact == arty) { name="Artifact_DivineTunic"; item="Divine Tunic"; } arty++;
-			if ( artifact == arty) { name="Artifact_DjinnisRing"; item="Djinni's Ring"; } arty++;
-			if ( artifact == arty) { name="Artifact_DreadPirateHat"; item="Dread Pirate Hat"; } arty++;
-			if ( artifact == arty) { name="Artifact_TheDryadBow"; item="Dryad Bow"; } arty++;
-			if ( artifact == arty) { name="Artifact_DupresCollar"; item="Dupre's Collar"; } arty++;
-			if ( artifact == arty) { name="Artifact_DupresShield"; item="Dupre's Shield"; } arty++;
-			if ( artifact == arty) { name="Artifact_EarringsOfHealth"; item="Earrings of Health"; } arty++;
-			if ( artifact == arty) { name="Artifact_EarringsOfTheElements"; item="Earrings of the Elements"; } arty++;
-			if ( artifact == arty) { name="Artifact_EarringsOfTheMagician"; item="Earrings of the Magician"; } arty++;
-			if ( artifact == arty) { name="Artifact_EarringsOfTheVile"; item="Earrings of the Vile"; } arty++;
-			if ( artifact == arty) { name="Artifact_EmbroideredOakLeafCloak"; item="Embroidered Oak Leaf Cloak"; } arty++;
-			if ( artifact == arty) { name="Artifact_EnchantedTitanLegBone"; item="Enchanted Pirate Rapier"; } arty++;
-			if ( artifact == arty) { name="Artifact_EssenceOfBattle"; item="Essence of Battle"; } arty++;
-			if ( artifact == arty) { name="Artifact_EternalFlame"; item="Eternal Flame"; } arty++;
-			if ( artifact == arty) { name="Artifact_EvilMageGloves"; item="Evil Mage Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_Excalibur"; item="Excalibur"; } arty++;
-			if ( artifact == arty) { name="Artifact_FangOfRactus"; item="Fang of Ractus"; } arty++;
-			if ( artifact == arty) { name="Artifact_FeyLeggings"; item="Fey Leggings"; } arty++;
-			if ( artifact == arty) { name="Artifact_FleshRipper"; item="Flesh Ripper"; } arty++;
-			if ( artifact == arty) { name="Artifact_Fortifiedarms"; item="Fortified Arms"; } arty++;
-			if ( artifact == arty) { name="Artifact_FortunateBlades"; item="Fortunate Blades"; } arty++;
-			if ( artifact == arty) { name="Artifact_Frostbringer"; item="Frostbringer"; } arty++;
-			if ( artifact == arty) { name="Artifact_FurCapeOfTheSorceress"; item="Fur Cape Of The Sorceress"; } arty++;
-			if ( artifact == arty) { name="Artifact_Fury"; item="Fury"; } arty++;
-			if ( artifact == arty) { name="Artifact_MarbleShield"; item="Gargoyle Shield"; } arty++;
-			if ( artifact == arty) { name="Artifact_GuantletsOfOgreStrength"; item="Gauntlets of Anger"; } arty++;
-			if ( artifact == arty) { name="Artifact_GauntletsOfNobility"; item="Gauntlets of Nobility"; } arty++;
-			if ( artifact == arty) { name="Artifact_GeishasObi"; item="Geishas Obi"; } arty++;
-			if ( artifact == arty) { name="Artifact_GiantBlackjack"; item="Giant Blackjack"; } arty++;
-			if ( artifact == arty) { name="Artifact_GladiatorsCollar"; item="Gladiator's Collar"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfAegis"; item="Gloves of Aegis"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfCorruption"; item="Gloves Of Corruption"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfDexterity"; item="Gloves of Dexterity"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfFortune"; item="Gloves of Fortune"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfInsight"; item="Gloves of Insight"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfRegeneration"; item="Gloves Of Regeneration"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfTheFallenKing"; item="Gloves of the Fallen King"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfTheHarrower"; item="Gloves of the Harrower"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfThePiper"; item="Gloves of the Pied Piper";} arty++;
-			if ( artifact == arty) { name="Artifact_GlovesOfThePugilist"; item="Gloves of the Pugilist"; } arty++;
-			if ( artifact == arty) { name="Artifact_SamaritanRobe"; item="Good Samaritan Robe"; } arty++;
-			if ( artifact == arty) { name="Artifact_GorgetOfAegis"; item="Gorget of Aegis"; } arty++;
-			if ( artifact == arty) { name="Artifact_GorgetOfFortune"; item="Gorget of Fortune"; } arty++;
-			if ( artifact == arty) { name="Artifact_GorgetOfInsight"; item="Gorget of Insight"; } arty++;
-			if ( artifact == arty) { name="Artifact_GrimReapersLantern"; item="Grim Reaper's Lantern"; } arty++;
-			if ( artifact == arty) { name="Artifact_GrimReapersMask"; item="Grim Reaper's Mask"; } arty++;
-			if ( artifact == arty) { name="Artifact_GrimReapersRobe"; item="Grim Reaper's Robe"; } arty++;
-			if ( artifact == arty) { name="Artifact_GrimReapersScythe"; item="Grim Reaper's Scythe"; } arty++;
-			if ( artifact == arty) { name="Artifact_HammerofThor"; item="Hammer of Thor"; } arty++;
-			if ( artifact == arty) { name="Artifact_HatOfTheMagi"; item="Hat of the Magi"; } arty++;
-			if ( artifact == arty) { name="Artifact_HeartOfTheLion"; item="Heart of the Lion"; } arty++;
-			if ( artifact == arty) { name="Artifact_HellForgedArms"; item="Hell Forged Arms"; } arty++;
-			if ( artifact == arty) { name="Artifact_HelmOfAegis"; item="Helm of Aegis"; } arty++;
-			if ( artifact == arty) { name="Artifact_HelmOfBrilliance"; item="Helm of Brilliance"; } arty++;
-			if ( artifact == arty) { name="Artifact_HelmOfInsight"; item="Helm of Insight"; } arty++;
-			if ( artifact == arty) { name="Artifact_HelmOfSwiftness"; item="Helm of Swiftness"; } arty++;
-			if ( artifact == arty) { name="Artifact_ConansHelm"; item="Helm of the Cimmerian"; } arty++;
-			if ( artifact == arty) { name="Artifact_HolyKnightsArmPlates"; item="Holy Knight's Arm Plates"; } arty++;
-			if ( artifact == arty) { name="Artifact_HolyKnightsBreastplate"; item="Holy Knight's Breastplate"; } arty++;
-			if ( artifact == arty) { name="Artifact_HolyKnightsGloves"; item="Holy Knight's Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_HolyKnightsGorget"; item="Holy Knight's Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_HolyKnightsLegging"; item="Holy Knight's Legging"; } arty++;
-			if ( artifact == arty) { name="Artifact_HolyKnightsPlateHelm"; item="Holy Knight's Plate Helm"; } arty++;
-			if ( artifact == arty) { name="Artifact_HolyLance"; item="Holy Lance"; } arty++;
-			if ( artifact == arty) { name="Artifact_HoodedShroudOfShadows"; item="Hooded Shroud of Shadows"; } arty++;
-			if ( artifact == arty) { name="Artifact_HuntersArms"; item="Hunter's Arms"; } arty++;
-			if ( artifact == arty) { name="Artifact_HuntersGloves"; item="Hunter's Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_HuntersGorget"; item="Hunter's Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_HuntersHeaddress"; item="Hunter's Headdress"; } arty++;
-			if ( artifact == arty) { name="Artifact_HuntersLeggings"; item="Hunter's Leggings"; } arty++;
-			if ( artifact == arty) { name="Artifact_HuntersTunic"; item="Hunter's Tunic"; } arty++;
-			if ( artifact == arty) { name="Artifact_Indecency"; item="Indecency"; } arty++;
-			if ( artifact == arty) { name="Artifact_InquisitorsArms"; item="Inquisitor's Arms"; } arty++;
-			if ( artifact == arty) { name="Artifact_InquisitorsGorget"; item="Inquisitor's Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_InquisitorsHelm"; item="Inquisitor's Helm"; } arty++;
-			if ( artifact == arty) { name="Artifact_InquisitorsLeggings"; item="Inquisitor's Leggings"; } arty++;
-			if ( artifact == arty) { name="Artifact_InquisitorsResolution"; item="Inquisitor's Resolution"; } arty++;
-			if ( artifact == arty) { name="Artifact_InquisitorsTunic"; item="Inquisitor's Tunic"; } arty++;
-			if ( artifact == arty) { name="Artifact_IronwoodCrown"; item="Ironwood Crown"; } arty++;
-			if ( artifact == arty) { name="Artifact_JackalsArms"; item="Jackal's Arms"; } arty++;
-			if ( artifact == arty) { name="Artifact_JackalsCollar"; item="Jackal's Collar"; } arty++;
-			if ( artifact == arty) { name="Artifact_JackalsGloves"; item="Jackal's Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_JackalsHelm"; item="Jackal's Helm"; } arty++;
-			if ( artifact == arty) { name="Artifact_JackalsLeggings"; item="Jackal's Leggings"; } arty++;
-			if ( artifact == arty) { name="Artifact_JackalsTunic"; item="Jackal's Tunic"; } arty++;
-			if ( artifact == arty) { name="Artifact_JadeScimitar"; item="Jade Scimitar"; } arty++;
-			if ( artifact == arty) { name="Artifact_JesterHatofChuckles"; item="Jester Hat of Chuckles"; } arty++;
-			if ( artifact == arty) { name="Artifact_JinBaoriOfGoodFortune"; item="Jin-Baori Of Good Fortune"; } arty++;
-			if ( artifact == arty) { name="Artifact_KamiNarisIndestructableDoubleAxe"; item="Kami-Naris Indestructable Axe"; } arty++;
-			if ( artifact == arty) { name="Artifact_KodiakBearMask"; item="Kodiak Bear Mask"; } arty++;
-			if ( artifact == arty) { name="Artifact_PowerSurge"; item="Lantern of Power"; } arty++;
-			if ( artifact == arty) { name="Artifact_LegsOfFortune"; item="Legging of Fortune"; } arty++;
-			if ( artifact == arty) { name="Artifact_LegsOfInsight"; item="Legging of Insight"; } arty++;
-			if ( artifact == arty) { name="Artifact_LeggingsOfAegis"; item="Leggings of Aegis"; } arty++;
-			if ( artifact == arty) { name="Artifact_LeggingsOfBane"; item="Leggings of Bane"; } arty++;
-			if ( artifact == arty) { name="Artifact_LeggingsOfDeceit"; item="Leggings Of Deceit"; } arty++;
-			if ( artifact == arty) { name="Artifact_LeggingsOfEnlightenment"; item="Leggings Of Enlightenment"; } arty++;
-			if ( artifact == arty) { name="Artifact_LeggingsOfFire"; item="Leggings of Fire"; } arty++;
-			if ( artifact == arty) { name="Artifact_LegsOfTheFallenKing"; item="Leggings of the Fallen King"; } arty++;
-			if ( artifact == arty) { name="Artifact_LegsOfTheHarrower"; item="Leggings of the Harrower"; } arty++;
-			if ( artifact == arty) { name="Artifact_LegsOfNobility"; item="Legs of Nobility"; } arty++;
-			if ( artifact == arty) { name="Artifact_ConansLoinCloth"; item="Loin Cloth of the Cimmerian"; } arty++;
-			if ( artifact == arty) { name="Artifact_LongShot"; item="Long Shot"; } arty++;
-			if ( artifact == arty) { name="Artifact_LuckyEarrings"; item="Lucky Earrings"; } arty++;
-			if ( artifact == arty) { name="Artifact_LuckyNecklace"; item="Lucky Necklace"; } arty++;
-			if ( artifact == arty) { name="Artifact_LuminousRuneBlade"; item="Luminous Rune Blade"; } arty++;
-			if ( artifact == arty) { name="Artifact_MagesBand"; item="Mage's Band"; } arty++;
-			if ( artifact == arty) { name="Artifact_MagiciansIllusion"; item="Magician's Illusion"; } arty++;
-			if ( artifact == arty) { name="Artifact_MagiciansMempo"; item="Magician's Mempo"; } arty++;
-			if ( artifact == arty) { name="Artifact_MantleofPyros"; item="Mantle of the Daemon King"; } arty++;
-			if ( artifact == arty) { name="Artifact_MantleofHydros"; item="Mantle of the Lurker"; } arty++;
-			if ( artifact == arty) { name="Artifact_MantleofLithos"; item="Mantle of the Mountain King"; } arty++;
-			if ( artifact == arty) { name="Artifact_MantleofStratos"; item="Mantle of the Mystic Voice"; } arty++;
-			if ( artifact == arty) { name="Artifact_DeathsMask"; item="Mask of Death"; } arty++;
-			if ( artifact == arty) { name="Artifact_MaulOfTheTitans"; item="Maul of the Titans"; } arty++;
-			if ( artifact == arty) { name="Artifact_MelisandesCorrodedHatchet"; item="Melisande's Corroded Hatchet"; } arty++;
-			if ( artifact == arty) { name="Artifact_GandalfsHat"; item="Merlin's Mystical Hat"; } arty++;
-			if ( artifact == arty) { name="Artifact_GandalfsRobe"; item="Merlin's Mystical Robe"; } arty++;
-			if ( artifact == arty) { name="Artifact_StaffOfTheWyrmSpeaker"; item="Merlin's Mystical Staff"; } arty++;
-			if ( artifact == arty) { name="Artifact_MidnightBracers"; item="Midnight Bracers"; } arty++;
-			if ( artifact == arty) { name="Artifact_MidnightGloves"; item="Midnight Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_MidnightHelm"; item="Midnight Helm"; } arty++;
-			if ( artifact == arty) { name="Artifact_MidnightLegs"; item="Midnight Leggings"; } arty++;
-			if ( artifact == arty) { name="Artifact_MidnightTunic"; item="Midnight Tunic"; } arty++;
-			if ( artifact == arty) { name="Artifact_MinersPickaxe"; item="Miner's Pickaxe"; } arty++;
-			if ( artifact == arty) { name="Artifact_NatureVengeanceMask"; item="Mask of Natural Vengeance";} arty++;
-			if ( artifact == arty) { name="Artifact_NatureVengeanceCoat"; item="Coat of Natural Vengeance";} arty++;
-			if ( artifact == arty) { name="Artifact_NatureVengeanceLeggings"; item="Leggings of Natural Vengeance";} arty++;
-			if ( artifact == arty) { name="Artifact_NatureVengeanceArms"; item="Arms of Natural Vengeance";} arty++;
-			if ( artifact == arty) { name="Artifact_NatureVengeanceGloves"; item="Gloves of Natural Vengeance";} arty++;
-			if ( artifact == arty) { name="Artifact_ANecromancerShroud"; item="Necromancer Shroud"; } arty++;
-			if ( artifact == arty) { name="Artifact_TheNightReaper"; item="Night Reaper"; } arty++;
-			if ( artifact == arty) { name="Artifact_VampiresRobe"; item="Nosferatu's Robe"; } arty++;
-			if ( artifact == arty) { name="Artifact_NoxBow"; item="Nox Ranger's Light Croosbow"; } arty++;
-			if ( artifact == arty) { name="Artifact_NoxNightlight"; item="Nox Nightlight"; } arty++;
-			if ( artifact == arty) { name="Artifact_NoxRangersHeavyCrossbow"; item="Nox Ranger's Heavy Crossbow"; } arty++;
-			if ( artifact == arty) { name="Artifact_OblivionsNeedle"; item="Oblivion Needle"; } arty++;
-			if ( artifact == arty) { name="Artifact_OrcChieftainHelm"; item="Orc Chieftain Helm"; } arty++;
-			if ( artifact == arty) { name="Artifact_OrcishVisage"; item="Orcish Visage"; } arty++;
-			if ( artifact == arty) { name="Artifact_OrnamentOfTheMagician"; item="Ornament of the Magician"; } arty++;
-			if ( artifact == arty) { name="Artifact_OrnateCrownOfTheHarrower"; item="Ornate Crown of the Harrower"; } arty++;
-			if ( artifact == arty) { name="Artifact_Pacify"; item="Pacify"; } arty++;
-			if ( artifact == arty) { name="Artifact_PadsOfTheCuSidhe"; item="Pads of the Cu Sidhe"; } arty++;
-			if ( artifact == arty) { name="Artifact_PendantOfTheMagi"; item="Pendant of the Magi"; } arty++;
-			if ( artifact == arty) { name="Artifact_Pestilence"; item="Pestilence"; } arty++;
-			if ( artifact == arty) { name="Artifact_PixieSwatter"; item="Pixie Swatter"; } arty++;
-			if ( artifact == arty) { name="Artifact_PiedPiperFeatheredHat"; item="Pied Piper's Feathered Hat";} arty++;
-			if ( artifact == arty) { name="Artifact_PolarBearBoots"; item="Polar Bear Boots"; } arty++;
-			if ( artifact == arty) { name="Artifact_PolarBearCape"; item="Polar Bear Cape"; } arty++;
-			if ( artifact == arty) { name="Artifact_ProwleroftheWildsLegging"; item="Leggings of the Prowler";} arty++;
-			if ( artifact == arty) { name="Artifact_ProwleroftheWildsHelmet"; item="Mask of the Prowler";} arty++;
-			if ( artifact == arty) { name="Artifact_ProwleroftheWildsGloves"; item="Gloves of the Prowler";} arty++;
-			if ( artifact == arty) { name="Artifact_ProwleroftheWildsTunic"; item="Tunic of the Prowler";} arty++;
-			if ( artifact == arty) { name="Artifact_ProwleroftheWildsArms"; item="Arms of the Prowler";} arty++;
-			if ( artifact == arty) { name="Artifact_ProtectoroftheWildsChestplate"; item="Chestplate of the Wilds";} arty++;
-			if ( artifact == arty) { name="Artifact_ProtectoroftheWildsLeggings"; item="Leggings of the Wilds";} arty++;
-			if ( artifact == arty) { name="Artifact_ProtectoroftheWildsGloves"; item="Gloves of the Wilds";} arty++;
-			if ( artifact == arty) { name="Artifact_ProtectoroftheWildsArms"; item="Arms of the Wilds";} arty++;
-			if ( artifact == arty) { name="Artifact_ProtectoroftheWildsHelmet"; item="Helmet of the Wilds";} arty++;
-			if ( artifact == arty) { name="Artifact_RaedsGlory"; item="Raed's Glory"; } arty++;
-			if ( artifact == arty) { name="Artifact_ResilientBracer"; item="Resillient Bracer"; } arty++;
-			if ( artifact == arty) { name="Artifact_Retort"; item="Retort"; } arty++;
-			if ( artifact == arty) { name="Artifact_ReachOfTheDepths";item="Reach of the Depths";} arty++;
-			if ( artifact == arty) { name="Artifact_RingOfHealth"; item="Ring of Health"; } arty++;
-			if ( artifact == arty) { name="Artifact_RingOfProtection"; item="Ring of Protection"; } arty++;
-			if ( artifact == arty) { name="Artifact_RingOfTheElements"; item="Ring of the Elements"; } arty++;
-			if ( artifact == arty) { name="Artifact_RingOfTheMagician"; item="Ring of the Magician"; } arty++;
-			if ( artifact == arty) { name="Artifact_RingOfTheVile"; item="Ring of the Vile"; } arty++;
-			if ( artifact == arty) { name="Artifact_TheRobeOfBritanniaAri"; item="Robe of Sosaria"; } arty++;
-			if ( artifact == arty) { name="Artifact_RobeOfTeleportation"; item="Robe Of Teleportation"; } arty++;
-			if ( artifact == arty) { name="Artifact_RobeofPyros"; item="Robe of the Daemon King"; } arty++;
-			if ( artifact == arty) { name="Artifact_RobeOfTheEclipse"; item="Robe of the Eclipse"; } arty++;
-			if ( artifact == arty) { name="Artifact_RobeOfTheEquinox"; item="Robe of the Equinox"; } arty++;
-			if ( artifact == arty) { name="Artifact_RobeofHydros"; item="Robe of the Lurker"; } arty++;
-			if ( artifact == arty) { name="Artifact_RobeofLithos"; item="Robe of the Mountain King"; } arty++;
-			if ( artifact == arty) { name="Artifact_RobeofStratos"; item="Robe of the Mystic Voice"; } arty++;
-			if ( artifact == arty) { name="Artifact_RobeOfTreason"; item="Robe Of Treason"; } arty++;
-			if ( artifact == arty) { name="Artifact_RobeOfWilds"; item="Robe of the Wilds";} arty++;
-			if ( artifact == arty) { name="Artifact_RobeOfWildLegion"; item="Robe of the Wild Legion";} arty++;
-			if ( artifact == arty) { name="Artifact_RobinHoodsFeatheredHat"; item="Robin Hood's Feathered Hat"; } arty++;
-			if ( artifact == arty) { name="Artifact_RodOfResurrection"; item="Rod Of Resurrection"; } arty++;
-			if ( artifact == arty) { name="Artifact_LieutenantOfTheBritannianRoyalGuard"; item="Royal Guard Sash"; } arty++;
-			if ( artifact == arty) { name="Artifact_RoyalGuardsGorget"; item="Royal Guardian's Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_RoyalGuardsChestplate"; item="Royal Guard's Chest Plate"; } arty++;
-			if ( artifact == arty) { name="Artifact_LeggingsOfEmbers"; item="Royal Leggings of Embers"; } arty++;
-			if ( artifact == arty) { name="Artifact_RuneCarvingKnife"; item="Rune Carving Knife"; } arty++;
-			if ( artifact == arty) { name="Artifact_StaffoftheWoodlands"; item="Staff of the Woodlands";} arty++;
-			if ( artifact == arty) { name="Artifact_ShadowDancerArms"; item="Shadow Dancer Arms"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShadowDancerCap"; item="Shadow Dancer Cap"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShadowDancerGloves"; item="Shadow Dancer Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShadowDancerGorget"; item="Shadow Dancer Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShadowDancerLeggings"; item="Shadow Dancer Leggings"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShadowDancerTunic"; item="Shadow Dancer Tunic"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShardThrasher"; item="Shard Thrasher"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShieldOfInvulnerability"; item="Shield of Invulnerability"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShimmeringTalisman"; item="Shimmering Talisman"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShirtOfThePiper"; item="Shirt of the Pied Piper";} arty++;
-			if ( artifact == arty) { name="Artifact_ShroudOfDeciet"; item="Shroud of Deceit"; } arty++;
-			if ( artifact == arty) { name="Artifact_TheDragonSlayer"; item="Slayer of Dragons"; } arty++;
-			if ( artifact == arty) { name="Artifact_SongWovenMantle"; item="Song Woven Mantle"; } arty++;
-			if ( artifact == arty) { name="Artifact_SoulSeeker"; item="Soul Seeker"; } arty++;
-			if ( artifact == arty) { name="Artifact_SpellWovenBritches"; item="Spell Woven Britches"; } arty++;
-			if ( artifact == arty) { name="Artifact_PolarBearMask"; item="Spirit of the Polar Bear"; } arty++;
-			if ( artifact == arty) { name="Artifact_SpiritOfTheTotem"; item="Spirit of the Totem"; } arty++;
-			if ( artifact == arty) { name="Artifact_StaffOfPower"; item="Staff of Power"; } arty++;
-			if ( artifact == arty) { name="Artifact_StaffOfTheMagi"; item="Staff of the Magi"; } arty++;
-			if ( artifact == arty) { name="Artifact_SerpentCoil"; item="Serpent's Coil"; } arty++;
-			if ( artifact == arty) { name="Artifact_StitchersMittens"; item="Stitcher's Mittens"; } arty++;
-			if ( artifact == arty) { name="Artifact_Stormbringer"; item="Stormbringer"; } arty++;
-			if ( artifact == arty) { name="Artifact_GlassSword"; item="Sword of Shattered Hopes"; } arty++;
-			if ( artifact == arty) { name="Artifact_TalismanOfTheAlbatroz";item="Talisman of the Albatroz";} arty++;
-			if ( artifact == arty) { name="Artifact_TalonBite"; item="Talon Bite"; } arty++;
-			if ( artifact == arty) { name="Artifact_TitansHammer"; item="Titan's Hammer"; } arty++;
-			if ( artifact == arty) { name="Artifact_TorchOfTrapFinding"; item="Torch of Trap Burning"; } arty++;
-			if ( artifact == arty) { name="Artifact_TotemArms"; item="Totem Arms"; } arty++;
-			if ( artifact == arty) { name="Artifact_TotemGloves"; item="Totem Gloves"; } arty++;
-			if ( artifact == arty) { name="Artifact_TotemGorget"; item="Totem Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_TotemLeggings"; item="Totem Leggings"; } arty++;
-			if ( artifact == arty) { name="Artifact_TotemOfVoid"; item="Totem of the Void"; } arty++;
-			if ( artifact == arty) { name="Artifact_TotemTunic"; item="Totem Tunic"; } arty++;
-			if ( artifact == arty) { name="Artifact_TrousersOfThePiper"; item="Trousers of the Pied Piper";} arty++;
-			if ( artifact == arty) { name="Artifact_TunicOfAegis"; item="Tunic of Aegis"; } arty++;
-			if ( artifact == arty) { name="Artifact_TunicOfBane"; item="Tunic of Bane"; } arty++;
-			if ( artifact == arty) { name="Artifact_TunicOfFire"; item="Tunic of Fire"; } arty++;
-			if ( artifact == arty) { name="Artifact_TunicOfTheFallenKing"; item="Tunic of the Fallen King"; } arty++;
-			if ( artifact == arty) { name="Artifact_TunicOfTheHarrower"; item="Tunic of the Harrower"; } arty++;
-			if ( artifact == arty) { name="Artifact_TyrantOfTheReefs";item="Tyrant of the Reefs";} arty++;
-			if ( artifact == arty) { name="Artifact_VampireKiller"; item="Vampire Killer"; } arty++;
-			if ( artifact == arty) { name="Artifact_VampiricDaisho"; item="Vampiric Daisho"; } arty++;
-			if ( artifact == arty) { name="Artifact_VioletCourage"; item="Violet Courage"; } arty++;
-			if ( artifact == arty) { name="Artifact_VoiceOfTheFallenKing"; item="Voice of the Fallen King"; } arty++;
-			if ( artifact == arty) { name="Artifact_WarriorsClasp"; item="Warrior's Clasp"; } arty++;
-			if ( artifact == arty) { name="Artifact_WhistleofthePiper"; item="Whistle of the Pied Piper";} arty++;
-			if ( artifact == arty) { name="Artifact_WildfireBow"; item="Wildfire Bow"; } arty++;
-			if ( artifact == arty) { name="Artifact_Windsong"; item="Windsong"; } arty++;
-			if ( artifact == arty) { name="Artifact_ArcticBeacon"; item="Winter Beacon"; } arty++;
-			if ( artifact == arty) { name="Artifact_WizardsPants"; item="Wizard's Pants"; } arty++;
-			if ( artifact == arty) { name="Artifact_WrathOfTheDryad"; item="Wrath of the Dryad"; } arty++;
-			if ( artifact == arty) { name="Artifact_YashimotosHatsuburi"; item="Yashimoto's Hatsuburi"; } arty++;
-			if ( artifact == arty) { name="Artifact_ZyronicClaw"; item="Zyronic Claw"; } arty++;
-			if ( artifact == arty) { name="Arty_LithosTome"; item="Tome of the Mountain King"; } arty++;
-			if ( artifact == arty) { name="QuiverOfBlight"; item="Quiver of Blight"; } arty++;
-			if ( artifact == arty) { name="QuiverOfFire"; item="Quiver of Fire"; } arty++;
-			if ( artifact == arty) { name="QuiverOfIce"; item="Quiver of Ice"; } arty++;
-			if ( artifact == arty) { name="QuiverOfInfinity"; item="Quiver of Infinity"; } arty++;
-			if ( artifact == arty) { name="QuiverOfLightning"; item="Quiver of Lightning"; } arty++;
-			if ( artifact == arty) { name="QuiverOfRage"; item="Quiver of Rage"; } arty++;
-			if ( artifact == arty) { name="QuiverOfElements"; item="Quiver of the Elements"; } arty++;
-			if ( artifact == arty) { name="Arty_HydrosLexicon"; item="Lexicon of the Lurker"; } arty++;
-			if ( artifact == arty) { name="Arty_StratosManual"; item="Manual of the Mystic Voice"; } arty++;
-			if ( artifact == arty) { name="Arty_OssianGrimoire"; item="Ossian Grimoire"; } arty++;
-			if ( artifact == arty) { name="HornOfKingTriton"; item="Horn of King Triton"; } arty++;
-			if ( artifact == arty) { name="IolosLute"; item="Iolo's Lute"; } arty++;
-			if ( artifact == arty) { name="Arty_PyrosGrimoire"; item="Grimoire of the Daemon King"; } arty++;
-			if ( artifact == arty) { name="GwennosHarp"; item="Gwenno's Harp"; } arty++;
-			if ( artifact == arty) { name="Arty_BookOfKnowledge"; item="Book Of Knowledge"; } arty++;
-			if ( artifact == arty) { name="Artifact_BeltOfHaste"; item="Belt of Haste"; } arty++;
-			if ( artifact == arty) { name="Artifact_CrownOfBrillance"; item="Crown of Brillance"; } arty++;
-			if ( artifact == arty) { name="Artifact_WidowsWhistle"; item="Widow's Whistle"; } arty++;
-			if ( artifact == arty) { name="Artifact_BeltofGiantsStrength"; item="Belt of Giant's Strength"; } arty++;
-			if ( artifact == arty) { name="Artifact_MemoryOfFrost"; item="Memory of Frost"; } arty++;
-			if ( artifact == arty) { name="Artifact_ChainBreaker"; item="Chain Breaker"; } arty++;
-			if ( artifact == arty) { name="Artifact_EarringsOfAllurement"; item="Earrings of Allurement"; } arty++;
-			if ( artifact == arty) { name="Artifact_RingOfAllurement"; item="Ring of Allurement"; } arty++;
-			if ( artifact == arty) { name="Artifact_NecklaceOfAllurement"; item="Necklace of Allurement"; } arty++;
-			if ( artifact == arty) { name="Artifact_SenseisWalkingStick"; item="Sensei's Walking Stick"; } arty++;
-			if ( artifact == arty) { name="Artifact_StaffOfBlasting"; item="Staff of Blasting"; } arty++;
-			if ( artifact == arty) { name="Artifact_ScepterOfBlasting"; item="Scepter of Blasting"; } arty++;
-			if ( artifact == arty) { name="Artifact_SilksOfAllurement"; item="Silks of Allurement"; } arty++;
-			if ( artifact == arty) { name="Artifact_TemptationOfSune"; item="Temptation of Sune"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShacklesOfBhaal"; item="Shackles of Bhaal"; } arty++;
-			if ( artifact == arty) { name="Artifact_ProtectoroftheWildsGorget"; item="Gorget of the Protector of the Wilds"; } arty++;
-			if ( artifact == arty) { name="Artifact_NatureMasterGorget"; item="Nature Master's Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_NatureVengeanceGorget"; item="Nature's Vengeance Gorget"; } arty++;
-			if ( artifact == arty) { name="Artifact_ShieldOfAmaunator"; item="Shield of Amaunator"; } arty++;
-			if ( artifact == arty) { name="Artifact_StormKingsShield"; item="Storm King's Shield"; } arty++;
+        public class CategoryGump : Gump
+        {
+            private SearchBook m_Book;
 
 
-			if ( part == 2 ){ item = name; }
+            public CategoryGump(Mobile from, SearchBook book) : base(100, 100)
+            {
+                m_Book = book;
+                string color = "#d6c382";
 
-			return item;
-		}
-	}
+                Closable = true;
+                Disposable = true;
+                Dragable = true;
+                Resizable = false;
+
+                AddPage(0);
+
+                AddBackground(0, 0, 340, 320, 9270);
+
+                AddHtml(20, 15, 300, 24,
+                    "<BODY><BASEFONT Color=" + color + "><CENTER>ARTIFACT ENCYCLOPEDIA</CENTER></BASEFONT></BODY>",
+                    false, false);
+                AddHtml(20, 38, 300, 20,
+                    "<BODY><BASEFONT Color=" + color + "><CENTER>Choose a Category</CENTER></BASEFONT></BODY>",
+                    false, false);
+
+                int btnX = 60;
+                int labelX = 100;
+                int y = 74;
+                int step = 36;
+
+                AddCategoryRow(btnX, labelX, y, 1, "One-Handed Weapons", color); y += step;
+                AddCategoryRow(btnX, labelX, y, 2, "Two-Handed Weapons", color); y += step;
+                AddCategoryRow(btnX, labelX, y, 3, "Ranged Weapons & Quivers", color); y += step;
+                AddCategoryRow(btnX, labelX, y, 4, "Jewelry & Trinkets", color); y += step;
+                AddCategoryRow(btnX, labelX, y, 5, "Armor & Shields", color); y += step;
+                AddCategoryRow(btnX, labelX, y, 6, "Clothing", color);
+
+                AddButton(148, 282, 4017, 4019, 0, GumpButtonType.Reply, 0);
+                AddHtml(183, 284, 60, 20,
+                    "<BODY><BASEFONT Color=" + color + ">Close</BASEFONT></BODY>",
+                    false, false);
+            }
+
+            private void AddCategoryRow(int btnX, int labelX, int y, int buttonID, string label, string color)
+            {
+                AddButton(btnX, y, 4005, 4007, buttonID, GumpButtonType.Reply, 0);
+                AddHtml(labelX, y + 2, 210, 22,
+                    "<BODY><BASEFONT Color=" + color + ">" + label + "</BASEFONT></BODY>",
+                    false, false);
+            }
+
+            public override void OnResponse(NetState state, RelayInfo info)
+            {
+                Mobile from = state.Mobile;
+                from.SendSound(0x55);
+
+                ArtifactCategory cat;
+                switch (info.ButtonID)
+                {
+                    case 1: cat = ArtifactCategory.OneHandedWeapons; break;
+                    case 2: cat = ArtifactCategory.TwoHandedWeapons; break;
+                    case 3: cat = ArtifactCategory.RangedWeapons; break;
+                    case 4: cat = ArtifactCategory.JewelryTrinkets; break;
+                    case 5: cat = ArtifactCategory.ArmorShields; break;
+                    case 6: cat = ArtifactCategory.Clothing; break;
+                    default: return; // Close 
+                }
+
+                from.CloseGump(typeof(CategoryGump));
+                from.SendGump(new CategoryItemsGump(from, m_Book, cat, 0));
+            }
+        }
+
+        public class CategoryItemsGump : Gump
+        {
+            private SearchBook m_Book;
+            private ArtifactCategory m_Category;
+            private ArrayList m_Entries;
+            private int m_Page;
+
+            private const int ItemsPerPage = 16;
+
+            // Button ID encoding
+            //   0              = close / back to categories
+            //   1              = navigate: previous page
+            //   2              = navigate: next page
+            //   1000 + index   = select artifact at m_Entries[index]
+
+            public CategoryItemsGump(Mobile from, SearchBook book, ArtifactCategory cat, int page)
+                : base(100, 100)
+            {
+                m_Book = book;
+                m_Category = cat;
+                m_Entries = SearchBook.GetEntriesForCategory(cat);
+                m_Page = page;
+
+                string color = "#d6c382";
+
+                Closable = true;
+                Disposable = true;
+                Dragable = true;
+                Resizable = false;
+
+                AddPage(0);
+
+                AddImage(0, 0, 7005);
+                AddImage(0, 0, 7006);
+                AddImage(0, 0, 7024, 2736);
+                AddButton(590, 48, 4017, 4017, 0, GumpButtonType.Reply, 0);
+
+                AddHtml(77, 49, 259, 20,
+                    "<BODY><BASEFONT Color=" + color + "><CENTER>" + SearchBook.CategoryLabel(cat).ToUpper() + "</CENTER></BASEFONT></BODY>",
+                    false, false);
+
+                int totalPages = (m_Entries.Count + ItemsPerPage - 1) / ItemsPerPage;
+                if (totalPages < 1) totalPages = 1;
+
+                int prevPage = page - 1;
+                if (prevPage < 0) prevPage = totalPages - 1;
+                int nextPage = page + 1;
+                if (nextPage >= totalPages) nextPage = 0;
+
+                if (totalPages > 1)
+                {
+                    AddButton(75, 374, 4014, 4014, 1, GumpButtonType.Reply, 0);
+                    AddButton(590, 375, 4005, 4005, 2, GumpButtonType.Reply, 0);
+                }
+
+                AddButton(300, 374, 4017, 4019, 0, GumpButtonType.Reply, 0);
+                AddHtml(336, 376, 120, 18,
+                    "<BODY><BASEFONT Color=" + color + ">Categories</BASEFONT></BODY>",
+                    false, false);
+
+                int firstIndex = page * ItemsPerPage;
+
+                int x = 115;
+                int y = 64;
+                int z = 34;
+                int s = 64;
+
+                y = s;
+                y += z;
+                for (int slot = 0; slot < 8; slot++)
+                {
+                    int idx = firstIndex + slot;
+                    if (idx < m_Entries.Count)
+                    {
+                        AddButton(x, y, 2447, 2447, 1000 + idx, GumpButtonType.Reply, 0);
+                    }
+                    y += z;
+                }
+
+                y = s - 3;
+                y += z;
+                for (int slot = 0; slot < 8; slot++)
+                {
+                    int idx = firstIndex + slot;
+                    string label = (idx < m_Entries.Count)
+                        ? ((ArtifactEntry)m_Entries[idx]).DisplayName
+                        : "";
+                    AddHtml(x + 20, y, 155, 20,
+                        "<BODY><BASEFONT Color=" + color + ">" + label + "</BASEFONT></BODY>",
+                        false, false);
+                    y += z;
+                }
+
+                x = 407;
+                y = s;
+                y += z;
+                for (int slot = 8; slot < 16; slot++)
+                {
+                    int idx = firstIndex + slot;
+                    if (idx < m_Entries.Count)
+                    {
+                        AddButton(x, y, 2447, 2447, 1000 + idx, GumpButtonType.Reply, 0);
+                    }
+                    y += z;
+                }
+
+                y = s - 3;
+                y += z;
+                for (int slot = 8; slot < 16; slot++)
+                {
+                    int idx = firstIndex + slot;
+                    string label = (idx < m_Entries.Count)
+                        ? ((ArtifactEntry)m_Entries[idx]).DisplayName
+                        : "";
+                    AddHtml(x + 20, y, 155, 20,
+                        "<BODY><BASEFONT Color=" + color + ">" + label + "</BASEFONT></BODY>",
+                        false, false);
+                    y += z;
+                }
+            }
+
+            public override void OnResponse(NetState state, RelayInfo info)
+            {
+                Mobile from = state.Mobile;
+                from.SendSound(0x55);
+
+                int totalPages = (m_Entries.Count + ItemsPerPage - 1) / ItemsPerPage;
+                if (totalPages < 1) totalPages = 1;
+
+                if (info.ButtonID == 0)
+                {
+                    from.CloseGump(typeof(CategoryItemsGump));
+                    from.SendGump(new CategoryGump(from, m_Book));
+                }
+                else if (info.ButtonID == 1)
+                {
+                    int prev = m_Page - 1;
+                    if (prev < 0) prev = totalPages - 1;
+                    from.CloseGump(typeof(CategoryItemsGump));
+                    from.SendGump(new CategoryItemsGump(from, m_Book, m_Category, prev));
+                }
+                else if (info.ButtonID == 2)
+                {
+                    int next = m_Page + 1;
+                    if (next >= totalPages) next = 0;
+                    from.CloseGump(typeof(CategoryItemsGump));
+                    from.SendGump(new CategoryItemsGump(from, m_Book, m_Category, next));
+                }
+                else if (info.ButtonID >= 1000)
+                {
+                    int idx = info.ButtonID - 1000;
+                    if (idx >= 0 && idx < m_Entries.Count)
+                    {
+                        ArtifactEntry entry = (ArtifactEntry)m_Entries[idx];
+                        from.CloseGump(typeof(CategoryItemsGump));
+                        from.SendGump(new ConfirmGump(from, entry, m_Book, m_Category, m_Page));
+                    }
+                }
+            }
+        }
+
+        public class ConfirmGump : Gump
+        {
+            private SearchBook m_Book;
+            private ArtifactEntry m_Entry;
+            private ArtifactCategory m_ReturnCategory;
+            private int m_ReturnPage;
+
+            public ConfirmGump(Mobile user, ArtifactEntry entry, SearchBook book,
+                                ArtifactCategory returnCat, int returnPage)
+                : base(50, 50)
+            {
+                m_Book = book;
+                m_Entry = entry;
+                m_ReturnCategory = returnCat;
+                m_ReturnPage = returnPage;
+
+                Closable = true;
+                Disposable = true;
+                Dragable = true;
+                Resizable = false;
+
+                AddBackground(0, 0, 420, 175, 9270);
+
+                AddLabel(30, 20, 2120, "Are you sure you want to search for:");
+                AddLabel(30, 42, 2120, entry.DisplayName);
+                AddLabel(30, 72, 2120, "Confirming will consume your Artifact Encyclopedia.");
+
+                // Yes
+                AddButton(80, 130, 4005, 4007, 1, GumpButtonType.Reply, 0);
+                AddLabel(115, 132, 2120, "Yes");
+
+                // No
+                AddButton(220, 130, 4017, 4019, 0, GumpButtonType.Reply, 0);
+                AddLabel(255, 132, 2120, "No");
+            }
+
+            public override void OnResponse(NetState sender, RelayInfo info)
+            {
+                Mobile from = sender.Mobile;
+
+                if (info.ButtonID == 1)
+                {
+                    from.AddToBackpack(new SearchPage(from, m_Book.LegendLore, m_Entry.TypeName, m_Entry.DisplayName));
+                    from.SendMessage("You tear the page out of the book.");
+                    m_Book.Delete();
+                    from.CloseGump(typeof(ConfirmGump));
+                }
+                else
+                {
+                    from.CloseGump(typeof(ConfirmGump));
+                    from.SendGump(new CategoryItemsGump(from, m_Book, m_ReturnCategory, m_ReturnPage));
+                }
+            }
+        }
+    }
 }

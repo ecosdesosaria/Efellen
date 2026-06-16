@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Server;
+using Server.ContextMenus;
 using Server.Commands;
 using Server.Engines.Craft;
 using Server.Network;
@@ -283,6 +285,125 @@ namespace Server.Items
 			else
 			{
 				from.SendLocalizedMessage(500015); // You do not have that spell!
+			}
+		}
+
+		public override void GetContextMenuEntries(Mobile from, List<ContextMenuEntry> list)
+		{
+			base.GetContextMenuEntries(from, list);
+
+			if (from == null || !from.Alive)
+				return;
+
+			if (!IsChildOf(from.Backpack) && Parent != from)
+				return;
+
+			if (SpellbookType == SpellbookType.Regular ||
+				SpellbookType == SpellbookType.Necromancer ||
+				SpellbookType == SpellbookType.Elementalism ||
+				SpellbookType == SpellbookType.Song)
+			{
+				list.Add(new SetupSpellbookEntry(this, from));
+			}
+		}
+		public class SetupSpellbookEntry : ContextMenuEntry
+		{
+			private Spellbook m_Book;
+			private Mobile m_From;
+
+			public SetupSpellbookEntry(Spellbook book, Mobile from) : base(0097, 1)
+			{
+				m_Book = book;
+				m_From = from;
+			}
+
+			public override void OnClick()
+			{
+				if (m_Book == null || m_Book.Deleted || m_From == null || !m_From.Alive)
+					return;
+
+				if (m_From.Backpack == null)
+					return;
+
+				int added = 0;
+
+				ArrayList items = new ArrayList();
+
+				GetItemsRecursive(m_From.Backpack, items);
+
+				for (int i = 0; i < items.Count; i++)
+				{
+					Item item = items[i] as Item;
+
+					if (item == null || item.Deleted)
+						continue;
+
+					SpellScroll scroll = item as SpellScroll;
+
+					if (scroll == null)
+						continue;
+
+					SpellbookType type = Spellbook.GetTypeForSpell(scroll.SpellID);
+
+					if (type != m_Book.SpellbookType)
+						continue;
+
+					if (m_Book.HasSpell(scroll.SpellID))
+						continue;
+
+					int val = scroll.SpellID - m_Book.BookOffset;
+
+					if (val < 0 || val >= m_Book.BookCount)
+						continue;
+
+					m_Book.Content |= ((ulong)1 << val);
+
+					if (scroll.Amount > 1)
+						scroll.Amount--;
+					else
+						scroll.Delete();
+
+
+
+					added++;
+				}
+
+				if (added > 0)
+				{
+					m_Book.InvalidateProperties();
+
+					m_From.SendMessage("Adicionados " + added.ToString() + " pergaminhos.");
+
+					if (m_Book is SythSpellbook || m_Book is JediSpellbook)
+						m_From.SendSound(0x558);
+					else
+						m_From.Send(new PlaySound(0x249, m_Book.GetWorldLocation()));
+				}
+				else
+				{
+					m_From.SendMessage("Nenhum pergaminho válido foi encontrado.");
+				}
+			}
+
+			private static void GetItemsRecursive(Container container, ArrayList list)
+			{
+				if (container == null || list == null)
+					return;
+
+				for (int i = 0; i < container.Items.Count; i++)
+				{
+					Item item = container.Items[i];
+
+					if (item == null || item.Deleted)
+						continue;
+
+					list.Add(item);
+
+					Container sub = item as Container;
+
+					if (sub != null)
+						GetItemsRecursive(sub, list);
+				}
 			}
 		}
 
@@ -702,8 +823,8 @@ namespace Server.Items
 				return base.OnEquip(from);
 			}
 
-			if (this is HolyManSpellbook || this is MysticSpellbook || 
-			    this is SythSpellbook || this is JediSpellbook)
+			if (this is HolyManSpellbook || this is MysticSpellbook ||
+				this is SythSpellbook || this is JediSpellbook)
 			{
 				return false;
 			}

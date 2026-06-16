@@ -263,19 +263,6 @@ namespace Server.Misc
 			if (boxType == "Pilfer" || boxType == "Treasure Chest" || boxType == "property")
 				return baseName;
 
-			if (boxType == "cargo")
-			{
-				string person = Utility.RandomBool() ? NameList.RandomName("female") : NameList.RandomName("male");
-				string[] roles = new string[]
-				{
-					"Mechanic", "Scientist", "Doctor", "Soldier", "Engineer", "Navigator", "Pilot",
-					"Security Officer", "Medical Officer", "Robotics Engineer", "Linguist", "Marine",
-					"Biologist", "Chemist", "Tactical Officer", "Weapons Officer", "Nurse", "Officer",
-					"Mercenary", "Pathologist", "Botanist", "Anthropologist", "Chief Engineer"
-				};
-				return person + " the " + roles[Utility.Random(roles.Length)];
-			}
-
 			if (boxType == "Sunken" || boxType == "SunkenBag")
 			{
 				string[] pirateRoles = new string[]

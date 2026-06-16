@@ -368,7 +368,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this, BossDrops, 15);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 45);
 			for ( int i = 0; i < 2; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );

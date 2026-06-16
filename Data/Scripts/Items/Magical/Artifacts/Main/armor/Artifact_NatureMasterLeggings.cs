@@ -22,6 +22,7 @@ namespace Server.Items
 			ArtifactLevel = 2;
             Attributes.DefendChance = 10;
             Attributes.Luck = 80;
+			ArmorAttributes.MageArmor = 1;
 			SkillBonuses.SetValues( 0, SkillName.Herding, 5);
 			SkillBonuses.SetValues( 1, SkillName.Taming, 5);
 			SkillBonuses.SetValues( 2, SkillName.Druidism, 5);

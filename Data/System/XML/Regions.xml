@@ -1957,8 +1957,8 @@
 			<rect x="981" y="2906" width="255" height="273" />
 			<rect x="886" y="3634" width="357" height="416" />
 				<spawning>
-					<object id="4780" type="HiddenTrap" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="150" />
-					<object id="4781" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="75" />
+					<object id="4780" type="HiddenTrap" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="200" />
+					<object id="4781" type="HiddenChest" minSpawnTime="PT1S" maxSpawnTime="PT1S" amount="25" />
 				</spawning>
 		</region>
 		<region type="DungeonRegion" priority="50" name="Fanaedar">

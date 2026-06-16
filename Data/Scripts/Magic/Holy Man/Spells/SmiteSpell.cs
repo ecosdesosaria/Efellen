@@ -47,7 +47,7 @@ namespace Server.Spells.HolyMan
 
 				double damage;
 
-				int nBenefit = (int)( (Caster.Skills[SkillName.Healing].Value / 10) + (Caster.Skills[SkillName.Spiritualism].Value / 10) );
+				int nBenefit = (int)( (Caster.Skills[SkillName.Healing].Value / 9) + (Caster.Skills[SkillName.Spiritualism].Value / 9) );
 
 				if ( holyundead.Slays(m) || holydemons.Slays(m) )
 					nBenefit = nBenefit * 2;

@@ -149,40 +149,61 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.25 )
+			if (Utility.RandomDouble() < 0.25 && !willKill )
 				TryWeaveStep();
 
 			base.OnDamage( amount, from, willKill );
 		}
 
-        private void TryWeaveStep()
-        {
-            Map map = Map;
-
-            if ( map == null )
-                return;
-
-            for ( int i = 0; i < 10; i++ )
-            {
-                int x = X + Utility.RandomMinMax( -6, 6 );
-                int y = Y + Utility.RandomMinMax( -6, 6 );
-                int z = map.GetAverageZ( x, y );
-                Point3D p = new Point3D( x, y, z );
-
-                if ( map.CanSpawnMobile( p ) )
-                {
-                    Location = p;
-                    PublicOverheadMessage( MessageType.Emote, 0x3B2, false, "*Adentra o Tecido Mágico*" );
-                    Effects.SendLocationEffect( p, map, 0x3728, 13, 10, 0, 0 );
-                    Effects.PlaySound( p, map, 0x1FE );
-                    break;
-                }
-            }
-        }
-
-		private void PerformRageAttack( Mobile target )
+		private static Point3D[] m_WeaveLocations = new Point3D[]
 		{
-			if ( target == null || target.Deleted || !target.Alive )
+			new Point3D( 5880, 2168, 0 ),
+			new Point3D( 5890, 2167, 0 ),
+			new Point3D( 5885, 2170, 0 ),
+			new Point3D( 5886, 2177, 0 ),
+			new Point3D( 5893, 2173, 0 )
+		};
+
+		private void TryWeaveStep()
+		{
+			Map map = Map;
+
+			if (map == null)
+				return;
+
+			Point3D current = Location;
+
+			Point3D[] possible = new Point3D[m_WeaveLocations.Length];
+			int count = 0;
+
+			for (int i = 0; i < m_WeaveLocations.Length; i++)
+			{
+				if (m_WeaveLocations[i] != current)
+				{
+					possible[count] = m_WeaveLocations[i];
+					count++;
+				}
+			}
+
+			if (count == 0)
+				return;
+
+			Point3D dest = possible[Utility.Random(count)];
+
+			if (map.CanSpawnMobile(dest))
+			{
+				Location = dest;
+
+				PublicOverheadMessage(MessageType.Emote, 0x3B2, false, "*Steps into the weave*");
+
+				Effects.SendLocationEffect(dest, map, 0x3728, 13, 10, 0, 0);
+				Effects.PlaySound(dest, map, 0x1FE);
+			}
+		}
+
+        private void PerformRageAttack(Mobile target)
+		{
+			if (target == null || target.Deleted || !target.Alive)
 				return;
 
 			int attackChoice = Utility.RandomMinMax( 1, 3 );
@@ -298,7 +319,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial( this, BossDrops, 15 );
+			BossLootSystem.AwardBossSpecial( this, BossDrops, 45 );
 			for ( int i = 0; i < 4; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );

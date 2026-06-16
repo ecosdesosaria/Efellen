@@ -25,10 +25,9 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
-		    base.OnHit(attacker, defender, damageBonus);
-
-		    if (attacker == null || defender == null || attacker.Map == null || defender.Map == null)
-		        return;
+			base.OnHit(attacker, defender, damageBonus);
+		    if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+			 	return;
 
 		    double Bushido = attacker.Skills[SkillName.Bushido].Value;
 
@@ -45,6 +44,7 @@ namespace Server.Items
 		        return;
 
 		    SpillBlood(attacker, defender, tiles);
+			
 		}
 
 		private void SpillBlood(Mobile attacker, Mobile target, int amount)

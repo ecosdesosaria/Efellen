@@ -10,7 +10,7 @@ namespace Server.Items
 	[FlipableAttribute( 0x671B, 0x671C )]
 	public class SongBook : Spellbook
 	{
-		public override string DefaultDescription{ get{ return "This book is used by bards to write the mystical songs they find. The songs within the book can be used to produce varying magical effects. These songs require the use of a musical instrument. Dropping such scrolls onto this book will place the song within its pages. Some books have enhanced properties, that are only effective when the book is held."; } }
+		public override string DefaultDescription{ get{ return "Este livro é usado por bardos para escrever as canções místicas que encontram. As canções dentro do livro podem ser usadas para produzir vários efeitos mágicos. Estas canções exigem o uso de um instrumento musical. Soltar tais pergaminhos neste livro colocará a canção em suas páginas. Alguns livros têm propriedades aprimoradas, que só são efetivas quando o livro é segurado."; } }
 
 		public override SpellbookType SpellbookType{ get{ return SpellbookType.Song; } }
 		public override int BookOffset{ get{ return 351; } }
@@ -26,7 +26,7 @@ namespace Server.Items
 		[Constructable]
 		public SongBook( ulong content ) : base( content, 0x671B )
 		{
-			Name = "bardic songs";
+			Name = "canções de bardo";
 			Layer = Layer.Trinket;
 		}
 
@@ -41,30 +41,30 @@ namespace Server.Items
 
 		public static string SpellDescription( int spell )
 		{
-			string txt = "This is a bardic song: ";
+			string txt = "Esta é uma canção de bardo: ";
 			string skl = "0";
 
-			if ( spell == 351 ){ 	skl = "55";	txt = "An area of effect that regenerates your party's health slowly."; }
-			else if ( spell == 352 ){ 	skl = "60";	txt = "An area of effect that raises the intelligence of your party."; }
-			else if ( spell == 353 ){ 	skl = "50";	txt = "An area of effect that raises the energy resistance of your party."; }
-			else if ( spell == 354 ){ 	skl = "70";	txt = "Lowers the energy resistance of your target."; }
-			else if ( spell == 355 ){ 	skl = "50";	txt = "An area of effect that raises the fire resistance of your party."; }
-			else if ( spell == 356 ){ 	skl = "70";	txt = "Lowers the fire resistance of your target."; }
-			else if ( spell == 357 ){ 	skl = "80";	txt = "Damages your target with a burst of sonic energy."; }
-			else if ( spell == 358 ){ 	skl = "50";	txt = "An area of effect that raises the cold resistance of your party."; }
-			else if ( spell == 359 ){ 	skl = "70";	txt = "Lowers the ice resistance of your target."; }
-			else if ( spell == 360 ){ 	skl = "50";	txt = "An area of effect that raises the physical resist of your party."; }
-			else if ( spell == 361 ){ 	skl = "55";	txt = "An area of effect that regenerates your party's mana slowly."; }
-			else if ( spell == 362 ){ 	skl = "90";	txt = "An area of effect that dispels all summoned creatures around you."; }
-			else if ( spell == 363 ){ 	skl = "50";	txt = "An area of effect that raises the poison resistance of your party."; }
-			else if ( spell == 364 ){ 	skl = "70";	txt = "Lowers the poison resistance of your target."; }
-			else if ( spell == 365 ){ 	skl = "60";	txt = "An area of effect that raises the dexterity of your party."; }
-			else if ( spell == 366 ){ 	skl = "60";	txt = "An area of effect that raises the strength of your party."; }
+			if ( spell == 351 ){     skl = "55"; txt = "Uma área de efeito que regenera lentamente a saúde do seu grupo."; }
+			else if ( spell == 352 ){     skl = "60"; txt = "Uma área de efeito que aumenta a inteligência do seu grupo."; }
+			else if ( spell == 353 ){     skl = "50"; txt = "Uma área de efeito que aumenta a resistência à energia do seu grupo."; }
+			else if ( spell == 354 ){     skl = "70"; txt = "Diminui a resistência à energia do seu alvo."; }
+			else if ( spell == 355 ){     skl = "50"; txt = "Uma área de efeito que aumenta a resistência ao fogo do seu grupo."; }
+			else if ( spell == 356 ){     skl = "70"; txt = "Diminui a resistência ao fogo do seu alvo."; }
+			else if ( spell == 357 ){     skl = "50"; txt = "Danifica seu alvo com uma explosão de energia sônica."; }
+			else if ( spell == 358 ){     skl = "50"; txt = "Uma área de efeito que aumenta a resistência ao frio do seu grupo."; }
+			else if ( spell == 359 ){     skl = "70"; txt = "Diminui a resistência ao gelo do seu alvo."; }
+			else if ( spell == 360 ){     skl = "50"; txt = "Uma área de efeito que aumenta a resistência física do seu grupo."; }
+			else if ( spell == 361 ){     skl = "55"; txt = "Uma área de efeito que regenera lentamente a mana do seu grupo."; }
+			else if ( spell == 362 ){     skl = "90"; txt = "Uma área de efeito que dissipa todas as criaturas invocadas ao seu redor."; }
+			else if ( spell == 363 ){     skl = "50"; txt = "Uma área de efeito que aumenta a resistência a veneno do seu grupo."; }
+			else if ( spell == 364 ){     skl = "70"; txt = "Diminui a resistência a veneno do seu alvo."; }
+			else if ( spell == 365 ){     skl = "60"; txt = "Uma área de efeito que aumenta a destreza do seu grupo."; }
+			else if ( spell == 366 ){     skl = "60"; txt = "Uma área de efeito que aumenta a força do seu grupo."; }
 
 			if ( skl == "0" )
 				return txt;
 
-			return txt + " It requires at least a " + skl + " in Musicianship to perform.";
+			return txt + " Requer pelo menos " + skl + " em Música para ser executada.";
 		}
 
 		public SongBook( Serial serial ) : base( serial )

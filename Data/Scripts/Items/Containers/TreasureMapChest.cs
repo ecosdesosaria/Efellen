@@ -96,11 +96,8 @@ namespace Server.Items
 			ColorText2 = ContainerFunctions.GetOwner( "Treasure Chest" );
 			ColorHue2 = "FFB400";
 
-            // = SCROLL OF TRANCENDENCE
-            if ( level >= 4 && Utility.RandomDouble() > 0.6 )
-                DropItem(ScrollofTranscendence.CreateRandom(level, level * 5));
 
-			if (level >= 6)
+            if (level >= 3)
 			{
 				for ( int i = 0; i < level/3; i++ )
 				{
@@ -120,50 +117,14 @@ namespace Server.Items
 				DropItem( arty );
 			}
 
-            // = SCROLL OF ALACRITY or POWERSCROLL
-            // higher level chests have a chance of dropping lower level scrolls
-			if (level > 1)
+            if (level > 2)
             {
-                if (Utility.RandomDouble() < (0.06 + (level / 200)))
-                {
-                    SkillName WhatS = SpecialScroll.ScrollSkill( 0 );
-                    DropItem(PowerScroll.CreateRandomNoCraft(5, 5));
-                }
-                else if (Utility.RandomDouble() < 0.095)
-                {
-                    SkillName WhatS = SpecialScroll.ScrollSkill( 0 );
-                    DropItem(new ScrollofAlacrity(WhatS));
-                }
+                for (int i = 0; i < level/2; i++)
+				{
+					DropItem( new EtherealPowerScroll() );
+				}
             } 
 			
-			if (level > 5)
-			{
-				if (Utility.RandomDouble() < (0.04 + (level / 200)))
-                {
-                    SkillName WhatS = SpecialScroll.ScrollSkill( 0 );
-                    DropItem(PowerScroll.CreateRandomNoCraft(5, 10));
-                }
-                else if (Utility.RandomDouble() < 0.085)
-                {
-                    SkillName WhatS = SpecialScroll.ScrollSkill( 0 );
-                    DropItem(new ScrollofAlacrity(WhatS));
-                }
-			}
-			
-			if (level >= 9 )
-			{
-				 if (Utility.RandomDouble() < (0.02 + (level / 200)))
-                {
-                    SkillName WhatS = SpecialScroll.ScrollSkill( 0 );
-                    DropItem(PowerScroll.CreateRandomNoCraft(5, 15));
-                }
-                else if (Utility.RandomDouble() < 0.075)
-                {
-                    SkillName WhatS = SpecialScroll.ScrollSkill( 0 );
-                    DropItem(new ScrollofAlacrity(WhatS));
-                }
-			}
-
 			int giveRelics = level;
 			Item relic = Loot.RandomRelic( owner );
 			while ( giveRelics > 0 )

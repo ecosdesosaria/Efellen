@@ -227,7 +227,7 @@ namespace Server.Mobiles
 								switch ( roll )
 								{
 									case 1: m.Body = 19; m.Name = "a grum"; m.BaseSoundID = 0xA3; break;
-									case 2: m.Body = Utility.RandomList(98, 97); m.Name = "an alien"; m.BaseSoundID = 959; break;
+									case 2: m.Body = Utility.RandomList(98, 97); m.Name = "a horror"; m.BaseSoundID = 959; break;
 									case 3: m.Body = Utility.RandomList(334, 752); m.Name = "a golem"; m.BaseSoundID = 1368; break;
 									case 4: m.Body = Utility.RandomList(705, 697, 934); m.Name = "a dinosaur"; m.BaseSoundID = 362; break;
 									case 5: m.Body = 0x11C; m.Name = "a gorgon"; m.BaseSoundID = 0xA3; m.Hue = 0xB63; break;

@@ -526,6 +526,8 @@ namespace Server.Misc
 					case SkillName.Provocation:
 					case SkillName.Musicianship:
 						PackInstruments(bag);
+						PackItem(bag, new SongBook());
+						PackItem(bag, new FoeRequiemScroll());
 						break;
 
 					case SkillName.Camping:
@@ -550,7 +552,7 @@ namespace Server.Misc
 
 					case SkillName.Healing:
 						PackItem(bag, new Scissors());
-						PackItem(bag, new Bandage { Amount = 250 });
+						PackItem(bag, new Bandage { Amount = 200 });
 						break;
 
 					case SkillName.Seafaring:
@@ -607,16 +609,17 @@ namespace Server.Misc
 						break;
 
 					case SkillName.Marksmanship:
-						PackItem(bag, new Bow());
-						PackItem(bag, new RepeatingCrossbow());
-						PackItem(bag, new Arrow { Amount = 50 });
-						PackItem(bag, new Bolt { Amount = 50 });
+						switch (Utility.RandomMinMax(1, 2))
+						{
+							case 1:PackItem(bag, new Bow());PackItem(bag, new Arrow { Amount = 100 });break;
+							case 2:PackItem(bag, new RepeatingCrossbow());PackItem(bag, new Bolt { Amount = 100 });break;
+						}
 						break;
 
 					case SkillName.Tailoring:
 						PackItem(bag, new Scissors());
 						PackItem(bag, new SewingKit());
-						PackItem(bag, new Fabric { Amount = 50 });
+						PackItem(bag, new Fabric { Amount = 90 });
 						break;
 
 					case SkillName.Taming:
@@ -635,6 +638,8 @@ namespace Server.Misc
 							case 1: PackItem(bag, new LesserCurePotion { Amount = 10 }); break;
 							case 2: PackItem(bag, new HealPotion { Amount = 10 }); break;
 						}
+						PackItem(bag, new Cookies());
+						PackItem(bag, new Muffins());
 						break;
 
 					case SkillName.Tinkering:
@@ -647,7 +652,7 @@ namespace Server.Misc
 						break;
 
 					case SkillName.Veterinary:
-						PackItem(bag, new Bandage { Amount = 200 });
+						PackItem(bag, new Bandage { Amount = 100 });
 						break;
 
 					case SkillName.Swords:
@@ -707,14 +712,17 @@ namespace Server.Misc
 
 					case SkillName.Knightship:
 						PackItem(bag, new BookOfChivalry());
+						PackItem(bag, new RoyalGloves());
 						break;
 
 					case SkillName.Bushido:
 						PackItem(bag, new BookOfBushido());
+						PackItem(bag, new Bokuto());
 						break;
 
 					case SkillName.Ninjitsu:
 						PackItem(bag, new BookOfNinjitsu());
+						PackItem(bag, new Sai());
 						break;
 
 					case SkillName.Elementalism:

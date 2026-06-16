@@ -34,10 +34,9 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
-		    base.OnHit(attacker, defender, damageBonus);
-
-		    if (attacker == null || defender == null)
-		        return;
+			base.OnHit(attacker, defender, damageBonus);
+		    if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+				return;
 
 		    if (attacker.Skills[SkillName.Poisoning].Value > 75.0 && attacker.Karma >= -7777)
 		        return;
@@ -109,6 +108,7 @@ namespace Server.Items
 		    }
 			attacker.SendMessage("Sua arma pesadelo libera uma explosão de vapores venenosos fantasmagóricos!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x4F6);
+			
 		}
 
 		public override bool OnEquip(Mobile from)

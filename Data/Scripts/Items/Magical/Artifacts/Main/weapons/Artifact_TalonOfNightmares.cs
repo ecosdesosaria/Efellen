@@ -35,9 +35,8 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
-		    base.OnHit(attacker, defender, damageBonus);
-
-		    if (attacker == null || defender == null)
+			base.OnHit(attacker, defender, damageBonus);
+		     if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
 		        return;
 
 		    if (attacker.Skills[SkillName.Psychology].Value <= 75.0 || attacker.Int <= 75)
@@ -112,6 +111,7 @@ namespace Server.Items
 		    }
 			attacker.SendMessage("Sua arma pesadelo libera uma explosão de energia psíquica!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x81b);
+			
 		}
 
 		public override bool OnEquip(Mobile from)

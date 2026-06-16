@@ -16,7 +16,7 @@ namespace Server.Spells.HolyMan
 				9040
 			);
 
-		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 3 ); } }
+		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 5 ); } }
 		public override int RequiredTithing{ get{ return 50; } }
 		public override double RequiredSkill{ get{ return 50.0; } }
 		public override int RequiredMana{ get{ return 25; } }
@@ -37,8 +37,8 @@ namespace Server.Spells.HolyMan
 				Caster.PlaySound( 0x212 );
 				Caster.PlaySound( 0x206 );
 
-				Effects.SendLocationParticles( EffectItem.Create( Caster.Location, Caster.Map, EffectItem.DefaultDuration ), 0x376A, 1, 29, 0x47D, 2, 9962, 0 );
-				Effects.SendLocationParticles( EffectItem.Create( new Point3D( Caster.X, Caster.Y, Caster.Z - 7 ), Caster.Map, EffectItem.DefaultDuration ), 0x37C4, 1, 29, 0x47D, 2, 9502, 0 );
+				Effects.SendLocationParticles(EffectItem.Create(Caster.Location, Caster.Map, EffectItem.DefaultDuration), 0x376A, 1, 29, 0x47D, 2, 9962, 0);
+				Effects.SendLocationParticles(EffectItem.Create(new Point3D(Caster.X, Caster.Y, Caster.Z - 7), Caster.Map, EffectItem.DefaultDuration), 0x37C4, 1, 29, 0x47D, 2, 9502, 0);
 			}
 		}
 
@@ -69,11 +69,35 @@ namespace Server.Spells.HolyMan
 				AccuracyLevel = WeaponAccuracyLevel.Supremely;
 				DamageLevel = WeaponDamageLevel.Vanq;
 				Attributes.AttackChance = 30;
-				Name = "Hammer of Faith";
+				Name = "Martelo da Fé";
 
-				double time = ( owner.Skills[SkillName.Healing].Value / 5.0 );
-				m_Expire = DateTime.Now + TimeSpan.FromMinutes( (int)time );
-				m_Timer = new InternalTimer( this, m_Expire );
+				int karmaBonus = 0;
+
+				if (owner.Karma >= 15000)
+					karmaBonus = 5;
+				else if (owner.Karma >= 12500)
+					karmaBonus = 4;
+				else if (owner.Karma >= 10000)
+					karmaBonus = 3;
+				else if (owner.Karma >= 5000)
+					karmaBonus = 2;
+				else if (owner.Karma >= 1000)
+					karmaBonus = 1;
+
+				MinDamage += karmaBonus;
+				MaxDamage += karmaBonus;
+
+				int speedBonus = (int)(owner.Skills[SkillName.Spiritualism].Value / 3.0);
+
+				if (speedBonus > 40)
+					speedBonus = 40;
+
+				Attributes.WeaponSpeed = speedBonus;
+
+
+				double time = (owner.Skills[SkillName.Healing].Value / 4.0);
+				m_Expire = DateTime.Now + TimeSpan.FromMinutes((int)time);
+				m_Timer = new InternalTimer(this, m_Expire);
 
 				m_Timer.Start();
 

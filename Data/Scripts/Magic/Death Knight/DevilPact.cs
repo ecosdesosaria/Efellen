@@ -10,8 +10,8 @@ namespace Server.Mobiles
 	{
 		public override bool DeleteCorpseOnDeath { get { return Summoned; } }
 
-		public override double DispelDifficulty { get { return 80.0; } }
-		public override double DispelFocus { get { return 20.0; } }
+		public override double DispelDifficulty { get { return 125.0; } }
+		public override double DispelFocus { get { return 45.0; } }
 
 		public override double GetFightModeRanking( Mobile m, FightMode acqType, bool bPlayerOnly )
 		{
@@ -26,15 +26,17 @@ namespace Server.Mobiles
 			Title = "the Devil";
 			BaseSoundID = 357;
 
-			SetStr( 200 );
+			SetStr( 250 );
 			SetDex( 200 );
-			SetInt( 100 );
+			SetInt( 50 );
 
 			SetHits( ( Core.SE ) ? 140 : 70 );
-			SetStam( 250 );
+			SetStam( 350 );
 			SetMana( 0 );
 
-			SetDamage( 14, 17 );
+			SetDamage( 14, 21 );
+			SetStam( 175 );
+			SetMana( 0 );
 
 			SetDamageType( ResistanceType.Physical, 0 );
 			SetDamageType( ResistanceType.Energy, 100 );

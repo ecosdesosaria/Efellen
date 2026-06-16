@@ -61,7 +61,7 @@ namespace Server.Spells.Research
 				}
 				else if (	m is BaseVendor || m is BasePerson || m is Citizens || m is PackBeast || 
 							m is FrankenPorter || m is FrankenFighter || m is HenchmanFamiliar || m is AerialServant || 
-							m is GolemPorter || m is Robot || m is GolemFighter || m is HenchmanArcher || 
+							m is GolemPorter || m is GolemFighter || m is HenchmanArcher || 
 							m is HenchmanMonster || m is HenchmanFighter || m is HenchmanWizard )
 				{
 					Caster.SendMessage( "Este feitiço realmente não pode lhe dizer nada de importante sobre este." );

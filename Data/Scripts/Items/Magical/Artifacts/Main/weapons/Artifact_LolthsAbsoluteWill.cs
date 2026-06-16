@@ -41,21 +41,23 @@ namespace Server.Items
 			return base.OnEquip(from);
 		}
 
-		public override void OnHit(Mobile attacker, Mobile defender, double damageDealt)
+		public override void OnHit(Mobile attacker, Mobile defender, double damage)
 		{
-			base.OnHit(attacker, defender, damageDealt);
-
-			if (attacker == null || defender == null || !defender.Alive)
-				return;
+			base.OnHit(attacker, defender, damage);
+			if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
 			if (DateTime.UtcNow < m_NextSlayTime)
 				return;
 
 			double slayChance = 1.0;
-
+			double karma = attacker.Karma;
+			if ( karma < 0 )
+				karma = -karma;
+			
 			if (attacker.Karma < 0)
 			{
-				double karmaBonus = Math.Min(2.5, (Math.Abs(attacker.Karma) / 15000.0) * 2.5);
+				double karmaBonus = Math.Min(2.5, (karma / 15000.0) * 2.5);
 				slayChance += karmaBonus;
 			}
 
@@ -65,7 +67,7 @@ namespace Server.Items
 
 			if (Utility.RandomDouble() * 100.0 < slayChance)
 			{
-				defender.Kill();
+				AOS.Damage( defender, attacker, defender.Hits + 5000, 100, 0, 0, 0, 0 );
 
 				defender.FixedParticles(0x374A, 10, 30, 5052, EffectLayer.Waist);
 				defender.PlaySound(0x1FB);
@@ -86,6 +88,7 @@ namespace Server.Items
 				m_PoisonTimer = new PoisonMaintenanceTimer(attacker, this);
 				m_PoisonTimer.Start();
 			}
+			
 		}
 
 		private class PoisonMaintenanceTimer : Timer

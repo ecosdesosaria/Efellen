@@ -59,7 +59,7 @@ namespace Server.Mobiles
 	[CorpseName( "a fairy corpse" )]
 	public class DruidFairy : BaseCreature
 	{
-		public override double DispelDifficulty{ get{ return 117.5; } }
+		public override double DispelDifficulty{ get{ return 125.0; } }
 		public override double DispelFocus{ get{ return 45.0; } }
 
 		[Constructable]
@@ -70,11 +70,11 @@ namespace Server.Mobiles
 			BaseSoundID = 466;
 			Hue = 0x9FF;
 
-			SetStr( 100 );
+			SetStr( 125 );
 			SetDex( 150 );
 			SetInt( 150 );
 
-			SetHits( 200 );
+			SetHits( 225 );
 			SetStam( 300 );
 			SetMana( 300 );
 
@@ -90,11 +90,11 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Energy, 70, 80 );
 
 			SetSkill( SkillName.Meditation, 90.0 );
-			SetSkill( SkillName.Psychology, 70.0 );
-			SetSkill( SkillName.Magery, 70.0 );
-			SetSkill( SkillName.MagicResist, 60.0 );
-			SetSkill( SkillName.Tactics, 100.0 );
-			SetSkill( SkillName.FistFighting, 80.0 );
+			SetSkill( SkillName.Psychology, 80.0 );
+			SetSkill( SkillName.Magery, 80.0 );
+			SetSkill( SkillName.MagicResist, 70.0 );
+			SetSkill( SkillName.Tactics, 90.0 );
+			SetSkill( SkillName.FistFighting, 90.0 );
 
 			VirtualArmor = 30;
 			ControlSlots = 2;

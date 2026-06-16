@@ -66,7 +66,7 @@ namespace Server.Items
 				return;
 			}
 
-			if (from.Skills[SkillName.Druidism].Value < 70.0 || from.Skills[SkillName.Druidism].Value < 70.0 )
+			if (from.Skills[SkillName.Druidism].Value < 70.0 || from.Skills[SkillName.Spiritualism].Value < 70.0 )
 			{
 				from.SendMessage("Você não é habilidoso o suficiente para transmorfar. Precisa de pelo menos 70 em Druidismo e Espiritualismo.");
 				return;

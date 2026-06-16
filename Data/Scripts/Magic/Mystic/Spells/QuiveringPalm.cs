@@ -46,7 +46,7 @@ namespace Server.Spells.Mystic
 				Caster.PlaySound( 0x212 );
 				Effects.SendLocationParticles( EffectItem.Create( Caster.Location, Caster.Map, EffectItem.DefaultDuration ), 0x376A, 1, 29, 0x47D, 2, 9962, 0 );
 
-				double seconds = Caster.Skills[SkillName.FistFighting].Value;
+				double seconds = Caster.Skills[SkillName.FistFighting].Value * 1.5;
 
 				TimeSpan duration = TimeSpan.FromSeconds( seconds );
 

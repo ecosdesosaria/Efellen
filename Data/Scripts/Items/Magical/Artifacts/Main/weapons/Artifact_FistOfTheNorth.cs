@@ -28,6 +28,17 @@ namespace Server.Items
 			Server.Misc.Arty.ArtySetup( this, "" );
 		}
 
+		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
+        {
+            phys = 0;
+            cold = 100;
+            fire = 0;
+            nrgy = 0;
+            pois = 0;
+            chaos = 0;
+            direct = 0;
+        }
+
 		public Artifact_FistOfTheNorth(Serial serial) : base(serial)
 		{
 		}

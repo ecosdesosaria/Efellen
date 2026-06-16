@@ -1566,7 +1566,7 @@ namespace Server.Items
 		        if (cs == CheckSlayerResult.Slayer)
 		            defender.FixedEffect(0x37B9, 10, 5);
 
-		        percentageBonus += 100;
+		        percentageBonus += this is BaseRanged ? 70 : 100;
 
 		        if (Utility.Random(5) == 1 && attacker is PlayerMobile)
 		            attacker.SendMessage("This weapon seems to be doing quite well against this enemy.");
@@ -2126,9 +2126,14 @@ namespace Server.Items
 		    // ── Weapon durability ─────────────────────────────────────────────────
 		    bool acidic = defender is Slime        || defender is GreenSlime  ||
 		                  defender is BlackPudding || defender is LavaPuddle  ||
-		                  defender is AcidPuddle   || defender is ToxicElemental;
+		                  defender is AcidPuddle   || defender is ToxicElemental || defender is LolthsJealousy || defender is NathyrraLolthsErodingLove;
 
 		    int ruin = 20 + (int)Density;
+
+			if (defender is LolthsJealousy || defender is NathyrraLolthsErodingLove)
+			{
+				ruin = (int)(ruin * 1.25);
+			}
 
 		    if (m_MaxHits > 0 && Density != Density.None
 		        && ((MaxRange <= 1 && acidic) || Utility.Random(ruin) == 0))

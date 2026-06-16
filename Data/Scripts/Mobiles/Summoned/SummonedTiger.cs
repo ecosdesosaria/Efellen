@@ -13,37 +13,38 @@ namespace Server.Mobiles
 			return WeaponAbility.BleedAttack;
 		}
 
-		public override double DispelDifficulty{ get{ return 117.5; } }
+		public override double DispelDifficulty{ get{ return 125.0; } }
 		public override double DispelFocus{ get{ return 45.0; } }
 		public override bool DeleteCorpseOnDeath{ get{ return true; } }
 
 		[Constructable]
 		public SummonedTiger() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a mystical tiger";
+			Name = "um tigre místico";
 			Body = 340;
 			BaseSoundID = 0x3EE;
 			Hue = 0x54F;
 
-			SetStr( 200 );
-			SetDex( 70 );
-			SetInt( 70 );
+			SetStr( 250 );
+			SetDex( 120 );
+			SetInt( 40 );
 
-			SetHits( 180 );
+			SetHits( 250 );
 
 			SetDamage( 14, 21 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
+			SetDamageType( ResistanceType.Physical, 50 );
+			SetDamageType( ResistanceType.Energy, 50 );
 
 			SetResistance( ResistanceType.Physical, 65, 75 );
 			SetResistance( ResistanceType.Fire, 40, 50 );
 			SetResistance( ResistanceType.Cold, 40, 50 );
 			SetResistance( ResistanceType.Poison, 40, 50 );
-			SetResistance( ResistanceType.Energy, 40, 50 );
+			SetResistance( ResistanceType.Energy, 65, 75 );
 
-			SetSkill( SkillName.MagicResist, 65.0 );
+			SetSkill( SkillName.MagicResist, 85.0 );
 			SetSkill( SkillName.Tactics, 100.0 );
-			SetSkill( SkillName.FistFighting, 90.0 );
+			SetSkill( SkillName.FistFighting, 95.0, 105.0 );
 
 			VirtualArmor = 34;
 			ControlSlots = 2;

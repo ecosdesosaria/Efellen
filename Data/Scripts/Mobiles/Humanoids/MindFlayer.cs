@@ -136,7 +136,7 @@ namespace Server.Mobiles
 						    boss: this,
 						    target: target,
 						    warcry: "*Releases a psionic blast!*",
-						    hue: 1160,
+						    hue: 1167,
 						    rage: 2,
 						    range: 5, 
 							physicalDmg:0,

@@ -21,56 +21,95 @@ namespace Server.Spells.First
 		}
 
 		private static FoodInfo[] m_Food = new FoodInfo[]
-			{
-				new FoodInfo( typeof( Grapes ), "a grape bunch" ),
-				new FoodInfo( typeof( Ham ), "a ham" ),
-				new FoodInfo( typeof( CheeseWedge ), "a wedge of cheese" ),
-				new FoodInfo( typeof( Muffins ), "muffins" ),
-				new FoodInfo( typeof( FishSteak ), "a fish steak" ),
-				new FoodInfo( typeof( Ribs ), "cut of ribs" ),
-				new FoodInfo( typeof( CookedBird ), "a cooked bird" ),
-				new FoodInfo( typeof( Sausage ), "sausage" ),
-				new FoodInfo( typeof( Apple ), "an apple" ),
-				new FoodInfo( typeof( Peach ), "a peach" )
-			};
+		{
+			new FoodInfo( typeof( Grapes ), "um cacho de uvas" ),
+			new FoodInfo( typeof( Ham ), "um presunto" ),
+			new FoodInfo( typeof( CheeseWedge ), "uma fatia de queijo" ),
+			new FoodInfo( typeof( Muffins ), "bolinhos" ),
+			new FoodInfo( typeof( FishSteak ), "um bife de peixe" ),
+			new FoodInfo( typeof( Ribs ), "corte de costelas" ),
+			new FoodInfo( typeof( CookedBird ), "uma ave cozida" ),
+			new FoodInfo( typeof( Sausage ), "salsicha" ),
+			new FoodInfo( typeof( Apple ), "uma maçã" ),
+			new FoodInfo( typeof( Peach ), "um pêssego" )
+		};
 
 		public override void OnCast()
 		{
-			if ( CheckSequence() )
-			{
-				if ( Server.Items.BaseRace.BloodDrinker( Caster.RaceID ) )
-				{
-					Caster.AddToBackpack( new BloodyDrink() );
-					Caster.SendMessage( "Um pouco de sangue fresco aparece magicamente em sua mochila." );
+		    if (CheckSequence())
+		    {
+		        Container pack = Caster.Backpack;
 
-					Caster.FixedParticles( 0, 10, 5, 2003, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.RightHand );
-					Caster.PlaySound( 0x1E2 );
-				}
-				else if ( Server.Items.BaseRace.BrainEater( Caster.RaceID ) )
-				{
-					Caster.AddToBackpack( new FreshBrain() );
-					Caster.SendMessage( "Alguns cérebros frescos aparecem magicamente em sua mochila." );
+		        if (pack == null)
+		        {
+		            Caster.SendMessage("Você não tem como carregar mais comida.");
+		            FinishSequence();
+		            return;
+		        }
 
-					Caster.FixedParticles( 0, 10, 5, 2003, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.RightHand );
-					Caster.PlaySound( 0x1E2 );
-				}
-				else
-				{
-					FoodInfo foodInfo = m_Food[Utility.Random( m_Food.Length )];
-					Item food = foodInfo.Create();
+		        if (Server.Items.BaseRace.BloodDrinker(Caster.RaceID))
+		        {
+		            Item blood = new BloodyDrink();
 
-					if ( food != null )
-					{
-						Caster.AddToBackpack( food );
-						Caster.AddToBackpack( new WaterBottle() );
-						Caster.SendMessage( "Alguns alimentos e bebidas aparecem magicamente em sua mochila." );
-						Caster.FixedParticles( 0, 10, 5, 2003, Server.Misc.PlayerSettings.GetMySpellHue( true, Caster, 0 ), 0, EffectLayer.RightHand );
-						Caster.PlaySound( 0x1E2 );
-					}
-				}
-			}
+		            if (!pack.CheckHold(Caster, blood, false, true))
+		            {
+		                blood.Delete();
+		                Caster.SendMessage("Você não tem como carregar mais comida.");
+		                FinishSequence();
+		                return;
+		            }
 
-			FinishSequence();
+		            pack.DropItem(blood);
+		            Caster.SendMessage("Um pouco de sangue fresco aparece magicamente em sua mochila.");
+		        }
+		        else if (Server.Items.BaseRace.BrainEater(Caster.RaceID))
+		        {
+		            Item brain = new FreshBrain();
+
+		            if (!pack.CheckHold(Caster, brain, false, true))
+		            {
+		                brain.Delete();
+		                Caster.SendMessage("Você não tem como carregar mais comida.");
+		                FinishSequence();
+		                return;
+		            }
+
+		            pack.DropItem(brain);
+		            Caster.SendMessage("Alguns cérebros frescos aparecem magicamente em sua mochila.");
+		        }
+		        else
+		        {
+		            FoodInfo foodInfo = m_Food[Utility.Random(m_Food.Length)];
+
+		            Item food = foodInfo.Create();
+		            Item water = new WaterBottle();
+
+		            if (!pack.CheckHold(Caster, food, false, true) ||
+		                !pack.CheckHold(Caster, water, false, true))
+		            {
+		                if (food != null) food.Delete();
+		                if (water != null) water.Delete();
+
+		                Caster.SendMessage("Você não tem como carregar mais comida.");
+		                FinishSequence();
+		                return;
+		            }
+
+		            pack.DropItem(food);
+		            pack.DropItem(water);
+
+		            Caster.SendMessage("Alguma comida e bebida aparecem magicamente em sua mochila.");
+		        }
+
+		        Caster.FixedParticles(0, 10, 5, 2003,
+		            Server.Misc.PlayerSettings.GetMySpellHue(true, Caster, 0),
+		            0,
+		            EffectLayer.RightHand);
+
+		        Caster.PlaySound(0x1E2);
+		    }
+
+		    FinishSequence();
 		}
 	}
 
