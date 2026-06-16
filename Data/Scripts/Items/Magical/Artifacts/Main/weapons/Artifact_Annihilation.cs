@@ -27,7 +27,7 @@ namespace Server.Items
 		{
 		    base.OnHit(attacker, defender, damageBonus);
 
-		    if (attacker == null || defender == null || attacker.Map == null || defender.Map == null)
+		    if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
 		        return;
 
 		    double lumberjacking = attacker.Skills[SkillName.Lumberjacking].Value;

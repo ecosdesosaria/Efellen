@@ -23,12 +23,11 @@ namespace Server.Items
 			Server.Misc.Arty.ArtySetup( this, "Ancient dwarven masterpiece" );
 		}
 		
-		public override void OnHit(Mobile attacker, Mobile defender, double damage)
+		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
         {
-            base.OnHit(attacker, defender, damage);
-
-            if (attacker == null || defender == null)
-                return;
+			base.OnHit(attacker, defender, damageBonus);
+            if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
             if (!defender.Alive || defender.Hits <= 0)
             {

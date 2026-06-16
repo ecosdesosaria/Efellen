@@ -312,7 +312,7 @@ namespace Server.Custom.Ascensions
                 return
                 "<BASEFONT COLOR=#ffffff>"+
                 "Noxious Cloud, nível 1.<br>" +
-                "comando: [AssassinNoxiousClou<br>" +
+                "comando: [AssassinNoxiousCloudAbility<br>" +
                 "O assassino cria uma nuvem de vapores fétidos no local alvo que envenena todos os inimigos pegos em sua área.<br>" +
                 "A nuvem inflige veneno maior em todos os inimigos afetados. Esta habilidade custa 30 de mana e 30 de vigor para ativar.<br>" + 
                 "Esta habilidade tem 1 minuto de recarga. A área da nuvem é igual a 1 + 1 a cada 6 níveis.<br>" +
@@ -330,7 +330,7 @@ namespace Server.Custom.Ascensions
                 "comando: [AssassinToxicSurge<br>" +
                 "Pelos próximos 30 segundos, o assassino causa +10% de bônus de dano com golpes de arma contra criaturas envenenadas.<br>" + 
                 "Esta habilidade custa 40 de mana e 40 de vigor para ativar e tem 2 minutos de recarga.<br>" +
-                "- Nível 16: Quando ativado, há 1% de chance por nível de zerar a recarga de Noxious Cloud.<br>" + 
+                "- Nível 16: Quando ativado, há 1% de chance por nível de zerar a recarga de Noxious Cloud.<br><br>" + 
 
                 "Cleansing Annihilation, nível 18.<br>" +
                 "comando: [AssassinCleansingAnnihilation<br>" +

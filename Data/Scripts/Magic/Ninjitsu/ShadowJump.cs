@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Server.Network;
 using Server.Items;
 using Server.Mobiles;
@@ -15,12 +16,10 @@ namespace Server.Spells.Ninjitsu
 			9002
 			);
 
-		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
+		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds(1.0); } }
 
-		public override double RequiredSkill{ get{ return 50.0; } }
-		public override int RequiredMana{ get{ return 15; } }
-
-		public override bool BlockedByAnimalForm{ get{ return false; } }
+		public override double RequiredSkill { get { return 50.0; } }
+		public override int RequiredMana { get { return 15; } }
 
 		public Shadowjump( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{
@@ -69,7 +68,7 @@ namespace Server.Spells.Ninjitsu
 			else if ( !SpellHelper.CheckTravel( Caster, TravelCheckType.TeleportFrom ) || !SpellHelper.CheckTravel( Caster, map, new Point3D( p ), TravelCheckType.TeleportTo ))
 			{
 			}
-			else if ( map == null || !map.CanSpawnMobile( p.X, p.Y, p.Z ) )
+			else if ( map == null || !map.CanSpawnMobile( p.X, p.Y, p.Z, false ) )
 			{
 				Caster.SendLocalizedMessage( 502831 ); // Cannot teleport to that spot.
 			}
@@ -111,8 +110,62 @@ namespace Server.Spells.Ninjitsu
 			{
 				IPoint3D p = o as IPoint3D;
 
-				if ( p != null )
-					m_Owner.Target( p );
+				if ( o is Mobile )
+				{
+					Mobile mobile = (Mobile)o;
+					int discardZ;
+					List<Direction> validDirections = new List<Direction>();
+
+					foreach ( Direction d in Utility.GetBehindArc( mobile.Direction ) )
+					{
+						if ( mobile.CheckMovement( d, out discardZ ) )
+							validDirections.Add( d );
+					}
+
+					if ( validDirections.Count > 0 )
+					{
+						Direction d = validDirections[Utility.Random( validDirections.Count )];
+
+						int newZ;
+						mobile.CheckMovement( d, out newZ );
+
+						int x = mobile.Location.X, y = mobile.Location.Y;
+						switch ( d )
+						{
+							case Direction.North:
+								--y;
+								break;
+							case Direction.Right:
+								++x;
+								--y;
+								break;
+							case Direction.East:
+								++x;
+								break;
+							case Direction.Down:
+								++x;
+								++y;
+								break;
+							case Direction.South:
+								++y;
+								break;
+							case Direction.Left:
+								--x;
+								++y;
+								break;
+							case Direction.West:
+								--x;
+								break;
+							case Direction.Up:
+								--x;
+								--y;
+									break;
+						}
+
+						m_Owner.Target( new Point3D( x, y, newZ ) );
+						return;
+					}
+				}
 			}
 
 			protected override void OnTargetFinish( Mobile from )

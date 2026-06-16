@@ -30,10 +30,9 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
-		    base.OnHit(attacker, defender, damageBonus);
-
-		    if (attacker == null || defender == null)
-		        return;
+			base.OnHit(attacker, defender, damageBonus);
+		    if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+				return;
 
 		    if (attacker.Skills[SkillName.Fencing].Value <= 105.0 || attacker.Dex > 111)
 		        return;
@@ -107,6 +106,7 @@ namespace Server.Items
 		    }
 			attacker.SendMessage("Sua Faca de Entalhe Rúnico libera uma onda de choque!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 92);
+			
 		}
 		public Artifact_RuneCarvingKnife( Serial serial ) : base( serial )
 		{

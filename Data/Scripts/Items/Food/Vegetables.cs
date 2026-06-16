@@ -190,6 +190,7 @@ namespace Server.Items
 			Name = "large pumpkin";
 			this.Weight = 10.0;
 			this.FillFactor = 10;
+			Stackable = false;
 		}
 
 		public PumpkinLarge( Serial serial ) : base( serial )
@@ -221,6 +222,7 @@ namespace Server.Items
 			Name = "tall pumpkin";
 			this.Weight = 10.0;
 			this.FillFactor = 10;
+			Stackable = false;
 		}
 
 		public PumpkinTall( Serial serial ) : base( serial )
@@ -252,6 +254,7 @@ namespace Server.Items
 			Name = "green pumpkin";
 			this.Weight = 10.0;
 			this.FillFactor = 10;
+			Stackable = false;
 		}
 
 		public PumpkinGreen( Serial serial ) : base( serial )
@@ -283,6 +286,7 @@ namespace Server.Items
 			Name = "giant pumpkin";
 			this.Weight = 100.0;
 			this.FillFactor = 20;
+			Stackable = false;
 		}
 
 		public PumpkinGiant( Serial serial ) : base( serial )
@@ -300,21 +304,6 @@ namespace Server.Items
 			int version = reader.ReadInt();
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public class SmallPumpkin : Food
 	{

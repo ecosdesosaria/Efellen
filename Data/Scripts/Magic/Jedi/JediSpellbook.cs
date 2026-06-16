@@ -113,7 +113,6 @@ namespace Server.Items
 			else if ( dropped is StarSapphire && dropped.Amount == 1 ){ if ( dropped.Hue > 0 ){ gem = dropped.Hue; } else { gem = 0x4AB; } doGemColor = true; }
 			else if ( dropped is Tourmaline && dropped.Amount == 1 ){ if ( dropped.Hue > 0 ){ gem = dropped.Hue; } else { gem = 0xAFA; } doGemColor = true; }
 			else if ( dropped.Catalog == Catalogs.Trinket ){ dropped.ItemID = 0x543E; dropped.Name = "Jedi Exacron"; dropped.Layer = Layer.Trinket; doJediEffect = true; }
-			else if ( dropped is DurasteelIngot ){ steel = 1; doSteelAdd = true; }
 			else if ( dropped != null && ( dropped is BaseArmor || dropped is BaseClothing || dropped is BaseTrinket || dropped is BaseHat ) )
 			{
 				if ( dropped is BaseHat )
@@ -282,10 +281,6 @@ namespace Server.Items
 				Mobile from = state.Mobile; 
 				Server.Spells.Jedi.JediSpell.CastSpell( from, info.ButtonID );
 				from.CloseGump( typeof( PowerRow ) );
-				if ( Server.Misc.GetPlayerInfo.isJedi ( from, true ) )
-				{
-					from.SendGump( new PowerRow( from, mBook ) );
-				}
 			}
 		}
 
@@ -384,10 +379,6 @@ namespace Server.Items
 				Mobile from = state.Mobile; 
 				Server.Spells.Jedi.JediSpell.CastSpell( from, info.ButtonID );
 				from.CloseGump( typeof( PowerColumn ) );
-				if ( Server.Misc.GetPlayerInfo.isJedi ( from, true ) )
-				{
-					from.SendGump( new PowerColumn( from, mBook ) );
-				}
 			}
 		}
 

@@ -77,7 +77,7 @@ namespace Server.Items
 				{
 					from.SendMessage( "Esses ajudantes não iriam querer o escrutínio." );
 				}
-				else if (	targeted is PackBeast || targeted is GolemPorter || targeted is GolemFighter || targeted is Robot || 
+				else if (	targeted is PackBeast || targeted is GolemPorter || targeted is GolemFighter ||
 							targeted is FrankenPorter || targeted is FrankenFighter || targeted is HenchmanFamiliar || targeted is AerialServant )
 				{
 					from.SendMessage( "Eles não parecem estar neste livro." );

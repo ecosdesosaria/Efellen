@@ -3996,10 +3996,23 @@ namespace Server.Mobiles
 			if ( willKill && from is PlayerMobile )
 				Timer.DelayCall( TimeSpan.FromSeconds( 10 ), new TimerCallback( ((PlayerMobile) from).RecoverAmmo ) );
 
-			if (from != null)
+			if ( from != null && from is PlayerMobile && from.Skills.Tracking.Value > 8.33 )
 			{
-				double bonus = HunterMarkSystem.GetDamageBonus(from, this);
-				amount = (int)(amount * bonus);
+				double bonus = HunterMarkSystem.GetDamageBonus( from, this );
+
+				if ( bonus > 1.0 )
+				{
+					amount = (int)( amount * bonus );
+
+					if ( Utility.RandomDouble() < 0.10 )
+					{
+						from.CheckSkill(
+							SkillName.Tracking,
+							0.0,
+							125.0
+						);
+					}
+				}
 			}
 
 
@@ -5483,7 +5496,7 @@ namespace Server.Mobiles
 
 			if ( m is BaseCreature )
 			{
-				if ( m is FrankenFighter || m is Robot || m is GolemFighter || m is HenchmanMonster || m is HenchmanWizard || m is HenchmanArcher || m is HenchmanFighter )
+				if ( m is FrankenFighter || m is GolemFighter || m is HenchmanMonster || m is HenchmanWizard || m is HenchmanArcher || m is HenchmanFighter )
 					return false;
 
 				BaseCreature bc = (BaseCreature)m;
@@ -5513,8 +5526,6 @@ namespace Server.Mobiles
 					!( this is FrankenFighter ) && 
 					!( this is GolemPorter ) && 
 					!( this is AerialServant ) && 
-					!( this is Robot ) && 
-					!( this is Robot ) && 
 					!( this is PackBeast ) && 
 					!( this is HenchmanFamiliar ) && 
 					!( this is HenchmanFighter ) && 
@@ -7780,7 +7791,12 @@ namespace Server.Mobiles
 			base.AddNameProperties( list );
 
 			if ( DisplayWeight && Controlled )
-				list.Add( TotalWeight == 1 ? 1072788 : 1072789, TotalWeight.ToString() ); // Weight: ~1_WEIGHT~ stones
+				{
+				if ( Backpack != null )
+					list.Add( 1072241, "{0}\t{1}\t{2}\t{3}", Backpack.TotalItems, Backpack.MaxItems, Backpack.TotalWeight, Backpack.MaxWeight ); // Contents: ~1_COUNT~/~2_MAXCOUNT items, ~3_WEIGHT~/~4_MAXWEIGHT~ stones
+				else
+					list.Add( TotalWeight == 1 ? 1072788 : 1072789, TotalWeight.ToString() ); // Weight: ~1_WEIGHT~ stones
+			}
 
 			if ( m_ControlOrder == OrderType.Guard )
 				list.Add( 1080078 ); // guarding
@@ -7790,15 +7806,13 @@ namespace Server.Mobiles
 				list.Add( "(familiar)" );
 			else if ( this is PackBeast )
 				list.Add( "(Pack Animal)" );
-			else if ( this is GolemPorter || this is GolemFighter )
+			else if ( this is GolemPorter || this is GolemFighter || this is Golem )
 				list.Add( "(automaton)" );
-			else if ( this is Robot )
-				list.Add( "(robot)" );
 			else if ( this is FrankenPorter || this is FrankenFighter )
 				list.Add( "(reanimation)" );
 			else if ( Summoned && !IsAnimatedDead && !IsNecroFamiliar )
 				list.Add( 1049646 ); // (summoned)
-			else if ( Controlled && Commandable && !(this is FrankenFighter) && !(this is AerialServant) && !(this is FrankenPorter) && !(this is Robot) && !(this is GolemFighter) && !(this is GolemPorter) && !(this is PackBeast) && !(this is HenchmanMonster) && !(this is HenchmanFighter) && !(this is HenchmanWizard) && !(this is HenchmanArcher) && !(this is HenchmanFamiliar) )
+			else if ( Controlled && Commandable && !(this is FrankenFighter) && !(this is AerialServant) && !(this is FrankenPorter) && !(this is GolemFighter) && !(this is GolemPorter) && !(this is PackBeast) && !(this is HenchmanMonster) && !(this is HenchmanFighter) && !(this is HenchmanWizard) && !(this is HenchmanArcher) && !(this is HenchmanFamiliar) )
 			{
 				if ( IsBonded )	//Intentional difference (showing ONLY bonded when bonded instead of bonded & tame)
 					list.Add( 1049608 ); // (bonded)
@@ -7999,7 +8013,8 @@ namespace Server.Mobiles
 						if ( deathpack != null )
 						{
 							Item dtcoins = this.Backpack.FindItemByType( typeof( Gold ) );
-							dtcoins.Delete();
+							if ( dtcoins != null )
+								dtcoins.Delete();
 							deathknight.SendMessage( "A soul has been claimed." );
 							Effects.SendLocationParticles( EffectItem.Create( deathknight.Location, deathknight.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 5008 );
 							Effects.PlaySound( deathknight.Location, deathknight.Map, 0x1ED );
@@ -8069,10 +8084,13 @@ namespace Server.Mobiles
 						if ( deathpack != null )
 						{
 							Item dtcoins = this.Backpack.FindItemByType( typeof( Gold ) );
-							dtcoins.Delete();
-							cleric.SendMessage( "Evil has been banished." );
-							cleric.FixedParticles( 0x373A, 10, 15, 5018, EffectLayer.Waist );
-							cleric.PlaySound( 0x1EA );
+							if ( dtcoins != null )
+							{
+								dtcoins.Delete();
+								cleric.SendMessage( "Evil has been banished." );
+								cleric.FixedParticles( 0x373A, 10, 15, 5018, EffectLayer.Waist );
+								cleric.PlaySound( 0x1EA );
+							}
 						}
 					}
 				}
@@ -8695,8 +8713,36 @@ namespace Server.Mobiles
                     }
                 }
             }
+			
+			if ( !Summoned && !NoKillAwards && !m_HasGeneratedLoot )
+			{
+				m_HasGeneratedLoot = true;
+				GenerateLoot( false );
+			}
 
             ///////////////////////////////////////////////////////////////
+			/// 		ethereal scrolls and ascendance scrolls
+			///////////////////////////////////////////////////////////////
+			if ( Fame >= 4000 )
+			{
+				double roll = Utility.RandomDouble();
+
+				if ( roll < 0.009 )
+			        PackItem( new EtherealPowerScroll() );
+
+				if ( Fame >= 5500 && Utility.RandomDouble() < 0.0032 )
+			    {
+			        Item scroll = AscensionScrollFactory.CreateRandom();
+
+			        if ( scroll != null )
+			            PackItem( scroll );
+			    }
+			}
+			///////////////////////////////////////////////////////////////
+			/// 		vampire blood
+            ///////////////////////////////////////////////////////////////
+
+			
 			SlayerEntry vampAnimal = SlayerGroup.GetEntryByName( SlayerName.AnimalHunter );
 			SlayerEntry vampAvian = SlayerGroup.GetEntryByName( SlayerName.AvianHunter );
 			SlayerEntry vampRepond = SlayerGroup.GetEntryByName( SlayerName.Repond );
@@ -8783,12 +8829,6 @@ namespace Server.Mobiles
 				{
 					PackItem( new TreasureMap( treasureLevel, this.Map, this.Location, this.X, this.Y ) );
 				}
-			}
-
-			if ( !Summoned && !NoKillAwards && !m_HasGeneratedLoot )
-			{
-				m_HasGeneratedLoot = true;
-				GenerateLoot( false );
 			}
 
 			if ( IsAnimatedDead )
@@ -9550,6 +9590,7 @@ namespace Server.Mobiles
 					else
 						SendMessage( "{0} {1} cannot be harmed.", target.Name, target.Title );
 				}
+
 
 				return false;
 			}
@@ -10377,7 +10418,7 @@ namespace Server.Mobiles
 							if ( pet.ControlOrder == OrderType.Guard || pet.ControlOrder == OrderType.Follow || pet.ControlOrder == OrderType.Come )
 								move.Add( pet );
 						}
-						else if ( pet is HenchmanFamiliar || pet is AerialServant || pet is PackBeast || pet is Robot || pet is GolemPorter || pet is GolemFighter || pet is FrankenPorter || pet is FrankenFighter ){ move.Add( pet ); }
+						else if ( pet is HenchmanFamiliar || pet is AerialServant || pet is PackBeast || pet is GolemPorter || pet is GolemFighter || pet is FrankenPorter || pet is FrankenFighter ){ move.Add( pet ); }
 					}
 				}
 			}

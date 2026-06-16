@@ -1184,15 +1184,6 @@ namespace Server.Misc
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		public static string GetRandomAlienRace()
-		{
-			string[] names = new string[] { "Romulan", "Klingon", "Vulcan", "Gorn", "Ferengi", "Orion", "Bajoran", "Abednedo", "Abyssin", "Aleena", "Amanin", "Amaran", "Annoo", "Anomid", "Ansionian", "Anzati", "Aqualish", "Arcona", "Argazdan", "Aruzan", "Askajian", "Balosar", "Bando Gora", "Barabel", "Besalisk", "Bith", "Blarina", "Boltrunians", "Bothan", "Caamasi", "Cathar", "Celegian", "Cerean", "Chadra-Fan", "Chalactan", "Chagrian", "Chiss", "Chistori", "Clawdite", "Codru-Ji", "Coway", "Dashade", "Dathomirian", "Defel", "Devaronian", "Drach'nam", "Dressellian", "Droch", "Drovian", "Dulok", "Durkii", "Duros", "Echani", "Elomin", "Epicanthix", "Er'Kit", "Ewok", "Falleen", "Feeorin", "Ferroans", "Firrerreo", "Fosh", "Frozian", "Frozarns", "Gado", "Gamorrean", "Gand", "Gank", "Gen'Dai", "Gerb", "Geonosian", "Givin", "Gizka", "Glymphid", "Gorax", "Gorith", "Gorog", "Gossam", "Gotal", "Gran", "Gree", "Grizmallt", "Gungan", "Gwurran", "Habassa", "Hallotan", "Hapan", "Harch", "Herglic", "Himoran", "H'nemthean", "Hoojib", "Huk", "Human", "Hssiss", "Hutt", "Iktotchi", "Iridonian", "Ishi Tib", "Ithorian", "Jabiimas", "Jawa", "Kaleesh", "Kaminoan", "Karkarodon", "Kel Dor", "Keshiri", "Kiffar", "Kitonak", "Klatooinian", "Kobok", "Kubaz", "Kurtzen", "Kushiban", "Kwa", "Kwi", "Kyuzo", "Lannik", "Lasat", "Lepi", "Letaki", "Lurmen", "Massassi", "Melodie", "Mimbanite", "Miraluka", "Mirialan", "Mon Calamari", "Mustafarian", "Muun", "Myneyrsh", "Myriad", "Nagai", "Nautolan", "Neimoidian", "Nelvaanian", "Neti", "Nikto", "Noghri", "Nosaurian", "Ogemite", "Omwati", "Ongree", "Ortolan", "Oswaft", "Paaerduag", "Pa'lowick", "Pau'an", "Phlog", "Polis Massan", "Porgs", "Priapulin", "Psadan", "P'w'eck", "Quarren", "Quermian", "Rakata", "Ranat", "Rattataki", "Rishii", "Roonan", "Ruurian", "Ryn", "Saffa", "Sanyassan", "Saurin", "Selkath", "Sauvax", "Selonian", "Shawda Ubb", "Shi'ido", "Shistavanen", "Sikan", "Sith", "Skakoan", "Sneevel", "Snivvian", "Squib", "Ssi-Ruuk", "Stereb", "Sullustan", "Talortai", "Talz", "Tarasin", "Taung", "Tauntaun", "Tchuukthai", "Teek", "Teevan", "Terentatek", "Thakwaash", "Theelin", "Thennqora", "Tiss'shar", "Thisspiasian", "Thrella", "Timoliini", "T'landa Til", "Tof", "Togorian", "Togruta", "Toong", "Toydarian", "Trandoshan", "Trianii", "Trogodile", "Troig", "Tunroth", "Ubese", "Ugnaught", "Umbaran", "Unu", "Utai", "Utapaun", "Vaathkree", "Vagaari", "Veknoid", "Vella", "Verpine", "Vodran", "Vor", "Voxyn", "Vratix", "Vulptereen", "Vurk", "Weequay", "Whaladon", "Wharl", "Whill", "Whiphid", "Wirutid", "Wol Cabasshite", "Wookiee", "Woostoid", "Wroonian", "X'ting", "Xexto", "Y'bith", "Yaka", "Yevetha", "Yinchorri", "Yuuzhan Vong", "Yuvernian", "Yuzzem", "Yuzzum", "Zeltron", "Zhell", "Zygerrian" };
-
-			return names[Utility.RandomMinMax( 0, (names.Length-1) )];
-		}
-
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 		public static string GetRandomWizardName()
 		{
 			string name = NameList.RandomName( "ancient lich" );
@@ -1966,60 +1957,6 @@ namespace Server.Misc
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		public static string GetRandomRobot( int part )
-		{
-			string robot = "";
-
-			string[] letters = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-
-			string[] numbers = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-
-			int cycle = Utility.RandomMinMax( 4, 8 );
-			int dash = Utility.RandomMinMax( 5, 7 );
-
-			while ( cycle > 0 )
-			{
-				if ( Utility.RandomBool() ){ robot = robot + letters[Utility.RandomMinMax( 0, (letters.Length-1) )]; }
-				else { robot = robot + numbers[Utility.RandomMinMax( 0, (numbers.Length-1) )]; }
-
-				if ( cycle == dash ){ robot = robot + "-"; }
-
-				cycle--;
-			}
-
-			if ( part > 0 ){ return robot; }
-
-			string type = "robot";
-			switch( Utility.RandomMinMax( 0, 2 ) )
-			{
-				case 0: type = "robot"; break;
-				case 1: type = "bot"; break;
-				case 2: type = "droid"; break;
-			}
-
-			string mission = "security";
-			switch( Utility.RandomMinMax( 0, 2 ) )
-			{
-				case 0: mission = "security"; break;
-				case 1: mission = "maintenance"; break;
-				case 2: mission = "medical"; break;
-				case 3: mission = "war"; break;
-				case 4: mission = "sentinel"; break;
-				case 5: mission = "engineering"; break;
-				case 6: mission = "assault"; break;
-				case 7: mission = "exterminator"; break;
-				case 8: mission = "interpreter"; break;
-				case 9: mission = "mining"; break;
-				case 10: mission = "protocol"; break;
-				case 11: mission = "labor"; break;
-			}
-
-			robot = robot + " " + mission + " " + type;
-
-			return robot;
-		}
-
 
 		public static string MagicItemAdj( string placed, bool oriental, bool evil, int itemid )
 		{

@@ -98,7 +98,7 @@ namespace Server.Items
             if (Utility.RandomDouble() <= successChance)
             {
                 from.SendMessage("Você começa a cuidar de seus seguidores... ({0:F1}s)", cooldown.TotalSeconds);
-                from.PublicOverheadMessage(MessageType.Regular, 0x22, false, String.Format("Você começa a cuidar de seus seguidores... ({0}s)", cooldown.TotalSeconds));
+                from.PrivateOverheadMessage(MessageType.Regular, 0x22, false, "Você começa a cuidar de seus seguidores..." + cooldown.TotalSeconds+ "s" , from.NetState);
                 Timer.DelayCall(cooldown, new TimerStateCallback(ApplyVetSupplies), from);
             }
             else
@@ -123,7 +123,7 @@ namespace Server.Items
 
             bool anyAffected = false;
 
-            IPooledEnumerable eable = from.GetMobilesInRange(2);
+            IPooledEnumerable eable = from.GetMobilesInRange(4);
             foreach (Mobile m in eable)
             {
                 BaseCreature pet = m as BaseCreature;
@@ -137,7 +137,7 @@ namespace Server.Items
                         double resChance = skillAvg / 200.0;
                         if (Utility.RandomDouble() <= resChance)
                         {
-                            if (from.CanSee(pet) && from.InLOS(pet) && pet.Map != null && pet.Map.CanFit(pet.Location, 16, false, false))
+                            if (pet.Map != null && pet.Map.CanFit(pet.Location, 16, false, false))
                             {
                                 pet.ResurrectPet();
                                 pet.FixedEffect(0x376A, 10, 16);
@@ -148,7 +148,7 @@ namespace Server.Items
                         }
                     }
 
-                    if (pet.Alive && from.InRange(pet.Location, 2))
+                     if (pet.Alive)
                     {
                         int healed = 0;
 

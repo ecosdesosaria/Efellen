@@ -122,49 +122,53 @@ namespace Server.Mobiles
 			base.OnDamage( amount, from, willKill );
 		}
 
-        private void TryWeaveStep()
+        private static Point3D[] m_WeaveLocations = new Point3D[]
 		{
-		    Map map = Map;
-		    if ( map == null )
-		        return;
+		    new Point3D( 733, 2864, 40 ),
+			new Point3D( 741, 2864, 40 ),
+			new Point3D( 741, 2872, 40 ),
+			new Point3D( 732, 2872, 40 ),
+			new Point3D( 736, 2868, 40 )
+		};
 
-		    int currentZ = Z;
+		private void TryWeaveStep()
+		{
+			Map map = Map;
 
-		    for ( int i = 0; i < 10; i++ )
-		    {
-		        int x = X + Utility.RandomMinMax( -6, 6 );
-		        int y = Y + Utility.RandomMinMax( -6, 6 );
-		        Point3D p = new Point3D( x, y, currentZ );
+			if (map == null)
+				return;
 
-		        if ( map.CanSpawnMobile( p ) )
-		        {
-		            Location = p;
-		            PublicOverheadMessage( MessageType.Emote, 0x3B2, false, "*Adentra a teia*" );
-		            Effects.SendLocationEffect( p, map, 0x3728, 13, 10, 0, 0 );
-		            Effects.PlaySound( p, map, 0x1FE );
-		            return;
-		        }
-		    }
+			Point3D current = Location;
 
-		    for ( int i = 0; i < 10; i++ )
-		    {
-		        int x = X + Utility.RandomMinMax( -6, 6 );
-		        int y = Y + Utility.RandomMinMax( -6, 6 );
-		        int z = map.GetAverageZ( x, y );
-		        Point3D p = new Point3D( x, y, z );
+			Point3D[] possible = new Point3D[m_WeaveLocations.Length];
+			int count = 0;
 
-		        if ( map.CanSpawnMobile( p ) )
-		        {
-		            Location = p;
-		            PublicOverheadMessage( MessageType.Emote, 0x3B2, false, "*Adentra a teia*" );
-		            Effects.SendLocationEffect( p, map, 0x3728, 13, 10, 0, 0 );
-		            Effects.PlaySound( p, map, 0x1FE );
-		            return;
-		        }
-		    }
+			for (int i = 0; i < m_WeaveLocations.Length; i++)
+			{
+				if (m_WeaveLocations[i] != current)
+				{
+					possible[count] = m_WeaveLocations[i];
+					count++;
+				}
+			}
+
+			if (count == 0)
+				return;
+
+			Point3D dest = possible[Utility.Random(count)];
+
+			if (map.CanSpawnMobile(dest))
+			{
+				Location = dest;
+
+				PublicOverheadMessage(MessageType.Emote, 0x3B2, false, "*Steps into the weave*");
+
+				Effects.SendLocationEffect(dest, map, 0x3728, 13, 10, 0, 0);
+				Effects.PlaySound(dest, map, 0x1FE);
+			}
 		}
 
-		private void PerformRageAttack( Mobile target )
+		private void PerformRageAttack(Mobile target)
 		{
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
@@ -263,7 +267,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
             BossLootSystem.BossEnchant(this, c, 550, 100, 3, "DrowMage");
-			BossLootSystem.AwardBossSpecial( this, BossDrops, 15 );
+			BossLootSystem.AwardBossSpecial( this, BossDrops, 45 );
 			for ( int i = 0; i < 4; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );

@@ -394,9 +394,6 @@ namespace Server
 			if ( fee < MySettings.S_GuildJoinFee )
 				fee = MySettings.S_GuildJoinFee;
 
-			if ( GetPlayerInfo.isFromSpace( m ) )
-				fee = fee * 4;
-
 			return fee;
 		}
 
@@ -489,9 +486,7 @@ namespace Server
 				skills = 11;
 			else if ( area == "fugitive" )
 				skills = 13;
-			else if ( area == "alien" )
-				skills = 40;
-
+			
 			if ( MySettings.S_SkillBoost > 52 )
 				MySettings.S_SkillBoost = 52;
 
@@ -509,8 +504,6 @@ namespace Server
 
 			if ( area == "savage" )
 				pm.SkillStart = 11000;
-			else if ( area == "alien" )
-				pm.SkillStart = 40000;
 			else if ( area == "fugitive" )
 				pm.SkillStart = 13000;
 			else

@@ -19,6 +19,7 @@ namespace Server.Items
 		{
 			Name = "Gloves of the Nature's Master";
 			Hue = 0x29D;
+			ArmorAttributes.MageArmor = 1;
           	SkillBonuses.SetValues( 0, SkillName.Herding, 5 );
 			SkillBonuses.SetValues( 1, SkillName.Taming, 5 );
 			SkillBonuses.SetValues( 2, SkillName.Druidism, 5 );

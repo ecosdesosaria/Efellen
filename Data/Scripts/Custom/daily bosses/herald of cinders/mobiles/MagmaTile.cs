@@ -14,24 +14,24 @@ namespace Server.Mobiles
 		private Timer m_EffectTimer;
 		private Hashtable m_DamagedThisTick = new Hashtable();
 
-		public MagmaTile( Mobile caster, Point3D loc, Map map ) : base( 0x1 )
+		public MagmaTile(Mobile caster, Point3D loc, Map map) : base(0x1)
 		{
 			Movable = false;
 			Visible = false;
 			m_Caster = caster;
 
-			MoveToWorld( loc, map );
+			MoveToWorld(loc, map);
 
 			// Damage timer - ticks every second
-			m_DamageTimer = Timer.DelayCall( TimeSpan.FromSeconds( 1.0 ), TimeSpan.FromSeconds( 1.0 ), new TimerCallback( DamageTick ) );
+			m_DamageTimer = Timer.DelayCall(TimeSpan.FromSeconds(1.0), TimeSpan.FromSeconds(1.0), new TimerCallback(DamageTick));
 
 			// Visual effect timer - creates continuous visual effects
-			m_EffectTimer = Timer.DelayCall( TimeSpan.Zero, TimeSpan.FromSeconds( 0.5 ), new TimerCallback( EffectTick ) );
+			m_EffectTimer = Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromSeconds(0.5), new TimerCallback(EffectTick));
 		}
 
 		private void DamageTick()
 		{
-			if ( Deleted || m_Caster == null || m_Caster.Deleted )
+			if (Deleted || m_Caster == null || m_Caster.Deleted)
 			{
 				Delete();
 				return;
@@ -39,25 +39,21 @@ namespace Server.Mobiles
 
 			m_DamagedThisTick.Clear();
 
-			IPooledEnumerable eable = GetMobilesInRange( 0 );
-			foreach ( Mobile m in eable )
+			IPooledEnumerable eable = GetMobilesInRange(0);
+			foreach (Mobile m in eable)
 			{
-				if ( m == null || m.Deleted || !m.Alive )
+				if (!IsValidTarget(m))
 					continue;
 
-				// Check immunity
-				if ( HeraldOfCinders.IsImmuneToMagma( m ) )
-					continue;
-
-				if ( m_Caster.CanBeHarmful( m ) )
+				if (m_Caster.CanBeHarmful(m))
 				{
-					m_Caster.DoHarmful( m );
+					m_Caster.DoHarmful(m);
 
-					int damage = Utility.RandomMinMax( 28, 36 );
-					AOS.Damage( m, m_Caster, damage, 0, 100, 0, 0, 0 );
+					int damage = Utility.RandomMinMax(38, 46);
+					AOS.Damage(m, m_Caster, damage, 0, 100, 0, 0, 0);
 
-					m.FixedParticles( 0x3709, 10, 30, 5052, EffectLayer.Waist );
-					m.PlaySound( 0x208 );
+					m.FixedParticles(0x3709, 10, 30, 5052, EffectLayer.Waist);
+					m.PlaySound(0x208);
 
 					m_DamagedThisTick[m] = true;
 				}
@@ -67,44 +63,59 @@ namespace Server.Mobiles
 
 		private void EffectTick()
 		{
-			if ( Deleted )
+			if (Deleted)
 				return;
-				Effects.SendLocationParticles(
-                            EffectItem.Create(Location, Map, EffectItem.DefaultDuration), 
-                            0x3709, 20, 10, 0x208,0
-                        );
+
+			Effects.SendLocationParticles(
+				EffectItem.Create(Location, Map, EffectItem.DefaultDuration),
+				0x3709, 20, 10, 0x208, 0
+			);
 
 			// Occasional smoke
-			if ( Utility.RandomBool() )
+			if (Utility.RandomBool())
 			{
-				Effects.SendLocationEffect( Location, Map, 0x3728, 10, 10, 2023, 0 );
+				Effects.SendLocationEffect(Location, Map, 0x3728, 10, 10, 2023, 0);
 			}
 		}
 
-		public override bool OnMoveOver( Mobile m )
+		private bool IsValidTarget(Mobile m)
 		{
-			if ( m == null || m.Deleted || !m.Alive )
+			if (m == null || m.Deleted || !m.Alive)
+				return false;
+
+			if (m.Player)
 				return true;
 
-			// Check immunity
-			if ( HeraldOfCinders.IsImmuneToMagma( m ) )
+			BaseCreature bc = m as BaseCreature;
+
+			if (bc == null)
+				return false;
+
+			if (bc.Controlled && bc.ControlMaster != null && bc.ControlMaster.Player)
 				return true;
 
-			// Only damage if not already damaged this tick
-			if ( !m_DamagedThisTick.Contains( m ) && m_Caster != null && !m_Caster.Deleted )
+			if (bc.Summoned && bc.SummonMaster != null && bc.SummonMaster.Player)
+				return true;
+
+			return false;
+		}
+
+		public override bool OnMoveOver(Mobile m)
+		{
+			if (!IsValidTarget(m))
+				return true;
+
+			if (m_Caster != null && !m_Caster.Deleted && !m_DamagedThisTick.ContainsKey(m) && m_Caster.CanBeHarmful(m))
 			{
-				if ( m_Caster.CanBeHarmful( m ) )
-				{
-					m_Caster.DoHarmful( m );
+				m_Caster.DoHarmful(m);
 
-					int damage = Utility.RandomMinMax( 15, 25 );
-					AOS.Damage( m, m_Caster, damage, 0, 100, 0, 0, 0 );
+				int damage = Utility.RandomMinMax(15, 25);
+				AOS.Damage(m, m_Caster, damage, 0, 100, 0, 0, 0);
 
-					m.FixedParticles( 0x3709, 10, 30, 5052, EffectLayer.Waist );
-					m.PlaySound( 0x208 );
+				m.FixedParticles(0x3709, 10, 30, 5052, EffectLayer.Waist);
+				m.PlaySound(0x208);
 
-					m_DamagedThisTick[m] = true;
-				}
+				m_DamagedThisTick[m] = true;
 			}
 
 			return true;
@@ -112,13 +123,13 @@ namespace Server.Mobiles
 
 		public override void Delete()
 		{
-			if ( m_DamageTimer != null )
+			if (m_DamageTimer != null)
 			{
 				m_DamageTimer.Stop();
 				m_DamageTimer = null;
 			}
 
-			if ( m_EffectTimer != null )
+			if (m_EffectTimer != null)
 			{
 				m_EffectTimer.Stop();
 				m_EffectTimer = null;
@@ -127,21 +138,21 @@ namespace Server.Mobiles
 			base.Delete();
 		}
 
-		public MagmaTile( Serial serial ) : base( serial )
+		public MagmaTile(Serial serial) : base(serial)
 		{
 		}
 
-		public override void Serialize( GenericWriter writer )
+		public override void Serialize(GenericWriter writer)
 		{
-			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			base.Serialize(writer);
+			writer.Write((int)0); // version
 
-			writer.Write( m_Caster );
+			writer.Write(m_Caster);
 		}
 
-		public override void Deserialize( GenericReader reader )
+		public override void Deserialize(GenericReader reader)
 		{
-			base.Deserialize( reader );
+			base.Deserialize(reader);
 			int version = reader.ReadInt();
 
 			m_Caster = reader.ReadMobile();

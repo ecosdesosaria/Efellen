@@ -320,10 +320,10 @@ namespace Server.Spells.Elementalism
 			}
 			else if ( id == 308 )
 			{
-				description = "Um elemental do fogo menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer um slot de controle.";
-				if ( elm == "air" ){ description = "Um elemental do ar menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer um slot de controle."; }
-				else if ( elm == "earth" ){ description = "Um elemental da terra menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer um slot de controle."; }
-				else if ( elm == "water" ){ description = "Um elemental da água menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer um slot de controle."; }
+				description = "Um elemental do fogo menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer dois slots de controle.";
+				if ( elm == "air" ){ description = "Um elemental do ar menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer dois slots de controle."; }
+				else if ( elm == "earth" ){ description = "Um elemental da terra menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer dois slots de controle."; }
+				else if ( elm == "water" ){ description = "Um elemental da água menor é invocado para servir o conjurador. O elemental desaparece após um tempo determinado e requer dois slots de controle."; }
 			}
 			else if ( id == 309 )
 			{

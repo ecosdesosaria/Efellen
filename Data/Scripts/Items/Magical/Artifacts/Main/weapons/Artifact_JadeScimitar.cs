@@ -31,9 +31,8 @@ namespace Server.Items
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
 			base.OnHit(attacker, defender, damageBonus);
-
-			if (attacker == null || defender == null || defender.Deleted)
-				return;
+			if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
 			if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
 				return;
@@ -54,6 +53,7 @@ namespace Server.Items
 			attacker.PlaySound(0x208);
 
 			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);
+			
 		}
 
 		public Artifact_JadeScimitar( Serial serial ) : base( serial )

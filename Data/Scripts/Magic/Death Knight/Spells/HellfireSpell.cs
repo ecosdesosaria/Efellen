@@ -43,7 +43,7 @@ namespace Server.Spells.DeathKnight
 
 				SpellHelper.Turn( Caster, m );
 
-				double damage = GetKarmaPower( Caster ) / 5;
+				double damage = GetKarmaPower( Caster ) / 3;
 
 				SpellHelper.Damage( TimeSpan.Zero, m, Caster, damage, 0, 100, 0, 0, 0 );
 

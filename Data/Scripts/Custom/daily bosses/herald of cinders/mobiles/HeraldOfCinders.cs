@@ -306,21 +306,6 @@ namespace Server.Mobiles
 			return occupied;
 		}
 
-		public static bool IsImmuneToMagma( Mobile m )
-		{
-			if ( m == null )
-				return false;
-
-			Type mType = m.GetType();
-			foreach ( Type immuneType in ImmuneToMagmaTypes )
-			{
-				if ( mType == immuneType )
-					return true;
-			}
-
-			return false;
-		}
-
 		private int GetMaxSummons()
 		{
 			switch( m_Rage )
@@ -410,7 +395,7 @@ namespace Server.Mobiles
 				
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
 			for ( int i = 0; i < 5; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );

@@ -42,7 +42,6 @@ namespace Server.Mobiles
 		private static readonly List<Type> BossDrops = new List<Type>
     	{
     	   	typeof(Artifact_RobeOfTheFateweaver),
-			typeof(Artifact_CircletOfTheDreamweaver),
 			typeof(Artifact_MantleOfTheFateweaver),
 			typeof(Artifact_CloakOfTheFateweaver),
 			typeof(Artifact_TalonOfLolth),
@@ -295,7 +294,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this, BossDrops, 15);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 45);
 			for ( int i = 0; i < 4; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );

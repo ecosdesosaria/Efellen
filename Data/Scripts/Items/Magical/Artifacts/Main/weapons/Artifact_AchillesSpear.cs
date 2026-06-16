@@ -23,13 +23,15 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
+			base.OnHit(attacker, defender, damageBonus);
+			if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 		    if (Utility.RandomDouble() < 0.15)
 		    {
 		        damageBonus += 0.35;
 		        attacker.SendMessage("Seu golpe perfura seu inimigo!");
 		        attacker.PlaySound(0x20F);
-		    }
-		    base.OnHit(attacker, defender, damageBonus);
+		    }  
 		}
 
 

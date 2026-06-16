@@ -33,24 +33,27 @@ namespace Server.Mobiles
 			Body = 0xC5;
 			SetStr( 796, 825 );
 			SetDex( 126, 155 );
-			SetInt( 136, 175 );
+			SetInt( 46, 55 );
 			SetHits( 478, 495 );
-			SetDamage( 14, 26 );
+			SetDamage( 14, 22 );
 			SetDamageType( ResistanceType.Physical, 40 );
 			SetDamageType( ResistanceType.Cold, 30 );
 			SetDamageType( ResistanceType.Fire, 30 );
-			SetResistance( ResistanceType.Physical, 25, 35 );
-			SetResistance( ResistanceType.Cold, 80, 90 );
-			SetResistance( ResistanceType.Fire, 65, 85 );
+			SetResistance( ResistanceType.Physical, 35, 40 );
+			SetResistance( ResistanceType.Cold, 70, 80 );
+			SetResistance( ResistanceType.Fire, 79, 80 );
 			SetResistance( ResistanceType.Poison, 20, 30 );
 			SetResistance( ResistanceType.Energy, 20, 30 );
 			SetSkill( SkillName.MagicResist, 80.2, 110.0 );
 			SetSkill( SkillName.Tactics, 60.1, 80.0 );
-			SetSkill( SkillName.FistFighting, 40.1, 50.0 );
+			SetSkill( SkillName.FistFighting, 60.1, 70.0 );
 			Fame = 15000;
 			Karma = -15000;
 			VirtualArmor = 40;
 			AddItem( new LighterSource() );
+			Tamable = true;
+			ControlSlots = 3;
+			MinTameSkill = 103.9;
 		}
 		
 		public override void OnGaveMeleeAttack( Mobile defender )
@@ -59,7 +62,7 @@ namespace Server.Mobiles
 			
 			if ( defender != null && defender.Alive && Utility.RandomDouble() < 0.15 ) 
 			{
-				defender.SendMessage( "You have been set on fire!" );
+				defender.SendMessage( "Você foi incendiado!" );
 				defender.FixedParticles( 0x3709, 10, 30, 5052, EffectLayer.LeftFoot );
 				defender.PlaySound( 0x208 );
 				

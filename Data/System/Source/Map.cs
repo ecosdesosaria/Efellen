@@ -1947,6 +1947,13 @@ namespace Server
 
 			return CanFit( x, y, z, 16 );
 		}
+		public bool CanSpawnMobile( int x, int y, int z, bool checkMobiles )
+		{
+			if ( !Region.Find( new Point3D( x, y, z ), this ).AllowSpawn() )
+				return false;
+
+			return CanFit( x, y, z, 16, false, checkMobiles );
+		}
 		#endregion
 
 		private class ZComparer : IComparer<Item>

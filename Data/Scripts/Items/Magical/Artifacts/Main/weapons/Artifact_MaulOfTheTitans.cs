@@ -29,10 +29,8 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
-		    base.OnHit(attacker, defender, damageBonus);
-
-		    if (attacker == null || defender == null)
-		        return;
+			base.OnHit(attacker, defender, damageBonus);
+		    if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
 
 		    if (attacker.Skills[SkillName.Bludgeoning].Value <= 105.0 || attacker.Str <= 111)
 		        return;
@@ -106,6 +104,7 @@ namespace Server.Items
 		    }
 			attacker.SendMessage("Seu Malho dos titãs estilhaça o chão!");
 			SlamVisuals.SlamVisual(attacker, 5, 0x36B0, 0x455);
+			
 		}
 		public Artifact_MaulOfTheTitans( Serial serial ) : base( serial )
 		{

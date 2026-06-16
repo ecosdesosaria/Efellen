@@ -753,8 +753,7 @@ namespace Server.Items
 				typeof( ReanimatedDragon ), 
 				typeof( AncientFleshGolem ), 
 				typeof( FrankenFighter ), 
-				typeof( GolemFighter ), 
-				typeof( Robot ), 
+				typeof( GolemFighter ),  
 				typeof( SkinGolem ), 
 				typeof( Golem ), 
 				typeof( IceGolem ), 
@@ -888,6 +887,8 @@ namespace Server.Items
 			elemental.Opposition = new SlayerGroup[]{ };
 			elemental.FoundOn = new Type[]{ };
 			elemental.Super = new SlayerEntry( SlayerName.ElementalBan, 
+				typeof( LolthsJealousy ),
+				typeof( NathyrraLolthsErodingLove),
 				typeof( ToxicElemental ), 
 				typeof( AcidPuddle ), 
 				typeof( AgapiteElemental ), 
@@ -1167,6 +1168,10 @@ namespace Server.Items
 			abyss.Opposition = new SlayerGroup[]{ };
 			abyss.FoundOn = new Type[]{ };
 			abyss.Super = new SlayerEntry( SlayerName.Exorcism,
+				typeof( LolthQueenOfTheDemonweb),
+				typeof( IraelLolthsMorbidReverie),
+				typeof( BaabLolthsEndlessLust),
+				typeof( OrthanLolthsConsumingTenderness ),
 				typeof( InfernalBat),
 				typeof( HeraldOfDiscordance),
 				typeof( GreaterDemon), 
@@ -1309,7 +1314,11 @@ namespace Server.Items
 
 			arachnid.Opposition = new SlayerGroup[]{ };
 			arachnid.FoundOn = new Type[]{ };
-			arachnid.Super = new SlayerEntry( SlayerName.ArachnidDoom, 
+			arachnid.Super = new SlayerEntry( SlayerName.ArachnidDoom,
+				typeof( LolthsMercy ),
+				typeof( LolthsPenitence),
+				typeof( LolthsIngenuity),
+				typeof( HaringothLolthsSkitteringShepherd),
 				typeof( Fateweaver ),
 				typeof(LolthsChampion),
 				typeof(LolthsChosen),

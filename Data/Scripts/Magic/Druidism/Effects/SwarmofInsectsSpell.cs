@@ -37,7 +37,7 @@ namespace Server.Spells.Herbalist
 				m.FixedParticles( 0x91B, 1, 240, 9916, 0, 3, EffectLayer.Head );
 				m.PlaySound( 0x1E5 );
 
-				double damage = ((Caster.Skills[CastSkill].Value + m.Skills[DamageSkill].Value) / 10) + (int)(Server.Items.BasePotion.EnhancePotions( m )/2);
+				double damage = ((Caster.Skills[CastSkill].Value + m.Skills[DamageSkill].Value) / 8) + (int)(Server.Items.BasePotion.EnhancePotions( m )/2);
 
 				if ( damage < 1 )
 					damage = 1;

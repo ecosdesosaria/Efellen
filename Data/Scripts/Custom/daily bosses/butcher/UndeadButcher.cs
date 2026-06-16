@@ -197,7 +197,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
 			c.DropItem( new EtherealPowerScroll() );
 			c.DropItem( AscensionScrollFactory.CreateRandom());
 			// gold explosion

@@ -213,7 +213,7 @@ namespace Server.Mobiles
 		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(30 - (m_Rage * 2));
 		    }
 			
-			if ( DateTime.Now >= NextPickup )
+			if ( DateTime.UtcNow >= NextPickup )
 			{
 				switch( Utility.RandomMinMax( 0, 2 ) )
 				{
@@ -330,7 +330,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
 			for ( int i = 0; i < 5; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );

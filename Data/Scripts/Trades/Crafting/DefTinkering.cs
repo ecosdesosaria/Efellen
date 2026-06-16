@@ -116,6 +116,10 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( ClockParts ), 1044051, 1024175, 0.0, 0.0, typeof( AxleGears ), 1044170, 1, 1044253 );
 			AddRes( index, typeof( Springs ), 1044171, 1, 1044253 );
 
+			index = AddCraft( typeof( PowerCrystal ), 1044047, "power crystal", 45.0, 60.0, typeof( GoldIngot ), 1027146, 2, 1044037 );
+			AddSkill( index, SkillName.Magery, 40.0, 50.0 );
+			AddRes( index, typeof( ArcaneGem ), "arcane gem", 6, 1053098 );
+
 			index = AddCraft( typeof( SextantParts ), 1044051, 1024185, 0.0, 0.0, typeof( AxleGears ), 1044170, 1, 1044253 );
 			AddRes( index, typeof( Hinge ), 1044172, 1, 1044253 );
 

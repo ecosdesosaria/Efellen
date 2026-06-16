@@ -62,10 +62,10 @@ namespace Server.Spells.Mystic
 
 				SpellHelper.CheckReflect( 5, ref from, ref target );
 
-				int damage = (int)((Caster.Skills[SkillName.FistFighting].Value + Caster.Int) / 3);
+				int damage = (int)((Caster.Skills[SkillName.FistFighting].Value + Caster.Int) / 2);
 				
-				if ( damage > 90 )
-					damage = 90;
+				if ( damage > 125 )
+					damage = 125;
 
 				Timer.DelayCall( TimeSpan.FromSeconds( 0.1 ),
 					new TimerStateCallback( AosDelay_Callback ),

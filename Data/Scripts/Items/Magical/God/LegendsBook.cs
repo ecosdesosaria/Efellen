@@ -1,543 +1,770 @@
 using System;
-using Server; 
-using Server.Network;
 using System.Collections;
 using System.Globalization;
+using Server;
+using Server.Gumps;
 using Server.Items;
 using Server.Misc;
-using Server.Gumps;
+using Server.Network;
 
 namespace Server.Items
 {
-	public class LegendsBook : Item
-	{
-		[Constructable]
-		public LegendsBook() : base( 0x22C5 )
-		{
-			Weight = 1.0;
-			Movable = false;
-			Hue = 0xB93;
-			Name = "Legendary Artefacts";
-		}
+    public enum LegendCategory
+    {
+        OneHandedWeapons = 0,
+        TwoHandedWeapons = 1,
+        RangedWeapons    = 2,
+        JewelryTrinkets  = 3,
+        Armor            = 4,
+        Clothing         = 5
+    }
 
-		public override void OnDoubleClick( Mobile from )
-		{
-			from.CloseGump( typeof( LegendsBookGump ) );
-			from.SendGump( new LegendsBookGump( from, this, 0 ) );
-		}
+    public class LegendEntry
+    {
+        public string TypeName; 
+        public string DisplayName; 
+        public LegendCategory Category;
 
-		public class LegendsBookGump : Gump
-		{
-			private LegendsBook m_Book;
+        public LegendEntry( string typeName, string displayName, LegendCategory category )
+        {
+            TypeName    = typeName;
+            DisplayName = displayName;
+            Category    = category;
+        }
+    }
 
-			public LegendsBookGump( Mobile from, LegendsBook wikipedia, int page ): base( 100, 100 )
-			{
-				from.SendSound( 0x55 );
-				string color = "#81db9f";
+    // =========================================================================
+    public class LegendsBook : Item
+    {
+        public static readonly LegendEntry[] AllLegends = new LegendEntry[]
+        {
+            // ----- One-Handed Weapons -----
+            new LegendEntry( "LevelAssassinSpike",      "Assassin Dagger",      LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelElvenSpellblade",    "Assassin Sword",       LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelBroadsword",         "Broadsword",           LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelButcherKnife",       "Butcher Knife",        LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelCleaver",            "Cleaver",              LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelClub",               "Club",                 LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelCutlass",            "Cutlass",              LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelDagger",             "Dagger",               LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelRadiantScimitar",    "Falchion",             LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelHammers",            "Hammer",               LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelHatchet",            "Hatchet",              LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelKama",               "Kama",                 LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelKatana",             "Katana",               LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelKryss",              "Kryss",                LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelLargeKnife",         "Large Knife",          LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelLongsword",          "Longsword",            LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelMace",               "Mace",                 LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelElvenMachete",       "Machete",              LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelPickaxe",            "Pickaxe",              LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelShortSpear",         "Rapier",               LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelRoyalSword",         "Royal Sword",          LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelScepter",            "Scepter",              LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelSceptre",            "Sceptre",              LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelScimitar",           "Scimitar",             LegendCategory.OneHandedWeapons ),
+        	new LegendEntry( "LevelShortSword",         "Short Sword",          LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelSkinningKnife",      "Skinning Knife",       LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelBoneHarvester",      "Sickle",               LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelSpikedClub",         "Spiked Club",          LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelThinLongsword",      "Sword",                LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelTekagi",             "Tekagi",               LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelWarAxe",             "War Axe",              LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelRuneBlade",          "War Blades",           LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelWarCleaver",         "War Cleaver",          LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelLeafblade",          "War Dagger",           LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelWarFork",            "War Fork",             LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelWarMace",            "War Mace",             LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelWhips",              "Whip",                 LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelWakizashi",          "Wakizashi",            LegendCategory.OneHandedWeapons ),
+			new LegendEntry( "LevelHammerPick",         "Hammer Pick",          LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelDiamondMace",        "Battle Mace",          LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelOrnateAxe",          "Barbarian Axe",        LegendCategory.OneHandedWeapons ),
+            new LegendEntry( "LevelVikingSword",        "Barbarian Sword",      LegendCategory.OneHandedWeapons ),
+            
+            // ----- Two-Handed Weapons -----
+			new LegendEntry( "LevelPugilistGloves",     "Pugilist Gloves",      LegendCategory.TwoHandedWeapons ),
+			new LegendEntry( "LevelTessen",             "Tessen",               LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelAxe",                "Axe",                  LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelDaisho",             "Daisho",               LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelSai",                "Sai",                  LegendCategory.TwoHandedWeapons ),
+		    new LegendEntry( "LevelShepherdsCrook",     "Shepherds Crook",      LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelBardiche",           "Bardiche",             LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelBattleAxe",         "Battle Axe",            LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelBladedStaff",        "Bladed Staff",         LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelBokuto",             "Bokuto",               LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelClaymore",           "Claymore",             LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelCrescentBlade",      "Crescent Blade",       LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelDoubleAxe",          "Double Axe",           LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelDoubleBladedStaff",  "Double Bladed Staff",  LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelWildStaff",          "Druid Staff",          LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelExecutionersAxe",    "Executioner Axe",      LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelGnarledStaff",       "Gnarled Staff",        LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelHalberd",            "Halberd",              LegendCategory.TwoHandedWeapons ),    
+			new LegendEntry( "LevelHarpoon",            "Harpoon",              LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelLajatang",           "Lajatang",             LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelLance",              "Lance",                LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelLargeBattleAxe",     "Large Battle Axe",     LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelMaul",               "Maul",                 LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelNoDachi",            "NoDachi",              LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelNunchaku",           "Nunchaku",             LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelPike",               "Pike",                 LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelQuarterStaff",       "Quarter Staff",        LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelScythe",             "Scythe",               LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelSpear",              "Spear",                LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelStave",              "Stave",                LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelTetsubo",            "Tetsubo",              LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelTribalSpear",        "Tribal Spear",         LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelPitchfork",          "Trident",              LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelTwoHandedAxe",       "Two Handed Axe",       LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelWarHammer",          "War Hammer",           LegendCategory.TwoHandedWeapons ),
+            new LegendEntry( "LevelBlackStaff",         "Wizard Staff",         LegendCategory.TwoHandedWeapons ),
 
-				m_Book = wikipedia;
-				LegendsBook pedia = (LegendsBook)wikipedia;
+            // ----- Ranged Weapons -----
+            new LegendEntry( "LevelBow",                    "Bow",               LegendCategory.RangedWeapons ),
+            new LegendEntry( "LevelCompositeBow",           "Composite Bow",     LegendCategory.RangedWeapons ),
+            new LegendEntry( "LevelCrossbow",               "Crossbow",          LegendCategory.RangedWeapons ),
+            new LegendEntry( "LevelHeavyCrossbow",          "Heavy Crossbow",    LegendCategory.RangedWeapons ),
+            new LegendEntry( "LevelRepeatingCrossbow",      "Repeating Crossbow",LegendCategory.RangedWeapons ),
+            new LegendEntry( "LevelElvenCompositeLongbow",  "Woodland Longbow",  LegendCategory.RangedWeapons ),
+            new LegendEntry( "LevelMagicalShortbow",        "Woodland Shortbow", LegendCategory.RangedWeapons ),
+            new LegendEntry( "LevelYumi",                   "Yumi",              LegendCategory.RangedWeapons ),
+			new LegendEntry( "LevelThrowingGloves",     "Throwing Gloves",       LegendCategory.RangedWeapons ),
 
-				int NumberOfArtifacts = 291;	// SEE LISTING BELOW AND MAKE SURE IT MATCHES THE AMOUNT
-												// DO THIS NUMBER+1 IN THE OnResponse SECTION BELOW
 
-				decimal PageCount = NumberOfArtifacts / 16;
-				int TotalBookPages = ( 100000 ) + ( (int)Math.Ceiling( PageCount ) );
+            // ----- Jewelry & Trinkets -----
+            new LegendEntry( "LevelCandle",             "Candle",               LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelGoldBeadNecklace",   "Bead Necklace",        LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelGoldBracelet",       "Gold Bracelet",        LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelGoldEarrings",       "Gold Earrings",        LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelGoldNecklace",       "Gold Amulet",          LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelGoldRing",           "Gold Ring",            LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelLantern",            "Lantern",              LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelNecklace",           "Amulet",               LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelSilverBeadNecklace", "Silver Bead Necklace", LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelSilverBracelet",     "Silver Bracelet",      LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelSilverEarrings",     "Silver Earrings",      LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelSilverNecklace",     "Silver Amulet",        LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelSilverRing",         "Silver Ring",          LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelTalismanLeather",    "Trinket, Talisman",    LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelTalismanHoly",       "Trinket, Symbol",      LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelTalismanSnake",      "Trinket, Idol",        LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelTalismanTotem",      "Trinket, Totem",       LegendCategory.JewelryTrinkets ),
+            new LegendEntry( "LevelTorch",              "Torch",                LegendCategory.JewelryTrinkets ),
 
-				this.Closable=true;
-				this.Disposable=true;
-				this.Dragable=true;
-				this.Resizable=false;
+            // ----- Armor -----
+            new LegendEntry( "LevelBascinet",               "Bascinet",                  LegendCategory.Armor ),
+            new LegendEntry( "LevelBoneArms",               "Bone Arms",                 LegendCategory.Armor ),
+            new LegendEntry( "LevelBoneChest",              "Bone Chest",                LegendCategory.Armor ),
+            new LegendEntry( "LevelBoneGloves",             "Bone Gloves",               LegendCategory.Armor ),
+            new LegendEntry( "LevelBoneHelm",               "Bone Helm",                 LegendCategory.Armor ),
+            new LegendEntry( "LevelBoneLegs",               "Bone Legs",                 LegendCategory.Armor ),
+            new LegendEntry( "LevelBuckler",                "Buckler",                   LegendCategory.Armor ),
+            new LegendEntry( "LevelChainChest",             "Chain Chest",               LegendCategory.Armor ),
+            new LegendEntry( "LevelChainCoif",              "Chain Coif",                LegendCategory.Armor ),
+            new LegendEntry( "LevelChainHatsuburi",         "Chain Hatsuburi",           LegendCategory.Armor ),
+            new LegendEntry( "LevelChainLegs",              "Chain Legs",                LegendCategory.Armor ),
+            new LegendEntry( "LevelChaosShield",            "Chaos Shield",              LegendCategory.Armor ),
+           
+            new LegendEntry( "LevelCloseHelm",              "Close Helm",                LegendCategory.Armor ),
+            new LegendEntry( "LevelDarkShield",             "Dark Shield",               LegendCategory.Armor ),
+            new LegendEntry( "LevelDecorativePlateKabuto",  "Decorative Plate Kabuto",   LegendCategory.Armor ),
+            new LegendEntry( "LevelDreadHelm",              "Dread Helm",                LegendCategory.Armor ),
+            new LegendEntry( "LevelElvenShield",            "Elven Shield",              LegendCategory.Armor ),
+            new LegendEntry( "LevelFemaleLeatherChest",     "Female Leather Chest",      LegendCategory.Armor ),
+            new LegendEntry( "LevelFemalePlateChest",       "Female Plate Chest",        LegendCategory.Armor ),
+            new LegendEntry( "LevelFemaleStuddedChest",     "Female Studded Chest",      LegendCategory.Armor ),
+            new LegendEntry( "LevelGuardsmanShield",        "Guardsman Shield",          LegendCategory.Armor ),
+            new LegendEntry( "LevelHeaterShield",           "Heater Shield",             LegendCategory.Armor ),
+            new LegendEntry( "LevelHeavyPlateJingasa",      "Heavy Plate Jingasa",       LegendCategory.Armor ),
+            new LegendEntry( "LevelHelmet",                 "Helmet",                    LegendCategory.Armor ),
+            new LegendEntry( "LevelOrcHelm",                "Horned Helm",               LegendCategory.Armor ),
+            new LegendEntry( "LevelJeweledShield",          "Jeweled Shield",            LegendCategory.Armor ),
+            new LegendEntry( "LevelBronzeShield",           "Large Shield",              LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherArms",            "Leather Arms",              LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherBustierArms",     "Leather Bustier Arms",      LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherCap",             "Leather Cap",               LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherChest",           "Leather Chest",             LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherCloak",           "Leather Cloak",             LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherDo",              "Leather Do",                LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherGloves",          "Leather Gloves",            LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherGorget",          "Leather Gorget",            LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherHaidate",         "Leather Haidate",           LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherHiroSode",        "Leather HiroSode",          LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherJingasa",         "Leather Jingasa",           LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherLegs",            "Leather Legs",              LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherMempo",           "Leather Mempo",             LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherNinjaHood",       "Leather Ninja Hood",        LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherNinjaJacket",     "Leather Ninja Jacket",      LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherNinjaMitts",      "Leather Ninja Mitts",       LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherNinjaPants",      "Leather Ninja Pants",       LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherRobe",            "Leather Robe",              LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherShorts",          "Leather Shorts",            LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherSkirt",           "Leather Skirt",             LegendCategory.Armor ),
+            new LegendEntry( "LevelLeatherSuneate",         "Leather Suneate",           LegendCategory.Armor ),
+            new LegendEntry( "LevelLightPlateJingasa",      "Light Plate Jingasa",       LegendCategory.Armor ),
+            new LegendEntry( "LevelMetalKiteShield",        "Metal Kite Shield",         LegendCategory.Armor ),
+            new LegendEntry( "LevelMetalShield",            "Metal Shield",              LegendCategory.Armor ),
+            new LegendEntry( "LevelNorseHelm",              "Norse Helm",                LegendCategory.Armor ),
+            new LegendEntry( "LevelOniwabanBoots",          "Oniwaban Boots",            LegendCategory.Armor ),
+            new LegendEntry( "LevelOniwabanGloves",         "Oniwaban Gloves",           LegendCategory.Armor ),
+            new LegendEntry( "LevelOniwabanHood",           "Oniwaban Hood",             LegendCategory.Armor ),
+            new LegendEntry( "LevelOniwabanLeggings",       "Oniwaban Leggings",         LegendCategory.Armor ),
+            new LegendEntry( "LevelOniwabanTunic",          "Oniwaban Tunic",            LegendCategory.Armor ),
+            new LegendEntry( "LevelOrderShield",            "Order Shield",              LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateArms",              "Plate Arms",                LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateBattleKabuto",      "Plate Battle Kabuto",       LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateChest",             "Plate Chest",               LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateDo",                "Plate Do",                  LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateGloves",            "Plate Gloves",              LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateGorget",            "Plate Gorget",              LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateHaidate",           "Plate Haidate",             LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateHatsuburi",         "Plate Hatsuburi",           LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateHelm",              "Plate Helm",                LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateHiroSode",          "Plate Hiro Sode",           LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateLegs",              "Plate Legs",                LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateMempo",             "Plate Mempo",               LegendCategory.Armor ),
+            new LegendEntry( "LevelPlateSuneate",           "Plate Suneate",             LegendCategory.Armor ),
+            new LegendEntry( "LevelRingmailArms",           "Ringmail Arms",             LegendCategory.Armor ),
+            new LegendEntry( "LevelRingmailChest",          "Ringmail Chest",            LegendCategory.Armor ),
+            new LegendEntry( "LevelRingmailGloves",         "Ringmail Gloves",           LegendCategory.Armor ),
+            new LegendEntry( "LevelRingmailLegs",           "Ringmail Legs",             LegendCategory.Armor ),
+            new LegendEntry( "LevelRoyalArms",              "Royal Arms",                LegendCategory.Armor ),
+            new LegendEntry( "LevelRoyalBoots",             "Royal Boots",               LegendCategory.Armor ),
+            new LegendEntry( "LevelRoyalChest",             "Royal Chest",               LegendCategory.Armor ),
+            new LegendEntry( "LevelRoyalGloves",            "Royal Gloves",              LegendCategory.Armor ),
+            new LegendEntry( "LevelRoyalGorget",            "Royal Gorget",              LegendCategory.Armor ),
+            new LegendEntry( "LevelRoyalHelm",              "Royal Helm",                LegendCategory.Armor ),
+            new LegendEntry( "LevelRoyalsLegs",             "Royal Legs",                LegendCategory.Armor ),
+            new LegendEntry( "LevelRoyalShield",            "Royal Shield",              LegendCategory.Armor ),
+            new LegendEntry( "LevelDragonArms",             "Scalemail Arms",            LegendCategory.Armor ),
+            new LegendEntry( "LevelDragonGloves",           "Scalemail Gloves",          LegendCategory.Armor ),
+            new LegendEntry( "LevelDragonHelm",             "Scalemail Helm",            LegendCategory.Armor ),
+            new LegendEntry( "LevelDragonLegs",             "Scalemail Leggings",        LegendCategory.Armor ),
+            new LegendEntry( "LevelScalemailShield",        "Scalemail Shield",          LegendCategory.Armor ),
+            new LegendEntry( "LevelDragonChest",            "Scalemail Tunic",           LegendCategory.Armor ),
+            new LegendEntry( "LevelShinobiCowl",            "Leather Shinobi Cowl",      LegendCategory.Armor ),
+            new LegendEntry( "LevelShinobiHood",            "Leather Shinobi Hood",      LegendCategory.Armor ),
+            new LegendEntry( "LevelShinobiMask",            "Leather Shinobi Mask",      LegendCategory.Armor ),
+            new LegendEntry( "LevelShinobiRobe",            "Leather Shinobi Robe",      LegendCategory.Armor ),
+            new LegendEntry( "LevelSmallPlateJingasa",      "Small Plate Jingasa",       LegendCategory.Armor ),
+            new LegendEntry( "LevelStandardPlateKabuto",    "Standard Plate Kabuto",     LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedArms",            "Studded Arms",              LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedBustierArms",     "Studded Bustier Arms",      LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedChest",           "Studded Chest",             LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedDo",              "Studded Do",                LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedGloves",          "Studded Gloves",            LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedGorget",          "Studded Gorget",            LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedHaidate",         "Studded Haidate",           LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedHiroSode",        "Studded Hiro Sode",         LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedLegs",            "Studded Legs",              LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedMempo",           "Studded Mempo",             LegendCategory.Armor ),
+            new LegendEntry( "LevelStuddedSuneate",         "Studded Suneate",           LegendCategory.Armor ),
+            new LegendEntry( "LevelSunShield",              "Sun Shield",                LegendCategory.Armor ),
+            new LegendEntry( "LevelVirtueShield",           "Virtue Shield",             LegendCategory.Armor ),
+            new LegendEntry( "LevelWoodenKiteShield",       "Wooden Kite Shield",        LegendCategory.Armor ),
+            new LegendEntry( "LevelWoodenPlateArms",        "Wooden Plate Arms",         LegendCategory.Armor ),
+            new LegendEntry( "LevelWoodenPlateChest",       "Wooden Plate Chest",        LegendCategory.Armor ),
+            new LegendEntry( "LevelWoodenPlateGloves",      "Wooden Plate Gloves",       LegendCategory.Armor ),
+            new LegendEntry( "LevelWoodenPlateGorget",      "Wooden Plate Gorget",       LegendCategory.Armor ),
+            new LegendEntry( "LevelWoodenPlateHelm",        "Wooden Plate Helm",         LegendCategory.Armor ),
+            new LegendEntry( "LevelWoodenPlateLegs",        "Wooden Plate Legs",         LegendCategory.Armor ),
+            new LegendEntry( "LevelWoodenShield",           "Wooden Shield",             LegendCategory.Armor ),
+            new LegendEntry( "LevelChampionShield",         "Champion Shield",           LegendCategory.Armor ),
+            new LegendEntry( "LevelCrestedShield",          "Crested Shield",            LegendCategory.Armor ),
 
-				AddPage(0);
+            // ----- Clothing -----
+			new LegendEntry( "LevelCirclet",                "Circlet",                   LegendCategory.Clothing ),
+            new LegendEntry( "LevelBandana",            "Bandana",              LegendCategory.Clothing ),
+            new LegendEntry( "LevelBearMask",           "Bear Mask",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelBelt",               "Belt",                 LegendCategory.Clothing ),
+            new LegendEntry( "LevelBodySash",           "Body Sash",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelBonnet",             "Bonnet",               LegendCategory.Clothing ),
+            new LegendEntry( "LevelBoots",              "Boots",                LegendCategory.Clothing ),
+            new LegendEntry( "LevelCap",                "Cap",                  LegendCategory.Clothing ),
+            new LegendEntry( "LevelCloak",              "Cloak",                LegendCategory.Clothing ),
+            new LegendEntry( "LevelClothNinjaHood",     "Cloth Ninja Hood",     LegendCategory.Clothing ),
+            new LegendEntry( "LevelClothNinjaJacket",   "Cloth Ninja Jacket",   LegendCategory.Clothing ),
+            new LegendEntry( "LevelCowl",               "Cowl",                 LegendCategory.Clothing ),
+            new LegendEntry( "LevelDeerMask",           "Deer Mask",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelDoublet",            "Doublet",              LegendCategory.Clothing ),
+            new LegendEntry( "LevelElvenBoots",         "Fancy Boots",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelFancyDress",         "Fancy Dress",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelFancyShirt",         "Fancy Shirt",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelFeatheredHat",       "Feathered Hat",        LegendCategory.Clothing ),
+            new LegendEntry( "LevelFemaleKimono",       "Female Kimono",        LegendCategory.Clothing ),
+            new LegendEntry( "LevelFloppyHat",          "Floppy Hat",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelFormalShirt",        "Formal Shirt",         LegendCategory.Clothing ),
+            new LegendEntry( "LevelFullApron",          "Full Apron",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelFurBoots",           "Fur Boots",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelFurCape",            "Fur Cape",             LegendCategory.Clothing ),
+            new LegendEntry( "LevelFurSarong",          "Fur Sarong",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelGildedDress",        "Gilded Dress",         LegendCategory.Clothing ),
+            new LegendEntry( "LevelHakama",             "Hakama",               LegendCategory.Clothing ),
+            new LegendEntry( "LevelHakamaShita",        "Hakama Shita",         LegendCategory.Clothing ),
+            new LegendEntry( "LevelHalfApron",          "Half Apron",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelHood",               "Hood",                 LegendCategory.Clothing ),
+            new LegendEntry( "LevelHornedTribalMask",   "Horned Tribal Mask",   LegendCategory.Clothing ),
+            new LegendEntry( "LevelJesterHat",          "Jester Hat",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelJesterSuit",         "Jester Suit",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelJinBaori",           "Jin Baori",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelKamishimo",          "Kamishimo",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelKasa",               "Kasa",                 LegendCategory.Clothing ),
+            new LegendEntry( "LevelKilt",               "Kilt",                 LegendCategory.Clothing ),
+            new LegendEntry( "LevelLoinCloth",          "Loin Cloth",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelLongPants",          "Long Pants",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelMaleKimono",         "Male Kimono",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelNinjaTabi",          "Ninja Tabi",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelObi",                "Obi",                  LegendCategory.Clothing ),
+            new LegendEntry( "LevelPlainDress",         "Plain Dress",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelPirateHat",          "Pirate Hat",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelRobe",               "Robe",                 LegendCategory.Clothing ),
+            new LegendEntry( "LevelRoyalCape",          "Royal Cape",           LegendCategory.Clothing ),
+            new LegendEntry( "LevelSamuraiTabi",        "Samurai Tabi",         LegendCategory.Clothing ),
+            new LegendEntry( "LevelSandals",            "Sandals",              LegendCategory.Clothing ),
+            new LegendEntry( "LevelSash",               "Sash",                 LegendCategory.Clothing ),
+            new LegendEntry( "LevelShirt",              "Shirt",                LegendCategory.Clothing ),
+            new LegendEntry( "LevelShoes",              "Shoes",                LegendCategory.Clothing ),
+            new LegendEntry( "LevelShortPants",         "Short Pants",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelSkirt",              "Skirt",                LegendCategory.Clothing ),
+            new LegendEntry( "LevelSkullCap",           "Skull Cap",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelStrawHat",           "Straw Hat",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelSurcoat",            "Surcoat",              LegendCategory.Clothing ),
+            new LegendEntry( "LevelTallStrawHat",       "Tall Straw Hat",       LegendCategory.Clothing ),
+            new LegendEntry( "LevelTattsukeHakama",     "Tattsuke Hakama",      LegendCategory.Clothing ),
+            new LegendEntry( "LevelThighBoots",         "Thigh Boots",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelTribalMask",         "Tribal Mask",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelTricorneHat",        "Tricorne Hat",         LegendCategory.Clothing ),
+            new LegendEntry( "LevelTunic",              "Tunic",                LegendCategory.Clothing ),
+            new LegendEntry( "LevelWaraji",             "Waraji",               LegendCategory.Clothing ),
+            new LegendEntry( "LevelWideBrimHat",        "Wide Brim Hat",        LegendCategory.Clothing ),
+            new LegendEntry( "LevelWitchHat",           "Witch Hat",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelWizardsHat",         "Wizards Hat",          LegendCategory.Clothing ),
+            new LegendEntry( "LevelWolfMask",           "Wolf Mask",            LegendCategory.Clothing ),
+            new LegendEntry( "LevelHikingBoots",        "Hiking Boots",         LegendCategory.Clothing ),
+        };
 
-				AddImage(0, 0, 7005, 2964);
-				AddImage(0, 0, 7006);
-				AddImage(0, 0, 7024, 2736);
-				AddButton(590, 48, 4017, 4017, 0, GumpButtonType.Reply, 0);
+        public static ArrayList GetEntriesForCategory( LegendCategory cat )
+        {
+            ArrayList result = new ArrayList();
+            for ( int i = 0; i < AllLegends.Length; i++ )
+            {
+                if ( AllLegends[i].Category == cat )
+                    result.Add( AllLegends[i] );
+            }
+            return result;
+        }
 
-				AddHtml( 77, 49, 259, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>LEGENDARY ARTIFACTS</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+        public static string CategoryLabel( LegendCategory cat )
+        {
+            switch ( cat )
+            {
+                case LegendCategory.OneHandedWeapons: return "Armas de Uma Mão";
+				case LegendCategory.TwoHandedWeapons: return "Armas de Duas Mãos";
+				case LegendCategory.RangedWeapons:    return "Armas de Longo Alcance";
+				case LegendCategory.JewelryTrinkets:  return "Joias & Trinkets";
+				case LegendCategory.Armor:            return "Armaduras";
+				case LegendCategory.Clothing:         return "Vestuário";
+				default:                              return "Desconhecido";
+            }
+        }
 
-				int subItem = page * 16;
+        private static string FixDisplayName( string displayName )
+        {
+            if ( displayName == "Trinket, Symbol" ) return "Talisman";
+            if ( displayName == "Trinket, Idol"   ) return "Talisman";
+            if ( displayName == "Trinket, Totem"  ) return "Talisman";
+            return displayName;
+        }
 
-				int showItem1 = subItem + 1;
-				int showItem2 = subItem + 2;
-				int showItem3 = subItem + 3;
-				int showItem4 = subItem + 4;
-				int showItem5 = subItem + 5;
-				int showItem6 = subItem + 6;
-				int showItem7 = subItem + 7;
-				int showItem8 = subItem + 8;
-				int showItem9 = subItem + 9;
-				int showItem10 = subItem + 10;
-				int showItem11 = subItem + 11;
-				int showItem12 = subItem + 12;
-				int showItem13 = subItem + 13;
-				int showItem14 = subItem + 14;
-				int showItem15 = subItem + 15;
-				int showItem16 = subItem + 16;
+        [Constructable]
+        public LegendsBook() : base( 0x22C5 )
+        {
+            Weight  = 1.0;
+            Movable = false;
+            Hue     = 0xB93;
+            Name    = "Artefatos Lendários";
+        }
 
-				int page_prev = ( 100000 + page ) - 1;
-					if ( page_prev < 100000 ){ page_prev = TotalBookPages; }
-				int page_next = ( 100000 + page ) + 1;
-					if ( page_next > TotalBookPages ){ page_next = 100000; }
+        public override void OnDoubleClick( Mobile from )
+        {
+            from.SendSound( 0x55 );
+            from.CloseGump( typeof( LegendCategoryGump ) );
+            from.CloseGump( typeof( LegendItemsGump ) );
+            from.CloseGump( typeof( LegendConfirmGump ) );
+            from.SendGump( new LegendCategoryGump( from, this ) );
+        }
 
-				AddButton(75, 374, 4014, 4014, page_prev, GumpButtonType.Reply, 0);
-				AddButton(590, 375, 4005, 4005, page_next, GumpButtonType.Reply, 0);
+        public LegendsBook( Serial serial ) : base( serial ) { }
 
-				///////////////////////////////////////////////////////////////////////////////////
+        public override void Serialize( GenericWriter writer )
+        {
+            base.Serialize( writer );
+            writer.Write( (int)1 );
+        }
 
-				int x = 115;
-				int y = 64;
-				int s = 64;
-				int z = 34;
+        public override void Deserialize( GenericReader reader )
+        {
+            base.Deserialize( reader );
+            int version = reader.ReadInt();
+        }
 
-				y=y+z;
-				if ( GetLegendArtyForBook( showItem1, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem1, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem2, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem2, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem3, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem3, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem4, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem4, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem5, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem5, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem6, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem6, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem7, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem7, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem8, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem8, GumpButtonType.Reply, 0); } y=s-3;
-				y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem1, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem2, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem3, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem4, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem5, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem6, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem7, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem8, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=s-3;
+        public static bool CanChoose( Mobile from )
+        {
+            int karma = from.Karma;
+            if ( karma < 0 ) karma = -karma;
+            return from.Fame >= 15000 && karma >= 15000 && from.TotalGold >= 10000;
+        }
 
-				///////////////////////////////////////////////////////////////////////////////////
+        public static string ArtyItemName( string item, Mobile from )
+        {
+            string ownerName = from.Name;
+            string sAdjective = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(
+                RandomThings.MagicItemAdj( "start",
+                    Server.Misc.GetPlayerInfo.OrientalPlay( from ),
+                    Server.Misc.GetPlayerInfo.EvilPlay( from ), 0 ) );
 
-				x = 407;
-				y = s;
+            if ( ownerName.EndsWith( "s" ) )
+                ownerName = ownerName + "'";
+            else
+                ownerName = ownerName + "'s";
 
-				y=y+z;
-				if ( GetLegendArtyForBook( showItem9, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem9, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem10, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem10, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem11, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem11, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem12, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem12, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem13, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem13, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem14, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem14, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem15, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem15, GumpButtonType.Reply, 0); } y=y+z;
-				if ( GetLegendArtyForBook( showItem16, 1 ) != "" ){ AddButton(x, y, 2447, 2447, showItem16, GumpButtonType.Reply, 0); } y=s-3;
-				y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem9, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem10, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem11, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem12, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem13, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem14, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem15, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=y+z;
-				AddHtml( x+20, y, 155, 20, @"<BODY><BASEFONT Color=" + color + ">" + GetLegendArtyForBook( showItem16, 1 ) + "</BASEFONT></BODY>", (bool)false, (bool)false); y=s-3;
-			}
+            if ( Utility.RandomMinMax( 0, 1 ) == 0 )
+                return "o " + sAdjective + " " + item + " de " + from.Name;
+            else
+                return ownerName + " " + sAdjective + " " + item;
+        }
 
-			public override void OnResponse( NetState state, RelayInfo info )
-			{
-				Mobile from = state.Mobile; 
-				Container pack = from.Backpack;
-				from.SendSound( 0x55 );
+        public class LegendCategoryGump : Gump
+        {
+            private LegendsBook m_Book;
 
-				bool canChoose = false;
+            public LegendCategoryGump( Mobile from, LegendsBook book ) : base( 100, 100 )
+            {
+                m_Book = book;
+                string color = "#81db9f";
 
-				int karma = from.Karma;
-					if ( karma < 0 ){ karma = -1 * karma; }
+                Closable  = true;
+                Disposable = true;
+                Dragable  = true;
+                Resizable = false;
 
-				int fame = from.Fame;
+                AddPage( 0 );
+                AddBackground( 0, 0, 340, 340, 9270 );
 
-				if ( fame >= 15000 && karma >= 15000 && from.TotalGold >= 10000 ){ canChoose = true; }
+                AddHtml( 20, 15, 300, 24,
+                    "<BODY><BASEFONT Color=" + color + "><CENTER>ARTEFATOS LENDÁRIOS</CENTER></BASEFONT></BODY>",
+                    false, false );
 
-				if ( info.ButtonID >= 100000 )
-				{
-					int page = info.ButtonID - 100000;
-					from.SendGump( new LegendsBookGump( from, m_Book, page ) );
-				}
-				else if ( canChoose == true && info.ButtonID > 0 && info.ButtonID < 300 && pack.ConsumeTotal(typeof(Gold), 10000))
-				{
-					string sType = GetLegendArtyForBook( info.ButtonID, 2 );
-					string sName = GetLegendArtyForBook( info.ButtonID, 1 );
-						if ( sName == "Talisman, Holy" ){ sName = "Talisman"; }
-						if ( sName == "Talisman, Snake" ){ sName = "Talisman"; }
-						if ( sName == "Talisman, Totem" ){ sName = "Talisman"; }
-					string sArty = ArtyItemName( sName, from );
+                bool eligible = LegendsBook.CanChoose( from );
+                string hint = eligible
+                    ? "Escolha uma categoria abaixo:"
+                    : "Requer 15k de Fama, 15k de Karma, 10k de Ouro";
+                AddHtml( 20, 38, 300, 20,
+                    "<BODY><BASEFONT Color=" + color + "><CENTER>" + hint + "</CENTER></BASEFONT></BODY>",
+                    false, false );
 
-					if ( sName != "" )
-					{
-						Item reward = null;
-						Type itemType = ScriptCompiler.FindTypeByName( sType );
-						from.Fame = 0;
-						from.Karma = 0;
-						reward = (Item)Activator.CreateInstance(itemType);
-						reward.Name = sArty;
-						from.AddToBackpack ( reward );
-						LoggingFunctions.LogCreatedArtifact( from, sArty );
-						from.SendMessage( "Os deuses criaram um artefato lendário chamado " + sArty + ".");
-						from.FixedParticles( 0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot );
-						from.PlaySound( 0x208 );
-					}
-				}
-				else if ( from.TotalGold < 10000 )
-				{
-					from.SendMessage( "Você não tem ouro suficiente para o tributo." );
-				}
-				else
-				{
-					from.SendMessage( "Você não é lendário o suficiente para invocar o artefato." );
-				}
-			}
-		}
+            
+                int btnX   = 60;
+                int labelX = 100;
+                int y      = 74;
+                int step   = 36;
 
-		public LegendsBook( Serial serial ) : base( serial )
-		{
-		}
+                AddCategoryRow( btnX, labelX, y, 1, "Armas de uma mão", color ); y += step;
+                AddCategoryRow( btnX, labelX, y, 2, "Armas de duas mãos", color ); y += step;
+                AddCategoryRow( btnX, labelX, y, 3, "Armas de alcance",     color ); y += step;
+                AddCategoryRow( btnX, labelX, y, 4, "Jóias & Trinkets", color ); y += step;
+                AddCategoryRow( btnX, labelX, y, 5, "Armadura",              color ); y += step;
+                AddCategoryRow( btnX, labelX, y, 6, "Roupas",           color );
 
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-			writer.Write( (int)1 ); // version
-		}
+                AddButton( 148, 302, 4017, 4019, 0, GumpButtonType.Reply, 0 );
+                AddHtml( 183, 304, 60, 20,
+                    "<BODY><BASEFONT Color=" + color + ">Fechar</BASEFONT></BODY>",
+                    false, false );
+            }
 
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-			int version = reader.ReadInt();
-		}
+            private void AddCategoryRow( int btnX, int labelX, int y, int buttonID, string label, string color )
+            {
+                AddButton( btnX, y, 4005, 4007, buttonID, GumpButtonType.Reply, 0 );
+                AddHtml( labelX, y + 2, 210, 22,
+                    "<BODY><BASEFONT Color=" + color + ">" + label + "</BASEFONT></BODY>",
+                    false, false );
+            }
 
-		public static string GetLegendArtyForBook( int artifact, int part )
-		{
-			string item = "";
-			string name = "";
-			int arty = 1;
+            public override void OnResponse( NetState state, RelayInfo info )
+            {
+                Mobile from = state.Mobile;
+                from.SendSound( 0x55 );
 
-			if ( artifact == arty) { name="LevelBascinet"; item="Bascinet"; } arty++;
-			if ( artifact == arty) { name="LevelBoneArms"; item="Bone Arms"; } arty++;
-			if ( artifact == arty) { name="LevelBoneChest"; item="Bone Chest"; } arty++;
-			if ( artifact == arty) { name="LevelBoneGloves"; item="Bone Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelBoneHelm"; item="Bone Helm"; } arty++;
-			if ( artifact == arty) { name="LevelBoneLegs"; item="Bone Legs"; } arty++;
-			if ( artifact == arty) { name="LevelBuckler"; item="Buckler"; } arty++;
-			if ( artifact == arty) { name="LevelChainChest"; item="Chain Chest"; } arty++;
-			if ( artifact == arty) { name="LevelChainCoif"; item="Chain Coif"; } arty++;
-			if ( artifact == arty) { name="LevelChainHatsuburi"; item="Chain Hatsuburi"; } arty++;
-			if ( artifact == arty) { name="LevelChainLegs"; item="Chain Legs"; } arty++;
-			if ( artifact == arty) { name="LevelChaosShield"; item="Chaos Shield"; } arty++;
-			if ( artifact == arty) { name="LevelCirclet"; item="Circlet"; } arty++;
-			if ( artifact == arty) { name="LevelCloseHelm"; item="Close Helm"; } arty++;
-			if ( artifact == arty) { name="LevelDarkShield"; item="Dark Shield"; } arty++;
-			if ( artifact == arty) { name="LevelDecorativePlateKabuto"; item="Decorative Plate Kabuto"; } arty++;
-			if ( artifact == arty) { name="LevelDreadHelm"; item="Dread Helm"; } arty++;
-			if ( artifact == arty) { name="LevelElvenShield"; item="Elven Shield"; } arty++;
-			if ( artifact == arty) { name="LevelFemaleLeatherChest"; item="Female Leather Chest"; } arty++;
-			if ( artifact == arty) { name="LevelFemalePlateChest"; item="Female Plate Chest"; } arty++;
-			if ( artifact == arty) { name="LevelFemaleStuddedChest"; item="Female Studded Chest"; } arty++;
-			if ( artifact == arty) { name="LevelGuardsmanShield"; item="Guardsman Shield"; } arty++;
-			if ( artifact == arty) { name="LevelHeaterShield"; item="Heater Shield"; } arty++;
-			if ( artifact == arty) { name="LevelHeavyPlateJingasa"; item="Heavy Plate Jingasa"; } arty++;
-			if ( artifact == arty) { name="LevelHelmet"; item="Helmet"; } arty++;
-			if ( artifact == arty) { name="LevelOrcHelm"; item="Horned Helm"; } arty++;
-			if ( artifact == arty) { name="LevelJeweledShield"; item="Jeweled Shield"; } arty++;
-			if ( artifact == arty) { name="LevelBronzeShield"; item="Large Shield"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherArms"; item="Leather Arms"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherBustierArms"; item="Leather Bustier Arms"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherCap"; item="Leather Cap"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherChest"; item="Leather Chest"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherCloak"; item="Leather Cloak"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherDo"; item="Leather Do"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherGloves"; item="Leather Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherGorget"; item="Leather Gorget"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherHaidate"; item="Leather Haidate"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherHiroSode"; item="Leather HiroSode"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherJingasa"; item="Leather Jingasa"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherLegs"; item="Leather Legs"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherMempo"; item="Leather Mempo"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherNinjaHood"; item="Leather Ninja Hood"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherNinjaJacket"; item="Leather Ninja Jacket"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherNinjaMitts"; item="Leather Ninja Mitts"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherNinjaPants"; item="Leather Ninja Pants"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherRobe"; item="Leather Robe"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherShorts"; item="Leather Shorts"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherSkirt"; item="Leather Skirt"; } arty++;
-			if ( artifact == arty) { name="LevelLeatherSuneate"; item="Leather Suneate"; } arty++;
-			if ( artifact == arty) { name="LevelLightPlateJingasa"; item="Light Plate Jingasa"; } arty++;
-			if ( artifact == arty) { name="LevelMetalKiteShield"; item="Metal Kite Shield"; } arty++;
-			if ( artifact == arty) { name="LevelMetalShield"; item="Metal Shield"; } arty++;
-			if ( artifact == arty) { name="LevelNorseHelm"; item="Norse Helm"; } arty++;
-			if ( artifact == arty) { name="LevelOniwabanBoots"; item="Oniwaban Boots"; } arty++;
-			if ( artifact == arty) { name="LevelOniwabanGloves"; item="Oniwaban Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelOniwabanHood"; item="Oniwaban Hood"; } arty++;
-			if ( artifact == arty) { name="LevelOniwabanLeggings"; item="Oniwaban Leggings"; } arty++;
-			if ( artifact == arty) { name="LevelOniwabanTunic"; item="Oniwaban Tunic"; } arty++;
-			if ( artifact == arty) { name="LevelOrderShield"; item="Order Shield"; } arty++;
-			if ( artifact == arty) { name="LevelPlateArms"; item="Plate Arms"; } arty++;
-			if ( artifact == arty) { name="LevelPlateBattleKabuto"; item="Plate Battle Kabuto"; } arty++;
-			if ( artifact == arty) { name="LevelPlateChest"; item="Plate Chest"; } arty++;
-			if ( artifact == arty) { name="LevelPlateDo"; item="Plate Do"; } arty++;
-			if ( artifact == arty) { name="LevelPlateGloves"; item="Plate Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelPlateGorget"; item="Plate Gorget"; } arty++;
-			if ( artifact == arty) { name="LevelPlateHaidate"; item="Plate Haidate"; } arty++;
-			if ( artifact == arty) { name="LevelPlateHatsuburi"; item="Plate Hatsuburi"; } arty++;
-			if ( artifact == arty) { name="LevelPlateHelm"; item="Plate Helm"; } arty++;
-			if ( artifact == arty) { name="LevelPlateHiroSode"; item="Plate Hiro Sode"; } arty++;
-			if ( artifact == arty) { name="LevelPlateLegs"; item="Plate Legs"; } arty++;
-			if ( artifact == arty) { name="LevelPlateMempo"; item="Plate Mempo"; } arty++;
-			if ( artifact == arty) { name="LevelPlateSuneate"; item="Plate Suneate"; } arty++;
-			if ( artifact == arty) { name="LevelRingmailArms"; item="Ringmail Arms"; } arty++;
-			if ( artifact == arty) { name="LevelRingmailChest"; item="Ringmail Chest"; } arty++;
-			if ( artifact == arty) { name="LevelRingmailGloves"; item="Ringmail Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelRingmailLegs"; item="Ringmail Legs"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalArms"; item="Royal Arms"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalBoots"; item="Royal Boots"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalChest"; item="Royal Chest"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalGloves"; item="Royal Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalGorget"; item="Royal Gorget"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalHelm"; item="Royal Helm"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalsLegs"; item="Royal Legs"; } arty++;
-			if ( artifact == arty) { name="LevelDragonArms"; item="Scalemail Arms"; } arty++;
-			if ( artifact == arty) { name="LevelDragonGloves"; item="Scalemail Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelDragonHelm"; item="Scalemail Helm"; } arty++;
-			if ( artifact == arty) { name="LevelDragonLegs"; item="Scalemail Leggings"; } arty++;
-			if ( artifact == arty) { name="LevelScalemailShield"; item="Scalemail Shield"; } arty++;
-			if ( artifact == arty) { name="LevelDragonChest"; item="Scalemail Tunic"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalShield"; item="Royal Shield"; } arty++;
-			if ( artifact == arty) { name="LevelShinobiCowl"; item="Leather Shinobi Cowl"; } arty++;
-			if ( artifact == arty) { name="LevelShinobiHood"; item="Leather Shinobi Hood"; } arty++;
-			if ( artifact == arty) { name="LevelShinobiMask"; item="Leather Shinobi Mask"; } arty++;
-			if ( artifact == arty) { name="LevelShinobiRobe"; item="Leather Shinobi Robe"; } arty++;
-			if ( artifact == arty) { name="LevelSmallPlateJingasa"; item="Small Plate Jingasa"; } arty++;
-			if ( artifact == arty) { name="LevelStandardPlateKabuto"; item="Standard Plate Kabuto"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedArms"; item="Studded Arms"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedBustierArms"; item="Studded Bustier Arms"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedChest"; item="Studded Chest"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedDo"; item="Studded Do"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedGloves"; item="Studded Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedGorget"; item="Studded Gorget"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedHaidate"; item="Studded Haidate"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedHiroSode"; item="Studded Hiro Sode"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedLegs"; item="Studded Legs"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedMempo"; item="Studded Mempo"; } arty++;
-			if ( artifact == arty) { name="LevelStuddedSuneate"; item="Studded Suneate"; } arty++;
-			if ( artifact == arty) { name="LevelSunShield"; item="Sun Shield"; } arty++;
-			if ( artifact == arty) { name="LevelVirtueShield"; item="Virtue Shield"; } arty++;
-			if ( artifact == arty) { name="LevelWoodenKiteShield"; item="Wooden Kite Shield"; } arty++;
-			if ( artifact == arty) { name="LevelWoodenPlateArms"; item="Wooden Plate Arms"; } arty++;
-			if ( artifact == arty) { name="LevelWoodenPlateChest"; item="Wooden Plate Chest"; } arty++;
-			if ( artifact == arty) { name="LevelWoodenPlateGloves"; item="Wooden Plate Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelWoodenPlateGorget"; item="Wooden Plate Gorget"; } arty++;
-			if ( artifact == arty) { name="LevelWoodenPlateHelm"; item="Wooden Plate Helm"; } arty++;
-			if ( artifact == arty) { name="LevelWoodenPlateLegs"; item="Wooden Plate Legs"; } arty++;
-			if ( artifact == arty) { name="LevelWoodenShield"; item="Wooden Shield"; } arty++;
-			if ( artifact == arty) { name="LevelAssassinSpike"; item="Assassin Dagger"; } arty++;
-			if ( artifact == arty) { name="LevelElvenSpellblade"; item="Assassin Sword"; } arty++;
-			if ( artifact == arty) { name="LevelAxe"; item="Axe"; } arty++;
-			if ( artifact == arty) { name="LevelOrnateAxe"; item="Barbarian Axe"; } arty++;
-			if ( artifact == arty) { name="LevelVikingSword"; item="Barbarian Sword"; } arty++;
-			if ( artifact == arty) { name="LevelBardiche"; item="Bardiche"; } arty++;
-			if ( artifact == arty) { name="LevelBattleAxe"; item="Battle Axe"; } arty++;
-			if ( artifact == arty) { name="LevelDiamondMace"; item="Battle Mace"; } arty++;
-			if ( artifact == arty) { name="LevelBladedStaff"; item="Bladed Staff"; } arty++;
-			if ( artifact == arty) { name="LevelBokuto"; item="Bokuto"; } arty++;
-			if ( artifact == arty) { name="LevelBow"; item="Bow"; } arty++;
-			if ( artifact == arty) { name="LevelBroadsword"; item="Broadsword"; } arty++;
-			if ( artifact == arty) { name="LevelButcherKnife"; item="Butcher Knife"; } arty++;
-			if ( artifact == arty) { name="LevelChampionShield"; item="Champion Shield"; } arty++;
-			if ( artifact == arty) { name="LevelClaymore"; item="Claymore"; } arty++;
-			if ( artifact == arty) { name="LevelCleaver"; item="Cleaver"; } arty++;
-			if ( artifact == arty) { name="LevelClub"; item="Club"; } arty++;
-			if ( artifact == arty) { name="LevelCompositeBow"; item="Composite Bow"; } arty++;
-			if ( artifact == arty) { name="LevelCrescentBlade"; item="Crescent Blade"; } arty++;
-			if ( artifact == arty) { name="LevelCrestedShield"; item="Crested Shield"; } arty++;
-			if ( artifact == arty) { name="LevelCrossbow"; item="Crossbow"; } arty++;
-			if ( artifact == arty) { name="LevelCutlass"; item="Cutlass"; } arty++;
-			if ( artifact == arty) { name="LevelDagger"; item="Dagger"; } arty++;
-			if ( artifact == arty) { name="LevelDaisho"; item="Daisho"; } arty++;
-			if ( artifact == arty) { name="LevelDoubleAxe"; item="Double Axe"; } arty++;
-			if ( artifact == arty) { name="LevelDoubleBladedStaff"; item="Double Bladed Staff"; } arty++;
-			if ( artifact == arty) { name="LevelWildStaff"; item="Druid Staff"; } arty++;
-			if ( artifact == arty) { name="LevelRadiantScimitar"; item="Falchion"; } arty++;
-			if ( artifact == arty) { name="LevelGnarledStaff"; item="Gnarled Staff"; } arty++;
-			if ( artifact == arty) { name="LevelExecutionersAxe"; item="Executioner Axe"; } arty++;
-			if ( artifact == arty) { name="LevelHalberd"; item="Halberd"; } arty++;
-			if ( artifact == arty) { name="LevelHammers"; item="Hammer"; } arty++;
-			if ( artifact == arty) { name="LevelHammerPick"; item="Hammer Pick"; } arty++;
-			if ( artifact == arty) { name="LevelHarpoon"; item="Harpoon"; } arty++;
-			if ( artifact == arty) { name="LevelHatchet"; item="Hatchet"; } arty++;
-			if ( artifact == arty) { name="LevelHeavyCrossbow"; item="Heavy Crossbow"; } arty++;
-			if ( artifact == arty) { name="LevelKama"; item="Kama"; } arty++;
-			if ( artifact == arty) { name="LevelKatana"; item="Katana"; } arty++;
-			if ( artifact == arty) { name="LevelKryss"; item="Kryss"; } arty++;
-			if ( artifact == arty) { name="LevelLajatang"; item="Lajatang"; } arty++;
-			if ( artifact == arty) { name="LevelLance"; item="Lance"; } arty++;
-			if ( artifact == arty) { name="LevelLargeBattleAxe"; item="Large Battle Axe"; } arty++;
-			if ( artifact == arty) { name="LevelLargeKnife"; item="Large Knife"; } arty++;
-			if ( artifact == arty) { name="LevelLongsword"; item="Longsword"; } arty++;
-			if ( artifact == arty) { name="LevelMace"; item="Mace"; } arty++;
-			if ( artifact == arty) { name="LevelElvenMachete"; item="Machete"; } arty++;
-			if ( artifact == arty) { name="LevelMaul"; item="Maul"; } arty++;
-			if ( artifact == arty) { name="LevelNoDachi"; item="NoDachi"; } arty++;
-			if ( artifact == arty) { name="LevelNunchaku"; item="Nunchaku"; } arty++;
-			if ( artifact == arty) { name="LevelPickaxe"; item="Pickaxe"; } arty++;
-			if ( artifact == arty) { name="LevelPike"; item="Pike"; } arty++;
-			if ( artifact == arty) { name="LevelPugilistGloves"; item="Pugilist Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelQuarterStaff"; item="Quarter Staff"; } arty++;
-			if ( artifact == arty) { name="LevelShortSpear"; item="Rapier"; } arty++;
-			if ( artifact == arty) { name="LevelRepeatingCrossbow"; item="Repeating Crossbow"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalSword"; item="Royal Sword"; } arty++;
-			if ( artifact == arty) { name="LevelSai"; item="Sai"; } arty++;
-			if ( artifact == arty) { name="LevelScepter"; item="Scepter"; } arty++;
-			if ( artifact == arty) { name="LevelSceptre"; item="Sceptre"; } arty++;
-			if ( artifact == arty) { name="LevelScimitar"; item="Scimitar"; } arty++;
-			if ( artifact == arty) { name="LevelScythe"; item="Scythe"; } arty++;
-			if ( artifact == arty) { name="LevelShepherdsCrook"; item="Shepherds Crook"; } arty++;
-			if ( artifact == arty) { name="LevelShortSword"; item="Short Sword"; } arty++;
-			if ( artifact == arty) { name="LevelSkinningKnife"; item="Skinning Knife"; } arty++;
-			if ( artifact == arty) { name="LevelBoneHarvester"; item="Sickle"; } arty++;
-			if ( artifact == arty) { name="LevelSpear"; item="Spear"; } arty++;
-			if ( artifact == arty) { name="LevelSpikedClub"; item="Spiked Club"; } arty++;
-			if ( artifact == arty) { name="LevelStave"; item="Stave"; } arty++;
-			if ( artifact == arty) { name="LevelThinLongsword"; item="Sword"; } arty++;
-			if ( artifact == arty) { name="LevelTekagi"; item="Tekagi"; } arty++;
-			if ( artifact == arty) { name="LevelTessen"; item="Tessen"; } arty++;
-			if ( artifact == arty) { name="LevelTetsubo"; item="Tetsubo"; } arty++;
-			if ( artifact == arty) { name="LevelThrowingGloves"; item="Throwing Gloves"; } arty++;
-			if ( artifact == arty) { name="LevelTribalSpear"; item="Tribal Spear"; } arty++;
-			if ( artifact == arty) { name="LevelPitchfork"; item="Trident"; } arty++;
-			if ( artifact == arty) { name="LevelTwoHandedAxe"; item="Two Handed Axe"; } arty++;
-			if ( artifact == arty) { name="LevelWakizashi"; item="Wakizashi"; } arty++;
-			if ( artifact == arty) { name="LevelWarAxe"; item="War Axe"; } arty++;
-			if ( artifact == arty) { name="LevelRuneBlade"; item="War Blades"; } arty++;
-			if ( artifact == arty) { name="LevelWarCleaver"; item="War Cleaver"; } arty++;
-			if ( artifact == arty) { name="LevelLeafblade"; item="War Dagger"; } arty++;
-			if ( artifact == arty) { name="LevelWarFork"; item="War Fork"; } arty++;
-			if ( artifact == arty) { name="LevelWarHammer"; item="War Hammer"; } arty++;
-			if ( artifact == arty) { name="LevelWarMace"; item="War Mace"; } arty++;
-			if ( artifact == arty) { name="LevelWhips"; item="Whip"; } arty++;
-			if ( artifact == arty) { name="LevelElvenCompositeLongbow"; item="Woodland Longbow"; } arty++;
-			if ( artifact == arty) { name="LevelMagicalShortbow"; item="Woodland Shortbow"; } arty++;
-			if ( artifact == arty) { name="LevelBlackStaff"; item="Wizard Staff"; } arty++;
-			if ( artifact == arty) { name="LevelYumi"; item="Yumi"; } arty++;
-			if ( artifact == arty) { name="LevelBandana"; item="Bandana"; } arty++;
-			if ( artifact == arty) { name="LevelBearMask"; item="Bear Mask"; } arty++;
-			if ( artifact == arty) { name="LevelBelt"; item="Belt"; } arty++;
-			if ( artifact == arty) { name="LevelBodySash"; item="Body Sash"; } arty++;
-			if ( artifact == arty) { name="LevelBonnet"; item="Bonnet"; } arty++;
-			if ( artifact == arty) { name="LevelBoots"; item="Boots"; } arty++;
-			if ( artifact == arty) { name="LevelCap"; item="Cap"; } arty++;
-			if ( artifact == arty) { name="LevelCloak"; item="Cloak"; } arty++;
-			if ( artifact == arty) { name="LevelClothNinjaHood"; item="Cloth Ninja Hood"; } arty++;
-			if ( artifact == arty) { name="LevelClothNinjaJacket"; item="Cloth Ninja Jacket"; } arty++;
-			if ( artifact == arty) { name="LevelCowl"; item="Cowl"; } arty++;
-			if ( artifact == arty) { name="LevelDeerMask"; item="Deer Mask"; } arty++;
-			if ( artifact == arty) { name="LevelDoublet"; item="Doublet"; } arty++;
-			if ( artifact == arty) { name="LevelElvenBoots"; item="Fancy Boots"; } arty++;
-			if ( artifact == arty) { name="LevelFancyDress"; item="Fancy Dress"; } arty++;
-			if ( artifact == arty) { name="LevelFancyShirt"; item="Fancy Shirt"; } arty++;
-			if ( artifact == arty) { name="LevelFeatheredHat"; item="Feathered Hat"; } arty++;
-			if ( artifact == arty) { name="LevelFemaleKimono"; item="Female Kimono"; } arty++;
-			if ( artifact == arty) { name="LevelFloppyHat"; item="Floppy Hat"; } arty++;
-			if ( artifact == arty) { name="LevelFormalShirt"; item="Formal Shirt"; } arty++;
-			if ( artifact == arty) { name="LevelFullApron"; item="Full Apron"; } arty++;
-			if ( artifact == arty) { name="LevelFurBoots"; item="Fur Boots"; } arty++;
-			if ( artifact == arty) { name="LevelFurCape"; item="Fur Cape"; } arty++;
-			if ( artifact == arty) { name="LevelFurSarong"; item="Fur Sarong"; } arty++;
-			if ( artifact == arty) { name="LevelGildedDress"; item="Gilded Dress"; } arty++;
-			if ( artifact == arty) { name="LevelHakama"; item="Hakama"; } arty++;
-			if ( artifact == arty) { name="LevelHakamaShita"; item="Hakama Shita"; } arty++;
-			if ( artifact == arty) { name="LevelHalfApron"; item="Half Apron"; } arty++;
-			if ( artifact == arty) { name="LevelHood"; item="Hood"; } arty++;
-			if ( artifact == arty) { name="LevelHornedTribalMask"; item="Horned Tribal Mask"; } arty++;
-			if ( artifact == arty) { name="LevelJesterHat"; item="Jester Hat"; } arty++;
-			if ( artifact == arty) { name="LevelJesterSuit"; item="Jester Suit"; } arty++;
-			if ( artifact == arty) { name="LevelJinBaori"; item="Jin Baori"; } arty++;
-			if ( artifact == arty) { name="LevelKamishimo"; item="Kamishimo"; } arty++;
-			if ( artifact == arty) { name="LevelKasa"; item="Kasa"; } arty++;
-			if ( artifact == arty) { name="LevelKilt"; item="Kilt"; } arty++;
-			if ( artifact == arty) { name="LevelLoinCloth"; item="Loin Cloth"; } arty++;
-			if ( artifact == arty) { name="LevelLongPants"; item="Long Pants"; } arty++;
-			if ( artifact == arty) { name="LevelMaleKimono"; item="Male Kimono"; } arty++;
-			if ( artifact == arty) { name="LevelNinjaTabi"; item="Ninja Tabi"; } arty++;
-			if ( artifact == arty) { name="LevelObi"; item="Obi"; } arty++;
-			if ( artifact == arty) { name="LevelPlainDress"; item="Plain Dress"; } arty++;
-			if ( artifact == arty) { name="LevelPirateHat"; item="Pirate Hat"; } arty++;
-			if ( artifact == arty) { name="LevelRobe"; item="Robe"; } arty++;
-			if ( artifact == arty) { name="LevelRoyalCape"; item="Royal Cape"; } arty++;
-			if ( artifact == arty) { name="LevelSamuraiTabi"; item="Samurai Tabi"; } arty++;
-			if ( artifact == arty) { name="LevelSandals"; item="Sandals"; } arty++;
-			if ( artifact == arty) { name="LevelSash"; item="Sash"; } arty++;
-			if ( artifact == arty) { name="LevelShirt"; item="Shirt"; } arty++;
-			if ( artifact == arty) { name="LevelShoes"; item="Shoes"; } arty++;
-			if ( artifact == arty) { name="LevelShortPants"; item="Short Pants"; } arty++;
-			if ( artifact == arty) { name="LevelSkirt"; item="Skirt"; } arty++;
-			if ( artifact == arty) { name="LevelSkullCap"; item="Skull Cap"; } arty++;
-			if ( artifact == arty) { name="LevelStrawHat"; item="Straw Hat"; } arty++;
-			if ( artifact == arty) { name="LevelSurcoat"; item="Surcoat"; } arty++;
-			if ( artifact == arty) { name="LevelTallStrawHat"; item="Tall Straw Hat"; } arty++;
-			if ( artifact == arty) { name="LevelTattsukeHakama"; item="Tattsuke Hakama"; } arty++;
-			if ( artifact == arty) { name="LevelThighBoots"; item="Thigh Boots"; } arty++;
-			if ( artifact == arty) { name="LevelTribalMask"; item="Tribal Mask"; } arty++;
-			if ( artifact == arty) { name="LevelTricorneHat"; item="Tricorne Hat"; } arty++;
-			if ( artifact == arty) { name="LevelTunic"; item="Tunic"; } arty++;
-			if ( artifact == arty) { name="LevelWaraji"; item="Waraji"; } arty++;
-			if ( artifact == arty) { name="LevelWideBrimHat"; item="Wide Brim Hat"; } arty++;
-			if ( artifact == arty) { name="LevelWitchHat"; item="Witch Hat"; } arty++;
-			if ( artifact == arty) { name="LevelWizardsHat"; item="Wizards Hat"; } arty++;
-			if ( artifact == arty) { name="LevelWolfMask"; item="Wolf Mask"; } arty++;
-			if ( artifact == arty) { name="LevelCandle"; item="Candle"; } arty++;
-			if ( artifact == arty) { name="LevelGoldBeadNecklace"; item="Bead Necklace"; } arty++;
-			if ( artifact == arty) { name="LevelGoldBracelet"; item="Gold Bracelet"; } arty++;
-			if ( artifact == arty) { name="LevelGoldEarrings"; item="Gold Earrings"; } arty++;
-			if ( artifact == arty) { name="LevelGoldNecklace"; item="Gold Amulet"; } arty++;
-			if ( artifact == arty) { name="LevelGoldRing"; item="Gold Ring"; } arty++;
-			if ( artifact == arty) { name="LevelLantern"; item="Lantern"; } arty++;
-			if ( artifact == arty) { name="LevelNecklace"; item="Amulet"; } arty++;
-			if ( artifact == arty) { name="LevelSilverBeadNecklace"; item="Silver Bead Necklace"; } arty++;
-			if ( artifact == arty) { name="LevelSilverBracelet"; item="Silver Bracelet"; } arty++;
-			if ( artifact == arty) { name="LevelSilverEarrings"; item="Silver Earrings"; } arty++;
-			if ( artifact == arty) { name="LevelSilverNecklace"; item="Silver Amulet"; } arty++;
-			if ( artifact == arty) { name="LevelSilverRing"; item="Silver Ring"; } arty++;
-			if ( artifact == arty) { name="LevelTalismanLeather"; item="Trinket, Talisman"; } arty++;
-			if ( artifact == arty) { name="LevelTalismanHoly"; item="Trinket, Symbol"; } arty++;
-			if ( artifact == arty) { name="LevelTalismanSnake"; item="Trinket, Idol"; } arty++;
-			if ( artifact == arty) { name="LevelTalismanTotem"; item="Trinket, Totem"; } arty++;
-			if ( artifact == arty) { name="LevelTorch"; item="Torch"; } arty++;
-			if ( artifact == arty) { name="LevelHikingBoots"; item="Hiking Boots"; } arty++;
+                LegendCategory cat;
+                switch ( info.ButtonID )
+                {
+                    case 1: cat = LegendCategory.OneHandedWeapons; break;
+                    case 2: cat = LegendCategory.TwoHandedWeapons; break;
+                    case 3: cat = LegendCategory.RangedWeapons;    break;
+                    case 4: cat = LegendCategory.JewelryTrinkets;  break;
+                    case 5: cat = LegendCategory.Armor;            break;
+                    case 6: cat = LegendCategory.Clothing;         break;
+                    default: return;
+                }
 
-			if ( part == 2 ){ item = name; }
+                from.CloseGump( typeof( LegendCategoryGump ) );
+                from.SendGump( new LegendItemsGump( from, m_Book, cat, 0 ) );
+            }
+        }
 
-			return item;
-		}
+        public class LegendItemsGump : Gump
+        {
+            private LegendsBook    m_Book;
+            private LegendCategory m_Category;
+            private ArrayList      m_Entries;
+            private int            m_Page;
 
-		public static string ArtyItemName( string item, Mobile from )
-		{
-			string OwnerName = from.Name;
-			string sAdjective = CultureInfo.CurrentCulture.TextInfo.ToTitleCase( RandomThings.MagicItemAdj( "start", Server.Misc.GetPlayerInfo.OrientalPlay( from ), Server.Misc.GetPlayerInfo.EvilPlay( from ), 0 ) );
-			string name = item;
+            private const int ItemsPerPage = 16;
 
-			if ( OwnerName.EndsWith( "s" ) )
-			{
-				OwnerName = OwnerName + "'";
-			}
-			else
-			{
-				OwnerName = OwnerName + "'s";
-			}
+            // Button IDs:
+            //   0            = back to categories
+            //   1            = previous page
+            //   2            = next page
+            //   1000 + index = select item
 
-			int FirstLast = 0;
-			if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ FirstLast = 1; }
+            public LegendItemsGump( Mobile from, LegendsBook book, LegendCategory cat, int page )
+                : base( 100, 100 )
+            {
+                m_Book     = book;
+                m_Category = cat;
+                m_Entries  = LegendsBook.GetEntriesForCategory( cat );
+                m_Page     = page;
 
-			if ( FirstLast == 0 ) // FIRST COMES ADJECTIVE
-			{
-				name = "the " + sAdjective + " " + item + " of " + from.Name;
-			}
-			else // FIRST COMES OWNER
-			{
-				name = OwnerName + " " + sAdjective + " " + item;
-			}
+                string color = "#81db9f";
 
-			return name;
-		}
-	}
+                Closable  = true;
+                Disposable = true;
+                Dragable  = true;
+                Resizable = false;
+
+                AddPage( 0 );
+
+                AddImage( 0, 0, 7005, 2964 );
+                AddImage( 0, 0, 7006 );
+                AddImage( 0, 0, 7024, 2736 );
+                AddButton( 590, 48, 4017, 4017, 0, GumpButtonType.Reply, 0 );
+
+                AddHtml( 77, 49, 259, 20,
+                    "<BODY><BASEFONT Color=" + color + "><CENTER>" + LegendsBook.CategoryLabel( cat ).ToUpper() + "</CENTER></BASEFONT></BODY>",
+                    false, false );
+
+                int totalPages = ( m_Entries.Count + ItemsPerPage - 1 ) / ItemsPerPage;
+                if ( totalPages < 1 ) totalPages = 1;
+
+                if ( totalPages > 1 )
+                {
+                    AddButton( 75,  374, 4014, 4014, 1, GumpButtonType.Reply, 0 );
+                    AddButton( 590, 375, 4005, 4005, 2, GumpButtonType.Reply, 0 );
+                }
+
+                AddButton( 300, 374, 4017, 4019, 0, GumpButtonType.Reply, 0 );
+                AddHtml( 336, 376, 120, 18,
+                    "<BODY><BASEFONT Color=" + color + ">Categorias</BASEFONT></BODY>",
+                    false, false );
+
+                int firstIndex = page * ItemsPerPage;
+                int x, y, z, s;
+
+                // ---- Left column buttons ----
+                x = 115; s = 64; z = 34;
+                y = s + z;
+                for ( int slot = 0; slot < 8; slot++ )
+                {
+                    int idx = firstIndex + slot;
+                    if ( idx < m_Entries.Count )
+                        AddButton( x, y, 2447, 2447, 1000 + idx, GumpButtonType.Reply, 0 );
+                    y += z;
+                }
+
+                // ---- Left column labels ----
+                y = s - 3 + z;
+                for ( int slot = 0; slot < 8; slot++ )
+                {
+                    int idx = firstIndex + slot;
+                    string label = ( idx < m_Entries.Count )
+                        ? ( (LegendEntry)m_Entries[idx] ).DisplayName : "";
+                    AddHtml( x + 20, y, 155, 20,
+                        "<BODY><BASEFONT Color=" + color + ">" + label + "</BASEFONT></BODY>",
+                        false, false );
+                    y += z;
+                }
+
+                // ---- Right column buttons ----
+                x = 407;
+                y = s + z;
+                for ( int slot = 8; slot < 16; slot++ )
+                {
+                    int idx = firstIndex + slot;
+                    if ( idx < m_Entries.Count )
+                        AddButton( x, y, 2447, 2447, 1000 + idx, GumpButtonType.Reply, 0 );
+                    y += z;
+                }
+
+                // ---- Right column labels ----
+                y = s - 3 + z;
+                for ( int slot = 8; slot < 16; slot++ )
+                {
+                    int idx = firstIndex + slot;
+                    string label = ( idx < m_Entries.Count )
+                        ? ( (LegendEntry)m_Entries[idx] ).DisplayName : "";
+                    AddHtml( x + 20, y, 155, 20,
+                        "<BODY><BASEFONT Color=" + color + ">" + label + "</BASEFONT></BODY>",
+                        false, false );
+                    y += z;
+                }
+            }
+
+            public override void OnResponse( NetState state, RelayInfo info )
+            {
+                Mobile from = state.Mobile;
+                from.SendSound( 0x55 );
+
+                int totalPages = ( m_Entries.Count + ItemsPerPage - 1 ) / ItemsPerPage;
+                if ( totalPages < 1 ) totalPages = 1;
+
+                if ( info.ButtonID == 0 )
+                {
+                    from.CloseGump( typeof( LegendItemsGump ) );
+                    from.SendGump( new LegendCategoryGump( from, m_Book ) );
+                }
+                else if ( info.ButtonID == 1 )
+                {
+                    int prev = m_Page - 1;
+                    if ( prev < 0 ) prev = totalPages - 1;
+                    from.CloseGump( typeof( LegendItemsGump ) );
+                    from.SendGump( new LegendItemsGump( from, m_Book, m_Category, prev ) );
+                }
+                else if ( info.ButtonID == 2 )
+                {
+                    int next = m_Page + 1;
+                    if ( next >= totalPages ) next = 0;
+                    from.CloseGump( typeof( LegendItemsGump ) );
+                    from.SendGump( new LegendItemsGump( from, m_Book, m_Category, next ) );
+                }
+                else if ( info.ButtonID >= 1000 )
+                {
+                    int idx = info.ButtonID - 1000;
+                    if ( idx >= 0 && idx < m_Entries.Count )
+                    {
+                        LegendEntry entry = (LegendEntry)m_Entries[idx];
+                        from.CloseGump( typeof( LegendItemsGump ) );
+                        from.SendGump( new LegendConfirmGump( from, m_Book, entry, m_Category, m_Page ) );
+                    }
+                }
+            }
+        }
+
+        public class LegendConfirmGump : Gump
+        {
+            private LegendsBook    m_Book;
+            private LegendEntry    m_Entry;
+            private LegendCategory m_ReturnCategory;
+            private int            m_ReturnPage;
+
+            public LegendConfirmGump( Mobile from, LegendsBook book, LegendEntry entry,
+                                      LegendCategory returnCat, int returnPage )
+                : base( 50, 50 )
+            {
+                m_Book           = book;
+                m_Entry          = entry;
+                m_ReturnCategory = returnCat;
+                m_ReturnPage     = returnPage;
+
+                string color = "#81db9f";
+                bool eligible = LegendsBook.CanChoose( from );
+
+                Closable  = true;
+                Disposable = true;
+                Dragable  = true;
+                Resizable = false;
+
+                AddBackground( 0, 0, 440, 200, 9270 );
+
+                AddHtml( 20, 15, 400, 20,
+                    "<BODY><BASEFONT Color=" + color + ">Invocar um artefato lendário:</BASEFONT></BODY>",
+                    false, false );
+                AddHtml( 20, 38, 400, 20,
+                    "<BODY><BASEFONT Color=" + color + ">" + entry.DisplayName + "</BASEFONT></BODY>",
+                    false, false );
+
+                if ( eligible )
+                {
+                    AddHtml( 20, 68, 400, 20,
+                        "<BODY><BASEFONT Color=" + color + ">Isso custará 10.000 de ouro e reiniciará sua Fama e Karma.</BASEFONT></BODY>",
+                        false, false );
+                    AddButton( 80,  155, 4005, 4007, 1, GumpButtonType.Reply, 0 );
+                    AddHtml( 115, 157, 60, 20,
+                        "<BODY><BASEFONT Color=" + color + ">Confirmar</BASEFONT></BODY>",
+                        false, false );
+                }
+                else
+                {
+                    AddHtml( 20, 68, 400, 40,
+                        "<BODY><BASEFONT Color=" + color + ">Você não é lendário o suficiente. Você precisa de 15.000 de Fama, 15.000 de Karma e 10.000 de Ouro.</BASEFONT></BODY>",
+                        false, false );
+                }
+
+                AddButton( 240, 155, 4017, 4019, 0, GumpButtonType.Reply, 0 );
+                AddHtml( 275, 157, 60, 20,
+                    "<BODY><BASEFONT Color=" + color + ">Voltar</BASEFONT></BODY>",
+                    false, false );
+            }
+
+            public override void OnResponse( NetState state, RelayInfo info )
+            {
+                Mobile from = state.Mobile;
+                from.SendSound( 0x55 );
+
+                if ( info.ButtonID == 1 )
+                {
+                    if ( !LegendsBook.CanChoose( from ) )
+                    {
+                        from.SendMessage( "Você não é lendário o bastante para invocar o artefato." );
+                        from.CloseGump( typeof( LegendConfirmGump ) );
+                        from.SendGump( new LegendCategoryGump( from, m_Book ) );
+                        return;
+                    }
+
+                    Container pack = from.Backpack;
+                    if ( !pack.ConsumeTotal( typeof( Gold ), 10000 ) )
+                    {
+                        from.SendMessage( "Você não tem ouro suficiente para o tributo." );
+                        from.CloseGump( typeof( LegendConfirmGump ) );
+                        from.SendGump( new LegendCategoryGump( from, m_Book ) );
+                        return;
+                    }
+
+                    string sName = LegendsBook.FixDisplayName( m_Entry.DisplayName );
+                    string sArty = LegendsBook.ArtyItemName( sName, from );
+
+                    Type itemType = ScriptCompiler.FindTypeByName( m_Entry.TypeName );
+                    if ( itemType != null )
+                    {
+                        from.Fame  = 0;
+                        from.Karma = 0;
+                        Item reward = (Item)Activator.CreateInstance( itemType );
+                        reward.Name = sArty;
+                        from.AddToBackpack( reward );
+                        LoggingFunctions.LogCreatedArtifact( from, sArty );
+                        from.SendMessage( "Os deuses criaram um artefato lendário chamado " + sArty + "." );
+                        from.FixedParticles( 0x3709, 10, 30, 5052, 0x480, 0, EffectLayer.LeftFoot );
+                        from.PlaySound( 0x208 );
+                    }
+
+                    from.CloseGump( typeof( LegendConfirmGump ) );
+                }
+                else
+                {
+                    from.CloseGump( typeof( LegendConfirmGump ) );
+                    from.SendGump( new LegendItemsGump( from, m_Book, m_ReturnCategory, m_ReturnPage ) );
+                }
+            }
+        }
+    }
 }

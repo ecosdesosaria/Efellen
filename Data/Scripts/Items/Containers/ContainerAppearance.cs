@@ -254,12 +254,5 @@ namespace Server.Misc
 			box.ItemID = Utility.RandomList(StoneCofferIDs);
 			box.Name = "Stone Chest";
 		}
-
-		private static string RandomBrokenRobotName()
-		{
-			string[] states = { "broken", "busted", "crippled", "crumbled", "crushed", "damaged", "defective", "demolished", "mangled", "smashed" };
-			int idx = Utility.Random(states.Length);
-			return states[idx] + " " + Server.Misc.RandomThings.GetRandomRobot(0);
-		}
 	}
 }

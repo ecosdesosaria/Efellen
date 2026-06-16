@@ -91,7 +91,7 @@ namespace Server.Custom.KoperPets
                 return;
 
             PlayerMobile owner = pet.ControlMaster as PlayerMobile;
-            if (owner == null)
+            if (owner == null || owner.Deleted || !owner.Alive)
                 return;
 
             // Check if player is on cooldown

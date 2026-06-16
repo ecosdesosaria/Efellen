@@ -1,0 +1,81 @@
+using System;
+using Server;
+using Server.CustomEffects;
+
+namespace Server.Items
+{
+	public class Artifact_UgmarLastWord : GiftOrnateAxe
+	{
+		private DateTime m_NextArtifactAttackAllowed;
+		public override int InitMinHits{ get{ return 80; } }
+		public override int InitMaxHits{ get{ return 160; } }
+
+		[Constructable]
+		public Artifact_UgmarLastWord()
+		{
+			Name = "Ugmar's Last Word";
+			Hue = 0x4D5;
+			WeaponAttributes.HitLightning = 50;
+			Attributes.AttackChance = 10;
+			WeaponAttributes.HitLeechStam = 10;
+			ArtifactLevel = 2;
+			Server.Misc.Arty.ArtySetup( this, "Resolve discussões de forma chocante" );
+			m_NextArtifactAttackAllowed = DateTime.MinValue;
+		}
+		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
+		{
+			phys = fire = cold = pois = chaos = direct = 0;
+			nrgy = 100;
+		}
+
+		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
+		{
+            base.OnHit(attacker, defender, damageBonus);
+			if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
+
+			if (DateTime.UtcNow < m_NextArtifactAttackAllowed)
+				return;
+
+			if (Utility.RandomDouble() > 0.15)
+				return;
+
+			double skill = attacker.Skills[SkillName.Swords].Value;
+			int duration = 4 + (int)(skill / 25.0);
+
+			if (duration < 4) duration = 4;
+			if (duration > 9) duration = 9;
+
+			DotEffect.ApplyDot(defender, duration, attacker,5);
+
+			attacker.SendMessage(33, "A Última Palavra atinge seu inimigo com eletricidade!");
+			attacker.PlaySound(0x208);
+
+			m_NextArtifactAttackAllowed = DateTime.UtcNow + TimeSpan.FromMinutes(2);
+            
+		}
+
+		public Artifact_UgmarLastWord( Serial serial ) : base( serial )
+		{
+		}
+
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+
+			writer.WriteEncodedInt( 1 ); // version
+			writer.Write(m_NextArtifactAttackAllowed);
+		}
+
+		public override void Deserialize(GenericReader reader)
+		{
+			base.Deserialize(reader);
+			int version = reader.ReadEncodedInt();
+			if (version >= 1)
+		        m_NextArtifactAttackAllowed = reader.ReadDateTime();
+		    else
+		        m_NextArtifactAttackAllowed = DateTime.MinValue;
+			ArtifactLevel = 2;
+		}
+	}
+}

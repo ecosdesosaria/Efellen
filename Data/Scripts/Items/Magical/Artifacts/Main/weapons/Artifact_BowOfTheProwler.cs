@@ -35,12 +35,11 @@ namespace Server.Items
         public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
         {
             base.OnHit(attacker, defender, damageBonus);
-
             if (!m_WasHiddenBeforeShot)
                 return;
 
-            if (attacker == null || defender == null || !defender.Alive)
-                return;
+            if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
             if (DateTime.UtcNow < m_NextHeadshot)
                 return;
@@ -75,6 +74,7 @@ namespace Server.Items
             attacker.SendMessage(1161, "Tiro certeiro com " + extra + " de dano extra");
             defender.FixedParticles(0x36BD, 10, 10, 5044, 0, 0, EffectLayer.Head);
             defender.PlaySound(0x22F);
+            
         }
 
         public Artifact_BowOfTheProwler( Serial serial ) : base( serial )

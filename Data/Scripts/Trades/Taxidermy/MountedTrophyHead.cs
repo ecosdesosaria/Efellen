@@ -171,8 +171,6 @@ namespace Server.Items
 				else if ( this.ItemID == 0x3392 ){ this.ItemID = 0x3391; } //mounted tyranasaur
 				else if ( this.ItemID == 0x3393 ){ this.ItemID = 0x3394; } //mounted stegosaurus
 				else if ( this.ItemID == 0x3394 ){ this.ItemID = 0x3393; } //mounted stegosaurus
-				else if ( this.ItemID == 0x3395 ){ this.ItemID = 0x3396; } //mounted alien
-				else if ( this.ItemID == 0x3396 ){ this.ItemID = 0x3395; } //mounted alien
 				else if ( this.ItemID == 0x3397 ){ this.ItemID = 0x3398; } //mounted wyvern
 				else if ( this.ItemID == 0x3398 ){ this.ItemID = 0x3397; } //mounted wyvern
 				else if ( this.ItemID == 0x3399 ){ this.ItemID = 0x339A; } //mounted black bear
@@ -209,8 +207,6 @@ namespace Server.Items
 				else if ( this.ItemID == 0x33B4 ){ this.ItemID = 0x33B3; } //mounted skeletal dragon
 				else if ( this.ItemID == 0x33B5 ){ this.ItemID = 0x33B6; } //mounted wyvern
 				else if ( this.ItemID == 0x33B6 ){ this.ItemID = 0x33B5; } //mounted wyvern
-				else if ( this.ItemID == 0x33B9 ){ this.ItemID = 0x33BA; } //mounted alien 
-				else if ( this.ItemID == 0x33BA ){ this.ItemID = 0x33B9; } //mounted alien 
 				else if ( this.ItemID == 0x33CB ){ this.ItemID = 0x33CC; } //mounted dragon abysmal
 				else if ( this.ItemID == 0x33CC ){ this.ItemID = 0x33CB; } //mounted dragon abysmal
 				else if ( this.ItemID == 0x33D1 ){ this.ItemID = 0x33D2; } //mounted dragon amber

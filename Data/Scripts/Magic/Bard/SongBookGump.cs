@@ -210,7 +210,7 @@ namespace Server.Gumps
 				{
 					s12 = "Foe Requiem";
 					s13 = "Dano seu alvo com uma explosão de energia sonora.";
-					s14 = "80";
+					s14 = "50";
 					s15 = "30";
 					s16 = "FoeRequiem";
 					s11 = 0x40A;

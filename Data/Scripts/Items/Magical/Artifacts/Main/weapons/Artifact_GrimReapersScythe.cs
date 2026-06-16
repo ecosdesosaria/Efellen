@@ -26,10 +26,9 @@ namespace Server.Items
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damage)
         {
-            base.OnHit(attacker, defender, damage);
-
-            if (attacker == null || defender == null)
-                return;
+			base.OnHit(attacker, defender, damage);
+            if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
             if (!defender.Alive || defender.Hits <= 0)
             {
@@ -44,6 +43,7 @@ namespace Server.Items
                     attacker.SendMessage(33, "A Foice do Ceifador devora a alma do inimigo!");
                 }
             }
+			
         }
 
 		public Artifact_GrimReapersScythe( Serial serial ) : base( serial )

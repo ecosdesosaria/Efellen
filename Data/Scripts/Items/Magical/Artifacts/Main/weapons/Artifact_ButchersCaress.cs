@@ -30,9 +30,8 @@ namespace Server.Items
         public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
         {
             base.OnHit(attacker, defender, damageBonus);
-
-            if (defender == null || !defender.Alive || defender.Paralyzed)
-                return;
+            if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
             if (DateTime.UtcNow < m_NextParalyze)
                 return;
@@ -49,6 +48,7 @@ namespace Server.Items
                 attacker.SendMessage("Seu golpe violento arranca um membro do seu oponente!");
             
             m_NextParalyze = DateTime.UtcNow + TimeSpan.FromSeconds(60);
+            
         }
 
         private static SlayerEntry s_RepondEntry = null;

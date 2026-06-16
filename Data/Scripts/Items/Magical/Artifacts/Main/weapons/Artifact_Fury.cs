@@ -56,9 +56,8 @@ namespace Server.Items
         public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
         {
             base.OnHit(attacker, defender, damageBonus);
-
-            if (attacker == null || defender == null)
-                return;
+            if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
             if (Utility.RandomDouble() >= 0.15)
                 return;
@@ -68,7 +67,8 @@ namespace Server.Items
 
             new DivineFurySpell(attacker, this).Cast();
             StartCooldown(attacker);
-            attacker.SendMessage("Fury empowers you!");
+            attacker.SendMessage("Fúria te fortalece!");
+            
         }
 
         public override void OnDoubleClick( Mobile from )

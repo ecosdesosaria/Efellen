@@ -10,14 +10,14 @@ namespace Server.Spells.Herbalist
 {
 	public class TreefellowSpell : HerbalistSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override int HerbalistSpellCircle{ get{ return 4; } }
-		public override double CastDelay{ get{ return 5.0; } }
-      	public override double RequiredSkill{ get{ return 75.0; } }
-      	public override int RequiredMana{ get{ return 0; } }
-		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
-		
-		public TreefellowSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		private static SpellInfo m_Info = new SpellInfo("", "", 239, 9021);
+		public override int HerbalistSpellCircle { get { return 4; } }
+		public override double CastDelay { get { return 5.0; } }
+		public override double RequiredSkill { get { return 75.0; } }
+		public override int RequiredMana { get { return 0; } }
+		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds(1.0); } }
+
+		public TreefellowSpell(Mobile caster, Item scroll) : base(caster, scroll, m_Info)
 		{
 		}
 
@@ -26,7 +26,7 @@ namespace Server.Spells.Herbalist
 			if ( !base.CheckCast() )
 				return false;
 
-			if ( (Caster.Followers + (Core.SE ? 2 : 1)) > Caster.FollowersMax )
+			if (Caster.Followers + 2 > Caster.FollowersMax)
 			{
 				Caster.SendLocalizedMessage( 1049645 ); // You have too many followers to summon that creature.
 				return false;
@@ -59,7 +59,7 @@ namespace Server.Spells.Herbalist
 			else if ( SpellHelper.CheckTown( p, Caster ) && CheckSequence() )
 			{
 				double time = (double)Server.Items.BasePotion.EnhancePotions( Caster );
-					time = time + 90.0;
+				time = time + 90.0;
 				TimeSpan duration = TimeSpan.FromSeconds( time );
 
 				BaseCreature.Summon( new SummonedTreefellow(), false, Caster, new Point3D( p ), 0x212, duration );
@@ -126,34 +126,34 @@ namespace Server.Mobiles
 			Body = 309;
 			BaseSoundID = 442;
 
-			SetStr( 200 );
-			SetDex( 200 );
-			SetInt( 100 );
+			SetStr(350);
+			SetDex(200);
+			SetInt(100);
 
-			SetHits( ( Core.SE ) ? 140 : 70 );
-			SetStam( 250 );
-			SetMana( 0 );
+			SetHits(350);
+			SetStam(250);
+			SetMana(0);
 
-			SetDamage( 14, 17 );
+			SetDamage(14, 17);
 
-			SetDamageType( ResistanceType.Physical, 0 );
-			SetDamageType( ResistanceType.Energy, 100 );
+			SetDamageType(ResistanceType.Physical, 50);
+			SetDamageType(ResistanceType.Energy, 50);
 
-			SetResistance( ResistanceType.Physical, 60, 70 );
-			SetResistance( ResistanceType.Fire, 40, 50 );
-			SetResistance( ResistanceType.Cold, 40, 50 );
-			SetResistance( ResistanceType.Poison, 40, 50 );
-			SetResistance( ResistanceType.Energy, 90, 100 );
+			SetResistance(ResistanceType.Physical, 60, 70);
+			SetResistance(ResistanceType.Fire, 40, 50);
+			SetResistance(ResistanceType.Cold, 40, 50);
+			SetResistance(ResistanceType.Poison, 40, 50);
+			SetResistance(ResistanceType.Energy, 90, 100);
 
-			SetSkill( SkillName.MagicResist, 99.9 );
-			SetSkill( SkillName.Tactics, 90.0 );
-			SetSkill( SkillName.FistFighting, 100.0 );
+			SetSkill(SkillName.MagicResist, 99.9, 105.0);
+			SetSkill(SkillName.Tactics, 90.0, 105.0);
+			SetSkill(SkillName.FistFighting, 100.0, 110.0);
 
 			Fame = 0;
 			Karma = 0;
 
 			VirtualArmor = 40;
-			ControlSlots = ( Core.SE ) ? 2 : 1;
+			ControlSlots = 2;
 		}
 
 		public override bool BleedImmune{ get{ return true; } }

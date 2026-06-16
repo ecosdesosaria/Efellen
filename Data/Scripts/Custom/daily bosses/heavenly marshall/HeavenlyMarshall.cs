@@ -42,12 +42,13 @@ namespace Server.Mobiles
 
 		private static readonly List<Type> BossDrops = new List<Type>
     	{
-    	    typeof(Artifact_GauntletsOfDevotion),
-    	    typeof(Artifact_LeggingsOfDevotion),
-    	    typeof(Artifact_TunicOfDevotion),
-    	    typeof(Artifact_ArmsOfDevotion),
-			typeof(Artifact_CoifOfDevotion),
-			typeof(Artifact_HolySword)
+    	    typeof(Artifact_ExaltedGauntletsOfDevotion),
+    	    typeof(Artifact_ExaltedLeggingsOfDevotion),
+    	    typeof(Artifact_ExaltedTunicOfDevotion),
+    	    typeof(Artifact_ExaltedArmsOfDevotion),
+			typeof(Artifact_ExaltedCoifOfDevotion),
+			typeof(Artifact_HolySword),
+			typeof(Artifact_BeadsOfPrayer)
     	};
 
 		private int m_Rage = 0;
@@ -410,7 +411,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 15);
+			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
 			for ( int i = 0; i < 5; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );

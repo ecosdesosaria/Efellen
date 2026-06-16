@@ -13,7 +13,8 @@ namespace Server.Custom
             new WealthTier(2,      15, 30,  25, 50,  50, 100, 100, 150),
             new WealthTier(3,      30, 40,  50, 100, 100, 200, 200, 300),
             new WealthTier(4,      35, 70, 75, 150, 250, 300, 350, 500),
-            new WealthTier(5,      40, 80, 100, 200, 200, 400, 400, 600)
+            new WealthTier(5,      40, 80, 100, 200, 200, 400, 400, 600),
+            new WealthTier(5,      80, 160, 200, 400, 400, 800, 800, 1200)
         };
 
         public static void SpawnRiches(Mobile target, int wealthLevel, int radius = 8)
@@ -31,13 +32,13 @@ namespace Server.Custom
             int targetZ = target.Z;
             WealthTier tier = WealthTiers[wealthLevel - 1];
 
+            int radiusSq = radius * radius;
+
             for (int x = -radius; x <= radius; ++x)
             {
                 for (int y = -radius; y <= radius; ++y)
                 {
-                    double dist = Math.Sqrt(x * x + y * y);
-
-                    if (dist <= radius)
+                    if (x * x + y * y <= radiusSq)
                         new RichesSpawnTimer(map, target.X + x, target.Y + y, targetZ, tier).Start();
                 }
             }

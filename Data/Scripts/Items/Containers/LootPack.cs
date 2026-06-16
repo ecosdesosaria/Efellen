@@ -596,12 +596,12 @@ namespace Server
 		{
 			if ( item != null )
 			{
-				int props = Utility.RandomMinMax( (int)(enchant/100), (int)(enchant/60) );
+				int props = Utility.RandomMinMax( (int)(enchant/200), (int)(enchant/100) );
 					if ( props < 1 )
 						return item;
 
-				int min = (int)(enchant/10);
-				int max = (int)(enchant/4);
+				int min = (int)(enchant/20);
+				int max = (int)(enchant/8);
 					if ( min < 1 ){ min = 1; }
 					if ( max <= min ){ max = min + 1; }
 

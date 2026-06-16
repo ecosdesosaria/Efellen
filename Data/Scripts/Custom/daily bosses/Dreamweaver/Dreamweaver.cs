@@ -192,18 +192,13 @@ namespace Server.Mobiles
 					PlaySound( 0x228 );
 					FixedParticles( 0x3789, 10, 25, 5032, EffectLayer.Head );
 					
-					List<Mobile> targets = new List<Mobile>();
 					IPooledEnumerable eable = GetMobilesInRange( 8 );
 					
 					foreach ( Mobile m in eable )
 					{
-						if ( m != this && m.Player && m.Alive && CanBeHarmful( m ) )
-							targets.Add(m);
-					}
-					eable.Free();
-					
-					foreach ( Mobile m in targets )
-					{
+						if ( m == this || !m.Player || m.Deleted || !m.Alive || !CanBeHarmful( m ) )
+							continue;
+						
 						DoHarmful( m );
 						int staminaDrain = Utility.RandomMinMax( 75, 95 );
 						m.Stam -= staminaDrain;
@@ -214,7 +209,8 @@ namespace Server.Mobiles
 						this.Stam = Math.Min( this.StamMax, this.Stam + staminaDrain / 3 );
 						m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) + Utility.RandomMinMax(1,3 ) ) );
 					}
-					
+					eable.Free();
+
 					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x25);
 					break;
 				}
@@ -384,7 +380,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this, BossDrops, 15);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 45);
 			for ( int i = 0; i < 4; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );

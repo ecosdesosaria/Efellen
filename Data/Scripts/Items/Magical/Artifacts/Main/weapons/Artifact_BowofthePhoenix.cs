@@ -23,6 +23,17 @@ namespace Server.Items
 			Server.Misc.Arty.ArtySetup( this, "Calls forth a Phoenix" );
 		}
 
+		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
+        {
+            phys = 0;
+            cold = 0;
+            fire = 100;
+            nrgy = 0;
+            pois = 0;
+            chaos = 0;
+            direct = 0;
+        }
+		
 		public override void OnDoubleClick( Mobile from )
 		{
 			DateTime TimeNow = DateTime.Now;

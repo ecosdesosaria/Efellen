@@ -650,7 +650,7 @@ namespace Server.Misc
 				PlayerMobile pm = (PlayerMobile)m;
 
 				string keys = ValLibraryConfig( m );
-				int records = 76; // TOTAL ENTRIES
+				int records = 80; // TOTAL ENTRIES
 				string entry = "";
 				int nEntry = 1;
 

@@ -26,7 +26,9 @@ namespace Server.Items
 
         public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
         {
-            base.OnHit(attacker, defender, damageBonus);
+			base.OnHit(attacker, defender, damageBonus);
+            if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+		        return;
 
             if (DateTime.Now < m_NextParalyze)
                 return;
@@ -50,6 +52,7 @@ namespace Server.Items
                     m_NextParalyze = DateTime.Now + TimeSpan.FromSeconds(30);
                 }
             }
+			
         }
 
 		public Artifact_VampireKiller( Serial serial ) : base( serial )

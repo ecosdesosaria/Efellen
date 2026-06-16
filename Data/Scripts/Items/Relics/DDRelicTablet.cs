@@ -73,9 +73,10 @@ namespace Server.Items
 			else
 			{
 				SearchReal = Utility.RandomMinMax( 1, 100 );
-				int relic = Utility.RandomMinMax( 1, 308 );
-				SearchType = Server.Items.SearchBook.GetArtifactListForBook( relic, 2 );
-				SearchItem = Server.Items.SearchBook.GetArtifactListForBook( relic, 1 );
+				ArtifactEntry[] all = SearchBook.AllArtifacts;
+				ArtifactEntry picked = all[ Utility.Random( all.Length ) ];
+				SearchType    = picked.TypeName;
+				SearchItem    = picked.DisplayName;
 				SearchDungeon = SearchLocation();
 			}
 
@@ -196,25 +197,25 @@ namespace Server.Items
 			RelicDescription = sWrite + " in " + sPart + sLanguage + " language";
 		}
 
-        public override void AddNameProperties(ObjectPropertyList list)
+        public override void AddNameProperties( ObjectPropertyList list )
 		{
-            base.AddNameProperties(list);
-			list.Add( 1049644, RelicDescription);
-        }
+			base.AddNameProperties( list );
+			list.Add( 1049644, RelicDescription );
+		}
 
 		public class TabletGump : Gump
 		{
-			public TabletGump( Mobile from, Item tablet ): base( 100, 100 )
+			public TabletGump( Mobile from, Item tablet ) : base( 100, 100 )
 			{
 				DDRelicTablet stone = (DDRelicTablet)tablet;
 
-				this.Closable=true;
-				this.Disposable=true;
-				this.Dragable=true;
-				this.Resizable=false;
+				this.Closable   = true;
+				this.Disposable = true;
+				this.Dragable   = true;
+				this.Resizable  = false;
 
-				AddPage(0);
-				AddImage(13, 13, 102);
+				AddPage( 0 );
+				AddImage( 13, 13, 102 );
 				AddHtml( 61, 79, 133, 88, @"<BODY><BASEFONT Color=#111111><BIG><CENTER>Em algum lugar em " + stone.SearchDungeon + "<BR>Jaz um Artefato</CENTER></BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 38, 256, 181, 18, @"<BODY><BASEFONT Color=#111111><BIG><CENTER>" + stone.SearchItem + "</CENTER></BIG></BASEFONT></CENTER></BODY>", (bool)false, (bool)false);
 			}
@@ -224,16 +225,21 @@ namespace Server.Items
 		{
 			bool CanFlip = true;
 
-			BaseHouse house = BaseHouse.FindHouseAt(this);
-			if (house != null && (house.Public ? house.IsBanned(e) : !house.HasAccess(e))){ CanFlip = false; }
-
-			if ( !IsChildOf( e.Backpack ) && e is PlayerMobile && ((PlayerMobile)e).DoubleClickID && NotIdentified ) 
+			BaseHouse house = BaseHouse.FindHouseAt( this );
+			if ( house != null && ( house.Public ? house.IsBanned( e ) : !house.HasAccess( e ) ) )
+				CanFlip = false;
+			if ( !IsChildOf( e.Backpack ) && e is PlayerMobile && ((PlayerMobile)e).DoubleClickID && NotIdentified )
 				e.SendMessage( "Isto deve estar em sua mochila para identificar." );
 			else if ( e is PlayerMobile && ((PlayerMobile)e).DoubleClickID && NotIdentified )
 				IDCommand( e );
 			else if ( CanFlip == true && house != null && this.Movable != false )
-				if ( this.ItemID == RelicFlipID1 ){ this.ItemID = RelicFlipID2; } else { this.ItemID = RelicFlipID1; }
-			else if ( !IsChildOf( e.Backpack ) ) 
+			{
+				if ( this.ItemID == RelicFlipID1 )
+					this.ItemID = RelicFlipID2;
+				else
+					this.ItemID = RelicFlipID1;
+			}
+			else if ( !IsChildOf( e.Backpack ) )
 				e.SendMessage( "Isto deve estar em sua mochila para ler." );
 			else if ( e.Int >= SearchReal )
 			{
@@ -261,10 +267,12 @@ namespace Server.Items
 			int aCount = 0;
 			ArrayList targets = new ArrayList();
 			foreach ( Item target in World.Items.Values )
-			if ( target is SearchBase )
 			{
-				targets.Add( target );
-				aCount++;
+				if ( target is SearchBase )
+				{
+					targets.Add( target );
+					aCount++;
+				}
 			}
 
 			aCount = Utility.RandomMinMax( 1, aCount );
@@ -276,7 +284,7 @@ namespace Server.Items
 
 				if ( xCount == aCount )
 				{
-					Item finding = ( Item )targets[ i ];
+					Item finding = (Item)targets[i];
 					place = Server.Misc.Worlds.GetRegionName( finding.Map, finding.Location );
 				}
 			}
@@ -284,21 +292,21 @@ namespace Server.Items
 			return place;
 		}
 
-		public DDRelicTablet(Serial serial) : base(serial)
+		public DDRelicTablet( Serial serial ) : base( serial )
 		{
 		}
 
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-            writer.Write( (int) 1 ); // version
-            writer.Write( RelicFlipID1 );
-            writer.Write( RelicFlipID2 );
-            writer.Write( RelicDescription );
-            writer.Write( SearchDungeon );
-            writer.Write( SearchType );
-            writer.Write( SearchItem );
-            writer.Write( SearchReal );
+            writer.Write( (int)1 ); // version
+			writer.Write( RelicFlipID1 );
+			writer.Write( RelicFlipID2 );
+			writer.Write( RelicDescription );
+			writer.Write( SearchDungeon );
+			writer.Write( SearchType );
+			writer.Write( SearchItem );
+			writer.Write( SearchReal );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -309,13 +317,13 @@ namespace Server.Items
 			if ( version < 1 )
 				CoinPrice = reader.ReadInt();
 
-            RelicFlipID1 = reader.ReadInt();
-            RelicFlipID2 = reader.ReadInt();
-            RelicDescription = reader.ReadString();
-			SearchDungeon = reader.ReadString();
-			SearchType = reader.ReadString();
-			SearchItem = reader.ReadString();
-			SearchReal = reader.ReadInt();
+            RelicFlipID1     = reader.ReadInt();
+			RelicFlipID2     = reader.ReadInt();
+			RelicDescription = reader.ReadString();
+			SearchDungeon    = reader.ReadString();
+			SearchType       = reader.ReadString();
+			SearchItem       = reader.ReadString();
+			SearchReal       = reader.ReadInt();
 		}
 	}
 }

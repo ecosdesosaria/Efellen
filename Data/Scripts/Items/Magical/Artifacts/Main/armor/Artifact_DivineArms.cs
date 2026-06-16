@@ -20,6 +20,7 @@ namespace Server.Items
 			Attributes.ReflectPhysical = 10;
 			Attributes.LowerManaCost = 4;
 			Attributes.Luck = 80;
+			ArmorAttributes.MageArmor = 1;
 			ArtifactLevel = 2;
 			Server.Misc.Arty.ArtySetup( this, "" );
 		}

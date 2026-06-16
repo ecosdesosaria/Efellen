@@ -5,7 +5,8 @@ using Server.Targeting;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Gumps;
-
+using System.Collections;
+using System.Collections.Generic;
 namespace Server.Items
 {
 	public class Artifact_RodOfResurrection : GiftScepter
@@ -17,7 +18,7 @@ namespace Server.Items
 			Hue = 0x4AC;
 			Attributes.Luck = 125;
 			ArtifactLevel = 2;
-			Server.Misc.Arty.ArtySetup( this, "Brings the dead back to life" );
+			Server.Misc.Arty.ArtySetup( this, "Traz os mortos de volta à vida" );
 		}
 
 		public override void OnDoubleClick( Mobile from )
@@ -34,38 +35,77 @@ namespace Server.Items
 			return;
 		}
 
-        public void Target( Mobile m, Mobile from, Artifact_RodOfResurrection rod )
-        {
-            if ( !from.CanSee( m ) )
-            {
-                from.SendLocalizedMessage( 500237 ); // Target can not be seen.
-            }
-            else if ( !from.Alive )
-            {
-                from.SendLocalizedMessage( 501040 ); // The resurrecter must be alive.
-            }
-            else if (m.Alive)
-            {
-                from.SendLocalizedMessage( 501041 ); // Target is not dead.
-            }
-            else if ( !from.InRange( m, 2 ) )
-            {
-                from.SendLocalizedMessage( 501042 ); // Target is not close enough.
-            }
-            else if ( m.Map == null || !m.Map.CanFit( m.Location, 16, false, false ) )
-            {
-                from.SendLocalizedMessage( 501042 ); // Target can not be resurrected at that location.
-                m.SendLocalizedMessage( 502391 ); // Thou can not be resurrected there!
-            }
-            else if ( m is PlayerMobile )
-            {
-                m.PlaySound( 0x214 );
-                m.FixedEffect( 0x376A, 10, 16 );
- 
-                m.CloseGump( typeof( ResurrectGump ) );
-                m.SendGump( new ResurrectGump( m, from ) );
-            }
-            else if (m is BaseCreature )
+        public void Target(Mobile m, Mobile from, Artifact_RodOfResurrection rod)
+		{
+			if (!from.CanSee(m))
+			{
+				from.SendLocalizedMessage(500237); // Target can not be seen.
+			}
+			else if (!from.Alive)
+			{
+				from.SendLocalizedMessage(501040); // The resurrecter must be alive.
+			}
+			else if (m == from)
+			{
+				SoulOrb iOrb = new SoulOrb();
+
+				// Check if backpack is full
+				if (m.Backpack == null || !m.Backpack.CheckHold(m, iOrb, false, true, 0, 0))
+				{
+					iOrb.Delete();
+					m.SendMessage("You cannot cast that spell because your inventory is full.");
+					return;
+				}
+
+				// Remove existing orb(s) from the caster
+				ArrayList targets = new ArrayList();
+				foreach (Item item in World.Items.Values)
+					if (item is SoulOrb)
+					{
+						SoulOrb myOrb = (SoulOrb)item;
+						if (myOrb.m_Owner == m)
+						{
+							targets.Add(item);
+						}
+					}
+				for (int i = 0; i < targets.Count; ++i)
+				{
+					Item item = (Item)targets[i];
+					item.Delete();
+				}
+
+				// Create new orb
+				m.PlaySound(0x214);
+				m.FixedEffect(0x3039, 10, 16, 1066, 0);
+				m.SendMessage("You summon a magical orb of resurrection to protect your soul.");
+				iOrb.m_Owner = m;
+				iOrb.Hue = 0xB17;
+				iOrb.Name = "magical orb of resurrection";
+				m.AddToBackpack(iOrb);
+				Server.Items.SoulOrb.OnSummoned(m, iOrb);
+			}
+			else if (m.Alive)
+			{
+				from.SendLocalizedMessage(501041); // Target is not dead.
+			}
+			else if (!from.InRange(m, 2))
+			{
+				from.SendLocalizedMessage(501042); // Target is not close enough.
+			}
+			else if (m.Map == null || !m.Map.CanFit(m.Location, 16, false, false))
+			{
+				from.SendLocalizedMessage(501042); // Target can not be resurrected at that location.
+				m.SendLocalizedMessage(502391); // Thou can not be resurrected there!
+			}
+			else if (m is PlayerMobile)
+			{
+				m.PlaySound(0x214);
+				m.FixedEffect(0x376A, 10, 16);
+
+				m.CloseGump(typeof(ResurrectGump));
+				m.SendGump(new ResurrectGump(m, from));
+			}
+			else if (m is BaseCreature)
 			{
 				BaseCreature pet = (BaseCreature)m;
 				Mobile master = pet.GetMaster();
