@@ -41,7 +41,7 @@ namespace Server.Misc
 		{
 			string what = "";	
 			string where = "";	
-			string say = QuestCharacters.RandomWords() + " killed them, I just know it.";	
+			string say = QuestCharacters.RandomWords() + " os matou, tenho certeza.";
 
 			int rare = Utility.RandomMinMax( 1, 11 );	
 
@@ -62,15 +62,15 @@ namespace Server.Misc
 				{
 					where = Server.Misc.Worlds.GetRegionName( mob.Map, mob.Location );	
 
-					if ( where == "the Bottle World of Kuldar" ){ 		where = "the waters of the Kuldar Sea"; }
-					else if ( where == "the Land of Ambrosia" ){ 		where = "the waters of the Ambrosia Lakes"; }
-					else if ( where == "the Island of Umber Veil" ){ 	where = "the waters of the Umber Sea"; }
-					else if ( where == "the Land of Lodoria" ){ 		where = "the waters of the Lodoria Ocean"; }
-					else if ( where == "the Underworld" ){ 				where = "the waters of Carthax Lake"; }
-					else if ( where == "the Serpent Island" ){ 			where = "the waters of the Serpent Seas"; }
-					else if ( where == "the Isles of Dread" ){ 			where = "the waters of the Dreadful Sea"; }
-					else if ( where == "the Savaged Empire" ){ 			where = "the waters of the Savage Seas"; }
-					else if ( where == "the Land of Sosaria" ){ 		where = "the waters of the Sosaria Ocean"; }
+					if ( where == "the Bottle World of Kuldar" ){         where = "as águas do Mar de Kuldar"; }
+					else if ( where == "the Land of Ambrosia" ){         where = "as águas dos Lagos de Ambrosia"; }
+					else if ( where == "the Island of Umber Veil" ){     where = "as águas do Mar de Umber"; }
+					else if ( where == "the Land of Lodoria" ){         where = "as águas do Oceano de Lodoria"; }
+					else if ( where == "the Underworld" ){                 where = "as águas do Lago Carthax"; }
+					else if ( where == "the Serpent Island" ){             where = "as águas dos Mares da Serpente"; }
+					else if ( where == "the Isles of Dread" ){             where = "as águas do Mar do Pavor"; }
+					else if ( where == "the Savaged Empire" ){             where = "as águas dos Mares Selvagens"; }
+					else if ( where == "the Land of Sosaria" ){         where = "as águas do Oceano de Sosaria"; }
 				}
 			}
 			else
@@ -80,26 +80,26 @@ namespace Server.Misc
 				{
 					if ( target is FlamesBase )
 					{
-						if ( rare == 2 ){ what = "the Book of Truth"; 				FlamesBase targ2 = (FlamesBase)target; if ( targ2.ItemType == 1){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
-						else if ( rare == 3 ){ what = "the Bell of Courage"; 		FlamesBase targ3 = (FlamesBase)target; if ( targ3.ItemType == 2){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
-						else if ( rare == 4 ){ what = "the Candle of Love"; 		FlamesBase targ4 = (FlamesBase)target; if ( targ4.ItemType == 3){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						if ( rare == 2 ){ what = "o Livro da Verdade";                 FlamesBase targ2 = (FlamesBase)target; if ( targ2.ItemType == 1){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						else if ( rare == 3 ){ what = "o Sino da Coragem";         FlamesBase targ3 = (FlamesBase)target; if ( targ3.ItemType == 2){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						else if ( rare == 4 ){ what = "a Vela do Amor";         FlamesBase targ4 = (FlamesBase)target; if ( targ4.ItemType == 3){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
 					}
 					else if ( target is BaneBase )
 					{
-						if ( rare == 5 ){ what = "the Scales of Ethicality"; 		BaneBase targ5 = (BaneBase)target; if ( targ5.ItemType == 1){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
-						else if ( rare == 6 ){ what = "the Orb of Logic"; 			BaneBase targ6 = (BaneBase)target; if ( targ6.ItemType == 2){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
-						else if ( rare == 7 ){ what = "the Lantern of Discipline"; 	BaneBase targ7 = (BaneBase)target; if ( targ7.ItemType == 3){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						if ( rare == 5 ){ what = "a Balança da Ética";         BaneBase targ5 = (BaneBase)target; if ( targ5.ItemType == 1){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						else if ( rare == 6 ){ what = "o Orbe da Lógica";             BaneBase targ6 = (BaneBase)target; if ( targ6.ItemType == 2){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						else if ( rare == 7 ){ what = "a Lanterna da Disciplina";     BaneBase targ7 = (BaneBase)target; if ( targ7.ItemType == 3){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
 					}
 					else if ( target is PaganBase )
 					{
-						if ( rare == 8 ){ what = "the Breath of Air"; 				PaganBase targ8 = (PaganBase)target; if ( targ8.ItemType == 1){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
-						else if ( rare == 9 ){ what = "the Tongue of Flame"; 		PaganBase targ9 = (PaganBase)target; if ( targ9.ItemType == 2){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
-						else if ( rare == 10 ){ what = "the Heart of Earth"; 		PaganBase targ10 = (PaganBase)target; if ( targ10.ItemType == 3){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
-						else if ( rare == 11 ){ what = "the Tear of the Seas"; 		PaganBase targ11 = (PaganBase)target; if ( targ11.ItemType == 4){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						if ( rare == 8 ){ what = "o Soprar do Ar";                 PaganBase targ8 = (PaganBase)target; if ( targ8.ItemType == 1){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						else if ( rare == 9 ){ what = "a Língua da Chama";         PaganBase targ9 = (PaganBase)target; if ( targ9.ItemType == 2){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						else if ( rare == 10 ){ what = "o Coração da Terra";         PaganBase targ10 = (PaganBase)target; if ( targ10.ItemType == 3){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
+						else if ( rare == 11 ){ what = "a Lágrima dos Mares";         PaganBase targ11 = (PaganBase)target; if ( targ11.ItemType == 4){ where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location ); } }
 					}
 					else if ( target is RunesBase )
 					{
-						what = "the Chest of Virtue"; 								where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location );	
+						what = "o Baú da Virtude";                                 where = Server.Misc.Worlds.GetRegionName( target.Map, target.Location );    
 					}
 				}
 			}
@@ -165,104 +165,104 @@ namespace Server.Misc
 			string myTitle = "";	
 
 			int otitle = Utility.RandomMinMax( 1, 33 );	
-			if (otitle == 1){sTitle = "of the Dark";}
-			else if (otitle == 2){sTitle = "of the Vile";}
-			else if (otitle == 3){sTitle = "of the Grave";}
-			else if (otitle == 4){sTitle = "of the Dead";}
-			else if (otitle == 5){sTitle = "of the Cemetery";}
-			else if (otitle == 6){sTitle = "of the Dark Tower";}
-			else if (otitle == 7){sTitle = "of the Fires Below";}
-			else if (otitle == 8){sTitle = "of the Swamps";}
-			else if (otitle == 9){sTitle = "of the Hideous";}
-			else if (otitle == 10){sTitle = "of the Foul";}
-			else if (otitle == 11){sTitle = "of the Dark";}
-			else if (otitle == 12){sTitle = "of the Night";}
-			else if (otitle == 13){sTitle = "of the Baneful";}
-			else if (otitle == 14){sTitle = "of the Maleficent";}
-			else if (otitle == 15){sTitle = "of the Wrathful";}
-			else if (otitle == 16){sTitle = "of the Tomb";}
-			else if (otitle == 17){sTitle = "of the Catacombs";}
-			else if (otitle == 18){sTitle = "of the Crypts";}
-			else if (otitle == 19){sTitle = "of the Dead Lands";}
-			else if (otitle == 20){sTitle = "of the Necropolis";}
-			else if (otitle == 21){sTitle = "of the Vampire's Tomb";}
-			else if (otitle == 22){sTitle = "of the Haunted Wilds";}
-			else if (otitle == 23){sTitle = "of the Eerie Eyes";}
-			else if (otitle == 24){sTitle = "of the Foetid Swamp";}
-			else if (otitle == 25){sTitle = "of the Destroyed City";}
-			else if (otitle == 26){sTitle = "of the Haunted Heath";}
-			else if (otitle == 27){sTitle = "of the Dark Mansion";}
-			else if (otitle == 28){sTitle = "of the Howling Hills";}
-			else if (otitle == 29){sTitle = "of the Hellish Wastes";}
-			else if (otitle == 30){sTitle = "of the Menacing Mien";}
-			else if (otitle == 31){sTitle = "of the Savage Lands";}
-			else if (otitle == 32){sTitle = "of the Evil Woods";}
-			else {sTitle = "of the Hateful Eyes";}
+			if (otitle == 1){sTitle = "do Sombrio";}
+			else if (otitle == 2){sTitle = "do Vil";}
+			else if (otitle == 3){sTitle = "do Sepulcro";}
+			else if (otitle == 4){sTitle = "dos Mortos";}
+			else if (otitle == 5){sTitle = "do Cemitério";}
+			else if (otitle == 6){sTitle = "da Torre Negra";}
+			else if (otitle == 7){sTitle = "dos Fogos Abaixo";}
+			else if (otitle == 8){sTitle = "dos Pântanos";}
+			else if (otitle == 9){sTitle = "do Horrendo";}
+			else if (otitle == 10){sTitle = "do Imundo";}
+			else if (otitle == 11){sTitle = "do Sombrio";}
+			else if (otitle == 12){sTitle = "da Noite";}
+			else if (otitle == 13){sTitle = "do Funesto";}
+			else if (otitle == 14){sTitle = "do Maléfico";}
+			else if (otitle == 15){sTitle = "do Irascível";}
+			else if (otitle == 16){sTitle = "da Tumba";}
+			else if (otitle == 17){sTitle = "das Catacumbas";}
+			else if (otitle == 18){sTitle = "das Criptas";}
+			else if (otitle == 19){sTitle = "das Terras Mortas";}
+			else if (otitle == 20){sTitle = "da Necrópole";}
+			else if (otitle == 21){sTitle = "da Tumba do Vampiro";}
+			else if (otitle == 22){sTitle = "dos Ermos Assombrados";}
+			else if (otitle == 23){sTitle = "dos Olhos Sinistros";}
+			else if (otitle == 24){sTitle = "do Pântano Fétido";}
+			else if (otitle == 25){sTitle = "da Cidade Destruída";}
+			else if (otitle == 26){sTitle = "do Brejo Assombrado";}
+			else if (otitle == 27){sTitle = "da Mansão Sombria";}
+			else if (otitle == 28){sTitle = "das Colinas Uivantes";}
+			else if (otitle == 29){sTitle = "dos Ermos Infernais";}
+			else if (otitle == 30){sTitle = "da Aparência Ameaçadora";}
+			else if (otitle == 31){sTitle = "das Terras Selvagens";}
+			else if (otitle == 32){sTitle = "das Florestas Malignas";}
+			else {sTitle = "dos Olhos Odiosos";}
 
-			string sColor = "Wicked";	
+			string sColor = "Perverso";	
 			switch( Utility.RandomMinMax( 0, 9 ) )
 			{
-				case 0: sColor = "Wicked"; break;	
-				case 1: sColor = "Vile"; break;	
-				case 2: sColor = "Malevolent"; break;	
-				case 3: sColor = "Hateful"; break;	
-				case 4: sColor = "Bloody"; break;	
-				case 5: sColor = "Nefarious"; break;	
-				case 6: sColor = "Heinous"; break;	
-				case 7: sColor = "Evil"; break;	
-				case 8: sColor = "Wicked"; break;	
-				case 9: sColor = "Vicious"; break;	
+				case 0: sColor = "Perverso"; break;	
+				case 1: sColor = "Vil"; break;	
+				case 2: sColor = "Malevolente"; break;	
+				case 3: sColor = "Odioso"; break;	
+				case 4: sColor = "Sangrento"; break;	
+				case 5: sColor = "Nefário"; break;	
+				case 6: sColor = "Abominável"; break;	
+				case 7: sColor = "Maligno"; break;	
+				case 8: sColor = "Perverso"; break;	
+				case 9: sColor = "Cruel"; break;	
 			}
 
 			switch ( Utility.RandomMinMax( 0, 46 ) )
 			{
-				case 0: myTitle = "from the Wastes"; break;	
-				case 1: myTitle = "from the Grave"; break;	
-				case 2: myTitle = "from the Deep"; break;	
-				case 3: myTitle = "of the " + sColor + " Cloak"; break;	
-				case 4: myTitle = "of the " + sColor + " Robe"; break;	
-				case 5: myTitle = "of the " + sColor + " Order"; break;	
-				case 6: myTitle = "of the " + sColor + " Hood"; break;	
-				case 7: myTitle = "of the " + sColor + " Society"; break;	
-				case 8: myTitle = "of the " + sColor + " Mask"; break;	
+				case 0: myTitle = "dos Ermos"; break;	
+				case 1: myTitle = "da Sepultura"; break;	
+				case 2: myTitle = "das Profundezas"; break;	
+				case 3: myTitle = "da Capa " + sColor; break;	
+				case 4: myTitle = "da Veste " + sColor; break;	
+				case 5: myTitle = "da Ordem " + sColor; break;	
+				case 6: myTitle = "do Capuz " + sColor; break;	
+				case 7: myTitle = "da Sociedade " + sColor; break;	
+				case 8: myTitle = "da Máscara " + sColor; break;	
 				case 9: myTitle = sTitle; break;	
 				case 10: myTitle = sTitle; break;	
 				case 11: myTitle = sTitle; break;	
 				case 12: myTitle = sTitle; break;	
 				case 13: myTitle = sTitle; break;	
 				case 14: myTitle = sTitle; break;	
-				case 15: myTitle = "of the " + sColor + " Lich"; break;	
-				case 16: myTitle = "of the " + sColor + " Ghost"; break;	
-				case 17: myTitle = "of the " + sColor + " Daemon"; break;	
-				case 18: myTitle = "of the " + sColor + " Castle"; break;	
-				case 19: myTitle = "of the " + sColor + " Skull"; break;	
-				case 20: myTitle = "of the " + sColor + " Grave"; break;	
-				case 21: myTitle = "of the " + sColor + " House"; break;	
-				case 22: myTitle = "the " + sColor; break;	
-				case 23: myTitle = "the Necromancer"; break;	
-				case 24: myTitle = "the Warlock"; break;	
-				case 25: myTitle = "the Witch"; break;	
-				case 26: myTitle = "the Undertaker"; break;	
-				case 27: myTitle = "the Torturer"; break;	
-				case 28: myTitle = "the Dread Lord"; break;	
-				case 29: myTitle = "the Death Knight"; break;	
-				case 30: myTitle = "the Thief"; break;	
-				case 31: myTitle = "the Assassin"; break;	
-				case 32: myTitle = "the Rogue"; break;	
-				case 33: myTitle = "the Diabolist"; break;	
-				case 34: myTitle = "the Savage"; break;	
-				case 35: myTitle = "the Foul"; break;	
-				case 36: myTitle = "the Ghastly"; break;	
-				case 37: myTitle = "the Haunted"; break;	
-				case 38: myTitle = "the Frantic"; break;	
-				case 39: myTitle = "the Loathsome"; break;	
-				case 40: myTitle = "the Angry"; break;	
-				case 41: myTitle = "of the " + sColor + " Cowl"; break;	
-				case 42: myTitle = "of the " + sColor + " Eye"; break;	
-				case 43: myTitle = "of the " + sColor + " Hat"; break;	
-				case 44: myTitle = "of the " + sColor + " Glove"; break;	
-				case 45: myTitle = "of the " + sColor + " Veil"; break;	
-				case 46: myTitle = "of the " + sColor + " Shroud"; break;	
+				case 15: myTitle = "do Lich " + sColor; break;	
+				case 16: myTitle = "do Fantasma " + sColor; break;	
+				case 17: myTitle = "do Demônio " + sColor; break;	
+				case 18: myTitle = "do Castelo " + sColor; break;	
+				case 19: myTitle = "da Caveira " + sColor; break;	
+				case 20: myTitle = "da Tumba " + sColor; break;	
+				case 21: myTitle = "da Casa " + sColor; break;	
+				case 22: myTitle = "o " + sColor; break;	
+				case 23: myTitle = "o Necromante"; break;	
+				case 24: myTitle = "o Bruxo"; break;	
+				case 25: myTitle = "a Bruxa"; break;	
+				case 26: myTitle = "o Agente Funerário"; break;	
+				case 27: myTitle = "o Torturador"; break;	
+				case 28: myTitle = "o Senhor do Pavor"; break;	
+				case 29: myTitle = "o Cavaleiro da Morte"; break;	
+				case 30: myTitle = "o Ladrão"; break;	
+				case 31: myTitle = "o Assassino"; break;	
+				case 32: myTitle = "o Salteador"; break;	
+				case 33: myTitle = "o Diabolista"; break;	
+				case 34: myTitle = "o Selvagem"; break;	
+				case 35: myTitle = "o Imundo"; break;	
+				case 36: myTitle = "o Medonho"; break;	
+				case 37: myTitle = "o Assombrado"; break;	
+				case 38: myTitle = "o Frenético"; break;	
+				case 39: myTitle = "o Repulsivo"; break;	
+				case 40: myTitle = "o Irado"; break;	
+				case 41: myTitle = "da Carapuça " + sColor; break;	
+				case 42: myTitle = "do Olho " + sColor; break;	
+				case 43: myTitle = "do Chapéu " + sColor; break;	
+				case 44: myTitle = "da Luva " + sColor; break;	
+				case 45: myTitle = "do Véu " + sColor; break;	
+				case 46: myTitle = "do Sudário " + sColor; break;
 			}
 			return myTitle;	
 		}
@@ -273,129 +273,129 @@ namespace Server.Misc
 			string myTitle = "";	
 
 			int otitle = Utility.RandomMinMax( 1, 33 );	
-			if (otitle == 1){sTitle = "of the North";}
-			else if (otitle == 2){sTitle = "of the South";}
-			else if (otitle == 3){sTitle = "of the East";}
-			else if (otitle == 4){sTitle = "of the West";}
-			else if (otitle == 5){sTitle = "of the City";}
-			else if (otitle == 6){sTitle = "of the Hills";}
-			else if (otitle == 7){sTitle = "of the Mountains";}
-			else if (otitle == 8){sTitle = "of the Plains";}
-			else if (otitle == 9){sTitle = "of the Woods";}
-			else if (otitle == 10){sTitle = "of the Light";}
-			else if (otitle == 11){sTitle = "of the Dark";}
-			else if (otitle == 12){sTitle = "of the Night";}
-			else if (otitle == 13){sTitle = "of the Sea";}
-			else if (otitle == 14){sTitle = "of the Desert";}
-			else if (otitle == 15){sTitle = "of the Order";}
-			else if (otitle == 16){sTitle = "of the Forest";}
-			else if (otitle == 17){sTitle = "of the Snow";}
-			else if (otitle == 18){sTitle = "of the Coast";}
-			else if (otitle == 19){sTitle = "of the Arid Wastes";}
-			else if (otitle == 20){sTitle = "of the Beetling Brow";}
-			else if (otitle == 21){sTitle = "of the Cyclopean City";}
-			else if (otitle == 22){sTitle = "of the Dread Wilds";}
-			else if (otitle == 23){sTitle = "of the Eerie Eyes";}
-			else if (otitle == 24){sTitle = "of the Foetid Swamp";}
-			else if (otitle == 25){sTitle = "of the Forgotten City";}
-			else if (otitle == 26){sTitle = "of the Haunted Heath";}
-			else if (otitle == 27){sTitle = "of the Hidden Valley";}
-			else if (otitle == 28){sTitle = "of the Howling Hills";}
-			else if (otitle == 29){sTitle = "of the Jagged Peaks";}
-			else if (otitle == 30){sTitle = "of the Menacing Mien";}
-			else if (otitle == 31){sTitle = "of the Savage Isle";}
-			else if (otitle == 32){sTitle = "of the Tangled Woods";}
-			else {sTitle = "of the Watchful Eyes";}
+			if (otitle == 1){sTitle = "do Norte";}
+			else if (otitle == 2){sTitle = "do Sul";}
+			else if (otitle == 3){sTitle = "do Leste";}
+			else if (otitle == 4){sTitle = "do Oeste";}
+			else if (otitle == 5){sTitle = "da Cidade";}
+			else if (otitle == 6){sTitle = "das Colinas";}
+			else if (otitle == 7){sTitle = "das Montanhas";}
+			else if (otitle == 8){sTitle = "das Planícies";}
+			else if (otitle == 9){sTitle = "das Florestas";}
+			else if (otitle == 10){sTitle = "da Luz";}
+			else if (otitle == 11){sTitle = "das Trevas";}
+			else if (otitle == 12){sTitle = "da Noite";}
+			else if (otitle == 13){sTitle = "do Mar";}
+			else if (otitle == 14){sTitle = "do Deserto";}
+			else if (otitle == 15){sTitle = "da Ordem";}
+			else if (otitle == 16){sTitle = "da Floresta";}
+			else if (otitle == 17){sTitle = "da Neve";}
+			else if (otitle == 18){sTitle = "da Costa";}
+			else if (otitle == 19){sTitle = "dos Ermos Áridos";}
+			else if (otitle == 20){sTitle = "da Testa Proeminente";}
+			else if (otitle == 21){sTitle = "da Cidade Ciclópica";}
+			else if (otitle == 22){sTitle = "dos Ermos do Pavor";}
+			else if (otitle == 23){sTitle = "dos Olhos Sinistros";}
+			else if (otitle == 24){sTitle = "do Pântano Fétido";}
+			else if (otitle == 25){sTitle = "da Cidade Esquecida";}
+			else if (otitle == 26){sTitle = "do Brejo Assombrado";}
+			else if (otitle == 27){sTitle = "do Vale Escondido";}
+			else if (otitle == 28){sTitle = "das Colinas Uivantes";}
+			else if (otitle == 29){sTitle = "dos Picos Escarpados";}
+			else if (otitle == 30){sTitle = "da Aparência Ameaçadora";}
+			else if (otitle == 31){sTitle = "da Ilha Selvagem";}
+			else if (otitle == 32){sTitle = "das Florestas Emaranhadas";}
+			else {sTitle = "dos Olhos Vigilantes";}
 
-			string sColor = "Red";	
+			string sColor = "Vermelho";	
 			switch( Utility.RandomMinMax( 0, 9 ) )
 			{
-				case 0: sColor = "Black"; break;	
-				case 1: sColor = "Blue"; break;	
-				case 2: sColor = "Gray"; break;	
-				case 3: sColor = "Green"; break;	
-				case 4: sColor = "Red"; break;	
-				case 5: sColor = "Brown"; break;	
-				case 6: sColor = "Orange"; break;	
-				case 7: sColor = "Yellow"; break;	
-				case 8: sColor = "Purple"; break;	
-				case 9: sColor = "White"; break;	
+				case 0: sColor = "Preto"; break;	
+				case 1: sColor = "Azul"; break;	
+				case 2: sColor = "Cinza"; break;	
+				case 3: sColor = "Verde"; break;	
+				case 4: sColor = "Vermelho"; break;	
+				case 5: sColor = "Marrom"; break;	
+				case 6: sColor = "Laranja"; break;	
+				case 7: sColor = "Amarelo"; break;	
+				case 8: sColor = "Roxo"; break;	
+				case 9: sColor = "Branco"; break;	
 			}
 
-			string gColor = "Gold";	
+			string gColor = "Dourado";	
 			switch( Utility.RandomMinMax( 0, 11 ) )
 			{
-				case 0: gColor = "Gold"; break;	
-				case 1: gColor = "Silver"; break;	
-				case 2: gColor = "Arcane"; break;	
-				case 3: gColor = "Iron"; break;	
-				case 4: gColor = "Steel"; break;	
-				case 5: gColor = "Emerald"; break;	
-				case 6: gColor = "Ruby"; break;	
+				case 0: gColor = "Dourado"; break;	
+				case 1: gColor = "Prata"; break;	
+				case 2: gColor = "Arcano"; break;	
+				case 3: gColor = "Ferro"; break;	
+				case 4: gColor = "Aço"; break;	
+				case 5: gColor = "Esmeralda"; break;	
+				case 6: gColor = "Rubi"; break;	
 				case 7: gColor = "Bronze"; break;	
 				case 8: gColor = "Jade"; break;	
-				case 9: gColor = "Sapphire"; break;	
-				case 10: gColor = "Copper"; break;	
-				case 11: gColor = "Royal"; break;	
+				case 9: gColor = "Safira"; break;	
+				case 10: gColor = "Cobre"; break;	
+				case 11: gColor = "Real"; break;	
 			}
 
-			string kKiller = "Giants";	
+			string kKiller = "Gigantes";	
 			switch( Utility.RandomMinMax( 0, 12 ) )
 			{
-				case 0: kKiller = "Giants"; break;	
-				case 1: kKiller = "Dragons"; break;	
+				case 0: kKiller = "Gigantes"; break;	
+				case 1: kKiller = "Dragões"; break;	
 				case 2: kKiller = "Ogres"; break;	
 				case 3: kKiller = "Trolls"; break;	
-				case 4: kKiller = "Demons"; break;	
-				case 5: kKiller = "Devils"; break;	
-				case 6: kKiller = "Drow"; break;	
+				case 4: kKiller = "Demônios"; break;	
+				case 5: kKiller = "Diabos"; break;	
+				case 6: kKiller = "Drows"; break;	
 				case 7: kKiller = "Orcs"; break;	
-				case 8: kKiller = "Minotaurs"; break;	
-				case 9: kKiller = "Monsters"; break;	
-				case 10: kKiller = "Undead"; break;	
-				case 11: kKiller = "Serpents"; break;	
-				case 12: kKiller = "Vampires"; break;	
+				case 8: kKiller = "Minotauros"; break;	
+				case 9: kKiller = "Monstros"; break;	
+				case 10: kKiller = "Mortos-vivos"; break;	
+				case 11: kKiller = "Serpentes"; break;	
+				case 12: kKiller = "Vampiros"; break;	
 			}
 
-			string mKiller = "Giant";	
+			string mKiller = "Gigante";	
 			switch( Utility.RandomMinMax( 0, 12 ) )
 			{
-				case 0: mKiller = "Giant"; break;	
-				case 1: mKiller = "Dragon"; break;	
+				case 0: mKiller = "Gigante"; break;	
+				case 1: mKiller = "Dragão"; break;	
 				case 2: mKiller = "Ogre"; break;	
 				case 3: mKiller = "Troll"; break;	
-				case 4: mKiller = "Demon"; break;	
-				case 5: mKiller = "Devil"; break;	
+				case 4: mKiller = "Demônio"; break;	
+				case 5: mKiller = "Diabo"; break;	
 				case 6: mKiller = "Drow"; break;	
 				case 7: mKiller = "Orc"; break;	
-				case 8: mKiller = "Minotaur"; break;	
-				case 9: mKiller = "Monster"; break;	
-				case 10: mKiller = "Undead"; break;	
-				case 11: mKiller = "Serpent"; break;	
-				case 12: mKiller = "Vampire"; break;	
+				case 8: mKiller = "Minotauro"; break;	
+				case 9: mKiller = "Monstro"; break;	
+				case 10: mKiller = "Morto-vivo"; break;	
+				case 11: mKiller = "Serpente"; break;	
+				case 12: mKiller = "Vampiro"; break;	
 			}
 
-			string aKiller = "Slayer";	
+			string aKiller = "Abatedor";	
 			switch( Utility.RandomMinMax( 0, 4 ) )
 			{
-				case 0: aKiller = "Slayer"; break;	
-				case 1: aKiller = "Killer"; break;	
-				case 2: aKiller = "Butcher"; break;	
-				case 3: aKiller = "Executioner"; break;	
-				case 4: aKiller = "Hunter"; break;	
+				case 0: aKiller = "Abatedor"; break;	
+				case 1: aKiller = "Matador"; break;	
+				case 2: aKiller = "Açougueiro"; break;	
+				case 3: aKiller = "Carrasco"; break;	
+				case 4: aKiller = "Caçador"; break;	
 			}
 
 			switch ( Utility.RandomMinMax( 0, 107 ) )
 			{
-				case 0: myTitle = "from Above"; break;	
-				case 1: myTitle = "from Afar"; break;	
-				case 2: myTitle = "from Below"; break;	
-				case 3: myTitle = "of the " + sColor + " Cloak"; break;	
-				case 4: myTitle = "of the " + sColor + " Robe"; break;	
-				case 5: myTitle = "of the " + sColor + " Order"; break;	
-				case 6: myTitle = "of the " + gColor + " Shield"; break;	
-				case 7: myTitle = "of the " + gColor + " Sword"; break;	
-				case 8: myTitle = "of the " + gColor + " Helm"; break;	
+				case 0: myTitle = "do Alto"; break;	
+				case 1: myTitle = "de Longe"; break;	
+				case 2: myTitle = "de Baixo"; break;	
+				case 3: myTitle = "da Capa " + sColor; break;	
+				case 4: myTitle = "da Veste " + sColor; break;	
+				case 5: myTitle = "da Ordem " + sColor; break;	
+				case 6: myTitle = "do Escudo " + gColor; break;	
+				case 7: myTitle = "da Espada " + gColor; break;	
+				case 8: myTitle = "do Elmo " + gColor; break;	
 				case 9: myTitle = sTitle; break;	
 				case 10: myTitle = sTitle; break;	
 				case 11: myTitle = sTitle; break;	
@@ -409,115 +409,115 @@ namespace Server.Misc
 				case 19: myTitle = sTitle; break;	
 				case 20: myTitle = sTitle; break;	
 				case 21: myTitle = sTitle; break;	
-				case 22: myTitle = "the " + sColor; break;	
-				case 23: myTitle = "the Adept"; break;	
-				case 24: myTitle = "the Nomad"; break;	
-				case 25: myTitle = "the Antiquarian"; break;	
-				case 26: myTitle = "the Arcane"; break;	
-				case 27: myTitle = "the Archaic"; break;	
-				case 28: myTitle = "the Barbarian"; break;	
-				case 29: myTitle = "the Batrachian"; break;	
-				case 30: myTitle = "the Battler"; break;	
-				case 31: myTitle = "the Bilious"; break;	
-				case 32: myTitle = "the Bold"; break;	
-				case 33: myTitle = "the Fearless"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Brave";} break;	
-				case 34: myTitle = "the Savage"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Civilized";} break;	
-				case 35: myTitle = "the Collector"; break;	
-				case 36: myTitle = "the Cryptic"; break;	
-				case 37: myTitle = "the Curious"; break;	
-				case 38: myTitle = "the Dandy"; break;	
-				case 39: myTitle = "the Daring"; break;	
-				case 40: myTitle = "the Decadent"; break;	
-				case 41: myTitle = "the Delver"; break;	
-				case 42: myTitle = "the Distant"; break;	
-				case 43: myTitle = "the Eldritch"; break;	
-				case 44: myTitle = "the Exotic"; break;	
-				case 45: myTitle = "the Explorer"; break;	
-				case 46: myTitle = "the Fair"; break;	
-				case 47: myTitle = "the Strong"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Weak";} break;	
-				case 48: myTitle = "the Fickle"; break;	
+				case 22: myTitle = "o " + sColor; break;	
+				case 23: myTitle = "o Adepto"; break;	
+				case 24: myTitle = "o Nômade"; break;	
+				case 25: myTitle = "o Antiquário"; break;	
+				case 26: myTitle = "o Arcano"; break;	
+				case 27: myTitle = "o Arcaico"; break;	
+				case 28: myTitle = "o Bárbaro"; break;	
+				case 29: myTitle = "o Batráquio"; break;	
+				case 30: myTitle = "o Lutador"; break;	
+				case 31: myTitle = "o Bilioso"; break;	
+				case 32: myTitle = "o Audaz"; break;	
+				case 33: myTitle = "o Destemido"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Bravo";} break;	
+				case 34: myTitle = "o Selvagem"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Civilizado";} break;	
+				case 35: myTitle = "o Colecionador"; break;	
+				case 36: myTitle = "o Críptico"; break;	
+				case 37: myTitle = "o Curioso"; break;	
+				case 38: myTitle = "o Dândi"; break;	
+				case 39: myTitle = "o Audacioso"; break;	
+				case 40: myTitle = "o Decadente"; break;	
+				case 41: myTitle = "o Explorador"; break;	
+				case 42: myTitle = "o Distante"; break;	
+				case 43: myTitle = "o Místico"; break;	
+				case 44: myTitle = "o Exótico"; break;	
+				case 45: myTitle = "o Explorador"; break;	
+				case 46: myTitle = "o Belo"; break;	
+				case 47: myTitle = "o Forte"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Fraco";} break;	
+				case 48: myTitle = "o Volúvel"; break;
 				case 49:
-						int iDice = Utility.RandomMinMax( 1, 10 );	
-						if (iDice == 1){myTitle = "the First";}
-						else if (iDice == 2){myTitle = "the Second";}
-						else if (iDice == 3){myTitle = "the Third";}
-						else if (iDice == 4){myTitle = "the Fourth";}
-						else if (iDice == 5){myTitle = "the Fifth";}
-						else if (iDice == 6){myTitle = "the Sixth";}
-						else if (iDice == 7){myTitle = "the Seventh";}
-						else if (iDice == 8){myTitle = "the Eighth";}
-						else if (iDice == 9){myTitle = "the Ninth";}
-						else {myTitle = "the Tenth";}
-						break;	
-				case 50: myTitle = "the Foul"; break;	
-				case 51: myTitle = "the Furtive"; break;	
-				case 52: myTitle = "the Gambler"; break;	
-				case 53: myTitle = "the Ghastly"; break;	
-				case 54: myTitle = "the Gibbous"; break;	
-				case 55: myTitle = "the Great"; break;	
-				case 56: myTitle = "the Grizzled"; break;	
-				case 57: myTitle = "the Gruff"; break;	
-				case 58: myTitle = "the Spiritual"; break;	
-				case 59: myTitle = "the Haunted"; break;	
-				case 60: myTitle = "the Calm"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Frantic";} break;	
+					int iDice = Utility.RandomMinMax( 1, 10 );	
+					if (iDice == 1){myTitle = "o Primeiro";}
+					else if (iDice == 2){myTitle = "o Segundo";}
+					else if (iDice == 3){myTitle = "o Terceiro";}
+					else if (iDice == 4){myTitle = "o Quarto";}
+					else if (iDice == 5){myTitle = "o Quinto";}
+					else if (iDice == 6){myTitle = "o Sexto";}
+					else if (iDice == 7){myTitle = "o Sétimo";}
+					else if (iDice == 8){myTitle = "o Oitavo";}
+					else if (iDice == 9){myTitle = "o Nono";}
+					else {myTitle = "o Décimo";}
+					break;	
+				case 50: myTitle = "o Imundo"; break;	
+				case 51: myTitle = "o Furtivo"; break;	
+				case 52: myTitle = "o Apostador"; break;	
+				case 53: myTitle = "o Medonho"; break;	
+				case 54: myTitle = "o Giboso"; break;	
+				case 55: myTitle = "o Grande"; break;	
+				case 56: myTitle = "o Grisalho"; break;	
+				case 57: myTitle = "o Rude"; break;	
+				case 58: myTitle = "o Espiritual"; break;	
+				case 59: myTitle = "o Assombrado"; break;	
+				case 60: myTitle = "o Calmo"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Frenético";} break;	
 				case 61:
-						int iDice2 = Utility.RandomMinMax( 1, 4 );	
-						if (iDice2 == 1){myTitle = "the Hooded";}
-						else if (iDice2 == 2){myTitle = "the Cloaked";}
-						else if (iDice2 == 3){myTitle = "the Cowled";}
-						else {myTitle = "the Robed";}
-						break;	
-				case 62: myTitle = "the Hunter"; break;	
-				case 63: myTitle = "the Imposing"; break;	
-				case 64: myTitle = "the Irreverent"; break;	
-				case 65: myTitle = "the Loathsome"; break;	
+					int iDice2 = Utility.RandomMinMax( 1, 4 );	
+					if (iDice2 == 1){myTitle = "o Encapuçado";}
+					else if (iDice2 == 2){myTitle = "o Encapotado";}
+					else if (iDice2 == 3){myTitle = "o Capuzado";}
+					else {myTitle = "o Vestido";}
+					break;	
+				case 62: myTitle = "o Caçador"; break;	
+				case 63: myTitle = "o Imponente"; break;	
+				case 64: myTitle = "o Irreverente"; break;	
+				case 65: myTitle = "o Repulsivo"; break;	
 				case 66:
-						int iDice3 = Utility.RandomMinMax( 1, 3 );	
-						if (iDice3 == 1){myTitle = "the Quiet";}
-						else if (iDice3 == 2){myTitle = "the Silent";}
-						else {myTitle = "the Loud";}
-						break;	
-				case 67: myTitle = "the Lovely"; break;	
-				case 68: myTitle = "the Mantled"; break;	
-				case 69: myTitle = "the Masked"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Veiled";} break;	
-				case 70: myTitle = "the Merciful"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Merciless";} break;	
-				case 71: myTitle = "the Mercurial"; break;	
-				case 72: myTitle = "the Mighty"; break;	
-				case 73: myTitle = "the Morose"; break;	
-				case 74: myTitle = "the Mutable"; break;	
-				case 75: myTitle = "the Mysterious"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Unknown";} break;	
-				case 76: myTitle = "the Obscure"; break;	
-				case 77: myTitle = "the Old"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Young";} break;	
-				case 78: myTitle = "the Ominous"; break;	
-				case 79: myTitle = "the Peculiar"; break;	
-				case 80: myTitle = "the Perceptive"; break;	
-				case 81: myTitle = "the Pious"; break;	
-				case 82: myTitle = "the Quick"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Slow";} break;	
-				case 83: myTitle = "the Ragged"; break;	
-				case 84: myTitle = "the Ready"; break;	
-				case 85: myTitle = "the Rough"; break;	
-				case 86: myTitle = "the Rugose"; break;	
-				case 87: myTitle = "the Scarred"; break;	
-				case 88: myTitle = "the Searcher"; break;	
-				case 89: myTitle = "the Shadowy"; break;	
-				case 90: myTitle = "the Short"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Tall";} break;	
-				case 91: myTitle = "the Steady"; break;	
-				case 92: myTitle = "the Uncanny"; break;	
-				case 93: myTitle = "the Unexpected"; break;	
-				case 94: myTitle = "the Unknowable"; break;	
-				case 95: myTitle = "the Verbose"; break;	
-				case 96: myTitle = "the Vigorous"; break;	
-				case 97: myTitle = "the Traveler"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Wanderer";} break;	
-				case 98: myTitle = "the Wary"; break;	
-				case 99: myTitle = "the Weird"; break;	
-				case 100: myTitle = "the Steady"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Unready";} break;	
-				case 101: myTitle = "the Gentle"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Cruel";} break;	
-				case 102: myTitle = "the Lost"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Exiled";} break;	
-				case 103: myTitle = "the Careless"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Clumsy";} break;	
-				case 104: myTitle = "the Hopeful"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Trustful";} break;	
-				case 105: myTitle = "the Angry"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "the Timid";} break;	
-				case 106: myTitle = "the " + aKiller + " of " + kKiller; break;	
-				case 107: myTitle = "the " + mKiller + " " + aKiller; break;	
+					int iDice3 = Utility.RandomMinMax( 1, 3 );	
+					if (iDice3 == 1){myTitle = "o Quieto";}
+					else if (iDice3 == 2){myTitle = "o Silencioso";}
+					else {myTitle = "o Barulhento";}
+					break;	
+				case 67: myTitle = "o Encantador"; break;	
+				case 68: myTitle = "o Envolto"; break;	
+				case 69: myTitle = "o Mascarado"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Velejado";} break;	
+				case 70: myTitle = "o Misericordioso"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Impiedoso";} break;	
+				case 71: myTitle = "o Mercurial"; break;	
+				case 72: myTitle = "o Poderoso"; break;	
+				case 73: myTitle = "o Melancólico"; break;	
+				case 74: myTitle = "o Mutável"; break;	
+				case 75: myTitle = "o Misterioso"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Desconhecido";} break;	
+				case 76: myTitle = "o Obscuro"; break;	
+				case 77: myTitle = "o Velho"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Jovem";} break;	
+				case 78: myTitle = "o Sombrio"; break;	
+				case 79: myTitle = "o Peculiar"; break;	
+				case 80: myTitle = "o Perceptivo"; break;	
+				case 81: myTitle = "o Pio"; break;	
+				case 82: myTitle = "o Rápido"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Lento";} break;	
+				case 83: myTitle = "o Esfarrapado"; break;	
+				case 84: myTitle = "o Pronto"; break;	
+				case 85: myTitle = "o Áspero"; break;	
+				case 86: myTitle = "o Rugoso"; break;	
+				case 87: myTitle = "o Cicatrizado"; break;	
+				case 88: myTitle = "o Buscador"; break;	
+				case 89: myTitle = "o Sombrio"; break;	
+				case 90: myTitle = "o Baixo"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Alto";} break;	
+				case 91: myTitle = "o Firme"; break;	
+				case 92: myTitle = "o Sobrenatural"; break;	
+				case 93: myTitle = "o Inesperado"; break;	
+				case 94: myTitle = "o Incompreensível"; break;	
+				case 95: myTitle = "o Verboso"; break;	
+				case 96: myTitle = "o Vigoroso"; break;	
+				case 97: myTitle = "o Viajante"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Andarilho";} break;	
+				case 98: myTitle = "o Cauteloso"; break;	
+				case 99: myTitle = "o Estranho"; break;	
+				case 100: myTitle = "o Firme"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Despreparado";} break;	
+				case 101: myTitle = "o Gentil"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Cruel";} break;	
+				case 102: myTitle = "o Perdido"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Exilado";} break;	
+				case 103: myTitle = "o Descuidado"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Desajeitado";} break;	
+				case 104: myTitle = "o Esperançoso"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Confiante";} break;	
+				case 105: myTitle = "o Irritado"; if (Utility.RandomMinMax( 1, 2 ) == 1){myTitle = "o Tímido";} break;	
+				case 106: myTitle = "o " + aKiller + " de " + kKiller; break;	
+				case 107: myTitle = "o " + mKiller + " " + aKiller; break;	
 			}
 			return myTitle;	
 		}
@@ -537,109 +537,109 @@ namespace Server.Misc
 				case 0: sWords = "um santuário branco brilhante em Sosaria que leva à lua"; break;	
 				case 1: sWords = "um castelo de magos do mal governado por um arquimago ainda mais vil"; break;	
 				case 2: sWords = "uma caverna no pântano de Lodor que é lar de humanoides escamosos"; break;	
-				case 3: sWords = "uma caverna de pixies e um druida louco no Savaged Empire"; break;	
+				case 3: sWords = "uma caverna de pixies e um druida louco em Savaged Empire"; break;	
 				case 4: sWords = "uma caverna a oeste de Lodoria, que está cheia de serpentes, ettins e trolls"; break;	
 				case 5: sWords = "uma cripta sob a Cave of Souls"; break;	
 				case 6: sWords = "uma masmorra profunda dos mortos nas terras frias de Lodor"; break;	
 				case 7: sWords = "uma semideusa do sangue, e ela retornou"; break;	
-				case 8: sWords = "um senhor demoníaco corrompendo o núcleo de Dungeon Ankh"; break;	
-				case 9: sWords = "um covil de gárgulas antigas nos pântanos do Savaged Empire"; break;	
+				case 8: sWords = "um senhor demoníaco corrompendo o núcleo da Dungeon Ankh"; break;	
+				case 9: sWords = "um covil de gárgulas antigas nos pântanos de Savaged Empire"; break;	
 				case 10: sWords = "um covil de ursos das cavernas no fundo de Dardin's Pit"; break;	
 				case 11: sWords = "um covil de dragões ao norte de Village of Whisper"; break;	
 				case 12: sWords = "um covil de harpias na ilha em Lodor"; break;	
-				case 13: sWords = "uma Dungeon of Doom na região sudoeste de Sosaria"; break;	
+				case 13: sWords = "uma Dungeon de Doom na região sudoeste de Sosaria"; break;	
 				case 14: sWords = "uma masmorra de feiticeiros orcs conspirando contra nós"; break;	
 				case 15: sWords = "um palácio congelado onde habita a rainha do gelo"; break;	
-				case 16: sWords = "um fantasma assombrando aquelas ruínas no Savaged Empire"; break;	
+				case 16: sWords = "um fantasma assombrando aquelas ruínas de Savaged Empire"; break;	
 				case 17: sWords = "uma lula gigantesca vivendo no fundo do Flooded Temple"; break;	
-				case 18: sWords = "um grande número de segredos que podem ser aprendidos em Dungeon Clues"; break;	
-				case 19: sWords = "um grupo de adoradores do demônio em Dungeon Vile"; break;	
-				case 20: sWords = "um grupo de ophidians adorando no Serpent Sanctum"; break;	
-				case 21: sWords = "uma horda de demônios em Dungeon Torment"; break;	
+				case 18: sWords = "um grande número de segredos que podem ser aprendidos na Biblioteca de Bal Tsareth"; break;	
+				case 19: sWords = "um grupo de adoradores do demônio na Dungeon Vile"; break;	
+				case 20: sWords = "um grupo de ophidians adorando na Serpent Sanctum"; break;	
+				case 21: sWords = "uma horda de demônios na Dungeon Torment"; break;	
 				case 22: sWords = "um segredo horrível dentro das montanhas de Umber Veil"; break;	
 				case 23: sWords = "um covil de vampiros que existe ao norte do santuário branco"; break;	
 				case 24: sWords = "um grande grupo de construtores navais em Lodor"; break;	
-				case 25: sWords = "um espelho mágico em Dungeon Fire"; break;	
+				case 25: sWords = "um espelho mágico na Dungeon Fire"; break;	
 				case 26: sWords = "um labirinto de sebes mágico criado séculos atrás"; break;	
 				case 27: sWords = "um portal mágico no fundo da tumba do Faraó em Sosaria"; break;	
-				case 28: sWords = "um portal mágico no Savaged Empire"; break;	
+				case 28: sWords = "um portal mágico em Savaged Empire"; break;	
 				case 29: sWords = "um selo mágico, impedindo que o lich king escape"; break;	
 				case 30: sWords = "uma matilha de minotauros guardando aquele antigo labirinto de sebes"; break;	
 				case 31: sWords = "uma tumba de Faraós no deserto de Sosaria"; break;	
-				case 32: sWords = "um poço de líquido vil no fundo de Dungeon Wicked"; break;	
+				case 32: sWords = "um poço de líquido vil no fundo da Dungeon Wicked"; break;	
 				case 33: sWords = "um lich poderoso vagando dentro de uma torre em Sosaria, com um espelho mágico"; break;	
-				case 34: sWords = "um forte orc primitivo perto do antigo cemitério no Savaged Empire"; break;	
-				case 35: sWords = "uma raça de homens-serpente em Dungeon Scorn"; break;	
-				case 36: sWords = "uma entrada secreta no antigo cemitério do Savaged Empire"; break;	
+				case 34: sWords = "um forte orc primitivo perto do antigo cemitério em Savaged Empire"; break;	
+				case 35: sWords = "uma raça de homens-serpente na Dungeon Scorn"; break;	
+				case 36: sWords = "uma entrada secreta no antigo cemitério de Savaged Empire"; break;	
 				case 37: sWords = "uma passagem secreta no castelo de Umber Veil"; break;	
-				case 38: sWords = "um storm giant em um castelo no mar do Savaged Empire"; break;	
-				case 39: sWords = "uma passagem sinuosa no Savaged Empire com druidas mortos-vivos à solta"; break;	
-				case 40: sWords = "um vale de ciclopes no Savaged Empire"; break;	
+				case 38: sWords = "um storm giant em um castelo no mar de Savaged Empire"; break;	
+				case 39: sWords = "uma passagem sinuosa em Savaged Empire com druidas mortos-vivos à solta"; break;	
+				case 40: sWords = "um vale de ciclopes em Savaged Empire"; break;	
 				case 41: sWords = "uma passagem subterrânea que conecta as ilhas norte e central de Lodoria"; break;	
 				case 42: sWords = "uma mina abandonada ao norte de Grey em Sosaria"; break;	
-				case 43: sWords = "um altar no Savaged Empire onde são feitos sacrifícios ao dragon king"; break;	
+				case 43: sWords = "um altar em Savaged Empire onde são feitos sacrifícios ao rei dragão"; break;	
 				case 44: sWords = "um antigo culto de sangue nas Isles of Dread"; break;	
 				case 45: sWords = "uma cripta antiga onde os gárgulas enterravam seus mortos"; break;	
 				case 46: sWords = "uma cidade antiga de dark elves nas profundezas de Lodor"; break;	
 				case 47: sWords = "um mal antigo sob o labirinto de sebes místico"; break;	
 				case 48: sWords = "um covil antigo nas cavernas de Lodor, onde habitam magos e elementais"; break;	
-				case 49: sWords = "um lich antigo que tem uma fortaleza insular no Savaged Empire"; break;	
+				case 49: sWords = "um lich antigo que tem uma fortaleza insular em Savaged Empire"; break;	
 				case 50: sWords = "uma prisão antiga escondida nas areias do deserto da Serpent Island"; break;
 				case 51: 
 					string land = "Lodor";
-					string where = "northern";
-					string wyrm = "an ancient wyrm";
+					string where = "norte";
+					string wyrm = "um dragão antigo";
 					switch ( Utility.Random( 8 ) )
 					{
-						case 0: where = "northern"; break;
-						case 1: where = "southern"; break;
-						case 2: where = "eastern"; break;
-						case 3: where = "western"; break;
-						case 4: where = "north eastern"; break;
-						case 5: where = "north western"; break;
-						case 6: where = "south eastern"; break;
-						case 7: where = "south western"; break;
+						case 0: where = "norte"; break;
+						case 1: where = "sul"; break;
+						case 2: where = "leste"; break;
+						case 3: where = "oeste"; break;
+						case 4: where = "nordeste"; break;
+						case 5: where = "noroeste"; break;
+						case 6: where = "sudeste"; break;
+						case 7: where = "sudoeste"; break;
 					}
 					switch ( Utility.Random( 9 ) )
 					{
 						case 0: land = "Lodor"; break;
 						case 1: land = "Sosaria"; break;
 						case 2: land = "Ambrosia"; break;
-						case 3: land = "the Umber Veil"; break;
+						case 3: land = "Umber Veil"; break;
 						case 4: land = "Kuldar"; break;
-						case 5: land = "the Serpent Island"; break;
-						case 6: land = "the Savaged Empire"; break;
-						case 7: land = "the Underworld"; break;
-						case 8: land = "the Isles of Dread"; break;
+						case 5: land = "a Ilha da Serpente"; break;
+						case 6: land = "o Savage Empire"; break;
+						case 7: land = "o Underworld"; break;
+						case 8: land = "as Isles of the Dread"; break;
 					}
 					switch ( Utility.Random( 12 ) )
 					{
-						case 0: wyrm = "an ancient wyrm"; break;
-						case 1: wyrm = "an ancient wyvern"; break;
-						case 2: wyrm = "a shadow wyrm"; break;
-						case 3: wyrm = "a volcanic wyrm"; break;
-						case 4: wyrm = "an elder dragon"; break;
-						case 5: wyrm = "an abysmal dragon"; break;
-						case 6: wyrm = "a primeval dragon"; break;
-						case 7: wyrm = "a vampiric dragan"; break;
-						case 8: wyrm = "a runic dragon"; break;
-						case 9: wyrm = "a royal dragon"; break;
-						case 10: wyrm = "a stygian dragan"; break;
-						case 11: wyrm = "a night dragon"; break;
+						case 0: wyrm = "um dragão antigo"; break;
+						case 1: wyrm = "um wyvern antigo"; break;
+						case 2: wyrm = "um dragão das sombras"; break;
+						case 3: wyrm = "um dragão vulcânico"; break;
+						case 4: wyrm = "um dragão ancião"; break;
+						case 5: wyrm = "um dragão abismal"; break;
+						case 6: wyrm = "um dragão primitivo"; break;
+						case 7: wyrm = "um dragão vampírico"; break;
+						case 8: wyrm = "um dragão rúnico"; break;
+						case 9: wyrm = "um dragão real"; break;
+						case 10: wyrm = "um dragão estígio"; break;
+						case 11: wyrm = "um dragão noturno"; break;
 					}
 					sWords = wyrm + " voando pela área de " + where + " em " + land + ""; 
-					break;	
-				case 52: sWords = "um ancient wyrm dormindo abaixo de Dungeon Hate"; break;	
+					break;
+				case 52: sWords = "um ancient wyrm dormindo abaixo da Dungeon Hate"; break;	
 				case 53: sWords = "um passe élfico que leva a grandes artesãos"; break;	
-				case 54: sWords = "uma infestação de ratos e cobras em Dungeon Wrath"; break;	
-				case 55: sWords = "uma ilha no Savaged Empire com drakes de escamas azuis"; break;	
+				case 54: sWords = "uma infestação de ratos e cobras na Dungeon Wrath"; break;	
+				case 55: sWords = "uma ilha em Savaged Empire com drakes de escamas azuis"; break;	
 				case 56: sWords = "um edifício arruinado antigo em Sosaria, com tesouro no porão"; break;	
 				case 57: sWords = "uma profecia ork que fala de seu deus retornando para governar"; break;	
-				case 58: sWords = "um farol no Savaged Empire com um segredo sob ele"; break;	
-				case 59: sWords = "criptas antigas nas profundezas do Savaged Empire"; break;	
+				case 58: sWords = "um farol em Savaged Empire com um segredo sob ele"; break;	
+				case 59: sWords = "criptas antigas nas profundezas de Savaged Empire"; break;	
 				case 60: sWords = "uma caverna em Lodoria que apenas rangers ou exploradores poderiam atravessar"; break;	
 				case 61: sWords = "bandidos dentro de uma fortaleza no norte de Sosaria"; break;	
-				case 62: sWords = "Castle Exodus em ruínas desde que o estranho o destruiu"; break;	
+				case 62: sWords = "Castelo de Exodus em ruínas desde que o estranho o destruiu"; break;	
 				case 63: sWords = "catacumbas sob a cidade de Lodoria"; break;	
 				case 64: sWords = "caldeirões cheios de poções naquelas masmorras"; break;	
 				case 65: sWords = "drakkul invocando demônios nas cavernas de gelo de Lodor"; break;	
@@ -647,17 +647,17 @@ namespace Server.Misc
 				case 67: sWords = "uma masmorra chamada Deceit que é lar de um lich muito poderoso"; break;	
 				case 68: sWords = "humanos maus em um templo antigo nas montanhas de Lodor"; break;	
 				case 69: sWords = "besouros de fogo aninhando na Cave of Fire"; break;	
-				case 70: sWords = "muitos elementais diferentes guardando a Tomb of the Fallen Wizard"; break;	
+				case 70: sWords = "muitos elementais diferentes guardando a Tumba do Feiticeiro Caido"; break;	
 				case 71: sWords = "homens de gelo que a rainha do gelo invoca"; break;	
-				case 72: sWords = "minas no Savaged Empire controladas por ratmen"; break;	
+				case 72: sWords = "minas em Savaged Empire controladas por homens-rato"; break;	
 				case 73: sWords = "minas que os bárbaros escavam, na parte norte das Isles of Dread"; break;	
 				case 74: sWords = "criaturas amaldiçoadas poderosas vagando pela Serpent Island"; break;	
 				case 75: sWords = "pergaminhos do poder, mas eles só poderiam ser usados em santuários em Ambrosia"; break;	
 				case 76: sWords = "pequenos assentamentos de tribos primitivas nas Isles of Dread"; break;	
-				case 77: sWords = "algumas das criaturas mais venenosas em Dungeon Bane"; break;	
-				case 78: sWords = "algumas ruínas antigas em Sosaria, onde ratmen agora vivem sob elas"; break;	
-				case 79: sWords = "uma City of Mistas que supostamente foi engolida pelo mar séculos atrás"; break;	
-				case 80: sWords = "dark elves invocando demônios em dungeon destard"; break;	
+				case 77: sWords = "algumas das criaturas mais venenosas na Dungeon Bane"; break;	
+				case 78: sWords = "algumas ruínas antigas em Sosaria, onde homens-rato agora vivem sob elas"; break;	
+				case 79: sWords = "uma Cidade de Névoas que supostamente foi engolida pelo mar séculos atrás"; break;	
+				case 80: sWords = "elfos negros invocando demônios na dungeon Destard"; break;	
 				case 81: sWords = "pedras místicas que os elfos têm que podem colorir qualquer coisa"; break;	
 				case 82: sWords = "um cemitério em Lodoria com um segredo escondido"; break;	
 				case 83: sWords = "um pântano em Sosaria com um templo antigo onde um lich aguarda a profecia"; break;	
@@ -668,19 +668,19 @@ namespace Server.Misc
 				case 88: sWords = "uma casa de lenhador abandonada em Sosaria, com algo sob as tábuas do chão"; break;	
 				case 89: sWords = "bandidos mantendo um prisioneiro real na parte norte de Sosaria"; break;	
 				case 90: sWords = "uma torre em Sosaria onde um lich guarda um cajado poderoso"; break;	
-				case 91: sWords = "um crânio de Mondain que está nas profundezas de Castle Exodus"; break;	
+				case 91: sWords = "um crânio de Mondain que está nas profundezas do Castelo de Exodus"; break;	
 				case 92: sWords = "este faroleiro em Sosaria vendendo artefatos poderosos encontrados na costa"; break;	
 				case 93: sWords = "um lich no pântano de Sosaria carregando um artefato maravilhoso"; break;	
 				case 94: sWords = "baús cheios de tesouro naquelas poças mágicas"; break;	
-				case 95: sWords = "um poderoso troll lord no fundo de Dardin's Pit"; break;	
-				case 96: sWords = "um rei demônio habitando em dungeon doom que concede desejos"; break;	
+				case 95: sWords = "um poderoso troll lord no fundo do Fosso de Dardin"; break;	
+				case 96: sWords = "um rei demônio habitando na dungeon doom que concede desejos"; break;	
 				case 97: sWords = "um par de botas místicas que permitem andar sobre lava"; break;	
-				case 98: sWords = "minério realmente bom nas Mines of Morinia"; break;	
+				case 98: sWords = "minério realmente bom nas Minas de Morinia"; break;	
 				case 99: sWords = "este time lord que está enviando pessoas para o passado ou futuro"; break;	
 				case 100: sWords = "uma passagem secreta na tumba abaixo do cemitério de Lodoria"; break;	
 				case 101: sWords = "uma parede quebrada na tumba da família British"; break;	
-				case 102: sWords = "um grupo de ogros e ettins que têm queimado terras agrícolas ao sul da Town of Moon"; break;	
-				case 103: sWords = "uma sepultura sendo escavada na Village of Grey"; break;	
+				case 102: sWords = "um grupo de ogros e ettins que têm queimado terras agrícolas ao sul da Cidade de Moon"; break;	
+				case 103: sWords = "uma sepultura sendo escavada na Vila de Grey"; break;	
 				case 104: sWords = "um dragão vulcânico no sul de Lodor"; break;	
 				case 105: sWords = "um vampiro mestre em uma ilha em Lodor"; break;	
 				case 106: sWords = "apenas necromantes e death knights vivendo naquela ilha morta em Lodor"; break;	
@@ -689,10 +689,10 @@ namespace Server.Misc
 				case 109: sWords = "algum estranho que pôs fim a Exodus"; break;	
 				case 110: sWords = "alguém escapando de Skara Brae"; break;	
 				case 111: sWords = "um cofre do Black Knight que é grande demais para explorar"; break;	
-				case 112: sWords = "o Undermountain podendo ser alcançado através das cavernas dos lizardmen"; break;	
+				case 112: sWords = "o Undermountain podendo ser alcançado através das cavernas dos homens lagarto"; break;	
 				case 113: sWords = "alguém que tocou uma bola de cristal na torre de Mangar e desapareceu"; break;	
-				case 114: sWords = "uma prateleira de carvalho vazia que na verdade é uma porta para a Thieves Guild"; break;	
-				case 115: sWords = "uma Black Magic Guild escondida por aqui"; break;	
+				case 114: sWords = "uma prateleira de carvalho vazia que na verdade é uma porta para a Guilda dos Ladrões"; break;	
+				case 115: sWords = "uma Guilda de Magia Negra escondida por aqui"; break;	
 				case 116: sWords = "o Black Knight tendo uma cidade inteira presa em uma garrafa"; break;	
 				case 117: sWords = "um mago chamado Vordo que conseguiu fazer uma ilha inteira desaparecer"; break;	
 				case 118: sWords = "uma raça perdida de Zuluu que podia cavalgar os lendários dragyns"; break;	
@@ -702,7 +702,7 @@ namespace Server.Misc
 				case 122: sWords = "um ladrão escapando da cela no castelo de Lord British"; break;	
 				case 123: sWords = "alguns salões esquecidos abaixo do castelo de Lord British"; break;	
 				case 124: sWords = "alguns cultistas trazendo Kazibal de volta dos mortos"; break;	
-				case 125: sWords = "um mal antigo habitando abaixo do Castle British"; break;	
+				case 125: sWords = "um mal antigo habitando abaixo do Castelo de British"; break;	
 				case 126: sWords = "um necromante surgindo do fogo eterno em Sosaria"; break;	
 				case 127: sWords = "alguém enterrado com grande tesouro no cemitério em " + city; break;	
 				case 128: sWords = "um demilich habitando abaixo de " + city; break;	
@@ -727,10 +727,10 @@ namespace Server.Misc
 				case 147: sWords = "algum " + adventurer + " que mandou um tinker em " + city + " fazer um golem com um núcleo sombrio"; break;	
 				case 148: sWords = "titans que lançam raios do céu"; break;	
 				case 149: sWords = "algum " + adventurer + " que foi morto por grues elementais"; break;	
-				case 150: sWords = "um ancient wyrm guardando o caminho para o Hidden Valley"; break;	
+				case 150: sWords = "um ancient wyrm guardando o caminho para o Vale Escondido"; break;	
 				case 151: sWords = "um mago louco atuando como um sumo sacerdote de Kazibal"; break;	
 				case 152: sWords = "uma mansão insular onde dizem que Azerok ainda vive"; break;	
-				case 153: sWords = "uma caverna escondida abaixo do Forgotten Lighthouse"; break;	
+				case 153: sWords = "uma caverna escondida abaixo do Farol Esquecido"; break;	
 				case 154: sWords = GetRareLocation( from, false, true ); if ( from is HouseVisitor ){ sWords = "um comerciante de artefatos em " + city + ""; } break;	
 				case 155: sWords = "um rato tagarela no castelo que gosta de queijo"; break;	
 				case 156: sWords = "uma moonstone que pode invocar um moongate de quase qualquer lugar"; break;	
@@ -738,8 +738,8 @@ namespace Server.Misc
 				case 158: sWords = "alguns cristais estando nas minas de Morinia"; break;	
 				case 159: sWords = "um mineiro lendário que desenterrou minério anão"; break;	
 				case 160: sWords = "um lenhador lendário que cortou madeira élfica"; break;	
-				case 161: sWords = "algum " + RandomThings.GetRandomJob() + " resolvendo o mistério do Skull Gate"; break;	
-				case 162: sWords = "algum " + RandomThings.GetRandomJob() + " resolvendo o mistério dos Serpent Pillars"; break;
+				case 161: sWords = "algum " + RandomThings.GetRandomJob() + " resolvendo o mistério do Portal da Caveira"; break;	
+				case 162: sWords = "algum " + RandomThings.GetRandomJob() + " resolvendo o mistério dos Pilares da Serpente"; break;
 				case 163: 
 					misc = "tumba";	
 					switch( Utility.RandomMinMax( 0, 4 ) )
@@ -783,7 +783,7 @@ namespace Server.Misc
 					misc = " artefato";	
 					switch( Utility.RandomMinMax( 0, 4 ) )
 					{
-						case 1: misc = "Artefact"; break;	
+						case 1: misc = "Artefato"; break;	
 						case 2: misc = "item mágico"; break;	
 						case 3: misc = " artefato antigo"; break;	
 						case 4: misc = " relíquia antiga"; break;	
