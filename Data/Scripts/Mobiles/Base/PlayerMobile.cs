@@ -2457,7 +2457,7 @@ namespace Server.Mobiles
 						{
 							this.Send(SpeedControl.Disable);
 							shoes.Weight = 5.0;
-							if ( !(shoes is HikingBoots) || !(shoes is LevelHikingBoots || !(shoes is GiftHikingBoots)) ){ this.SendMessage( "These shoes seem to have their magic diminished here." ); }
+							if ( !(shoes is HikingBoots) || !(shoes is LevelHikingBoots || !(shoes is GiftHikingBoots)) ){ this.SendMessage( "Estes sapatos parecem ter sua magia diminuída aqui." ); }
 						}
 
 						Server.Spells.Mystic.WindRunner.RemoveEffect( this );

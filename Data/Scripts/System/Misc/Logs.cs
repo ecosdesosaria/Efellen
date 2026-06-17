@@ -351,10 +351,10 @@ namespace Server.Misc
 			string sVerb2 = "";
 			switch ( Utility.Random( 4 ))
 			{
-				case 0: sVerb1 = "was seen in";				sVerb2 = "was seen leaving"; 			break;
-				case 1: sVerb1 = "was spotted in";			sVerb2 = "was spotted leaving"; 		break;
-				case 2: sVerb1 = "was known to be in";		sVerb2 = "was seen near"; 				break;
-				case 3: sVerb1 = "was rumored to be in";	sVerb2 = "was spotted by"; 				break;
+				case 0: sVerb1 = "foi visto(a) em";              sVerb2 = "foi visto(a) saindo de";          break;
+				case 1: sVerb1 = "foi avistado(a) em";           sVerb2 = "foi avistado(a) saindo de";       break;
+				case 2: sVerb1 = "sabe-se que esteve em";        sVerb2 = "foi visto(a) perto de";           break;
+				case 3: sVerb1 = "havia rumores de estar em";    sVerb2 = "foi avistado(a) por";             break;
 			};
 
 			myShout = sGreet + " " + myShout + "!";
@@ -392,7 +392,7 @@ namespace Server.Misc
 
 			int lineCount = 1;
 
-			string mySpeaking = "things being quiet throughout the land";
+			string mySpeaking = "as coisas estando calmas por toda a terra";
 
 			try
 			{
@@ -443,16 +443,16 @@ namespace Server.Misc
 			string sVerb3 = "";
 			switch ( Utility.Random( 4 ))
 			{
-				case 0: sVerb1 = "being seen in";		sVerb2 = "being seen leaving"; 		sVerb3 = "killing";		break;
-				case 1: sVerb1 = "being spotted in";	sVerb2 = "being spotted leaving"; 	sVerb3 = "slaying";		break;
-				case 2: sVerb1 = "being seen in";		sVerb2 = "being seen near"; 		sVerb3 = "besting";		break;
-				case 3: sVerb1 = "being spotted in";	sVerb2 = "being spotted by"; 		sVerb3 = "slaying";		break;
+				case 0: sVerb1 = "sendo visto(a) em";       sVerb2 = "sendo visto(a) saindo de";    sVerb3 = "matando";     break;
+				case 1: sVerb1 = "sendo avistado(a) em";    sVerb2 = "sendo avistado(a) saindo de"; sVerb3 = "abatendo";    break;
+				case 2: sVerb1 = "sendo visto(a) em";       sVerb2 = "sendo visto(a) perto de";     sVerb3 = "derrotando";  break;
+				case 3: sVerb1 = "sendo avistado(a) em";    sVerb2 = "sendo avistado(a) por";       sVerb3 = "abatendo";    break;
 			};
 
-			if ( mySpeaking.Contains(" had been ") ){ mySpeaking = mySpeaking.Replace(" had been ", " being "); }
+			if ( mySpeaking.Contains(" had been ") ){ mySpeaking = mySpeaking.Replace(" had been ", " sendo "); }
 			if ( mySpeaking.Contains(" had slain ") ){ mySpeaking = mySpeaking.Replace(" had slain ", " " + sVerb3 + " "); }
-			if ( mySpeaking.Contains(" had killed ") ){ mySpeaking = mySpeaking.Replace(" had killed ", " accidentally killing "); }
-			if ( mySpeaking.Contains(" made a fatal mistake ") ){ mySpeaking = mySpeaking.Replace(" made a fatal mistake ", " making a fatal mistake "); }
+			if ( mySpeaking.Contains(" had killed ") ){ mySpeaking = mySpeaking.Replace(" had killed ", " matando acidentalmente "); }
+			if ( mySpeaking.Contains(" made a fatal mistake ") ){ mySpeaking = mySpeaking.Replace(" made a fatal mistake ", " cometendo um erro fatal "); }
 			if ( mySpeaking.Contains(" entered ") ){ mySpeaking = mySpeaking.Replace(" entered ", " " + sVerb1 + " "); }
 			if ( mySpeaking.Contains(" left ") ){ mySpeaking = mySpeaking.Replace(" left ", " " + sVerb2 + " "); }
 						
@@ -470,7 +470,7 @@ namespace Server.Misc
 
 			int lineCount = 1;
 
-			string mySpeaking = "Adventurers seem to be all sitting around in taverns";
+			string mySpeaking = "Os aventureiros parecem estar todos sentados em tavernas";
 
 			try
 			{
@@ -536,8 +536,8 @@ namespace Server.Misc
 				else if ( nDifficulty == 4 ){ sDifficulty = " (Deadly)"; }
 				else if ( nDifficulty > 4 ){ sDifficulty = " (Epic)"; }
 
-				if ( sDirection == "enter" ){ m.SendMessage("You have entered " + sRegion + sDifficulty + "."); }
-				else { m.SendMessage("You have left " + sRegion + "."); }
+				if ( sDirection == "enter" ){ m.SendMessage("Você entrou em " + sRegion + sDifficulty + "."); }
+				else { m.SendMessage("Você saiu de " + sRegion + "."); }
 			}
 
 			if ( ( m is PlayerMobile ) && ( m.AccessLevel < AccessLevel.GameMaster ) )
@@ -602,26 +602,26 @@ namespace Server.Misc
 		        if ( m.Name == null )
 		            return null;
 
-		        string sEvent = m.Name + " " + sTitle + " had slain " + Killed + "#" + sDateString;
+		        string sEvent = m.Name + " " + sTitle + " abateu " + Killed + "#" + sDateString;
 		        LoggingFunctions.LogEvent( sEvent, "Logging Battles" );
 		    }
 		    else
 		    {
-		        string privateEnemy = "an opponent";
-		        switch ( Utility.Random( 6 ) )
-		        {
-		            case 0: privateEnemy = "an opponent"; break;
-		            case 1: privateEnemy = "an enemy"; break;
-		            case 2: privateEnemy = "another"; break;
-		            case 3: privateEnemy = "an adversary"; break;
-		            case 4: privateEnemy = "a foe"; break;
-		            case 5: privateEnemy = "a rival"; break;
-		        }
+		        string privateEnemy = "um oponente";
+				switch ( Utility.Random( 6 ) )
+				{
+					case 0: privateEnemy = "um oponente"; break;
+					case 1: privateEnemy = "um inimigo"; break;
+					case 2: privateEnemy = "um outro"; break;
+					case 3: privateEnemy = "um adversário"; break;
+					case 4: privateEnemy = "um inimigo"; break;
+					case 5: privateEnemy = "um rival"; break;
+				}
 
 		        if ( m.Name == null )
 		            return null;
 
-		        string sEvent = m.Name + " " + sTitle + " had slain " + privateEnemy + "#" + sDateString;
+		        string sEvent = m.Name + " " + sTitle + " abateu " + privateEnemy + "#" + sDateString;
 		        LoggingFunctions.LogEvent( sEvent, "Logging Battles" );
 		    }
 
@@ -636,16 +636,16 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sTrip = "had triggered";
+			string sTrip = "ativou";
 			switch( Utility.Random( 7 ) )
 			{
-				case 0: sTrip = "had triggered";	break;
-				case 1: sTrip = "had set off";	break;
-				case 2: sTrip = "had walked into";	break;
-				case 3: sTrip = "had stumbled into";	break;
-				case 4: sTrip = "had been struck with";	break;
-				case 5: sTrip = "had been affected with";	break;
-				case 6: sTrip = "had ran into";	break;
+				case 0: sTrip = "ativou";	break;
+				case 1: sTrip = "acionou";	break;
+				case 2: sTrip = "entrou em";	break;
+				case 3: sTrip = "tropeçou em";	break;
+				case 4: sTrip = "foi atingido(a) por";	break;
+				case 5: sTrip = "foi afetado(a) por";	break;
+				case 6: sTrip = "colidiu com";	break;
 			}
 
 			PlayerMobile pm = (PlayerMobile)m;
@@ -669,7 +669,7 @@ namespace Server.Misc
 			PlayerMobile pm = (PlayerMobile)m;
 			if (pm.PublicInfo == true)
 			{
-				string sEvent = m.Name + " " + sTitle + " " + sTrap + ", teleporting them far away#" + sDateString;
+				string sEvent = m.Name + " " + sTitle + " " + sTrap + ", teleportando-os para longe#" + sDateString;
 				LoggingFunctions.LogEvent( sEvent, "Logging Adventures" );
 			}
 
@@ -687,7 +687,7 @@ namespace Server.Misc
 			PlayerMobile pm = (PlayerMobile)m;
 			if (pm.PublicInfo == true)
 			{
-				string sEvent = m.Name + " " + sTitle + " was sent to the " + sJail + "#" + sDateString;
+				string sEvent = m.Name + " " + sTitle + " foi enviado(a) para " + sJail + "#" + sDateString;
 				LoggingFunctions.LogEvent( sEvent, "Logging Journies" );
 			}
 
@@ -705,7 +705,7 @@ namespace Server.Misc
 			PlayerMobile pm = (PlayerMobile)m;
 			if (pm.PublicInfo == true)
 			{
-				string sEvent = m.Name + " " + sTitle + " made a fatal mistake from " + sTrap + "#" + sDateString;
+				string sEvent = m.Name + " " + sTitle + " cometeu um erro fatal por causa de " + sTrap + "#" + sDateString;
 				LoggingFunctions.LogEvent( sEvent, "Logging Journies" );
 			}
 
@@ -720,26 +720,26 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sLoot = "had searched through a";
+			string sLoot = "havia vasculhado um(a)";
 			switch( Utility.Random( 7 ) )
 			{
-				case 0: sLoot = "had searched through a";	break;
-				case 1: sLoot = "had found a";	break;
-				case 2: sLoot = "had discovered a";	break;
-				case 3: sLoot = "had looked through a";	break;
-				case 4: sLoot = "had stumbled upon a";	break;
-				case 5: sLoot = "had dug through a";	break;
-				case 6: sLoot = "had opened a";	break;
+				case 0: sLoot = "havia vasculhado um(a)";	break;
+				case 1: sLoot = "havia encontrado um(a)";	break;
+				case 2: sLoot = "havia descoberto um(a)";	break;
+				case 3: sLoot = "havia examinado um(a)";	break;
+				case 4: sLoot = "havia se deparado com um(a)";	break;
+				case 5: sLoot = "havia escavado um(a)";	break;
+				case 6: sLoot = "havia aberto um(a)";	break;
 			}
 			if ( sType == "boat" )
 			{
 				switch( Utility.Random( 5 ) )
 				{
-					case 0: sLoot = "had searched through a";	break;
-					case 1: sLoot = "had found a";	break;
-					case 2: sLoot = "had discovered a";	break;
-					case 3: sLoot = "had looked through a";	break;
-					case 4: sLoot = "had sailed upon a";	break;
+					case 0: sLoot = "havia vasculhado um(a)";	break;
+					case 1: sLoot = "havia encontrado um(a)";	break;
+					case 2: sLoot = "havia descoberto um(a)";	break;
+					case 3: sLoot = "havia examinado um(a)";	break;
+					case 4: sLoot = "havia navegado em um(a)";	break;
 				}
 				if ( sBox.Contains("Abandoned") || sBox.Contains("Adrift") ){ sLoot = sLoot + "n"; }
 			}
@@ -747,11 +747,11 @@ namespace Server.Misc
 			{
 				switch( Utility.Random( 5 ) )
 				{
-					case 0: sLoot = "had searched through a";	break;
-					case 1: sLoot = "had found a";	break;
-					case 2: sLoot = "had discovered a";	break;
-					case 3: sLoot = "had looked through a";	break;
-					case 4: sLoot = "had sailed upon a";	break;
+					case 0: sLoot = "havia vasculhado um(a)";	break;
+					case 1: sLoot = "havia encontrado um(a)";	break;
+					case 2: sLoot = "havia descoberto um(a)";	break;
+					case 3: sLoot = "havia examinado um(a)";	break;
+					case 4: sLoot = "havia mexido em um(a)";	break;
 				}
 				if ( sBox.Contains("Abandoned") || sBox.Contains("Adrift") ){ sLoot = sLoot + "n"; }
 			}
@@ -781,13 +781,13 @@ namespace Server.Misc
 					string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 					if ( m.Title != null ){ sTitle = m.Title; }
 
-					string verb = "has destroyed";
+					string verb = "destruiu";
 					switch( Utility.Random( 4 ) )
 					{
-						case 0: verb = "has defeated";		break;
-						case 1: verb = "has slain";		break;
-						case 2: verb = "has destroyed";	break;
-						case 3: verb = "has vanquished";	break;
+						case 0: verb = "derrotou";		break;
+						case 1: verb = "abateu";		break;
+						case 2: verb = "destruiu";	break;
+						case 3: verb = "aniquilou";	break;
 					}
 
 					PlayerMobile pm = (PlayerMobile)m;
@@ -809,7 +809,7 @@ namespace Server.Misc
 			PlayerMobile pm = (PlayerMobile)m;
 			if (pm.PublicInfo == true)
 			{
-				string sEvent = "The gods have created a legendary artefact called " + sArty + "#" + sDateString;
+				string sEvent = "Os deuses criaram um artefato lendário chamado " + sArty + "#" + sDateString;
 				LoggingFunctions.LogEvent( sEvent, "Logging Quests" );
 			}
 
@@ -822,8 +822,8 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sText = "has cleansed the Runes to the Chamber of Virtue.";
-				if ( side == "evil" ){ sText = "has corrupted the Runes of Virtue."; }
+			string sText = "purificou as Runas da Câmara da Virtude.";
+			if ( side == "evil" ){ sText = "corrompeu as Runas da Virtude."; }
 
 			PlayerMobile pm = (PlayerMobile)m;
 			if (pm.PublicInfo == true)
@@ -857,13 +857,13 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sLoot = "has discovered the";
+			string sLoot = "descobriu o(a)";
 			switch( Utility.Random( 4 ) )
 			{
-				case 0: sLoot = "has found the";		break;
-				case 1: sLoot = "has recovered the";	break;
-				case 2: sLoot = "has unearthed the";	break;
-				case 3: sLoot = "has discovered the";	break;
+				case 0: sLoot = "encontrou o(a)";		break;
+				case 1: sLoot = "recuperou o(a)";	break;
+				case 2: sLoot = "desenterrou o(a)";	break;
+				case 3: sLoot = "descobriu o(a)";	break;
 			}
 
 			PlayerMobile pm = (PlayerMobile)m;
@@ -882,7 +882,7 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sLoot = "has filed a complaint against the sages order due to missleading information regarding the";
+			string sLoot = "registrou uma queixa contra a ordem dos sábios devido a informações enganosas sobre o(a)";
 
 			PlayerMobile pm = (PlayerMobile)m;
 			if (pm.PublicInfo == true)
@@ -900,13 +900,13 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sLoot = "has discovered";
+			string sLoot = "descobriu";
 			switch( Utility.Random( 4 ) )
 			{
-				case 0: sLoot = "has found";		break;
-				case 1: sLoot = "has recovered";	break;
-				case 2: sLoot = "has unearthed";	break;
-				case 3: sLoot = "has discovered";	break;
+				case 0: sLoot = "encontrou";		break;
+				case 1: sLoot = "recuperou";	break;
+				case 2: sLoot = "desenterrou";	break;
+				case 3: sLoot = "descobriu";	break;
 			}
 
 			PlayerMobile pm = (PlayerMobile)m;
@@ -925,22 +925,22 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sLoot = "has found";
+			string sLoot = "encontrou";
 			switch( Utility.Random( 4 ) )
 			{
-				case 0: sLoot = "has found";		break;
-				case 1: sLoot = "has recovered";	break;
-				case 2: sLoot = "has unearthed";	break;
-				case 3: sLoot = "has dug up";		break;
+				case 0: sLoot = "encontrou";		break;
+				case 1: sLoot = "recuperou";	break;
+				case 2: sLoot = "desenterrou";	break;
+				case 3: sLoot = "escavou";		break;
 			}
 
-			string sBone = "the bones";
+			string sBone = "os ossos";
 			switch( Utility.Random( 4 ) )
 			{
-				case 0: sBone = "the bones";		break;
-				case 1: sBone = "the body";			break;
-				case 2: sBone = "the remains";		break;
-				case 3: sBone = "the corpse";		break;
+				case 0: sBone = "os ossos";		break;
+				case 1: sBone = "o corpo";			break;
+				case 2: sBone = "os restos";		break;
+				case 3: sBone = "o cadáver";		break;
 			}
 
 			PlayerMobile pm = (PlayerMobile)m;
@@ -959,28 +959,28 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sLoot = "has found";
+			string sLoot = "encontrou";
 			switch( Utility.Random( 4 ) )
 			{
-				case 0: sLoot = "has found";		break;
-				case 1: sLoot = "has recovered";	break;
-				case 2: sLoot = "has unearthed";	break;
-				case 3: sLoot = "has dug up";		break;
+				case 0: sLoot = "encontrou";		break;
+				case 1: sLoot = "recuperou";	break;
+				case 2: sLoot = "desenterrou";	break;
+				case 3: sLoot = "escavou";		break;
 			}
 
-			string sChest = "the hidden";
+			string sChest = "o baú escondido";
 			switch( Utility.Random( 4 ) )
 			{
-				case 0: sChest = "the hidden";		break;
-				case 1: sChest = "the lost";		break;
-				case 2: sChest = "the missing";		break;
-				case 3: sChest = "the secret";		break;
+				case 0: sChest = "o escondido";		break;
+				case 1: sChest = "o perdido";		break;
+				case 2: sChest = "o desaparecido";		break;
+				case 3: sChest = "o secreto";		break;
 			}
 
 			PlayerMobile pm = (PlayerMobile)m;
 			if (pm.PublicInfo == true)
 			{
-				string sEvent = m.Name + " " + sTitle + " " + sLoot + " " + sChest + " chest of " + sBox + "#" + sDateString;
+				string sEvent = m.Name + " " + sTitle + " " + sLoot + " " + sChest + " baú de " + sBox + "#" + sDateString;
 				LoggingFunctions.LogEvent( sEvent, "Logging Quests" );
 			}
 
@@ -993,13 +993,13 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sLoot = "has found";
+			string sLoot = "encontrou";
 			switch( Utility.Random( 4 ) )
 			{
-				case 0: sLoot = "has found";		break;
-				case 1: sLoot = "has recovered";	break;
-				case 2: sLoot = "has unearthed";	break;
-				case 3: sLoot = "has dug up";		break;
+				case 0: sLoot = "encontrou";		break;
+				case 1: sLoot = "recuperou";	break;
+				case 2: sLoot = "desenterrou";	break;
+				case 3: sLoot = "escavou";		break;
 			}
 
 			PlayerMobile pm = (PlayerMobile)m;
@@ -1018,30 +1018,30 @@ namespace Server.Misc
 			string sTitle = "the " + GetPlayerInfo.GetSkillTitle( m );
 			if ( m.Title != null ){ sTitle = m.Title; }
 
-			string sLoot = "has fished up";
+			string sLoot = "pescou";
 			switch( Utility.Random( 4 ) )
 			{
-				case 0: sLoot = "has surfaced";		break;
-				case 1: sLoot = "has salvaged";		break;
-				case 2: sLoot = "has brought up";	break;
-				case 3: sLoot = "has fished up";	break;
+				case 0: sLoot = "trouxe à superfície";		break;
+				case 1: sLoot = "resgatou";		break;
+				case 2: sLoot = "trouxe para cima";	break;
+				case 3: sLoot = "pescou";	break;
 			}
 
-			string sChest = "a grand sunken chest";
+			string sChest = "um grande baú submerso";
 			switch( sLevel )
 			{
-				case 0: sChest = "a meager sunken chest";		break;
-				case 1: sChest = "a simple sunken chest";		break;
-				case 2: sChest = "a good sunken chest";			break;
-				case 3: sChest = "a great sunken chest";		break;
-				case 4: sChest = "an excellent sunken chest";	break;
-				case 5: sChest = "a superb sunken chest";		break;
+				case 0: sChest = "um baú submerso modesto";		break;
+				case 1: sChest = "um baú submerso simples";		break;
+				case 2: sChest = "um baú submerso bom";			break;
+				case 3: sChest = "um baú submerso ótimo";		break;
+				case 4: sChest = "um baú submerso excelente";	break;
+				case 5: sChest = "um baú submerso soberbo";		break;
 			}
 
 			PlayerMobile pm = (PlayerMobile)m;
 			if (pm.PublicInfo == true)
 			{
-				string sEvent = m.Name + " " + sTitle + " " + sLoot + " " + sChest + " from " + sShip + "#" + sDateString;
+				string sEvent = m.Name + " " + sTitle + " " + sLoot + " " + sChest + " de " + sShip + "#" + sDateString;
 				LoggingFunctions.LogEvent( sEvent, "Logging Quests" );
 			}
 
@@ -1062,32 +1062,32 @@ namespace Server.Misc
 				sWho = "";
 				switch( Utility.Random( 4 ) )
 				{
-					case 0: sLoot = "has fullfilled a bounty on";	break;
-					case 1: sLoot = "has claimed a bounty on";		break;
-					case 2: sLoot = "has served a bounty on";		break;
-					case 3: sLoot = "has completed a bounty on";	break;
+					case 0: sLoot = "cumpriu uma recompensa por";	break;
+					case 1: sLoot = "reivindicou uma recompensa por";		break;
+					case 2: sLoot = "cumpriu uma sentença por";		break;
+					case 3: sLoot = "completou uma recompensa por";	break;
 				}
 			}
 			if ( sBox == "sea" )
 			{
-				sWho = " on the high seas";
+				sWho = " em alto-mar";
 				switch( Utility.Random( 4 ) )
 				{
-					case 0: sLoot = "has fullfilled a bounty on";	break;
-					case 1: sLoot = "has claimed a bounty on";		break;
-					case 2: sLoot = "has served a bounty on";		break;
-					case 3: sLoot = "has completed a bounty on";	break;
+					case 0: sLoot = "cumpriu uma recompensa por";	break;
+					case 1: sLoot = "reivindicou uma recompensa por";		break;
+					case 2: sLoot = "cumpriu uma sentença por";		break;
+					case 3: sLoot = "completou uma recompensa por";	break;
 				}
 			}
 			if ( sBox == "assassin" )
 			{
-				sWho = " for the guild";
+				sWho = " para a guilda";
 				switch( Utility.Random( 4 ) )
 				{
-					case 0: sLoot = "has assassinated";		break;
-					case 1: sLoot = "has dispatched";		break;
-					case 2: sLoot = "has dealt with";		break;
-					case 3: sLoot = "has eliminated";		break;
+					case 0: sLoot = "assassinou";		break;
+					case 1: sLoot = "eliminou";		break;
+					case 2: sLoot = "resolveu a situação com";		break;
+					case 3: sLoot = "aniquilou";		break;
 				}
 			}
 			
@@ -1154,13 +1154,13 @@ namespace Server.Misc
 				string sEvent;
 				if ( sAccess == "login" )
 				{
-					sEvent = m.Name + " " + sTitle + " had entered the realm#" + sDateString;
-					World.Broadcast(0x35, true, "{0} {1} has entered the realm", m.Name, sTitle);
+					sEvent = m.Name + " " + sTitle + " entrou no reino#" + sDateString;
+					World.Broadcast(0x35, true, "{0} {1} entrou no reino", m.Name, sTitle);
 				}
 				else
 				{
-					sEvent = m.Name + " " + sTitle + " had left the realm#" + sDateString;
-					World.Broadcast(0x35, true, "{0} {1} has left the realm", m.Name, sTitle);
+					sEvent = m.Name + " " + sTitle + " saiu do reino#" + sDateString;
+					World.Broadcast(0x35, true, "{0} {1} saiu do reino", m.Name, sTitle);
 				}
 
 				LoggingFunctions.LogEvent( sEvent, "Logging Adventures" );
@@ -1198,23 +1198,23 @@ namespace Server.Misc
 					{
 						if ( ( mob == m ) && ( mob != null ) )
 						{
-							sEvent = m.Name + " " + sTitle + " had killed themselves#" + sDateString;
+							sEvent = m.Name + " " + sTitle + " se matou#" + sDateString;
 						}
 						else if ( ( mob != null ) && ( mob is PlayerMobile ) )
 						{
-							string kTitle = " the " + GetPlayerInfo.GetSkillTitle( mob );
+							string kTitle = " o " + GetPlayerInfo.GetSkillTitle( mob );
 							if ( mob.Title != null ){ kTitle = " " + mob.Title; }
-							sEvent = m.Name + " " + sTitle + " had been killed by " + sKiller + kTitle + "#" + sDateString;
+							sEvent = m.Name + " " + sTitle + " foi morto(a) por " + sKiller + kTitle + "#" + sDateString;
 						}
 						else if ( mob != null )
 						{
 							string kTitle = "";
 							if ( mob.Title != null ){ kTitle = " " + mob.Title; }
-							sEvent = m.Name + " " + sTitle + " had been killed by " + sKiller + kTitle + "#" + sDateString;
+							sEvent = m.Name + " " + sTitle + " foi morto(a) por " + sKiller + kTitle + "#" + sDateString;
 						}
 						else
 						{
-							sEvent = m.Name + " " + sTitle + " had been killed#" + sDateString;
+							sEvent = m.Name + " " + sTitle + " foi morto(a)#" + sDateString;
 						}
 					}
 					else
@@ -1232,21 +1232,21 @@ namespace Server.Misc
 
 						if ( ( mob == m ) && ( mob != null ) )
 						{
-							sEvent = m.Name + " " + sTitle + " had killed themselves#" + sDateString;
+							sEvent = m.Name + " " + sTitle + " se matou#" + sDateString;
 						}
 						else if ( ( mob != null ) && ( mob is PlayerMobile ) )
 						{
-							string kTitle = " the " + GetPlayerInfo.GetSkillTitle( mob );
+							string kTitle = " o " + GetPlayerInfo.GetSkillTitle( mob );
 							if ( mob.Title != null ){ kTitle = mob.Title; }
-							sEvent = m.Name + " " + sTitle + " had been killed by " + sKiller + " " + kTitle + "#" + sDateString;
+							sEvent = m.Name + " " + sTitle + " foi morto(a) por " + sKiller + " " + kTitle + "#" + sDateString;
 						}
 						else if ( mob != null )
 						{
-							sEvent = m.Name + " " + sTitle + " had been killed by " + privateEnemy + "#" + sDateString;
+							sEvent = m.Name + " " + sTitle + " foi morto(a) por " + privateEnemy + "#" + sDateString;
 						}
 						else
 						{
-							sEvent = m.Name + " " + sTitle + " had been killed#" + sDateString;
+							sEvent = m.Name + " " + sTitle + " foi morto(a)#" + sDateString;
 						}
 					}
 					LoggingFunctions.LogEvent( sEvent, "Logging Deaths" );
@@ -1396,7 +1396,7 @@ namespace Server.Gumps
 
 			AddImage(0, 0, 7018, Server.Misc.PlayerSettings.GetGumpHue( from ));
 
-			AddHtml( 12, 12, 835, 20, @"<BODY><BASEFONT Color=" + color + ">THE NEWS FROM THE TOWN CRIER</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 12, 12, 835, 20, @"<BODY><BASEFONT Color=" + color + ">AS NOTÍCIAS DO PREGOEIRO</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(879, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
@@ -1409,47 +1409,46 @@ namespace Server.Gumps
 
 			if ( page == 2 )
 			{
-				sEvents = "Deeds In The Realm<br><br>" + LoggingFunctions.LogRead( "Logging Quests", from ); scroll = true; btn1 = 4011;
+				sEvents = "Feitos no Reino<br><br>" + LoggingFunctions.LogRead( "Logging Quests", from ); scroll = true; btn1 = 4011;
 			}
 			else if ( page == 3 )
 			{
-				sEvents = "Exploration In The Realm<br><br>" + LoggingFunctions.LogRead( "Logging Journies", from ); scroll = true; btn2 = 4011;
+				sEvents = "Explorações no Reino<br><br>" + LoggingFunctions.LogRead( "Logging Journies", from ); scroll = true; btn2 = 4011;
 			}
 			else if ( page == 4 )
 			{
-				sEvents = "Victories In The Realm<br><br>" + LoggingFunctions.LogRead( "Logging Battles", from ); scroll = true; btn3 = 4011;
+				sEvents = "Vitórias no Reino<br><br>" + LoggingFunctions.LogRead( "Logging Battles", from ); scroll = true; btn3 = 4011;
 			}
 			else if ( page == 5 )
 			{
-				sEvents = "Recent Deaths In The Realm<br><br>" + LoggingFunctions.LogRead( "Logging Deaths", from ); scroll = true; btn4 = 4011;
+				sEvents = "Mortes Recentes no Reino<br><br>" + LoggingFunctions.LogRead( "Logging Deaths", from ); scroll = true; btn4 = 4011;
 			}
 			else if ( page == 6 )
 			{
-				sEvents = "Murderers In The Realm<br><br>" + LoggingFunctions.LogRead( "Logging Murderers", from ); scroll = true; btn5 = 4011;
+				sEvents = "Assassinos no Reino<br><br>" + LoggingFunctions.LogRead( "Logging Murderers", from ); scroll = true; btn5 = 4011;
 			}
 			else if ( page == 7 )
 			{
-				sEvents = "Gossip In The Realm<br><br>" + LoggingFunctions.LogRead( "Logging Adventures", from ); scroll = true; btn6 = 4011;
+				sEvents = "Fofocas no Reino<br><br>" + LoggingFunctions.LogRead( "Logging Adventures", from ); scroll = true; btn6 = 4011;
 			}
 
 			AddButton(12, 48, btn1, btn1, 1, GumpButtonType.Reply, 0);
-			AddHtml( 52, 50, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Deeds in the Realm</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, 50, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Feitos no Reino</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(344, 49, btn2, btn2, 2, GumpButtonType.Reply, 0);
-			AddHtml( 384, 51, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Exploration in the Realm</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 384, 51, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Explorações no Reino</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(676, 50, btn3, btn3, 3, GumpButtonType.Reply, 0);
-			AddHtml( 716, 52, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Victories in Battle</BASEFONT></BODY>", (bool)false, (bool)false);
-
+			AddHtml( 716, 52, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Vitórias em Batalha</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(12, 77, btn6, btn6, 6, GumpButtonType.Reply, 0);
-			AddHtml( 52, 79, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Gossip in the Realm</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, 79, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Fofocas no Reino</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(344, 78, btn4, btn4, 4, GumpButtonType.Reply, 0);
-			AddHtml( 384, 80, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Recent Deaths</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 384, 80, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Mortes Recentes</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddButton(676, 79, btn5, btn5, 5, GumpButtonType.Reply, 0);
-			AddHtml( 716, 81, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Wanted Murderers</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 716, 81, 185, 20, @"<BODY><BASEFONT Color=" + color + ">Assassinos Procurados</BASEFONT></BODY>", (bool)false, (bool)false);
 
 			AddHtml( 12, 111, 888, 491, @"<BODY><BASEFONT Color=" + color + ">" + sEvents + "</BASEFONT></BODY>", (bool)false, (bool)scroll);
         }

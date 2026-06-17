@@ -769,7 +769,7 @@ namespace Server {
 			m_DiskWriteHandle.Reset();
 
 			if ( message )
-				Broadcast( 0x35, true, "The game is saving, please wait." );
+				Broadcast( 0x35, true, "O jogo esta salvando, por favor aguarde." );
 
 			SaveStrategy strategy = SaveStrategy.Acquire();
 			Console.WriteLine( "Core: Using {0} save strategy", strategy.Name.ToLowerInvariant() );
@@ -812,7 +812,7 @@ namespace Server {
 			Console.WriteLine( "Save done in {0:F2} seconds.", watch.Elapsed.TotalSeconds );
 
 			if ( message )
-				Broadcast( 0x35, true, "Game save complete. The entire process took {0:F1} seconds.", watch.Elapsed.TotalSeconds );
+				Broadcast( 0x35, true, "Salvamento do jogo concluido. Todo o processo levou {0:F1} segundos.", watch.Elapsed.TotalSeconds );
 
 			NetState.Resume();
 		}
