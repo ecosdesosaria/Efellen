@@ -522,29 +522,29 @@ namespace Server.Mobiles
                 AddBackground( 0, 0, 460, 190, 9270 );
 
                 AddHtml( 20, 18, 420, 20,
-                    "<BODY><BASEFONT Color=" + color + ">You are about to claim:</BASEFONT></BODY>",
-                    false, false );
-                AddHtml( 20, 42, 420, 20,
-                    "<BODY><BASEFONT Color=" + color + ">" + sArty + "</BASEFONT></BODY>",
-                    false, false );
+					"<BODY><BASEFONT Color=" + color + ">Você está prestes a reivindicar:</BASEFONT></BODY>",
+					false, false );
+				AddHtml( 20, 42, 420, 20,
+					"<BODY><BASEFONT Color=" + color + ">" + sArty + "</BASEFONT></BODY>",
+					false, false );
 
-                if ( pay )
-                {
-                    AddHtml( 20, 72, 420, 20,
-                        "<BODY><BASEFONT Color=" + color + ">This will cost 5,000 gold and tribute from your Fame/Karma.</BASEFONT></BODY>",
-                        false, false );
-                }
+				if ( pay )
+				{
+					AddHtml( 20, 72, 420, 20,
+						"<BODY><BASEFONT Color=" + color + ">Isto custará 5.000 moedas de ouro e tributo de sua Fama/Karma.</BASEFONT></BODY>",
+						false, false );
+				}
 
                 // Confirm
                 AddButton( 60,  148, 4005, 4007, 1, GumpButtonType.Reply, 0 );
                 AddHtml( 95, 150, 80, 20,
-                    "<BODY><BASEFONT Color=" + color + ">Confirm</BASEFONT></BODY>",
+                    "<BODY><BASEFONT Color=" + color + ">Confirmar</BASEFONT></BODY>",
                     false, false );
 
                 // Back
                 AddButton( 260, 148, 4017, 4019, 0, GumpButtonType.Reply, 0 );
                 AddHtml( 295, 150, 80, 20,
-                    "<BODY><BASEFONT Color=" + color + ">Back</BASEFONT></BODY>",
+                    "<BODY><BASEFONT Color=" + color + ">Voltar</BASEFONT></BODY>",
                     false, false );
             }
 
@@ -574,20 +574,20 @@ namespace Server.Mobiles
                 if ( m_Pay )
                 {
                     if ( from.TotalGold < 5000 )
-                    {
-                        from.SendMessage( m_NPC.Name + " needs at least 5,000 gold to construct the item for you." );
-                        from.CloseGump( typeof( EpicConfirmGump ) );
-                        from.SendGump( new EpicCategoryGump( from, m_NPC, m_Pay ) );
-                        return;
-                    }
+					{
+						from.SendMessage( m_NPC.Name + " precisa de pelo menos 5.000 moedas de ouro para construir o item para você." );
+						from.CloseGump( typeof( EpicConfirmGump ) );
+						from.SendGump( new EpicCategoryGump( from, m_NPC, m_Pay ) );
+						return;
+					}
 
-                    if ( !HaveSpecialItemRequirement( from ) )
-                    {
-                        from.SendMessage( m_NPC.Name + " will need a symbol of your " + merit + " (" + GetSpecialItemRequirement( from ) + ")." );
-                        from.CloseGump( typeof( EpicConfirmGump ) );
-                        from.SendGump( new EpicCategoryGump( from, m_NPC, m_Pay ) );
-                        return;
-                    }
+					if ( !HaveSpecialItemRequirement( from ) )
+					{
+						from.SendMessage( m_NPC.Name + " precisará de um símbolo de seu " + merit + " (" + GetSpecialItemRequirement( from ) + ")." );
+						from.CloseGump( typeof( EpicConfirmGump ) );
+						from.SendGump( new EpicCategoryGump( from, m_NPC, m_Pay ) );
+						return;
+					}
 
                     if ( tribute.MyAlignment == "good" && from.Fame >= 4000 && from.Karma >= 4000 )
                     {
@@ -608,18 +608,18 @@ namespace Server.Mobiles
                     }
 
                     if ( !passTest )
-                    {
-                        from.SendMessage( "Your deeds do not grant you a gift of tribute." );
-                        from.CloseGump( typeof( EpicConfirmGump ) );
-                        return;
-                    }
+					{
+						from.SendMessage( "Suas ações não lhe concedem um presente de tributo." );
+						from.CloseGump( typeof( EpicConfirmGump ) );
+						return;
+					}
 
-                    if ( !pack.ConsumeTotal( typeof( Gold ), 5000 ) )
-                    {
-                        from.SendMessage( m_NPC.Name + " needs at least 5,000 gold to construct the item for you." );
-                        from.CloseGump( typeof( EpicConfirmGump ) );
-                        return;
-                    }
+					if ( !pack.ConsumeTotal( typeof( Gold ), 5000 ) )
+					{
+						from.SendMessage( m_NPC.Name + " precisa de pelo menos 5.000 moedas de ouro para construir o item para você." );
+						from.CloseGump( typeof( EpicConfirmGump ) );
+						return;
+					}
 
                     ClearSpecialItemRequirement( from );
                 }
@@ -633,7 +633,7 @@ namespace Server.Mobiles
                 Type itemType = ScriptCompiler.FindTypeByName( m_Entry.TypeName );
                 if ( itemType == null )
                 {
-                    from.SendMessage( "An error occurred finding that item type." );
+                    from.SendMessage( "Ocorreu um erro ao encontrar esse tipo de item." );
                     return;
                 }
 
@@ -662,8 +662,8 @@ namespace Server.Mobiles
 
                 from.AddToBackpack( reward );
 
-                string sEntry   = "has received the " + sArty + " from " + m_NPC.Name + " " + m_NPC.Title;
-                string sMessage = "You have received the " + sArty + " from " + m_NPC.Name + ".";
+                string sEntry   = "recebeu " + sArty + " de " + m_NPC.Name + " " + m_NPC.Title;
+				string sMessage = "Você recebeu " + sArty + " de " + m_NPC.Name + ".";
 
                 LoggingFunctions.LogGenericQuest( from, sEntry );
                 from.SendMessage( sMessage );
@@ -760,12 +760,12 @@ namespace Server.Mobiles
                     ( dropped is GwennosHarp           && this.Name == "Gwenno" ) ||
                     ( dropped is IolosLute             && this.Name == "Iolo"   ) )
             {
-                this.Say( "Thank you, " + from.Name + "! I lost that this years ago." );
+                this.Say( "Obrigado, " + from.Name + "! Perdi isso há anos." );
                 from.SendSound( 0x5B4 );
                 dropped.Delete();
                 int gold = Utility.RandomMinMax( 5, 10 ) * 1000;
                 from.AddToBackpack( new BankCheck( gold ) );
-                from.SendMessage( this.Name + " gave you a check for " + gold + " gold!" );
+                from.SendMessage( this.Name + " lhe deu um cheque de " + gold + " moedas de ouro!" );
                 return true;
             }
             else if ( dropped is CourierMail && !from.Blessed )
@@ -775,7 +775,7 @@ namespace Server.Mobiles
 
                 if ( scroll.owner == from && scroll.MsgComplete > 0 && scroll.ForWho == fullName )
                 {
-                    string success = "has found the " + scroll.SearchItem + " for " + fullName;
+                    string success = "encontrou " + scroll.SearchItem + " para " + fullName;
                     LoggingFunctions.LogGenericQuest( from, success );
 
                     int karmaFame = ( scroll.MsgReward * 100 ) - 100;
@@ -793,44 +793,44 @@ namespace Server.Mobiles
 
                     string sMessage = "";
                     if ( scroll.ForAlignment == "good" )
-                    {
-                        switch ( Utility.RandomMinMax( 0, 5 ) )
-                        {
-                            case 0: sMessage = "Thank you for bringing this to me.";           break;
-                            case 1: sMessage = "I knew you could do it.";                      break;
-                            case 2: sMessage = "This is a great help to us all.";              break;
-                            case 3: sMessage = "Good work! I am glad to see you arrive well."; break;
-                            case 4: sMessage = "Your valor will be remembered.";               break;
-                            case 5: sMessage = "You have done what most others could not.";    break;
-                        }
-                    }
-                    else if ( scroll.ForAlignment == "evil" )
-                    {
-                        switch ( Utility.RandomMinMax( 0, 5 ) )
-                        {
-                            case 0: sMessage = "It is good that you did not fail me.";          break;
-                            case 1: sMessage = "I trust you eliminated any troubles for this?"; break;
-                            case 2: sMessage = "Ahhh...another step closer to my plan.";        break;
-                            case 3: sMessage = "You may prove to be useful yet.";               break;
-                            case 4: sMessage = "You took long enough.";                         break;
-                            case 5: sMessage = "I was about to send someone to deal with you."; break;
-                        }
-                    }
-                    else
-                    {
-                        switch ( Utility.RandomMinMax( 0, 5 ) )
-                        {
-                            case 0: sMessage = "Hmmm...I see you found it.";          break;
-                            case 1: sMessage = "I trust you had little difficulty?";  break;
-                            case 2: sMessage = "Good! I thought for sure you were lost."; break;
-                            case 3: sMessage = "I guess my trust was well placed.";   break;
-                            case 4: sMessage = "I thought you perished in the attempt."; break;
-                            case 5: sMessage = "I wasn't sure it really existed.";    break;
-                        }
-                    }
+					{
+						switch ( Utility.RandomMinMax( 0, 5 ) )
+						{
+							case 0: sMessage = "Obrigado por me trazer isto.";           break;
+							case 1: sMessage = "Sabia que você conseguiria.";                      break;
+							case 2: sMessage = "Isto é de grande ajuda para todos nós.";              break;
+							case 3: sMessage = "Bom trabalho! Fico feliz em vê-lo chegar bem."; break;
+							case 4: sMessage = "Seu valor será lembrado.";               break;
+							case 5: sMessage = "Você fez o que a maioria dos outros não conseguiu.";    break;
+						}
+					}
+					else if ( scroll.ForAlignment == "evil" )
+					{
+						switch ( Utility.RandomMinMax( 0, 5 ) )
+						{
+							case 0: sMessage = "É bom que você não tenha me falhado.";          break;
+							case 1: sMessage = "Confio que eliminou quaisquer problemas para isto?"; break;
+							case 2: sMessage = "Ahhh... mais um passo em direção ao meu plano.";        break;
+							case 3: sMessage = "Você ainda pode se mostrar útil.";               break;
+							case 4: sMessage = "Você demorou o suficiente.";                         break;
+							case 5: sMessage = "Estava prestes a enviar alguém para lidar com você."; break;
+						}
+					}
+					else
+					{
+						switch ( Utility.RandomMinMax( 0, 5 ) )
+						{
+							case 0: sMessage = "Hmmm... vejo que você encontrou.";          break;
+							case 1: sMessage = "Confio que teve pouca dificuldade?";  break;
+							case 2: sMessage = "Bom! Pensei que você estivesse perdido."; break;
+							case 3: sMessage = "Acho que minha confiança foi bem depositada.";   break;
+							case 4: sMessage = "Pensei que você tivesse perecido na tentativa."; break;
+							case 5: sMessage = "Não tinha certeza se realmente existia.";    break;
+						}
+					}
 
                     from.SendSound( 0x3D );
-                    from.SendMessage( goldReward.ToString() + " gold has been added to your pack." );
+                    from.SendMessage( goldReward.ToString() + " moedas de ouro foram adicionadas à sua mochila." );
                     this.PrivateOverheadMessage( MessageType.Regular, 1153, false, sMessage, from.NetState );
                     dropped.Delete();
                     return true;
@@ -847,7 +847,7 @@ namespace Server.Mobiles
                     string sMessage = "";
                     if ( book.QuestTomeGoals > 3 )
                     {
-                        string success = "has found " + book.GoalItem4 + " for " + fullName;
+                        string success = "encontrou " + book.GoalItem4 + " para " + fullName;
                         LoggingFunctions.LogGenericQuest( from, success );
 
                         Titles.AwardFame( from, 1000, true );
@@ -856,8 +856,8 @@ namespace Server.Mobiles
                         if      ( this.MyAlignment == "evil" ) Titles.AwardKarma( from, -1000, true );
                         else if ( this.MyAlignment == "good" ) Titles.AwardKarma( from,  1000, true );
 
-                        if      ( this.MyAlignment == "good" ) sMessage = "Ahhh...you found it and perhaps saved us all! Choose your reward.";
-                        else if ( this.MyAlignment == "evil" ) sMessage = "Good! Everything is going to plan. Choose your reward.";
+                        if      ( this.MyAlignment == "good" ) sMessage = "Ahhh... você encontrou e talvez nos salvou a todos! Escolha sua recompensa.";
+						else if ( this.MyAlignment == "evil" ) sMessage = "Bom! Tudo está indo conforme o planejado. Escolha sua recompensa.";
 
                         if ( !from.HasGump( typeof( EpicCategoryGump ) ) )
                             from.SendGump( new EpicCategoryGump( from, this, false ) );
@@ -866,8 +866,8 @@ namespace Server.Mobiles
                     }
                     else
                     {
-                        if      ( this.MyAlignment == "good" ) sMessage = "Return to me when you find it.";
-                        else if ( this.MyAlignment == "evil" ) sMessage = "Do not fail me in this task.";
+                        if      ( this.MyAlignment == "good" ) sMessage = "Retorne a mim quando o encontrar.";
+						else if ( this.MyAlignment == "evil" ) sMessage = "Não me falhe nesta tarefa.";
                     }
 
                     this.PrivateOverheadMessage( MessageType.Regular, 1153, false, sMessage, from.NetState );
@@ -885,10 +885,10 @@ namespace Server.Mobiles
 				this.Body = Utility.RandomList(427,191); 
 				this.Hue = 0;
 				this.Name = "Lord Draxinusom";
-				this.Title = "the Gargoyle King";
+				this.Title = "o Rei Gárgula";
 				this.MyAlignment = "neutral";
 				this.Direction = Direction.East;
-				this.MyItemText = "of the Gargoyles";
+				this.MyItemText = "dos Gárgulas";
 				this.MyItemHue = 0x846;
 				this.MyWorld = this.Map;
 				this.MyX = 882;
@@ -898,10 +898,10 @@ namespace Server.Mobiles
 			{
 				this.Body = 21;
 				this.Hue = 0x83F;
-				this.Name = "the Great Earth Serpent";
+				this.Name = "a Grande Serpente da Terra";
 				this.MyAlignment = "neutral";
 				this.Direction = Direction.East;
-				this.MyItemText = "of Balance";
+				this.MyItemText = "do Equilíbrio";
 				this.MyItemHue = 0x978;
 				this.MyWorld = this.Map;
 				this.MyX = 1453;
@@ -912,10 +912,10 @@ namespace Server.Mobiles
 				this.Body = 24;
 				this.Hue = 0x83B;
 				this.Name = "Morphius";
-				this.Title = "the Vile Lich";
+				this.Title = "o Lich Vil";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.South;
-				this.MyItemText = "of the Necrotic";
+				this.MyItemText = "do Necrótico";
 				this.MyItemHue = 0xB9A;
 				this.MyWorld = this.Map;
 				this.MyX = 223;
@@ -936,10 +936,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth1 );
 
 				this.Name = "Mondain";
-				this.Title = "the Wizard";
+				this.Title = "o Feiticeiro";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.South;
-				this.MyItemText = "of Mondain";
+				this.MyItemText = "de Mondain";
 				this.MyItemHue = 0x497;
 				this.MyWorld = this.Map;
 				this.MyX = 1128;
@@ -964,10 +964,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth2 );
 
 				this.Name = "Tyball";
-				this.Title = "the Demonologist";
+				this.Title = "o Demonologista";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.South;
-				this.MyItemText = "of Demonic Souls";
+				this.MyItemText = "das Almas Demoníacas";
 				this.MyItemHue = 0x54D;
 				this.MyWorld = this.Map;
 				this.MyX = 1637;
@@ -978,10 +978,10 @@ namespace Server.Mobiles
 				this.Body = 9; 
 				this.Hue = 0x845;
 				this.Name = "Arcadion";
-				this.Title = "the Daemon";
+				this.Title = "o Demônio";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.South;
-				this.MyItemText = "of Purgatory";
+				this.MyItemText = "do Purgatório";
 				this.MyItemHue = 0x550;
 				this.MyWorld = this.Map;
 				this.MyX = 3196;
@@ -1006,10 +1006,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth2 );
 
 				this.Name = "Samhayne";
-				this.Title = "the Master Sailor";
+				this.Title = "o Mestre Navegador";
 				this.MyAlignment = "good";
 				this.Direction = Direction.East;
-				this.MyItemText = "of Poseidon";
+				this.MyItemText = "de Poseidon";
 				this.MyItemHue = 0x542;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1038,10 +1038,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth3 );
 
 				this.Name = "Seggallion";
-				this.Title = "the Pirate Lord";
+				this.Title = "o Lord Pirata";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.East;
-				this.MyItemText = "of the Buccaneer";
+				this.MyItemText = "dos Bucaneiros";
 				this.MyItemHue = 0x549;
 				this.MyWorld = this.Map;
 				this.MyX = 1878;
@@ -1062,10 +1062,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth1 );
 
 				this.Name = "Minax";
-				this.Title = "the Enchantress";
+				this.Title = "a Encantadora";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.East;
-				this.MyItemText = "of Minax";
+				this.MyItemText = "de Minax";
 				this.MyItemHue = 0x497;
 				this.MyWorld = this.Map;
 				this.MyX = 3832;
@@ -1090,10 +1090,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth2 );
 
 				this.Name = "Nystal";
-				this.Title = "the Royal Wizard";
+				this.Title = "o Mago Real";
 				this.MyAlignment = "good";
 				this.Direction = Direction.East;
-				this.MyItemText = "of Wizardry";
+				this.MyItemText = "da Feitiçaria";
 				this.MyItemHue = 0x48B;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1124,10 +1124,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth3 );
 
 				this.Name = "Lord British";
-				this.Title = "the King of Britain";
+				this.Title = "o Rei de Britain";
 				this.MyAlignment = "good";
 				this.Direction = Direction.South;
-				this.MyItemText = "of Sosaria";
+				this.MyItemText = "de Sosaria";
 				this.MyItemHue = 0x430;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1141,10 +1141,10 @@ namespace Server.Mobiles
 				AddItem( new LordBlackthorneSuit()); 
 
 				this.Name = "Lord Blackthorne";
-				this.Title = "the Ruler of Kuldar";
+				this.Title = "o Governante de Kuldar";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.East;
-				this.MyItemText = "of Blackthorne";
+				this.MyItemText = "de Blackthorne";
 				this.MyItemHue = 0x966;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1192,10 +1192,10 @@ namespace Server.Mobiles
 				this.AddItem( new Longsword() );
 
 				this.Name = "Geoffrey";
-				this.Title = "the Knight";
+				this.Title = "o Cavaleiro";
 				this.MyAlignment = "good";
 				this.Direction = Direction.West;
-				this.MyItemText = "of the Warrior";
+				this.MyItemText = "do Guerreiro";
 				this.MyItemHue = 0;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1244,10 +1244,10 @@ namespace Server.Mobiles
 				}
 
 				this.Name = "Shimazu";
-				this.Title = "the Shogun Samurai";
+				this.Title = "o Samurai de Shogun";
 				this.MyAlignment = "neutral";
 				this.Direction = Direction.East;
-				this.MyItemText = "of the Shogun";
+				this.MyItemText = "de Shogun";
 				this.MyItemHue = 0;
 				this.MyWorld = this.Map;
 				this.MyX = 1328;
@@ -1274,10 +1274,10 @@ namespace Server.Mobiles
 				AddItem( new StuddedGloves() );
 
 				this.Name = "Gorn";
-            	this.Title = "the King of Cimmeran";
+            	this.Title = "o Rei de Cimmeran";
 				this.MyAlignment = "neutral";
 				this.Direction = Direction.East;
-				this.MyItemText = "of the Barbarian";
+				this.MyItemText = "dos Bárbaros";
 				this.MyItemHue = 0x972;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1298,10 +1298,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth1 );
 
 				this.Name = "Jaana";
-				this.Title = "the Herb Healer";
+				this.Title = "a Curandeiro de Ervas";
 				this.MyAlignment = "good";
 				this.Direction = Direction.South;
-				this.MyItemText = "of the Cleric";
+				this.MyItemText = "dos Clérigos";
 				this.MyItemHue = 0x47E;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1317,8 +1317,8 @@ namespace Server.Mobiles
 				AddItem( new Server.Items.Boots() );
 				AddItem( new DupreSuit());
 
-				this.Title = "the Paladin";
-				this.MyItemText = "of the Paladin";
+				this.Title = "o Paladino";
+				this.MyItemText = "dos Paladinos";
 				this.MyItemHue = 0x430;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1340,8 +1340,8 @@ namespace Server.Mobiles
 					cloth1.Hue = 0x96F;
 					this.AddItem( cloth1 );
 
-				this.Title = "the Bard";
-				this.MyItemText = "of the Minstrel";
+				this.Title = "o Bardo";
+				this.MyItemText = "do Menestrel";
 				this.MyItemHue = 0;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1368,8 +1368,8 @@ namespace Server.Mobiles
 				AddItem( new Cloak( Utility.RandomYellowHue() ) );
 				AddItem( new LeatherGloves() );
 
-            	this.Title = "the Bowman";
-				this.MyItemText = "of the Archer";
+            	this.Title = "o Arqueiro";
+				this.MyItemText = "do Arqueiro";
 				this.MyItemHue = 0;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1396,8 +1396,8 @@ namespace Server.Mobiles
 				AddItem( new Cloak( Utility.RandomRedHue() ) );
 				AddItem( new LeatherGloves() );
 
-            	this.Title = "the Woodsman";
-				this.MyItemText = "of the Woodlands";
+            	this.Title = "o Lenhador";
+				this.MyItemText = "de Woodlands";
 				this.MyItemHue = 0x840;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1423,8 +1423,8 @@ namespace Server.Mobiles
 				AddItem( new Cloak( Utility.RandomBlueHue() ) );
 				AddItem( new LeatherGloves() );
 
-            	this.Title = "the Sneak";
-				this.MyItemText = "of the Thief";
+            	this.Title = "o Sorrateiro";
+				this.MyItemText = "do Ladrão";
 				this.MyItemHue = 0x83A;
 				this.MyWorld = this.Map;
 				this.MyX = 3317;
@@ -1448,10 +1448,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth2 );
 
 				this.Name = "Katrina";
-				this.Title = "the Shepherd";
+				this.Title = "a Pastoreira";
 				this.MyAlignment = "good";
 				this.Direction = Direction.East;
-				this.MyItemText = "of the Beastmaster";
+				this.MyItemText = "do Mestre das Feras";
 				this.MyItemHue = 0x840;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
@@ -1461,10 +1461,10 @@ namespace Server.Mobiles
 			{
 				this.Body = 485; 
 				this.Hue = 1461;
-				this.Name = "the Guardian";
+				this.Name = "o Guardião";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.East;
-				this.MyItemText = "of Pagan";
+				this.MyItemText = "de Pagan";
 				this.MyItemHue = 1461;
 				this.MyItemPower = 250;
 				this.MyWorld = this.Map;
@@ -1490,10 +1490,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth2 );
 
 				this.Name = "Garamon";
-				this.Title = "the Wizard";
+				this.Title = "o Feiticeiro";
 				this.MyAlignment = "good";
 				this.Direction = Direction.South;
-				this.MyItemText = "of the Alchemist";
+				this.MyItemText = "do Alquimista";
 				this.MyItemHue = 0x6DF;
 				this.MyWorld = this.Map;
 				this.MyX = 6003;
@@ -1539,10 +1539,10 @@ namespace Server.Mobiles
 					this.AddItem( cloth7 );
 
 				this.Name = "Mors Gotha";
-				this.Title = "the Death Knight";
+				this.Title = "o Death Knight";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.South;
-				this.MyItemText = "of Death";
+				this.MyItemText = "da Morte";
 				this.MyItemHue = 0x963;
 				this.MyWorld = this.Map;
 				this.MyX = 3370;
@@ -1553,10 +1553,10 @@ namespace Server.Mobiles
 				this.Body = 24;
 				this.Hue = 0x83B;
 				this.Name = "Lethe";
-				this.Title = "the Dreaded Lich";
+				this.Title = "o Lich Temido";
 				this.MyAlignment = "evil";
 				this.Direction = Direction.South;
-				this.MyItemText = "of the Undertaker";
+				this.MyItemText = "do Agente Funerário";
 				this.MyItemHue = 0x837;
 				this.MyItemPower = 250;
 				this.MyWorld = this.Map;

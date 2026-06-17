@@ -13,7 +13,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public EpicPet () : base( )
 		{
-			Name = "an enslaved demon";
+			Name = "um demônio escravizado";
 			Body = 9;
 			BaseSoundID = 357;
 			CantWalk = true;
@@ -27,7 +27,7 @@ namespace Server.Mobiles
 		{
 			base.OnAfterSpawn();
 			Server.Misc.MorphingTime.CheckMorph( this );
-			Name = "an enslaved demon";
+			Name = "um demônio escravizado";
 			Body = 9;
 			BaseSoundID = 357;
 			CantWalk = true;

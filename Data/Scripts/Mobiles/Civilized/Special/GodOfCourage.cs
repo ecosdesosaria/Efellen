@@ -28,7 +28,7 @@ namespace Server.Mobiles
 			CantWalk = true;
 			Body = 76;
 			Name = "Arez";
-			Title = "the God of Legends";
+			Title = "o Deus das Lendas";
 
 			SetStr( 200 );
 			SetDex( 200 );

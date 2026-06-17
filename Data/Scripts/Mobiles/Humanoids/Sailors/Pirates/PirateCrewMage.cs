@@ -17,16 +17,16 @@ namespace Server.Mobiles
 			{ 
 				Body = 0x191; 
 				Name = NameList.RandomName( "evil witch" );
-				Title = "the pirate mage";
+				Title = "o mago pirata";
 			} 
 			else 
 			{ 
 				Body = 0x190; 
 				Name = NameList.RandomName( "evil mage" );
-				Title = "the pirate mage";
+				Title = "o mago pirata";
 			}
 
-			Title = "the pirate";
+			Title = "o pirata";
 
 			Hue = Utility.RandomSkinColor();
 			Utility.AssignRandomHair( this );

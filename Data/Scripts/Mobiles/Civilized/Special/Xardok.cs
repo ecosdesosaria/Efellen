@@ -27,7 +27,7 @@ namespace Server.Mobiles
 
 			Body = 400; 
 			Name = "Xardok";
-			Title = "the Baron";
+			Title = "o Barão";
 			AI = AIType.AI_Citizen;
 			FightMode = FightMode.None;
 
@@ -111,19 +111,19 @@ namespace Server.Mobiles
 
 				if ( PlayerSettings.GetQuestState( m_Mobile, "AssassinQuest" ) )
 				{
-					m_Giver.Say("You already have your orders. Return to me when you are done with the task.");
+					m_Giver.Say("Você já tem suas ordens. Retorne a mim quando terminar a tarefa.");
 				}
-				else if ( mobile.NpcGuild != NpcGuild.AssassinsGuild ) // HE WILL ONLY TALK GUILD MEMBERS
+				else if ( mobile.NpcGuild != NpcGuild.AssassinsGuild )
 				{
-					m_Giver.Say("Hmmm...you do not seem the type I wish to discuss matters with.");
+					m_Giver.Say("Hmmm... você não parece do tipo com quem eu queira discutir assuntos.");
 				}
-				else if ( m_Mobile.Karma > -1250 ) // HE WILL ONLY TALK TO THE UNSAVORY GUILD MEMBERS
+				else if ( m_Mobile.Karma > -1250 ) 
 				{
-					m_Giver.Say("Hmmm...maybe show me that you could handle such tasks first.");
+					m_Giver.Say("Hmmm... talvez me mostre primeiro que você poderia lidar com tais tarefas.");
 				}
 				else if ( nWhenForAnotherQuest > 0 )
 				{
-					m_Giver.Say("I have nothing for you at the moment. Check back in " + sAllowedForAnotherQuest + " minutes.");
+					m_Giver.Say("Não tenho nada para você no momento. Verifique novamente em " + sAllowedForAnotherQuest + " minutos.");
 				}
 				else
 				{
@@ -179,7 +179,7 @@ namespace Server.Mobiles
 				}
 				else
 				{
-					m_Giver.Say("Done? With what? I am not sure what things you speak of.");
+					m_Giver.Say("Concluído? O quê? Não sei do que você está falando.");
 				}
             }
         }

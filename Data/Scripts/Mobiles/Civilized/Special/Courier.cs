@@ -58,7 +58,7 @@ namespace Server.Mobiles
 				case 4: AddItem( new TallStrawHat( Utility.RandomColor(0) ) ); break;
 			}
 
-			Title = "the courier";
+			Title = "o mensageiro";
 
 			SetStr( 100 );
 			SetDex( 100 );
@@ -235,7 +235,7 @@ namespace Server.Mobiles
 						GiveMail = false;
 						m.AddToBackpack( item );
 						m.PlaySound( 0x249 );
-						SayTo(m, "Hmmm...I already gave you a message from " + msgQuest + ". Here is a another if you lost it.");
+						SayTo(m, "Hmmm... já te dei uma mensagem de " + msgQuest + ". Aqui está outra, caso a tenha perdido.");
 					}
 				}
             }
@@ -339,7 +339,7 @@ namespace Server.Mobiles
 
 				m.AddToBackpack ( envelope );
 				m.PlaySound( 0x249 );
-				SayTo(m, "Hmmm...I do have a message for you. Here you go.");
+				SayTo(m, "Hmmm... tenho uma mensagem para você. Aqui está.");
             }
         }
 
@@ -386,37 +386,37 @@ namespace Server.Mobiles
 				}
 			}
 
-			string Word1 = "Legends";
+			string Word1 = "Lendas";
 			switch ( Utility.RandomMinMax( 1, 4 ) )
 			{
-				case 1:	Word1 = "Rumors"; break;
-				case 2:	Word1 = "Myths"; break;
-				case 3:	Word1 = "Tales"; break;
-				case 4:	Word1 = "Stories"; break;
+				case 1: Word1 = "Rumores"; break;
+				case 2: Word1 = "Mitos"; break;
+				case 3: Word1 = "Contos"; break;
+				case 4: Word1 = "Histórias"; break;
 			}
-			string Word2 = "lost";
+			string Word2 = "perdido";
 			switch ( Utility.RandomMinMax( 1, 4 ) )
 			{
-				case 1:	Word2 = "kept"; break;
-				case 2:	Word2 = "seen"; break;
-				case 3:	Word2 = "taken"; break;
-				case 4:	Word2 = "hidden"; break;
+				case 1: Word2 = "guardado"; break;
+				case 2: Word2 = "visto"; break;
+				case 3: Word2 = "levado"; break;
+				case 4: Word2 = "escondido"; break;
 			}
-			string Word3 = "deep in";
+			string Word3 = "nas profundezas de";
 			switch ( Utility.RandomMinMax( 1, 4 ) )
 			{
-				case 1:	Word3 = "within"; break;
-				case 2:	Word3 = "somewhere in"; break;
-				case 3:	Word3 = "somehow in"; break;
-				case 4:	Word3 = "far in"; break;
+				case 1: Word3 = "dentro de"; break;
+				case 2: Word3 = "em algum lugar de"; break;
+				case 3: Word3 = "de alguma forma em"; break;
+				case 4: Word3 = "longe em"; break;
 			}
-			string Word4 = "centuries ago";
+			string Word4 = "séculos atrás";
 			switch ( Utility.RandomMinMax( 1, 4 ) )
 			{
-				case 1:	Word4 = "thousands of years ago"; break;
-				case 2:	Word4 = "decades ago"; break;
-				case 3:	Word4 = "millions of years ago"; break;
-				case 4:	Word4 = "many years ago"; break;
+				case 1: Word4 = "milhares de anos atrás"; break;
+				case 2: Word4 = "décadas atrás"; break;
+				case 3: Word4 = "milhões de anos atrás"; break;
+				case 4: Word4 = "muitos anos atrás"; break;
 			}
 
             scroll.SearchDungeon = thisPlace;
@@ -425,32 +425,32 @@ namespace Server.Mobiles
 
 			string gold = (scroll.MsgReward * 1000).ToString();
 				if ( alignment == "neutral" ){ gold = (scroll.MsgReward * 1500).ToString(); }
-			string heard = "I have heard that you could perhaps help me with something of the utmost importance.";
-			string reward = "Do this for me, and I can reward you " + gold + " gold.";
+			string heard = "Ouvi dizer que você talvez pudesse me ajudar com algo da mais alta importância.";
+			string reward = "Faça isso por mim, e poderei recompensá-lo com " + gold + " moedas de ouro.";
 
 			if ( alignment != "evil" )
 			{
 				switch( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0: heard = "I have heard that you could perhaps help me with something of the utmost importance."; 	break;
-					case 1: heard = RandomThings.GetRandomName() + " has told me about you, and that maybe you can help."; 		break;
-					case 2: heard = "After speaking to my friend, " + RandomThings.GetRandomName() + ", they mentioned that maybe you can assist me with something."; 	break;
-					case 3: heard = "I hear that you are one I could trust for this important task ahead."; 	break;
-					case 4: heard = "The " + RandomThings.GetRandomJob() + " in " + RandomThings.GetRandomCity() + " mentioned that you could perhaps help me with something."; 	break;
-					case 5: heard = "There is a dire situation I think you may be able to help with."; 	break;
+					case 0: heard = "Ouvi dizer que você talvez pudesse me ajudar com algo da mais alta importância.";     break;
+					case 1: heard = RandomThings.GetRandomName() + " falou de você para mim, e que talvez você possa ajudar.";         break;
+					case 2: heard = "Depois de conversar com meu amigo, " + RandomThings.GetRandomName() + ", ele mencionou que talvez você possa me ajudar com algo.";     break;
+					case 3: heard = "Ouço dizer que você é alguém em quem posso confiar para esta importante tarefa que se avizinha.";     break;
+					case 4: heard = "O " + RandomThings.GetRandomJob() + " em " + RandomThings.GetRandomCity() + " mencionou que você talvez pudesse me ajudar com algo.";     break;
+					case 5: heard = "Há uma situação grave que acho que você pode ajudar a resolver.";     break;
 				}
 			}
 			else if ( alignment == "evil" )
 			{
-				reward = "I think that " + gold + " gold will make this worth your time.";
+				reward = "Acho que " + gold + " moedas de ouro farão isso valer o seu tempo.";
 				switch( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0: heard = "I have heard that you are one that can serve me in my purposes."; 	break;
-					case 1: heard = RandomThings.GetRandomName() + " has told me about you, and that you would serve me well."; 		break;
-					case 2: heard = "After speaking to my servant, " + RandomThings.GetRandomName() + ", they mentioned that maybe you would do my bidding."; 	break;
-					case 3: heard = "I hear whispers of your ambitions, and that maybe we can both benefit from what I am about to ask."; 	break;
-					case 4: heard = "Those in " + RandomThings.GetRandomCity() + " sometimes speak your name in hush curses, which is why I have sent this message to you."; 	break;
-					case 5: heard = "There is an item I need for my plans, and I think you are one that can obtain it with little notice by others."; 	break;
+					case 0: heard = "Ouvi dizer que você é alguém que pode me servir em meus propósitos.";     break;
+					case 1: heard = RandomThings.GetRandomName() + " falou de você para mim, e que você me serviria bem.";         break;
+					case 2: heard = "Depois de conversar com meu servo, " + RandomThings.GetRandomName() + ", ele mencionou que talvez você fizesse o que eu ordeno.";     break;
+					case 3: heard = "Ouço sussurros sobre suas ambições, e que talvez possamos nos beneficiar mutuamente do que estou prestes a pedir.";     break;
+					case 4: heard = "Aqueles em " + RandomThings.GetRandomCity() + " às vezes mencionam seu nome em maldições sussurradas, e é por isso que lhe enviei esta mensagem.";     break;
+					case 5: heard = "Há um item que preciso para meus planos, e acho que você é alguém que pode obtê-lo com pouca atenção de outros.";     break;
 				}
 			}
 
@@ -466,11 +466,11 @@ namespace Server.Mobiles
 			scroll.xA = xc;
 			scroll.yA = yc;
 
-			scroll.SearchMessage = intro + " " + reward + " " + QuestStory + " " + Word1 + " tell of " + QuestItem + " being " + Word2 + " " + Word3;
+			scroll.SearchMessage = intro + " " + reward + " " + QuestStory + " " + Word1 + " contam que " + QuestItem + " foi " + Word2 + " " + Word3;
 
-			scroll.SearchMessage = scroll.SearchMessage + " " + scroll.SearchDungeon + " " + Word4 + " in " + scroll.SearchWorld + " at the below sextant coordinates.<br><br>" + EntranceLocation;
+			scroll.SearchMessage = scroll.SearchMessage + " " + scroll.SearchDungeon + " " + Word4 + " em " + scroll.SearchWorld + " nas coordenadas de sextante abaixo.<br><br>" + EntranceLocation;
 
-			scroll.SearchMessage = scroll.SearchMessage + "<br><br>When you find it, bring this message back to me. I am in " + homeworld + " at the below sextant coordinates.<br><br>" + scroll.ForWhere;
+			scroll.SearchMessage = scroll.SearchMessage + "<br><br>Quando o encontrar, traga esta mensagem de volta para mim. Estou em " + homeworld + " nas coordenadas de sextante abaixo.<br><br>" + scroll.ForWhere;
 
 			scroll.SearchMessage = scroll.SearchMessage + "<br><br>- " + scroll.ForWho;
 

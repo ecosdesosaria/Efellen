@@ -15,7 +15,7 @@ namespace Server.Mobiles
 		public PirateLand() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			SpeechHue = Utility.RandomTalkHue();
-			Title = "the pirate";
+			Title = "o pirata";
 			Hue = Utility.RandomSkinColor();
 
 			if ( this.Female = Utility.RandomBool() )

@@ -1228,13 +1228,13 @@
 
 	</namelist>
 
-	<namelist type="bird">
+	<namelist type="pássaro">
 
-		a wren, a swallow, a warbler, a nuthatch, a chickadee, a thrush, a robin, 
+		uma carriça, uma andorinha, uma toutinegra, uma trepadeira, uma chapim, um tordo, um pisco-de-peito-ruivo,
 
-		a nightingale, a starling, a skylark, a finch, a crossbill, a sparrow, a towhee, 
+		um rouxinol, um estorninho, uma cotovia, um tentilhão, um cruza-bico, um pardal, uma towhee,
 
-		a woodpecker, a kingfisher, a tern, a plover, a lapwing, a hawk, a cuckoo, a swift
+		um pica-pau, um guarda-rios, uma andorinha-do-mar, uma tarambola, um abibe, um falcão, um cuco, um andorinhão
 
 	</namelist>
 

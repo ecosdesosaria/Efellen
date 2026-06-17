@@ -34,7 +34,7 @@ namespace Server.Mobiles
 				FacialHairHue = HairColor;
             }
 
-			Title = "the pirate";
+			Title = "o pirata";
 
             AddItem( new ElvenBoots( 0x83A ) );
             Item armor = new LeatherChest(); armor.Hue = 0x83A; AddItem( armor );

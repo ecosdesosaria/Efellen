@@ -15,10 +15,10 @@ namespace Server.Mobiles
 
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 0: Title = "the buccaneer"; break;
-				case 1: Title = "the pirate"; break;
-				case 2: Title = "the privateer"; break;
-				case 3: Title = "the freebooter"; break;
+				case 0: Title = "o bucaneiro"; break;
+				case 1: Title = "o pirata"; break;
+				case 2: Title = "o corsário"; break;
+				case 3: Title = "o saqueador"; break;
 			}
 
 			SetStr( (int)(level*0.75) );
@@ -63,10 +63,10 @@ namespace Server.Mobiles
 
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 0: Title = "the buccaneer"; break;
-				case 1: Title = "the pirate"; break;
-				case 2: Title = "the privateer"; break;
-				case 3: Title = "the freebooter"; break;
+				case 0: Title = "o bucaneiro"; break;
+				case 1: Title = "o pirata"; break;
+				case 2: Title = "o corsário"; break;
+				case 3: Title = "o saqueador"; break;
 			}
 
 			SetStr( (int)(level*0.75) );
@@ -137,10 +137,10 @@ namespace Server.Mobiles
 
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 0: Title = "the buccaneer"; break;
-				case 1: Title = "the pirate"; break;
-				case 2: Title = "the privateer"; break;
-				case 3: Title = "the freebooter"; break;
+				case 0: Title = "o bucaneiro"; break;
+				case 1: Title = "o pirata"; break;
+				case 2: Title = "o corsário"; break;
+				case 3: Title = "o saqueador"; break;
 			}
 
 			SetDex( (int)(level*0.75) );
@@ -185,10 +185,10 @@ namespace Server.Mobiles
 
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 0: Title = "the drow buccaneer"; break;
-				case 1: Title = "the drow pirate"; break;
-				case 2: Title = "the drow privateer"; break;
-				case 3: Title = "the drow freebooter"; break;
+				case 0: Title = "o bucaneiro drow"; break;
+				case 1: Title = "o pirata drow"; break;
+				case 2: Title = "o corsário drow"; break;
+				case 3: Title = "o saqueador drow"; break;
 			}
 
 			SetStr( (int)(level*0.75) );
@@ -243,10 +243,10 @@ namespace Server.Mobiles
 
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 0: Title = "the drow buccaneer"; break;
-				case 1: Title = "the drow pirate"; break;
-				case 2: Title = "the drow privateer"; break;
-				case 3: Title = "the drow freebooter"; break;
+				case 0: Title = "o bucaneiro drow"; break;
+				case 1: Title = "o pirata drow"; break;
+				case 2: Title = "o corsário drow"; break;
+				case 3: Title = "o saqueador drow"; break;
 			}
 
 			SetStr( (int)(level*0.75) );
@@ -327,10 +327,10 @@ namespace Server.Mobiles
 
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 0: Title = "the buccaneer"; break;
-				case 1: Title = "the pirate"; break;
-				case 2: Title = "the privateer"; break;
-				case 3: Title = "the freebooter"; break;
+				case 0: Title = "o bucaneiro"; break;
+				case 1: Title = "o pirata"; break;
+				case 2: Title = "o corsário"; break;
+				case 3: Title = "o saqueador"; break;
 			}
 
 			SetDex( (int)(level*0.75) );

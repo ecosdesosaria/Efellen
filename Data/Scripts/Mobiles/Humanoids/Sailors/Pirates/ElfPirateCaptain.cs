@@ -29,7 +29,7 @@ namespace Server.Mobiles
                 Name = NameList.RandomName("elf_male");
             }
 
-            Title = "the drow pirate captain";
+            Title = "o capitão pirata drow";
 
 			AddItem( new Scimitar() );
 

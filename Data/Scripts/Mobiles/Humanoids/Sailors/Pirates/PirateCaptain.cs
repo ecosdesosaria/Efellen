@@ -35,7 +35,7 @@ namespace Server.Mobiles
 				FacialHairHue = HairColor;
             }
 
-            Title = "the pirate captain";
+            Title = "o capitão pirata";
 
 			AddItem( new Scimitar() );
 

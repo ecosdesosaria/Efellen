@@ -19,7 +19,7 @@ namespace Server.Mobiles
 
 		string[] kfcsay = new string[]  
 		{ 
-			"All praise the Mad God.",
+			"Todos louvem o Deus Louco.",
 		};
 
 		[Constructable]
@@ -121,11 +121,11 @@ namespace Server.Mobiles
 
 				if ( PlayerSettings.GetBardsTaleQuest( m_Mobile, "BardsTaleCatacombKey" ) )
 				{
-					m_Giver.SayTo(m_Mobile, "Have you been meditating in the Catacombs?");
+					m_Giver.SayTo(m_Mobile, "Você tem meditado nas Catacumbas?");
 				}
 				else if ( !( PlayerSettings.GetBardsTaleQuest( m_Mobile, "BardsTaleMadGodName" ) ) )
 				{
-					m_Giver.SayTo(m_Mobile, "Only a true disciple knows the name of the Mad God.");
+					m_Giver.SayTo(m_Mobile, "Apenas um verdadeiro discípulo conhece o nome do Deus Louco.");
 				}
 				else if ( !( PlayerSettings.GetBardsTaleQuest( m_Mobile, "BardsTaleCatacombKey" ) ) )
 				{

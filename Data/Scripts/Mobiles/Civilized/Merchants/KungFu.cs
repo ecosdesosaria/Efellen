@@ -21,7 +21,7 @@ namespace Server.Mobiles
 		public override string TalkGumpSubject{ get{ return "Monk"; } }
 		
 		[Constructable]
-		public KungFu() : base( "the Monk" )
+		public KungFu() : base( "o Monge" )
 		{
 			SetSkill( SkillName.Bushido, 85.0, 125.0 );
 			SetSkill( SkillName.Fencing, 64.0, 80.0 );
@@ -100,7 +100,7 @@ namespace Server.Mobiles
 		public override void InitOutfit()
 		{
 			Server.Misc.MorphingTime.RemoveMyClothes( this );
-			Title = "the Monk";
+			Title = "o Monge";
 			Server.Misc.IntelligentAction.DressUpWizards( this, true );
 		}
 
