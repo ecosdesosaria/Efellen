@@ -14,17 +14,17 @@ namespace Server.Misc
     {
 		public static string GetOddityAdjective()
 		{
-			string sAdjective = "an odd";
+			string sAdjective = "um(a) estranho(a)";
 
 			switch( Utility.RandomMinMax( 0, 6 ) )
 			{
-				case 0: sAdjective = "an odd"; break;
-				case 1: sAdjective = "an unusual"; break;
-				case 2: sAdjective = "a bizarre"; break;
-				case 3: sAdjective = "a curious"; break;
-				case 4: sAdjective = "a peculiar"; break;
-				case 5: sAdjective = "a strange"; break;
-				case 6: sAdjective = "a weird"; break;
+				case 0: sAdjective = "um(a) estranho(a)"; break;
+				case 1: sAdjective = "um(a) incomum"; break;
+				case 2: sAdjective = "um(a) bizarro(a)"; break;
+				case 3: sAdjective = "um(a) curioso(a)"; break;
+				case 4: sAdjective = "um(a) peculiar"; break;
+				case 5: sAdjective = "um(a) estranho(a)"; break;
+				case 6: sAdjective = "um(a) esquisito(a)"; break;
 			}
 			return sAdjective;
 		}
@@ -85,16 +85,16 @@ namespace Server.Misc
 
 		public static string MadeUpCity()
 		{
-			string sPlace = "Village";
+			string sPlace = "Vila";
 			string sPerson = NameList.RandomName( "elf_female" );
 
 			switch( Utility.RandomMinMax( 0, 4 ) )
 			{
-				case 0: sPlace = "Village"; break;
-				case 1: sPlace = "City"; break;
-				case 2: sPlace = "Town"; break;
-				case 3: sPlace = "Keep"; break;
-				case 4: sPlace = "Hamlet"; break;
+				case 0: sPlace = "Vila"; break;
+				case 1: sPlace = "Cidade"; break;
+				case 2: sPlace = "Vila"; break;
+				case 3: sPlace = "Fortaleza"; break;
+				case 4: sPlace = "Aldeia"; break;
 			}
 
 			switch( Utility.RandomMinMax( 0, 16 ) )
@@ -117,58 +117,58 @@ namespace Server.Misc
 				case 16: sPerson = NameList.RandomName( "elf_male" ); break;
 			}
 
-			return "the " + sPlace + " of " + sPerson;
+			return " " + sPlace + " de " + sPerson;
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		public static string MadeUpDungeon()
 		{
-			string sPlace = "Dungeon";
-			string sAdjective = "Evil";
+			string sPlace = "Masmorra";
+			string sAdjective = "Maligna";
 			string sBeing = "Lich";
-			string sAdj = "Mad";
+			string sAdj = "Louco";
 
 			switch( Utility.RandomMinMax( 0, 18 ) )
 			{
-				case 0: sPlace = "Dungeon"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Dungeons"; } break;
-				case 1: sPlace = "Cave"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Caves"; } break;
-				case 2: sPlace = "Tomb"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Tombs"; } break;
-				case 3: sPlace = "Labyrinth"; break;
-				case 4: sPlace = "Hall"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Halls"; } break;
-				case 5: sPlace = "Crypt"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Crypts"; } break;
-				case 6: sPlace = "Tower"; break;
-				case 7: sPlace = "Castle"; break;
-				case 8: sPlace = "Ruins"; break;
-				case 9: sPlace = "Mountain"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Mountains"; } break;
-				case 10: sPlace = "Mausoleum"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Catacombs"; } break;
-				case 11: sPlace = "Tunnel"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Tunnels"; } break;
-				case 12: sPlace = "Maze"; break;
-				case 13: sPlace = "Pit"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Pits"; } break;
-				case 14: sPlace = "Vault"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Vaults"; } break;
-				case 15: sPlace = "Cavern"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Caverns"; } break;
-				case 16: sPlace = "Fortress"; break;
-				case 17: sPlace = "Stronghold"; break;
-				case 18: sPlace = "Abyss"; break;
+				case 0: sPlace = "Masmorra"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Masmorras"; } break;
+				case 1: sPlace = "Caverna"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Cavernas"; } break;
+				case 2: sPlace = "Tumba"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Tumbas"; } break;
+				case 3: sPlace = "Labirinto"; break;
+				case 4: sPlace = "Salão"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Salões"; } break;
+				case 5: sPlace = "Cripta"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Criptas"; } break;
+				case 6: sPlace = "Torre"; break;
+				case 7: sPlace = "Castelo"; break;
+				case 8: sPlace = "Ruínas"; break;
+				case 9: sPlace = "Montanha"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Montanhas"; } break;
+				case 10: sPlace = "Mausoléu"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Catacumbas"; } break;
+				case 11: sPlace = "Túnel"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Túneis"; } break;
+				case 12: sPlace = "Labirinto"; break;
+				case 13: sPlace = "Poço"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Poços"; } break;
+				case 14: sPlace = "Cofre"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Cofres"; } break;
+				case 15: sPlace = "Caverna"; if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sPlace = "Cavernas"; } break;
+				case 16: sPlace = "Fortaleza"; break;
+				case 17: sPlace = "Bastião"; break;
+				case 18: sPlace = "Abismo"; break;
 			}
 
 			switch( Utility.RandomMinMax( 0, 19 ) )
 			{
-				case 1: sBeing = "King"; break;
-				case 2: sBeing = "Queen"; break;
-				case 3: sBeing = "Ghost"; break;
-				case 4: sBeing = "Vampire"; break;
-				case 5: sBeing = "Warlord"; break;
-				case 6: sBeing = "Priest"; break;
-				case 7: sBeing = "Wizard"; break;
-				case 8: sBeing = "Sorceress"; break;
-				case 9: sBeing = "God"; break;
-				case 10: sBeing = "Goddess"; break;
-				case 11: sBeing = "Devil"; break;
-				case 12: sBeing = "Demon"; break;
-				case 13: sBeing = "Dragon"; break;
-				case 14: sBeing = "Knight"; break;
-				case 15: sBeing = "Tyrant"; break;
+				case 1: sBeing = "Rei"; break;
+				case 2: sBeing = "Rainha"; break;
+				case 3: sBeing = "Fantasma"; break;
+				case 4: sBeing = "Vampiro"; break;
+				case 5: sBeing = "Senhor da Guerra"; break;
+				case 6: sBeing = "Sacerdote"; break;
+				case 7: sBeing = "Mago"; break;
+				case 8: sBeing = "Feiticeira"; break;
+				case 9: sBeing = "Deus"; break;
+				case 10: sBeing = "Deusa"; break;
+				case 11: sBeing = "Diabo"; break;
+				case 12: sBeing = "Demônio"; break;
+				case 13: sBeing = "Dragão"; break;
+				case 14: sBeing = "Cavaleiro"; break;
+				case 15: sBeing = "Tirano"; break;
 				case 16: sBeing = Server.Misc.RandomThings.GetRandomJobTitle(0); break;
 				case 17: sBeing = Server.Misc.RandomThings.GetRandomThing(0); break;
 				case 18: sBeing = Server.Misc.RandomThings.GetRandomJobTitle(0); break;
@@ -178,475 +178,475 @@ namespace Server.Misc
 			switch( Utility.RandomMinMax( 0, 31 ) )
 			{
 				case 1: sAdj = Server.Misc.RandomThings.GetRandomColorName(0); break;
-				case 2: sAdj = "Hated"; break;
-				case 3: sAdj = "Feared"; break;
-				case 4: sAdj = "Cursed"; break;
-				case 5: sAdj = "Scorned"; break;
-				case 6: sAdj = "Despised"; break;
-				case 7: sAdj = "Lost"; break;
-				case 8: sAdj = "Insane"; break;
-				case 9: sAdj = "Deranged"; break;
-				case 10: sAdj = "Demented"; break;
-				case 11: sAdj = "Blighted"; break;
-				case 12: sAdj = "Corrupt"; break;
-				case 13: sAdj = "Angry"; break;
-				case 14: sAdj = "Wicked"; break;
-				case 15: sAdj = "Loathsome"; break;
-				case 16: sAdj = "Baneful"; break;
+				case 2: sAdj = "Odiado"; break;
+				case 3: sAdj = "Temido"; break;
+				case 4: sAdj = "Amaldiçoado"; break;
+				case 5: sAdj = "Desprezado"; break;
+				case 6: sAdj = "Desdenhado"; break;
+				case 7: sAdj = "Perdido"; break;
+				case 8: sAdj = "Insano"; break;
+				case 9: sAdj = "Demente"; break;
+				case 10: sAdj = "Enlouquecido"; break;
+				case 11: sAdj = "Arruinado"; break;
+				case 12: sAdj = "Corrupto"; break;
+				case 13: sAdj = "Irado"; break;
+				case 14: sAdj = "Perverso"; break;
+				case 15: sAdj = "Repulsivo"; break;
+				case 16: sAdj = "Funesto"; break;
 				case 17: sAdj = "Cruel"; break;
-				case 18: sAdj = "Atrocious"; break;
-				case 19: sAdj = "Barbarous"; break;
+				case 18: sAdj = "Atroz"; break;
+				case 19: sAdj = "Bárbaro"; break;
 				case 20: sAdj = "Brutal"; break;
-				case 21: sAdj = "Heartless"; break;
-				case 22: sAdj = "Merciless"; break;
-				case 23: sAdj = "Ruthless"; break;
-				case 24: sAdj = "Sadistic"; break;
-				case 25: sAdj = "Tyrannical"; break;
-				case 26: sAdj = "Vicous"; break;
-				case 27: sAdj = "Bloodthirsty"; break;
-				case 28: sAdj = "Ferocious"; break;
-				case 29: sAdj = "Fierce"; break;
-				case 30: sAdj = "Malevolent"; break;
-				case 31: sAdj = "Loathed"; break;
+				case 21: sAdj = "Impiedoso"; break;
+				case 22: sAdj = "Desalmado"; break;
+				case 23: sAdj = "Cruel"; break;
+				case 24: sAdj = "Sádico"; break;
+				case 25: sAdj = "Tirânico"; break;
+				case 26: sAdj = "Cruel"; break;
+				case 27: sAdj = "Sanguinário"; break;
+				case 28: sAdj = "Ferocíssimo"; break;
+				case 29: sAdj = "Feroz"; break;
+				case 30: sAdj = "Malevolente"; break;
+				case 31: sAdj = "Detestado"; break;
 			}
 
 			switch( Utility.RandomMinMax( 1, 116 ) )
 			{
-				case 1: sAdjective = "the Corrupt"; 	break;
-				case 2: sAdjective = "Destruction"; 	break;
-				case 3: sAdjective = "the Hated"; 		break;
-				case 4: sAdjective = "the Heinous"; 	break;
-				case 5: sAdjective = "the Malevolent"; 	break;
-				case 6: sAdjective = "the Malicious"; 	break;
-				case 7: sAdjective = "the Nefarious"; 	break;
-				case 8: sAdjective = "the Wicked"; 		break;
-				case 9: sAdjective = "the Vicious"; 	break;
-				case 10: sAdjective = "the Vile"; 		break;
-				case 11: sAdjective = "Villainy"; 		break;
-				case 12: sAdjective = "the Foul"; 		break;
-				case 13: sAdjective = "Damnation"; 		break;
-				case 14: sAdjective = "Terror"; 		break;
-				case 15: sAdjective = "the Cursed"; 	break;
-				case 16: sAdjective = "Doom"; 			break;
-				case 17: sAdjective = "Dread"; 			break;
-				case 18: sAdjective = "Repulsion"; 		break;
-				case 19: sAdjective = "Spite"; 			break;
-				case 20: sAdjective = "Wrath"; 			break;
-				case 21: sAdjective = "Death"; 			break;
-				case 22: sAdjective = "the Sinister"; 	break;
-				case 23: sAdjective = "Woe"; 			break;
-				case 24: sAdjective = "Torment"; 		break;
-				case 25: sAdjective = "Wither"; 		break;
-				case 26: sAdjective = "Decay"; 			break;
-				case 27: sAdjective = "Curses"; 		break;
-				case 28: sAdjective = "the Damned"; 	break;
-				case 29: sAdjective = "Horror"; 		break;
-				case 30: sAdjective = "the Tormented"; 	break;
-				case 31: sAdjective = "the Doomed"; 	break;
-				case 32: sAdjective = "the Unspeakable";break;
-				case 33: sAdjective = "Hatred"; 		break;
-				case 34: sAdjective = "Misery"; 		break;
-				case 35: sAdjective = "the Corrupted"; 	break;
-				case 36: sAdjective = "Corruption"; 	break;
-				case 37: sAdjective = "Rage"; 			break;
-				case 38: sAdjective = "the Dreaded"; 	break;
-				case 39: sAdjective = "Darkness"; 		break;
-				case 40: sAdjective = "Shadows"; 		break;
-				case 41: sAdjective = "the Mad"; 		break;
-				case 42: sAdjective = "the Insane"; 	break;
-				case 43: sAdjective = "the Nine Hells"; break;
-				case 44: sAdjective = "Cthulhu"; 		break;
-				case 45: sAdjective = "Hell"; 			break;
-				case 46: sAdjective = "Hades"; 			break;
-				case 47: sAdjective = "Satan"; 			break;
-				case 48: sAdjective = "the Spirits"; 	break;
-				case 49: sAdjective = "the Haunted"; 	break;
-				case 50: sAdjective = "the Undead"; 	break;
-				case 51: sAdjective = "the Mummy"; 		break;
-				case 52: sAdjective = "the Vampire"; 	break;
-				case 53: sAdjective = "Blood";			break;
-				case 54: sAdjective = "the Cult"; 		break;
-				case 55: sAdjective = "the Lost"; 		break;
-				case 56: sAdjective = "Lost Souls"; 	break;
-				case 57: sAdjective = "the " + sAdj + " " + sBeing; break;
-				case 58: sAdjective = "Gold"; 			break;
-				case 59: sAdjective = "Silver"; 		break;
-				case 60: sAdjective = "the Necromancer";	break;
-				case 61: sAdjective = "the Witch";			break;
-				case 62: sAdjective = "the Warlock";		break;
-				case 63: sAdjective = "the " + sAdj + " " + sBeing; break;
-				case 64: sAdjective = "the " + sAdj + " " + sBeing; break;
-				case 65: sAdjective = "the Villain";		break;
-				case 66: sAdjective = "Brass";				break;
-				case 67: sAdjective = "Bronze";				break;
-				case 68: sAdjective = "the Ghost";			break;
-				case 69: sAdjective = "the Death Knight";	break;
-				case 70: sAdjective = "the Lich";			break;
-				case 71: sAdjective = "the Occultist";		break;
-				case 72: sAdjective = "the Cultist";		break;
-				case 73: sAdjective = "the Diabolist";		break;
-				case 74: sAdjective = "the Hag";			break;
-				case 75: sAdjective = "the Butcher";		break;
-				case 76: sAdjective = "the Slayer";			break;
-				case 77: sAdjective = "the Executioner";	break;
-				case 78: sAdjective = "the Demon";			break;
-				case 79: sAdjective = "the Phantom";		break;
-				case 80: sAdjective = "the Shadow";			break;
-				case 81: sAdjective = "the Spectre";		break;
-				case 82: sAdjective = "the Devil";			break;
-				case 83: sAdjective = "the Shade";			break;
-				case 84: sAdjective = "the Wraith";			break;
-				case 85: sAdjective = "the Vampire";		break;
-				case 86: sAdjective = "the Banshee";		break;
-				case 87: sAdjective = "the Dark";			break;
-				case 88: sAdjective = "the Black";			break;
-				case 89: sAdjective = "the Mortician";		break;
-				case 90: sAdjective = "the Embalmer";		break;
-				case 91: sAdjective = "Iron";				break;
-				case 92: sAdjective = "the Fiend";			break;
-				case 93: sAdjective = "the Daemon";			break;
-				case 94: sAdjective = "the " + sAdj + " " + sBeing; break;
-				case 95: sAdjective = "the Hateful";		break;
-				case 96: sAdjective = "the " + sAdj + " " + sBeing; break;
-				case 97: sAdjective = "the Hideous";		break;
-				case 98: sAdjective = "the " + sAdj + " " + sBeing; break;
-				case 99: sAdjective = "the " + sAdj + " " + sBeing; break;
-				case 100: sAdjective = "the " + sAdj + " " + sBeing; break;
-				case 101: sAdjective = "the Forgotten"; break;
-				case 102: sAdjective = "the Ancients"; break;
-				case 103: sAdjective = "the Foul";			break;
-				case 104: sAdjective = "the Baneful";		break;
-				case 105: sAdjective = "the Depraved";		break;
-				case 106: sAdjective = "the Loathsome";		break;
-				case 107: sAdjective = "the Wrathful";		break;
-				case 108: sAdjective = "the Woeful";		break;
-				case 109: sAdjective = "the Grim";			break;
-				case 110: sAdjective = "the Dismal";		break;
-				case 111: sAdjective = "the Lifeless";		break;
-				case 112: sAdjective = "the Deceased";		break;
-				case 113: sAdjective = "the Bloodless";		break;
-				case 114: sAdjective = "the Mortified";		break;
-				case 115: sAdjective = "the Departed";		break;
-				case 116: sAdjective = "the Dead";			break;
+				case 1: sAdjective = "o Corrupto";     break;
+				case 2: sAdjective = "Destruição";     break;
+				case 3: sAdjective = "o Odiado";       break;
+				case 4: sAdjective = "o Abominável";   break;
+				case 5: sAdjective = "o Malevolente";  break;
+				case 6: sAdjective = "o Malicioso";    break;
+				case 7: sAdjective = "o Nefário";      break;
+				case 8: sAdjective = "o Perverso";     break;
+				case 9: sAdjective = "o Cruel";        break;
+				case 10: sAdjective = "o Vil";         break;
+				case 11: sAdjective = "Vilania";       break;
+				case 12: sAdjective = "o Imundo";      break;
+				case 13: sAdjective = "Danação";       break;
+				case 14: sAdjective = "Terror";        break;
+				case 15: sAdjective = "o Amaldiçoado"; break;
+				case 16: sAdjective = "Perdição";      break;
+				case 17: sAdjective = "Pavor";         break;
+				case 18: sAdjective = "Repulsão";      break;
+				case 19: sAdjective = "Rancor";        break;
+				case 20: sAdjective = "Ira";           break;
+				case 21: sAdjective = "Morte";         break;
+				case 22: sAdjective = "o Sinistro";    break;
+				case 23: sAdjective = "Aflição";       break;
+				case 24: sAdjective = "Tormento";      break;
+				case 25: sAdjective = "Definhar";      break;
+				case 26: sAdjective = "Decadência";    break;
+				case 27: sAdjective = "Maldições";     break;
+				case 28: sAdjective = "o Condenado";   break;
+				case 29: sAdjective = "Horror";        break;
+				case 30: sAdjective = "o Atormentado"; break;
+				case 31: sAdjective = "o Fadado";      break;
+				case 32: sAdjective = "o Indizível";   break;
+				case 33: sAdjective = "Ódio";          break;
+				case 34: sAdjective = "Miséria";       break;
+				case 35: sAdjective = "o Corrompido";  break;
+				case 36: sAdjective = "Corrupção";     break;
+				case 37: sAdjective = "Fúria";         break;
+				case 38: sAdjective = "o Temido";      break;
+				case 39: sAdjective = "Trevas";        break;
+				case 40: sAdjective = "Sombras";       break;
+				case 41: sAdjective = "o Louco";       break;
+				case 42: sAdjective = "o Insano";      break;
+				case 43: sAdjective = "os Nove Infernos"; break;
+				case 44: sAdjective = "Cthulhu";       break;
+				case 45: sAdjective = "Inferno";       break;
+				case 46: sAdjective = "Hades";         break;
+				case 47: sAdjective = "Satanás";       break;
+				case 48: sAdjective = "os Espíritos";  break;
+				case 49: sAdjective = "o Assombrado";  break;
+				case 50: sAdjective = "o Morto-vivo";  break;
+				case 51: sAdjective = "a Múmia";       break;
+				case 52: sAdjective = "o Vampiro";     break;
+				case 53: sAdjective = "Sangue";        break;
+				case 54: sAdjective = "o Culto";       break;
+				case 55: sAdjective = "o Perdido";     break;
+				case 56: sAdjective = "Almas Perdidas"; break;
+				case 57: sAdjective = "o " + sAdj + " " + sBeing; break;
+				case 58: sAdjective = "Ouro";          break;
+				case 59: sAdjective = "Prata";         break;
+				case 60: sAdjective = "o Necromante";  break;
+				case 61: sAdjective = "a Bruxa";       break;
+				case 62: sAdjective = "o Bruxo";       break;
+				case 63: sAdjective = "o " + sAdj + " " + sBeing; break;
+				case 64: sAdjective = "o " + sAdj + " " + sBeing; break;
+				case 65: sAdjective = "o Vilão";       break;
+				case 66: sAdjective = "Latão";         break;
+				case 67: sAdjective = "Bronze";        break;
+				case 68: sAdjective = "o Fantasma";    break;
+				case 69: sAdjective = "o Cavaleiro da Morte"; break;
+				case 70: sAdjective = "o Lich";        break;
+				case 71: sAdjective = "o Ocultista";   break;
+				case 72: sAdjective = "o Cultista";    break;
+				case 73: sAdjective = "o Diabolista";  break;
+				case 74: sAdjective = "a Bruxa";       break;
+				case 75: sAdjective = "o Açougueiro";  break;
+				case 76: sAdjective = "o Abatedor";    break;
+				case 77: sAdjective = "o Carrasco";    break;
+				case 78: sAdjective = "o Demônio";     break;
+				case 79: sAdjective = "o Espectro";    break;
+				case 80: sAdjective = "a Sombra";      break;
+				case 81: sAdjective = "o Espectro";    break;
+				case 82: sAdjective = "o Diabo";       break;
+				case 83: sAdjective = "a Sombra";      break;
+				case 84: sAdjective = "o Espectro";    break;
+				case 85: sAdjective = "o Vampiro";     break;
+				case 86: sAdjective = "a Banshee";     break;
+				case 87: sAdjective = "o Sombrio";     break;
+				case 88: sAdjective = "o Negro";       break;
+				case 89: sAdjective = "o Agente Funerário"; break;
+				case 90: sAdjective = "o Embalsamador"; break;
+				case 91: sAdjective = "Ferro";         break;
+				case 92: sAdjective = "o Demônio";     break;
+				case 93: sAdjective = "o Demônio";     break;
+				case 94: sAdjective = "o " + sAdj + " " + sBeing; break;
+				case 95: sAdjective = "o Odioso";      break;
+				case 96: sAdjective = "o " + sAdj + " " + sBeing; break;
+				case 97: sAdjective = "o Horrendo";    break;
+				case 98: sAdjective = "o " + sAdj + " " + sBeing; break;
+				case 99: sAdjective = "o " + sAdj + " " + sBeing; break;
+				case 100: sAdjective = "o " + sAdj + " " + sBeing; break;
+				case 101: sAdjective = "o Esquecido";  break;
+				case 102: sAdjective = "os Antigos";   break;
+				case 103: sAdjective = "o Imundo";     break;
+				case 104: sAdjective = "o Funesto";    break;
+				case 105: sAdjective = "o Depravado";  break;
+				case 106: sAdjective = "o Repulsivo";  break;
+				case 107: sAdjective = "o Irascível";  break;
+				case 108: sAdjective = "o Lamentoso";  break;
+				case 109: sAdjective = "o Sombrio";    break;
+				case 110: sAdjective = "o Sombrio";    break;
+				case 111: sAdjective = "o Sem Vida";   break;
+				case 112: sAdjective = "o Falecido";   break;
+				case 113: sAdjective = "o Sem Sangue"; break;
+				case 114: sAdjective = "o Mortificado"; break;
+				case 115: sAdjective = "o Partido";    break;
+				case 116: sAdjective = "o Morto";      break;
 			}
 
-			return "the " + sPlace + " of " + sAdjective;
+			return " " + sPlace + " d" + sAdjective;
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		public static string RandomEvilTitle()
 		{
-			string sSubs = "Ruler";
-			string sAdjective = "Evil";
-			string sAdj = "Mad";
+			string sSubs = "Governante";
+			string sAdjective = "Maligno";
+			string sAdj = "Louco";
 
 			switch( Utility.RandomMinMax( 0, 18 ) )
 			{
-				case 0: sSubs = "Ruler";		break;
-				case 1: sSubs = "Warlord";		break;
-				case 2: sSubs = "Lord";			break;
-				case 3: sSubs = "Overseer"; 	break;
-				case 4: sSubs = "Servant";		break;
-				case 5: sSubs = "Dweller";		break;
-				case 6: sSubs = "Slave";		break;
-				case 7: sSubs = "Eye";			break;
-				case 8: sSubs = "Hand";			break;
-				case 9: sSubs = "Heart";		break;
-				case 10: sSubs = "Minion";		break;
-				case 11: sSubs = "Master";		break;
-				case 12: sSubs = "Conqueror";	break;
-				case 13: sSubs = "Leader";		break;
-				case 14: sSubs = "Herald";		break;
-				case 15: sSubs = "Omen";		break;
-				case 16: sSubs = "Bearer";		break;
-				case 17: sSubs = "Sign";		break;
-				case 18: sSubs = "Disciple";	break;
+				case 0: sSubs = "Governante";       break;
+				case 1: sSubs = "Senhor da Guerra";     break;
+				case 2: sSubs = "Senhor";           break;
+				case 3: sSubs = "Supervisor";       break;
+				case 4: sSubs = "Servo";            break;
+				case 5: sSubs = "Habitante";        break;
+				case 6: sSubs = "Escravo";          break;
+				case 7: sSubs = "Olho";             break;
+				case 8: sSubs = "Mão";              break;
+				case 9: sSubs = "Coração";          break;
+				case 10: sSubs = "Capanga";         break;
+				case 11: sSubs = "Mestre";          break;
+				case 12: sSubs = "Conquistador";    break;
+				case 13: sSubs = "Líder";           break;
+				case 14: sSubs = "Arauto";          break;
+				case 15: sSubs = "Presságio";       break;
+				case 16: sSubs = "Portador";        break;
+				case 17: sSubs = "Sinal";           break;
+				case 18: sSubs = "Discípulo";       break;
 			}
 
 			switch( Utility.RandomMinMax( 0, 31 ) )
 			{
 				case 1: sAdj = Server.Misc.RandomThings.GetRandomColorName(0); break;
-				case 2: sAdj = "Hated"; break;
-				case 3: sAdj = "Feared"; break;
-				case 4: sAdj = "Cursed"; break;
-				case 5: sAdj = "Scorned"; break;
-				case 6: sAdj = "Despised"; break;
-				case 7: sAdj = "Lost"; break;
-				case 8: sAdj = "Insane"; break;
-				case 9: sAdj = "Deranged"; break;
-				case 10: sAdj = "Demented"; break;
-				case 11: sAdj = "Blighted"; break;
-				case 12: sAdj = "Corrupt"; break;
-				case 13: sAdj = "Angry"; break;
-				case 14: sAdj = "Wicked"; break;
-				case 15: sAdj = "Loathsome"; break;
-				case 16: sAdj = "Baneful"; break;
+				case 2: sAdj = "Odiado"; break;
+				case 3: sAdj = "Temido"; break;
+				case 4: sAdj = "Amaldiçoado"; break;
+				case 5: sAdj = "Desprezado"; break;
+				case 6: sAdj = "Desdenhado"; break;
+				case 7: sAdj = "Perdido"; break;
+				case 8: sAdj = "Insano"; break;
+				case 9: sAdj = "Demente"; break;
+				case 10: sAdj = "Enlouquecido"; break;
+				case 11: sAdj = "Arruinado"; break;
+				case 12: sAdj = "Corrupto"; break;
+				case 13: sAdj = "Irado"; break;
+				case 14: sAdj = "Perverso"; break;
+				case 15: sAdj = "Repulsivo"; break;
+				case 16: sAdj = "Funesto"; break;
 				case 17: sAdj = "Cruel"; break;
-				case 18: sAdj = "Atrocious"; break;
-				case 19: sAdj = "Barbarous"; break;
+				case 18: sAdj = "Atroz"; break;
+				case 19: sAdj = "Bárbaro"; break;
 				case 20: sAdj = "Brutal"; break;
-				case 21: sAdj = "Heartless"; break;
-				case 22: sAdj = "Merciless"; break;
-				case 23: sAdj = "Ruthless"; break;
-				case 24: sAdj = "Sadistic"; break;
-				case 25: sAdj = "Tyrannical"; break;
-				case 26: sAdj = "Vicous"; break;
-				case 27: sAdj = "Bloodthirsty"; break;
-				case 28: sAdj = "Ferocious"; break;
-				case 29: sAdj = "Fierce"; break;
-				case 30: sAdj = "Malevolent"; break;
-				case 31: sAdj = "Loathed"; break;
+				case 21: sAdj = "Impiedoso"; break;
+				case 22: sAdj = "Desalmado"; break;
+				case 23: sAdj = "Cruel"; break;
+				case 24: sAdj = "Sádico"; break;
+				case 25: sAdj = "Tirânico"; break;
+				case 26: sAdj = "Cruel"; break;
+				case 27: sAdj = "Sanguinário"; break;
+				case 28: sAdj = "Ferocíssimo"; break;
+				case 29: sAdj = "Feroz"; break;
+				case 30: sAdj = "Malevolente"; break;
+				case 31: sAdj = "Detestado"; break;
 			}
 
 			switch( Utility.RandomMinMax( 1, 108 ) )
 			{
-				case 1: sAdjective = "the Corrupt"; 	break;
-				case 2: sAdjective = "Destruction"; 	break;
-				case 3: sAdjective = "the Hated"; 		break;
-				case 4: sAdjective = "the Heinous"; 	break;
-				case 5: sAdjective = "the Malevolent"; 	break;
-				case 6: sAdjective = "the Malicious"; 	break;
-				case 7: sAdjective = "the Nefarious"; 	break;
-				case 8: sAdjective = "the Wicked"; 		break;
-				case 9: sAdjective = "the Vicious"; 	break;
-				case 10: sAdjective = "the Vile"; 		break;
-				case 11: sAdjective = "Villainy"; 		break;
-				case 12: sAdjective = "the Foul"; 		break;
-				case 13: sAdjective = "Damnation"; 		break;
-				case 14: sAdjective = "Terror"; 		break;
-				case 15: sAdjective = "the Cursed"; 	break;
-				case 16: sAdjective = "Doom"; 			break;
-				case 17: sAdjective = "Dread"; 			break;
-				case 18: sAdjective = "Repulsion"; 		break;
-				case 19: sAdjective = "Spite"; 			break;
-				case 20: sAdjective = "Wrath"; 			break;
-				case 21: sAdjective = "Death"; 			break;
-				case 22: sAdjective = "the Sinister"; 	break;
-				case 23: sAdjective = "Woe"; 			break;
-				case 24: sAdjective = "Torment"; 		break;
-				case 25: sAdjective = "Wither"; 		break;
-				case 26: sAdjective = "Decay"; 			break;
-				case 27: sAdjective = "Curses"; 		break;
-				case 28: sAdjective = "the Damned"; 	break;
-				case 29: sAdjective = "Horror"; 		break;
-				case 30: sAdjective = "the Tormented"; 	break;
-				case 31: sAdjective = "the Doomed"; 	break;
-				case 32: sAdjective = "the Unspeakable";break;
-				case 33: sAdjective = "Hatred"; 		break;
-				case 34: sAdjective = "Misery"; 		break;
-				case 35: sAdjective = "the Corrupted"; 	break;
-				case 36: sAdjective = "Corruption"; 	break;
-				case 37: sAdjective = "Rage"; 			break;
-				case 38: sAdjective = "the Dreaded"; 	break;
-				case 39: sAdjective = "Darkness"; 		break;
-				case 40: sAdjective = "Shadows"; 		break;
-				case 41: sAdjective = "the Mad"; 		break;
-				case 42: sAdjective = "the Insane"; 	break;
-				case 43: sAdjective = "the Nine Hells"; break;
-				case 44: sAdjective = "Cthulhu"; 		break;
-				case 45: sAdjective = "Hell"; 			break;
-				case 46: sAdjective = "Hades"; 			break;
-				case 47: sAdjective = "Satan"; 			break;
-				case 48: sAdjective = "the Spirits"; 	break;
-				case 49: sAdjective = "the Haunted"; 	break;
-				case 50: sAdjective = "the Undead"; 	break;
-				case 51: sAdjective = "the Mummy"; 		break;
-				case 52: sAdjective = "the Vampire"; 	break;
-				case 53: sAdjective = "Blood";			break;
-				case 54: sAdjective = "the Cult"; 		break;
-				case 55: sAdjective = "the Lost"; 		break;
-				case 56: sAdjective = "Lost Souls"; 	break;
-				case 57: sAdjective = "the Dead";		break;
-				case 58: sAdjective = "Gold"; 			break;
-				case 59: sAdjective = "Silver"; 		break;
-				case 60: sAdjective = "the Necromancer";	break;
-				case 61: sAdjective = "the Witch";			break;
-				case 62: sAdjective = "the Warlock";		break;
-				case 63: sAdjective = "the Mortified";		break;
-				case 64: sAdjective = "the Departed";		break;
-				case 65: sAdjective = "the Villain";		break;
-				case 66: sAdjective = "Brass";				break;
-				case 67: sAdjective = "Bronze";				break;
-				case 68: sAdjective = "the Ghost";			break;
-				case 69: sAdjective = "the Death Knight";	break;
-				case 70: sAdjective = "the Lich";			break;
-				case 71: sAdjective = "the Occultist";		break;
-				case 72: sAdjective = "the Cultist";		break;
-				case 73: sAdjective = "the Diabolist";		break;
-				case 74: sAdjective = "the Hag";			break;
-				case 75: sAdjective = "the Butcher";		break;
-				case 76: sAdjective = "the Slayer";			break;
-				case 77: sAdjective = "the Executioner";	break;
-				case 78: sAdjective = "the Demon";			break;
-				case 79: sAdjective = "the Phantom";		break;
-				case 80: sAdjective = "the Shadow";			break;
-				case 81: sAdjective = "the Spectre";		break;
-				case 82: sAdjective = "the Devil";			break;
-				case 83: sAdjective = "the Shade";			break;
-				case 84: sAdjective = "the Wraith";			break;
-				case 85: sAdjective = "the Vampire";		break;
-				case 86: sAdjective = "the Banshee";		break;
-				case 87: sAdjective = "the Dark";			break;
-				case 88: sAdjective = "the Black";			break;
-				case 89: sAdjective = "the Mortician";		break;
-				case 90: sAdjective = "the Embalmer";		break;
-				case 91: sAdjective = "Iron";				break;
-				case 92: sAdjective = "the Fiend";			break;
-				case 93: sAdjective = "the Daemon";			break;
-				case 94: sAdjective = "the Bloodless";		break;
-				case 95: sAdjective = "the Hateful";		break;
-				case 96: sAdjective = "the Deceased";		break;
-				case 97: sAdjective = "the Hideous";		break;
-				case 98: sAdjective = "the Grim";			break;
-				case 99: sAdjective = "the Dismal";			break;
-				case 100: sAdjective = "the Lifeless";		break;
-				case 101: sAdjective = "the Forgotten"; 	break;
-				case 102: sAdjective = "the Ancients"; 		break;
-				case 103: sAdjective = "the Foul";			break;
-				case 104: sAdjective = "the Baneful";		break;
-				case 105: sAdjective = "the Depraved";		break;
-				case 106: sAdjective = "the Loathsome";		break;
-				case 107: sAdjective = "the Wrathful";		break;
-				case 108: sAdjective = "the Woeful";		break;
+				case 1: sAdjective = "o Corrupto";     break;
+				case 2: sAdjective = "Destruição";     break;
+				case 3: sAdjective = "o Odiado";       break;
+				case 4: sAdjective = "o Abominável";   break;
+				case 5: sAdjective = "o Malevolente";  break;
+				case 6: sAdjective = "o Malicioso";    break;
+				case 7: sAdjective = "o Nefário";      break;
+				case 8: sAdjective = "o Perverso";     break;
+				case 9: sAdjective = "o Cruel";        break;
+				case 10: sAdjective = "o Vil";         break;
+				case 11: sAdjective = "Vilania";       break;
+				case 12: sAdjective = "o Imundo";      break;
+				case 13: sAdjective = "Danação";       break;
+				case 14: sAdjective = "Terror";        break;
+				case 15: sAdjective = "o Amaldiçoado"; break;
+				case 16: sAdjective = "Perdição";      break;
+				case 17: sAdjective = "Pavor";         break;
+				case 18: sAdjective = "Repulsão";      break;
+				case 19: sAdjective = "Rancor";        break;
+				case 20: sAdjective = "Ira";           break;
+				case 21: sAdjective = "Morte";         break;
+				case 22: sAdjective = "o Sinistro";    break;
+				case 23: sAdjective = "Aflição";       break;
+				case 24: sAdjective = "Tormento";      break;
+				case 25: sAdjective = "Definhar";      break;
+				case 26: sAdjective = "Decadência";    break;
+				case 27: sAdjective = "Maldições";     break;
+				case 28: sAdjective = "o Condenado";   break;
+				case 29: sAdjective = "Horror";        break;
+				case 30: sAdjective = "o Atormentado"; break;
+				case 31: sAdjective = "o Fadado";      break;
+				case 32: sAdjective = "o Indizível";   break;
+				case 33: sAdjective = "Ódio";          break;
+				case 34: sAdjective = "Miséria";       break;
+				case 35: sAdjective = "o Corrompido";  break;
+				case 36: sAdjective = "Corrupção";     break;
+				case 37: sAdjective = "Fúria";         break;
+				case 38: sAdjective = "o Temido";      break;
+				case 39: sAdjective = "Trevas";        break;
+				case 40: sAdjective = "Sombras";       break;
+				case 41: sAdjective = "o Louco";       break;
+				case 42: sAdjective = "o Insano";      break;
+				case 43: sAdjective = "os Nove Infernos"; break;
+				case 44: sAdjective = "Cthulhu";       break;
+				case 45: sAdjective = "Inferno";       break;
+				case 46: sAdjective = "Hades";         break;
+				case 47: sAdjective = "Satanás";       break;
+				case 48: sAdjective = "os Espíritos";  break;
+				case 49: sAdjective = "o Assombrado";  break;
+				case 50: sAdjective = "o Morto-vivo";  break;
+				case 51: sAdjective = "a Múmia";       break;
+				case 52: sAdjective = "o Vampiro";     break;
+				case 53: sAdjective = "Sangue";        break;
+				case 54: sAdjective = "o Culto";       break;
+				case 55: sAdjective = "o Perdido";     break;
+				case 56: sAdjective = "Almas Perdidas"; break;
+				case 57: sAdjective = "o Morto";       break;
+				case 58: sAdjective = "Ouro";          break;
+				case 59: sAdjective = "Prata";         break;
+				case 60: sAdjective = "o Necromante";  break;
+				case 61: sAdjective = "a Bruxa";       break;
+				case 62: sAdjective = "o Bruxo";       break;
+				case 63: sAdjective = "o Mortificado"; break;
+				case 64: sAdjective = "o Partido";     break;
+				case 65: sAdjective = "o Vilão";       break;
+				case 66: sAdjective = "Latão";         break;
+				case 67: sAdjective = "Bronze";        break;
+				case 68: sAdjective = "o Fantasma";    break;
+				case 69: sAdjective = "o Cavaleiro da Morte"; break;
+				case 70: sAdjective = "o Lich";        break;
+				case 71: sAdjective = "o Ocultista";   break;
+				case 72: sAdjective = "o Cultista";    break;
+				case 73: sAdjective = "o Diabolista";  break;
+				case 74: sAdjective = "a Bruxa";       break;
+				case 75: sAdjective = "o Açougueiro";  break;
+				case 76: sAdjective = "o Abatedor";    break;
+				case 77: sAdjective = "o Carrasco";    break;
+				case 78: sAdjective = "o Demônio";     break;
+				case 79: sAdjective = "o Espectro";    break;
+				case 80: sAdjective = "a Sombra";      break;
+				case 81: sAdjective = "o Espectro";    break;
+				case 82: sAdjective = "o Diabo";       break;
+				case 83: sAdjective = "a Sombra";      break;
+				case 84: sAdjective = "o Espectro";    break;
+				case 85: sAdjective = "o Vampiro";     break;
+				case 86: sAdjective = "a Banshee";     break;
+				case 87: sAdjective = "o Sombrio";     break;
+				case 88: sAdjective = "o Negro";       break;
+				case 89: sAdjective = "o Agente Funerário"; break;
+				case 90: sAdjective = "o Embalsamador"; break;
+				case 91: sAdjective = "Ferro";         break;
+				case 92: sAdjective = "o Demônio";     break;
+				case 93: sAdjective = "o Demônio";     break;
+				case 94: sAdjective = "o Sem Sangue";  break;
+				case 95: sAdjective = "o Odioso";      break;
+				case 96: sAdjective = "o Falecido";    break;
+				case 97: sAdjective = "o Horrendo";    break;
+				case 98: sAdjective = "o Sombrio";     break;
+				case 99: sAdjective = "o Sombrio";     break;
+				case 100: sAdjective = "o Sem Vida";   break;
+				case 101: sAdjective = "o Esquecido";  break;
+				case 102: sAdjective = "os Antigos";   break;
+				case 103: sAdjective = "o Imundo";     break;
+				case 104: sAdjective = "o Funesto";    break;
+				case 105: sAdjective = "o Depravado";  break;
+				case 106: sAdjective = "o Repulsivo";  break;
+				case 107: sAdjective = "o Irascível";  break;
+				case 108: sAdjective = "o Lamentoso";  break;
 			}
 
-			return "the " + sAdj + " " + sSubs + " of " + sAdjective;
+			return " " + sAdj + " " + sSubs + " d" + sAdjective;
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		public static string GetRandomDisaster()
 		{
-			string sEvent = "Cataclysm";
-			string sAdj = "Great";
+			string sEvent = "Cataclismo";
+			string sAdj = "Grande";
 
 			switch( Utility.RandomMinMax( 0, 13 ) )
 			{
-				case 0: sEvent = "Cataclysm"; break;
-				case 1: sEvent = "Flood"; break;
-				case 2: sEvent = "Disaster"; break;
-				case 3: sEvent = "Plague"; break;
-				case 4: sEvent = "Catastrophe"; break;
-				case 5: sEvent = "Holocaust"; break;
-				case 6: sEvent = "Tragedy"; break;
-				case 7: sEvent = "War"; break;
-				case 8: sEvent = "Blight"; break;
-				case 9: sEvent = "Battle"; break;
-				case 10: sEvent = "Scourge"; break;
-				case 11: sEvent = "Pestilence"; break;
-				case 12: sEvent = "Invasion"; break;
-				case 13: sEvent = "Earthquake"; break;
+				case 0: sEvent = "Cataclismo"; break;
+				case 1: sEvent = "Inundação"; break;
+				case 2: sEvent = "Desastre"; break;
+				case 3: sEvent = "Praga"; break;
+				case 4: sEvent = "Catástrofe"; break;
+				case 5: sEvent = "Holocausto"; break;
+				case 6: sEvent = "Tragédia"; break;
+				case 7: sEvent = "Guerra"; break;
+				case 8: sEvent = "Praga"; break;
+				case 9: sEvent = "Batalha"; break;
+				case 10: sEvent = "Flagelo"; break;
+				case 11: sEvent = "Pestilência"; break;
+				case 12: sEvent = "Invasão"; break;
+				case 13: sEvent = "Terremoto"; break;
 			}
 
 			switch( Utility.RandomMinMax( 0, 13 ) )
 			{
-				case 0: sAdj = "Great"; break;
-				case 1: sAdj = "Terrible"; break;
-				case 2: sAdj = "Evil"; break;
-				case 3: sAdj = "Vile"; break;
-				case 4: sAdj = "Major"; break;
-				case 5: sAdj = "Immense"; break;
-				case 6: sAdj = "Ancient"; break;
-				case 7: sAdj = "Destructive"; break;
-				case 8: sAdj = "Historic"; break;
-				case 9: sAdj = "Famous"; break;
-				case 10: sAdj = "Terrific"; break;
-				case 11: sAdj = "Forgotten"; break;
-				case 12: sAdj = "Mysterious"; break;
-				case 13: sAdj = "Unknown"; break;
+				case 0: sAdj = "Grande"; break;
+				case 1: sAdj = "Terrível"; break;
+				case 2: sAdj = "Maligno"; break;
+				case 3: sAdj = "Vil"; break;
+				case 4: sAdj = "Maior"; break;
+				case 5: sAdj = "Imenso"; break;
+				case 6: sAdj = "Antigo"; break;
+				case 7: sAdj = "Destrutivo"; break;
+				case 8: sAdj = "Histórico"; break;
+				case 9: sAdj = "Famoso"; break;
+				case 10: sAdj = "Formidável"; break;
+				case 11: sAdj = "Esquecido"; break;
+				case 12: sAdj = "Misterioso"; break;
+				case 13: sAdj = "Desconhecido"; break;
 			}
 
-			return "the " + sAdj + " " + sEvent;
+			return "o " + sAdj + " " + sEvent;
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		public static string GetRandomNoble()
 		{
-			string noble = "King";
+			string noble = "Rei";
 
 			switch( Utility.RandomMinMax( 0, 29 ) )
 			{
-				case 0: noble = "Emperor"; break;
-				case 1: noble = "Empress"; break;
-				case 2: noble = "King"; break;
-				case 3: noble = "Queen"; break;
-				case 4: noble = "Prince"; break;
-				case 5: noble = "Princess"; break;
-				case 6: noble = "Duke"; break;
-				case 7: noble = "Duchess"; break;
-				case 8: noble = "Marquess"; break;
-				case 9: noble = "Marchioness"; break;
-				case 10: noble = "Earl"; break;
-				case 11: noble = "Count"; break;
-				case 12: noble = "Countess"; break;
-				case 13: noble = "Viscount"; break;
-				case 14: noble = "Viscountess"; break;
-				case 15: noble = "Baron"; break;
-				case 16: noble = "Baroness"; break;
-				case 17: noble = "Baronet"; break;
-				case 18: noble = "Baronetess"; break;
-				case 19: noble = "Knight"; break;
-				case 20: noble = "Marquis"; break;
-				case 21: noble = "Marquise"; break;
-				case 22: noble = "Chevalier"; break;
-				case 23: noble = "Tsar"; break;
-				case 24: noble = "Monarch"; break;
-				case 25: noble = "Archbishop"; break;
-				case 26: noble = "Lady"; break;
-				case 27: noble = "Lord"; break;
-				case 28: noble = "Chancellor"; break;
-				case 29: noble = "Dame"; break;
+				case 0: noble = "Imperador"; break;
+				case 1: noble = "Imperatriz"; break;
+				case 2: noble = "Rei"; break;
+				case 3: noble = "Rainha"; break;
+				case 4: noble = "Príncipe"; break;
+				case 5: noble = "Princesa"; break;
+				case 6: noble = "Duque"; break;
+				case 7: noble = "Duquesa"; break;
+				case 8: noble = "Marquês"; break;
+				case 9: noble = "Marquesa"; break;
+				case 10: noble = "Conde"; break;
+				case 11: noble = "Conde"; break;
+				case 12: noble = "Condessa"; break;
+				case 13: noble = "Visconde"; break;
+				case 14: noble = "Viscondessa"; break;
+				case 15: noble = "Barão"; break;
+				case 16: noble = "Baronesa"; break;
+				case 17: noble = "Barão"; break;
+				case 18: noble = "Baronesa"; break;
+				case 19: noble = "Cavaleiro"; break;
+				case 20: noble = "Marquês"; break;
+				case 21: noble = "Marquesa"; break;
+				case 22: noble = "Cavaleiro"; break;
+				case 23: noble = "Czar"; break;
+				case 24: noble = "Monarca"; break;
+				case 25: noble = "Arcebispo"; break;
+				case 26: noble = "Dama"; break;
+				case 27: noble = "Senhor"; break;
+				case 28: noble = "Chanceler"; break;
+				case 29: noble = "Dama"; break;
 			}
 			return noble;
 		}
 
 		public static string GetRandomGirlNoble()
 		{
-			string noble = "Queen";
+			string noble = "Rainha";
 
 			switch( Utility.RandomMinMax( 0, 12 ) )
 			{
-				case 1: noble = "Empress"; break;
-				case 2: noble = "Princess"; break;
-				case 3: noble = "Duchess"; break;
-				case 4: noble = "Marchioness"; break;
-				case 5: noble = "Countess"; break;
-				case 6: noble = "Viscountess"; break;
-				case 7: noble = "Baroness"; break;
-				case 8: noble = "Baronetess"; break;
-				case 9: noble = "Knight"; break;
-				case 10: noble = "Marquise"; break;
+				case 1: noble = "Imperatriz"; break;
+				case 2: noble = "Princesa"; break;
+				case 3: noble = "Duquesa"; break;
+				case 4: noble = "Marquesa"; break;
+				case 5: noble = "Condessa"; break;
+				case 6: noble = "Viscondessa"; break;
+				case 7: noble = "Baronesa"; break;
+				case 8: noble = "Nobre"; break;
+				case 9: noble = "Cavaleira"; break;
+				case 10: noble = "Marquesa"; break;
 				case 11: noble = "Lady"; break;
-				case 12: noble = "Dame"; break;
+				case 12: noble = "Dama"; break;
 			}
 			return noble;
 		}
 
 		public static string GetRandomBoyNoble()
 		{
-			string noble = "King";
+			string noble = "Rei";
 
 			switch( Utility.RandomMinMax( 0, 17 ) )
 			{
-				case 1: noble = "Emperor"; break;
-				case 2: noble = "Prince"; break;
-				case 3: noble = "Duke"; break;
-				case 4: noble = "Marquess"; break;
-				case 5: noble = "Earl"; break;
-				case 6: noble = "Count"; break;
-				case 7: noble = "Viscount"; break;
-				case 8: noble = "Baron"; break;
-				case 9: noble = "Baronet"; break;
-				case 10: noble = "Knight"; break;
-				case 11: noble = "Marquis"; break;
-				case 12: noble = "Chevalier"; break;
-				case 13: noble = "Tsar"; break;
-				case 14: noble = "Monarch"; break;
-				case 15: noble = "Archbishop"; break;
+				case 1: noble = "Imperador"; break;
+				case 2: noble = "Príncipe"; break;
+				case 3: noble = "Duque"; break;
+				case 4: noble = "Marquês"; break;
+				case 5: noble = "Conde"; break;
+				case 6: noble = "Nobre"; break;
+				case 7: noble = "Visconde"; break;
+				case 8: noble = "Barão"; break;
+				case 9: noble = "Senhor"; break;
+				case 10: noble = "Cavaleiro"; break;
+				case 11: noble = "Marquês"; break;
+				case 12: noble = "Cavaleiro"; break;
+				case 13: noble = "Czar"; break;
+				case 14: noble = "Monarca"; break;
+				case 15: noble = "Arcebispo"; break;
 				case 16: noble = "Lord"; break;
-				case 17: noble = "Chancellor"; break;
+				case 17: noble = "Chanceler"; break;
 			}
 			return noble;
 		}
@@ -655,78 +655,79 @@ namespace Server.Misc
 
 		public static string GetRandomTimeFrame()
 		{
-			string time = "10 years";
+			string time = "10 anos";
 
 			switch( Utility.RandomMinMax( 0, 5 ) )
 			{
-				case 0: time = ( Utility.RandomMinMax( 1, 90 ) * 10 ) + " years"; break;
-				case 1: time = ( Utility.RandomMinMax( 1, 90 ) * 10 ) + ",000 years"; break;
-				case 2: time = Utility.RandomMinMax( 1, 9 ) + ",000 years"; break;
-				case 3: time = ( Utility.RandomMinMax( 1, 90 ) * 10 ) + " centuries"; break;
-				case 4: time = Utility.RandomMinMax( 1, 9 ) + ",000 centuries"; break;
-				case 5: time = Utility.RandomMinMax( 2, 9 ) + " centuries"; break;
+				case 0: time = ( Utility.RandomMinMax( 1, 90 ) * 10 ) + " anos"; break;
+				case 1: time = ( Utility.RandomMinMax( 1, 90 ) * 10 ) + ".000 anos"; break;
+				case 2: time = Utility.RandomMinMax( 1, 9 ) + ".000 anos"; break;
+				case 3: time = ( Utility.RandomMinMax( 1, 90 ) * 10 ) + " séculos"; break;
+				case 4: time = Utility.RandomMinMax( 1, 9 ) + ".000 séculos"; break;
+				case 5: time = Utility.RandomMinMax( 2, 9 ) + " séculos"; break;
 			}
 			return time;
 		}
+
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		public static string GetRandomWeapon()
 		{
-			string item = "assassin dagger";
+			string item = "adaga de assassino";
 
 			switch( Utility.RandomMinMax( 1, 50 ) )
 			{
-				case 1: item = "assassin dagger"; break;
-				case 2: item = "assassin sword"; break;
-				case 3: item = "axe"; break;
-				case 4: item = "barbarian axe"; break;
-				case 5: item = "bardiche"; break;
-				case 6: item = "battle axe"; break;
-				case 7: item = "battle mace"; break;
-				case 8: item = "bladed staff"; break;
-				case 9: item = "sickle"; break;
-				case 10: item = "broadsword"; break;
-				case 11: item = "butcher knife"; break;
-				case 12: item = "cleaver"; break;
-				case 13: item = "club"; break;
-				case 14: item = "crescent blade"; break;
-				case 15: item = "cutlass"; break;
-				case 16: item = "dagger"; break;
-				case 17: item = "double axe"; break;
-				case 18: item = "double bladed staff"; break;
-				case 19: item = "executioner axe"; break;
-				case 20: item = "falchion"; break;
-				case 21: item = "halberd"; break;
-				case 22: item = "hammer pick"; break;
-				case 23: item = "hatchet"; break;
+				case 1: item = "adaga de assassino"; break;
+				case 2: item = "espada de assassino"; break;
+				case 3: item = "machado"; break;
+				case 4: item = "machado bárbaro"; break;
+				case 5: item = "alabarda"; break;
+				case 6: item = "machado de batalha"; break;
+				case 7: item = "maça de batalha"; break;
+				case 8: item = "cajado laminado"; break;
+				case 9: item = "foice"; break;
+				case 10: item = "espada larga"; break;
+				case 11: item = "faca de açougueiro"; break;
+				case 12: item = "cutelo"; break;
+				case 13: item = "porrete"; break;
+				case 14: item = "lâmina crescente"; break;
+				case 15: item = "cutelo"; break;
+				case 16: item = "adaga"; break;
+				case 17: item = "machado duplo"; break;
+				case 18: item = "cajado de lâmina dupla"; break;
+				case 19: item = "machado de carrasco"; break;
+				case 20: item = "falção"; break;
+				case 21: item = "alabarda"; break;
+				case 22: item = "martelo picareta"; break;
+				case 23: item = "machadinha"; break;
 				case 24: item = "katana"; break;
 				case 25: item = "kryss"; break;
-				case 26: item = "large battle axe"; break;
-				case 27: item = "longsword"; break;
-				case 28: item = "mace"; break;
-				case 29: item = "machete"; break;
-				case 30: item = "maul"; break;
-				case 31: item = "pickaxe"; break;
-				case 32: item = "pike"; break;
-				case 33: item = "quarter staff"; break;
-				case 34: item = "royal sword"; break;
-				case 35: item = "scepter"; break;
-				case 36: item = "scimitar"; break;
-				case 37: item = "scythe"; break;
-				case 38: item = "rapier"; break;
-				case 39: item = "skinning knife"; break;
-				case 40: item = "spear"; break;
-				case 41: item = "trident"; break;
-				case 42: item = "two handed axe"; break;
-				case 43: item = "barbarian sword"; break;
-				case 44: item = "war axe"; break;
-				case 45: item = "war blades"; break;
-				case 46: item = "war cleaver"; break;
-				case 47: item = "war dagger"; break;
-				case 48: item = "war fork"; break;
-				case 49: item = "war hammer"; break;
-				case 50: item = "war mace"; break;
+				case 26: item = "machado de batalha grande"; break;
+				case 27: item = "espada longa"; break;
+				case 28: item = "maça"; break;
+				case 29: item = "machado"; break;
+				case 30: item = "malho"; break;
+				case 31: item = "picareta"; break;
+				case 32: item = "pique"; break;
+				case 33: item = "bastão"; break;
+				case 34: item = "espada real"; break;
+				case 35: item = "cetro"; break;
+				case 36: item = "cimitarra"; break;
+				case 37: item = "foice"; break;
+				case 38: item = "rapieira"; break;
+				case 39: item = "faca de esfolar"; break;
+				case 40: item = "lança"; break;
+				case 41: item = "tridente"; break;
+				case 42: item = "machado de duas mãos"; break;
+				case 43: item = "espada bárbara"; break;
+				case 44: item = "machado de guerra"; break;
+				case 45: item = "lâminas de guerra"; break;
+				case 46: item = "cutelo de guerra"; break;
+				case 47: item = "adaga de guerra"; break;
+				case 48: item = "forquilha de guerra"; break;
+				case 49: item = "martelo de guerra"; break;
+				case 50: item = "maça de guerra"; break;
 			}
 
 			return item;
@@ -736,264 +737,264 @@ namespace Server.Misc
 
 		public static string GetRandomArmorWeaponItem()
 		{
-			string item = "Bascinet";
+			string item = "Bascinete";
 
 			switch( Utility.RandomMinMax( 0, 253 ) )
 			{
-				case 0: item = "Bascinet"; break;
-				case 1: item = "Bone Arms"; break;
-				case 2: item = "Bone Chest"; break;
-				case 3: item = "Bone Gloves"; break;
-				case 4: item = "Bone Helm"; break;
-				case 5: item = "Bone Legs"; break;
-				case 6: item = "Buckler"; break;
-				case 7: item = "Chain Chest"; break;
-				case 8: item = "Chain Coif"; break;
-				case 9: item = "Chain Hatsuburi"; break;
-				case 10: item = "Chain Legs"; break;
-				case 11: item = "Chaos Shield"; break;
-				case 12: item = "Circlet"; break;
-				case 13: item = "Close Helm"; break;
-				case 14: item = "Decorative Plate Kabuto"; break;
-				case 15: item = "Dragonscale Arms"; break;
-				case 16: item = "Dragonscale Gloves"; break;
-				case 17: item = "Dragonscale Helm"; break;
-				case 18: item = "Dragonscale Leggings"; break;
-				case 19: item = "Dragonscale Tunic"; break;
-				case 20: item = "Female Leather Chest"; break;
-				case 21: item = "Female Plate Chest"; break;
-				case 22: item = "Female Studded Chest"; break;
-				case 23: item = "Gemmed Circlet"; break;
-				case 24: item = "Heater Shield"; break;
-				case 25: item = "Heavy Plate Jingasa"; break;
-				case 26: item = "Helmet"; break;
-				case 27: item = "Leather Arms"; break;
-				case 28: item = "Leather Bustier Arms"; break;
-				case 29: item = "Leather Cap"; break;
-				case 30: item = "Leather Chest"; break;
-				case 31: item = "Leather Do"; break;
-				case 32: item = "Leather Gloves"; break;
-				case 33: item = "Leather Gorget"; break;
-				case 34: item = "Leather Haidate"; break;
-				case 35: item = "Leather HiroSode"; break;
-				case 36: item = "Leather Jingasa"; break;
-				case 37: item = "Leather Legs"; break;
-				case 38: item = "Leather Mempo"; break;
-				case 39: item = "Leather Ninja Hood"; break;
-				case 40: item = "Leather Ninja Jacket"; break;
-				case 41: item = "Leather Ninja Mitts"; break;
-				case 42: item = "Leather Ninja Pants"; break;
-				case 43: item = "Leather Shorts"; break;
-				case 44: item = "Leather Skirt"; break;
-				case 45: item = "Leather Suneate"; break;
-				case 46: item = "Light Plate Jingasa"; break;
-				case 47: item = "Metal Kite Shield"; break;
-				case 48: item = "Metal Shield"; break;
-				case 49: item = "Norse Helm"; break;
-				case 50: item = "Horned Helm"; break;
-				case 51: item = "Order Shield"; break;
-				case 52: item = "Plate Arms"; break;
-				case 53: item = "Plate Battle Kabuto"; break;
-				case 54: item = "Plate Chest"; break;
-				case 55: item = "Plate Do"; break;
-				case 56: item = "Plate Gloves"; break;
-				case 57: item = "Plate Gorget"; break;
-				case 58: item = "Plate Haidate"; break;
-				case 59: item = "Plate Hatsuburi"; break;
-				case 60: item = "Plate Helm"; break;
-				case 61: item = "Plate Hiro Sode"; break;
-				case 62: item = "Plate Legs"; break;
-				case 63: item = "Plate Mempo"; break;
-				case 64: item = "Plate Suneate"; break;
-				case 65: item = "Raven Helm"; break;
-				case 66: item = "Ringmail Arms"; break;
-				case 67: item = "Ringmail Chest"; break;
-				case 68: item = "Ringmail Gloves"; break;
-				case 69: item = "Ringmail Legs"; break;
-				case 70: item = "Royal Arms"; break;
-				case 71: item = "Royal Boots"; break;
-				case 72: item = "Royal Chest"; break;
-				case 73: item = "Royal Circlet"; break;
-				case 74: item = "Royal Gloves"; break;
-				case 75: item = "Royal Gorget"; break;
-				case 76: item = "Royal Helm"; break;
-				case 77: item = "Royal Legs"; break;
-				case 78: item = "Royal Shield"; break;
-				case 79: item = "Small Plate Jingasa"; break;
-				case 80: item = "Standard Plate Kabuto"; break;
-				case 81: item = "Steel Shield"; break;
-				case 82: item = "Studded Arms"; break;
-				case 83: item = "Studded Bustier Arms"; break;
-				case 84: item = "Studded Chest"; break;
-				case 85: item = "Studded Do"; break;
-				case 86: item = "Studded Gloves"; break;
-				case 87: item = "Studded Gorget"; break;
-				case 88: item = "Studded Haidate"; break;
-				case 89: item = "Studded Hiro Sode"; break;
-				case 90: item = "Studded Legs"; break;
-				case 91: item = "Studded Mempo"; break;
-				case 92: item = "Studded Suneate"; break;
-				case 93: item = "Vulture Helm"; break;
-				case 94: item = "Winged Helm"; break;
-				case 95: item = "Wooden Kite Shield"; break;
-				case 96: item = "Wooden Plate Arms"; break;
-				case 97: item = "Wooden Plate Chest"; break;
-				case 98: item = "Wooden Plate Gloves"; break;
-				case 99: item = "Wooden Plate Gorget"; break;
-				case 100: item = "Wooden Plate Helm"; break;
-				case 101: item = "Wooden Plate Legs"; break;
-				case 102: item = "Wooden Shield"; break;
-				case 103: item = "Assassin Dagger"; break;
-				case 104: item = "Assassin Sword"; break;
-				case 105: item = "Axe"; break;
-				case 106: item = "Barbarian Axe"; break;
-				case 107: item = "Bardiche"; break;
-				case 108: item = "Battle Axe"; break;
-				case 109: item = "Battle Mace"; break;
-				case 110: item = "Wizard Staff"; break;
-				case 111: item = "Bladed Staff"; break;
+				case 0: item = "Bascinete"; break;
+				case 1: item = "Braços de Osso"; break;
+				case 2: item = "Peitoral de Osso"; break;
+				case 3: item = "Manoplas de Osso"; break;
+				case 4: item = "Elmo de Osso"; break;
+				case 5: item = "Perneiras de Osso"; break;
+				case 6: item = "Broquel"; break;
+				case 7: item = "Peitoral de Cota de Malha"; break;
+				case 8: item = "Capuz de Cota de Malha"; break;
+				case 9: item = "Hatsuburi de Cota de Malha"; break;
+				case 10: item = "Perneiras de Cota de Malha"; break;
+				case 11: item = "Escudo do Caos"; break;
+				case 12: item = "Diadema"; break;
+				case 13: item = "Elmo Fechado"; break;
+				case 14: item = "Kabuto Decorativo de Placas"; break;
+				case 15: item = "Braços de Escamas de Dragão"; break;
+				case 16: item = "Manoplas de Escamas de Dragão"; break;
+				case 17: item = "Elmo de Escamas de Dragão"; break;
+				case 18: item = "Perneiras de Escamas de Dragão"; break;
+				case 19: item = "Túnica de Escamas de Dragão"; break;
+				case 20: item = "Peitoral de Couro Feminino"; break;
+				case 21: item = "Peitoral de Placas Feminino"; break;
+				case 22: item = "Peitoral de Couro Reforçado Feminino"; break;
+				case 23: item = "Diadema com Gema"; break;
+				case 24: item = "Escudo de Aquecedor"; break;
+				case 25: item = "Jingasa de Placas Pesado"; break;
+				case 26: item = "Elmo"; break;
+				case 27: item = "Braços de Couro"; break;
+				case 28: item = "Braços de Corselete de Couro"; break;
+				case 29: item = "Gorro de Couro"; break;
+				case 30: item = "Peitoral de Couro"; break;
+				case 31: item = "Do de Couro"; break;
+				case 32: item = "Manoplas de Couro"; break;
+				case 33: item = "Gorgueira de Couro"; break;
+				case 34: item = "Haidate de Couro"; break;
+				case 35: item = "HiroSode de Couro"; break;
+				case 36: item = "Jingasa de Couro"; break;
+				case 37: item = "Perneiras de Couro"; break;
+				case 38: item = "Mempo de Couro"; break;
+				case 39: item = "Capuz de Ninja de Couro"; break;
+				case 40: item = "Jaqueta de Ninja de Couro"; break;
+				case 41: item = "Manoplas de Ninja de Couro"; break;
+				case 42: item = "Calças de Ninja de Couro"; break;
+				case 43: item = "Calções de Couro"; break;
+				case 44: item = "Saia de Couro"; break;
+				case 45: item = "Suneate de Couro"; break;
+				case 46: item = "Jingasa de Placas Leve"; break;
+				case 47: item = "Escudo de Pipas de Metal"; break;
+				case 48: item = "Escudo de Metal"; break;
+				case 49: item = "Elmo Nórdico"; break;
+				case 50: item = "Elmo de Chifres"; break;
+				case 51: item = "Escudo da Ordem"; break;
+				case 52: item = "Braços de Placas"; break;
+				case 53: item = "Kabuto de Batalha de Placas"; break;
+				case 54: item = "Peitoral de Placas"; break;
+				case 55: item = "Do de Placas"; break;
+				case 56: item = "Manoplas de Placas"; break;
+				case 57: item = "Gorgueira de Placas"; break;
+				case 58: item = "Haidate de Placas"; break;
+				case 59: item = "Hatsuburi de Placas"; break;
+				case 60: item = "Elmo de Placas"; break;
+				case 61: item = "Hiro Sode de Placas"; break;
+				case 62: item = "Perneiras de Placas"; break;
+				case 63: item = "Mempo de Placas"; break;
+				case 64: item = "Suneate de Placas"; break;
+				case 65: item = "Elmo de Corvo"; break;
+				case 66: item = "Braços de Cota de Malha de Anéis"; break;
+				case 67: item = "Peitoral de Cota de Malha de Anéis"; break;
+				case 68: item = "Manoplas de Cota de Malha de Anéis"; break;
+				case 69: item = "Perneiras de Cota de Malha de Anéis"; break;
+				case 70: item = "Braços Reais"; break;
+				case 71: item = "Botas Reais"; break;
+				case 72: item = "Peitoral Real"; break;
+				case 73: item = "Diadema Real"; break;
+				case 74: item = "Manoplas Reais"; break;
+				case 75: item = "Gorgueira Real"; break;
+				case 76: item = "Elmo Real"; break;
+				case 77: item = "Perneiras Reais"; break;
+				case 78: item = "Escudo Real"; break;
+				case 79: item = "Jingasa de Placas Pequeno"; break;
+				case 80: item = "Kabuto de Placas Padrão"; break;
+				case 81: item = "Escudo de Aço"; break;
+				case 82: item = "Braços de Couro Reforçado"; break;
+				case 83: item = "Braços de Corselete de Couro Reforçado"; break;
+				case 84: item = "Peitoral de Couro Reforçado"; break;
+				case 85: item = "Do de Couro Reforçado"; break;
+				case 86: item = "Manoplas de Couro Reforçado"; break;
+				case 87: item = "Gorgueira de Couro Reforçado"; break;
+				case 88: item = "Haidate de Couro Reforçado"; break;
+				case 89: item = "Hiro Sode de Couro Reforçado"; break;
+				case 90: item = "Perneiras de Couro Reforçado"; break;
+				case 91: item = "Mempo de Couro Reforçado"; break;
+				case 92: item = "Suneate de Couro Reforçado"; break;
+				case 93: item = "Elmo de Abutre"; break;
+				case 94: item = "Elmo Alado"; break;
+				case 95: item = "Escudo de Pipas de Madeira"; break;
+				case 96: item = "Braços de Placas de Madeira"; break;
+				case 97: item = "Peitoral de Placas de Madeira"; break;
+				case 98: item = "Manoplas de Placas de Madeira"; break;
+				case 99: item = "Gorgueira de Placas de Madeira"; break;
+				case 100: item = "Elmo de Placas de Madeira"; break;
+				case 101: item = "Perneiras de Placas de Madeira"; break;
+				case 102: item = "Escudo de Madeira"; break;
+				case 103: item = "Adaga de Assassino"; break;
+				case 104: item = "Espada de Assassino"; break;
+				case 105: item = "Machado"; break;
+				case 106: item = "Machado Bárbaro"; break;
+				case 107: item = "Alabarda"; break;
+				case 108: item = "Machado de Batalha"; break;
+				case 109: item = "Maça de Batalha"; break;
+				case 110: item = "Cajado de Mago"; break;
+				case 111: item = "Cajado Laminado"; break;
 				case 112: item = "Bokuto"; break;
-				case 113: item = "Sickle"; break;
-				case 114: item = "Bow"; break;
-				case 115: item = "Broadsword"; break;
-				case 116: item = "Butcher Knife"; break;
-				case 117: item = "Cleaver"; break;
-				case 118: item = "Club"; break;
-				case 119: item = "Composite Bow"; break;
-				case 120: item = "Crescent Blade"; break;
-				case 121: item = "Crossbow"; break;
-				case 122: item = "Cutlass"; break;
-				case 123: item = "Dagger"; break;
+				case 113: item = "Foice"; break;
+				case 114: item = "Arco"; break;
+				case 115: item = "Espada Larga"; break;
+				case 116: item = "Faca de Açougueiro"; break;
+				case 117: item = "Cutelo"; break;
+				case 118: item = "Porrete"; break;
+				case 119: item = "Arco Composto"; break;
+				case 120: item = "Lâmina Crescente"; break;
+				case 121: item = "Besta"; break;
+				case 122: item = "Cutelo"; break;
+				case 123: item = "Adaga"; break;
 				case 124: item = "Daisho"; break;
-				case 125: item = "Double Axe"; break;
-				case 126: item = "Double Bladed Staff"; break;
-				case 127: item = "Druid Staff"; break;
-				case 128: item = "Executioner Axe"; break;
-				case 129: item = "Falchion"; break;
-				case 130: item = "Gnarled Staff"; break;
-				case 131: item = "Halberd"; break;
-				case 132: item = "Hammer Pick"; break;
-				case 133: item = "Hatchet"; break;
-				case 134: item = "Heavy Crossbow"; break;
+				case 125: item = "Machado Duplo"; break;
+				case 126: item = "Cajado de Lâmina Dupla"; break;
+				case 127: item = "Cajado de Druida"; break;
+				case 128: item = "Machado de Carrasco"; break;
+				case 129: item = "Falcão"; break;
+				case 130: item = "Cajado Nodoso"; break;
+				case 131: item = "Alabarda"; break;
+				case 132: item = "Martelo Picareta"; break;
+				case 133: item = "Machadinha"; break;
+				case 134: item = "Besta Pesada"; break;
 				case 135: item = "Kama"; break;
 				case 136: item = "Katana"; break;
 				case 137: item = "Kryss"; break;
 				case 138: item = "Lajatang"; break;
-				case 139: item = "Lance"; break;
-				case 140: item = "Large Battle Axe"; break;
-				case 141: item = "Longsword"; break;
-				case 142: item = "Mace"; break;
+				case 139: item = "Lança"; break;
+				case 140: item = "Machado de Batalha Grande"; break;
+				case 141: item = "Espada Longa"; break;
+				case 142: item = "Maça"; break;
 				case 143: item = "Machete"; break;
-				case 144: item = "Maul"; break;
+				case 144: item = "Malho"; break;
 				case 145: item = "NoDachi"; break;
 				case 146: item = "Nunchaku"; break;
-				case 147: item = "Pickaxe"; break;
-				case 148: item = "Pike"; break;
-				case 149: item = "Pugilist Gloves"; break;
-				case 150: item = "Quarter Staff"; break;
-				case 151: item = "Repeating Crossbow"; break;
-				case 152: item = "Royal Sword"; break;
+				case 147: item = "Picareta"; break;
+				case 148: item = "Pique"; break;
+				case 149: item = "Luvas de Pugilista"; break;
+				case 150: item = "Bastão"; break;
+				case 151: item = "Besta de Repetição"; break;
+				case 152: item = "Espada Real"; break;
 				case 153: item = "Sai"; break;
-				case 154: item = "Scepter"; break;
-				case 155: item = "Scimitar"; break;
-				case 156: item = "Scythe"; break;
-				case 157: item = "Shepherds Crook"; break;
-				case 158: item = "Rapier"; break;
-				case 159: item = "Skinning Knife"; break;
-				case 160: item = "Spear"; break;
-				case 161: item = "Woodland Longbow"; break;
-				case 162: item = "Woodland Shortbow"; break;
+				case 154: item = "Cetro"; break;
+				case 155: item = "Cimitarra"; break;
+				case 156: item = "Foice"; break;
+				case 157: item = "Cajado de Pastor"; break;
+				case 158: item = "Rapieira"; break;
+				case 159: item = "Faca de Esfolar"; break;
+				case 160: item = "Lança"; break;
+				case 161: item = "Arco Longo da Floresta"; break;
+				case 162: item = "Arco Curto da Floresta"; break;
 				case 163: item = "Tekagi"; break;
 				case 164: item = "Tessen"; break;
 				case 165: item = "Tetsubo"; break;
-				case 166: item = "Sword"; break;
-				case 167: item = "Tribal Spear"; break;
-				case 168: item = "Trident"; break;
-				case 169: item = "Two Handed Axe"; break;
-				case 170: item = "Barbarian Sword"; break;
+				case 166: item = "Espada"; break;
+				case 167: item = "Lança Tribal"; break;
+				case 168: item = "Tridente"; break;
+				case 169: item = "Machado de Duas Mãos"; break;
+				case 170: item = "Espada Bárbara"; break;
 				case 171: item = "Wakizashi"; break;
-				case 172: item = "War Axe"; break;
-				case 173: item = "War Blades"; break;
-				case 174: item = "War Cleaver"; break;
-				case 175: item = "War Dagger"; break;
-				case 176: item = "War Fork"; break;
-				case 177: item = "War Hammer"; break;
-				case 178: item = "War Mace"; break;
+				case 172: item = "Machado de Guerra"; break;
+				case 173: item = "Lâminas de Guerra"; break;
+				case 174: item = "Cutelo de Guerra"; break;
+				case 175: item = "Adaga de Guerra"; break;
+				case 176: item = "Forquilha de Guerra"; break;
+				case 177: item = "Martelo de Guerra"; break;
+				case 178: item = "Maça de Guerra"; break;
 				case 179: item = "Yumi"; break;
 				case 180: item = "Bandana"; break;
-				case 181: item = "Bear Mask"; break;
-				case 182: item = "Belt"; break;
-				case 183: item = "Body Sash"; break;
-				case 184: item = "Bonnet"; break;
-				case 185: item = "Boots"; break;
-				case 186: item = "Cap"; break;
-				case 187: item = "Cloak"; break;
-				case 188: item = "Cloth Ninja Hood"; break;
-				case 189: item = "Cloth Ninja Jacket"; break;
-				case 190: item = "Deer Mask"; break;
-				case 191: item = "Doublet"; break;
-				case 192: item = "Fancy Boots"; break;
-				case 193: item = "Fancy Dress"; break;
-				case 194: item = "Fancy Shirt"; break;
-				case 195: item = "Feathered Hat"; break;
-				case 196: item = "Female Kimono"; break;
-				case 197: item = "Female Robe"; break;
-				case 198: item = "Floppy Hat"; break;
-				case 199: item = "Flower Garland"; break;
-				case 200: item = "Formal Shirt"; break;
-				case 201: item = "Full Apron"; break;
-				case 202: item = "Gilded Dress"; break;
+				case 181: item = "Máscara de Urso"; break;
+				case 182: item = "Cinto"; break;
+				case 183: item = "Faixa Corporal"; break;
+				case 184: item = "Boné"; break;
+				case 185: item = "Botas"; break;
+				case 186: item = "Gorro"; break;
+				case 187: item = "Capa"; break;
+				case 188: item = "Capuz de Ninja de Pano"; break;
+				case 189: item = "Jaqueta de Ninja de Pano"; break;
+				case 190: item = "Máscara de Veado"; break;
+				case 191: item = "Gibão"; break;
+				case 192: item = "Botas Elegantes"; break;
+				case 193: item = "Vestido Elegante"; break;
+				case 194: item = "Camisa Elegante"; break;
+				case 195: item = "Chapéu de Penas"; break;
+				case 196: item = "Kimono Feminino"; break;
+				case 197: item = "Veste Feminina"; break;
+				case 198: item = "Chapéu Mole"; break;
+				case 199: item = "Guirlanda de Flores"; break;
+				case 200: item = "Camisa Formal"; break;
+				case 201: item = "Avental Completo"; break;
+				case 202: item = "Vestido Dourado"; break;
 				case 203: item = "Hakama"; break;
 				case 204: item = "Hakama Shita"; break;
-				case 205: item = "Half Apron"; break;
-				case 206: item = "Horned Tribal Mask"; break;
-				case 207: item = "Jester Hat"; break;
-				case 208: item = "Jester Suit"; break;
+				case 205: item = "Meio Avental"; break;
+				case 206: item = "Máscara Tribal com Chifres"; break;
+				case 207: item = "Chapéu de Bufão"; break;
+				case 208: item = "Traje de Bufão"; break;
 				case 209: item = "Jin Baori"; break;
 				case 210: item = "Kamishimo"; break;
 				case 211: item = "Kasa"; break;
 				case 212: item = "Kilt"; break;
-				case 213: item = "Loin Cloth"; break;
-				case 214: item = "Long Pants"; break;
-				case 215: item = "Male Kimono"; break;
-				case 216: item = "Ninja Tabi"; break;
+				case 213: item = "Tanga"; break;
+				case 214: item = "Calças Compridas"; break;
+				case 215: item = "Kimono Masculino"; break;
+				case 216: item = "Tabi de Ninja"; break;
 				case 217: item = "Obi"; break;
-				case 218: item = "Plain Dress"; break;
-				case 219: item = "Robe"; break;
-				case 220: item = "Royal Cape"; break;
-				case 221: item = "Samurai Tabi"; break;
-				case 222: item = "Sandals"; break;
-				case 223: item = "Shirt"; break;
-				case 224: item = "Shoes"; break;
-				case 225: item = "Short Pants"; break;
-				case 226: item = "Skirt"; break;
-				case 227: item = "Skull Cap"; break;
-				case 228: item = "Straw Hat"; break;
-				case 229: item = "Surcoat"; break;
-				case 230: item = "Tall Straw Hat"; break;
+				case 218: item = "Vestido Simples"; break;
+				case 219: item = "Veste"; break;
+				case 220: item = "Capa Real"; break;
+				case 221: item = "Tabi de Samurai"; break;
+				case 222: item = "Sandálias"; break;
+				case 223: item = "Camisa"; break;
+				case 224: item = "Sapatos"; break;
+				case 225: item = "Calças Curtas"; break;
+				case 226: item = "Saia"; break;
+				case 227: item = "Gorro de Caveira"; break;
+				case 228: item = "Chapéu de Palha"; break;
+				case 229: item = "Sobretúnica"; break;
+				case 230: item = "Chapéu de Palha Alto"; break;
 				case 231: item = "Tattsuke Hakama"; break;
-				case 232: item = "Thigh Boots"; break;
-				case 233: item = "Tribal Mask"; break;
-				case 234: item = "Tricorne Hat"; break;
-				case 235: item = "Tunic"; break;
+				case 232: item = "Botas de Cano Alto"; break;
+				case 233: item = "Máscara Tribal"; break;
+				case 234: item = "Chapéu Tricórnio"; break;
+				case 235: item = "Túnica"; break;
 				case 236: item = "Waraji"; break;
-				case 237: item = "Wide Brim Hat"; break;
-				case 238: item = "Wizards Hat"; break;
-				case 239: item = "Candle"; break;
-				case 240: item = "Gold Bead Necklace"; break;
-				case 241: item = "Gold Bracelet"; break;
-				case 242: item = "Gold Earrings"; break;
-				case 243: item = "Gold Necklace"; break;
-				case 244: item = "Gold Ring"; break;
-				case 245: item = "Lantern"; break;
-				case 246: item = "Necklace"; break;
-				case 247: item = "Silver Bead Necklace"; break;
-				case 248: item = "Silver Bracelet"; break;
-				case 249: item = "Silver Earrings"; break;
-				case 250: item = "Silver Necklace"; break;
-				case 251: item = "Silver Ring"; break;
-				case 252: item = "Talisman"; break;
-				case 253: item = "Torch"; break;
+				case 237: item = "Chapéu de Aba Larga"; break;
+				case 238: item = "Chapéu de Mago"; break;
+				case 239: item = "Vela"; break;
+				case 240: item = "Colar de Contas de Ouro"; break;
+				case 241: item = "Bracelete de Ouro"; break;
+				case 242: item = "Brincos de Ouro"; break;
+				case 243: item = "Colar de Ouro"; break;
+				case 244: item = "Anel de Ouro"; break;
+				case 245: item = "Lanterna"; break;
+				case 246: item = "Colar"; break;
+				case 247: item = "Colar de Contas de Prata"; break;
+				case 248: item = "Bracelete de Prata"; break;
+				case 249: item = "Brincos de Prata"; break;
+				case 250: item = "Colar de Prata"; break;
+				case 251: item = "Anel de Prata"; break;
+				case 252: item = "Talismã"; break;
+				case 253: item = "Tocha"; break;
 			}
 
 			return item;
@@ -1005,67 +1006,67 @@ namespace Server.Misc
 		{
 			string sNumber = Utility.RandomMinMax( 3, 12 ).ToString();
 
-			string[] vName1 = new string[] {"Achelous'", "Aegaeon's", "Alpheus'", "Angry", "Awful", "Black", "Bloody", "Blue", "Brass", "Buccaneer's", "Calypso's", "Captain's", "Coral", "Cruel", "Crying", "Cursed", "Damned", "Dark", "Davy Jones'", "Deathly", "Deceitful", "Delphin's", "Devil's", "Dirty", "Disgraceful", "Dishonorable", "Dishonored", "Dragon's", "Dreaming", "Emerald", "Eurybia's", "Evil", "Executioner's", "Fallen", "Forgotten", "Foul", "Gentle", "Golden", "Gray", "Greedy", "Green", "Hades'", "Hateful", "Haunted", "Hellish", "Howling", "Jade", "Killer's", "Knave's", "Lost", "Menacing", "Morbid", "Murderer's", "Neptune's", "Nereus'", "Night's", "Ocean's", "Oceanus'", "Pirate's", "Plunderer's", "Poison", "Poseidon's", "Prideful", "Privateer's", "Proteus'", "Raging", "Red", "Royal", "Ruby", "Sailor's", "Sapphire", "Savage", "Screaming", "Searching", "Sea's", "Serpent's", "Shameful", "Shrieking", "Silver", "Snake's", "Steady", "Travelling", "Tritun's", "Vile", "Wandering", "White", "Yellow"};
-				string sName1 = vName1[Utility.RandomMinMax( 0, (vName1.Length-1) )];
+			string[] vName1 = new string[] {"de Achelous", "de Aegaeon", "de Alpheus", "Irado", "Horrível", "Negro", "Sangrento", "Azul", "Latão", "do Bucaneiro", "de Calypso", "do Capitão", "Coral", "Cruel", "Choroso", "Amaldiçoado", "Condenado", "Sombrio", "de Davy Jones", "Mortífero", "Enganador", "de Delfim", "do Diabo", "Sujo", "Vergonhoso", "Desonrado", "Desonroso", "do Dragão", "Sonhador", "Esmeralda", "de Eurybia", "Maligno", "do Carrasco", "Caído", "Esquecido", "Imundo", "Gentil", "Dourado", "Cinzento", "Ganancioso", "Verde", "de Hades", "Odioso", "Assombrado", "Infernal", "Uivante", "Jade", "do Assassino", "do Patife", "Perdido", "Ameaçador", "Mórbido", "do Assassino", "de Netuno", "de Nereu", "da Noite", "do Oceano", "de Oceano", "do Pirata", "do Saqueador", "Veneno", "de Poseidon", "Orgulhoso", "do Corsário", "de Proteu", "Enfurecido", "Vermelho", "Real", "Rubi", "do Marinheiro", "Safira", "Selvagem", "Gritante", "Buscador", "do Mar", "da Serpente", "Vergonhoso", "Chilreante", "Prata", "da Cobra", "Firme", "Viajante", "de Tritão", "Vil", "Andarilho", "Branco", "Amarelo"};
+			string sName1 = vName1[Utility.RandomMinMax( 0, (vName1.Length-1) )];
 
 			if ( captain != "" && captain != null ){ sName1 = captain; }
 
-			string[] vName2 = new string[] {"Anchor", "Anger", "Barnacle", "Blade", "Buccaneer", "Captain", "Coral", "Crossbones", "Cruelty", "Cutlass", "Cutter", "Dagger", "Damnation", "Death", "Demon", "Devil", "Dishonor", "Doom", "Dream", "Executioner", "Fear", "Gale", "Galleon", "Grail", "Hate", "Horn", "Horror", "Hurricane", "Insanity", "Jewel", "Killer", "Knave", "Knife", "Lightning", "Mermaid", "Murderer", "Mystery", "Night", "Nightmare", "Pearl", "Pirate", "Poison", "Privateer", "Raider", "Saber", "Sail", "Scream", "Secret", "Serpent", "Servant", "Shark", "Ship", "Skull", "Slave", "Storm", "Strumpet", "Sun", "Sword", "Thunder", "Treasure", "Trident", "Whale", "Whirlpool", "Whore"};
-				string sName2 = vName2[Utility.RandomMinMax( 0, (vName2.Length-1) )];
+			string[] vName2 = new string[] {"Âncora", "Ira", "Craca", "Lâmina", "Bucaneiro", "Capitão", "Coral", "Ossos Cruzados", "Crueldade", "Cutelo", "Cortador", "Adaga", "Danação", "Morte", "Demônio", "Diabo", "Desonra", "Perdição", "Sonho", "Carrasco", "Medo", "Vendaval", "Galeão", "Cálice", "Ódio", "Chifre", "Horror", "Furacão", "Insanidade", "Jóia", "Assassino", "Patife", "Faca", "Relâmpago", "Sereia", "Assassino", "Mistério", "Noite", "Pesadelo", "Pérola", "Pirata", "Veneno", "Corsário", "Saqueador", "Sabre", "Vela", "Grito", "Segredo", "Serpente", "Servo", "Tubarão", "Navio", "Caveira", "Escravo", "Tempestade", "Cortesã", "Sol", "Espada", "Trovão", "Tesouro", "Tridente", "Baleia", "Redemoinho", "Cortesã"};
+			string sName2 = vName2[Utility.RandomMinMax( 0, (vName2.Length-1) )];
 
 			string sName3 = "";
 			switch( Utility.RandomMinMax( 1, 120 ) )
 			{
-				case 1: sName3 = " of the Cloak"; break;
-				case 2: sName3 = " of the Coast"; break;
-				case 3: sName3 = " of the Damned"; break;
-				case 4: sName3 = " of the Dark"; break;
-				case 5: sName3 = " of the Devil"; break;
-				case 6: sName3 = " of the East"; break;
-				case 7: sName3 = " of the Gods"; break;
-				case 8: sName3 = " of the Helm"; break;
-				case 9: sName3 = " of the " + sNumber + " Islands"; break;
-				case 10: sName3 = " of the Isles"; break;
-				case 11: sName3 = " of the Light"; break;
-				case 12: sName3 = " of the Night"; break;
-				case 13: sName3 = " of the North"; break;
-				case 14: sName3 = " of the Ocean"; break;
-				case 15: sName3 = " of the Reef"; break;
-				case 16: sName3 = " of the Righteous"; break;
-				case 17: sName3 = " of the Sea"; break;
-				case 18: sName3 = " of the " + sNumber + " Seas"; break;
-				case 19: sName3 = " of the Shield"; break;
-				case 20: sName3 = " of the Shore"; break;
-				case 21: sName3 = " of the South"; break;
-				case 22: sName3 = " of the Storm"; break;
-				case 23: sName3 = " of the Sword"; break;
-				case 24: sName3 = " of the Blade"; break;
-				case 25: sName3 = " of the Tropics"; break;
-				case 26: sName3 = " of the Waves"; break;
-				case 27: sName3 = " of the West"; break;
-				case 28: sName3 = " of the Winds"; break;
-				case 29: sName3 = " of the Docks"; break;
-				case 30: sName3 = " of the Warf"; break;
-				case 31: sName3 = " of the " + sNumber + " Blades"; break;
-				case 32: sName3 = " of the " + sNumber + " Swords"; break;
-				case 33: sName3 = " of the " + sNumber + " Gods"; break;
-				case 34: sName3 = " of the " + sNumber + " Storms"; break;
-				case 35: sName3 = " of the " + sNumber + " Shores"; break;
-				case 36: sName3 = " of the " + sNumber + " Shields"; break;
-				case 37: sName3 = " of the " + sNumber + " Flags"; break;
-				case 38: sName3 = " of the " + sNumber + " Coasts"; break;
+				case 1: sName3 = " da Capa"; break;
+				case 2: sName3 = " da Costa"; break;
+				case 3: sName3 = " dos Condenados"; break;
+				case 4: sName3 = " do Sombrio"; break;
+				case 5: sName3 = " do Diabo"; break;
+				case 6: sName3 = " do Leste"; break;
+				case 7: sName3 = " dos Deuses"; break;
+				case 8: sName3 = " do Elmo"; break;
+				case 9: sName3 = " das " + sNumber + " Ilhas"; break;
+				case 10: sName3 = " das Ilhas"; break;
+				case 11: sName3 = " da Luz"; break;
+				case 12: sName3 = " da Noite"; break;
+				case 13: sName3 = " do Norte"; break;
+				case 14: sName3 = " do Oceano"; break;
+				case 15: sName3 = " do Recife"; break;
+				case 16: sName3 = " dos Justos"; break;
+				case 17: sName3 = " do Mar"; break;
+				case 18: sName3 = " dos " + sNumber + " Mares"; break;
+				case 19: sName3 = " do Escudo"; break;
+				case 20: sName3 = " da Costa"; break;
+				case 21: sName3 = " do Sul"; break;
+				case 22: sName3 = " da Tempestade"; break;
+				case 23: sName3 = " da Espada"; break;
+				case 24: sName3 = " da Lâmina"; break;
+				case 25: sName3 = " dos Trópicos"; break;
+				case 26: sName3 = " das Ondas"; break;
+				case 27: sName3 = " do Oeste"; break;
+				case 28: sName3 = " dos Ventos"; break;
+				case 29: sName3 = " dos Doca"; break;
+				case 30: sName3 = " do Cais"; break;
+				case 31: sName3 = " das " + sNumber + " Lâminas"; break;
+				case 32: sName3 = " das " + sNumber + " Espadas"; break;
+				case 33: sName3 = " dos " + sNumber + " Deuses"; break;
+				case 34: sName3 = " das " + sNumber + " Tempestades"; break;
+				case 35: sName3 = " das " + sNumber + " Costas"; break;
+				case 36: sName3 = " dos " + sNumber + " Escudos"; break;
+				case 37: sName3 = " das " + sNumber + " Bandeiras"; break;
+				case 38: sName3 = " das " + sNumber + " Costas"; break;
 			}
-			if ( lower > 0 ){ return "the " + sName1 + " " + sName2 + sName3; }
+			if ( lower > 0 ){ return sName2 + " " + sName3 + " " + sName1; }
 
-			return "The " + sName1 + " " + sName2 + sName3;
+			return sName2 + " " + sName3 + " " + sName1;
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		public static string RandomMagicalItem()
 		{
-			string sAdjective = "unusual";
-			string eAdjective = "might";
+			string sAdjective = "incomum";
+			string eAdjective = "poder";
 
 			sAdjective = RandomThings.MagicItemAdj( "start", false, false, 0 );
 			eAdjective = RandomThings.MagicItemAdj( "end", false, false, 0 );
@@ -1077,8 +1078,8 @@ namespace Server.Misc
 
 			switch( Utility.RandomMinMax( 0, 1 ) )
 			{
-				case 0: name = sAdjective + " " + name + " of " + eAdjective;	break;
-				case 1: name = name + " of " + eAdjective;						break;
+				case 0: name = name +  " " +  sAdjective + " do(a) " + eAdjective;	break;
+				case 1: name = name + " do(a) " + eAdjective;						break;
 			}
 
 			return name;
@@ -1207,57 +1208,57 @@ namespace Server.Misc
 
 		public static string GetBoyGirlJob( int gender )
 		{
-			string girlJob = "Healer";
-			string boyJob = "Healer";
+			string girlJob = "Curandeira";
+			string boyJob = "Curandeiro";
 
 			switch( Utility.RandomMinMax( 1, 46 ) )
 			{
-				case 1: girlJob = "Adventurer"; boyJob = "Adventurer"; break;
-				case 2: girlJob = "Bandit"; boyJob = "Bandit"; break;
-				case 3: girlJob = "Barbarian"; boyJob = "Barbarian"; break;
-				case 4: girlJob = "Bard"; boyJob = "Bard"; break;
-				case 5: girlJob = "Amazon"; boyJob = "Cavalier"; break;
-				case 6: girlJob = "Cleric"; boyJob = "Cleric"; break;
-				case 7: girlJob = "Conjurer"; boyJob = "Conjurer"; break;
-				case 8: girlJob = "Defender"; boyJob = "Defender"; break;
-				case 9: girlJob = "Diviner"; boyJob = "Diviner"; break;
-				case 10: girlJob = "Druid"; boyJob = "Druid"; break;
-				case 11: girlJob = "Enchantress"; boyJob = "Enchanter"; break;
-				case 12: girlJob = "Explorer"; boyJob = "Explorer"; break;
-				case 13: girlJob = "Fighter"; boyJob = "Fighter"; break;
-				case 14: girlJob = "Gladiator"; boyJob = "Gladiator"; break;
-				case 15: girlJob = "Heretic"; boyJob = "Heretic"; break;
-				case 16: girlJob = "Hunter"; boyJob = "Hunter"; break;
-				case 17: girlJob = "Illusionist"; boyJob = "Illusionist"; break;
-				case 18: girlJob = "Invoker"; boyJob = "Invoker"; break;
-				case 19: girlJob = "Knight"; boyJob = "Knight"; break;
-				case 20: girlJob = "Mage"; boyJob = "Mage"; break;
-				case 21: girlJob = "Magician"; boyJob = "Magician"; break;
-				case 22: girlJob = "Mercenary"; boyJob = "Mercenary"; break;
-				case 23: girlJob = "Minstrel"; boyJob = "Minstrel"; break;
-				case 24: girlJob = "Monk"; boyJob = "Monk"; break;
-				case 25: girlJob = "Mystic"; boyJob = "Mystic"; break;
-				case 26: girlJob = "Necromancer"; boyJob = "Necromancer"; break;
-				case 27: girlJob = "Outlaw"; boyJob = "Outlaw"; break;
-				case 28: girlJob = "Paladin"; boyJob = "Paladin"; break;
-				case 29: girlJob = "Priestess"; boyJob = "Priest"; break;
-				case 30: girlJob = "Prophetess"; boyJob = "Prophet"; break;
+				case 1: girlJob = "Aventureira"; boyJob = "Aventureiro"; break;
+				case 2: girlJob = "Bandida"; boyJob = "Bandido"; break;
+				case 3: girlJob = "Bárbara"; boyJob = "Bárbaro"; break;
+				case 4: girlJob = "Barda"; boyJob = "Bardo"; break;
+				case 5: girlJob = "Amazona"; boyJob = "Cavaleiro"; break;
+				case 6: girlJob = "Clériga"; boyJob = "Clérigo"; break;
+				case 7: girlJob = "Conjuradora"; boyJob = "Conjurador"; break;
+				case 8: girlJob = "Defensora"; boyJob = "Defensor"; break;
+				case 9: girlJob = "Adivinha"; boyJob = "Adivinho"; break;
+				case 10: girlJob = "Druida"; boyJob = "Druida"; break;
+				case 11: girlJob = "Encantadora"; boyJob = "Encantador"; break;
+				case 12: girlJob = "Exploradora"; boyJob = "Explorador"; break;
+				case 13: girlJob = "Lutadora"; boyJob = "Lutador"; break;
+				case 14: girlJob = "Gladiadora"; boyJob = "Gladiador"; break;
+				case 15: girlJob = "Herege"; boyJob = "Herege"; break;
+				case 16: girlJob = "Caçadora"; boyJob = "Caçador"; break;
+				case 17: girlJob = "Ilusionista"; boyJob = "Ilusionista"; break;
+				case 18: girlJob = "Invocadora"; boyJob = "Invocador"; break;
+				case 19: girlJob = "Cavaleira"; boyJob = "Cavaleiro"; break;
+				case 20: girlJob = "Maga"; boyJob = "Mago"; break;
+				case 21: girlJob = "Mágica"; boyJob = "Mágico"; break;
+				case 22: girlJob = "Mercenária"; boyJob = "Mercenário"; break;
+				case 23: girlJob = "Menestrela"; boyJob = "Menestrel"; break;
+				case 24: girlJob = "Monge"; boyJob = "Monge"; break;
+				case 25: girlJob = "Mística"; boyJob = "Místico"; break;
+				case 26: girlJob = "Necromante"; boyJob = "Necromante"; break;
+				case 27: girlJob = "Fora-da-lei"; boyJob = "Fora-da-lei"; break;
+				case 28: girlJob = "Paladina"; boyJob = "Paladino"; break;
+				case 29: girlJob = "Sacerdotisa"; boyJob = "Sacerdote"; break;
+				case 30: girlJob = "Profetisa"; boyJob = "Profeta"; break;
 				case 31: girlJob = "Ranger"; boyJob = "Ranger"; break;
-				case 32: girlJob = "Rogue"; boyJob = "Rogue"; break;
-				case 33: girlJob = "Sage"; boyJob = "Sage"; break;
-				case 34: girlJob = "Scout"; boyJob = "Scout"; break;
-				case 35: girlJob = "Seeker"; boyJob = "Seeker"; break;
-				case 36: girlJob = "Seer"; boyJob = "Seer"; break;
-				case 37: girlJob = "Shaman"; boyJob = "Shaman"; break;
-				case 38: girlJob = "Slayer"; boyJob = "Slayer"; break;
-				case 39: girlJob = "Sorcereress"; boyJob = "Sorcerer"; break;
-				case 40: girlJob = "Summoner"; boyJob = "Summoner"; break;
-				case 41: girlJob = "Templar"; boyJob = "Templar"; break;
-				case 42: girlJob = "Thief"; boyJob = "Thief"; break;
-				case 43: girlJob = "Traveler"; boyJob = "Traveler"; break;
-				case 44: girlJob = "Warrior"; boyJob = "Warlock"; break;
-				case 45: girlJob = "Witch"; boyJob = "Warrior"; break;
-				case 46: girlJob = "Wizard"; boyJob = "Wizard"; break;
+				case 32: girlJob = "Ladra"; boyJob = "Ladrão"; break;
+				case 33: girlJob = "Sábia"; boyJob = "Sábio"; break;
+				case 34: girlJob = "Batedora"; boyJob = "Batedor"; break;
+				case 35: girlJob = "Buscadora"; boyJob = "Buscador"; break;
+				case 36: girlJob = "Vidente"; boyJob = "Vidente"; break;
+				case 37: girlJob = "Xamã"; boyJob = "Xamã"; break;
+				case 38: girlJob = "Abatedora"; boyJob = "Abatedor"; break;
+				case 39: girlJob = "Feiticeira"; boyJob = "Feiticeiro"; break;
+				case 40: girlJob = "Invocadora"; boyJob = "Invocador"; break;
+				case 41: girlJob = "Templária"; boyJob = "Templário"; break;
+				case 42: girlJob = "Ladra"; boyJob = "Ladrão"; break;
+				case 43: girlJob = "Viajante"; boyJob = "Viajante"; break;
+				case 44: girlJob = "Guerreira"; boyJob = "Bruxo"; break;
+				case 45: girlJob = "Bruxa"; boyJob = "Guerreiro"; break;
+				case 46: girlJob = "Maga"; boyJob = "Mago"; break;
 			}
 
 			if ( gender == 1 ){ return girlJob; }
@@ -1307,23 +1308,23 @@ namespace Server.Misc
 
 		public static string GetRandomKingdom()
 		{
-			string kingdom = "Kingdom";
+			string kingdom = "Reino";
 
 			switch( Utility.RandomMinMax( 1, 13 ) )
 			{
-				case 1: kingdom = "Kingdom"; break;
-				case 2: kingdom = "Dynasty"; break;
-				case 3: kingdom = "Empire"; break;
-				case 4: kingdom = "Dominion"; break;
-				case 5: kingdom = "Sovereignty"; break;
+				case 1: kingdom = "Reino"; break;
+				case 2: kingdom = "Dinastia"; break;
+				case 3: kingdom = "Império"; break;
+				case 4: kingdom = "Domínio"; break;
+				case 5: kingdom = "Soberania"; break;
 				case 6: kingdom = "Regime"; break;
-				case 7: kingdom = "Reign"; break;
-				case 8: kingdom = "Nation"; break;
-				case 9: kingdom = "Monarchy"; break;
-				case 10: kingdom = "Realm"; break;
-				case 11: kingdom = "Territory"; break;
-				case 12: kingdom = "Lands"; break;
-				case 13: kingdom = "Islands"; break;
+				case 7: kingdom = "Reinado"; break;
+				case 8: kingdom = "Nação"; break;
+				case 9: kingdom = "Monarquia"; break;
+				case 10: kingdom = "Reino"; break;
+				case 11: kingdom = "Território"; break;
+				case 12: kingdom = "Terras"; break;
+				case 13: kingdom = "Ilhas"; break;
 			}
 
 			return kingdom;
@@ -1375,27 +1376,27 @@ namespace Server.Misc
 
 		public static string GetRandomBookType( bool caps )
 		{
-			string book = "book";
+			string book = "livro";
 
 			int tome = Utility.RandomMinMax( 0, 6 );
-				if ( caps ){ Utility.RandomMinMax( 7, 13 ); }
+			if ( caps ){ Utility.RandomMinMax( 7, 13 ); }
 
 			switch ( tome ) 
 			{
-				case 0 : book = "book"; break;
-				case 1 : book = "lexicon"; break;
-				case 2 : book = "omnibus"; break;
+				case 0 : book = "livro"; break;
+				case 1 : book = "léxico"; break;
+				case 2 : book = "compêndio"; break;
 				case 3 : book = "manual"; break;
-				case 4 : book = "folio"; break;
-				case 5 : book = "codex"; break;
-				case 6 : book = "tome"; break;
-				case 7 : book = "Book"; break;
-				case 8 : book = "Lexicon"; break;
-				case 9 : book = "Omnibus"; break;
+				case 4 : book = "fólio"; break;
+				case 5 : book = "códex"; break;
+				case 6 : book = "tomo"; break;
+				case 7 : book = "Livro"; break;
+				case 8 : book = "Léxico"; break;
+				case 9 : book = "Compêndio"; break;
 				case 10 : book = "Manual"; break;
-				case 11 : book = "Folio"; break;
-				case 12 : book = "Codex"; break;
-				case 13 : book = "Tome"; break;
+				case 11 : book = "Fólio"; break;
+				case 12 : book = "Códex"; break;
+				case 13 : book = "Tomo"; break;
 			}
 
 			return book;
@@ -1405,44 +1406,44 @@ namespace Server.Misc
 
 		public static string GetBookTitle()
 		{
-			string bookTitle = "the Book of the Dead";
+			string bookTitle = "o Livro dos Mortos";
 
-			string[] vName1 = new string[] {"Exotic", "Mysterious", "Enchanted", "Marvelous", "Amazing", "Astonishing", "Mystical", "Astounding", "Magical", "Divine", "Excellent", "Magnificent", "Phenomenal", "Fantastic", "Incredible", "Miraculous", "Extraordinary", "Fabulous", "Wondrous", "Glorious", "Dreadful", "Horrific", "Terrible", "Disturbing", "Frightful", "Awful", "Dire", "Grim", "Vile", "Lost", "Fabled", "Legendary", "Mythical", "Missing", "Doomed", "Endless", "Eternal", "Exalted", "Glimmering", "Sadistic", "Disrupting", "Spiritual", "Demonic", "Holy", "Heavenly", "Ancestral", "Ornate", "Ultimate", "Abyssmal", "Crazed", "Elven", "Orcish", "Dwarvish", "Gnomish", "Cursed", "Sylvan", "Wizardly", "Sturdy", "Disturbing", "Odd", "Rare", "Treasured", "Damned", "Evil", "Lawful", "Foul", "Infernal", "Royal", "Worldy", "Blasphemous", "Planar", "Wonderful", "Perfected", "Vicious", "Chaotic", "Haunted", "Travelling", "Unholy", "Infernal", "Villainous", "Accursed", "Fiendish", "Adored", "Hallowed", "Glorified", "Sacred", "Blissful", "Almighty", "Dominant", "Supreme", "Fallen", "Dark", "Earthly", "Mighty", "Unspeakable", "Unknown", "Forgotten", "Deathly", "Undead", "Infinite", "Abyssmal"};
-				string sName1 = vName1[Utility.RandomMinMax( 0, (vName1.Length-1) )];
+			string[] vName1 = new string[] {"Exótico", "Misterioso", "Encantado", "Maravilhoso", "Espantoso", "Surpreendente", "Místico", "Estupendo", "Mágico", "Divino", "Excelente", "Magnífico", "Fenomenal", "Fantástico", "Incrível", "Milagroso", "Extraordinário", "Fabuloso", "Prodigioso", "Glorioso", "Temível", "Horrífico", "Terrible", "Perturbador", "Amedrontador", "Horrível", "Funesto", "Sombrio", "Vil", "Perdido", "Lendário", "Mítico", "Desaparecido", "Condenado", "Infinito", "Eterno", "Exaltado", "Cintilante", "Sádico", "Perturbador", "Espiritual", "Demoníaco", "Santo", "Celestial", "Ancestral", "Ornado", "Supremo", "Abissal", "Enlouquecido", "Élfico", "Orc", "Anão", "Gnômico", "Amaldiçoado", "Silvestre", "Feiticeiro", "Robusto", "Estranho", "Raro", "Prezado", "Maldito", "Maligno", "Ordeiro", "Imundo", "Infernal", "Real", "Mundano", "Blasfemo", "Planar", "Maravilhoso", "Perfeito", "Cruel", "Caótico", "Assombrado", "Viajante", "Profano", "Infernal", "Vil", "Amaldiçoado", "Demoníaco", "Adorado", "Sagrado", "Glorificado", "Sacro", "Bem-aventurado", "Todo-poderoso", "Dominante", "Supremo", "Caído", "Sombrio", "Terrestre", "Poderoso", "Indizível", "Desconhecido", "Esquecido", "Mortífero", "Morto-vivo", "Infinito", "Abissal"};
+			string sName1 = vName1[Utility.RandomMinMax( 0, (vName1.Length-1) )];
 
-			string[] vName2 = new string[] {"Tale", "Book", "Adventures", "Lexicon", "Writings", "Omnibus", "Mystery", "Manual", "Folio", "Diary", "Tome", "Story", "Events", "History", "Chronicles", "Fable", "Legend", "Myth", "Secrets"};
-				string sName2 = vName2[Utility.RandomMinMax( 0, (vName2.Length-1) )];
+			string[] vName2 = new string[] {"Conto", "Livro", "Aventuras", "Léxico", "Escritos", "Compêndio", "Mistério", "Manual", "Fólio", "Diário", "Tomo", "História", "Eventos", "História", "Crônicas", "Fábula", "Lenda", "Mito", "Segredos"};
+			string sName2 = vName2[Utility.RandomMinMax( 0, (vName2.Length-1) )];
 
-			string[] vName3 = new string[] {"Demon", "Devil", "Dragon", "Dwarf", "Elf", "Hag", "Hobbit", "Imp", "Leprechaun", "Vampire", "Ghost", "Lich", "Templar", "Thief", "Illusionist", "Princess", "Invoker", "Priest", "Conjurer", "Bandit", "Priestess", "Baron", "Wizard", "Cleric", "Monk", "Minstrel", "Defender", "Cavalier", "Magician", "Witch", "Fighter", "Seeker", "Slayer", "Ranger", "Barbarian", "Explorer", "Heretic", "Gladiator", "Sage", "Rogue", "Paladin", "Bard", "Diviner", "Lord", "Outlaw", "Prophet", "Mercenary", "Adventurer", "Enchanter", "King", "Scout", "Mystic", "Mage", "Traveler", "Summoner", "Queen", "Warrior", "Sorcerer", "Seer", "Hunter", "Knight", "Prince", "Necromancer", "Sorceress", "Shaman"};
-				string sName3 = vName3[Utility.RandomMinMax( 0, (vName3.Length-1) )];
+			string[] vName3 = new string[] {"Demônio", "Diabo", "Dragão", "Anão", "Elfo", "Bruxa", "Hobbit", "Diabrete", "Leprechaun", "Vampiro", "Fantasma", "Lich", "Templário", "Ladrão", "Ilusionista", "Princesa", "Invocador", "Sacerdote", "Conjurador", "Bandido", "Sacerdotisa", "Barão", "Mago", "Clérigo", "Monge", "Menestrel", "Defensor", "Cavaleiro", "Mágico", "Bruxa", "Lutador", "Buscador", "Abatedor", "Ranger", "Bárbaro", "Explorador", "Herege", "Gladiador", "Sábio", "Ladrão", "Paladino", "Bardo", "Adivinho", "Senhor", "Fora-da-lei", "Profeta", "Mercenário", "Aventureiro", "Encantador", "Rei", "Batedor", "Místico", "Mago", "Viajante", "Invocador", "Rainha", "Guerreiro", "Feiticeiro", "Vidente", "Caçador", "Cavaleiro", "Príncipe", "Necromante", "Feiticeira", "Xamã"};
+			string sName3 = vName3[Utility.RandomMinMax( 0, (vName3.Length-1) )];
 
-			string[] vName4 = new string[] {"Badger", "Basilisk", "Bear", "Boar", "Bufallo", "Bugbear", "Bull", "Centaur", "Chimera", "Cloud Giant", "Crocodile", "Cyclops", "Demon", "Devil", "Dog", "Dragon", "Drake", "Dryad", "Dwarf", "Elephant", "Elf", "Ettin", "Fire Giant", "Fish", "Frog", "Frost Giant", "Gargoyle", "Genie", "Gnoll", "Gnome", "Goblin", "Gorgon", "Griffin", "Hag", "Hobbit", "Harpy", "Hell Hound", "Hill Giant", "Hippogriff", "Hippopotamus", "Hobbit", "Hobgoblin", "Horse", "Hydra", "Imp", "Jackal", "Kobold", "Kraken", "Leprechaun", "Lion", "Lizard", "Manticore", "Imp", "Minotaur", "Mule", "Naga", "Nixie", "Nymph", "Froglok", "Ogre", "Orc", "Owlbear", "Pegasus", "Phoenix", "Pixie", "Giant Worm", "Dark Pixie", "Rot Monster", "Scorpion", "Serpent", "Reaper", "Snake", "Sphinx", "Spider", "Sprite", "Stone Giant", "Storm Giant", "Succubus", "Tiger", "Titan", "Toad", "Ent", "Neptar", "Troglodite", "Troll", "Turtle", "Unicorn", "Walrus", "Weasel", "Werewolf", "Whale", "Wisp", "Wolf", "Wolverine", "Wyrm", "Wyvern", "Zorn", "Yeti", "Templar", "Thief", "Illusionist", "Princess", "Invoker", "Priest", "Conjurer", "Bandit", "Priestess", "Baron", "Wizard", "Cleric", "Monk", "Minstrel", "Defender", "Cavalier", "Magician", "Witch", "Fighter", "Seeker", "Slayer", "Ranger", "Barbarian", "Explorer", "Heretic", "Gladiator", "Sage", "Rogue", "Paladin", "Bard", "Diviner", "Lord", "Outlaw", "Prophet", "Mercenary", "Adventurer", "Enchanter", "King", "Scout", "Mystic", "Mage", "Traveler", "Summoner", "Queen", "Warrior", "Sorcerer", "Seer", "Hunter", "Knight", "Prince", "Necromancer", "Sorceress", "Shaman"};
-				string sName4 = vName4[Utility.RandomMinMax( 0, (vName4.Length-1) )];
+			string[] vName4 = new string[] {"Texugo", "Basilisco", "Urso", "Javali", "Búfalo", "Bugbear", "Touro", "Centauro", "Quimera", "Gigante das Nuvens", "Crocodilo", "Ciclope", "Demônio", "Diabo", "Cão", "Dragão", "Drake", "Dríade", "Anão", "Elefante", "Elfo", "Ettin", "Gigante do Fogo", "Peixe", "Sapo", "Gigante do Gelo", "Gárgula", "Gênio", "Gnoll", "Gnomo", "Goblin", "Górgona", "Grifo", "Bruxa", "Hobbit", "Harpia", "Cão do Inferno", "Gigante das Colinas", "Hipogrifo", "Hipopótamo", "Hobbit", "Hobgoblin", "Cavalo", "Hidra", "Diabrete", "Chacal", "Kobold", "Kraken", "Leprechaun", "Leão", "Lagarto", "Mantícora", "Diabrete", "Minotauro", "Mula", "Naga", "Nixie", "Ninfa", "Sapomem", "Ogro", "Orc", "Corujurso", "Pégaso", "Fênix", "Pixie", "Verme Gigante", "Pixie Sombria", "Monstro Podre", "Escorpião", "Serpente", "Ceifador", "Cobra", "Esfinge", "Aranha", "Sprite", "Gigante de Pedra", "Gigante das Tempestades", "Súcubo", "Tigre", "Titã", "Sapo", "Ent", "Neptar", "Troglodita", "Troll", "Tartaruga", "Unicórnio", "Morsa", "Doninha", "Lobisomem", "Baleia", "Wisp", "Lobo", "Carcaju", "Wyrm", "Wyvern", "Zorn", "Yeti", "Templário", "Ladrão", "Ilusionista", "Princesa", "Invocador", "Sacerdote", "Conjurador", "Bandido", "Sacerdotisa", "Barão", "Mago", "Clérigo", "Monge", "Menestrel", "Defensor", "Cavaleiro", "Mágico", "Bruxa", "Lutador", "Buscador", "Abatedor", "Ranger", "Bárbaro", "Explorador", "Herege", "Gladiador", "Sábio", "Ladrão", "Paladino", "Bardo", "Adivinho", "Senhor", "Fora-da-lei", "Profeta", "Mercenário", "Aventureiro", "Encantador", "Rei", "Batedor", "Místico", "Mago", "Viajante", "Invocador", "Rainha", "Guerreiro", "Feiticeiro", "Vidente", "Caçador", "Cavaleiro", "Príncipe", "Necromante", "Feiticeira", "Xamã"};
+			string sName4 = vName4[Utility.RandomMinMax( 0, (vName4.Length-1) )];
 
-			string[] vName5 = new string[] {"Castle", "Cave", "Mansion", "House", "Cave", "Dungeon", "Forest", "Desert", "Tower", "Desert", "Mountains", "Swamp", "Hills", "Night", "Darkness", "Fog", "Woods", "Mist", "Light", "Bottle", "Sky", "Ground", "Water", "Sea", "Sand", "Trees", "Clouds", "Stars", "Crystal", "Gem", "Lamp", "Jar", "Chains", "Keep", "City", "Village", "Tomb", "Crypt"};
-				string sName5 = vName5[Utility.RandomMinMax( 0, (vName5.Length-1) )];
+			string[] vName5 = new string[] {"Castelo", "Caverna", "Mansão", "Casa", "Caverna", "Masmorra", "Floresta", "Deserto", "Torre", "Deserto", "Montanhas", "Pântano", "Colinas", "Noite", "Escuridão", "Nevoeiro", "Bosque", "Névoa", "Luz", "Garrafa", "Céu", "Chão", "Água", "Mar", "Areia", "Árvores", "Nuvens", "Estrelas", "Cristal", "Gema", "Lâmpada", "Jarro", "Correntes", "Fortaleza", "Cidade", "Vila", "Tumba", "Cripta"};
+			string sName5 = vName5[Utility.RandomMinMax( 0, (vName5.Length-1) )];
 
 			string sName6 = NameList.RandomName( "author" );
 
-			string[] vName7 = new string[] {"Goblet", "Sword", "Axe", "Dagger", "Armor", "Crystal", "Gem", "Pool", "Wand", "Ring", "Amulet", "Helm", "Crown", "Boots", "Belt", "Robe", "Chalice", "Mirror", "Lance", "Shield", "Scepter", "Staff", "Book", "Potion", "Bow", "Stone", "Fire", "Shard", "Box"};
-				string sName7 = vName7[Utility.RandomMinMax( 0, (vName7.Length-1) )];
+			string[] vName7 = new string[] {"Cálice", "Espada", "Machado", "Adaga", "Armadura", "Cristal", "Gema", "Poço", "Varinha", "Anel", "Amuleto", "Elmo", "Coroa", "Botas", "Cinto", "Veste", "Cálice", "Espelho", "Lança", "Escudo", "Cetro", "Cajado", "Livro", "Poção", "Arco", "Pedra", "Fogo", "Fragmento", "Caixa"};
+			string sName7 = vName7[Utility.RandomMinMax( 0, (vName7.Length-1) )];
 
-			string[] vName8 = new string[] {"Search", "Quest", "Curse", "Magic", "Mystery", "Power", "Destruction", "Murder", "Desire", "Nature", "Legend", "Myth", "Lies", "Location"};
-				string sName8 = vName8[Utility.RandomMinMax( 0, (vName8.Length-1) )];
+			string[] vName8 = new string[] {"Busca", "Missão", "Maldição", "Magia", "Mistério", "Poder", "Destruição", "Assassinato", "Desejo", "Natureza", "Lenda", "Mito", "Mentiras", "Localização"};
+			string sName8 = vName8[Utility.RandomMinMax( 0, (vName8.Length-1) )];
 
 			switch ( Utility.RandomMinMax( 0, 10 ) ) 
 			{
-				case 0: bookTitle = "The " + sName1 + " " + sName2 + " of the " + sName4; break;
-				case 1: bookTitle = "The " + sName2 + " of the " + sName1 + " " + sName4; break;
-				case 2: bookTitle = "The " + sName4 + " in the " + sName5; break;
-				case 3: bookTitle = "The " + sName2 + " of the " + sName3 + " in the " + sName5; break;
-				case 4: bookTitle = "The " + sName1 + " " + sName5 + " of the " + sName3; break;
-				case 5: bookTitle = "The " + sName8 + " of the " + sName1 + " " + sName7 + " of " + sName6; break;
-				case 6: bookTitle = "The " + sName8 + " of the " + sName7 + " of " + sName6; break;
-				case 7: bookTitle = "The " + sName7 + " and the " + sName3; break;
-				case 8: bookTitle = "The " + sName3 + " and the " + sName7; break;
-				case 9: bookTitle = "The " + sName2 + " of " + sName6 + " the " + sName3; break;
-				case 10: bookTitle = "The " + sName2 + " of " + sName6 + " the " + sName3; break;
+				case 0: bookTitle = "O " + sName1 + " " + sName2 + " do " + sName4; break;
+				case 1: bookTitle = "O " + sName2 + " do " + sName1 + " " + sName4; break;
+				case 2: bookTitle = "O " + sName4 + " no " + sName5; break;
+				case 3: bookTitle = "O " + sName2 + " do " + sName3 + " no " + sName5; break;
+				case 4: bookTitle = "O " + sName1 + " " + sName5 + " do " + sName3; break;
+				case 5: bookTitle = "A " + sName8 + " do " + sName1 + " " + sName7 + " de " + sName6; break;
+				case 6: bookTitle = "A " + sName8 + " do " + sName7 + " de " + sName6; break;
+				case 7: bookTitle = "O " + sName7 + " e o " + sName3; break;
+				case 8: bookTitle = "O " + sName3 + " e o " + sName7; break;
+				case 9: bookTitle = "O " + sName2 + " de " + sName6 + " o " + sName3; break;
+				case 10: bookTitle = "O " + sName2 + " de " + sName6 + " o " + sName3; break;
 			}
 
 			return bookTitle;
@@ -1452,44 +1453,44 @@ namespace Server.Misc
 
 		public static string GetSongTitle()
 		{
-			string bookTitle = "the Song of the Dead";
+			string bookTitle = "a Canção dos Mortos";
 
-			string[] vName1 = new string[] {"Exotic", "Mysterious", "Enchanted", "Marvelous", "Amazing", "Astonishing", "Mystical", "Astounding", "Magical", "Divine", "Excellent", "Magnificent", "Phenomenal", "Fantastic", "Incredible", "Miraculous", "Extraordinary", "Fabulous", "Wondrous", "Glorious", "Dreadful", "Horrific", "Terrible", "Disturbing", "Frightful", "Awful", "Dire", "Grim", "Vile", "Lost", "Fabled", "Legendary", "Mythical", "Missing", "Doomed", "Endless", "Eternal", "Exalted", "Glimmering", "Sadistic", "Disrupting", "Spiritual", "Demonic", "Holy", "Heavenly", "Ancestral", "Ornate", "Ultimate", "Abyssmal", "Crazed", "Elven", "Orcish", "Dwarvish", "Gnomish", "Cursed", "Sylvan", "Wizardly", "Sturdy", "Disturbing", "Odd", "Rare", "Treasured", "Damned", "Evil", "Lawful", "Foul", "Infernal", "Royal", "Worldy", "Blasphemous", "Planar", "Wonderful", "Perfected", "Vicious", "Chaotic", "Haunted", "Travelling", "Unholy", "Infernal", "Villainous", "Accursed", "Fiendish", "Adored", "Hallowed", "Glorified", "Sacred", "Blissful", "Almighty", "Dominant", "Supreme", "Fallen", "Dark", "Earthly", "Mighty", "Unspeakable", "Unknown", "Forgotten", "Deathly", "Undead", "Infinite", "Abyssmal"};
-				string sName1 = vName1[Utility.RandomMinMax( 0, (vName1.Length-1) )];
+			string[] vName1 = new string[] {"Exótica", "Misteriosa", "Encantada", "Maravilhosa", "Espantosa", "Surpreendente", "Mística", "Estupenda", "Mágica", "Divina", "Excelente", "Magnífica", "Fenomenal", "Fantástica", "Incrível", "Milagrosa", "Extraordinária", "Fabulosa", "Prodigiosa", "Gloriosa", "Temível", "Horrífica", "Terrível", "Perturbadora", "Amedrontadora", "Horrível", "Funesta", "Sombria", "Vil", "Perdida", "Lendária", "Mítica", "Desaparecida", "Condenada", "Infinito", "Eterno", "Exaltado", "Cintilante", "Sádica", "Perturbadora", "Espiritual", "Demoníaca", "Santa", "Celestial", "Ancestral", "Ornada", "Suprema", "Abissal", "Enlouquecida", "Élfica", "Orc", "Anã", "Gnômica", "Amaldiçoada", "Silvestre", "Feiticeira", "Robusta", "Estranha", "Rara", "Prezada", "Maldita", "Maligna", "Ordeira", "Imunda", "Infernal", "Real", "Mundana", "Blasfema", "Planar", "Maravilhosa", "Perfeita", "Cruel", "Caótica", "Assombrada", "Viajante", "Profana", "Infernal", "Vil", "Amaldiçoada", "Demoníaca", "Adorada", "Sagrada", "Glorificada", "Sacra", "Bem-aventurada", "Todo-poderosa", "Dominante", "Suprema", "Caída", "Sombria", "Terrestre", "Poderosa", "Indizível", "Desconhecida", "Esquecida", "Mortífera", "Morta-viva", "Infinito", "Abissal"};
+			string sName1 = vName1[Utility.RandomMinMax( 0, (vName1.Length-1) )];
 
-			string[] vName2 = new string[] {"Tale", "Legend", "Adventures", "Journey", "Quest", "Mystery", "Story", "Events", "History", "Chronicles", "Fable", "Myth", "Secrets"};
-				string sName2 = vName2[Utility.RandomMinMax( 0, (vName2.Length-1) )];
+			string[] vName2 = new string[] {"Conto", "Lenda", "Aventuras", "Jornada", "Missão", "Mistério", "História", "Eventos", "História", "Crônicas", "Fábula", "Mito", "Segredos"};
+			string sName2 = vName2[Utility.RandomMinMax( 0, (vName2.Length-1) )];
 
-			string[] vName3 = new string[] {"Demon", "Devil", "Dragon", "Dwarf", "Elf", "Hag", "Hobbit", "Imp", "Leprechaun", "Vampire", "Ghost", "Lich", "Templar", "Thief", "Illusionist", "Princess", "Invoker", "Priest", "Conjurer", "Bandit", "Priestess", "Baron", "Wizard", "Cleric", "Monk", "Minstrel", "Defender", "Cavalier", "Magician", "Witch", "Fighter", "Seeker", "Slayer", "Ranger", "Barbarian", "Explorer", "Heretic", "Gladiator", "Sage", "Rogue", "Paladin", "Bard", "Diviner", "Lord", "Outlaw", "Prophet", "Mercenary", "Adventurer", "Enchanter", "King", "Scout", "Mystic", "Mage", "Traveler", "Summoner", "Queen", "Warrior", "Sorcerer", "Seer", "Hunter", "Knight", "Prince", "Necromancer", "Sorceress", "Shaman"};
-				string sName3 = vName3[Utility.RandomMinMax( 0, (vName3.Length-1) )];
+			string[] vName3 = new string[] {"Demônio", "Diabo", "Dragão", "Anão", "Elfo", "Bruxa", "Hobbit", "Diabrete", "Leprechaun", "Vampiro", "Fantasma", "Lich", "Templário", "Ladrão", "Ilusionista", "Princesa", "Invocador", "Sacerdote", "Conjurador", "Bandido", "Sacerdotisa", "Barão", "Mago", "Clérigo", "Monge", "Menestrel", "Defensor", "Cavaleiro", "Mágico", "Bruxa", "Lutador", "Buscador", "Abatedor", "Ranger", "Bárbaro", "Explorador", "Herege", "Gladiador", "Sábio", "Ladrão", "Paladino", "Bardo", "Adivinho", "Senhor", "Fora-da-lei", "Profeta", "Mercenário", "Aventureiro", "Encantador", "Rei", "Batedor", "Místico", "Mago", "Viajante", "Invocador", "Rainha", "Guerreiro", "Feiticeiro", "Vidente", "Caçador", "Cavaleiro", "Príncipe", "Necromante", "Feiticeira", "Xamã"};
+			string sName3 = vName3[Utility.RandomMinMax( 0, (vName3.Length-1) )];
 
-			string[] vName4 = new string[] {"Badger", "Basilisk", "Bear", "Boar", "Bufallo", "Bugbear", "Bull", "Centaur", "Chimera", "Cloud Giant", "Crocodile", "Cyclops", "Demon", "Devil", "Dog", "Dragon", "Drake", "Dryad", "Dwarf", "Elephant", "Elf", "Ettin", "Fire Giant", "Fish", "Frog", "Frost Giant", "Gargoyle", "Genie", "Gnoll", "Gnome", "Goblin", "Gorgon", "Griffin", "Hag", "Hobbit", "Harpy", "Hell Hound", "Hill Giant", "Hippogriff", "Hippopotamus", "Hobbit", "Hobgoblin", "Horse", "Hydra", "Imp", "Jackal", "Kobold", "Kraken", "Leprechaun", "Lion", "Lizard", "Manticore", "Imp", "Minotaur", "Mule", "Naga", "Nixie", "Nymph", "Froglok", "Ogre", "Orc", "Owlbear", "Pegasus", "Phoenix", "Pixie", "Giant Worm", "Dark Pixie", "Rot Monster", "Scorpion", "Serpent", "Reaper", "Snake", "Sphinx", "Spider", "Sprite", "Stone Giant", "Storm Giant", "Succubus", "Tiger", "Titan", "Toad", "Ent", "Neptar", "Troglodite", "Troll", "Turtle", "Unicorn", "Walrus", "Weasel", "Werewolf", "Whale", "Wisp", "Wolf", "Wolverine", "Wyrm", "Wyvern", "Zorn", "Yeti", "Templar", "Thief", "Illusionist", "Princess", "Invoker", "Priest", "Conjurer", "Bandit", "Priestess", "Baron", "Wizard", "Cleric", "Monk", "Minstrel", "Defender", "Cavalier", "Magician", "Witch", "Fighter", "Seeker", "Slayer", "Ranger", "Barbarian", "Explorer", "Heretic", "Gladiator", "Sage", "Rogue", "Paladin", "Bard", "Diviner", "Lord", "Outlaw", "Prophet", "Mercenary", "Adventurer", "Enchanter", "King", "Scout", "Mystic", "Mage", "Traveler", "Summoner", "Queen", "Warrior", "Sorcerer", "Seer", "Hunter", "Knight", "Prince", "Necromancer", "Sorceress", "Shaman"};
-				string sName4 = vName4[Utility.RandomMinMax( 0, (vName4.Length-1) )];
+			string[] vName4 = new string[] {"Texugo", "Basilisco", "Urso", "Javali", "Búfalo", "Bugbear", "Touro", "Centauro", "Quimera", "Gigante das Nuvens", "Crocodilo", "Ciclope", "Demônio", "Diabo", "Cão", "Dragão", "Drake", "Dríade", "Anão", "Elefante", "Elfo", "Ettin", "Gigante do Fogo", "Peixe", "Sapo", "Gigante do Gelo", "Gárgula", "Gênio", "Gnoll", "Gnomo", "Goblin", "Górgona", "Grifo", "Bruxa", "Hobbit", "Harpia", "Cão do Inferno", "Gigante das Colinas", "Hipogrifo", "Hipopótamo", "Hobbit", "Hobgoblin", "Cavalo", "Hidra", "Diabrete", "Chacal", "Kobold", "Kraken", "Leprechaun", "Leão", "Lagarto", "Mantícora", "Diabrete", "Minotauro", "Mula", "Naga", "Nixie", "Ninfa", "Sapomem", "Ogro", "Orc", "Corujurso", "Pégaso", "Fênix", "Pixie", "Verme Gigante", "Pixie Sombria", "Monstro Podre", "Escorpião", "Serpente", "Ceifador", "Cobra", "Esfinge", "Aranha", "Sprite", "Gigante de Pedra", "Gigante das Tempestades", "Súcubo", "Tigre", "Titã", "Sapo", "Ent", "Neptar", "Troglodita", "Troll", "Tartaruga", "Unicórnio", "Morsa", "Doninha", "Lobisomem", "Baleia", "Wisp", "Lobo", "Carcaju", "Wyrm", "Wyvern", "Zorn", "Yeti", "Templário", "Ladrão", "Ilusionista", "Princesa", "Invocador", "Sacerdote", "Conjurador", "Bandido", "Sacerdotisa", "Barão", "Mago", "Clérigo", "Monge", "Menestrel", "Defensor", "Cavaleiro", "Mágico", "Bruxa", "Lutador", "Buscador", "Abatedor", "Ranger", "Bárbaro", "Explorador", "Herege", "Gladiador", "Sábio", "Ladrão", "Paladino", "Bardo", "Adivinho", "Senhor", "Fora-da-lei", "Profeta", "Mercenário", "Aventureiro", "Encantador", "Rei", "Batedor", "Místico", "Mago", "Viajante", "Invocador", "Rainha", "Guerreiro", "Feiticeiro", "Vidente", "Caçador", "Cavaleiro", "Príncipe", "Necromante", "Feiticeira", "Xamã"};
+			string sName4 = vName4[Utility.RandomMinMax( 0, (vName4.Length-1) )];
 
-			string[] vName5 = new string[] {"Castle", "Cave", "Mansion", "House", "Cave", "Dungeon", "Forest", "Desert", "Tower", "Desert", "Mountains", "Swamp", "Hills", "Night", "Darkness", "Fog", "Woods", "Mist", "Light", "Bottle", "Sky", "Ground", "Water", "Sea", "Sand", "Trees", "Clouds", "Stars", "Crystal", "Gem", "Lamp", "Jar", "Chains", "Keep", "City", "Village", "Tomb", "Crypt"};
-				string sName5 = vName5[Utility.RandomMinMax( 0, (vName5.Length-1) )];
+			string[] vName5 = new string[] {"Castelo", "Caverna", "Mansão", "Casa", "Caverna", "Masmorra", "Floresta", "Deserto", "Torre", "Deserto", "Montanhas", "Pântano", "Colinas", "Noite", "Escuridão", "Nevoeiro", "Bosque", "Névoa", "Luz", "Garrafa", "Céu", "Chão", "Água", "Mar", "Areia", "Árvores", "Nuvens", "Estrelas", "Cristal", "Gema", "Lâmpada", "Jarro", "Correntes", "Fortaleza", "Cidade", "Vila", "Tumba", "Cripta"};
+			string sName5 = vName5[Utility.RandomMinMax( 0, (vName5.Length-1) )];
 
 			string sName6 = NameList.RandomName( "author" );
 
-			string[] vName7 = new string[] {"Goblet", "Sword", "Axe", "Dagger", "Armor", "Crystal", "Gem", "Pool", "Wand", "Ring", "Amulet", "Helm", "Crown", "Boots", "Belt", "Robe", "Chalice", "Mirror", "Lance", "Shield", "Scepter", "Staff", "Book", "Potion", "Bow", "Stone", "Fire", "Shard", "Box"};
-				string sName7 = vName7[Utility.RandomMinMax( 0, (vName7.Length-1) )];
+			string[] vName7 = new string[] {"Cálice", "Espada", "Machado", "Adaga", "Armadura", "Cristal", "Gema", "Poço", "Varinha", "Anel", "Amuleto", "Elmo", "Coroa", "Botas", "Cinto", "Veste", "Cálice", "Espelho", "Lança", "Escudo", "Cetro", "Cajado", "Livro", "Poção", "Arco", "Pedra", "Fogo", "Fragmento", "Caixa"};
+			string sName7 = vName7[Utility.RandomMinMax( 0, (vName7.Length-1) )];
 
-			string[] vName8 = new string[] {"Search", "Quest", "Curse", "Magic", "Mystery", "Power", "Destruction", "Murder", "Desire", "Nature", "Legend", "Myth", "Lies", "Location"};
-				string sName8 = vName8[Utility.RandomMinMax( 0, (vName8.Length-1) )];
+			string[] vName8 = new string[] {"Busca", "Missão", "Maldição", "Magia", "Mistério", "Poder", "Destruição", "Assassinato", "Desejo", "Natureza", "Lenda", "Mito", "Mentiras", "Localização"};
+			string sName8 = vName8[Utility.RandomMinMax( 0, (vName8.Length-1) )];
 
 			switch ( Utility.RandomMinMax( 0, 10 ) ) 
 			{
-				case 0: bookTitle = "the " + sName1 + " " + sName2 + " of the " + sName4; break;
-				case 1: bookTitle = "the " + sName2 + " of the " + sName1 + " " + sName4; break;
-				case 2: bookTitle = "the " + sName4 + " in the " + sName5; break;
-				case 3: bookTitle = "the " + sName2 + " of the " + sName3 + " in the " + sName5; break;
-				case 4: bookTitle = "the " + sName1 + " " + sName5 + " of the " + sName3; break;
-				case 5: bookTitle = "the " + sName8 + " of the " + sName1 + " " + sName7 + " of " + sName6; break;
-				case 6: bookTitle = "the " + sName8 + " of the " + sName7 + " of " + sName6; break;
-				case 7: bookTitle = "the " + sName7 + " and the " + sName3; break;
-				case 8: bookTitle = "the " + sName3 + " and the " + sName7; break;
-				case 9: bookTitle = "the " + sName2 + " of " + sName6 + " the " + sName3; break;
-				case 10: bookTitle = "the " + sName2 + " of " + sName6 + " the " + sName3; break;
+				case 0: bookTitle = "a " + sName1 + " " + sName2 + " do " + sName4; break;
+				case 1: bookTitle = "a " + sName2 + " do " + sName1 + " " + sName4; break;
+				case 2: bookTitle = "o " + sName4 + " no " + sName5; break;
+				case 3: bookTitle = "a " + sName2 + " do " + sName3 + " no " + sName5; break;
+				case 4: bookTitle = "a " + sName1 + " " + sName5 + " do " + sName3; break;
+				case 5: bookTitle = "a " + sName8 + " do " + sName1 + " " + sName7 + " de " + sName6; break;
+				case 6: bookTitle = "a " + sName8 + " do " + sName7 + " de " + sName6; break;
+				case 7: bookTitle = "o " + sName7 + " e o " + sName3; break;
+				case 8: bookTitle = "o " + sName3 + " e o " + sName7; break;
+				case 9: bookTitle = "a " + sName2 + " de " + sName6 + " o " + sName3; break;
+				case 10: bookTitle = "a " + sName2 + " de " + sName6 + " o " + sName3; break;
 			}
 
 			return bookTitle;
@@ -1499,37 +1500,37 @@ namespace Server.Misc
 
 		public static string GetRandomScenePainting()
 		{
-			string sceneType = "Hills";
-			string sceneName = "Giant";
-			string sceneFinal = "the Hills of Iron";
+			string sceneType = "Colinas";
+			string sceneName = "Gigante";
+			string sceneFinal = "as Colinas de Ferro";
 
 			switch( Utility.RandomMinMax( 1, 11 ) )
 			{
-				case 1: sceneType = "Hills"; break;
-				case 2: sceneType = "Forest"; break;
-				case 3: sceneType = "Woods"; break;
-				case 4: sceneType = "Glade"; break;
-				case 5: sceneType = "Fields"; break;
-				case 6: sceneType = "Mountains"; break;
-				case 7: sceneType = "Barrens"; break;
-				case 8: sceneType = "Desert"; break;
-				case 9: sceneType = "Grasslands"; break;
-				case 10: sceneType = "Jungle"; break;
-				case 11: sceneType = "Land"; break;
+				case 1: sceneType = "Colina"; break;
+				case 2: sceneType = "Floresta"; break;
+				case 3: sceneType = "Bosque"; break;
+				case 4: sceneType = "Clareira"; break;
+				case 5: sceneType = "Campos"; break;
+				case 6: sceneType = "Montanha"; break;
+				case 7: sceneType = "Ermos"; break;
+				case 8: sceneType = "Deserto"; break;
+				case 9: sceneType = "Pastagem"; break;
+				case 10: sceneType = "Selva"; break;
+				case 11: sceneType = "Terra"; break;
 			}
 
 			switch( Utility.RandomMinMax( 1, 5 ) )
 			{
-				case 1: sceneName = GetRandomJobTitle(0); 	sceneFinal = "the " + sceneType + " of the " + sceneName + "";								break;
-				case 2: sceneName = GetRandomColorName(0); 	sceneFinal = "the " + sceneType + " of the " + sceneName + " " + GetRandomThing(0);			break;
-				case 3: sceneName = GetRandomThing(0); 		sceneFinal = "the " + sceneType + " of the " + sceneName + "";								break;
-				case 4: sceneName = GetRandomName(); 		sceneFinal = "the " + sceneType + " of " + sceneName + "";									break;
-				case 5: sceneName = GetRandomCreature(); 	sceneFinal = "the " + sceneType + " of the " + sceneName + "";
-					if ( Utility.RandomMinMax( 1, 3 ) == 1 ){ sceneFinal = "the " + sceneType + " of the " + GetRandomColorName(0) + " " + sceneName + ""; }
+				case 1: sceneName = GetRandomJobTitle(0);     sceneFinal = "a " + sceneType + " de " + sceneName + "";                                break;
+				case 2: sceneName = GetRandomColorName(0);     sceneFinal = "a " + sceneType + " de " + sceneName + " " + GetRandomThing(0);            break;
+				case 3: sceneName = GetRandomThing(0);         sceneFinal = "a " + sceneType + " de " + sceneName + "";                                break;
+				case 4: sceneName = GetRandomName();         sceneFinal = "a " + sceneType + " de " + sceneName + "";                                    break;
+				case 5: sceneName = GetRandomCreature();     sceneFinal = "a " + sceneType + " de " + sceneName + "";
+					if ( Utility.RandomMinMax( 1, 3 ) == 1 ){ sceneFinal = "a " + sceneType + " de " + GetRandomColorName(0) + " " + sceneName + ""; }
 					break;
 			}
 
-			if ( Utility.RandomMinMax( 1, 2 ) == 1 ){ sceneFinal = "the " + sceneName + " " + sceneType + ""; }
+			if ( Utility.RandomMinMax( 1, 2 ) == 1 ){ sceneFinal = "de " + sceneName + " " + sceneType + ""; }
 
 			return sceneFinal;
 		}
@@ -1538,22 +1539,22 @@ namespace Server.Misc
 
 		public static string GetRandomSociety()
 		{
-			string[] vName1 = new string[] {"Alliance", "Assembly", "Band", "Chain", "Church", "Circle", "Clan", "Coalition", "Faction", "Family", "Fellowship", "Followers", "Fraternity", "Guild", "League", "Legion", "Order", "Society", "Soldiers", "Syndicate", "Union"};
-				string sName1 = vName1[Utility.RandomMinMax( 0, (vName1.Length-1) )];
+			string[] vName1 = new string[] {"Aliança", "Assembleia", "Banda", "Corrente", "Igreja", "Círculo", "Clã", "Coligação", "Facção", "Família", "Irmandade", "Seguidores", "Fraternidade", "Guilda", "Liga", "Legião", "Ordem", "Sociedade", "Soldados", "Sindicato", "União"};
+			string sName1 = vName1[Utility.RandomMinMax( 0, (vName1.Length-1) )];
 
-			string[] vName2 = new string[] {"of the", "for the", "against the", "with the", "under the", "beneath the", "over the", "above the"};
-				string sName2 = vName2[Utility.RandomMinMax( 0, (vName2.Length-1) )] + " ";
+			string[] vName2 = new string[] {"do", "para o", "contra o", "com o", "sob o", "sob o", "sobre o", "acima do"};
+			string sName2 = vName2[Utility.RandomMinMax( 0, (vName2.Length-1) )] + " ";
 
-			string[] vName3 = new string[] {"Almighty", "Amazing", "Amber", "Ancestral", "Angelic", "Astonishing", "Astounding", "Azure", "Black", "Blackened", "Blessed", "Blue", "Bright", "Bronze", "Brown", "Burning", "Clear", "Copper", "Crystal", "Cursed", "Damned", "Dark", "Deathly", "Demonic", "Diamond", "Divine", "Doomed", "Electrical", "Emerald", "Enchanted", "Ethereal", "Evil", "Excellent", "Exotic", "Extraordinary", "Fabled", "Fabulous", "Fantastic", "Forgotten", "Frozen", "Glorious", "Glowing", "Gold", "Grand", "Gray", "Great", "Green", "Hexed", "High", "Holy", "Icy", "Incredible", "Indigo", "Infernal", "Ivory", "Jade", "Legendary", "Lost", "Lunar", "Magical", "Magnificent", "Maroon", "Marvelous", "Mighty", "Missing", "Mysterious", "Mystical", "Mythical", "Orange", "Ornate", "Phenomenal", "Platinum", "Purple", "Rare", "Red", "Ruby", "Sacred", "Sapphire", "Scarlet", "Secluded", "Secret", "Silver", "Solar", "Supreme", "Tan", "Twisted", "Ultimate", "Unholy", "Unknown", "Unspeakable", "Velvet", "Vile", "Violet", "White", "Wonderful", "Wondrous", "Yellow"};
-				string sName3 = vName3[Utility.RandomMinMax( 0, (vName3.Length-1) )] + " ";
-					if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sName3 = ""; }
-				string sName4 = vName3[Utility.RandomMinMax( 0, (vName3.Length-1) )] + " ";
-					if ( Utility.RandomMinMax( 0, 1 ) == 1 && sName3 != "" ){ sName4 = ""; }
+			string[] vName3 = new string[] {"Todo-poderoso", "Espantoso", "Âmbar", "Ancestral", "Angélico", "Surpreendente", "Estupendo", "Azul", "Negro", "Ennegrecido", "Abençoado", "Azul", "Brilhante", "Bronze", "Marrom", "Ardente", "Claro", "Cobre", "Cristal", "Amaldiçoado", "Condenado", "Sombrio", "Mortífero", "Demoníaco", "Diamante", "Divino", "Fadado", "Elétrico", "Esmeralda", "Encantado", "Etéreo", "Maligno", "Excelente", "Exótico", "Extraordinário", "Lendário", "Fabuloso", "Fantástico", "Esquecido", "Congelado", "Glorioso", "Brilhante", "Ouro", "Grande", "Cinza", "Grande", "Verde", "Enfeitiçado", "Alto", "Santo", "Gélido", "Incrível", "Índigo", "Infernal", "Marfim", "Jade", "Lendário", "Perdido", "Lunar", "Mágico", "Magnífico", "Marrom", "Maravilhoso", "Poderoso", "Desaparecido", "Misterioso", "Místico", "Mítico", "Laranja", "Ornado", "Fenomenal", "Platina", "Roxo", "Raro", "Vermelho", "Rubi", "Sagrado", "Safira", "Escarlate", "Recôndito", "Secreto", "Prata", "Solar", "Supremo", "Moreno", "Torcido", "Supremo", "Profano", "Desconhecido", "Indizível", "Veludo", "Vil", "Violeta", "Branco", "Maravilhoso", "Prodigioso", "Amarelo"};
+			string sName3 = vName3[Utility.RandomMinMax( 0, (vName3.Length-1) )] + " ";
+			if ( Utility.RandomMinMax( 0, 1 ) == 1 ){ sName3 = ""; }
+			string sName4 = vName3[Utility.RandomMinMax( 0, (vName3.Length-1) )] + " ";
+			if ( Utility.RandomMinMax( 0, 1 ) == 1 && sName3 != "" ){ sName4 = ""; }
 
-			string[] vName4 = new string[] {"Adventurer", "Amulet", "Armor", "Axe", "Bag", "Bandit", "Barbarian", "Bard", "Baron", "Beast", "Belt", "Blade", "Bones", "Book", "Boots", "Bottle", "Bow", "Bracelet", "Candle", "Cape", "Castle", "Cavalier", "Chalice", "Cleric", "Cloak", "Cloth", "Club", "Conjurer", "Crown", "Cutlass", "Dagger", "Defender", "Diviner", "Dragon", "Drum", "Dust", "Element", "Enchanter", "Explorer", "Eye", "Fighter", "Flute", "Gem", "Gladiator", "Glove", "Goblet", "Grave", "Halberd", "Hammer", "Hand", "Hat", "Heart", "Helm", "Heretic", "Horn", "Hunter", "Illusionist", "Invoker", "Key", "King", "Kingdom", "Knife", "Knight", "Kryss", "Labyrinth", "Lantern", "Light", "Lord", "Lute", "Mace", "Mage", "Magician", "Mercenary", "Minstrel", "Mirror", "Monk", "Moon", "Mystic", "Nail", "Necromancer", "Orb", "Outlaw", "Paladin", "Potion", "Pouch", "Priest", "Prince", "Prophet", "Ranger", "Riddle", "Ring", "Robe", "Rogue", "Rope", "Sage", "Scabbard", "Sceptre", "Scimitar", "Scout", "Scroll", "Seeker", "Seer", "Shackles", "Shaman", "Shield", "Skull", "Sky", "Slayer", "Sorcerer", "Staff", "Star", "Stone", "Summoner", "Sun", "Sword", "Templar", "Temple", "Thief", "Tomb", "Tome", "Tower", "Traveler", "Tree", "Trident", "Unicorn", "Wand", "Warlock", "Warrior", "Wind", "Wizard", "Word"};
-				string sName5 = vName4[Utility.RandomMinMax( 0, (vName4.Length-1) )];
+			string[] vName4 = new string[] {"Aventureiro", "Amuleto", "Armadura", "Machado", "Bolsa", "Bandido", "Bárbaro", "Bardo", "Barão", "Besta", "Cinto", "Lâmina", "Ossos", "Livro", "Botas", "Garrafa", "Arco", "Bracelete", "Vela", "Capa", "Castelo", "Cavaleiro", "Cálice", "Clérigo", "Capa", "Pano", "Porrete", "Conjurador", "Coroa", "Cutelo", "Adaga", "Defensor", "Adivinho", "Dragão", "Tambor", "Pó", "Elemento", "Encantador", "Explorador", "Olho", "Lutador", "Flauta", "Gema", "Gladiador", "Luva", "Cálice", "Tumba", "Alabarda", "Martelo", "Mão", "Chapéu", "Coração", "Elmo", "Herege", "Chifre", "Caçador", "Ilusionista", "Invocador", "Chave", "Rei", "Reino", "Faca", "Cavaleiro", "Kryss", "Labirinto", "Lanterna", "Luz", "Senhor", "Alaúde", "Maça", "Mago", "Mágico", "Mercenário", "Menestrel", "Espelho", "Monge", "Lua", "Místico", "Prego", "Necromante", "Orbe", "Fora-da-lei", "Paladino", "Poção", "Bolsa", "Sacerdote", "Príncipe", "Profeta", "Ranger", "Enigma", "Anel", "Veste", "Ladrão", "Corda", "Sábio", "Bainha", "Cetro", "Cimitarra", "Batedor", "Pergaminho", "Buscador", "Vidente", "Algemas", "Xamã", "Escudo", "Caveira", "Céu", "Abatedor", "Feiticeiro", "Cajado", "Estrela", "Pedra", "Invocador", "Sol", "Espada", "Templário", "Templo", "Ladrão", "Tumba", "Tomo", "Torre", "Viajante", "Árvore", "Tridente", "Unicórnio", "Varinha", "Bruxo", "Guerreiro", "Vento", "Mago", "Palavra"};
+			string sName5 = vName4[Utility.RandomMinMax( 0, (vName4.Length-1) )];
 
-			string nSociety = "the '" + sName3 + sName1 + " " + sName2 + sName4 + sName5 + "'";
+			string nSociety = "a '" + sName3 + sName1 + " " + sName2 + sName4 + sName5 + "'";
 
 			return nSociety;
 		}
@@ -1562,9 +1563,9 @@ namespace Server.Misc
 
 		public static string GetRandomJobTitle( int space )
 		{
-			string[] vTitle = new string[] {"Adventurer", "Bandit", "Barbarian", "Bard", "Baron", "Baroness", "Cavalier", "Cleric", "Conjurer", "Defender", "Diviner", "Druid", "Enchanter", "Enchantress", "Explorer", "Fighter", "Gladiator", "Heretic", "Hunter", "Illusionist", "Invoker", "King", "Knight", "Lady", "Lord", "Mage", "Magician", "Mercenary", "Minstrel", "Monk", "Mystic", "Necromancer", "Outlaw", "Paladin", "Priest", "Priestess", "Prince", "Princess", "Prophet", "Queen", "Ranger", "Rogue", "Sage", "Scout", "Seeker", "Seer", "Shaman", "Slayer", "Sorcerer", "Sorcereress", "Summoner", "Templar", "Thief", "Traveler", "Warlock", "Warrior", "Witch", "Wizard"};
-				string sTitle = "the " + vTitle[Utility.RandomMinMax( 0, (vTitle.Length-1) )];
-				if ( space > 0 ){ sTitle = sTitle + " "; }
+			string[] vTitle = new string[] {"Aventureiro", "Bandido", "Bárbaro", "Bardo", "Barão", "Baronesa", "Cavaleiro", "Clérigo", "Conjurador", "Defensor", "Adivinho", "Druida", "Encantador", "Encantadora", "Explorador", "Lutador", "Gladiador", "Herege", "Caçador", "Ilusionista", "Invocador", "Rei", "Cavaleiro", "Dama", "Senhor", "Mago", "Mágico", "Mercenário", "Menestrel", "Monge", "Místico", "Necromante", "Fora-da-lei", "Paladino", "Sacerdote", "Sacerdotisa", "Príncipe", "Princesa", "Profeta", "Rainha", "Ranger", "Ladrão", "Sábio", "Batedor", "Buscador", "Vidente", "Xamã", "Abatedor", "Feiticeiro", "Feiticeira", "Invocador", "Templário", "Ladrão", "Viajante", "Bruxo", "Guerreiro", "Bruxa", "Mago"};
+			string sTitle = "o " + vTitle[Utility.RandomMinMax( 0, (vTitle.Length-1) )];
+			if ( space > 0 ){ sTitle = sTitle + " "; }
 
 			return sTitle;
 		}
@@ -1573,9 +1574,9 @@ namespace Server.Misc
 
 		public static string GetRandomColorName( int space )
 		{
-			string[] vColor = new string[] {"Amber", "Azure", "Black", "Blue", "Bright", "Bronze", "Brown", "Burning", "Copper", "Crystal", "Dark", "Diamond", "Emerald", "Frozen", "Glowing", "Gold", "Gray", "Green", "Icy", "Indigo", "Ivory", "Jade", "Maroon", "Orange", "Platinum", "Purple", "Red", "Ruby", "Sapphire", "Scarlet", "Silver", "Velvet", "Violet", "White", "Yellow"};
-				string sColor = vColor[Utility.RandomMinMax( 0, (vColor.Length-1) )];
-				if ( space > 0 ){ sColor = sColor + " "; }
+			string[] vColor = new string[] {"Âmbar", "Azul", "Preto", "Azul", "Brilhante", "Bronze", "Marrom", "Ardente", "Cobre", "Cristal", "Sombrio", "Diamante", "Esmeralda", "Congelado", "Brilhante", "Ouro", "Cinza", "Verde", "Gélido", "Índigo", "Marfim", "Jade", "Marrom", "Laranja", "Platina", "Roxo", "Vermelho", "Rubi", "Safira", "Escarlate", "Prata", "Veludo", "Violeta", "Branco", "Amarelo"};
+			string sColor = vColor[Utility.RandomMinMax( 0, (vColor.Length-1) )];
+			if ( space > 0 ){ sColor = sColor + " "; }
 
 			return sColor;
 		}
@@ -1584,9 +1585,9 @@ namespace Server.Misc
 
 		public static string GetRandomThing( int space )
 		{
-			string[] vThing = new string[] {"Adventurer", "Amulet", "Armor", "Axe", "Bandit", "Barbarian", "Bard", "Baron", "Beast", "Belt", "Blade", "Bones", "Boots", "Bottle", "Bow", "Bracelet", "Candle", "Cavalier", "Chalice", "Cleric", "Club", "Conjurer", "Crown", "Cutlass", "Dagger", "Defender", "Diviner", "Dragon", "Drum", "Element", "Enchanter", "Explorer", "Eye", "Fighter", "Flute", "Gladiator", "Goblet", "Halberd", "Hammer", "Hand", "Heart", "Helm", "Heretic", "Horn", "Hunter", "Illusionist", "Invoker", "Key", "King", "Knife", "Knight", "Kryss", "Lantern", "Lord", "Lute", "Mace", "Mage", "Magician", "Mercenary", "Minstrel", "Monk", "Mystic", "Nail", "Necromancer", "Orb", "Outlaw", "Paladin", "Priest", "Prince", "Prophet", "Ranger", "Ring", "Robe", "Rogue", "Sage", "Scabbard", "Sceptre", "Scimitar", "Scout", "Seeker", "Seer", "Shackles", "Shaman", "Shield", "Skull", "Slayer", "Sorcerer", "Staff", "Stone", "Summoner", "Sword", "Templar", "Thief", "Tower", "Traveler", "Tree", "Trident", "Unicorn", "Wand", "Warlock", "Warrior", "Wizard"};
-				string sThing = vThing[Utility.RandomMinMax( 0, (vThing.Length-1) )];
-				if ( space > 0 ){ sThing = sThing + " "; }
+			string[] vThing = new string[] {"Aventureiro", "Amuleto", "Armadura", "Machado", "Bandido", "Bárbaro", "Bardo", "Barão", "Besta", "Cinto", "Lâmina", "Ossos", "Botas", "Garrafa", "Arco", "Bracelete", "Vela", "Cavaleiro", "Cálice", "Clérigo", "Porrete", "Conjurador", "Coroa", "Cutelo", "Adaga", "Defensor", "Adivinho", "Dragão", "Tambor", "Elemento", "Encantador", "Explorador", "Olho", "Lutador", "Flauta", "Gladiador", "Cálice", "Alabarda", "Martelo", "Mão", "Coração", "Elmo", "Herege", "Chifre", "Caçador", "Ilusionista", "Invocador", "Chave", "Rei", "Faca", "Cavaleiro", "Kryss", "Lanterna", "Senhor", "Alaúde", "Maça", "Mago", "Mágico", "Mercenário", "Menestrel", "Monge", "Místico", "Prego", "Necromante", "Orbe", "Fora-da-lei", "Paladino", "Sacerdote", "Príncipe", "Profeta", "Ranger", "Anel", "Veste", "Ladrão", "Sábio", "Bainha", "Cetro", "Cimitarra", "Batedor", "Buscador", "Vidente", "Algemas", "Xamã", "Escudo", "Caveira", "Abatedor", "Feiticeiro", "Cajado", "Pedra", "Invocador", "Espada", "Templário", "Ladrão", "Torre", "Viajante", "Árvore", "Tridente", "Unicórnio", "Varinha", "Bruxo", "Guerreiro", "Mago"};
+			string sThing = vThing[Utility.RandomMinMax( 0, (vThing.Length-1) )];
+			if ( space > 0 ){ sThing = sThing + " "; }
 
 			return sThing;
 		}
@@ -1595,8 +1596,8 @@ namespace Server.Misc
 
 		public static string GetRandomMonsters()
 		{
-			string[] vThing = new string[] {"a balrog", "a balron", "a bandit", "a barbarian", "a beholder", "a bugbear", "a chimera", "a cyclops", "a daemon", "a demon", "a devil", "a dracolich", "a dragon", "a dragon turtle", "a drake", "a dreadhorn", "a drow", "a gargoyle", "a gazer", "a ghost", "a ghoul", "a giant", "a giant beetle", "a giant crab", "a giant eel", "a giant scorpion", "a giant serpent", "a giant spider", "a giant squid", "a gnoll", "a gnome", "a goblin", "a golem", "a gorgon", "a griffon", "a hag", "a harpy", "a hippogriff", "a hobgoblin", "a hydra", "a kobold", "a kraken", "a leviathan", "a lich", "a lizardman", "a manticore", "a mind flayer", "a minotaur", "a morlock", "a mummy", "a naga", "a nazghoul", "a phantom", "a ratman", "a reaper", "a savage", "a slime", "a sphinx", "a sprite", "a succubus", "a terathan", "a tritun", "a troll", "a vampire", "a warrior", "a wight", "a witch", "a wizard", "a wyrm", "a wyvern", "a xorn", "a yeti", "a zombie", "an efreet", "an elemental", "an ettin", "an ifreet", "an imp", "an ogre", "an ophidian", "an orc", "an umber hulk"};
-				string sThing = vThing[Utility.RandomMinMax( 0, (vThing.Length-1) )];
+			string[] vThing = new string[] {"um balrog", "um balron", "um bandido", "um bárbaro", "um beholder", "um bugbear", "uma quimera", "um ciclope", "um demônio", "um demônio", "um diabo", "um dracolich", "um dragão", "um dragão tartaruga", "um drake", "um dreadhorn", "um drow", "uma gárgula", "um gazer", "um fantasma", "um ghoul", "um gigante", "um besouro gigante", "um caranguejo gigante", "uma enguia gigante", "um escorpião gigante", "uma serpente gigante", "uma aranha gigante", "uma lula gigante", "um gnoll", "um gnomo", "um goblin", "um golem", "uma górgona", "um grifo", "uma bruxa", "uma harpia", "um hipogrifo", "um hobgoblin", "uma hidra", "um kobold", "um kraken", "um leviatã", "um lich", "um homem-lagarto", "uma mantícora", "um devorador de mentes", "um minotauro", "um morlock", "uma múmia", "uma naga", "um nazghoul", "um fantasma", "um homem-rato", "um ceifador", "um selvagem", "um slime", "uma esfinge", "um sprite", "uma súcubo", "um terathan", "um tritun", "um troll", "um vampiro", "um guerreiro", "um wight", "uma bruxa", "um mago", "um wyrm", "um wyvern", "um xorn", "um yeti", "um zumbi", "um efreeti", "um elemental", "um ettin", "um ifreeti", "um diabrete", "um ogro", "um ofídio", "um orc", "um umber hulk"};
+			string sThing = vThing[Utility.RandomMinMax( 0, (vThing.Length-1) )];
 
 			return sThing;
 		}
@@ -1605,8 +1606,8 @@ namespace Server.Misc
 
 		public static string GetRandomAttackers()
 		{
-			string[] vThing = new string[] {"balrogs", "balrons", "bandits", "barbarians", "bugbears", "daemons", "demons", "drow", "ettins", "giants", "gnolls", "gnomes", "goblins", "hobgoblins", "kobolds", "lizardmen", "minotaurs", "ogres", "ophidians", "orcs", "ratmen", "savages", "terathans", "trituns", "trolls"};
-				string sThing = vThing[Utility.RandomMinMax( 0, (vThing.Length-1) )];
+			string[] vThing = new string[] {"balrogs", "balrons", "bandidos", "bárbaros", "bugbears", "demônios", "demônios", "drows", "ettins", "gigantes", "gnolls", "gnomos", "goblins", "hobgoblins", "kobolds", "homens-lagarto", "minotauros", "ogros", "ofídios", "orcs", "homens-rato", "selvagens", "terathans", "trituns", "trolls"};
+			string sThing = vThing[Utility.RandomMinMax( 0, (vThing.Length-1) )];
 
 			return sThing;
 		}
@@ -1615,8 +1616,8 @@ namespace Server.Misc
 
 		public static string GetRandomTroops()
 		{
-			string[] vThing = new string[] {"army", "soldiers", "troops", "balrogs", "balrons", "bandits", "barbarians", "bugbears", "daemons", "demons", "drow", "ettins", "giants", "gnolls", "gnomes", "goblins", "hobgoblins", "kobolds", "lizardmen", "minotaurs", "ogres", "ophidians", "orcs", "ratmen", "savages", "terathans", "trituns", "trolls", "wizards"};
-				string sThing = vThing[Utility.RandomMinMax( 0, (vThing.Length-1) )];
+			string[] vThing = new string[] {"exército", "soldados", "tropas", "balrogs", "balrons", "bandidos", "bárbaros", "bugbears", "demônios", "demônios", "drows", "ettins", "gigantes", "gnolls", "gnomos", "goblins", "hobgoblins", "kobolds", "homens-lagarto", "minotauros", "ogros", "ofídios", "orcs", "homens-rato", "selvagens", "terathans", "trituns", "trolls", "magos"};
+			string sThing = vThing[Utility.RandomMinMax( 0, (vThing.Length-1) )];
 
 			return sThing;
 		}
@@ -1635,33 +1636,33 @@ namespace Server.Misc
 
 		public static string GetRandomJob()
 		{
-			string sJob = "tinker";
+			string sJob = "funileiro";
 			int section = Utility.RandomMinMax( 1, 23 );
 			switch( section )
 			{
-				case 1: sJob = "blacksmith"; break;
-				case 2: sJob = "jeweler"; break;
-				case 3: sJob = "provisioner"; break;
-				case 4: sJob = "banker"; break;
-				case 5: sJob = "minter"; break;
-				case 6: sJob = "waiter"; break;
-				case 7: sJob = "guard"; break;
-				case 8: sJob = "sage"; break;
-				case 9: sJob = "mage"; break;
-				case 10: sJob = "herbalist"; break;
-				case 11: sJob = "alchemist"; break;
-				case 12: sJob = "healer"; break;
-				case 13: sJob = "guildmaster"; break;
-				case 14: sJob = "tinker"; break;
-				case 15: sJob = "innkeeper"; break;
-				case 16: sJob = "bartender"; break;
-				case 17: sJob = "butcher"; break;
-				case 18: sJob = "tailor"; break;
-				case 19: sJob = "weaver"; break;
-				case 20: sJob = "shipwright"; break;
-				case 21: sJob = "scribe"; break;
-				case 22: sJob = "farmer"; break;
-				case 23: sJob = "stable master"; break;
+				case 1: sJob = "ferreiro"; break;
+				case 2: sJob = "joalheiro"; break;
+				case 3: sJob = "providor"; break;
+				case 4: sJob = "banqueiro"; break;
+				case 5: sJob = "cunhador"; break;
+				case 6: sJob = "garçom"; break;
+				case 7: sJob = "guarda"; break;
+				case 8: sJob = "sábio"; break;
+				case 9: sJob = "mago"; break;
+				case 10: sJob = "herbalista"; break;
+				case 11: sJob = "alquimista"; break;
+				case 12: sJob = "curandeiro"; break;
+				case 13: sJob = "mestre de guilda"; break;
+				case 14: sJob = "funileiro"; break;
+				case 15: sJob = "estalajadeiro"; break;
+				case 16: sJob = "barman"; break;
+				case 17: sJob = "açougueiro"; break;
+				case 18: sJob = "alfaiate"; break;
+				case 19: sJob = "tecelão"; break;
+				case 20: sJob = "construtor naval"; break;
+				case 21: sJob = "escriba"; break;
+				case 22: sJob = "fazendeiro"; break;
+				case 23: sJob = "mestre de estábulo"; break;
 			}
 
 			return sJob;
@@ -1671,40 +1672,40 @@ namespace Server.Misc
 
 		public static string GetRandomShop()
 		{
-			string sType = "shop";
+			string sType = "loja";
 			switch( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 1: sType = "store"; break;
-				case 2: sType = "shoppe"; break;
-				case 3: sType = "market"; break;
+				case 1: sType = "estabelecimento"; break;
+				case 2: sType = "mercearia"; break;
+				case 3: sType = "mercado"; break;
 			}
-			string sJob = "tinker";
+			string sJob = "funileiro";
 			switch( Utility.RandomMinMax( 1, 24 ) )
 			{
-				case 1: sJob = "a blacksmith " + sType; break;
-				case 2: sJob = "a jewelry " + sType; break;
-				case 3: sJob = "a provision " + sType; break;
-				case 4: sJob = "a leather " + sType; break;
-				case 5: sJob = "a music " + sType; break;
-				case 6: sJob = "an alchemy " + sType; break;
-				case 7: sJob = "a potion " + sType; break;
-				case 8: sJob = "a book " + sType; break;
-				case 9: sJob = "a magic " + sType; break;
-				case 10: sJob = "an herb " + sType; break;
-				case 11: sJob = "a garden " + sType; break;
-				case 12: sJob = "an animal " + sType; break;
-				case 13: sJob = "a tailor " + sType; break;
-				case 14: sJob = "an inn"; break;
-				case 15: sJob = "a tavern"; break;
-				case 16: sJob = "a bank"; break;
-				case 17: sJob = "a butcher " + sType; break;
-				case 18: sJob = "a shipbuilding " + sType; break;
-				case 19: sJob = "a scribe " + sType; break;
-				case 20: sJob = "a guild"; break;
-				case 21: sJob = "a cult"; break;
-				case 22: sJob = "a church"; break;
-				case 23: sJob = "a stable"; break;
-				case 24: sJob = "a library"; break;
+				case 1: sJob = "uma " + sType + " de ferreiro"; break;
+				case 2: sJob = "uma " + sType + " de joalheria"; break;
+				case 3: sJob = "uma " + sType + " de provisões"; break;
+				case 4: sJob = "uma " + sType + " de couro"; break;
+				case 5: sJob = "uma " + sType + " de música"; break;
+				case 6: sJob = "uma " + sType + " de alquimia"; break;
+				case 7: sJob = "uma " + sType + " de poções"; break;
+				case 8: sJob = "uma " + sType + " de livros"; break;
+				case 9: sJob = "uma " + sType + " de magia"; break;
+				case 10: sJob = "uma " + sType + " de ervas"; break;
+				case 11: sJob = "uma " + sType + " de jardim"; break;
+				case 12: sJob = "uma " + sType + " de animais"; break;
+				case 13: sJob = "uma " + sType + " de alfaiate"; break;
+				case 14: sJob = "uma estalagem"; break;
+				case 15: sJob = "uma taverna"; break;
+				case 16: sJob = "um banco"; break;
+				case 17: sJob = "uma " + sType + " de carnes"; break;
+				case 18: sJob = "uma " + sType + " de construção naval"; break;
+				case 19: sJob = "uma " + sType + " de escriba"; break;
+				case 20: sJob = "uma guilda"; break;
+				case 21: sJob = "um culto"; break;
+				case 22: sJob = "uma igreja"; break;
+				case 23: sJob = "um estábulo"; break;
+				case 24: sJob = "uma biblioteca"; break;
 			}
 
 			return sJob;
@@ -1714,31 +1715,31 @@ namespace Server.Misc
 
 		public static string GetRandomGemType( string category )
 		{
-			string sGem = "ruby";
+			string sGem = "rubi";
 
 			int section = Utility.RandomMinMax( 1, 18 );
 			if ( category == "dragyns" ){ section = Utility.RandomMinMax( 1, 12 ); }
 
 			switch( section )
 			{
-				case 1: sGem = "ruby"; break;
+				case 1: sGem = "rubi"; break;
 				case 2: sGem = "jade"; break;
-				case 3: sGem = "quartz"; break;
-				case 4: sGem = "sapphire"; break;
-				case 5: sGem = "onyx"; break;
-				case 6: sGem = "spinel"; break;
-				case 7: sGem = "topaz"; break;
-				case 8: sGem = "amethyst"; break;
-				case 9: sGem = "emerald"; break;
-				case 10: sGem = "garnet"; break;
-				case 11: sGem = "silver"; break;
-				case 12: sGem = "star ruby"; break;
-				case 13: sGem = "star sapphire"; break;
-				case 14: sGem = "citrine"; break;
-				case 15: sGem = "caddellite"; break;
-				case 16: sGem = "amber"; break;
-				case 17: sGem = "diamond"; break;
-				case 18: sGem = "tourmaline"; break;
+				case 3: sGem = "quartzo"; break;
+				case 4: sGem = "safira"; break;
+				case 5: sGem = "ônix"; break;
+				case 6: sGem = "espinela"; break;
+				case 7: sGem = "topázio"; break;
+				case 8: sGem = "ametista"; break;
+				case 9: sGem = "esmeralda"; break;
+				case 10: sGem = "granada"; break;
+				case 11: sGem = "prata"; break;
+				case 12: sGem = "rubi estrela"; break;
+				case 13: sGem = "safira estrela"; break;
+				case 14: sGem = "citrino"; break;
+				case 15: sGem = "caddelita"; break;
+				case 16: sGem = "âmbar"; break;
+				case 17: sGem = "diamante"; break;
+				case 18: sGem = "turmalina"; break;
 			}
 
 			return sGem;
@@ -1766,14 +1767,14 @@ namespace Server.Misc
 				case 12: sPlace = "Springvale"; break;
 				case 13: sPlace = "Elidor"; break;
 				case 14: sPlace = "Islegem"; break;
-				case 15: sPlace = "the Port of Dusk"; break;
-				case 16: sPlace = "the Port of Starguide"; break;
+				case 15: sPlace = "o Porto de Dusk"; break;
+				case 16: sPlace = "o Porto de Starguide"; break;
 				case 17: sPlace = "Portshine"; break;
 				case 18: sPlace = "Greensky Village"; break;
-				case 19: sPlace = "the City of Lodoria"; break;
-				case 20: sPlace = "the Cimmeran Hold"; break;
-				case 21: sPlace = "the Village of Barako"; break;
-				case 22: sPlace = "the Village of Kurak"; break;
+				case 19: sPlace = "a Cidade de Lodoria"; break;
+				case 20: sPlace = "Cimmeran Hold"; break;
+				case 21: sPlace = "a Vila de Barako"; break;
+				case 22: sPlace = "a Vila de Kurak"; break;
 				case 23: sPlace = "Kuldara"; break;
 			}
 
@@ -1784,130 +1785,130 @@ namespace Server.Misc
 
 		public static string GetRandomCreature()
 		{
-			string sCreature = "Giant";
+			string sCreature = "Gigante";
 			int section = Utility.RandomMinMax( 0, 120 );
 			switch( section )
 			{
-				case 0: sCreature = "Ant"; break;
-				case 1: sCreature = "Ape"; break;
-				case 2: sCreature = "Baboon"; break;
-				case 3: sCreature = "Badger"; break;
-				case 4: sCreature = "Basilisk"; break;
-				case 5: sCreature = "Bear"; break;
-				case 6: sCreature = "Beaver"; break;
-				case 7: sCreature = "Beetle"; break;
+				case 0: sCreature = "Formiga"; break;
+				case 1: sCreature = "Macaco"; break;
+				case 2: sCreature = "Babuíno"; break;
+				case 3: sCreature = "Texugo"; break;
+				case 4: sCreature = "Basilisco"; break;
+				case 5: sCreature = "Urso"; break;
+				case 6: sCreature = "Castor"; break;
+				case 7: sCreature = "Besouro"; break;
 				case 8: sCreature = "Beholder"; break;
-				case 9: sCreature = "Boar"; break;
-				case 10: sCreature = "Brownie"; break;
-				case 11: sCreature = "Buffalo"; break;
-				case 12: sCreature = "Bull"; break;
-				case 13: sCreature = "Camel"; break;
-				case 14: sCreature = "Centaur"; break;
-				case 15: sCreature = "Centipede"; break;
-				case 16: sCreature = "Chimera"; break;
+				case 9: sCreature = "Javali"; break;
+				case 10: sCreature = "Duende"; break;
+				case 11: sCreature = "Búfalo"; break;
+				case 12: sCreature = "Touro"; break;
+				case 13: sCreature = "Camelo"; break;
+				case 14: sCreature = "Centauro"; break;
+				case 15: sCreature = "Centopeia"; break;
+				case 16: sCreature = "Quimera"; break;
 				case 17: sCreature = "Cockatrice"; break;
-				case 18: sCreature = "Crocodile"; break;
-				case 19: sCreature = "Deer"; break;
-				case 20: sCreature = "Demon"; break;
-				case 21: sCreature = "Devil"; break;
-				case 22: sCreature = "Dinosaur"; break;
-				case 23: sCreature = "Djinni"; break;
-				case 24: sCreature = "Dog"; break;
-				case 25: sCreature = "Dragon"; break;
-				case 26: sCreature = "Dryad"; break;
-				case 27: sCreature = "Dwarf"; break;
-				case 28: sCreature = "Eagle"; break;
+				case 18: sCreature = "Crocodilo"; break;
+				case 19: sCreature = "Veado"; break;
+				case 20: sCreature = "Demônio"; break;
+				case 21: sCreature = "Diabo"; break;
+				case 22: sCreature = "Dinossauro"; break;
+				case 23: sCreature = "Gênio"; break;
+				case 24: sCreature = "Cão"; break;
+				case 25: sCreature = "Dragão"; break;
+				case 26: sCreature = "Dríade"; break;
+				case 27: sCreature = "Anão"; break;
+				case 28: sCreature = "Águia"; break;
 				case 29: sCreature = "Efreet"; break;
 				case 30: sCreature = "Elemental"; break;
-				case 31: sCreature = "Elephant"; break;
-				case 32: sCreature = "Elf"; break;
+				case 31: sCreature = "Elefante"; break;
+				case 32: sCreature = "Elfo"; break;
 				case 33: sCreature = "Ettin"; break;
-				case 34: sCreature = "Frog"; break;
-				case 35: sCreature = "Fungi"; break;
-				case 36: sCreature = "Gargoyle"; break;
-				case 37: sCreature = "Ghast"; break;
-				case 38: sCreature = "Ghost"; break;
+				case 34: sCreature = "Sapo"; break;
+				case 35: sCreature = "Fungo"; break;
+				case 36: sCreature = "Gárgula"; break;
+				case 37: sCreature = "Espectro"; break;
+				case 38: sCreature = "Fantasma"; break;
 				case 39: sCreature = "Ghoul"; break;
-				case 40: sCreature = "Giant"; break;
+				case 40: sCreature = "Gigante"; break;
 				case 41: sCreature = "Gnoll"; break;
-				case 42: sCreature = "Gnome"; break;
-				case 43: sCreature = "Goat"; break;
+				case 42: sCreature = "Gnomo"; break;
+				case 43: sCreature = "Cabra"; break;
 				case 44: sCreature = "Goblin"; break;
 				case 45: sCreature = "Golem"; break;
-				case 46: sCreature = "Gorgon"; break;
-				case 47: sCreature = "Griffon"; break;
-				case 48: sCreature = "Hag"; break;
-				case 49: sCreature = "Halfling"; break;
-				case 50: sCreature = "Harpy"; break;
-				case 51: sCreature = "Hell Hound"; break;
-				case 52: sCreature = "Hippogriff"; break;
-				case 53: sCreature = "Hippopotamus"; break;
+				case 46: sCreature = "Górgona"; break;
+				case 47: sCreature = "Grifo"; break;
+				case 48: sCreature = "Bruxa"; break;
+				case 49: sCreature = "Hobbit"; break;
+				case 50: sCreature = "Harpia"; break;
+				case 51: sCreature = "Cão do Inferno"; break;
+				case 52: sCreature = "Hipogrifo"; break;
+				case 53: sCreature = "Hipopótamo"; break;
 				case 54: sCreature = "Hobgoblin"; break;
-				case 55: sCreature = "Horse"; break;
-				case 56: sCreature = "Hydra"; break;
-				case 57: sCreature = "Hyena"; break;
-				case 58: sCreature = "Imp"; break;
-				case 59: sCreature = "Jackal"; break;
+				case 55: sCreature = "Cavalo"; break;
+				case 56: sCreature = "Hidra"; break;
+				case 57: sCreature = "Hiena"; break;
+				case 58: sCreature = "Diabrete"; break;
+				case 59: sCreature = "Chacal"; break;
 				case 60: sCreature = "Jaguar"; break;
 				case 61: sCreature = "Ki-rin"; break;
 				case 62: sCreature = "Kobold"; break;
-				case 63: sCreature = "Leopard"; break;
+				case 63: sCreature = "Leopardo"; break;
 				case 64: sCreature = "Leprechaun"; break;
 				case 65: sCreature = "Lich"; break;
-				case 66: sCreature = "Lion"; break;
-				case 67: sCreature = "Lizard"; break;
-				case 68: sCreature = "Lizardman"; break;
-				case 69: sCreature = "Lycanthrope"; break;
-				case 70: sCreature = "Lynx"; break;
-				case 71: sCreature = "Mammoth"; break;
-				case 72: sCreature = "Manticore"; break;
-				case 73: sCreature = "Mastodon"; break;
+				case 66: sCreature = "Leão"; break;
+				case 67: sCreature = "Lagarto"; break;
+				case 68: sCreature = "Homem-lagarto"; break;
+				case 69: sCreature = "Lobisomem"; break;
+				case 70: sCreature = "Lince"; break;
+				case 71: sCreature = "Mamute"; break;
+				case 72: sCreature = "Mantícora"; break;
+				case 73: sCreature = "Mastodonte"; break;
 				case 74: sCreature = "Medusa"; break;
-				case 75: sCreature = "Minotaur"; break;
-				case 76: sCreature = "Mule"; break;
-				case 77: sCreature = "Mummy"; break;
+				case 75: sCreature = "Minotauro"; break;
+				case 76: sCreature = "Mula"; break;
+				case 77: sCreature = "Múmia"; break;
 				case 78: sCreature = "Naga"; break;
-				case 79: sCreature = "Nightmare"; break;
-				case 80: sCreature = "Ogre"; break;
+				case 79: sCreature = "Pesadelo"; break;
+				case 80: sCreature = "Ogro"; break;
 				case 81: sCreature = "Orc"; break;
-				case 82: sCreature = "Owl"; break;
-				case 83: sCreature = "Pegasus"; break;
+				case 82: sCreature = "Coruja"; break;
+				case 83: sCreature = "Pégaso"; break;
 				case 84: sCreature = "Pixie"; break;
-				case 85: sCreature = "Porcupine"; break;
-				case 86: sCreature = "Ram"; break;
-				case 87: sCreature = "Rat"; break;
-				case 88: sCreature = "Reaper"; break;
-				case 89: sCreature = "Rhinoceros"; break;
+				case 85: sCreature = "Porco-espinho"; break;
+				case 86: sCreature = "Carneiro"; break;
+				case 87: sCreature = "Rato"; break;
+				case 88: sCreature = "Ceifador"; break;
+				case 89: sCreature = "Rinoceronte"; break;
 				case 90: sCreature = "Roc"; break;
-				case 91: sCreature = "Satyr"; break;
-				case 92: sCreature = "Scorpion"; break;
-				case 93: sCreature = "Serpent"; break;
-				case 94: sCreature = "Shadow"; break;
-				case 95: sCreature = "Skeleton"; break;
-				case 96: sCreature = "Skunk"; break;
-				case 97: sCreature = "Snake"; break;
-				case 98: sCreature = "Spectre"; break;
-				case 99: sCreature = "Sphinx"; break;
-				case 100: sCreature = "Spider"; break;
+				case 91: sCreature = "Sátiro"; break;
+				case 92: sCreature = "Escorpião"; break;
+				case 93: sCreature = "Serpente"; break;
+				case 94: sCreature = "Sombra"; break;
+				case 95: sCreature = "Esqueleto"; break;
+				case 96: sCreature = "Gambá"; break;
+				case 97: sCreature = "Cobra"; break;
+				case 98: sCreature = "Espectro"; break;
+				case 99: sCreature = "Esfinge"; break;
+				case 100: sCreature = "Aranha"; break;
 				case 101: sCreature = "Sprite"; break;
-				case 102: sCreature = "Stag"; break;
-				case 103: sCreature = "Tiger"; break;
-				case 104: sCreature = "Titan"; break;
-				case 105: sCreature = "Toad"; break;
-				case 106: sCreature = "Troglodyte"; break;
+				case 102: sCreature = "Cervo"; break;
+				case 103: sCreature = "Tigre"; break;
+				case 104: sCreature = "Titã"; break;
+				case 105: sCreature = "Sapo"; break;
+				case 106: sCreature = "Troglodita"; break;
 				case 107: sCreature = "Troll"; break;
-				case 108: sCreature = "Unicorn"; break;
-				case 109: sCreature = "Vampire"; break;
-				case 110: sCreature = "Weasel"; break;
+				case 108: sCreature = "Unicórnio"; break;
+				case 109: sCreature = "Vampiro"; break;
+				case 110: sCreature = "Doninha"; break;
 				case 111: sCreature = "Wight"; break;
 				case 112: sCreature = "Wisp"; break;
-				case 113: sCreature = "Wolf"; break;
-				case 114: sCreature = "Wolverine"; break;
-				case 115: sCreature = "Worm"; break;
-				case 116: sCreature = "Wraith"; break;
+				case 113: sCreature = "Lobo"; break;
+				case 114: sCreature = "Carcaju"; break;
+				case 115: sCreature = "Verme"; break;
+				case 116: sCreature = "Espectro"; break;
 				case 117: sCreature = "Wyvern"; break;
 				case 118: sCreature = "Yeti"; break;
-				case 119: sCreature = "Zombie"; break;
+				case 119: sCreature = "Zumbi"; break;
 				case 120: sCreature = "Zorn"; break;
 			}
 
@@ -1924,33 +1925,33 @@ namespace Server.Misc
 			{
 				case 0: sLanguage = "balron"; break;
 				case 1: sLanguage = "pixie"; break;
-				case 2: sLanguage = "centaur"; break;
-				case 3: sLanguage = "demonic"; break;
-				case 4: sLanguage = "dragon"; break;
-				case 5: sLanguage = "dwarvish"; break;
-				case 6: sLanguage = "elven"; break;
+				case 2: sLanguage = "centauro"; break;
+				case 3: sLanguage = "demoníaco"; break;
+				case 4: sLanguage = "dragão"; break;
+				case 5: sLanguage = "anão"; break;
+				case 6: sLanguage = "élfico"; break;
 				case 7: sLanguage = "fey"; break;
-				case 8: sLanguage = "gargoyle"; break;
-				case 9: sLanguage = "cyclops"; break;
+				case 8: sLanguage = "gárgula"; break;
+				case 9: sLanguage = "ciclope"; break;
 				case 10: sLanguage = "gnoll"; break;
 				case 11: sLanguage = "goblin"; break;
 				case 12: sLanguage = "gremlin"; break;
-				case 13: sLanguage = "druidic"; break;
+				case 13: sLanguage = "druídico"; break;
 				case 14: sLanguage = "tritun"; break;
-				case 15: sLanguage = "minotaur"; break;
+				case 15: sLanguage = "minotauro"; break;
 				case 16: sLanguage = "naga"; break;
-				case 17: sLanguage = "ogrish"; break;
-				case 18: sLanguage = "orkish"; break;
-				case 19: sLanguage = "sphinx"; break;
+				case 17: sLanguage = "ogro"; break;
+				case 18: sLanguage = "orc"; break;
+				case 19: sLanguage = "esfinge"; break;
 				case 20: sLanguage = "treekin"; break;
-				case 21: sLanguage = "trollish"; break;
-				case 22: sLanguage = "undead"; break;
-				case 23: sLanguage = "vampire"; break;
-				case 24: sLanguage = "dark elf"; break;
-				case 25: sLanguage = "magic"; break;
-				case 26: sLanguage = "human"; break;
-				case 27: sLanguage = "symbolic"; break;
-				case 28: sLanguage = "runic"; break;
+				case 21: sLanguage = "troll"; break;
+				case 22: sLanguage = "morto-vivo"; break;
+				case 23: sLanguage = "vampiro"; break;
+				case 24: sLanguage = "elfo negro"; break;
+				case 25: sLanguage = "mágico"; break;
+				case 26: sLanguage = "humano"; break;
+				case 27: sLanguage = "simbólico"; break;
+				case 28: sLanguage = "rúnico"; break;
 			}
 
 			return sLanguage;
@@ -1960,7 +1961,7 @@ namespace Server.Misc
 
 		public static string MagicItemAdj( string placed, bool oriental, bool evil, int itemid )
 		{
-			string sAdjective = "magical";
+			string sAdjective = "mágico(a)";
 
 			int pick = Utility.RandomMinMax( 0, 37 );
 
@@ -1972,12 +1973,12 @@ namespace Server.Misc
 
 				switch( pick )
 				{
-					case 0: sAdjective = "the Demon";		break;
-					case 1: sAdjective = "the Dragon";		break;
-					case 2: sAdjective = "the Daemon";		break;
-					case 3: sAdjective = "the Devil";		break;
-					case 4: sAdjective = "the Wyrm";		break;
-					case 5: sAdjective = "the Drake";		break;
+					case 0: sAdjective = "o Demônio";        break;
+					case 1: sAdjective = "o Dragão";        break;
+					case 2: sAdjective = "o Demônio";        break;
+					case 3: sAdjective = "o Diabo";        break;
+					case 4: sAdjective = "o Wyrm";        break;
+					case 5: sAdjective = "o Draconiano";        break;
 				}
 			}
 			else
@@ -1986,369 +1987,369 @@ namespace Server.Misc
 				{
 					switch( pick )
 					{
-						case 0: sAdjective = "exotic"; 			break;
-						case 1: sAdjective = "mysterious"; 		break;
-						case 2: sAdjective = "enchanted"; 		break;
-						case 3: sAdjective = "marvelous"; 		break;
-						case 4: sAdjective = "amazing"; 		break;
-						case 5: sAdjective = "astonishing"; 	break;
-						case 6: sAdjective = "mystical"; 		break;
-						case 7: sAdjective = "astounding"; 		break;
-						case 8: sAdjective = "magical"; 		break;
-						case 9: sAdjective = "divine"; 			break;
-						case 10: sAdjective = "excellent"; 		break;
-						case 11: sAdjective = "magnificent"; 	break;
-						case 12: sAdjective = "phenomenal"; 	break;
-						case 13: sAdjective = "fantastic"; 		break;
-						case 14: sAdjective = "incredible"; 	break;
-						case 15: sAdjective = "extraordinary"; 	break;
-						case 16: sAdjective = "fabulous"; 		break;
-						case 17: sAdjective = "wondrous"; 		break;
-						case 18: sAdjective = "glorious"; 		break;
-						case 19: sAdjective = "lost"; 			break;
-						case 20: sAdjective = "fabled"; 		break;
-						case 21: sAdjective = "legendary"; 		break;
-						case 22: sAdjective = "mythical"; 		break;
-						case 23: sAdjective = "ancestral"; 		break;
-						case 24: sAdjective = "ornate"; 		break;
-						case 25: sAdjective = "ultimate"; 		break;
-						case 26: sAdjective = "rare"; 			break;
-						case 27: sAdjective = "wonderful"; 		break;
-						case 28: sAdjective = "sacred"; 		break;
-						case 29: sAdjective = "almighty"; 		break;
-						case 30: sAdjective = "supreme"; 		break;
-						case 31: sAdjective = "mighty"; 		break;
-						case 32: sAdjective = "unspeakable"; 	break;
-						case 33: sAdjective = "forgotten"; 		break;
-						case 34: sAdjective = "great"; 			break;
-						case 35: sAdjective = "grand"; 			break;
-						case 36: sAdjective = "magic"; 			break;
-						case 37: sAdjective = "unusual"; 		break;
-						case 38: sAdjective = "might"; 			break;
-						case 39: sAdjective = "power"; 			break;
-						case 40: sAdjective = "greatness"; 		break;
-						case 41: sAdjective = "magic"; 			break;
-						case 42: sAdjective = "supremacy"; 		break;
-						case 43: sAdjective = "the almighty"; 	break;
-						case 44: sAdjective = "the sacred"; 	break;
-						case 45: sAdjective = "magnificence"; 	break;
-						case 46: sAdjective = "excellence"; 	break;
-						case 47: sAdjective = "glory"; 			break;
-						case 48: sAdjective = "mystery"; 		break;
-						case 49: sAdjective = "the divine"; 	break;
-						case 50: sAdjective = "the forgotten"; 	break;
-						case 51: sAdjective = "legend"; 		break;
-						case 52: sAdjective = "the lost"; 		break;
-						case 53: sAdjective = "the ancients"; 	break;
-						case 54: sAdjective = "wonder"; 		break;
-						case 55: sAdjective = "the mighty"; 	break;
-						case 56: sAdjective = "marvel"; 		break;
-						case 57: sAdjective = "nobility"; 		break;
-						case 58: sAdjective = "mysticism"; 		break;
-						case 59: sAdjective = "enchantment"; 	break;
-						case 60: sAdjective = "the Karateka";		break;
-						case 61: sAdjective = "the Ronin";			break;
-						case 62: sAdjective = "the Samurai";		break;
-						case 63: sAdjective = "the Ninja";			break;
-						case 64: sAdjective = "the Yakuza";			break;
-						case 65: sAdjective = "the Wu Jen";			break;
-						case 66: sAdjective = "the Kensai";			break;
-						case 67: sAdjective = "the Shukenja";		break;
-						case 68: sAdjective = "the Fangshi";		break;
-						case 69: sAdjective = "the Waidan";			break;
-						case 70: sAdjective = "the Neidan";			break;
-						case 71: sAdjective = "the Monk";			break;
-						case 72: sAdjective = "the Kyudo";			break;
-						case 73: sAdjective = "the Yuki Ota";		break;
-						case 74: sAdjective = "the Sakushi";		break;
-						case 75: sAdjective = "the Youxia";			break;
-						case 76: sAdjective = "the Kyudoka";		break;
-						case 77: sAdjective = "the Ashigaru";		break;
-						case 78: sAdjective = "the Martial Artist";	break;
-						case 79: sAdjective = "the Slayer";			break;
-						case 80: sAdjective = "the Wako";			break;
-						case 81: sAdjective = "the Barbarian";		break;
-						case 82: sAdjective = "the Explorer";		break;
-						case 83: sAdjective = "the Heretic";		break;
-						case 84: sAdjective = "the Sumo";			break;
-						case 85: sAdjective = "the Iaijutsu";		break;
-						case 86: sAdjective = "the Emperor";		break;
-						case 87: sAdjective = "of the " + Server.Misc.RandomThings.GetRandomColorName(0) + " Dynasty";		break;
-						case 88: sAdjective = "the Zhuhou";			break;
-						case 89: sAdjective = "the Qing";			break;
-						case 90: sAdjective = "the Empress";		break;
-						case 91: sAdjective = "the Daifu";			break;
-						case 92: sAdjective = "the Shi";			break;
-						case 93: sAdjective = "the Shumin";			break;
-						case 94: sAdjective = "the Heika";			break;
-						case 95: sAdjective = "the Denka";			break;
-						case 96: sAdjective = "the Hidenka";		break;
-						case 97: sAdjective = "the Kakka";			break;
-						case 98: sAdjective = "the Daitoryo";		break;
-						case 99: sAdjective = "the Renshi";			break;
-						case 100: sAdjective = "the Kyoshi";		break;
-						case 101: sAdjective = "the Hanshi";		break;
-						case 102: sAdjective = "the Meijin";		break;
-						case 103: sAdjective = "the Oyakata";		break;
-						case 104: sAdjective = "the Shihan";		break;
-						case 105: sAdjective = "the Shidoin";		break;
-						case 106: sAdjective = "the Shisho";		break;
-						case 107: sAdjective = "the Zeki";			break;
-						case 108: sAdjective = "the Shaman";		break;
-						case 109: sAdjective = "the Shodan";		break;
-						case 110: sAdjective = "the Nidan";			break;
-						case 111: sAdjective = "the Yodan";			break;
-						case 112: sAdjective = "the Godan";			break;
-						case 113: sAdjective = "the Rokudan";		break;
-						case 114: sAdjective = "the Shichidan";		break;
-						case 115: sAdjective = "the Hachidan";		break;
-						case 116: sAdjective = "the Judan";			break;
+						case 0: sAdjective = "exótico(a)";             break;
+						case 1: sAdjective = "misterioso(a)";         break;
+						case 2: sAdjective = "encantado(a)";         break;
+						case 3: sAdjective = "maravilhoso(a)";         break;
+						case 4: sAdjective = "espantoso(a)";         break;
+						case 5: sAdjective = "surpreendente";         break;
+						case 6: sAdjective = "místico(a)";             break;
+						case 7: sAdjective = "estupendo(a)";         break;
+						case 8: sAdjective = "mágico(a)";             break;
+						case 9: sAdjective = "divino(a)";             break;
+						case 10: sAdjective = "excelente";             break;
+						case 11: sAdjective = "magnífico(a)";         break;
+						case 12: sAdjective = "fenomenal";             break;
+						case 13: sAdjective = "fantástico(a)";         break;
+						case 14: sAdjective = "incrível";             break;
+						case 15: sAdjective = "extraordinário(a)";     break;
+						case 16: sAdjective = "fabuloso(a)";         break;
+						case 17: sAdjective = "prodigioso(a)";         break;
+						case 18: sAdjective = "glorioso(a)";         break;
+						case 19: sAdjective = "perdido(a)";             break;
+						case 20: sAdjective = "lendário(a)";         break;
+						case 21: sAdjective = "lendário(a)";         break;
+						case 22: sAdjective = "mítico(a)";             break;
+						case 23: sAdjective = "ancestral";             break;
+						case 24: sAdjective = "ornado(a)";             break;
+						case 25: sAdjective = "supremo(a)";             break;
+						case 26: sAdjective = "raro(a)";             break;
+						case 27: sAdjective = "maravilhoso(a)";         break;
+						case 28: sAdjective = "sagrado(a)";             break;
+						case 29: sAdjective = "todo-poderoso(a)";     break;
+						case 30: sAdjective = "supremo(a)";             break;
+						case 31: sAdjective = "poderoso(a)";         break;
+						case 32: sAdjective = "indizível";             break;
+						case 33: sAdjective = "esquecido(a)";         break;
+						case 34: sAdjective = "grande";                 break;
+						case 35: sAdjective = "grão";                 break;
+						case 36: sAdjective = "mágico(a)";             break;
+						case 37: sAdjective = "incomum";             break;
+						case 38: sAdjective = "poder";                 break;
+						case 39: sAdjective = "poder";                 break;
+						case 40: sAdjective = "grandiosidade";         break;
+						case 41: sAdjective = "mágico(a)";             break;
+						case 42: sAdjective = "supremacia";             break;
+						case 43: sAdjective = "o todo-poderoso";     break;
+						case 44: sAdjective = "o sagrado";             break;
+						case 45: sAdjective = "magnificência";         break;
+						case 46: sAdjective = "excelência";             break;
+						case 47: sAdjective = "glória";                 break;
+						case 48: sAdjective = "mistério";             break;
+						case 49: sAdjective = "o divino";             break;
+						case 50: sAdjective = "o esquecido";         break;
+						case 51: sAdjective = "lenda";                 break;
+						case 52: sAdjective = "o perdido";             break;
+						case 53: sAdjective = "os antigos";             break;
+						case 54: sAdjective = "maravilha";             break;
+						case 55: sAdjective = "o poderoso";             break;
+						case 56: sAdjective = "proeza";                 break;
+						case 57: sAdjective = "nobreza";             break;
+						case 58: sAdjective = "misticismo";             break;
+						case 59: sAdjective = "encantamento";         break;
+						case 60: sAdjective = "o Karateka";        break;
+						case 61: sAdjective = "o Ronin";        break;
+						case 62: sAdjective = "o Samurai";        break;
+						case 63: sAdjective = "o Ninja";        break;
+						case 64: sAdjective = "o Yakuza";        break;
+						case 65: sAdjective = "o Wu Jen";        break;
+						case 66: sAdjective = "o Kensai";        break;
+						case 67: sAdjective = "o Shukenja";        break;
+						case 68: sAdjective = "o Fangshi";        break;
+						case 69: sAdjective = "o Waidan";        break;
+						case 70: sAdjective = "o Neidan";        break;
+						case 71: sAdjective = "o Monge";        break;
+						case 72: sAdjective = "o Kyudo";        break;
+						case 73: sAdjective = "o Yuki Ota";        break;
+						case 74: sAdjective = "o Sakushi";        break;
+						case 75: sAdjective = "o Youxia";        break;
+						case 76: sAdjective = "o Kyudoka";        break;
+						case 77: sAdjective = "o Ashigaru";        break;
+						case 78: sAdjective = "o Artista Marcial";    break;
+						case 79: sAdjective = "o Abatedor";        break;
+						case 80: sAdjective = "o Wako";        break;
+						case 81: sAdjective = "o Bárbaro";        break;
+						case 82: sAdjective = "o Explorador";        break;
+						case 83: sAdjective = "o Herege";        break;
+						case 84: sAdjective = "o Sumo";        break;
+						case 85: sAdjective = "o Iaijutsu";        break;
+						case 86: sAdjective = "o Imperador";        break;
+						case 87: sAdjective = "da Dinastia " + Server.Misc.RandomThings.GetRandomColorName(0);        break;
+						case 88: sAdjective = "o Zhuhou";        break;
+						case 89: sAdjective = "o Qing";        break;
+						case 90: sAdjective = "a Imperatriz";        break;
+						case 91: sAdjective = "o Daifu";        break;
+						case 92: sAdjective = "o Shi";        break;
+						case 93: sAdjective = "o Shumin";        break;
+						case 94: sAdjective = "o Heika";        break;
+						case 95: sAdjective = "o Denka";        break;
+						case 96: sAdjective = "o Hidenka";        break;
+						case 97: sAdjective = "o Kakka";        break;
+						case 98: sAdjective = "o Daitoryo";        break;
+						case 99: sAdjective = "o Renshi";        break;
+						case 100: sAdjective = "o Kyoshi";        break;
+						case 101: sAdjective = "o Hanshi";        break;
+						case 102: sAdjective = "o Meijin";        break;
+						case 103: sAdjective = "o Oyakata";        break;
+						case 104: sAdjective = "o Shihan";        break;
+						case 105: sAdjective = "o Shidoin";        break;
+						case 106: sAdjective = "o Shisho";        break;
+						case 107: sAdjective = "o Zeki";        break;
+						case 108: sAdjective = "o Xamã";        break;
+						case 109: sAdjective = "o Shodan";        break;
+						case 110: sAdjective = "o Nidan";        break;
+						case 111: sAdjective = "o Yodan";        break;
+						case 112: sAdjective = "o Godan";        break;
+						case 113: sAdjective = "o Rokudan";        break;
+						case 114: sAdjective = "o Shichidan";        break;
+						case 115: sAdjective = "o Hachidan";        break;
+						case 116: sAdjective = "o Judan";        break;
 					}
 				}
 				else if ( evil )
 				{
 					switch( pick )
 					{
-						case 0: sAdjective = "evil"; 			break;
-						case 1: sAdjective = "corrupt"; 		break;
-						case 2: sAdjective = "destructive"; 	break;
-						case 3: sAdjective = "hateful"; 		break;
-						case 4: sAdjective = "heinous"; 		break;
-						case 5: sAdjective = "malevolent"; 		break;
-						case 6: sAdjective = "malicious"; 		break;
-						case 7: sAdjective = "nefarious"; 		break;
-						case 8: sAdjective = "wicked"; 			break;
-						case 9: sAdjective = "vicious"; 		break;
-						case 10: sAdjective = "vile"; 			break;
-						case 11: sAdjective = "villainous"; 	break;
-						case 12: sAdjective = "foul"; 			break;
-						case 13: sAdjective = "damnable"; 		break;
-						case 14: sAdjective = "disastrous"; 	break;
-						case 15: sAdjective = "harmful"; 		break;
-						case 16: sAdjective = "loathsome"; 		break;
-						case 17: sAdjective = "maleficent"; 	break;
-						case 18: sAdjective = "repulsive"; 		break;
-						case 19: sAdjective = "spiteful"; 		break;
-						case 20: sAdjective = "wrathful"; 		break;
-						case 21: sAdjective = "deadly"; 		break;
-						case 22: sAdjective = "sinister"; 		break;
-						case 23: sAdjective = "woeful"; 		break;
-						case 24: sAdjective = "fatal"; 			break;
-						case 25: sAdjective = "withering"; 		break;
-						case 26: sAdjective = "decayed"; 		break;
-						case 27: sAdjective = "cursed"; 		break;
-						case 28: sAdjective = "damning"; 		break;
-						case 29: sAdjective = "horrific"; 		break;
-						case 30: sAdjective = "tormented"; 		break;
-						case 31: sAdjective = "doomed"; 		break;
-						case 32: sAdjective = "unspeakable"; 	break;
-						case 33: sAdjective = "hated"; 			break;
-						case 34: sAdjective = "miserable"; 		break;
-						case 35: sAdjective = "infamous"; 		break;
-						case 36: sAdjective = "corrupted"; 		break;
-						case 37: sAdjective = "raging"; 		break;
-						case 38: sAdjective = "death"; 			break;
-						case 39: sAdjective = "villainy"; 		break;
-						case 40: sAdjective = "darkness"; 		break;
-						case 41: sAdjective = "hatred"; 		break;
-						case 42: sAdjective = "evil"; 			break;
-						case 43: sAdjective = "the Nine Hells"; break;
-						case 44: sAdjective = "Cthulhu"; 		break;
-						case 45: sAdjective = "Hell"; 			break;
-						case 46: sAdjective = "Hades"; 			break;
-						case 47: sAdjective = "Satan"; 			break;
-						case 48: sAdjective = "spirits"; 		break;
-						case 49: sAdjective = "the haunted"; 	break;
-						case 50: sAdjective = "the undead"; 	break;
-						case 51: sAdjective = "the mummy"; 		break;
-						case 52: sAdjective = "the buried"; 	break;
-						case 53: sAdjective = "the poltergeist";break;
-						case 54: sAdjective = "the cult"; 		break;
-						case 55: sAdjective = "the grave"; 		break;
-						case 56: sAdjective = "blood"; 			break;
-						case 57: sAdjective = "the " + Server.Misc.RandomThings.GetRandomColorName(0) + " Ghost"; 		break;
-						case 58: sAdjective = "the tomb"; 		break;
-						case 59: sAdjective = "the crypt"; 		break;
-						case 60: sAdjective = "the Necromancer";	break;
-						case 61: sAdjective = "the Witch";			break;
-						case 62: sAdjective = "the Warlock";		break;
-						case 63: sAdjective = "the Vile";			break;
-						case 64: sAdjective = "the Hated";			break;
-						case 65: sAdjective = "the Villain";		break;
-						case 66: sAdjective = "the Murderer";		break;
-						case 67: sAdjective = "the Killer";			break;
-						case 68: sAdjective = "the Ghost";			break;
-						case 69: sAdjective = "the Death Knight";	break;
-						case 70: sAdjective = "the Lich";			break;
-						case 71: sAdjective = "the Occultist";		break;
-						case 72: sAdjective = "the Cultist";		break;
-						case 73: sAdjective = "the Diabolist";		break;
-						case 74: sAdjective = "the Hag";			break;
-						case 75: sAdjective = "the Butcher";		break;
-						case 76: sAdjective = "the Slayer";			break;
-						case 77: sAdjective = "the Executioner";	break;
-						case 78: sAdjective = "the Demon";			break;
-						case 79: sAdjective = "the Phantom";		break;
-						case 80: sAdjective = "the Shadow";			break;
-						case 81: sAdjective = "the Spectre";		break;
-						case 82: sAdjective = "the Devil";			break;
-						case 83: sAdjective = "the Shade";			break;
-						case 84: sAdjective = "the Wraith";			break;
-						case 85: sAdjective = "the Vampire";		break;
-						case 86: sAdjective = "the Banshee";		break;
-						case 87: sAdjective = "the Dark";			break;
-						case 88: sAdjective = "the Black";			break;
-						case 89: sAdjective = "the Mortician";		break;
-						case 90: sAdjective = "the Embalmer";		break;
-						case 91: sAdjective = "the Grave";			break;
-						case 92: sAdjective = "the Fiend";			break;
-						case 93: sAdjective = "the Daemon";			break;
-						case 94: sAdjective = "the Corrupt";		break;
-						case 95: sAdjective = "the Hateful";		break;
-						case 96: sAdjective = "the Heinous";		break;
-						case 97: sAdjective = "the Hideous";		break;
-						case 98: sAdjective = "the Malevolent";		break;
-						case 99: sAdjective = "the Malicious";		break;
-						case 100: sAdjective = "the Nefarious";		break;
-						case 101: sAdjective = "the Vicious";		break;
-						case 102: sAdjective = "the Wicked";		break;
-						case 103: sAdjective = "the Foul";			break;
-						case 104: sAdjective = "the Baneful";		break;
-						case 105: sAdjective = "the Depraved";		break;
-						case 106: sAdjective = "the Loathsome";		break;
-						case 107: sAdjective = "the Wrathful";		break;
-						case 108: sAdjective = "the Woeful";		break;
-						case 109: sAdjective = "the Grim";			break;
-						case 110: sAdjective = "the Dismal";		break;
-						case 111: sAdjective = "the Lifeless";		break;
-						case 112: sAdjective = "the Deceased";		break;
-						case 113: sAdjective = "the Bloodless";		break;
-						case 114: sAdjective = "the Mortified";		break;
-						case 115: sAdjective = "the Departed";		break;
-						case 116: sAdjective = "the Dead";			break;
+						case 0: sAdjective = "maligno(a)";             break;
+						case 1: sAdjective = "corrupto(a)";         break;
+						case 2: sAdjective = "destrutivo(a)";         break;
+						case 3: sAdjective = "odioso(a)";             break;
+						case 4: sAdjective = "abominável";             break;
+						case 5: sAdjective = "malevolente";         break;
+						case 6: sAdjective = "malicioso(a)";         break;
+						case 7: sAdjective = "nefário(a)";             break;
+						case 8: sAdjective = "perverso(a)";         break;
+						case 9: sAdjective = "cruel";                 break;
+						case 10: sAdjective = "vil";                 break;
+						case 11: sAdjective = "vil";                 break;
+						case 12: sAdjective = "imundo(a)";             break;
+						case 13: sAdjective = "danoso(a)";             break;
+						case 14: sAdjective = "desastroso(a)";         break;
+						case 15: sAdjective = "nocivo(a)";             break;
+						case 16: sAdjective = "repulsivo(a)";         break;
+						case 17: sAdjective = "maléfico(a)";         break;
+						case 18: sAdjective = "repulsivo(a)";         break;
+						case 19: sAdjective = "rancoroso(a)";         break;
+						case 20: sAdjective = "irado(a)";             break;
+						case 21: sAdjective = "mortífero(a)";         break;
+						case 22: sAdjective = "sinistro(a)";         break;
+						case 23: sAdjective = "lamentoso(a)";         break;
+						case 24: sAdjective = "fatal";                 break;
+						case 25: sAdjective = "definhante";             break;
+						case 26: sAdjective = "decadente";             break;
+						case 27: sAdjective = "amaldiçoado(a)";         break;
+						case 28: sAdjective = "condenatório(a)";     break;
+						case 29: sAdjective = "horrífico(a)";         break;
+						case 30: sAdjective = "atormentado(a)";     break;
+						case 31: sAdjective = "fadado(a)";             break;
+						case 32: sAdjective = "indizível";             break;
+						case 33: sAdjective = "odiado(a)";             break;
+						case 34: sAdjective = "miserável";             break;
+						case 35: sAdjective = "infame";             break;
+						case 36: sAdjective = "corrompido(a)";         break;
+						case 37: sAdjective = "enfurecido(a)";         break;
+						case 38: sAdjective = "morte";                 break;
+						case 39: sAdjective = "vilania";             break;
+						case 40: sAdjective = "trevas";             break;
+						case 41: sAdjective = "ódio";                 break;
+						case 42: sAdjective = "maligno(a)";             break;
+						case 43: sAdjective = "os Nove Infernos";     break;
+						case 44: sAdjective = "Cthulhu";             break;
+						case 45: sAdjective = "Inferno";             break;
+						case 46: sAdjective = "Hades";                 break;
+						case 47: sAdjective = "Satanás";             break;
+						case 48: sAdjective = "espíritos";             break;
+						case 49: sAdjective = "o assombrado";         break;
+						case 50: sAdjective = "o morto-vivo";         break;
+						case 51: sAdjective = "a múmia";             break;
+						case 52: sAdjective = "o enterrado";         break;
+						case 53: sAdjective = "o poltergeist";        break;
+						case 54: sAdjective = "o culto";             break;
+						case 55: sAdjective = "a tumba";             break;
+						case 56: sAdjective = "sangue";             break;
+						case 57: sAdjective = "o Fantasma " + Server.Misc.RandomThings.GetRandomColorName(0);         break;
+						case 58: sAdjective = "a tumba";             break;
+						case 59: sAdjective = "a cripta";             break;
+						case 60: sAdjective = "o Necromante";        break;
+						case 61: sAdjective = "a Bruxa";        break;
+						case 62: sAdjective = "o Bruxo";        break;
+						case 63: sAdjective = "o Vil";        break;
+						case 64: sAdjective = "o Odiado";        break;
+						case 65: sAdjective = "o Vilão";        break;
+						case 66: sAdjective = "o Assassino";        break;
+						case 67: sAdjective = "o Matador";        break;
+						case 68: sAdjective = "o Fantasma";        break;
+						case 69: sAdjective = "o Cavaleiro da Morte";    break;
+						case 70: sAdjective = "o Lich";        break;
+						case 71: sAdjective = "o Ocultista";        break;
+						case 72: sAdjective = "o Cultista";        break;
+						case 73: sAdjective = "o Diabolista";        break;
+						case 74: sAdjective = "a Bruxa";        break;
+						case 75: sAdjective = "o Açougueiro";        break;
+						case 76: sAdjective = "o Abatedor";        break;
+						case 77: sAdjective = "o Carrasco";        break;
+						case 78: sAdjective = "o Demônio";        break;
+						case 79: sAdjective = "o Espectro";        break;
+						case 80: sAdjective = "a Sombra";        break;
+						case 81: sAdjective = "o Espectro";        break;
+						case 82: sAdjective = "o Diabo";        break;
+						case 83: sAdjective = "a Sombra";        break;
+						case 84: sAdjective = "o Espectro";        break;
+						case 85: sAdjective = "o Vampiro";        break;
+						case 86: sAdjective = "a Banshee";        break;
+						case 87: sAdjective = "o Sombrio";        break;
+						case 88: sAdjective = "o Negro";        break;
+						case 89: sAdjective = "o Agente Funerário";        break;
+						case 90: sAdjective = "o Embalsamador";        break;
+						case 91: sAdjective = "a Tumba";        break;
+						case 92: sAdjective = "o Demônio";        break;
+						case 93: sAdjective = "o Demônio";        break;
+						case 94: sAdjective = "o Corrupto";        break;
+						case 95: sAdjective = "o Odioso";        break;
+						case 96: sAdjective = "o Abominável";        break;
+						case 97: sAdjective = "o Horrendo";        break;
+						case 98: sAdjective = "o Malevolente";        break;
+						case 99: sAdjective = "o Malicioso";        break;
+						case 100: sAdjective = "o Nefário";        break;
+						case 101: sAdjective = "o Cruel";        break;
+						case 102: sAdjective = "o Perverso";        break;
+						case 103: sAdjective = "o Imundo";        break;
+						case 104: sAdjective = "o Funesto";        break;
+						case 105: sAdjective = "o Depravado";        break;
+						case 106: sAdjective = "o Repulsivo";        break;
+						case 107: sAdjective = "o Irascível";        break;
+						case 108: sAdjective = "o Lamentoso";        break;
+						case 109: sAdjective = "o Sombrio";        break;
+						case 110: sAdjective = "o Sombrio";        break;
+						case 111: sAdjective = "o Sem Vida";        break;
+						case 112: sAdjective = "o Falecido";        break;
+						case 113: sAdjective = "o Sem Sangue";        break;
+						case 114: sAdjective = "o Mortificado";        break;
+						case 115: sAdjective = "o Partido";        break;
+						case 116: sAdjective = "o Morto";        break;
 					}
 				}
 				else
 				{
 					switch( pick )
 					{
-						case 0: sAdjective = "exotic"; 			break;
-						case 1: sAdjective = "mysterious"; 		break;
-						case 2: sAdjective = "enchanted"; 		break;
-						case 3: sAdjective = "marvelous"; 		break;
-						case 4: sAdjective = "amazing"; 		break;
-						case 5: sAdjective = "astonishing"; 	break;
-						case 6: sAdjective = "mystical"; 		break;
-						case 7: sAdjective = "astounding"; 		break;
-						case 8: sAdjective = "magical"; 		break;
-						case 9: sAdjective = "divine"; 			break;
-						case 10: sAdjective = "excellent"; 		break;
-						case 11: sAdjective = "magnificent"; 	break;
-						case 12: sAdjective = "phenomenal"; 	break;
-						case 13: sAdjective = "fantastic"; 		break;
-						case 14: sAdjective = "incredible"; 	break;
-						case 15: sAdjective = "extraordinary"; 	break;
-						case 16: sAdjective = "fabulous"; 		break;
-						case 17: sAdjective = "wondrous"; 		break;
-						case 18: sAdjective = "glorious"; 		break;
-						case 19: sAdjective = "lost"; 			break;
-						case 20: sAdjective = "fabled"; 		break;
-						case 21: sAdjective = "legendary"; 		break;
-						case 22: sAdjective = "mythical"; 		break;
-						case 23: sAdjective = "ancestral"; 		break;
-						case 24: sAdjective = "ornate"; 		break;
-						case 25: sAdjective = "ultimate"; 		break;
-						case 26: sAdjective = "rare"; 			break;
-						case 27: sAdjective = "wonderful"; 		break;
-						case 28: sAdjective = "sacred"; 		break;
-						case 29: sAdjective = "almighty"; 		break;
-						case 30: sAdjective = "supreme"; 		break;
-						case 31: sAdjective = "mighty"; 		break;
-						case 32: sAdjective = "unspeakable"; 	break;
-						case 33: sAdjective = "forgotten"; 		break;
-						case 34: sAdjective = "great"; 			break;
-						case 35: sAdjective = "grand"; 			break;
-						case 36: sAdjective = "magic"; 			break;
-						case 37: sAdjective = "unusual"; 		break;
-						case 38: sAdjective = "might"; 			break;
-						case 39: sAdjective = "power"; 			break;
-						case 40: sAdjective = "greatness"; 		break;
-						case 41: sAdjective = "magic"; 			break;
-						case 42: sAdjective = "supremacy"; 		break;
-						case 43: sAdjective = "the almighty"; 	break;
-						case 44: sAdjective = "the sacred"; 	break;
-						case 45: sAdjective = "magnificence"; 	break;
-						case 46: sAdjective = "excellence"; 	break;
-						case 47: sAdjective = "glory"; 			break;
-						case 48: sAdjective = "mystery"; 		break;
-						case 49: sAdjective = "the divine"; 	break;
-						case 50: sAdjective = "the forgotten"; 	break;
-						case 51: sAdjective = "legend"; 		break;
-						case 52: sAdjective = "the lost"; 		break;
-						case 53: sAdjective = "the ancients"; 	break;
-						case 54: sAdjective = "wonder"; 		break;
-						case 55: sAdjective = "the mighty"; 	break;
-						case 56: sAdjective = "marvel"; 		break;
-						case 57: sAdjective = "nobility"; 		break;
-						case 58: sAdjective = "mysticism"; 		break;
-						case 59: sAdjective = "enchantment"; 	break;
-						case 60: sAdjective = "the Templar";		break;
-						case 61: sAdjective = "the Thief";			break;
-						case 62: sAdjective = "the Illusionist";	break;
-						case 63: sAdjective = "the Princess";		break;
-						case 64: sAdjective = "the Invoker";		break;
-						case 65: sAdjective = "the Priestess";		break;
-						case 66: sAdjective = "the Conjurer";		break;
-						case 67: sAdjective = "the Bandit";			break;
-						case 68: sAdjective = "the Baroness";		break;
-						case 69: sAdjective = "the Wizard";			break;
-						case 70: sAdjective = "the Cleric";			break;
-						case 71: sAdjective = "the Monk";			break;
-						case 72: sAdjective = "the Minstrel";		break;
-						case 73: sAdjective = "the Defender";		break;
-						case 74: sAdjective = "the Cavalier";		break;
-						case 75: sAdjective = "the Magician";		break;
-						case 76: sAdjective = "the Witch";			break;
-						case 77: sAdjective = "the Fighter";		break;
-						case 78: sAdjective = "the Seeker";			break;
-						case 79: sAdjective = "the Slayer";			break;
-						case 80: sAdjective = "the Ranger";			break;
-						case 81: sAdjective = "the Barbarian";		break;
-						case 82: sAdjective = "the Explorer";		break;
-						case 83: sAdjective = "the Heretic";		break;
-						case 84: sAdjective = "the Gladiator";		break;
-						case 85: sAdjective = "the Sage";			break;
-						case 86: sAdjective = "the Rogue";			break;
-						case 87: sAdjective = "the Paladin";		break;
-						case 88: sAdjective = "the Bard";			break;
-						case 89: sAdjective = "the Diviner";		break;
-						case 90: sAdjective = "the Lady";			break;
-						case 91: sAdjective = "the Outlaw";			break;
-						case 92: sAdjective = "the Prophet";		break;
-						case 93: sAdjective = "the Mercenary";		break;
-						case 94: sAdjective = "the Adventurer";		break;
-						case 95: sAdjective = "the Enchantress";	break;
-						case 96: sAdjective = "the Queen";			break;
-						case 97: sAdjective = "the Scout";			break;
-						case 98: sAdjective = "the Mystic";			break;
-						case 99: sAdjective = "the Mage";			break;
-						case 100: sAdjective = "the Traveler";		break;
-						case 101: sAdjective = "the Summoner";		break;
-						case 102: sAdjective = "the Warrior";		break;
-						case 103: sAdjective = "the Sorcereress";	break;
-						case 104: sAdjective = "the Seer";			break;
-						case 105: sAdjective = "the Hunter";		break;
-						case 106: sAdjective = "the Knight";		break;
-						case 107: sAdjective = "the Necromancer";	break;
-						case 108: sAdjective = "the Shaman";		break;
-						case 109: sAdjective = "the Prince";		break;
-						case 110: sAdjective = "the Priest";		break;
-						case 111: sAdjective = "the Baron";			break;
-						case 112: sAdjective = "the Warlock";		break;
-						case 113: sAdjective = "the Lord";			break;
-						case 114: sAdjective = "the Enchanter";		break;
-						case 115: sAdjective = "the King";			break;
-						case 116: sAdjective = "the Sorcerer";		break;
+						case 0: sAdjective = "exótico(a)";             break;
+						case 1: sAdjective = "misterioso(a)";         break;
+						case 2: sAdjective = "encantado(a)";         break;
+						case 3: sAdjective = "maravilhoso(a)";         break;
+						case 4: sAdjective = "espantoso(a)";         break;
+						case 5: sAdjective = "surpreendente";         break;
+						case 6: sAdjective = "místico(a)";             break;
+						case 7: sAdjective = "estupendo(a)";         break;
+						case 8: sAdjective = "mágico(a)";             break;
+						case 9: sAdjective = "divino(a)";             break;
+						case 10: sAdjective = "excelente";             break;
+						case 11: sAdjective = "magnífico(a)";         break;
+						case 12: sAdjective = "fenomenal";             break;
+						case 13: sAdjective = "fantástico(a)";         break;
+						case 14: sAdjective = "incrível";             break;
+						case 15: sAdjective = "extraordinário(a)";     break;
+						case 16: sAdjective = "fabuloso(a)";         break;
+						case 17: sAdjective = "prodigioso(a)";         break;
+						case 18: sAdjective = "glorioso(a)";         break;
+						case 19: sAdjective = "perdido(a)";             break;
+						case 20: sAdjective = "lendário(a)";         break;
+						case 21: sAdjective = "lendário(a)";         break;
+						case 22: sAdjective = "mítico(a)";             break;
+						case 23: sAdjective = "ancestral";             break;
+						case 24: sAdjective = "ornado(a)";             break;
+						case 25: sAdjective = "supremo(a)";             break;
+						case 26: sAdjective = "raro(a)";             break;
+						case 27: sAdjective = "maravilhoso(a)";         break;
+						case 28: sAdjective = "sagrado(a)";             break;
+						case 29: sAdjective = "todo-poderoso(a)";     break;
+						case 30: sAdjective = "supremo(a)";             break;
+						case 31: sAdjective = "poderoso(a)";         break;
+						case 32: sAdjective = "indizível";             break;
+						case 33: sAdjective = "esquecido(a)";         break;
+						case 34: sAdjective = "grande";                 break;
+						case 35: sAdjective = "grão";                 break;
+						case 36: sAdjective = "mágico(a)";             break;
+						case 37: sAdjective = "incomum";             break;
+						case 38: sAdjective = "poder";                 break;
+						case 39: sAdjective = "poder";                 break;
+						case 40: sAdjective = "grandiosidade";         break;
+						case 41: sAdjective = "mágico(a)";             break;
+						case 42: sAdjective = "supremacia";             break;
+						case 43: sAdjective = "o todo-poderoso";     break;
+						case 44: sAdjective = "o sagrado";             break;
+						case 45: sAdjective = "magnificência";         break;
+						case 46: sAdjective = "excelência";             break;
+						case 47: sAdjective = "glória";                 break;
+						case 48: sAdjective = "mistério";             break;
+						case 49: sAdjective = "o divino";             break;
+						case 50: sAdjective = "o esquecido";         break;
+						case 51: sAdjective = "lenda";                 break;
+						case 52: sAdjective = "o perdido";             break;
+						case 53: sAdjective = "os antigos";             break;
+						case 54: sAdjective = "maravilha";             break;
+						case 55: sAdjective = "o poderoso";             break;
+						case 56: sAdjective = "proeza";                 break;
+						case 57: sAdjective = "nobreza";             break;
+						case 58: sAdjective = "misticismo";             break;
+						case 59: sAdjective = "encantamento";         break;
+						case 60: sAdjective = "o Templário";        break;
+						case 61: sAdjective = "o Ladrão";        break;
+						case 62: sAdjective = "o Ilusionista";    break;
+						case 63: sAdjective = "a Princesa";        break;
+						case 64: sAdjective = "o Invocador";        break;
+						case 65: sAdjective = "a Sacerdotisa";        break;
+						case 66: sAdjective = "o Conjurador";        break;
+						case 67: sAdjective = "o Bandido";        break;
+						case 68: sAdjective = "a Baronesa";        break;
+						case 69: sAdjective = "o Mago";        break;
+						case 70: sAdjective = "o Clérigo";        break;
+						case 71: sAdjective = "o Monge";        break;
+						case 72: sAdjective = "o Menestrel";        break;
+						case 73: sAdjective = "o Defensor";        break;
+						case 74: sAdjective = "o Cavaleiro";        break;
+						case 75: sAdjective = "o Mágico";        break;
+						case 76: sAdjective = "a Bruxa";        break;
+						case 77: sAdjective = "o Lutador";        break;
+						case 78: sAdjective = "o Buscador";        break;
+						case 79: sAdjective = "o Abatedor";        break;
+						case 80: sAdjective = "o Ranger";        break;
+						case 81: sAdjective = "o Bárbaro";        break;
+						case 82: sAdjective = "o Explorador";        break;
+						case 83: sAdjective = "o Herege";        break;
+						case 84: sAdjective = "o Gladiador";        break;
+						case 85: sAdjective = "o Sábio";        break;
+						case 86: sAdjective = "o Ladrão";        break;
+						case 87: sAdjective = "o Paladino";        break;
+						case 88: sAdjective = "o Bardo";        break;
+						case 89: sAdjective = "o Adivinho";        break;
+						case 90: sAdjective = "a Dama";        break;
+						case 91: sAdjective = "o Fora-da-lei";        break;
+						case 92: sAdjective = "o Profeta";        break;
+						case 93: sAdjective = "o Mercenário";        break;
+						case 94: sAdjective = "o Aventureiro";        break;
+						case 95: sAdjective = "a Encantadora";    break;
+						case 96: sAdjective = "a Rainha";        break;
+						case 97: sAdjective = "o Batedor";        break;
+						case 98: sAdjective = "o Místico";        break;
+						case 99: sAdjective = "o Mago";        break;
+						case 100: sAdjective = "o Viajante";        break;
+						case 101: sAdjective = "o Invocador";        break;
+						case 102: sAdjective = "o Guerreiro";        break;
+						case 103: sAdjective = "a Feiticeira";    break;
+						case 104: sAdjective = "o Vidente";        break;
+						case 105: sAdjective = "o Caçador";        break;
+						case 106: sAdjective = "o Cavaleiro";        break;
+						case 107: sAdjective = "o Necromante";    break;
+						case 108: sAdjective = "o Xamã";        break;
+						case 109: sAdjective = "o Príncipe";        break;
+						case 110: sAdjective = "o Sacerdote";        break;
+						case 111: sAdjective = "o Barão";        break;
+						case 112: sAdjective = "o Bruxo";        break;
+						case 113: sAdjective = "o Senhor";        break;
+						case 114: sAdjective = "o Encantador";    break;
+						case 115: sAdjective = "o Rei";        break;
+						case 116: sAdjective = "o Feiticeiro";        break;
 					}
 				}
 			}
@@ -2415,14 +2416,14 @@ namespace Server.Misc
 				item.ItemID = Utility.RandomList( 0x269D, 0x269E );
 			}
 
-			if ( item is BambooFlute ){ name = "flute"; }
-			else if ( item is Drums ){ name = "drum"; }
-			else if ( item is Harp ){ name = "harp"; }
-			else if ( item is LapHarp ){ name = "harp"; }
-			else if ( item is Lute ){ name = "lute"; if ( Utility.RandomMinMax( 1, 2 ) == 1 ){ name = "mandolin"; } }
-			else if ( item is Tambourine ){ name = "tambourine"; }
-			else if ( item is TambourineTassel ){ name = "tambourine"; }
-			else if ( item is Trumpet ){ name = "trumpet"; }
+			if ( item is BambooFlute ){ name = "flauta"; }
+			else if ( item is Drums ){ name = "tambor"; }
+			else if ( item is Harp ){ name = "harpa"; }
+			else if ( item is LapHarp ){ name = "harpa"; }
+			else if ( item is Lute ){ name = "alaúde"; if ( Utility.RandomMinMax( 1, 2 ) == 1 ){ name = "bandolim"; } }
+			else if ( item is Tambourine ){ name = "pandeiro"; }
+			else if ( item is TambourineTassel ){ name = "pandeiro"; }
+			else if ( item is Trumpet ){ name = "trombeta"; }
 
 			int FirstLast = Utility.RandomMinMax( 0, 1 );
 

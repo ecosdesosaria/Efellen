@@ -17,7 +17,7 @@ namespace Server.Mobiles
         public Oliver() : base(AIType.AI_Thief, FightMode.None, 1, 1, 0.2, 0.4)
         {
             m_LastPotionHandin = new Hashtable();
-            Title = "the Doctor";
+            Title = "o Doutor";
             NameHue = 0x92E;
             Name = "Oliver";
             InitStats(50, 50, 25);
@@ -67,8 +67,8 @@ namespace Server.Mobiles
                 {
                     TimeSpan remaining = nextAllowed - DateTime.UtcNow;
                     PublicOverheadMessage(Network.MessageType.Regular, 0x3B2, false, 
-                        "I'm sorry, but I'm still waiting for the pickup of the last one and my shelves are full! Can you hold on to it for a bit longer?");
-                    from.SendMessage(string.Format("You must wait {0} before Oliver can accept another potion.", FormatTimeSpan(remaining)));
+                        "Desculpe, mas ainda estou esperando a coleta do último e minhas prateleiras estão cheias! Pode ficar com ele por mais um tempo?");
+                    from.SendMessage(string.Format("Você deve aguardar {0} antes que Oliver possa aceitar outra poção.", FormatTimeSpan(remaining)));
                     return false;
                 }
             }
@@ -98,7 +98,7 @@ namespace Server.Mobiles
             int karmaAmount = Utility.RandomMinMax(playerLevel, playerLevel * 2);
             from.Karma += karmaAmount;
             PublicOverheadMessage(Network.MessageType.Regular, 0x3B2, false, 
-                "Thank you so much! I know someone that will really appreciate this! Here, have this for your trouble, I think it suits you!");
+                "Muito obrigado! Conheço alguém que vai realmente apreciar isto! Tome, fique com isto pelo seu trabalho, acho que combina com você!");
             
             m_LastPotionHandin[from] = DateTime.UtcNow;
             return true;

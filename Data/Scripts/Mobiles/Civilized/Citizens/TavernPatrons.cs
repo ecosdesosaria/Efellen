@@ -1191,7 +1191,7 @@ namespace Server.Misc
 				case 25: sSpeech = sThey + " vendeu aquele crânio de monstro para os necromantes por " + Utility.RandomMinMax( 50, 200 ) + " de ouro."; break;	
 				case 26: sSpeech = "Vamos procurar pelo " + Server.Misc.RandomThings.GetRandomColorName( 0 ) + " " + RandomThings.GetRandomThing( 0 ) + " amanhã."; break;	
 				case 27: sSpeech = "O " + RandomThings.GetRandomJob() + " em " + RandomThings.MadeUpCity() + " está procurando ajuda com " + RandomThings.GetRandomMonsters() + "."; break;	
-				case 28: sSpeech = RandomThings.GetRandomShipName( "", 0 ) + " afundou na costa do " + RandomThings.GetRandomKingdomName() + " " + RandomThings.GetRandomKingdom() + "."; break;	
+				case 28: sSpeech = RandomThings.GetRandomShipName( "", 0 ) + " afundou na costa do " + RandomThings.GetRandomKingdom() + " " + RandomThings.GetRandomKingdomName() + "."; break;	
 				case 29:
 					cVal = RandomThings.MadeUpDungeon();	
 					switch( Utility.RandomMinMax( 0, 1 ) )

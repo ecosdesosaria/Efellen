@@ -34,33 +34,33 @@ namespace Server.Misc
 					m_RatmanSpeech.Flags = IHSFlags.All;
 
 					m_RatmanSpeech.Keywords = new string[]
-						{
-							"meat", "gold", "kill", "killing", "slay",
-							"sword", "axe", "spell", "magic", "spells",
-							"swords", "axes", "mace", "maces", "monster",
-							"monsters", "food", "run", "escape", "away",
-							"help", "dead", "die", "dying", "lose",
-							"losing", "life", "lives", "death", "ghost",
-							"ghosts", "british", "blackthorn", "guild",
-							"guilds", "dragon", "dragons", "game", "games",
-							"ruins", "silly", "stupid", "dumb", "idiot",
-							"idiots", "cheesy", "cheezy", "crazy", "dork",
-							"jerk", "fool", "foolish", "ugly", "insult", "scum"
-						};
+					{
+						"carne", "ouro", "matar", "matando", "abater",
+						"espada", "machado", "feitiço", "magia", "feitiços",
+						"espadas", "machados", "maça", "maças", "monstro",
+						"monstros", "comida", "correr", "fugir", "escapar",
+						"socorro", "morto", "morrer", "morrendo", "perder",
+						"perdendo", "vida", "vidas", "morte", "fantasma",
+						"fantasmas", "british", "blackthorn", "guilda",
+						"guildas", "dragão", "dragões", "jogo", "jogos",
+						"ruínas", "bobo", "estúpido", "burro", "idiota",
+						"idiotas", "queijo", "queijo", "louco", "nerd",
+						"babaca", "tolo", "tolice", "feio", "insulto", "escória"
+					};
 
 					m_RatmanSpeech.Responses = new string[]
-						{
-							"meat", "kill", "pound", "crush", "yum yum",
-							"crunch", "destroy", "murder", "eat", "munch",
-							"massacre", "food", "monster", "evil", "run",
-							"die", "lose", "dumb", "idiot", "fool", "crazy",
-							"dinner", "lunch", "breakfast", "fight", "battle",
-							"doomed", "rip apart", "tear apart", "smash",
-							"edible?", "shred", "disembowel", "ugly", "smelly",
-							"stupid", "hideous", "smell", "tasty", "invader",
-							"attack", "raid", "plunder", "pillage", "treasure",
-							"loser", "lose", "scum"
-						};
+					{
+						"carne", "matar", "esmagar", "esmagar", "nhac nhac",
+						"triturar", "destruir", "assassinar", "comer", "mastigar",
+						"massacre", "comida", "monstro", "maligno", "correr",
+						"morrer", "perder", "burro", "idiota", "tolo", "louco",
+						"jantar", "almoço", "café da manhã", "lutar", "batalha",
+						"condenado", "despedaçar", "rasgar", "esmagar",
+						"comestível?", "triturar", "esventrar", "feio", "fedorento",
+						"estúpido", "horrendo", "cheirar", "saboroso", "invasor",
+						"atacar", "invadir", "saquear", "pilhar", "tesouro",
+						"perdedor", "perder", "escória"
+					};
 
 					m_RatmanSpeech.Syllables = new string[]
 						{
@@ -110,33 +110,33 @@ namespace Server.Misc
 					m_OrcSpeech.Flags = IHSFlags.All;
 
 					m_OrcSpeech.Keywords = new string[]
-						{
-							"meat", "gold", "kill", "killing", "slay",
-							"sword", "axe", "spell", "magic", "spells",
-							"swords", "axes", "mace", "maces", "monster",
-							"monsters", "food", "run", "escape", "away",
-							"help", "dead", "die", "dying", "lose",
-							"losing", "life", "lives", "death", "ghost",
-							"ghosts", "british", "blackthorn", "guild",
-							"guilds", "dragon", "dragons", "game", "games",
-							"ruins", "silly", "stupid", "dumb", "idiot",
-							"idiots", "cheesy", "cheezy", "crazy", "dork",
-							"jerk", "fool", "foolish", "ugly", "insult", "scum"
-						};
+					{
+						"carne", "ouro", "matar", "matando", "abater",
+						"espada", "machado", "feitiço", "magia", "feitiços",
+						"espadas", "machados", "maça", "maças", "monstro",
+						"monstros", "comida", "correr", "fugir", "escapar",
+						"socorro", "morto", "morrer", "morrendo", "perder",
+						"perdendo", "vida", "vidas", "morte", "fantasma",
+						"fantasmas", "british", "blackthorn", "guilda",
+						"guildas", "dragão", "dragões", "jogo", "jogos",
+						"ruínas", "bobo", "estúpido", "burro", "idiota",
+						"idiotas", "queijo", "queijo", "louco", "nerd",
+						"babaca", "tolo", "tolice", "feio", "insulto", "escória"
+					};
 
 					m_OrcSpeech.Responses = new string[]
-						{
-							"meat", "kill", "pound", "crush", "yum yum",
-							"crunch", "destroy", "murder", "eat", "munch",
-							"massacre", "food", "monster", "evil", "run",
-							"die", "lose", "dumb", "idiot", "fool", "crazy",
-							"dinner", "lunch", "breakfast", "fight", "battle",
-							"doomed", "rip apart", "tear apart", "smash",
-							"edible?", "shred", "disembowel", "ugly", "smelly",
-							"stupid", "hideous", "smell", "tasty", "invader",
-							"attack", "raid", "plunder", "pillage", "treasure",
-							"loser", "lose", "scum"
-						};
+					{
+						"carne", "matar", "esmagar", "esmagar", "nhac nhac",
+						"triturar", "destruir", "assassinar", "comer", "mastigar",
+						"massacre", "comida", "monstro", "maligno", "correr",
+						"morrer", "perder", "burro", "idiota", "tolo", "louco",
+						"jantar", "almoço", "café da manhã", "lutar", "batalha",
+						"condenado", "despedaçar", "rasgar", "esmagar",
+						"comestível?", "triturar", "esventrar", "feio", "fedorento",
+						"estúpido", "horrendo", "cheirar", "saboroso", "invasor",
+						"atacar", "invadir", "saquear", "pilhar", "tesouro",
+						"perdedor", "perder", "escória"
+					};
 
 					m_OrcSpeech.Syllables = new string[]
 						{
@@ -197,33 +197,33 @@ namespace Server.Misc
 					m_LizardmanSpeech.Flags = IHSFlags.All;
 
 					m_LizardmanSpeech.Keywords = new string[]
-						{
-							"meat", "gold", "kill", "killing", "slay",
-							"sword", "axe", "spell", "magic", "spells",
-							"swords", "axes", "mace", "maces", "monster",
-							"monsters", "food", "run", "escape", "away",
-							"help", "dead", "die", "dying", "lose",
-							"losing", "life", "lives", "death", "ghost",
-							"ghosts", "british", "blackthorn", "guild",
-							"guilds", "dragon", "dragons", "game", "games",
-							"ruins", "silly", "stupid", "dumb", "idiot",
-							"idiots", "cheesy", "cheezy", "crazy", "dork",
-							"jerk", "fool", "foolish", "ugly", "insult", "scum"
-						};
+					{
+						"carne", "ouro", "matar", "matando", "abater",
+						"espada", "machado", "feitiço", "magia", "feitiços",
+						"espadas", "machados", "maça", "maças", "monstro",
+						"monstros", "comida", "correr", "fugir", "escapar",
+						"socorro", "morto", "morrer", "morrendo", "perder",
+						"perdendo", "vida", "vidas", "morte", "fantasma",
+						"fantasmas", "british", "blackthorn", "guilda",
+						"guildas", "dragão", "dragões", "jogo", "jogos",
+						"ruínas", "bobo", "estúpido", "burro", "idiota",
+						"idiotas", "queijo", "queijo", "louco", "nerd",
+						"babaca", "tolo", "tolice", "feio", "insulto", "escória"
+					};
 
 					m_LizardmanSpeech.Responses = new string[]
-						{
-							"meat", "kill", "pound", "crush", "yum yum",
-							"crunch", "destroy", "murder", "eat", "munch",
-							"massacre", "food", "monster", "evil", "run",
-							"die", "lose", "dumb", "idiot", "fool", "crazy",
-							"dinner", "lunch", "breakfast", "fight", "battle",
-							"doomed", "rip apart", "tear apart", "smash",
-							"edible?", "shred", "disembowel", "ugly", "smelly",
-							"stupid", "hideous", "smell", "tasty", "invader",
-							"attack", "raid", "plunder", "pillage", "treasure",
-							"loser", "lose", "scum"
-						};
+					{
+						"carne", "matar", "esmagar", "esmagar", "nhac nhac",
+						"triturar", "destruir", "assassinar", "comer", "mastigar",
+						"massacre", "comida", "monstro", "maligno", "correr",
+						"morrer", "perder", "burro", "idiota", "tolo", "louco",
+						"jantar", "almoço", "café da manhã", "lutar", "batalha",
+						"condenado", "despedaçar", "rasgar", "esmagar",
+						"comestível?", "triturar", "esventrar", "feio", "fedorento",
+						"estúpido", "horrendo", "cheirar", "saboroso", "invasor",
+						"atacar", "invadir", "saquear", "pilhar", "tesouro",
+						"perdedor", "perder", "escória"
+					};
 
 					m_LizardmanSpeech.Syllables = new string[]
 						{
@@ -558,22 +558,22 @@ namespace Server.Misc
 			if ( amount < 5 )
 			{
 				SayRandomTranslate( mob,
-					"Ouch!",
-					"Me not hurt bad!",
-					"Thou fight bad.",
-					"Thy blows soft!",
-					"You bad with weapon!" );
+					"Ai!",
+					"Eu não tô machucado!",
+					"Tu lutas mal.",
+					"Teus golpes são fracos!",
+					"Você ruim com armas!" );
 			}
 			else
 			{
 				SayRandomTranslate( mob,
-					"Ouch! Me hurt!",
-					"No, kill me not!",
-					"Me hurt!",
-					"Away with thee!",
-					"Oof! That hurt!",
-					"Aaah! That hurt...",
-					"Good blow!" );
+					"Ai! Eu machucado!",
+					"Não, não me mate!",
+					"Eu machucado!",
+					"Vai-te embora!",
+					"Ufa! Isso dói!",
+					"Aaah! Isso dói...",
+					"Bom golpe!" );
 			}
 		}
 

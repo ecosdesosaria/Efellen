@@ -21,7 +21,7 @@ namespace Server.Mobiles
 		{
 			Body = 400; 
 			Name = "Kylearan";
-			Title = "the Magician";
+			Title = "o Mágico";
 			NameHue = 0xB0C;
 			AI = AIType.AI_Citizen;
 			FightMode = FightMode.None;
@@ -82,7 +82,7 @@ namespace Server.Mobiles
 
 				if ( PlayerSettings.GetBardsTaleQuest( m_Mobile, "BardsTaleEbonyKey" ) )
 				{
-					m_Giver.Say("You already have the onyx key. Use it to enter Mangar's tower.");
+					m_Giver.Say("Você já tem a chave de ônix. Use-a para entrar na torre de Mangar.");
 				}
 				else if ( ! m_Mobile.HasGump( typeof( SpeechGump ) ) )
 				{
@@ -113,7 +113,7 @@ namespace Server.Mobiles
 						book.m_Points = 150;
 						book.m_Hue = 0xA20;
 						m_Mobile.AddToBackpack( book );
-						m_Mobile.SendMessage( "A small chest has been added to your pack!" );
+						m_Mobile.SendMessage( "Um pequeno baú foi adicionado à sua mochila!" );
 				}
             }
         }

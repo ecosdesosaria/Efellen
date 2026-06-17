@@ -28,7 +28,7 @@ namespace Server.Mobiles
                 Name = NameList.RandomName("elf_male");
             }
 
-			Title = "the drow pirate";
+			Title = "o pirata drow";
             AddItem(new ThighBoots());
 
             Utility.AssignRandomHair( this );
