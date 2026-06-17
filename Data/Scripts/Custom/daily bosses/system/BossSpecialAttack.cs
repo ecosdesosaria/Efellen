@@ -269,6 +269,14 @@ namespace Server.Custom.DailyBosses.System
 
                     if (target != null && target.Alive && target.Map == map)
                         monster.Combatant = target;
+
+                    Timer.DelayCall(TimeSpan.FromMinutes(2), delegate()
+                    {
+                        if (monster != null && (!monster.Deleted || monster.Alive))
+                        {
+                            monster.Delete();
+                        }
+                    });
                 }
             });
         }
@@ -312,7 +320,7 @@ namespace Server.Custom.DailyBosses.System
 
                 if (m.Skills.Knightship.Value >= terror)
                 {
-                    m.SendMessage("Your bravery protects you from fear!");
+                    m.SendMessage("Sua bravura te protege do medo!");
                     m.FixedParticles(0x375A, 10, 15, 5037, EffectLayer.Waist);
                     continue;
                 }
@@ -320,7 +328,7 @@ namespace Server.Custom.DailyBosses.System
                 boss.DoHarmful(m);
 
                 m.Paralyze(TimeSpan.FromSeconds(GetParalyzeDuration(m, rage)));
-                m.SendMessage("You are frozen in terror!");
+                m.SendMessage("Você está paralisado de terror!");
                 m.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Head);
             }
             eable.Free();
@@ -349,7 +357,7 @@ namespace Server.Custom.DailyBosses.System
                 return;
 
             // Telegraph
-            boss.PublicOverheadMessage(MessageType.Regular, hue, false, "*gathering energy*");
+            boss.PublicOverheadMessage(MessageType.Regular, hue, false, "*acumulando energia*");
             boss.PlaySound(0x1F5);
             boss.FixedParticles(0x375A, 10, 15, 5037, hue, 0, EffectLayer.Waist);
 
@@ -384,7 +392,7 @@ namespace Server.Custom.DailyBosses.System
 
                     int paralyzeDuration = GetParalyzeDuration(m, rage);
                     m.Paralyze(TimeSpan.FromSeconds(paralyzeDuration));
-                    m.SendMessage("You are paralyzed by the attack!");
+                    m.SendMessage("Você está paralisado pelo ataque!");
 
                     if (!Server.Items.BaseRace.IsBleeder(m))
                         continue;
@@ -397,7 +405,7 @@ namespace Server.Custom.DailyBosses.System
 
                     if (m is PlayerMobile)
                     {
-                        m.LocalOverheadMessage(MessageType.Regular, 0x982, false, "You are bleeding profusely!");
+                        m.LocalOverheadMessage(MessageType.Regular, 0x982, false, "Você está sangrando profusamente!");
                     }
 
                     BeginBossBleed(m, boss, bleedLevel);
@@ -715,7 +723,7 @@ namespace Server.Custom.DailyBosses.System
             if (range > 8)
                 range = 8;
 
-            boss.PublicOverheadMessage(MessageType.Regular, hue, false, "*" + boss.Name + " is preparing an attack!*");
+            boss.PublicOverheadMessage(MessageType.Regular, hue, false, "*" + boss.Name + " está preparando um ataque!*");
             boss.PlaySound(0x227);
             boss.FixedParticles(0x375A, 10, 15, 5037, hue, 0, EffectLayer.Head);
 
@@ -1307,7 +1315,7 @@ namespace Server.Custom.DailyBosses.System
                 MessageType.Regular,
                 hue,
                 false,
-                "Lolth, I give thee my everything! Destroy these interlopers!"
+                "Lolth, eu te dou tudo de mim! Destrói esses intrusos!"
             );
 
             boss.PlaySound(0x20F);
@@ -1534,7 +1542,7 @@ namespace Server.Custom.DailyBosses.System
 
             m_ActiveResistBreaches[m][resistType] = mod;
 
-            m.SendMessage("Your " + resistLabel + " resistance has been sapped by " + sapAmount + " for " + duration + " seconds!");
+            m.SendMessage("Sua resistência a " + resistLabel + " foi reduzida em " + sapAmount + " por " + duration + " segundos!");
 
             Timer.DelayCall(TimeSpan.FromSeconds(duration), delegate ()
             {
@@ -1544,7 +1552,7 @@ namespace Server.Custom.DailyBosses.System
                 RemoveResistBreach(m, resistType);
 
                 if (m.Alive)
-                    m.SendMessage("Your " + resistLabel + " resistance has returned to normal.");
+                    m.SendMessage("Sua resistência a " + resistLabel + " voltou ao normal.");
             });
         }
 
@@ -1930,7 +1938,7 @@ namespace Server.Custom.DailyBosses.System
             m_BossBleeds.Remove(m);
 
             if (message && m is PlayerMobile)
-                m.SendMessage("The bleeding has stopped.");
+                m.SendMessage("O sangramento parou.");
         }
 
 

@@ -6,7 +6,7 @@ using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a medusan corpse" )]
+	[CorpseName( "um cadaver de uma medusa" )]
 	public class Medusa : BaseCreature
 	{
 		[Constructable]
@@ -90,7 +90,7 @@ namespace Server.Mobiles
 				int duration = Utility.RandomMinMax(4, 8);
 				m.Paralyze(TimeSpan.FromSeconds(duration));
 
-				m.SendMessage( "You are paralyzed!" );
+				m.SendMessage( "Você está paralisado!" );
 			}
 		}
 
@@ -110,11 +110,11 @@ namespace Server.Mobiles
 					}
 					else if ( Server.Items.HiddenTrap.CheckInsuranceOnTrap( iStone, m ) )
 					{
-						m.LocalOverheadMessage(MessageType.Emote, 1150, true, "The medusa almost turned one of your protected items to stone!");
+						m.LocalOverheadMessage(MessageType.Emote, 1150, true, "A medusa quase transformou um dos seus itens protegidos em pedra!");
 					}
 					else
 					{
-						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "One of your items has been turned to stone!");
+						m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "Um dos seus itens foi transformado em pedra!");
 						m.PlaySound( 0x1FB );
 						Item rock = new BrokenGear();
 						rock.ItemID = iStone.GraphicID;

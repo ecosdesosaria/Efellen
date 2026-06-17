@@ -41,10 +41,10 @@ namespace Server.Items
 		{
 			int level = SpellItems.GetLevel( (int)spell );
 			SpellItems.ChangeMagicSpell( spell, this, true );
-			InfoData = "This wand can cast the " + SpellItems.GetName( Enchanted ) + " spell. " + SpellItems.GetData( Enchanted ) + " Wands must be equipped to cast spells, where mana is usually required. If your wand runs out of charges, try visiting a wizard to see if they will recharge it for you.";
+			InfoData = "Esta varinha pode lançar o feitiço " + SpellItems.GetName( Enchanted ) + ". " + SpellItems.GetData( Enchanted ) + " Varinhas devem estar equipadas para lançar feitiços, onde mana geralmente é necessária. Se sua varinha ficar sem cargas, tente visitar um mago para ver se ele a recarregará para você.";
 			InfoText2 = SpellItems.GetCircle( Enchanted );
-			Name = "Magic Wand of " + SpellItems.GetNameUpper( Enchanted );
-			CoinPrice = level * 100;
+			Name = "Varinha Mágica de " + SpellItems.GetNameUpper( Enchanted );
+			CoinPrice = level * 80;
 		}
 
 		public override void CastEnchantment( Mobile from )

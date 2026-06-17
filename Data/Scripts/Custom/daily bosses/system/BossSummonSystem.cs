@@ -129,7 +129,7 @@ namespace Server.Custom.BossSystems
 
 			Timer.DelayCall(TimeSpan.FromMinutes(2), delegate()
 			{
-				if (bc != null && !bc.Deleted && bc.Alive)
+				if (bc != null && (!bc.Deleted || bc.Alive))
 				{
 					bc.Delete();
 				}
