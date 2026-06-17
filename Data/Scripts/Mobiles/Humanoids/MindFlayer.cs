@@ -5,20 +5,20 @@ using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles 
 { 
-	[CorpseName( "a mind flayer corpse" )] 
+	[CorpseName( "um cadáver de um devorador de mentes" )]
 	public class MindFlayer : BaseCreature 
 	{ 
 		[Constructable] 
 		public MindFlayer() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{ 
-			Name = "a mind flayer";
+			Name = "um devorador de mentes";
 			Body = 786;
 			BaseSoundID = 898;
 
 			switch ( Utility.RandomMinMax( 0, 2 ) ) 
 			{
-				case 1 :	Name = "an illithid";		Body = 463;		break;
-				case 2 :	Name = "a mind flayer";		Body = 442;		break;
+				case 1 :	Name = "um illithid";		Body = 463;		break;
+				case 2 :	Name = "um devorador de mentes";		Body = 442;		break;
 			}
 
 			PackItem( new Robe( Utility.RandomMetalHue() ) ); 
@@ -135,7 +135,7 @@ namespace Server.Mobiles
 						BossSpecialAttack.PerformConeBreath(
 						    boss: this,
 						    target: target,
-						    warcry: "*Releases a psionic blast!*",
+						    warcry: "*Libera uma explosão psíquica!*",
 						    hue: 1167,
 						    rage: 2,
 						    range: 5, 

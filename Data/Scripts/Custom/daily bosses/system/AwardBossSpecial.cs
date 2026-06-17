@@ -287,6 +287,7 @@ namespace Server.Custom
             {
                 BaseWeapon weapon = (BaseWeapon)item;
                 weapon.Attributes.Luck += 75;
+                weapon.Attributes.SpellChanneling = 1;
                 weapon.WeaponAttributes.HitDispel += 25;
                 weapon.MinDamage += 4;
                 weapon.MaxDamage += 4;
@@ -317,6 +318,7 @@ namespace Server.Custom
             {
                 BaseWeapon weapon = (BaseWeapon)item;
                 weapon.Attributes.Luck += 75;
+                weapon.Attributes.SpellChanneling = 1;
                 weapon.WeaponAttributes.HitHarm += 25;
                 weapon.MinDamage += 4;
                 weapon.MaxDamage += 4;
@@ -347,13 +349,14 @@ namespace Server.Custom
             {
                 BaseWeapon weapon = (BaseWeapon)item;
                 weapon.Attributes.Luck += 25;
+                weapon.Attributes.SpellChanneling = 1;
                 weapon.AosElementDamages.Physical = 50;
                 weapon.AosElementDamages.Fire = 50;
                 weapon.AosElementDamages.Cold = 0;
                 weapon.AosElementDamages.Poison = 0;
                 weapon.AosElementDamages.Energy = 0;
-                weapon.MinDamage += 3;
-                weapon.MaxDamage += 3;
+                weapon.MinDamage += Utility.RandomMinMax(2, 3);
+                weapon.MaxDamage += Utility.RandomMinMax(3, 4);
                 weapon.WeaponAttributes.ResistFireBonus += Utility.RandomMinMax(8, 12);
             }
         }

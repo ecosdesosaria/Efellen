@@ -59,9 +59,11 @@ namespace Server.Mobiles
 			Karma = -17000;
 			VirtualArmor = 50;
 
-			PackItem( new BottleOfAcid() );
-			PackItem( new BottleOfAcid() );
-			PackItem( new BottleOfAcid() );
+			if(Utility.RandomBool())
+			{
+				PackItem( new BottleOfAcid() );
+				PackItem( new BottleOfAcid() );			
+			}
 		}
 
 		public override void OnDeath( Container c )

@@ -545,7 +545,7 @@ namespace Server
 				typeof( Artifact_SenseisWalkingStick), typeof( Artifact_StaffOfBlasting), typeof (Artifact_ScepterOfBlasting), typeof( Artifact_SilksOfAllurement ), typeof ( Artifact_TemptationOfSune ),
 				typeof( Artifact_ShacklesOfBhaal ), typeof( Artifact_ProtectoroftheWildsGorget ), typeof( Artifact_NatureMasterGorget ), typeof( Artifact_NatureVengeanceGorget ),  typeof(Artifact_SpiritBreaker),
 				typeof( Artifact_ShieldOfAmaunator ), typeof( Artifact_StormKingsShield ), typeof( Artifact_RememberanceOfHereafter), typeof( Artifact_EndOfHope ), typeof( Artifact_SpellBreaker ), typeof(Artifact_UgmarLastWord), typeof(Artifact_MelodyOfTriumph),
-				typeof( Artifact_BootsOfFanaedar ), typeof( Artifact_AmuletOfFanaedar ), typeof( Artifact_ThievesTorment),
+				typeof( Artifact_BootsOfFanaedar ), typeof( Artifact_AmuletOfFanaedar ), typeof( Artifact_ThievesTorment), typeof( Artifact_EdgeOfDawn ), typeof( Artifact_EdgeOfDusk )
 				
 			};
 		public static Type[] ArtyTypes{ get{ return m_ArtyTypes; } }

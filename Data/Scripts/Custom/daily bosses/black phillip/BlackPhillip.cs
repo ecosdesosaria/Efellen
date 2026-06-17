@@ -255,12 +255,17 @@ namespace Server.Mobiles
 				m_Rage = 3;
 				return false;
 			}
-			else if ( m_Rage == 2 )
+			else
 			{
 				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
 				this.PlaySound( 0x1FE );
 				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Eu voltarei!" );
 				Mobile killer = this.LastKiller;
+				
+				BaseCreature bc = killer as BaseCreature;
+				if (bc != null && bc.ControlMaster != null)
+					killer = bc.ControlMaster;
+				
 				if (killer != null && killer.Player && killer.Karma > 0)
 				{
 					int marks = Utility.RandomMinMax(70, 90);

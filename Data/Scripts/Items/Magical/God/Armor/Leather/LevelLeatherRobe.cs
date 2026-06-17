@@ -6,12 +6,6 @@ namespace Server.Items
 	[FlipableAttribute( 0x1F03, 0x1F04 )]
 	public class LevelLeatherRobe : BaseLevelArmor
 	{
-		public override int BasePhysicalResistance{ get{ return 3; } }
-		public override int BaseFireResistance{ get{ return 4; } }
-		public override int BaseColdResistance{ get{ return 4; } }
-		public override int BasePoisonResistance{ get{ return 4; } }
-		public override int BaseEnergyResistance{ get{ return 4; } }
-
 		public override int InitMinHits{ get{ return 30; } }
 		public override int InitMaxHits{ get{ return 40; } }
 

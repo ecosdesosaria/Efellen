@@ -70,7 +70,6 @@ namespace Server.Mobiles
 
 				VirtualArmor = 50;
 
-				PackItem( new BottleOfAcid() );
 				if ( Utility.RandomBool() ){ PackItem( new BottleOfAcid() ); }
 			}
 			else

@@ -44,7 +44,7 @@ namespace Server.Mobiles
 
 			VirtualArmor = 18;
 
-			PackItem( new BottleOfAcid() );
+			if ( Utility.RandomBool() ){ PackItem( new BottleOfAcid() ); }
 		}
 
 		public override void GenerateLoot()

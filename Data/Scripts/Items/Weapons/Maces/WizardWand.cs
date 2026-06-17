@@ -34,39 +34,48 @@ namespace Server.Items
 
 			if ( ItemID == 0x13B4 )
 			{
-				string make = "Wand";
+				string make = "Varinha";
 				ItemID = Utility.RandomList( 0xDF2, 0xDF3, 0xDF4, 0xDF5 );
 
 				if ( Utility.RandomMinMax( 1, 10 ) == 1 ) // 10% ARE SCEPTERS
 				{
 					Weight = 5.0;
-					make = "Scepter";
+					make = "Cetro";
 					ItemID = Utility.RandomList( 0x26BC, 0x26C6 );
 				}
 
 				switch ( Utility.RandomMinMax( 0, 14 ) ) 
 				{
-					case 0: Name = make + " of Wizardry";			break;
-					case 1: Name = make + " of Sorcery";			break;
-					case 2: Name = make + " of the Magician";		break;
-					case 3: Name = make + " of the Warlock";		break;
-					case 4: Name = make + " of the Wizard";			break;
-					case 5: Name = make + " of the Sorcerer";		break;
-					case 6: Name = make + " of Wizards";			break;
-					case 7: Name = make + " of Sorcerers";			break;
-					case 8: Name = make + " of Magicians";			break;
-					case 9: Name = make + " of Warlocks";			break;
-					case 10: Name = make + " of the Witch";			break;
-					case 11: Name = make + " of Witches";			break;
-					case 12: Name = make + " of Magery";			break;
-					case 13: Name = make + " of Mages";				break;
-					case 14: Name = make + " of the Mages";			break;
+					case 0: Name = make + " da Feitiçaria";			break;
+					case 1: Name = make + " da Bruxaria";			break;
+					case 2: Name = make + " do Mágico";		break;
+					case 3: Name = make + " do Bruxo";		break;
+					case 4: Name = make + " do Mago";			break;
+					case 5: Name = make + " do Feiticeiro";		break;
+					case 6: Name = make + " dos Magos";			break;
+					case 7: Name = make + " dos Feiticeiros";			break;
+					case 8: Name = make + " dos Mágicos";			break;
+					case 9: Name = make + " dos Bruxos";			break;
+					case 10: Name = make + " da Bruxa";			break;
+					case 11: Name = make + " das Bruxas";			break;
+					case 12: Name = make + " da Magia";			break;
+					case 13: Name = make + " dos Magos";				break;
+					case 14: Name = make + " dos Magos";			break;
 				}
-				int maxLowReagentCost = MyServerSettings.LowerReg() > 50 ? 25 : MyServerSettings.LowerReg() / 2;
-				int maxLowMana = MyServerSettings.LowerMana() > 40 ? 20 : MyServerSettings.LowerMana() / 2;
-				Attributes.LowerManaCost = Utility.RandomMinMax( 1, maxLowMana );
-				Attributes.LowerRegCost = Utility.RandomMinMax( 1, maxLowReagentCost );
-				Attributes.RegenMana = Utility.RandomMinMax(3,5);	
+				if(Utility.RandomDouble() < 0.75)
+				{
+					int maxLowMana = MyServerSettings.LowerMana() > 40 ? 20 : MyServerSettings.LowerMana() / 2;
+					Attributes.LowerManaCost = Utility.RandomMinMax( 1, maxLowMana );	
+				} 
+				else if (Utility.RandomDouble() < 0.50)
+				{	
+					int maxLowReagentCost = MyServerSettings.LowerReg() > 50 ? 25 : MyServerSettings.LowerReg() / 2;
+					Attributes.LowerRegCost = Utility.RandomMinMax( 1, maxLowReagentCost );					
+				}
+				else
+				{
+					Attributes.RegenMana = Utility.RandomMinMax(4,6);						
+				}
 			}
 		}
 
