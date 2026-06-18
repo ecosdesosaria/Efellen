@@ -30,7 +30,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public ElementalSummonIce() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an ice elemental";
+			Name = "um elemental de gelo";
 			Body = 322;
 			BaseSoundID = 268;
 

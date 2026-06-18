@@ -38,23 +38,23 @@ namespace Server.Items
 			NotIdentified = true;
 			NotIDSource = Identity.Merchant;
 			NotIDSkill = IDSkill.Mercantile;
-			Name = "gravestone";
+			Name = "lápide";
 
-			string sBody = "a corpse";
+			string sBody = "um cadáver";
 			switch ( Utility.RandomMinMax( 0, 2 ) )
 			{
-				case 0:	sBody = "corpse";	break;
-				case 1:	sBody = "body";		break;
-				case 2:	sBody = "skeleton";	break;
+				case 0: sBody = "cadáver"; break;
+				case 1: sBody = "corpo"; break;
+				case 2: sBody = "esqueleto"; break;
 			}
 
-			string sChain = "a chained";
+			string sChain = "um acorrentado";
 			switch ( Utility.RandomMinMax( 0, 3 ) )
 			{
-				case 0:	sChain = "a chained";		break;
-				case 1:	sChain = "a shackled";		break;
-				case 2:	sChain = "a bound";			break;
-				case 3:	sChain = "a manacled";		break;
+				case 0: sChain = "um acorrentado"; break;
+				case 1: sChain = "um algemado"; break;
+				case 2: sChain = "um amarrado"; break;
+				case 3: sChain = "um manietado"; break;
 			}
 
 			ItemID = 0xED4; RelicFlipID1 = 0xED5; RelicFlipID2 = 0xED4; 
@@ -81,11 +81,11 @@ namespace Server.Items
 				case 18: ItemID = 0x1181; RelicFlipID1 = 0x1182; RelicFlipID2 = 0x1181; break;
 				case 19: ItemID = 0x1183; RelicFlipID1 = 0x1184; RelicFlipID2 = 0x1183; break;
 
-				case 20: ItemID = 0x124B; RelicFlipID1 = 0x1249; RelicFlipID2 = 0x124B; Name = "an iron maiden"; RelicDescription = "That Once Held " + ContainerFunctions.GetOwner( "property" ); break;
+				case 20: ItemID = 0x124B; RelicFlipID1 = 0x1249; RelicFlipID2 = 0x124B; Name = "uma donzela de ferro"; RelicDescription = "Que Uma Vez Prendeu " + ContainerFunctions.GetOwner( "property" ); break;
 
-				case 21: ItemID = 0x1C20; RelicFlipID1 = 0x1C21; RelicFlipID2 = 0x1C20; Name = "a wrapped body"; RelicDescription = ContainerFunctions.GetOwner( "Body" ); break;
+				case 21: ItemID = 0x1C20; RelicFlipID1 = 0x1C21; RelicFlipID2 = 0x1C20; Name = "um corpo envolto"; RelicDescription = ContainerFunctions.GetOwner( "Body" ); break;
 
-				case 22: ItemID = 0x1D9E; RelicFlipID1 = 0x1D9D; RelicFlipID2 = 0x1D9E; Name = "a bloody spike"; RelicDescription = "That Killed " + ContainerFunctions.GetOwner( "property" ); break;
+				case 22: ItemID = 0x1D9E; RelicFlipID1 = 0x1D9D; RelicFlipID2 = 0x1D9E; Name = "um espinho ensanguentado"; RelicDescription = "Que Matou " + ContainerFunctions.GetOwner( "property" ); break;
 
 				case 23: ItemID = 0x1A01; RelicFlipID1 = 0x1A02; RelicFlipID2 = 0x1A01; Name = sChain + " " + sBody; RelicDescription = ContainerFunctions.GetOwner( "Body" ); break;
 				case 24: ItemID = 0x1A03; RelicFlipID1 = 0x1A04; RelicFlipID2 = 0x1A03; Name = sChain + " " + sBody; RelicDescription = ContainerFunctions.GetOwner( "Body" ); break;
@@ -99,46 +99,46 @@ namespace Server.Items
 
 			if ( Name == "gravestone" )
 			{
-				string sGrave = "gravestone";
+				string sGrave = "lápide";
 				switch ( Utility.RandomMinMax( 0, 1 ) )
 				{
-					case 0:	sGrave = "gravestone";	break;
-					case 1:	sGrave = "tombstone";		break;
+					case 0: sGrave = "lápide"; break;
+					case 1: sGrave = "tumba"; break;
 				}
 
-				string sCarving = "Here Lies";
+				string sCarving = "Aqui Jaz";
 				switch ( Utility.RandomMinMax( 0, 4 ) )
 				{
-					case 0:	sCarving = "Here Lies";			break;
-					case 1:	sCarving = "Rest in Peace";		break;
-					case 2:	sCarving = "We Will Remember";	break;
-					case 3:	sCarving = "Here Rests";		break;
-					case 4:	sCarving = "Buried Here is";	break;
+					case 0: sCarving = "Aqui Jaz"; break;
+					case 1: sCarving = "Descanse em Paz"; break;
+					case 2: sCarving = "Lembraremos"; break;
+					case 3: sCarving = "Aqui Descansa"; break;
+					case 4: sCarving = "Aqui Está Enterrado"; break;
 				}
 
 				RelicDescription = sCarving + " " + ContainerFunctions.GetOwner( "property" );
 
-				string sMade = "a " + sGrave;
+				string sMade = "uma " + sGrave;
 				switch ( Utility.RandomMinMax( 0, 50 ) )
 				{
-					case 0:		sMade = "a bronze " + sGrave;		Hue = 0xB9A;	CoinPrice = CoinPrice * 2; break;
-					case 1:		sMade = "a jade " + sGrave;			Hue = 0xB93;	CoinPrice = CoinPrice * 2; break;
-					case 2:		sMade = "a granite " + sGrave;		Hue = 0xB8E;	CoinPrice = CoinPrice * 2; break;
-					case 3:		sMade = "a marble " + sGrave;		Hue = 0xB8B;	CoinPrice = CoinPrice * 2; break;
-					case 4:		sMade = "a copper " + sGrave;		Hue = 0x972;	CoinPrice = CoinPrice * 2; break;
-					case 5:		sMade = "a silver " + sGrave;		Hue = 0x835;	CoinPrice = CoinPrice * 2; break;
-					case 7:		sMade = "an amethyst " + sGrave;	Hue = 0x492;	CoinPrice = CoinPrice * 2; break;
-					case 8:		sMade = "an emerald " + sGrave;		Hue = 0x5B4;	CoinPrice = CoinPrice * 2; break;
-					case 10:	sMade = "a garnet " + sGrave;		Hue = 0x48F;	CoinPrice = CoinPrice * 2; break;
-					case 11:	sMade = "an onyx " + sGrave;		Hue = 0x497;	CoinPrice = CoinPrice * 2; break;
-					case 12:	sMade = "a quartz " + sGrave;		Hue = 0x4AC;	CoinPrice = CoinPrice * 2; break;
-					case 13:	sMade = "a ruby " + sGrave;			Hue = 0x5B5;	CoinPrice = CoinPrice * 2; break;
-					case 14:	sMade = "a sapphire " + sGrave;		Hue = 0x5B6;	CoinPrice = CoinPrice * 2; break;
-					case 15:	sMade = "a spinel " + sGrave;		Hue = 0x48B;	CoinPrice = CoinPrice * 2; break;
-					case 16:	sMade = "a star ruby " + sGrave;	Hue = 0x48E;	CoinPrice = CoinPrice * 2; break;
-					case 17:	sMade = "a topaz " + sGrave;		Hue = 0x488;	CoinPrice = CoinPrice * 2; break;
-					case 18:	sMade = "an ivory " + sGrave;		Hue = 0x47E;	CoinPrice = CoinPrice * 2; break;
-					case 19:	sMade = "a solid gold " + sGrave;	Hue = 0x4AC;	CoinPrice = CoinPrice * 4; Weight = Weight * 2; break;
+					case 0:     sMade = "uma " + sGrave + " de bronze"; Hue = 0xB9A; CoinPrice = CoinPrice * 2; break;
+					case 1:     sMade = "uma " + sGrave + " de jade"; Hue = 0xB93; CoinPrice = CoinPrice * 2; break;
+					case 2:     sMade = "uma " + sGrave + " de granito"; Hue = 0xB8E; CoinPrice = CoinPrice * 2; break;
+					case 3:     sMade = "uma " + sGrave + " de mármore"; Hue = 0xB8B; CoinPrice = CoinPrice * 2; break;
+					case 4:     sMade = "uma " + sGrave + " de cobre"; Hue = 0x972; CoinPrice = CoinPrice * 2; break;
+					case 5:     sMade = "uma " + sGrave + " de prata"; Hue = 0x835; CoinPrice = CoinPrice * 2; break;
+					case 7:     sMade = "uma " + sGrave + " de ametista"; Hue = 0x492; CoinPrice = CoinPrice * 2; break;
+					case 8:     sMade = "uma " + sGrave + " de esmeralda"; Hue = 0x5B4; CoinPrice = CoinPrice * 2; break;
+					case 10:    sMade = "uma " + sGrave + " de granada"; Hue = 0x48F; CoinPrice = CoinPrice * 2; break;
+					case 11:    sMade = "uma " + sGrave + " de ônix"; Hue = 0x497; CoinPrice = CoinPrice * 2; break;
+					case 12:    sMade = "uma " + sGrave + " de quartzo"; Hue = 0x4AC; CoinPrice = CoinPrice * 2; break;
+					case 13:    sMade = "uma " + sGrave + " de rubi"; Hue = 0x5B5; CoinPrice = CoinPrice * 2; break;
+					case 14:    sMade = "uma " + sGrave + " de safira"; Hue = 0x5B6; CoinPrice = CoinPrice * 2; break;
+					case 15:    sMade = "uma " + sGrave + " de espinela"; Hue = 0x48B; CoinPrice = CoinPrice * 2; break;
+					case 16:    sMade = "uma " + sGrave + " de rubi estrela"; Hue = 0x48E; CoinPrice = CoinPrice * 2; break;
+					case 17:    sMade = "uma " + sGrave + " de topázio"; Hue = 0x488; CoinPrice = CoinPrice * 2; break;
+					case 18:    sMade = "uma " + sGrave + " de marfim"; Hue = 0x47E; CoinPrice = CoinPrice * 2; break;
+					case 19:    sMade = "uma " + sGrave + " de ouro maciço"; Hue = 0x4AC; CoinPrice = CoinPrice * 4; Weight = Weight * 2; break;
 				}
 				Name = sMade;
 			}

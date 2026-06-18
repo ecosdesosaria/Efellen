@@ -41,28 +41,28 @@ namespace Server.Mobiles
 						{
 							case 1: m.Body = 689; m.Name = NameList.RandomName( "goddess" ); m.BaseSoundID = 0x4B0; break; // succubus
 							case 2: m.Body = Utility.RandomList( 202, 359 ); m.Name = NameList.RandomName( "imp" ); m.BaseSoundID = 594; m.Hue = Utility.RandomList( 0xB88, 0xB8C, 0xB85, 0x846, 0x84C, 0x84E, 0x4001, 0x5B7, 0x5B6, 0x550, 0x497, 0x48D, 0x482, 0x47E, 0x4AA, 0 ); break; // imp
-							case 3: m.Body = 93; m.Name = "a shadow demon"; m.BaseSoundID = 655; break; // shadow demon
-							case 4: m.Body = Utility.RandomList( 57, 168, 170, 327, 247 ); if ( m.Body == 327 ){ m.Hue = 0x9C4; } m.Name = "a skeleton"; m.BaseSoundID = 451; break; // skeleton
-							case 5: m.Body = 0x3CA; m.Name = Server.Misc.RandomThings.GetRandomWizardName(); m.Title = "the ghost"; m.Hue = 1150; m.AddItem( new DeathShroud( 1150 ) ); m.BaseSoundID = 0x482; break; // ghost
-							case 6: m.Body = 181; m.Name = "a ghoul"; m.BaseSoundID = 471; break; // ghoul
-							case 7: m.Body = 24; m.Name = NameList.RandomName( "ancient lich" ); m.BaseSoundID = Utility.RandomList( 0x19C, 0x3E9 ); m.Title = "the lich"; break; // lich
-							case 8: m.Body = 154; m.Name = "a mummy"; m.BaseSoundID = 471; break; // mummy
-							case 9: m.Body = Utility.RandomList( 148, 110 ); m.Name = "a skeletal wizard"; m.BaseSoundID = 451; break; // skeletal wizard
-							case 10: m.Body = 810; m.Name = "a zombie mage"; m.BaseSoundID = 471; break; // zombie mage
+							case 3: m.Body = 93; m.Name = "um demônio das sombras"; m.BaseSoundID = 655; break; // shadow demon
+							case 4: m.Body = Utility.RandomList( 57, 168, 170, 327, 247 ); if ( m.Body == 327 ){ m.Hue = 0x9C4; } m.Name = "um esqueleto"; m.BaseSoundID = 451; break; // skeleton
+							case 5: m.Body = 0x3CA; m.Name = Server.Misc.RandomThings.GetRandomWizardName(); m.Title = "o fantasma"; m.Hue = 1150; m.AddItem( new DeathShroud( 1150 ) ); m.BaseSoundID = 0x482; break; // ghost
+							case 6: m.Body = 181; m.Name = "um ghoul"; m.BaseSoundID = 471; break;// ghoul
+							case 7: m.Body = 24; m.Name = NameList.RandomName( "ancient lich" ); m.BaseSoundID = Utility.RandomList( 0x19C, 0x3E9 ); m.Title = "o lich"; break;
+							case 8: m.Body = 154; m.Name = "uma múmia"; m.BaseSoundID = 471; break;
+							case 9: m.Body = Utility.RandomList( 148, 110 ); m.Name = "um mago esquelético"; m.BaseSoundID = 451; break;
+							case 10: m.Body = 810; m.Name = "um mago zumbi"; m.BaseSoundID = 471; break;
 							case 11:
 								m.Body = Utility.RandomList( 3, 728 );
 								switch( Utility.RandomMinMax( 0, 9 ) )
 								{
-									case 0: m.Name = "a zombie";			break;
-									case 1: m.Name = "a walking dead";		break;
-									case 2: m.Name = "a corpse";			break;
-									case 3: m.Name = "a rotten corpse";		break;
-									case 4: m.Name = "an undead corpse";	break;
-									case 5: m.Name = "a rotting zombie";	break;
-									case 6: m.Name = "a zombie";			break;
-									case 7: m.Name = "a decaying zombie";	break;
-									case 8: m.Name = "a decaying corpse";	break;
-									case 9: m.Name = "a walking corpse";	break;
+									case 0: m.Name = "um zumbi"; break;
+									case 1: m.Name = "um morto-vivo ambulante"; break;
+									case 2: m.Name = "um cadáver"; break;
+									case 3: m.Name = "um cadáver podre"; break;
+									case 4: m.Name = "um cadáver morto-vivo"; break;
+									case 5: m.Name = "um zumbi em decomposição"; break;
+									case 6: m.Name = "um zumbi"; break;
+									case 7: m.Name = "um zumbi em decomposição"; break;
+									case 8: m.Name = "um cadáver em decomposição"; break;
+									case 9: m.Name = "um cadáver ambulante"; break;
 								}
 								m.Hue = 0xB97;
 								switch( Utility.RandomMinMax( 0, 12 ) )
@@ -77,18 +77,18 @@ namespace Server.Mobiles
 								}
 								m.BaseSoundID = 471;
 								break; // zombie
-							case 12: m.Body = 307; m.Name = "a wight"; m.BaseSoundID = 471; break; // wight
-							case 13: m.Body = 26; m.Name = "a spectre"; m.BaseSoundID = 0x482; break; // spectre
-							case 14: m.Body = Utility.RandomList( 124, 125 ); m.Name = NameList.RandomName( "vampire" ); m.Title = "the vampire"; m.BaseSoundID = 0x47D; break; // vampire
-							case 15: m.Body = 340; m.Name = "a hell lion"; m.BaseSoundID = 0x3EE; m.Hue = 0x4AA; break;
-							case 16: m.Body = 243; m.Name = "a raven"; m.BaseSoundID = 0x2EE; m.Hue = 0x497; break;
-							case 17: m.Body = 672; m.Name = "a placeron"; m.BaseSoundID = 0xA8; m.Hue = 0x99E; break;
-							case 18: m.Body = 354; m.Name = "a dreadhorn"; m.BaseSoundID = 0x4BC; break;
-							case 19: m.Body = 226; m.Name = "a nightmare"; m.BaseSoundID = 0xA8; m.Hue = 1109; break;
-							case 20: m.Body = 795; m.Name = "an ancient nightmare"; m.BaseSoundID = 0xA8; break;
-							case 21: m.Body = 0x11C; m.Name = "a gorgon"; m.BaseSoundID = 0xA3; m.Hue = 0xB63; break;
-							case 22: m.Body = 277; m.Name = "a black wolf"; m.Hue = 0xB3A; m.BaseSoundID = 0xE5; break;
-							case 23: m.Body = 793; m.Name = "a skeletal horse"; m.BaseSoundID = 0xA8; break;
+							case 12: m.Body = 307; m.Name = "um wight"; m.BaseSoundID = 471; break;
+							case 13: m.Body = 26; m.Name = "um espectro"; m.BaseSoundID = 0x482; break;
+							case 14: m.Body = Utility.RandomList( 124, 125 ); m.Name = NameList.RandomName( "vampire" ); m.Title = "o vampiro"; m.BaseSoundID = 0x47D; break;
+							case 15: m.Body = 340; m.Name = "um leão infernal"; m.BaseSoundID = 0x3EE; m.Hue = 0x4AA; break;
+							case 16: m.Body = 243; m.Name = "um corvo"; m.BaseSoundID = 0x2EE; m.Hue = 0x497; break;
+							case 17: m.Body = 672; m.Name = "um placeron"; m.BaseSoundID = 0xA8; m.Hue = 0x99E; break;
+							case 18: m.Body = 354; m.Name = "um dreadhorn"; m.BaseSoundID = 0x4BC; break;
+							case 19: m.Body = 226; m.Name = "um pesadelo"; m.BaseSoundID = 0xA8; m.Hue = 1109; break;
+							case 20: m.Body = 795; m.Name = "um pesadelo antigo"; m.BaseSoundID = 0xA8; break;
+							case 21: m.Body = 0x11C; m.Name = "uma górgona"; m.BaseSoundID = 0xA3; m.Hue = 0xB63; break;
+							case 22: m.Body = 277; m.Name = "um lobo negro"; m.Hue = 0xB3A; m.BaseSoundID = 0xE5; break;
+							case 23: m.Body = 793; m.Name = "um cavalo esquelético"; m.BaseSoundID = 0xA8; break;
 						}
 					}
 				}
@@ -117,15 +117,15 @@ namespace Server.Mobiles
 
 						switch ( Utility.RandomMinMax( 1, 13 ) )
 						{
-							case 1: m.Body = 203; m.Name = "a tree elemental"; m.BaseSoundID = 655; break;
-							case 2: m.Body = 754; m.Name = "a runic golem"; m.BaseSoundID = 268; break;
-							case 3: m.Body = 755; m.Name = "a firerock elemental"; m.BaseSoundID = 268; break;
-							case 4: m.Body = 696; m.Name = "a mud elemental"; m.BaseSoundID = 268; break;
-							case 5: m.Body = 322; m.Name = "an ice elemental"; m.BaseSoundID = 268; break;
-							case 6: m.Body = 698; m.Name = "a lava elemental"; m.BaseSoundID = 268; break;
-							case 7: m.Body = 13; m.Name = "an air elemental"; m.BaseSoundID = 655; break;
+							case 1: m.Body = 203; m.Name = "um elemental das árvores"; m.BaseSoundID = 655; break;
+							case 2: m.Body = 754; m.Name = "um golem rúnico"; m.BaseSoundID = 268; break;
+							case 3: m.Body = 755; m.Name = "um elemental de rocha de fogo"; m.BaseSoundID = 268; break;
+							case 4: m.Body = 696; m.Name = "um elemental de lama"; m.BaseSoundID = 268; break;
+							case 5: m.Body = 322; m.Name = "um elemental de gelo"; m.BaseSoundID = 268; break;
+							case 6: m.Body = 698; m.Name = "um elemental de lava"; m.BaseSoundID = 268; break;
+							case 7: m.Body = 13; m.Name = "um elemental do ar"; m.BaseSoundID = 655; break;
 							case 8: 
-								m.Body = Utility.RandomList(142, 14); m.Name = "an earth elemental"; m.BaseSoundID = 268; 
+								m.Body = Utility.RandomList(142, 14); m.Name = "um elemental da terra"; m.BaseSoundID = 268; 
 								temp = new PlateHelm();
 								ResourceMods.SetRandomResource( false, false, temp, CraftResource.Iron, true, null );
 								bc = m as BaseCreature;
@@ -134,25 +134,25 @@ namespace Server.Mobiles
 								m.Name = CraftResources.GetName(bc.Resource) + " elemental";
 								if ( bc.Resource == CraftResource.Iron )
 								{
-									m.Name = "earth elemental";
+									m.Name = "elemental da terra";
 									m.Hue = 0;
 								}
 								temp.Delete();
-							break;
-							case 9: m.Body = 15; m.Name = "a fire elemental"; m.BaseSoundID = 838; break;
-							case 10: m.Body = Utility.RandomList(707, 16); m.Name = "a water elemental"; m.BaseSoundID = 278; break;
-							case 11: m.Body = 16; m.Name = "a blood elemental"; m.BaseSoundID = 278; m.Hue = Utility.RandomList( 0xB1E, 0xABD, 0xAB4, 0x9A2, 0x8B3, 0x7CA ); break;
-							case 12: m.Body = 16; m.Name = "an acid elemental"; m.BaseSoundID = 278; m.Hue = 60; break;
+								break;
+							case 9: m.Body = 15; m.Name = "um elemental do fogo"; m.BaseSoundID = 838; break;
+							case 10: m.Body = Utility.RandomList(707, 16); m.Name = "um elemental da água"; m.BaseSoundID = 278; break;
+							case 11: m.Body = 16; m.Name = "um elemental de sangue"; m.BaseSoundID = 278; m.Hue = Utility.RandomList( 0xB1E, 0xABD, 0xAB4, 0x9A2, 0x8B3, 0x7CA ); break;
+							case 12: m.Body = 16; m.Name = "um elemental de ácido"; m.BaseSoundID = 278; m.Hue = 60; break;
 							case 13: 
-								m.Body = 322; m.Name = "caddellite elemental"; m.BaseSoundID = 268; m.Hue = 0x5B6;
+								m.Body = 322; m.Name = "elemental de caddelita"; m.BaseSoundID = 268; m.Hue = 0x5B6;
 								temp = new PlateHelm();
 								ResourceMods.SetRandomResource( false, false, temp, CraftResource.AmethystBlock, true, null );
 								bc = m as BaseCreature;
 								bc.Resource = temp.Resource;
 								m.Hue = CraftResources.GetClr(bc.Resource);
-								m.Name = CraftResources.GetName(bc.Resource) + " elemental";
+								m.Name = "elemental de " + CraftResources.GetName(bc.Resource);
 								temp.Delete();
-							break;
+								break;
 						}
 					}
 					else
@@ -162,75 +162,75 @@ namespace Server.Mobiles
 
 						switch ( pick )
 						{
-							case 1: m.Body = Utility.RandomList(212, 213, 177, 190, 179); m.Name = "a bear"; m.BaseSoundID = 0xA3; break;
-							case 2: m.Body = Utility.RandomList(178, 291); m.Name = "a pack horse"; m.BaseSoundID = 0xA8; break;
-							case 3: m.Body = 21; m.Name = "a serpent"; m.Hue = Utility.RandomMonsterHue(); m.BaseSoundID = 219;break;
+							case 1: m.Body = Utility.RandomList(212, 213, 177, 190, 179); m.Name = "um urso"; m.BaseSoundID = 0xA3; break;
+							case 2: m.Body = Utility.RandomList(178, 291); m.Name = "um cavalo de carga"; m.BaseSoundID = 0xA8; break;
+							case 3: m.Body = 21; m.Name = "uma serpente"; m.Hue = Utility.RandomMonsterHue(); m.BaseSoundID = 219; break;
 							case 4: 
 								switch ( Utility.RandomMinMax( 1, 3 ) )
 								{
-									case 1: m.Body = 277; m.Name = "a black wolf"; m.Hue = 0xB3A; m.BaseSoundID = 0xE5; break;
-									case 2: m.Body = 277; m.Name = "a dire wolf"; m.Hue = 0xB61; m.BaseSoundID = 0xE5; break;
-									case 3: m.Body = 277; m.Name = "a white wolf"; m.Hue = 0x9C3; m.BaseSoundID = 0xE5; break;
+									case 1: m.Body = 277; m.Name = "um lobo negro"; m.Hue = 0xB3A; m.BaseSoundID = 0xE5; break;
+									case 2: m.Body = 277; m.Name = "um lobo feroz"; m.Hue = 0xB61; m.BaseSoundID = 0xE5; break;
+									case 3: m.Body = 277; m.Name = "um lobo branco"; m.Hue = 0x9C3; m.BaseSoundID = 0xE5; break;
 								}
-							break;
+								break;
 							case 5: 
 								switch ( Utility.RandomMinMax( 1, 7 ) )
 								{
-									case 1: m.Body = 118; m.Name = "a crag cat"; m.BaseSoundID = 0x462; break;
-									case 2: m.Body = 187; m.Name = "a lion"; m.BaseSoundID = 0x3EE; break;
-									case 3: m.Body = 187; m.Name = "a snow lion"; m.BaseSoundID = 0x3EE; m.Hue = 0x9C2; break;
-									case 4: m.Body = 885; m.Name = "a panther"; m.BaseSoundID = 0x3EE; m.Hue = 0x96C; break;
-									case 5: m.Body = 340; m.Name = "a hell lion"; m.BaseSoundID = 0x3EE; m.Hue = 0x4AA; break;
-									case 6: m.Body = 340; m.Name = "a tiger"; m.BaseSoundID = 0x3EE; m.Hue = 0x54F; break;
-									case 7: m.Body = 340; m.Name = "a tiger"; m.BaseSoundID = 0x3EE; m.Hue = 0x9C2; break;
+									case 1: m.Body = 118; m.Name = "um gato das rochas"; m.BaseSoundID = 0x462; break;
+									case 2: m.Body = 187; m.Name = "um leão"; m.BaseSoundID = 0x3EE; break;
+									case 3: m.Body = 187; m.Name = "um leão das neves"; m.BaseSoundID = 0x3EE; m.Hue = 0x9C2; break;
+									case 4: m.Body = 885; m.Name = "uma pantera"; m.BaseSoundID = 0x3EE; m.Hue = 0x96C; break;
+									case 5: m.Body = 340; m.Name = "um leão infernal"; m.BaseSoundID = 0x3EE; m.Hue = 0x4AA; break;
+									case 6: m.Body = 340; m.Name = "um tigre"; m.BaseSoundID = 0x3EE; m.Hue = 0x54F; break;
+									case 7: m.Body = 340; m.Name = "um tigre"; m.BaseSoundID = 0x3EE; m.Hue = 0x9C2; break;
 								}
-							break;
+								break;
 							case 6: 
 								switch ( Utility.RandomMinMax( 1, 2 ) )
 								{
-									case 1: m.Body = Utility.RandomList( 0x1D, 161 ); m.Name = "a gorilla"; m.BaseSoundID = 0x9E; break;
-									case 2: m.Body = 332; m.Name = "an ape"; m.BaseSoundID = 0x3EE; m.Hue = 0x902; break;
+									case 1: m.Body = Utility.RandomList( 0x1D, 161 ); m.Name = "um gorila"; m.BaseSoundID = 0x9E; break;
+									case 2: m.Body = 332; m.Name = "um macaco"; m.BaseSoundID = 0x3EE; m.Hue = 0x902; break;
 								}
-							break;
+								break;
 							case 7: 
 								switch ( Utility.RandomMinMax( 1, 2 ) )
 								{
-									case 1: m.Body = 81; m.Name = "a frog"; m.BaseSoundID = 0x266; m.Hue = Utility.RandomList( 0x7D7, 0x7D8, 0x7D9, 0x7DA, 0x7DB, 0x7DC ); break;
-									case 2: m.Body = 80; m.Name = "a toad"; m.BaseSoundID = 0x26B; m.Hue = Utility.RandomList( 0, 0xB79, 0xB19, 0xB0D, 0xACE, 0xACF, 0xAB0 ); break;
+									case 1: m.Body = 81; m.Name = "uma rã"; m.BaseSoundID = 0x266; m.Hue = Utility.RandomList( 0x7D7, 0x7D8, 0x7D9, 0x7DA, 0x7DB, 0x7DC ); break;
+									case 2: m.Body = 80; m.Name = "um sapo"; m.BaseSoundID = 0x26B; m.Hue = Utility.RandomList( 0, 0xB79, 0xB19, 0xB0D, 0xACE, 0xACF, 0xAB0 ); break;
 								}
-							break;
+								break;
 							case 8: 
 								switch ( Utility.RandomMinMax( 1, 4 ) )
 								{
-									case 1: m.Body = 243; m.Name = "a phoenix"; m.BaseSoundID = 0x8F; m.Hue = 0xB73; break;
-									case 2: m.Body = 243; m.Name = "a roc"; m.BaseSoundID = 0x2EE; break;
-									case 3: m.Body = 243; m.Name = "a hawk"; m.BaseSoundID = 0x2EE; m.Hue = 2708; break;
-									case 4: m.Body = 243; m.Name = "a raven"; m.BaseSoundID = 0x2EE; m.Hue = 0x497; break;
+									case 1: m.Body = 243; m.Name = "uma fênix"; m.BaseSoundID = 0x8F; m.Hue = 0xB73; break;
+									case 2: m.Body = 243; m.Name = "um roc"; m.BaseSoundID = 0x2EE; break;
+									case 3: m.Body = 243; m.Name = "um falcão"; m.BaseSoundID = 0x2EE; m.Hue = 2708; break;
+									case 4: m.Body = 243; m.Name = "um corvo"; m.BaseSoundID = 0x2EE; m.Hue = 0x497; break;
 								}
-							break;
+								break;
 							case 9: 
 								switch ( Utility.RandomMinMax( 1, 7 ) )
 								{
-									case 1: m.Body = 672; m.Name = "a pegasus"; m.BaseSoundID = 0xA8; m.Hue = 2500; break;
-									case 2: m.Body = 672; m.Name = "a placeron"; m.BaseSoundID = 0xA8; m.Hue = 0x99E; break;
-									case 3: m.Body = 132; m.Name = "a kirin"; m.BaseSoundID = 0x3C5; break;
-									case 4: m.Body = 354; m.Name = "a dreadhorn"; m.BaseSoundID = 0x4BC; break;
-									case 5: m.Body = 0x7A; m.Name = "a unicorn"; m.BaseSoundID = 0x4BC; break;
-									case 6: m.Body = 226; m.Name = "a nightmare"; m.BaseSoundID = 0xA8; m.Hue = 1109; break;
-									case 7: m.Body = 795; m.Name = "an ancient nightmare"; m.BaseSoundID = 0xA8; break;
+									case 1: m.Body = 672; m.Name = "um pégaso"; m.BaseSoundID = 0xA8; m.Hue = 2500; break;
+									case 2: m.Body = 672; m.Name = "um placeron"; m.BaseSoundID = 0xA8; m.Hue = 0x99E; break;
+									case 3: m.Body = 132; m.Name = "um kirin"; m.BaseSoundID = 0x3C5; break;
+									case 4: m.Body = 354; m.Name = "um dreadhorn"; m.BaseSoundID = 0x4BC; break;
+									case 5: m.Body = 0x7A; m.Name = "um unicórnio"; m.BaseSoundID = 0x4BC; break;
+									case 6: m.Body = 226; m.Name = "um pesadelo"; m.BaseSoundID = 0xA8; m.Hue = 1109; break;
+									case 7: m.Body = 795; m.Name = "um pesadelo antigo"; m.BaseSoundID = 0xA8; break;
 								}
-							break;
-							case 10: m.Body = Utility.RandomList( 116, 117, 219 ); m.Name = "a raptor"; m.BaseSoundID = 0x5A; break;
+								break;
+							case 10: m.Body = Utility.RandomList( 116, 117, 219 ); m.Name = "um raptor"; m.BaseSoundID = 0x5A; break;
 							case 11: 
 								int roll = Utility.RandomMinMax( 1, 6 );
-									if ( spawned ){ roll = 5; }
+								if ( spawned ){ roll = 5; }
 								switch ( roll )
 								{
-									case 1: m.Body = 19; m.Name = "a grum"; m.BaseSoundID = 0xA3; break;
-									case 2: m.Body = Utility.RandomList(98, 97); m.Name = "a horror"; m.BaseSoundID = 959; break;
-									case 3: m.Body = Utility.RandomList(334, 752); m.Name = "a golem"; m.BaseSoundID = 1368; break;
-									case 4: m.Body = Utility.RandomList(705, 697, 934); m.Name = "a dinosaur"; m.BaseSoundID = 362; break;
-									case 5: m.Body = 0x11C; m.Name = "a gorgon"; m.BaseSoundID = 0xA3; m.Hue = 0xB63; break;
+									case 1: m.Body = 19; m.Name = "um grum"; m.BaseSoundID = 0xA3; break;
+									case 2: m.Body = Utility.RandomList(98, 97); m.Name = "um horror"; m.BaseSoundID = 959; break;
+									case 3: m.Body = Utility.RandomList(334, 752); m.Name = "um golem"; m.BaseSoundID = 1368; break;
+									case 4: m.Body = Utility.RandomList(705, 697, 934); m.Name = "um dinossauro"; m.BaseSoundID = 362; break;
+									case 5: m.Body = 0x11C; m.Name = "uma górgona"; m.BaseSoundID = 0xA3; m.Hue = 0xB63; break;
 								}
 							break;
 						}
@@ -241,7 +241,7 @@ namespace Server.Mobiles
 					switch ( Utility.RandomMinMax( 1, 62 ) )
 					{
 						case 1: m.Body = 343; m.Name = NameList.RandomName( "giant" ); m.BaseSoundID = 427; break; // bugbear
-						case 2: m.Body = 176; m.Name = NameList.RandomName( "gargoyle vendor" ); m.Title = "the kilrathi"; m.BaseSoundID = 0x3EE; break; // cat
+						case 2: m.Body = 176; m.Name = NameList.RandomName( "gargoyle vendor" ); m.Title = "o kilrathi"; m.BaseSoundID = 0x3EE; break; // cat
 						case 3: m.Body = 162; m.Name = NameList.RandomName( "savage" ); m.BaseSoundID = 427; break; // caveman
 						case 4: m.Body = 101; m.Name = NameList.RandomName( "centaur" ); m.BaseSoundID = 679; break; // centaur
 						case 5: m.Body = 65; m.Name = NameList.RandomName( "vampire" ); m.BaseSoundID = 0x47D; break; // death knight

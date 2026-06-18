@@ -6,13 +6,13 @@ using Server;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a broken machine" )]
+	[CorpseName( "uma máquina quebrada" )]
 	public class IronCobra : BaseCreature
 	{
 		[Constructable]
 		public IronCobra() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an iron cobra";
+			Name = "uma cobra de ferro";
 			Body = 0x15;
 			Hue = 0xB31;
 			Resource = CraftResource.Iron;
@@ -131,7 +131,7 @@ namespace Server.Mobiles
 					int duration = Utility.RandomMinMax(4, 8);
 					m.Paralyze(TimeSpan.FromSeconds(duration));
 
-					m.SendMessage( "You are paralyzed from the poisonous bite!" );
+					m.SendMessage( "Você está paralisado pela mordida venenosa!" );
 				}
 			}
 		}

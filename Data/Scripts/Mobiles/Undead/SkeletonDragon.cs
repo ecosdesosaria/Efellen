@@ -27,7 +27,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public SkeletonDragon () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a skeletal dragon";
+			Name = "um dragão esqueleto";
 			BaseSoundID = 0x488;
 			Body = 272;
 			Hue = 0xB4D; 

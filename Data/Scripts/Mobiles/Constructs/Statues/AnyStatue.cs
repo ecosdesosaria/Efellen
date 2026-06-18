@@ -6,7 +6,7 @@ using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a broken sculpture" )]
+	[CorpseName( "uma escultura quebrada" )]
 	public class AnyStatue : BaseCreature
 	{
 		private bool m_Stunning;
@@ -20,7 +20,7 @@ namespace Server.Mobiles
 		{
 			Body = 876;
 			BaseSoundID = 268;
-			Name = "an animated statue";
+			Name = "uma estátua animada";
 
 			switch ( Utility.RandomMinMax( 1, 8 ) )
 			{

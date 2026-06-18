@@ -48,7 +48,7 @@ namespace Server.Items
       public BodyChangeCatStatue() : base(0x42B4) // FINAL 0xxxxx number this is the item ID for the item player double clicks 
       { 
          Weight = 1.0; 
-         Name = "An Cat Polyjuice"; 
+         Name = "Uma Poção de Polisuco de Gato";
          Stackable = false;
 	      //Hue = 1176;
       } 

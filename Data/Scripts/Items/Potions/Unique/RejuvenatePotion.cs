@@ -12,7 +12,7 @@ namespace Server.Items
 		[Constructable]
 		public RejuvenatePotion( ) : base( PotionEffect.Rejuvenate )
 		{
-			Name = "rejuvenate potion";
+			Name = "poção de rejuvenescimento";
 			Hue = Server.Items.PotionKeg.GetPotionColor( this );
 		}
 

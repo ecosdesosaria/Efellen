@@ -26,47 +26,47 @@ namespace Server.Items
 		public SomeRandomNote( ) : base( 0x4CCA )
 		{
 			Weight = 1.0;
-			Name = "an old parchment";
+			Name = "um pergaminho antigo";
 			ItemID = Utility.RandomList( 0x4CCA, 0x4CCB );
 
 			switch ( Utility.RandomMinMax( 0, 2 ) )
 			{
-				case 0:	Name = "parchment";	break;
-				case 1:	Name = "note";		break;
-				case 2:	Name = "scroll";		break;
+				case 0: Name = "pergaminho"; break;
+				case 1: Name = "bilhete"; break;
+				case 2: Name = "rolo"; break;
 			}
 
 			switch ( Utility.RandomMinMax( 0, 5 ) )
 			{
-				case 0:	Name = "an old" + " " + Name;		break;
-				case 1:	Name = "an ancient" + " " + Name;	break;
-				case 2:	Name = "a worn" + " " + Name;		break;
-				case 3:	Name = "a scribbled" + " " + Name;	break;
-				case 4:	Name = "an unusual" + " " + Name;	break;
-				case 5:	Name = "a strange" + " " + Name;	break;
+				case 0: Name = "um velho" + " " + Name; break;
+				case 1: Name = "um antigo" + " " + Name; break;
+				case 2: Name = "um desgastado" + " " + Name; break;
+				case 3: Name = "um rabiscado" + " " + Name; break;
+				case 4: Name = "um incomum" + " " + Name; break;
+				case 5: Name = "um estranho" + " " + Name; break;
 			}
 
-			string poison = "lethal";
+			string poison = "letal";
 			switch ( Utility.RandomMinMax( 0, 4 ) )
 			{
-				case 0:	poison = "lesser"; break;
-				case 1:	poison = "regular"; break;
-				case 2:	poison = "greater"; break;
-				case 3:	poison = "deadly"; break;
-				case 4:	poison = "lethal"; break;
+				case 0: poison = "menor"; break;
+				case 1: poison = "regular"; break;
+				case 2: poison = "maior"; break;
+				case 3: poison = "mortal"; break;
+				case 4: poison = "letal"; break;
 			}
 
 			string skull = "lich";
 
 			switch ( Utility.RandomMinMax( 0, 6 ) )
 			{
-				case 0: skull = "lich";				break;
-				case 1: skull = "lich lord";		break;
-				case 2: skull = "ancient lich";		break;
-				case 3: skull = "demilich";			break;
-				case 4: skull = "bone magi";		break;
-				case 5: skull = "skeletal mage";	break;
-				case 6: skull = "skeletal wizard";	break;
+				case 0: skull = "lich"; break;
+				case 1: skull = "senhor lich"; break;
+				case 2: skull = "lich ancião"; break;
+				case 3: skull = "demilich"; break;
+				case 4: skull = "mago de ossos"; break;
+				case 5: skull = "mago esquelético"; break;
+				case 6: skull = "feiticeiro esquelético"; break;
 			}
 
 			ItemID = Utility.RandomList( 0xE34, 0x14ED, 0x14EE, 0x14EF, 0x14F0 );

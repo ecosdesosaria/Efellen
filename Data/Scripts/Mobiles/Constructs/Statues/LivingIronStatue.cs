@@ -6,7 +6,7 @@ using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a broken statue" )]
+	[CorpseName( "uma estátua quebrada" )]
 	public class LivingIronStatue : BaseCreature
 	{
 		private bool m_Stunning;
@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public LivingIronStatue() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an iron statue";
+			Name = "uma estátua de ferro";
 			Body = 876;
 			BaseSoundID = 268;
 			Hue = 2401;
@@ -78,7 +78,7 @@ namespace Server.Mobiles
 
 					defender.Animate( 21, 6, 1, true, false, 0 );
 					this.PlaySound( 0xEE );
-					defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "You have been stunned by a colossal blow!" );
+					defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "Você foi atordoado por um golpe colossal!" );
 
 					BaseWeapon weapon = this.Weapon as BaseWeapon;
 					if ( weapon != null )
@@ -101,7 +101,7 @@ namespace Server.Mobiles
 			{
 				defender.Frozen = false;
 				defender.Combatant = null;
-				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "You recover your senses." );
+				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "Você recupera os sentidos." );
 			}
 
 			m_Stunning = false;

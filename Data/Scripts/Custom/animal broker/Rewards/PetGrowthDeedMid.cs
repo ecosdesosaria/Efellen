@@ -130,7 +130,7 @@ namespace Server.Items
       public PetGrowthDeedMid() : base( 0x2827 ) 
       { 
          Weight = 1.0; 
-         Name = "an experimental growth potion"; 
+         Name = "uma poção de crescimento experimental";
          Stackable = true;
 	   Hue = 1176;
       } 

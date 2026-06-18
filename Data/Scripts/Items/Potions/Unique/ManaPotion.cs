@@ -12,7 +12,7 @@ namespace Server.Items
 		[Constructable]
 		public ManaPotion( ) : base( PotionEffect.Mana )
 		{
-			Name = "mana potion";
+			Name = "poção de mana";
 			Hue = Server.Items.PotionKeg.GetPotionColor( this );
 		}
 

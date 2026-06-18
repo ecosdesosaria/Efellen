@@ -31,7 +31,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public ElementalCalledEarth() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an earth elemental";
+			Name = "um elemental da terra";
 			Body = Utility.RandomList( 14, 446, 974 );
 			BaseSoundID = 268;
 			Hue = 0xB26;

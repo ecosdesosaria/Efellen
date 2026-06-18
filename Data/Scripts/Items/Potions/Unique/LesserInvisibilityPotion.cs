@@ -15,7 +15,7 @@ namespace Server.Items
 		[Constructable]
 		public LesserInvisibilityPotion() : base( 0x23BD, PotionEffect.InvisibilityLesser )
 		{
-			Name = "lesser invisibility potion";
+			Name = "poção de invisibilidade menor";
 			ItemID = 0x23BD;
 			Hue = Server.Items.PotionKeg.GetPotionColor( this );
 		}

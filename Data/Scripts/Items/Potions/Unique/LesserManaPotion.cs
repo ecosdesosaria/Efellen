@@ -12,7 +12,7 @@ namespace Server.Items
 		[Constructable]
 		public LesserManaPotion( ) : base( PotionEffect.ManaLesser )
 		{
-			Name = "lesser mana potion";
+			Name = "poção de mana menor";
 			ItemID = 0x23BD;
 			Hue = Server.Items.PotionKeg.GetPotionColor( this );
 		}

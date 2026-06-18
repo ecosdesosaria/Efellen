@@ -92,7 +92,7 @@ namespace Server.Misc
 			box.Weight = 10.0;
 			box.ItemID = Utility.RandomList(WoodenChestIDs);
 			box.GumpID = GumpWoodChest;
-			box.Name = "Wooden Chest";
+			box.Name = "Baú de Madeira";
 			box.Hue = HueWood;
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.RegularWood, false, null);
 		}
@@ -102,7 +102,7 @@ namespace Server.Misc
 			box.Weight = 20.0;
 			box.ItemID = Utility.RandomList(IronChestIDs);
 			box.GumpID = GumpIronChest;
-			box.Name = "Iron Chest";
+			box.Name = "Baú de Ferro";
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.Iron, false, null);
 		}
 
@@ -111,7 +111,7 @@ namespace Server.Misc
 			box.Weight = 12.0;
 			box.ItemID = Utility.RandomList(0x2811, 0x2812);
 			box.GumpID = 0x10C;
-			box.Name = "Wooden Footlocker";
+			box.Name = "Arca de Madeira";
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.RegularWood, false, null);
 		}
 
@@ -120,7 +120,7 @@ namespace Server.Misc
 			box.Weight = 15.0;
 			box.ItemID = Utility.RandomList(0x2813, 0x2814);
 			box.GumpID = 0x10D;
-			box.Name = "Wooden Trunk";
+			box.Name = "Baú de Madeira";
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.RegularWood, false, null);
 		}
 
@@ -129,7 +129,7 @@ namespace Server.Misc
 			box.Weight = 10.0;
 			box.ItemID = Utility.RandomList(WoodenBoxIDs);
 			box.GumpID = GumpWoodBox;
-			box.Name = "Wooden Box";
+			box.Name = "Caixa de Madeira";
 			box.Hue = HueBox;
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.RegularWood, false, null);
 		}
@@ -139,7 +139,7 @@ namespace Server.Misc
 			box.Weight = 10.0;
 			box.ItemID = Utility.RandomList(MetalBoxIDs);
 			box.GumpID = GumpMetalBox;
-			box.Name = "Metal Box";
+			box.Name = "Caixa de Metal";
 			box.Hue = HueIron;
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.Iron, false, null);
 		}
@@ -150,7 +150,7 @@ namespace Server.Misc
 			box.Locked = false;
 			box.ItemID = Utility.RandomList(BagIDs);
 			box.GumpID = GumpBag;
-			box.Name = "Bag";
+			box.Name = "Bolsa";
 			box.Hue = Utility.RandomMinMax(2401, 2430);
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.RegularLeather, false, null);
 		}
@@ -160,7 +160,7 @@ namespace Server.Misc
 			box.Weight = 3.0;
 			box.ItemID = Utility.RandomList(BackpackIDs);
 			box.GumpID = GumpBackpack;
-			box.Name = "Backpack";
+			box.Name = "Mochila";
 			box.Hue = Utility.RandomMinMax(2401, 2430);
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.RegularLeather, false, null);
 		}
@@ -170,7 +170,7 @@ namespace Server.Misc
 			box.Weight = small ? 8.0 : 10.0;
 			box.ItemID = Utility.RandomList(small ? SmallCrateIDs : LargeCrateIDs);
 			box.GumpID = GumpCrate;
-			box.Name = "Wooden Crate";
+			box.Name = "Caixote de Madeira";
 			box.Hue = Utility.RandomMinMax(2413, 2430);
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.RegularWood, false, null);
 		}
@@ -180,7 +180,7 @@ namespace Server.Misc
 			box.Weight = 25.0;
 			box.ItemID = Utility.RandomList(BarrelIDs);
 			box.GumpID = GumpBarrel;
-			box.Name = "Barrel";
+			box.Name = "Barril";
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.RegularWood, false, null);
 		}
 
@@ -199,7 +199,7 @@ namespace Server.Misc
 			box.Weight = 20.0;
 			box.ItemID = Utility.RandomList(UrnVaseIDs);
 			box.GumpID = GumpUrn;
-			box.Name = (Utility.Random(2) == 0 ? "Urn" : "Vase");
+			box.Name = (Utility.Random(2) == 0 ? "Urna" : "Vaso");
 			ResourceMods.SetRandomResource(false, false, box, CraftResource.Iron, false, null);
 			box.Catalog = Catalogs.Stone;
 		}
@@ -212,7 +212,7 @@ namespace Server.Misc
 				box.Weight = 100.0;
 				box.ItemID = Utility.RandomList(SarcophagusIDs);
 				box.GumpID = GumpSarc;
-				box.Name = "Sarcophagus";
+				box.Name = "Sarcófago";
 				ResourceMods.SetRandomResource(false, false, box, CraftResource.Iron, false, null);
 				box.Catalog = Catalogs.Stone;
 			}
@@ -221,7 +221,7 @@ namespace Server.Misc
 				box.Weight = 25.0;
 				box.ItemID = Utility.RandomList(CoffinIDs);
 				box.GumpID = GumpCoffin;
-				box.Name = ((box.ItemID == 0x27E9 || box.ItemID == 0x27EA) ? "Casket" : "Coffin");
+				box.Name = ((box.ItemID == 0x27E9 || box.ItemID == 0x27EA) ? "Cofre Funerário" : "Caixão");
 				ResourceMods.SetRandomResource(false, false, box, CraftResource.RegularWood, false, null);
 			}
 		}
@@ -237,11 +237,11 @@ namespace Server.Misc
 
 			switch (Utility.Random(6))
 			{
-				case 1: box.Name = "Abandoned Boat"; break;
-				case 2: box.Name = "Deserted Boat"; break;
-				case 3: box.Name = "Discarded Boat"; break;
-				case 4: box.Name = "Lost Boat"; break;
-				case 5: box.Name = "Adrift Boat"; break;
+				case 1: box.Name = "Barco Abandonado"; break;
+				case 2: box.Name = "Barco Desertado"; break;
+				case 3: box.Name = "Barco Descartado"; break;
+				case 4: box.Name = "Barco Perdido"; break;
+				case 5: box.Name = "Barco à Deriva"; break;
 			}
 		}
 
@@ -252,7 +252,7 @@ namespace Server.Misc
 			box.Catalog = Catalogs.Stone;
 			box.Resource = CraftResource.Iron;
 			box.ItemID = Utility.RandomList(StoneCofferIDs);
-			box.Name = "Stone Chest";
+			box.Name = "Baú de Pedra";
 		}
 	}
 }

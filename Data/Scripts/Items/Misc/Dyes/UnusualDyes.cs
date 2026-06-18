@@ -28,13 +28,13 @@ namespace Server.Items
 			Amount = amount;
 			switch( Utility.RandomMinMax( 0, 6 ) )
 			{
-				case 0: Name = "an odd jar of dye"; break;
-				case 1: Name = "an unusual jar of dye"; break;
-				case 2: Name = "a bizarre jar of dye"; break;
-				case 3: Name = "a curious jar of dye"; break;
-				case 4: Name = "a peculiar jar of dye"; break;
-				case 5: Name = "a strange jar of dye"; break;
-				case 6: Name = "a weird jar of dye"; break;
+				case 0: Name = "um pote de tinta estranho"; break;
+				case 1: Name = "um pote de tinta incomum"; break;
+				case 2: Name = "um pote de tinta bizarro"; break;
+				case 3: Name = "um pote de tinta curioso"; break;
+				case 4: Name = "um pote de tinta peculiar"; break;
+				case 5: Name = "um pote de tinta estranho"; break;
+				case 6: Name = "um pote de tinta esquisito"; break;
 			}
 			Hue = Utility.RandomSpecialHue();
 			DyeColor = Hue;

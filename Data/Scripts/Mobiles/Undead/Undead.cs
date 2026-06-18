@@ -5,7 +5,7 @@ using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an undead corpse" )]
+	[CorpseName( "um cadáver morto-vivo" )]
 	public class Undead : BaseCreature
 	{
 		[Constructable]
@@ -19,7 +19,7 @@ namespace Server.Mobiles
 			switch( undead )
 			{
 				case 1:
-					Name = "a skeleton";
+					Name = "um esqueleto";
 					Body = Utility.RandomList( 57, 168, 170, 50, 56, 167 );
 					BaseSoundID = 451;
 				break;
@@ -28,16 +28,16 @@ namespace Server.Mobiles
 					BaseSoundID = 471;
 					switch( Utility.RandomMinMax( 0, 9 ) )
 					{
-						case 0: Name = "a zombie";			break;
-						case 1: Name = "a walking dead";	break;
-						case 2: Name = "a corpse";			break;
-						case 3: Name = "a rotten corpse";	break;
-						case 4: Name = "an undead corpse";	break;
-						case 5: Name = "a rotting zombie";	break;
-						case 6: Name = "a zombie";			break;
-						case 7: Name = "a decaying zombie";	break;
-						case 8: Name = "a decaying corpse";	break;
-						case 9: Name = "a walking corpse";	break;
+						case 0: Name = "um zumbi"; break;
+						case 1: Name = "um morto-vivo ambulante"; break;
+						case 2: Name = "um cadáver"; break;
+						case 3: Name = "um cadáver podre"; break;
+						case 4: Name = "um cadáver morto-vivo"; break;
+						case 5: Name = "um zumbi em decomposição"; break;
+						case 6: Name = "um zumbi"; break;
+						case 7: Name = "um zumbi em decomposição"; break;
+						case 8: Name = "um cadáver em decomposição"; break;
+						case 9: Name = "um cadáver ambulante"; break;
 					}
 
 					Hue = 0xB97;
@@ -53,48 +53,48 @@ namespace Server.Mobiles
 					}
 				break;
 				case 3:
-					Name = "a ghoul";
+					Name = "um ghoul";
 					Body = 181;
 					BaseSoundID = 471;
-				break;
+					break;
 				case 4:
-					Name = "a mummy";
+					Name = "uma múmia";
 					Body = 154;
 					BaseSoundID = 471;
-				break;
+					break;
 				case 5:
-					Name = "a wight";
+					Name = "um wight";
 					Body = 307;
 					BaseSoundID = 471;
-				break;
+					break;
 				case 6:
-					Name = "a shade";
+					Name = "uma sombra";
 					Body = 26;
 					Hue = 0x4001;
 					BaseSoundID = 0x482;
-				break;
+					break;
 				case 7:
-					Name = "a spectre";
+					Name = "um espectro";
 					Body = 26;
 					BaseSoundID = 0x482;
-				break;
+					break;
 				case 8:
-					Name = "a spirit";
+					Name = "um espírito";
 					Body = 84;
 					BaseSoundID = 0x482;
 					Hue = 0x47E;
-				break;
+					break;
 				case 9:
-					Name = "a vampyre";
+					Name = "um vampiro";
 					Body = 124;
 					BaseSoundID = 0x47D;
-				break;
+					break;
 				case 10:
-					Name = "a wraith";
+					Name = "um espectro";
 					Body = 84;
 					Hue = 0x9C2;
 					BaseSoundID = 0x482;
-				break;
+					break;
 			}
 
 			if ( undead == 1 )

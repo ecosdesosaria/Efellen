@@ -25,7 +25,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.ArchersGuild; } }
 
 		[Constructable]
-		public Bowyer() : base( "the bowyer" )
+		public Bowyer() : base( "o arqueiro" )
 		{
 			SetSkill( SkillName.Bowcraft, 80.0, 100.0 );
 			SetSkill( SkillName.Marksmanship, 80.0, 100.0 );

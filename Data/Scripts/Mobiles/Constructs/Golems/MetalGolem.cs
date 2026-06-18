@@ -17,7 +17,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public MetalGolem() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.4, 0.8 )
 		{
-			Name = "a construct";
+			Name = "um constructo";
 			Body = Utility.RandomList( 752, 358 );
 
 			double scalar = 1.0;
@@ -146,7 +146,7 @@ namespace Server.Mobiles
 
 				defender.Animate( 21, 6, 1, true, false, 0 );
 				this.PlaySound( 0xEE );
-				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "You have been stunned by a colossal blow!" );
+				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "Você foi atordoado por um golpe colossal!" );
 
 				BaseWeapon weapon = this.Weapon as BaseWeapon;
 				if ( weapon != null )
@@ -168,7 +168,7 @@ namespace Server.Mobiles
 			{
 				defender.Frozen = false;
 				defender.Combatant = null;
-				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "You recover your senses." );
+				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "Você recupera os sentidos." );
 			}
 
 			m_Stunning = false;
