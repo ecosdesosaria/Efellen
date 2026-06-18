@@ -48,7 +48,7 @@ namespace Server.Items
       public BodyChangeOstardStatue() : base(0x42B4) // FINAL 0xxxxx number this is the item ID for the item player double clicks 
       { 
          Weight = 1.0; 
-         Name = "An Ostard Polyjuice"; 
+         Name = "Uma Poção de Polisuco de Ostard";
          Stackable = false;
 	      //Hue = 1176;
       } 

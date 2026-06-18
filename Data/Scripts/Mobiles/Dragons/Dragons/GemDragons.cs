@@ -10,7 +10,7 @@ using Server.Custom.DailyBosses.System;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a dragyn corpse" )]
+	[CorpseName( "o cadáver de um dragyn" )]
 	[TypeAlias( "Server.Mobiles.GemDragon" )]
 	public class GemDragon : BaseMount
 	{
@@ -31,7 +31,7 @@ namespace Server.Mobiles
 
 			if ( Utility.RandomMinMax(1,4) == 1 )
 			{
-				Name = "an elder dragyn";
+				Name = "um dragyn ancião";
 				Body = 59;
 				ItemID = 586;
 

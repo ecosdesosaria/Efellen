@@ -6,7 +6,7 @@ using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a rotting corpse" )]
+	[CorpseName( "um cadáver em decomposição" )]
 	public class SeaZombie : BaseCreature
 	{
 		[Constructable]
@@ -17,16 +17,16 @@ namespace Server.Mobiles
 
 			switch( Utility.RandomMinMax( 0, 9 ) )
 			{
-				case 0: Name = "a zombie";			break;
-				case 1: Name = "a walking dead";	break;
-				case 2: Name = "a corpse";			break;
-				case 3: Name = "a rotten corpse";	break;
-				case 4: Name = "an undead corpse";	break;
-				case 5: Name = "a rotting zombie";	break;
-				case 6: Name = "a zombie";			break;
-				case 7: Name = "a decaying zombie";	break;
-				case 8: Name = "a decaying corpse";	break;
-				case 9: Name = "a walking corpse";	break;
+				case 0: Name = "um zumbi"; break;
+				case 1: Name = "um morto-vivo ambulante"; break;
+				case 2: Name = "um cadáver"; break;
+				case 3: Name = "um cadáver podre"; break;
+				case 4: Name = "um cadáver morto-vivo"; break;
+				case 5: Name = "um zumbi em decomposição"; break;
+				case 6: Name = "um zumbi"; break;
+				case 7: Name = "um zumbi em decomposição"; break;
+				case 8: Name = "um cadáver em decomposição"; break;
+				case 9: Name = "um cadáver ambulante"; break;
 			}
 
 			int[] list = new int[]

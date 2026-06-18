@@ -9,7 +9,7 @@ namespace Server.Mobiles
 	public class SkeletonHorse : BaseMount
 	{
 		[Constructable]
-		public SkeletonHorse() : this( "a skeleton horse" )
+		public SkeletonHorse() : this( "um cavalo esqueleto" )
 		{
 		}
 

@@ -28,7 +28,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Afreet() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an afreet";
+			Name = "um ifrit";
 
 			Body = 248;
 			BaseSoundID = 357;
@@ -87,7 +87,7 @@ namespace Server.Mobiles
 				{
 					case 1:
 						Robe robe = new Robe();
-							robe.Name = "robe of the Afreet";
+							robe.Name = "vestimenta do Ifrit";
 							robe.ItemID = 0x1F03;
 							robe.Attributes.BonusMana = 5;
 							robe.Attributes.BonusInt = 4;
@@ -100,7 +100,7 @@ namespace Server.Mobiles
 					break;
 					case 2:
 						Cap hat = new Cap();
-							hat.Name = "hat of the Afreet";
+							hat.Name = "chapéu do Ifrit";
 							hat.ItemID = 0x1718;
 							hat.Attributes.BonusMana = 5;
 							hat.Attributes.BonusInt = 2;
@@ -113,7 +113,7 @@ namespace Server.Mobiles
 					break;
 					case 3:
 						Boots boots = new Boots();
-							boots.Name = "boots of the Afreet";
+							boots.Name = "botas do Ifrit";
 							boots.ItemID = 0x1711;
 							boots.Attributes.BonusMana = 5;
 							boots.Attributes.BonusInt = 2;
@@ -126,7 +126,7 @@ namespace Server.Mobiles
 					break;
 					case 4:
 						Cloak cloak = new Cloak();
-							cloak.Name = "cloak of the Afreet";
+							cloak.Name = "capa do Ifrit";
 							cloak.ItemID = 0x1530;
 							cloak.Attributes.BonusMana = 5;
 							cloak.Attributes.BonusInt = 4;
@@ -139,7 +139,7 @@ namespace Server.Mobiles
 					break;
 					case 5:
 						Belt belt = new Belt();
-							belt.Name = "belt of the Afreet";
+							belt.Name = "cinto do Ifrit";
 							belt.ItemID = 0x1530;
 							belt.Attributes.BonusMana = 5;
 							belt.Attributes.BonusInt = 2;
@@ -152,7 +152,7 @@ namespace Server.Mobiles
 					break;
 					case 6:
 						TrinketCandle candle = new TrinketCandle();
-							candle.Name = "candle of the Afreet";
+							candle.Name = "vela do Ifrit";
 							candle.ItemID = 0x1530;
 							candle.Attributes.BonusMana = 5;
 							candle.Attributes.BonusInt = 4;

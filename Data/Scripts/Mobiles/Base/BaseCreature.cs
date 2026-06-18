@@ -2388,41 +2388,41 @@ namespace Server.Mobiles
 			{
 				if ( reg.IsPartOf( "the Sewers" ) )
 				{
-					if ( this is GiantSpider ){ this.Name = "a spinner"; }
+					if ( this is GiantSpider ){ this.Name = "uma tecelã"; }
 				}
 				else if ( reg.IsPartOf( "the Catacombs" ) || reg.IsPartOf( "the Lower Catacombs" ) )
 				{
-					if ( this is Spectre ){ this.Name = "a shadow"; }
-					if ( this is Spirit ){ this.Name = "a ghost"; }
+					if ( this is Spectre ){ this.Name = "uma sombra"; }
+					if ( this is Spirit ){ this.Name = "um fantasma"; }
 				}
 				else if ( reg.IsPartOf( "Harkyn's Castle" ) )
 				{
-					if ( this is Gazer ){ this.Name = "a seeker"; }
-					if ( this is MadDog ){ this.Name = "a wolf"; }
-					if ( this is StoneElemental ){ this.Name = "a stone golem"; }
-					if ( this is FrostGiant ){ this.Title = "the ice giant"; }
+					if ( this is Gazer ){ this.Name = "um buscador"; }
+					if ( this is MadDog ){ this.Name = "um lobo"; }
+					if ( this is StoneElemental ){ this.Name = "um golem de pedra"; }
+					if ( this is FrostGiant ){ this.Title = "o gigante de gelo"; }
 				}
 				else if ( reg.IsPartOf( "Kylearan's Tower" ) )
 				{
-					if ( this is Gazer ){ this.Body = 674; this.BaseSoundID = 0x47D; this.Name = NameList.RandomName( "drakkul" ); this.Title = "the beholder"; }
-					if ( this is MadDog ){ this.Name = "a wolf"; }
-					if ( this is StoneElemental ){ this.Name = "a stone elemental"; }
-					if ( this is LowerDemon ){ this.Name = "a demon"; this.Hue = 0x5B5; this.Body = 4; }
+					if ( this is Gazer ){ this.Body = 674; this.BaseSoundID = 0x47D; this.Name = NameList.RandomName( "drakkul" ); this.Title = "o beholder"; }
+					if ( this is MadDog ){ this.Name = "um lobo"; }
+					if ( this is StoneElemental ){ this.Name = "um elemental de pedra"; }
+					if ( this is LowerDemon ){ this.Name = "um demônio"; this.Hue = 0x5B5; this.Body = 4; }
 				}
 				else if ( reg.IsPartOf( "Mangar's Tower" ) )
 				{
-					if ( this is Gazer ){ this.Name = "an evil eye"; this.Body = 83; }
-					if ( this is LowerDemon ){ this.Name = "a demon lord"; this.Title = ""; this.Body = 102; }
-					if ( this is Demon ){ this.Name = "a greater demon"; this.Title = ""; this.Hue = 0; this.Body = 40; }
-					if ( this is Daemon ){ this.Name = "a balrog"; this.Title = ""; this.Body = 38; }
+					if ( this is Gazer ){ this.Name = "um olho maligno"; this.Body = 83; }
+					if ( this is LowerDemon ){ this.Name = "um senhor demônio"; this.Title = ""; this.Body = 102; }
+					if ( this is Demon ){ this.Name = "um demônio maior"; this.Title = ""; this.Hue = 0; this.Body = 40; }
+					if ( this is Daemon ){ this.Name = "um balrog"; this.Title = ""; this.Body = 38; }
 					if ( this is StormGiant && Utility.RandomBool() )
 					{
-						this.Title = "the cloud giant";
+						this.Title = "o gigante das nuvens";
 						Item lootchest = this.Backpack.FindItemByType( typeof ( LootChest ) );
 						if ( lootchest != null )
 						{
 							lootchest.Hue = 0x835;
-							lootchest.Name = "silver chest";
+							lootchest.Name = "baú de prata";
 						}
 					}
 				}
@@ -2437,7 +2437,7 @@ namespace Server.Mobiles
 				}
 				else if ( this is EvilMage )
 				{
-					this.Title = "the dark wizard";
+					this.Title = "o mago sombrio";
 					MorphingTime.ColorMyClothes( this, 0x497, 0 );
 				}
 			}
@@ -2448,11 +2448,11 @@ namespace Server.Mobiles
 				{
 					switch ( Utility.Random( 5 ) )
 					{
-						case 0: this.Title = "the devil of blood"; 			break;
-						case 1: this.Title = "the bleeding devil"; 			break;
-						case 2: this.Title = "the blood devil"; 			break;
-						case 3: this.Title = "the devil of bloody hell"; 	break;
-						case 4: this.Title = "the blood moon devil"; 		break;
+						case 0: this.Title = "o diabo de sangue";             break;
+						case 1: this.Title = "o diabo sangrento";             break;
+						case 2: this.Title = "o diabo de sangue";             break;
+						case 3: this.Title = "o diabo do inferno sangrento";     break;
+						case 4: this.Title = "o diabo da lua de sangue";         break;
 					}
 					Hue = Utility.RandomList( 0xB01, 0x870 );
 				}
@@ -2463,7 +2463,7 @@ namespace Server.Mobiles
 				if ( this is Daemon )
 				{
 					Name = NameList.RandomName( "demonic" );
-					Title = "the daemon";
+					Title = "o demônio";
 					Body = Utility.RandomList( 9, 320 );
 					Hue = 0;
 					BaseSoundID = 357;
@@ -2471,7 +2471,7 @@ namespace Server.Mobiles
 				else if ( this is Balron )
 				{
 					Name = NameList.RandomName( "demonic" );
-					Title = "the daemon lord";
+					Title = "o lord demônio";
 					Body = Utility.RandomList( 191, 427 );
 					Hue = 0;
 					BaseSoundID = 357;
@@ -2500,19 +2500,19 @@ namespace Server.Mobiles
 						AddItem( staff );
 
 					Body = 0x190; 
-					Title = "the sorcerer";
+					Title = "o feiticeiro";
 					BaseSoundID = 0x47D;
 
 					if ( this is EvilMageLord )
 					{
 						Name = "Malchir";
-						Title = "the master sorcerer";
+						Title = "o mestre feiticeiro";
 					}
 					else if ( this is EvilMage && Home.X == 6277 && Home.Y == 2099 )
 					{
 						Body = 0x191; 
 						Name = "Bane";
-						Title = "the sorceress";
+						Title = "a feiticeira";
 						BaseSoundID = 0x4B0;
 					}
 					else if ( this is EvilMage && Home.X == 6398 && Home.Y == 1966 )
@@ -2622,24 +2622,24 @@ namespace Server.Mobiles
 			{
 				if ( this is Gargoyle )
 				{
-					this.Name = "an ashen gargoyle";
+					this.Name = "uma gárgula cinzenta";
 					this.Hue = 0xB85;
 				}
 				else if ( this is BoneMagi )
 				{
-					this.Name = "a skeletal fire mage";
+					this.Name = "um mago de fogo esqueleto";
 					this.Hue = Utility.RandomList( 0xB73, 0xB71, 0xB17, 0xAFA, 0xAC8, 0x986 );
 					this.AddItem( new LightSource() );
 				}
 				else if ( this is SkeletalMage )
 				{
-					this.Name = "an undead pyromancer";
+					this.Name = "um piromante morto-vivo";
 					this.Hue = Utility.RandomList( 0xB73, 0xB71, 0xB17, 0xAFA, 0xAC8, 0x986 );
 					this.AddItem( new LightSource() );
 				}
 				else if ( this is BoneKnight )
 				{
-					this.Name = "a skeletal guard";
+					this.Name = "um guarda esqueleto";
 					this.Hue = Utility.RandomList( 0xB73, 0xB71, 0xB17, 0xAFA, 0xAC8, 0x986 );
 					this.AddItem( new LightSource() );
 				}
@@ -2649,26 +2649,26 @@ namespace Server.Mobiles
 			{
 				if ( this is DreadSpider )
 				{
-					this.Name = "a vulrachnid";
+					this.Name = "uma vulrachnid";
 					this.Hue = 0xB73;
 					this.Body = 99;
 					this.AddItem( new LightSource() );
 				}
 				else if ( this is BoneMagi )
 				{
-					this.Name = "an undead flamecaster";
+					this.Name = "um lançador de chamas morto-vivo";
 					this.Hue = Utility.RandomList( 0xB73, 0xB71, 0xB17, 0xAFA, 0xAC8, 0x986 );
 					this.AddItem( new LightSource() );
 				}
 				else if ( this is SkeletalMage )
 				{
-					this.Name = "a skeletal pyromancer";
+					this.Name = "um piromante esquelético";
 					this.Hue = Utility.RandomList( 0xB73, 0xB71, 0xB17, 0xAFA, 0xAC8, 0x986 );
 					this.AddItem( new LightSource() );
 				}
 				else if ( this is BoneKnight )
 				{
-					this.Name = "a firebone warrior";
+					this.Name = "um guerreiro de osso flamejante";
 					this.Hue = Utility.RandomList( 0xB73, 0xB71, 0xB17, 0xAFA, 0xAC8, 0x986 );
 					this.AddItem( new LightSource() );
 				}
@@ -2678,30 +2678,30 @@ namespace Server.Mobiles
 			{
 				if ( this is LichLord )
 				{
-					this.Title = "the high pharaoh";
+					this.Title = "o alto faraó";
 					this.Hue = 0x9C4;
 					this.Body = 125;
 				}
 				else if ( this is Lich )
 				{
-					this.Title = "the pharaoh";
+					this.Title = "o faraó";
 					this.Hue = 0x9DF;
 					this.Body = 125;
 				}
 				else if ( this is Gazer )
 				{
-					this.Name = "a watcher";
+					this.Name = "um observador";
 					this.Hue = 0x96D;
 				}
 				else if ( this is ElderGazer )
 				{
-					this.Name = "a tomb watcher";
+					this.Name = "um observador de tumbas";
 					this.Hue = 0x9D1;
 					this.Body = 674;
 				}
 				else if ( this is Gargoyle )
 				{
-					this.Name = "a sand gargoyle";
+					this.Name = "uma gárgula de areia";
 					this.Hue = 0x96D;
 					this.PackItem( new Sand( Utility.RandomMinMax( 1, 2 ) ) );
 				}
@@ -2709,8 +2709,8 @@ namespace Server.Mobiles
 
 			if ( reg.IsPartOf( "the Ruins of the Black Blade" ) )
 			{
-				if ( this is Gazer ){ this.Name = "a seeker"; }
-				if ( this is StoneElemental ){ this.Name = "a stone golem"; }
+				if ( this is Gazer ){ this.Name = "um buscador"; }
+				if ( this is StoneElemental ){ this.Name = "um golem de pedra"; }
 			}
 
 			if ( Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( this.Map, this.Location ) ) && Server.Misc.Worlds.GetRegionName( this.Map, this.Location ) == "the Savaged Empire" )
@@ -2719,13 +2719,13 @@ namespace Server.Mobiles
 				{
 					this.Body = 456;
 					this.Hue = Utility.RandomList( 0x7D1, 0x7D2, 0x7D3, 0x7D4, 0x7D5, 0x7D6 );
-					this.Name = "a gator";
+					this.Name = "um jacaré";
 					BeefUp( this, 3 );
 				}
 				if ( this is MountainGoat )
 				{
 					this.Body = 936;
-					this.Name = "a ram";
+					this.Name = "um carneiro";
 					BeefUp( this, 3 );
 				}
 			}
@@ -2735,7 +2735,7 @@ namespace Server.Mobiles
 				if ( this is AntaurSoldier )
 				{
 					this.Body = 458;
-					this.Name = "an antaur";
+					this.Name = "um antaur";
 				}
 			}
 
@@ -2745,19 +2745,20 @@ namespace Server.Mobiles
 				{
 					switch ( Utility.Random( 5 ) )
 					{
-						case 0: this.Title = "the daemon of filth"; break;
-						case 1: this.Title = "the daemon of crud"; break;
-						case 2: this.Title = "the daemon of grime"; break;
-						case 3: this.Title = "the daemon of sludge"; break;
-						case 4: this.Title = "the daemon of the putrid"; break;
+						case 0: this.Title = "o demônio da imundície"; break;
+						case 1: this.Title = "o demônio da sujeira"; break;
+						case 2: this.Title = "o demônio da crosta"; break;
+						case 3: this.Title = "o demônio do lodo"; break;
+						case 4: this.Title = "o demônio do pútrido"; break;
 					}
 				}
-				if ( this is ToxicElemental ){ this.Name = "a sewage elemental"; this.Hue = Hue = 0xB97; }
-				if ( this is ForestGiant ){ this.Hue = Hue = 0xB97; this.Title = "the sludge giant"; }
+				if ( this is ToxicElemental ){ this.Name = "um elemental de esgoto"; this.Hue = Hue = 0xB97; }
+				if ( this is ForestGiant ){ this.Hue = Hue = 0xB97; this.Title = "o gigante do lodo"; }
+			
 				if ( this is AncientLich )
 				{
 					this.Hue = 0x967;
-					this.Title = "the shadow lich";
+					this.Title = "o lich das sombras";
 					BaseArmor armor = null;
 
 					if ( Utility.Random( 3 ) == 1 )
@@ -2780,7 +2781,7 @@ namespace Server.Mobiles
 				}
 				if ( this is SkeletalKnight )
 				{
-					this.Name = "a rotting skeleton";
+					this.Name = "um esqueleto em decomposição";
 					this.Hue = 0xB97;
 					this.SetDamageType( ResistanceType.Cold, 0 );
 					this.SetDamageType( ResistanceType.Fire, 0 );
@@ -2821,10 +2822,10 @@ namespace Server.Mobiles
 						}
 					}
 
-					if ( this.Body == 56 || this.Body == 168 ){ BattleAxe radaxe = new BattleAxe(); radaxe.Name = "rusty battle axe"; radaxe.Hue = 0xB97; radaxe.AosElementDamages.Poison=50; this.PackItem( radaxe ); }
-					if ( this.Body == 57 ){ Scimitar radsim = new Scimitar(); radsim.Name = "rusty scimitar"; radsim.Hue = 0xB97;	radsim.AosElementDamages.Poison=50; this.PackItem( radsim ); }
-					if ( this.Body == 170 || this.Body == 327 ){ Longsword radswd = new Longsword(); radswd.Name = "rusty longsword"; radswd.Hue = 0xB97;	radswd.AosElementDamages.Poison=50; this.PackItem( radswd ); }
-					if ( this.Body == 57 || this.Body == 168 || this.Body == 170 ){ WoodenShield radshield = new WoodenShield(); radshield.Name = "rotting shield"; radshield.Hue = 0xB97; radshield.PoisonBonus = 5; this.PackItem( radshield ); }
+					if ( this.Body == 56 || this.Body == 168 ){ BattleAxe radaxe = new BattleAxe(); radaxe.Name = "machado de batalha enferrujado"; radaxe.Hue = 0xB97; radaxe.AosElementDamages.Poison=50; this.PackItem( radaxe ); }
+					if ( this.Body == 57 ){ Scimitar radsim = new Scimitar(); radsim.Name = "cimitarra enferrujada"; radsim.Hue = 0xB97; radsim.AosElementDamages.Poison=50; this.PackItem( radsim ); }
+					if ( this.Body == 170 || this.Body == 327 ){ Longsword radswd = new Longsword(); radswd.Name = "espada longa enferrujada"; radswd.Hue = 0xB97; radswd.AosElementDamages.Poison=50; this.PackItem( radswd ); }
+					if ( this.Body == 57 || this.Body == 168 || this.Body == 170 ){ WoodenShield radshield = new WoodenShield(); radshield.Name = "escudo apodrecido"; radshield.Hue = 0xB97; radshield.PoisonBonus = 5; this.PackItem( radshield ); }
 				}
 			}
 
@@ -2834,7 +2835,7 @@ namespace Server.Mobiles
 				{
 					this.Hue = Hue = 0x83B;
 					this.Name = "Kazibal";
-					this.Title = "the unearthed";
+					this.Title = "o desenterrado";
 
 					if ( Utility.Random( 3 ) == 1 )
 					{
@@ -2852,7 +2853,7 @@ namespace Server.Mobiles
 						{
 							armor.Resource = CraftResource.LichSkeletal;
 							BaseRunicTool.ApplyAttributesTo( armor, false, 1000, Utility.RandomMinMax( 4, 8 ), 50, 125 );
-							armor.InfoText5 = "Kazibal the Unearthed";
+							armor.InfoText5 = "Kazibal, o Desenterrado";
 							this.PackItem( armor );
 						}
 					}
@@ -2867,15 +2868,15 @@ namespace Server.Mobiles
 					this.Body = 306;
 					this.BaseSoundID = 639;
 					this.Name = NameList.RandomName( "lizardman" );
-					this.Title = "the silisk sorcerer";
+					this.Title = "o feiticeiro silisk";
 				}
 				else if ( this is Sleestax )
 				{
-					this.Title = "the silisk";
+					this.Title = "o silisk";
 				}
 				else if ( this is Grathek )
 				{
-					this.Title = "the silisk guard";
+					this.Title = "o guarda silisk";
 				}
 			}
 
@@ -2891,7 +2892,7 @@ namespace Server.Mobiles
 				}
 				else if ( this is Stegosaurus )
 				{
-					this.Name = "a scalosaur";
+					this.Name = "um escalossauro";
 					this.Hue = 0xB18;
 					AI = AIType.AI_Melee;
 					FightMode = FightMode.Closest;
@@ -2903,16 +2904,16 @@ namespace Server.Mobiles
 			{
 				if ( this is StygianGargoyleLord )
 				{
-					this.Name = "a gargoyle";
+					this.Name = "uma gárgula";
 				}
 				else if ( this is Sleestax )
 				{
-					this.Title = "the silisk";
+					this.Title = "o silisk";
 				}
 				else if ( this is MountainGiant && this.X >= 5158 && this.Y >= 2705 && this.X <= 5243 && this.Y <= 2813 )
 				{
 					this.Hue = 0;
-					this.Name = "a stone guard";
+					this.Name = "um guarda de pedra";
 					this.Body = 450;
 					this.Title = "";
 					this.BaseSoundID = 268;
@@ -2923,19 +2924,19 @@ namespace Server.Mobiles
 			{
 				if ( this is ElderTitan )
 				{
-					this.Title = "the ancient titan";
+					this.Title = "o titã ancião";
 				}
 				else if ( this is StygianGargoyleLord )
 				{
-					this.Name = "an elder gargoyle";
+					this.Name = "uma gárgula anciã";
 				}
 				else if ( this is StygianGargoyle )
 				{
-					this.Name = "a gargoyle";
+					this.Name = "uma gárgula";
 				}
 				else if ( this is HarpyElder )
 				{
-					this.Name = "a harpy";
+					this.Name = "uma harpia";
 				}
 				else if ( this is GriffonRiding )
 				{
@@ -2970,7 +2971,7 @@ namespace Server.Mobiles
 				}
 				else if ( this is Sleestax )
 				{
-					this.Title = "the silisk";
+					this.Title = "o silisk";
 				}
 				else if ( this is GiantEel )
 				{
@@ -2979,7 +2980,7 @@ namespace Server.Mobiles
 				}
 				else if ( this is GiantSquid )
 				{
-					this.Title = "squid tentacles";
+					this.Title = "tentáculos de lula";
 					this.Hue = 0xB75;
 				}
 
@@ -3026,17 +3027,17 @@ namespace Server.Mobiles
 						}
 						if ( armor != null )
 						{
-							armor.Name = "irradiated " + armor.Name;
+							armor.Name = armor.Name + " irradiante";
 							armor.Hue = 0x48F;
 							armor.PoisonBonus = 10;
 							this.PackItem( armor );
 						}
 					}
 
-					if ( this.Body == 56 || this.Body == 168 ){ BattleAxe radaxe = new BattleAxe(); radaxe.Name = "irradiated battle axe"; radaxe.Hue = 0x48F; radaxe.AosElementDamages.Poison=50; this.PackItem( radaxe ); }
-					if ( this.Body == 57 ){ Scimitar radsim = new Scimitar(); radsim.Name = "irradiated scimitar"; radsim.Hue = 0x48F;	radsim.AosElementDamages.Poison=50; this.PackItem( radsim ); }
-					if ( this.Body == 170 || this.Body == 327 ){ Longsword radswd = new Longsword(); radswd.Name = "irradiated longsword"; radswd.Hue = 0x48F;	radswd.AosElementDamages.Poison=50; this.PackItem( radswd ); }
-					if ( this.Body == 57 || this.Body == 168 || this.Body == 170 ){ WoodenShield radshield = new WoodenShield(); radshield.Name = "irradiated shield"; radshield.Hue = 0x48F; radshield.PoisonBonus = 5; this.PackItem( radshield ); }
+					if ( this.Body == 56 || this.Body == 168 ){ BattleAxe radaxe = new BattleAxe(); radaxe.Name = "machado de batalha irradiado"; radaxe.Hue = 0x48F; radaxe.AosElementDamages.Poison=50; this.PackItem( radaxe ); }
+					if ( this.Body == 57 ){ Scimitar radsim = new Scimitar(); radsim.Name = "cimitarra irradiada"; radsim.Hue = 0x48F; radsim.AosElementDamages.Poison=50; this.PackItem( radsim ); }
+					if ( this.Body == 170 || this.Body == 327 ){ Longsword radswd = new Longsword(); radswd.Name = "espada longa irradiada"; radswd.Hue = 0x48F; radswd.AosElementDamages.Poison=50; this.PackItem( radswd ); }
+					if ( this.Body == 57 || this.Body == 168 || this.Body == 170 ){ WoodenShield radshield = new WoodenShield(); radshield.Name = "escudo irradiado"; radshield.Hue = 0x48F; radshield.PoisonBonus = 5; this.PackItem( radshield ); }
 				}
 				else if ( this is CrystalElemental )
 				{
@@ -3051,7 +3052,7 @@ namespace Server.Mobiles
 				else if ( this is FloatingEye )
 				{
 					this.Hue = 0x494;
-					this.Name = "an eye of the void";
+					this.Name = "um olho do vazio";
 				}
 			}
 
@@ -3059,7 +3060,7 @@ namespace Server.Mobiles
 			{
 				if ( this is BoneKnight )
 				{
-					this.Name = "a rotting skeleton";
+					this.Name = "um esqueleto em decomposição";
 					this.Hue = 0xB97;
 					this.SetDamageType( ResistanceType.Cold, 0 );
 					this.SetDamageType( ResistanceType.Fire, 0 );
@@ -3094,17 +3095,17 @@ namespace Server.Mobiles
 						}
 						if ( armor != null )
 						{
-							armor.Name = "rotting " + armor.Name;
+							armor.Name = armor.Name + " apodrecendo";
 							armor.Hue = 0xB97;
 							armor.PoisonBonus = 10;
 							this.PackItem( armor );
 						}
 					}
 
-					if ( this.Body == 56 || this.Body == 168 ){ BattleAxe radaxe = new BattleAxe(); radaxe.Name = "rusty battle axe"; radaxe.Hue = 0xB97; radaxe.AosElementDamages.Poison=50; this.PackItem( radaxe ); }
-					if ( this.Body == 57 ){ Scimitar radsim = new Scimitar(); radsim.Name = "rusty scimitar"; radsim.Hue = 0xB97;	radsim.AosElementDamages.Poison=50; this.PackItem( radsim ); }
-					if ( this.Body == 170 || this.Body == 327 ){ Longsword radswd = new Longsword(); radswd.Name = "rusty longsword"; radswd.Hue = 0xB97;	radswd.AosElementDamages.Poison=50; this.PackItem( radswd ); }
-					if ( this.Body == 57 || this.Body == 168 || this.Body == 170 ){ WoodenShield radshield = new WoodenShield(); radshield.Name = "rotting shield"; radshield.Hue = 0xB97; radshield.PoisonBonus = 5; this.PackItem( radshield ); }
+					if ( this.Body == 56 || this.Body == 168 ){ BattleAxe radaxe = new BattleAxe(); radaxe.Name = "machado de batalha enferrujado"; radaxe.Hue = 0xB97; radaxe.AosElementDamages.Poison=50; this.PackItem( radaxe ); }
+					if ( this.Body == 57 ){ Scimitar radsim = new Scimitar(); radsim.Name = "cimitarra enferrujada"; radsim.Hue = 0xB97; radsim.AosElementDamages.Poison=50; this.PackItem( radsim ); }
+					if ( this.Body == 170 || this.Body == 327 ){ Longsword radswd = new Longsword(); radswd.Name = "espada longa enferrujada"; radswd.Hue = 0xB97; radswd.AosElementDamages.Poison=50; this.PackItem( radswd ); }
+					if ( this.Body == 57 || this.Body == 168 || this.Body == 170 ){ WoodenShield radshield = new WoodenShield(); radshield.Name = "escudo apodrecido"; radshield.Hue = 0xB97; radshield.PoisonBonus = 5; this.PackItem( radshield ); }
 				}
 			}
 
@@ -3116,12 +3117,12 @@ namespace Server.Mobiles
 					this.Body = 9;
 					switch ( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 0: this.Title = "the ice daemon";			break;
-						case 1: this.Title = "the daemon of ice";		break;
-						case 2: this.Title = "of the icy veil";			break;
-						case 3: this.Title = "of the frozen void";		break;
-						case 4: this.Title = "of the frozen wastes";	break;
-						case 5: this.Title = "of the icy depths";		break;
+						case 0: this.Title = "o demônio de gelo";         break;
+						case 1: this.Title = "o demônio do gelo";         break;
+						case 2: this.Title = "do véu gelado";             break;
+						case 3: this.Title = "do vazio congelado";        break;
+						case 4: this.Title = "dos ermos congelados";      break;
+						case 5: this.Title = "das profundezas geladas";   break;
 					}
 				}
 				else if ( this is CrystalElemental )
@@ -3162,11 +3163,11 @@ namespace Server.Mobiles
 					this.PackItem ( new BrassIngot( Utility.RandomMinMax( 1, 3 ) ) );
 					this.HairHue = 0x455;
 					this.FacialHairHue = 0x455;
-					this.Title = "the miner";
+					this.Title = "o mineiro";
 				}
 				else if ( this is IronCobra )
 				{
-					this.Name = "a brass serpent";
+					this.Name = "uma serpente de latão";
 					this.Resource = CraftResource.Brass;
 					this.Hue = CraftResources.GetHue( this.Resource );
 				}
@@ -3229,7 +3230,7 @@ namespace Server.Mobiles
 			{
 				if ( this is OrcCaptain )
 				{
-					this.Title = "the orc miner";
+					this.Title = "o mineiro orc";
 					this.Body = 17;
 
 					List<Item> belongings = new List<Item>();
@@ -3285,11 +3286,11 @@ namespace Server.Mobiles
 				}
 				else if ( this is BoneKnight && this.X >= 6978 && this.Y >= 1670 && this.X <= 6998 && this.Y <= 1697 )
 				{
-					this.Name = "a skeletal jailor";
+					this.Name = "um carcereiro esquelético";
 				}
 				else if ( this is LivingStoneStatue )
 				{
-					this.Name = "a giant statue";
+					this.Name = "uma estátua gigante";
 					this.Body = 325;
 					this.Hue = 0x847;
 					BeefUp( this, 3 );
@@ -3304,7 +3305,7 @@ namespace Server.Mobiles
 				if ( this is Daemon && this.X >= 6512 && this.X <= 6551 && this.Y >= 2782 && this.Y <= 2836 )
 				{
 					this.Name = "Balinor";
-					this.Title = "the Guardian of Stonegate";
+					this.Title = "o Guardião de Stonegate";
 					this.EmoteHue = 123;
 					this.Body = 40;
 					this.BaseSoundID = 357;
@@ -3333,7 +3334,7 @@ namespace Server.Mobiles
 				}
 				else if ( this is CrystalElemental )
 				{
-					this.Name = "a gem elemental";
+					this.Name = "um elemental de gema";
 					this.AddLoot( LootPack.Gems, Utility.RandomMinMax( 7, 12 ) );
 					this.Hue = Utility.RandomList( 0x48D, 0x48E, 0x48F, 0x490, 0x491 );
 					this.SetDamageType( ResistanceType.Cold, 0 );
@@ -3345,28 +3346,28 @@ namespace Server.Mobiles
 				}
 				else if ( this is MonstrousSpider )
 				{
-					this.Name = "an ash crawler";
+					this.Name = "um rastejador de cinzas";
 					this.Hue = 0x774;
 				}
 				else if ( this is CaveLizard )
 				{
-					this.Name = "a stone lizard";
+					this.Name = "um lagarto de pedra";
 				}
 				else if ( this is MinotaurScout )
 				{
-					this.Name = "a minotaur berserker";
+					this.Name = "um berserker minotauro";
 				}
 				else if ( this is SeaTroll )
 				{
-					this.Name = "a deep water troll";
+					this.Name = "um troll das águas profundas";
 				}
 				else if ( this is OrcishLord )
 				{
-					this.Title = "an orc barbarian";
+					this.Title = "um bárbaro orc";
 				}
 				else if ( this is BoneKnight )
 				{
-					this.Name = "a burnt skeleton";
+					this.Name = "um esqueleto queimado";
 					this.Hue = 0xA78;
 					this.SetDamageType( ResistanceType.Cold, 0 );
 					this.SetDamageType( ResistanceType.Fire, 60 );
@@ -3401,17 +3402,17 @@ namespace Server.Mobiles
 						}
 						if ( armor != null )
 						{
-							armor.Name = "burnt " + armor.Name;
+							armor.Name = armor.Name + "queimadas ";
 							armor.Hue = 0xA78;
 							armor.FireBonus = 10; 
 							this.PackItem( armor );
 						}
 					}
 
-					if ( this.Body == 56 || this.Body == 168 ){ BattleAxe radaxe = new BattleAxe(); radaxe.Name = "burnt battle axe"; radaxe.Hue = 0xA78; radaxe.AosElementDamages.Fire=50; this.PackItem( radaxe ); }
-					if ( this.Body == 57 ){ Scimitar radsim = new Scimitar(); radsim.Name = "burnt scimitar"; radsim.Hue = 0xA78;	radsim.AosElementDamages.Fire=50; this.PackItem( radsim ); }
-					if ( this.Body == 170 || this.Body == 327 ){ Longsword radswd = new Longsword(); radswd.Name = "burnt longsword"; radswd.Hue = 0xA78;	radswd.AosElementDamages.Fire=50; this.PackItem( radswd ); }
-					if ( this.Body == 57 || this.Body == 168 || this.Body == 170 ){ WoodenShield radshield = new WoodenShield(); radshield.Name = "burnt shield"; radshield.Hue = 0xA78; radshield.FireBonus = 5; this.PackItem( radshield ); }
+					if ( this.Body == 56 || this.Body == 168 ){ BattleAxe radaxe = new BattleAxe(); radaxe.Name = "machado de batalha queimado"; radaxe.Hue = 0xA78; radaxe.AosElementDamages.Fire=50; this.PackItem( radaxe ); }
+					if ( this.Body == 57 ){ Scimitar radsim = new Scimitar(); radsim.Name = "cimitarra queimada"; radsim.Hue = 0xA78; radsim.AosElementDamages.Fire=50; this.PackItem( radsim ); }
+					if ( this.Body == 170 || this.Body == 327 ){ Longsword radswd = new Longsword(); radswd.Name = "espada longa queimada"; radswd.Hue = 0xA78; radswd.AosElementDamages.Fire=50; this.PackItem( radswd ); }
+					if ( this.Body == 57 || this.Body == 168 || this.Body == 170 ){ WoodenShield radshield = new WoodenShield(); radshield.Name = "escudo queimado"; radshield.Hue = 0xA78; radshield.FireBonus = 5; this.PackItem( radshield ); }
 				}
 			}
 			if ( reg.IsPartOf( "the Ancient Elven Mine" ) || reg.IsPartOf( "the Undersea Pass" ) )
@@ -3419,7 +3420,7 @@ namespace Server.Mobiles
 				if ( this is ShamanicCyclops )
 				{
 					this.Name = NameList.RandomName( "giant" );
-					this.Title = "the warlord";
+					this.Title = "o senhor da guerra";
 				}
 				if ( this is Urk )
 				{
@@ -3428,14 +3429,14 @@ namespace Server.Mobiles
 					MorphingTime.RemoveMyClothes( this );
 
 					Item helm = new WornHumanDeco();
-						helm.Name = "orcish face";
+						helm.Name = "face orc";
 						helm.ItemID = 0x141B;
 						helm.Hue = 0x8A4;
 						helm.Layer = Layer.Helm;
 						AddItem( helm );
 
 					Item boots = new Boots();
-						boots.Name = "orcish boots";
+						boots.Name = "botas orc";
 						boots.Hue = 0x97D;
 						AddItem( boots );
 
@@ -3502,7 +3503,7 @@ namespace Server.Mobiles
 					else // MINER
 					{
 						LeatherGloves minegloves = new LeatherGloves();
-							minegloves.Name = "miner gloves";
+							minegloves.Name = "luvas de mineiro";
 							minegloves.SkillBonuses.SetValues( 0, SkillName.Mining, 5 );
 							if ( Utility.RandomMinMax( 1, 10 ) > 1 ){ minegloves.LootType = LootType.Blessed; }
 							minegloves.Hue = 0x97D;
@@ -3510,11 +3511,11 @@ namespace Server.Mobiles
 
 						Item cloth5 = new LoinCloth();
 							cloth5.Hue = 0x97D;
-							cloth5.Name = "orcish loin cloth";
+							cloth5.Name = "tanga orc";
 							AddItem( cloth5 );
 
 						AddItem( new Pickaxe() );
-						this.Title = "the orc miner";
+						this.Title = "o mineiro orc";
 					}
 
 					if ( DressUpAs < 3 )
@@ -3523,37 +3524,37 @@ namespace Server.Mobiles
 
 						switch ( Utility.Random( 28 ))
 						{
-							case 0: weapon = new BattleAxe(); weapon.Name = "battle axe"; break;
-							case 1: weapon = new VikingSword(); weapon.Name = "great sword"; break;
-							case 2: weapon = new Halberd(); weapon.Name = "halberd"; break;
-							case 3: weapon = new DoubleAxe(); weapon.Name = "double axe"; break;
-							case 4: weapon = new ExecutionersAxe(); weapon.Name = "executioner axe"; break;
-							case 5: weapon = new WarAxe(); weapon.Name = "war axe"; break;
-							case 6: weapon = new TwoHandedAxe(); weapon.Name = "two handed axe"; break;
-							case 7: weapon = new Cutlass(); weapon.Name = "cutlass"; break;
+							case 0: weapon = new BattleAxe(); weapon.Name = "machado de batalha"; break;
+							case 1: weapon = new VikingSword(); weapon.Name = "grande espada"; break;
+							case 2: weapon = new Halberd(); weapon.Name = "alabarda"; break;
+							case 3: weapon = new DoubleAxe(); weapon.Name = "machado duplo"; break;
+							case 4: weapon = new ExecutionersAxe(); weapon.Name = "machado de carrasco"; break;
+							case 5: weapon = new WarAxe(); weapon.Name = "machado de guerra"; break;
+							case 6: weapon = new TwoHandedAxe(); weapon.Name = "machado de duas mãos"; break;
+							case 7: weapon = new Cutlass(); weapon.Name = "cutelo"; break;
 							case 8: weapon = new Katana(); weapon.Name = "katana"; break;
 							case 9: weapon = new Kryss(); weapon.Name = "kryss"; break;
-							case 10: weapon = new Broadsword(); weapon.Name = "broadsword"; break;
-							case 11: weapon = new Longsword(); weapon.Name = "longsword"; break;
-							case 12: weapon = new ThinLongsword(); weapon.Name = "longsword"; break;
-							case 13: weapon = new Scimitar(); weapon.Name = "scimitar"; break;
-							case 14: weapon = new BoneHarvester(); weapon.Name = "sickle"; break;
-							case 15: weapon = new CrescentBlade(); weapon.Name = "crescent blade"; break;
-							case 16: weapon = new DoubleBladedStaff(); weapon.Name = "double bladed staff"; break;
-							case 17: weapon = new Pike(); weapon.Name = "pike"; break;
-							case 18: weapon = new Scythe(); weapon.Name = "scythe"; break;
-							case 19: weapon = new Pitchfork(); weapon.Name = "trident"; break;
-							case 20: weapon = new ShortSpear(); weapon.Name = "rapier"; break;
-							case 21: weapon = new Spear(); weapon.Name = "spear"; break;
-							case 22: weapon = new Club(); weapon.Name = "club"; break;
-							case 23: weapon = new HammerPick(); weapon.Name = "hammer pick"; break;
-							case 24: weapon = new Mace(); weapon.Name = "mace"; break;
-							case 25: weapon = new Maul(); weapon.Name = "maul"; break;
-							case 26: weapon = new WarHammer(); weapon.Name = "war hammer"; break;
-							case 27: weapon = new WarMace(); weapon.Name = "war mace"; break;
+							case 10: weapon = new Broadsword(); weapon.Name = "espada larga"; break;
+							case 11: weapon = new Longsword(); weapon.Name = "espada longa"; break;
+							case 12: weapon = new ThinLongsword(); weapon.Name = "espada longa"; break;
+							case 13: weapon = new Scimitar(); weapon.Name = "cimitarra"; break;
+							case 14: weapon = new BoneHarvester(); weapon.Name = "foice"; break;
+							case 15: weapon = new CrescentBlade(); weapon.Name = "lâmina crescente"; break;
+							case 16: weapon = new DoubleBladedStaff(); weapon.Name = "cajado de lâmina dupla"; break;
+							case 17: weapon = new Pike(); weapon.Name = "pique"; break;
+							case 18: weapon = new Scythe(); weapon.Name = "foice"; break;
+							case 19: weapon = new Pitchfork(); weapon.Name = "tridente"; break;
+							case 20: weapon = new ShortSpear(); weapon.Name = "rapieira"; break;
+							case 21: weapon = new Spear(); weapon.Name = "lança"; break;
+							case 22: weapon = new Club(); weapon.Name = "porrete"; break;
+							case 23: weapon = new HammerPick(); weapon.Name = "martelo picareta"; break;
+							case 24: weapon = new Mace(); weapon.Name = "maça"; break;
+							case 25: weapon = new Maul(); weapon.Name = "malho"; break;
+							case 26: weapon = new WarHammer(); weapon.Name = "martelo de guerra"; break;
+							case 27: weapon = new WarMace(); weapon.Name = "maça de guerra"; break;
 						}
 
-						weapon.Name = "orcish " + weapon.Name;
+						weapon.Name = weapon.Name = " orc";
 						weapon.Hue = 0x97D;
 						weapon.MinDamage = weapon.MinDamage + 3;
 						weapon.MaxDamage = weapon.MaxDamage + 5;
@@ -3561,12 +3562,12 @@ namespace Server.Mobiles
 
 						switch ( Utility.RandomMinMax( 0, 5 ) )
 						{
-							case 0: this.Title = "the orc warrior"; break;
-							case 1: this.Title = "the orc savage"; break;
-							case 2: this.Title = "the orc barbarian"; break;
-							case 3: this.Title = "the orc fighter"; break;
-							case 4: this.Title = "the orc gladiator"; break;
-							case 5: this.Title = "the orc berserker"; break;
+							case 0: this.Title = "o guerreiro orc"; break;
+							case 1: this.Title = "o selvagem orc"; break;
+							case 2: this.Title = "o bárbaro orc"; break;
+							case 3: this.Title = "o lutador orc"; break;
+							case 4: this.Title = "o gladiador orc"; break;
+							case 5: this.Title = "o berserker orc"; break;
 						}
 					}
 				}
@@ -3575,23 +3576,23 @@ namespace Server.Mobiles
 			{
 				if ( this is DeepSeaSerpent )
 				{
-					this.Name = "a great serpent";
+					this.Name = "uma grande serpente";
 					this.Hue = 0x67;
 					this.Body = 21;
 					switch ( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 0: this.Title = "from the frozen deep";		break;
-						case 1: this.Title = "of the darkest sea";			break;
-						case 2: this.Title = "from the deepest depths";		break;
-						case 3: this.Title = "of the cold sea";				break;
-						case 4: this.Title = "of the icy waves";			break;
-						case 5: this.Title = "of the icy sea";				break;
+						case 0: this.Title = "das profundezas congeladas";      break;
+						case 1: this.Title = "do mar mais escuro";             break;
+						case 2: this.Title = "das profundezas mais fundas";     break;
+						case 3: this.Title = "do mar frio";                    break;
+						case 4: this.Title = "das ondas geladas";              break;
+						case 5: this.Title = "do mar gelado";                  break;
 					}
 					this.AddItem( new LightSource() );
 				}
 				else if ( this is JadeSerpent )
 				{
-					this.Name = "a coldwater serpent";
+					this.Name = "uma serpente de água fria";
 					this.Hue = 0x48D;
 					this.SetDamageType( ResistanceType.Cold, 50 );
 					this.SetDamageType( ResistanceType.Fire, 0 );
@@ -3615,26 +3616,26 @@ namespace Server.Mobiles
 				else if ( this is SeaGiant )
 				{
 					this.Name = NameList.RandomName( "drakkul" );
-					this.Title = "the gate keeper";
+					this.Title = "o guardião do portal";
 				}
 				else if ( this is SwampTentacle )
 				{
-					this.Name = "a kelp fiend";
+					this.Name = "um demônio de algas";
 				}
 				else if ( this is BloodSnake )
 				{
-					this.Name = "a sea viper";
+					this.Name = "uma víbora marinha";
 					this.Hue = 0x555;
 				}
 				else if ( this is LichLord )
 				{
-					this.Title = "the lich of the deep";
+					this.Title = "o lich das profundezas";
 					this.Hue = 0x48D;
 					this.AddItem( new LightSource() );
 				}
 				else if ( this is CrystalElemental )
 				{
-					this.Name = "a nox elemental";
+					this.Name = "um elemental de nox";
 					this.Hue = 0x48F;
 					this.SetDamageType( ResistanceType.Cold, 0 );
 					this.SetDamageType( ResistanceType.Fire, 0 );
@@ -3654,21 +3655,21 @@ namespace Server.Mobiles
 					this.SetDamageType( ResistanceType.Energy, 0 );
 					switch ( Utility.RandomMinMax( 0, 5 ) )
 					{
-						case 0: this.Title = "the nox devil";			break;
-						case 1: this.Title = "the shard devil";			break;
-						case 2: this.Title = "of the poison veil";		break;
-						case 3: this.Title = "of the venomous void";	break;
-						case 4: this.Title = "of the foul wastes";		break;
-						case 5: this.Title = "of the crystal depths";	break;
+						case 0: this.Title = "o diabo de nox";             break;
+						case 1: this.Title = "o diabo de fragmento";        break;
+						case 2: this.Title = "do véu venenoso";             break;
+						case 3: this.Title = "do vazio venenoso";           break;
+						case 4: this.Title = "dos ermos imundos";           break;
+						case 5: this.Title = "das profundezas de cristal";  break;
 					}
 				}
 				else if ( this is BoneKnight )
 				{
-					this.Name = "a skeletal pirate";
+					this.Name = "um esqueleto pirata";
 				}
 				else if ( this is AquaticGhoul )
 				{
-					this.Name = "a ghoulish pirate";
+					this.Name = "um pirata espectral";
 				}
 			}
 
@@ -3930,7 +3931,7 @@ namespace Server.Mobiles
 				if ( item is DeathlyMask )
 				{
 					item.Delete();
-					from.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "The mask of death has vanished.");
+					from.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "A máscara da morte desapareceu.");
 					from.PlaySound( 0x1F0 );
 				}
 			}
@@ -4040,7 +4041,7 @@ namespace Server.Mobiles
 				if ( item is DeathlyMask )
 				{
 					item.Delete();
-					from.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "The mask of death has vanished.");
+					from.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "A máscara da morte desapareceu.");
 					from.PlaySound( 0x1F0 );
 				}
 			}
@@ -4353,13 +4354,13 @@ namespace Server.Mobiles
 
 				switch ( Utility.Random( 7 ) )
 				{
-					case 0: piece = new FrankenLegLeft(); from.SendMessage("You sever off the giant's left leg."); break;
-					case 1: piece = new FrankenLegRight(); from.SendMessage("You sever off the giant's right leg."); break;
-					case 2: piece = new FrankenArmLeft(); from.SendMessage("You sever off the giant's left arm."); break;
-					case 3: piece = new FrankenArmRight(); from.SendMessage("You sever off the giant's right arm."); break;
-					case 4: piece = new FrankenHead(); from.SendMessage("You sever off the giant's head."); break;
-					case 5: piece = new FrankenTorso(); from.SendMessage("You sever apart the giant's torso."); break;
-					case 6: piece = new FrankenBrain(); from.SendMessage("You remove the giant's fresh brain."); break;
+					case 0: piece = new FrankenLegLeft(); from.SendMessage("Você decepa a perna esquerda do gigante."); break;
+					case 1: piece = new FrankenLegRight(); from.SendMessage("Você decepa a perna direita do gigante."); break;
+					case 2: piece = new FrankenArmLeft(); from.SendMessage("Você decepa o braço esquerdo do gigante."); break;
+					case 3: piece = new FrankenArmRight(); from.SendMessage("Você decepa o braço direito do gigante."); break;
+					case 4: piece = new FrankenHead(); from.SendMessage("Você decepa a cabeça do gigante."); break;
+					case 5: piece = new FrankenTorso(); from.SendMessage("Você separa o torso do gigante."); break;
+					case 6: piece = new FrankenBrain(); from.SendMessage("Você remove o cérebro fresco do gigante."); break;
 				}
 
 				if ( piece is FrankenBrain )
@@ -4496,7 +4497,7 @@ namespace Server.Mobiles
 						case ClothType.Fiendish:     	corpse.AddCarvedItem( new FiendishFabric( cloth ), from ); break;
 					}
 
-					from.SendMessage( "You cut away some furs and they are on the corpse." );
+					from.SendMessage( "Você corta algumas peles e elas estão no cadáver." );
 				}
 
 				if ( hides != 0 )
@@ -4520,7 +4521,7 @@ namespace Server.Mobiles
 						case HideType.Dinosaur:     corpse.AddCarvedItem( new DinosaurLeather( hides ), from ); break;
 					}
 
-					from.SendMessage( "You cut away some leather and they are on the corpse." );
+					from.SendMessage( "Você corta alguns couros e eles estão no cadáver." );
 				}
 
 				if ( wood != 0 )
@@ -4548,7 +4549,7 @@ namespace Server.Mobiles
 						case WoodType.Elven:     	corpse.AddCarvedItem( new ElvenLog( wood ), from ); break;
 					}
 
-					from.SendMessage( "You cut away some leather and they are on the corpse." );
+					from.SendMessage( "Você corta alguns couros e eles estão no cadáver." );
 				}
 
 				if ( granite != 0 )
@@ -4576,7 +4577,7 @@ namespace Server.Mobiles
 						case GraniteType.Steel:     	corpse.AddCarvedItem( new SteelGranite( granite ), from ); break;
 						case GraniteType.Brass:     	corpse.AddCarvedItem( new BrassGranite( granite ), from ); break;
 					}
-					from.SendMessage( "You chisel away some granite and it is on the corpse." );
+					from.SendMessage( "Você talha um pouco de granito e ele está no cadáver." );
 				}
 
 				if ( skins != 0 )
@@ -4597,7 +4598,7 @@ namespace Server.Mobiles
 						case SkinType.Dead:     	corpse.AddCarvedItem( new DeadSkins( skins ), from ); break;
 					}
 
-					from.SendMessage( "You cut away some skins and they are on the corpse." );
+					from.SendMessage( "Você corta alguns couros e eles estão no cadáver." );
 				}
 
 				if ( rocks != 0 )
@@ -4698,7 +4699,7 @@ namespace Server.Mobiles
 						}
 					}
 
-					from.SendMessage( "You chip away some stones and they are on the corpse." );
+					from.SendMessage( "Você lasca algumas pedras e elas estão no cadáver." );
 				}
 
 				if ( metal != 0 )
@@ -4727,7 +4728,7 @@ namespace Server.Mobiles
 						case MetalType.Dwarven:     corpse.AddCarvedItem( new DwarvenIngot( metal ), from ); break;
 					}
 
-					from.SendMessage( "You chip away some metal and it is on the corpse." );
+					from.SendMessage( "Você lasca um pouco de metal e ele está no cadáver." );
 				}
 
 				if ( scales != 0 )
@@ -4751,7 +4752,7 @@ namespace Server.Mobiles
 						case ScaleType.Cadalyte:	corpse.AddCarvedItem( new CadalyteScales( scales ), from ); break;
 					}
 
-					from.SendMessage( "You cut away some scales and they are on the corpse." );
+					from.SendMessage( "Você corta algumas escamas e elas estão no cadáver." );
 				}
 
 				if ( skeletal != 0 )
@@ -4811,7 +4812,7 @@ namespace Server.Mobiles
 						}
 					}
 
-					from.SendMessage( "You cut away some bones and they are on the corpse." );
+					from.SendMessage( "Você corta alguns ossos e eles estão no cadáver." );
 				}
 
 				corpse.Carved = true;
@@ -5336,12 +5337,12 @@ namespace Server.Mobiles
 				int oldSpeechHue = this.SpeechHue;
 
 				this.SpeechHue = 0x23F;
-				SayTo( from, "Thou art giving me gold?" );
+				SayTo( from, "Tu estás me dando ouro?" );
 
 				if ( dropped.Amount >= 400 )
-					SayTo( from, "'Tis a noble gift." );
+					SayTo( from, "É um presente nobre." );
 				else
-					SayTo( from, "Money is always welcome." );
+					SayTo( from, "Dinheiro é sempre bem-vindo." );
 
 				this.SpeechHue = 0x3B2;
 				SayTo( from, 501548 ); // I thank thee.
@@ -6313,19 +6314,19 @@ namespace Server.Mobiles
 				
 				attacker.AddToBackpack( new MarksOfTheShadowbroker( coins ) );	
 				
-				string stole = "stolen";
+				string stole = "roubou";
 				switch ( Utility.RandomMinMax( 0, 7 ) ) 
 				{
-					case 1: stole = "swiped"; break;
-					case 2: stole = "grabbed"; break;
-					case 3: stole = "taken"; break;
-					case 4: stole = "filched"; break;
-					case 5: stole = "lifted"; break;
-					case 6: stole = "robbed"; break;
-					case 7: stole = "snatched"; break;
+					case 1: stole = "surrupiou"; break;
+					case 2: stole = "agarrou"; break;
+					case 3: stole = "tomou"; break;
+					case 4: stole = "furtou"; break;
+					case 5: stole = "levou"; break;
+					case 6: stole = "roubou"; break;
+					case 7: stole = "arrancou"; break;
 				}
 
-				attacker.SendMessage( "You " + stole + " " + coins + " " + "Marks of the Shadow Broker!" );
+				attacker.SendMessage( "Você " + stole + " " + coins + " " + "Marcas do Shadow Broker!" );
 
 				if ( this.Karma > 0 )
 					Titles.AwardKarma( attacker, -coins, false );
@@ -6713,7 +6714,7 @@ namespace Server.Mobiles
 				case TeachResult.NotEnoughFreePoints:
 				case TeachResult.SkillNotRaisable:
 				{
-					m.SendMessage( "Make sure this skill is marked to raise. If you are near the skill cap you may need to lose some points in another skill first.");
+					m.SendMessage( "Certifique-se de que esta habilidade está marcada para aumentar. Se você estiver perto do limite de habilidade, talvez precise perder alguns pontos em outra habilidade primeiro." );
 					break;
 				}
 				case TeachResult.Success:
@@ -6786,7 +6787,7 @@ namespace Server.Mobiles
 				if ( item is DeathlyMask )
 				{
 					item.Delete();
-					aggressor.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "The mask of death has vanished.");
+					aggressor.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, "A máscara da morte desapareceu.");
 					aggressor.PlaySound( 0x1F0 );
 				}
 			}
@@ -7537,7 +7538,7 @@ namespace Server.Mobiles
 
 				if ( da != null && !da.Deleted )
 				{
-					from.SendAsciiMessage( "You charm the snake. Select a target to attack." );
+					from.SendAsciiMessage( "Você encanta a serpente. Selecione um alvo para atacar." );
 					from.Target = new DeathAdderCharmTarget( this );
 				}
 			}
@@ -7572,7 +7573,7 @@ namespace Server.Mobiles
 				int resist = (int)(target.Skills.MagicResist.Value);
 				if ( Utility.RandomMinMax( bard-20, bard ) < Utility.RandomMinMax( resist-20, resist ) )
 				{
-					target.SendMessage( "You magically resist the affects of the song." );
+					target.SendMessage( "Você resiste magicamente aos efeitos da canção." );
 				}
 				else
 				{
@@ -7611,11 +7612,11 @@ namespace Server.Mobiles
 				int resist = (int)(target.Skills.MagicResist.Value);
 				if ( Utility.RandomMinMax( bard-20, bard ) < Utility.RandomMinMax( resist-20, resist ) )
 				{
-					target.SendMessage( "You magically resist the affects of the song." );
+					target.SendMessage( "Você resiste magicamente aos efeitos da canção." );
 				}
 				else
 				{
-					target.SendMessage("You hear jarring music, suppressing your abilities.");
+					target.SendMessage("Você ouve uma música dissonante, suprimindo suas habilidades.");
 
 					for ( int i = 0; i < target.Skills.Length; i++ )
 					{
@@ -7686,7 +7687,7 @@ namespace Server.Mobiles
 				int resist = (int)(target.Skills.MagicResist.Value);
 				if ( Utility.RandomMinMax( bard-20, bard ) < Utility.RandomMinMax( resist-20, resist ) )
 				{
-					target.SendMessage( "You magically resist the affects of the song." );
+					target.SendMessage( "Você resiste magicamente aos efeitos da canção." );
 				}
 				else
 				{
@@ -7709,7 +7710,7 @@ namespace Server.Mobiles
 					if ( Utility.RandomBool() ){ UndressItem( target, Layer.Waist ); }
 					if ( Utility.RandomBool() ){ UndressItem( target, Layer.Bracelet ); }
 
-					target.SendMessage("The music is hypnotic, making you remove your worn items.");
+					target.SendMessage("A música é hipnótica, fazendo você remover seus itens vestidos.");
 				}
 			}
 
@@ -7908,7 +7909,7 @@ namespace Server.Mobiles
 					Server.Items.DisguiseTimers.RemoveDisguise( murderer );
 				}
 
-				string bSay = "Help! Guards!";
+				string bSay = "Socorro! Guardas!";
 				this.PublicOverheadMessage( MessageType.Regular, 0, false, string.Format ( bSay ) ); 
 			}
 
@@ -8042,7 +8043,7 @@ namespace Server.Mobiles
 					{
 						int markAmount = Utility.RandomMinMax(3,11);
 						mage.AddToBackpack( new MarksOfTheWeave( markAmount ) );
-						mage.SendMessage( "You aqquired" + " " + markAmount + " " + "Marks of the weave!" );
+						mage.SendMessage( "Você adquiriu " + markAmount + " Marcas do Weave!" );
 					}
 				}
 			}
@@ -8067,7 +8068,7 @@ namespace Server.Mobiles
 					{
 						int markAmount = Utility.RandomMinMax(3,11);
 						cleric.AddToBackpack( new MarksOfDevotion( markAmount ) );
-						cleric.SendMessage( "You aqquired" + " " + markAmount + " " + "Marks of Devotion!" );
+						cleric.SendMessage( "Você adquiriu " + markAmount + " Marcas de Devoção!" );
 					}
 
 					Item symbol = cleric.FindItemOnLayer( Layer.Trinket );
@@ -8087,7 +8088,7 @@ namespace Server.Mobiles
 							if ( dtcoins != null )
 							{
 								dtcoins.Delete();
-								cleric.SendMessage( "Evil has been banished." );
+								cleric.SendMessage( "O mal foi banido." );
 								cleric.FixedParticles( 0x373A, 10, 15, 5018, EffectLayer.Waist );
 								cleric.PlaySound( 0x1EA );
 							}
@@ -8336,7 +8337,7 @@ namespace Server.Mobiles
 
 				            if ( triggered )
 				            {
-				                blackguardPm.SendMessage( 0x47E, "Your morbidity panics your foes!" );
+				                blackguardPm.SendMessage( 0x47E, "Sua morbidez apavora seus inimigos!" );
 				                blackguardPm.FixedParticles( 0x376A, 9, 32, 5005, 0x455, 0, EffectLayer.Waist );
 				            }
 				        }
@@ -8349,7 +8350,7 @@ namespace Server.Mobiles
 			        {
 			            int manaRestore = 2 + (blackguardLevel / 2);
 			            blackguardPm.Mana = Math.Min( blackguardPm.ManaMax, blackguardPm.Mana + manaRestore );
-			            blackguardPm.SendMessage( 0x47E, "The fallen foe empowers your magic!" );
+			            blackguardPm.SendMessage( 0x47E, "O inimigo caído fortalece sua magia!" );
 			            blackguardPm.FixedParticles( 0x374A, 10, 15, 5021, 0x47E, 0, EffectLayer.Waist );
 			        }
 
@@ -8357,7 +8358,7 @@ namespace Server.Mobiles
 			        {
 			            int hpRestore = 6 + (blackguardLevel / 2);
 			            blackguardPm.Hits = Math.Min( blackguardPm.HitsMax, blackguardPm.Hits + hpRestore );
-			            blackguardPm.SendMessage( 0x47E, "The fallen foe feeds your vileness!" );
+			            blackguardPm.SendMessage( 0x47E, "O inimigo caído alimenta sua vileza!" );
 			            blackguardPm.FixedParticles( 0x376A, 9, 32, 5005, 0x47E, 0, EffectLayer.Waist );
 			        }
 			    }
@@ -8423,7 +8424,7 @@ namespace Server.Mobiles
 			               if ( totalHealing > 0 )
 			               {
 			                   reaperPm.Hits = Math.Min( reaperPm.HitsMax, reaperPm.Hits + drainPerTarget );
-			                   reaperPm.SendMessage( 0x47E, "You reap the soul of your foe!" );
+			                   reaperPm.SendMessage( 0x47E, "Você colhe a alma do seu inimigo!" );
 			                   reaperPm.FixedParticles( 0x374A, 10, 15, 5021, 0x47E, 0, EffectLayer.Waist );
 			                   reaperPm.PlaySound( 0x1FB );
 			               }
@@ -8477,8 +8478,8 @@ namespace Server.Mobiles
 
 			            if ( requiemTarget != null )
 			            {
-			                sagaPm.SendMessage( 0x445, "Your victory sings a requiem for the fallen!" );
-							sagaPm.PublicOverheadMessage(MessageType.Regular, 0x445, false, "*Dirge of the Fallen*");
+			                sagaPm.SendMessage( 0x445, "Sua vitória canta um réquiem para os caídos!" );
+							sagaPm.PublicOverheadMessage(MessageType.Regular, 0x445, false, "*Canto Fúnebre dos Caídos*");
 			                DoFoeRequiemDirect( sagaPm, requiemTarget );
 			            }
 			        }
@@ -8535,7 +8536,7 @@ namespace Server.Mobiles
 
                         if (deepCutsLevel >= 20 && Utility.Random(10000) < (deepCutsLevel * 25))
                         {
-                            deepCutsPm.SendMessage(0x675, "You cut your foes deeply!");
+                            deepCutsPm.SendMessage(0x675, "Você corta profundamente seus inimigos!");
 
                             Map     deepCutsMap = this.Map;
                             Point3D deepCutsLoc = this.Location;
@@ -8647,7 +8648,7 @@ namespace Server.Mobiles
                     if (dPowerState.Level >= 20 && Utility.Random(100) < 20)
                     {
                         dPowerPm.SetAbilityCooldown("DivineWrath", TimeSpan.Zero);
-                        dPowerPm.SendMessage(0x439, "Divine Wrath can be used again.");
+                        dPowerPm.SendMessage(0x439, "Ira Divina pode ser usada novamente.");
                     }
                 }
             }
@@ -8802,7 +8803,7 @@ namespace Server.Mobiles
 							}
 							FeatherGetter.AddToBackpack( new GoldenFeathers( FeatherGetter ) );
 							FeatherGetter.SendSound( 0x3D );
-							FeatherGetter.PrivateOverheadMessage(MessageType.Regular, 1150, false, "The goddess has given you golden feathers.", FeatherGetter.NetState);
+							FeatherGetter.PrivateOverheadMessage(MessageType.Regular, 1150, false, "A deusa lhe deu penas douradas.", FeatherGetter.NetState);
 						}
 					}
 				}
@@ -9586,9 +9587,9 @@ namespace Server.Mobiles
 				if ( message )
 				{
 					if ( target.Title == null )
-						SendMessage( "{0} the vendor cannot be harmed.", target.Name );
+						SendMessage( "{0} o vendedor não pode ser ferido.", target.Name );
 					else
-						SendMessage( "{0} {1} cannot be harmed.", target.Name, target.Title );
+						SendMessage( "{0} {1} não pode ser ferido.", target.Name, target.Title );
 				}
 
 
@@ -10326,7 +10327,7 @@ namespace Server.Mobiles
 		{
 			BardProvoked = true;
 
-			this.PublicOverheadMessage( MessageType.Emote, EmoteHue, false, "*looks furious*" );
+			this.PublicOverheadMessage( MessageType.Emote, EmoteHue, false, "*parece furioso*" );
 
 			if ( bSuccess )
 			{

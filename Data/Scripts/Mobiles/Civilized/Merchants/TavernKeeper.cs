@@ -22,7 +22,7 @@ namespace Server.Mobiles
 		public override string TalkGumpSubject{ get{ return "Tavern"; } }
 
 		[Constructable]
-		public TavernKeeper() : base( "the tavern keeper" ) 
+		public TavernKeeper() : base( "o estalajadeiro" )
 		{ 
 		} 
 

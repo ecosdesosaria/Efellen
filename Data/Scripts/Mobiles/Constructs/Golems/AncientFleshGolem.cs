@@ -8,7 +8,7 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a flesh golem corpse" )]
+	[CorpseName( "um cadáver de um golem de carne" )]
 	public class AncientFleshGolem : BaseCreature
 	{
 		private bool m_Stunning;
@@ -16,7 +16,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public AncientFleshGolem() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an ancient flesh golem";
+			Name = "um golem de carne antigo";
 			Body = 999;
 			BaseSoundID = 684;
 
@@ -72,7 +72,7 @@ namespace Server.Mobiles
 
 					defender.Animate( 21, 6, 1, true, false, 0 );
 					this.PlaySound( 0xEE );
-					defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "You have been knocked senseless!" );
+					defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "Você foi atordoado!" );
 
 					BaseWeapon weapon = this.Weapon as BaseWeapon;
 					if ( weapon != null )
@@ -95,7 +95,7 @@ namespace Server.Mobiles
 			{
 				defender.Frozen = false;
 				defender.Combatant = null;
-				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "You recover your senses." );
+				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "Você recupera os sentidos." );
 			}
 
 			m_Stunning = false;
@@ -120,7 +120,7 @@ namespace Server.Mobiles
 						harv.MinDamage = harv.MinDamage + 5;
 						harv.MaxDamage = harv.MaxDamage + 10;
             			harv.DurabilityLevel = WeaponDurabilityLevel.Indestructible;
-						harv.Name = "Frankenstein's hand scythe";
+						harv.Name = "foice de mão de Frankenstein";
 						harv.Hue = 0x9C4;
 						c.DropItem( harv );
 					}
@@ -131,7 +131,7 @@ namespace Server.Mobiles
 						axe.MinDamage = axe.MinDamage + 5;
 						axe.MaxDamage = axe.MaxDamage + 10;
             			axe.DurabilityLevel = WeaponDurabilityLevel.Indestructible;
-						axe.Name = "Frankenstein's hand axe";
+						axe.Name = "machado de mão de Frankenstein";
 						axe.Hue = 0x9C4;
 						c.DropItem( axe );
 					}

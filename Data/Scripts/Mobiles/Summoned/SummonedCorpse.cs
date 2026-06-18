@@ -4,7 +4,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an undead corpse" )]
+	[CorpseName( "um cadáver morto-vivo" )]
 	public class SummonedCorpse : BaseCreature
 	{
 		public int BCPoison;
@@ -21,7 +21,7 @@ namespace Server.Mobiles
 			BCPoison = poison+0;
 			BCImmune = immune+0;
 
-			Name = "an undead creature";
+			Name = "uma criatura morta-viva";
 			Body = 2;
 			BaseSoundID = 471;
 

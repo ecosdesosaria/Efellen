@@ -87,7 +87,7 @@ namespace Server.Mobiles
 		{
 			m_NextTalking = (DateTime.Now + TimeSpan.FromSeconds( 60 ));
 
-			Name = "an aerial servant";
+			Name = "um servo aéreo";
 			Body = 13;
 			Hue = 0xB42;
 			BaseSoundID = 655;

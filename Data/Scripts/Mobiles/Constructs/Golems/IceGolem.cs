@@ -7,13 +7,13 @@ using Server.Network;
 
 namespace Server.Mobiles 
 {
-	[CorpseName( "a golem corpse" )] 
+	[CorpseName( "o cadáver de um golem" )]
 	public class IceGolem : BaseCreature 
 	{
 		[Constructable] 
 		public IceGolem() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{ 
-			Name = "an ice golem";
+			Name = "um golem de gelo";
 			Hue = 0x480;
 			Resource = CraftResource.IceBlock;
 			Body = 0x190;
@@ -22,19 +22,19 @@ namespace Server.Mobiles
 			NorseHelm MyHelm = new NorseHelm( );
 				MyHelm.Hue = 0x4F2;
 				MyHelm.ColdBonus = 20;
-				MyHelm.Name = "ice helm";
+				MyHelm.Name = "elmo de gelo";
 				AddItem( MyHelm );
 
 			VikingSword MySword = new VikingSword( );
 				MySword.Hue = 0x4F2;
 				MySword.AosElementDamages.Cold = 50;
-				MySword.Name = "ice sword";
+				MySword.Name = "espada de gelo";
 				AddItem( MySword );
 
 			HeaterShield MyShield = new HeaterShield( );
 				MyShield.Hue = 0x4F2;
 				MyShield.ColdBonus = 5;
-				MyShield.Name = "ice shield";
+				MyShield.Name = "escudo de gelo";
 				AddItem( MyShield );
 
 			Kilt MyKilt = new Kilt( );

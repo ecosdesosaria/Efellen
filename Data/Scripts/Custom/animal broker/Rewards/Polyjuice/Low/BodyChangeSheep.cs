@@ -48,7 +48,7 @@ namespace Server.Items
       public BodyChangeSheepStatue() : base(0x42B4) // FINAL 0xxxxx number this is the item ID for the item player double clicks 
       { 
          Weight = 1.0; 
-         Name = "An Sheep Polyjuice"; 
+         Name = "Uma Poção de Polisuco de Ovelha";
          Stackable = false;
 	      //Hue = 1176;
       } 

@@ -7,13 +7,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a ghostly corpse" )]
+	[CorpseName( "um cadáver fantasmagórico" )]
 	public class Spirit : BaseCreature
 	{
 		[Constructable]
 		public Spirit() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a spirit";
+			Name = "um espírito";
 			Body = 84;
 			BaseSoundID = 0x482;
 			Hue = 0x47E;

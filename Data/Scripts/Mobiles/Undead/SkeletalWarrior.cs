@@ -8,13 +8,13 @@ using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a skeletal corpse" )]
+	[CorpseName( "um cadáver de esqueleto" )]
 	public class SkeletalWarrior : BaseCreature
 	{
 		[Constructable]
 		public SkeletalWarrior() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a skeletal warrior";
+			Name = "um esqueleto guerreiro";
 			Body = Utility.RandomList( 57, 168, 170 );
 			BaseSoundID = 451;
 

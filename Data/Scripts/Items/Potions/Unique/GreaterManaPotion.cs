@@ -12,7 +12,7 @@ namespace Server.Items
 		[Constructable]
 		public GreaterManaPotion( ) : base( PotionEffect.ManaGreater )
 		{
-			Name = "greater mana potion";
+			Name = "poção de mana maior";
 			ItemID = 0x2406;
 			Hue = Server.Items.PotionKeg.GetPotionColor( this );
 		}

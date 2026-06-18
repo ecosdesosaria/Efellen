@@ -5,7 +5,7 @@ using Server.Spells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a broken machine" )]
+	[CorpseName( "uma máquina quebrada" )]
 	public class IronBeetle : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -16,7 +16,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public IronBeetle() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an iron beetle";
+			Name = "um besouro de ferro";
 			Body = 953;
 			Resource = CraftResource.Iron;
 

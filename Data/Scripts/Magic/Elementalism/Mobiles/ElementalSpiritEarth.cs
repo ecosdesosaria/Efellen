@@ -31,7 +31,7 @@ namespace Server.Mobiles
 
 			SetDamage( 14, 17 );
 
-			Name = "an earth spirit";
+			Name = "um espírito da terra";
 			Body = 696;
 			BaseSoundID = 268;
 

@@ -31,7 +31,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public SummonedEarthElementalGreater() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "an earth elemental";
+			Name = "um elemental da terra";
 			Body = 821;
 			BaseSoundID = 268;
 			Hue = 0xB61;

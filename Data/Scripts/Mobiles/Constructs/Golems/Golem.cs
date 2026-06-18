@@ -4,7 +4,7 @@ using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a broken machine" )]
+	[CorpseName( "uma máquina quebrada" )]
 	public class Golem : BaseCreature
 	{
 		private bool m_Stunning;
@@ -21,7 +21,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Golem( bool summoned, double scalar ) : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.4, 0.8 )
 		{
-			Name = "an iron golem";
+			Name = "um golem de ferro";
 			Body = Utility.RandomList( 752, 358 );
 			Hue = 0x9C4;
 			Resource = CraftResource.Iron;
@@ -140,7 +140,7 @@ namespace Server.Mobiles
 
 				defender.Animate( 21, 6, 1, true, false, 0 );
 				this.PlaySound( 0xEE );
-				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "You have been stunned by a colossal blow!" );
+				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "Você foi atordoado por um golpe colossal!" );
 
 				BaseWeapon weapon = this.Weapon as BaseWeapon;
 				if ( weapon != null )
@@ -162,7 +162,7 @@ namespace Server.Mobiles
 			{
 				defender.Frozen = false;
 				defender.Combatant = null;
-				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "You recover your senses." );
+				defender.LocalOverheadMessage( MessageType.Regular, 0x3B2, false, "Você recupera os sentidos." );
 			}
 
 			m_Stunning = false;

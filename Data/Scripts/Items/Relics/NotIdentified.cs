@@ -96,7 +96,7 @@ namespace Server.Items
 					unk.NotIDSkill = IDSkill.Tasting;
 					unk.ItemID = 0x2827;
 					unk.Hue = Utility.RandomColor(0);
-					unk.Name = RandomThings.GetOddityAdjective() + " bottle of liquid";
+					unk.Name = RandomThings.GetOddityAdjective() + " garrafa de líquido";
 					
 					if ( item.Amount > 1 )
 					{
@@ -111,7 +111,7 @@ namespace Server.Items
 					unk.NotIDSkill = IDSkill.Tasting;
 					unk.ItemID = 0x282F;
 					unk.Hue = Utility.RandomColor(0);
-					unk.Name = RandomThings.GetOddityAdjective() + " jar of reagents";
+					unk.Name = RandomThings.GetOddityAdjective() + " jarro de reagentes";
 					if ( item.Amount > 1 )
 					{
 						unk.ColorText3 = "Amount: " + item.Amount + "";
@@ -124,7 +124,7 @@ namespace Server.Items
 					unk.NotIDSource = Identity.Scroll;
 					unk.ItemID = Utility.RandomList( 0x4CC4, 0x4CC5 );
 					unk.Hue = Utility.RandomColor(0);
-					unk.Name = RandomThings.GetOddityAdjective() + " scroll";
+					unk.Name = RandomThings.GetOddityAdjective() + " pergaminho";
 					if ( item.Amount > 1 )
 					{
 						unk.ColorText3 = "Amount: " + item.Amount + "";
