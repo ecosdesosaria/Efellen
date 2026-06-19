@@ -19,7 +19,7 @@ namespace Server.Items
         [Constructable]
         public AdminBoard() : base( 0x577B )
         {
-            Name = "News From The Nobles";
+            Name = "Notícias dos Nobres";
 			Hue = 0x981;
         }
 

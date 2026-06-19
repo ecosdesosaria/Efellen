@@ -10,7 +10,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Hawk() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "um gavião";
+			Name = "um gaviao";
 			Body = 5;
 			Hue = Utility.RandomNeutralHue();
 			BaseSoundID = 0x2EE;

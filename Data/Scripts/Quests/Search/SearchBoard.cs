@@ -22,7 +22,7 @@ namespace Server.Items
 		public SearchBoard( ) : base( 0x577B )
 		{
 			Weight = 1.0;
-			Name = "Sage Advice";
+			Name = "Conselho do Sábio";
 			Hue = 0x986;
 		}
 

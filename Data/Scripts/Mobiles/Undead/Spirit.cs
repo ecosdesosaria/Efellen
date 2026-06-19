@@ -13,7 +13,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Spirit() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "um espírito";
+			Name = "um espirito";
 			Body = 84;
 			BaseSoundID = 0x482;
 			Hue = 0x47E;

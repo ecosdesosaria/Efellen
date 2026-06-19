@@ -19,7 +19,7 @@ namespace Server.Items
 		public FishingQuestBoard() : base(0x577B)
 		{
 			Weight = 1.0;
-			Name = "Seeking Brave Sailors";
+			Name = "Procurando Marinheiros Corajosos";
 			Hue = 0x8AB;
 		}
 

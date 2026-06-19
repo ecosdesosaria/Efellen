@@ -17,11 +17,11 @@ namespace Server.Mobiles
 		{
 			switch ( Utility.RandomMinMax( 0, 4 ) )
 			{
-				case 0: Title = "the bard"; break;
-				case 1: Title = "the minstrel"; break;
-				case 2: Title = "the troubadour"; break;
-				case 3: Title = "the musician"; break;
-				case 4: Title = "the balladeer"; break;
+				case 0: Title = "o bardo"; break;
+				case 1: Title = "o menestrel"; break;
+				case 2: Title = "o trovador"; break;
+				case 3: Title = "o músico"; break;
+				case 4: Title = "o baladeiro"; break;
 			}
 
 			Hue = Utility.RandomSkinColor();

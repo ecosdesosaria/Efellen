@@ -9,7 +9,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Jaguar() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "uma onça";
+			Name = "uma onca";
 			Body = 214;
 			BaseSoundID = 0x3EE;
 

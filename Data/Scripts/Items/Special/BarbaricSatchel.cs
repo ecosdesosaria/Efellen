@@ -22,7 +22,7 @@ namespace Server.Items
 		public BarbaricSatchel() : base( 0x27BE )
 		{
 			Weight = 1.0;
-			Name = "barbaric satchel";
+			Name = "alforje bárbaro";
 			LootType = LootType.Blessed;
 		}
 

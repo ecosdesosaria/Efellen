@@ -32,7 +32,7 @@ namespace Server.Mobiles
 
 		private static readonly string[] SummonWarcries = new string[]
 		{
-			"O tecido responde a mim!",
+			"A trama responde a mim!",
 			"Minha magia sobreviveu a civilizações, prove-a!",
 			"Esta é MINHA CASA! MINHA!",
 			"Esqueci magias que sua civilização ainda vai aprender!"

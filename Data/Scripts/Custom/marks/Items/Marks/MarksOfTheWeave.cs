@@ -10,7 +10,7 @@ namespace Server.Items
         {
         }
         
-        public override string DefaultDescription{ get{ return "A Mark of the weave represents your prowess as a spellcaster. It can be aqquired by researchers and wizards as they defeat spellcasters through the lands and perform research in ancient tomes found in dungeons. The guildmaster of the wizards guild can offer many trinkets for those that would speak of rewards with them."; } }
+        public override string DefaultDescription{ get{ return "Uma Marca da Trama representa sua perícia como conjurador. Pode ser adquirida por pesquisadores e magos ao derrotarem conjuradores pelas terras e realizarem pesquisas em tomos antigos encontrados em masmorras. O mestre da guilda dos magos pode oferecer muitas bugigangas para aqueles que falarem sobre recompensas com eles."; } }
 
         [Constructable]
         public MarksOfTheWeave(int amount) : base(0x2ff8)
@@ -19,7 +19,7 @@ namespace Server.Items
             Weight = 0.01;
             Hue = 0x0213;
             Amount = amount;
-            Name = "Mark of the Weave";
+            Name = "Marca da Trama";
         }
 
         public MarksOfTheWeave(Serial serial) : base(serial)

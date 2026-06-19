@@ -6,7 +6,7 @@ using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a ratman archer corpse" )]
+	[CorpseName( "um corpo de homem-rato arqueiro" )]
 	public class RatmanArcher : BaseCreature
 	{
 		public override InhumanSpeech SpeechType{ get{ return InhumanSpeech.Ratman; } }
@@ -15,7 +15,7 @@ namespace Server.Mobiles
 		public RatmanArcher() : base( AIType.AI_Archer, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = NameList.RandomName( "ratman" );
-			Title = "the ratling";
+			Title = "o ratinho";
 			Body = 872;
 			BaseSoundID = 437;
 

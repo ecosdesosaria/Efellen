@@ -16,7 +16,7 @@ namespace Server.Items
 		public RulesBoard( ) : base( 0x577B )
 		{
 			Weight = 1.0;
-			Name = "Laws of the Land";
+			Name = "Leis da Terra";
 			Hue = 0xB01;
 		}
 
@@ -35,7 +35,7 @@ namespace Server.Items
 					rules = rules.ToString();
 				}
 				e.CloseGump( typeof( BoardGump ) );
-				e.SendGump( new BoardGump( e, "LAWS OF THE LAND", "" + rules + "", "#e97f76", false ) );
+				e.SendGump( new BoardGump( e, "LEIS DA TERRA", "" + rules + "", "#e97f76", false ) );
 			}
 			else
 			{

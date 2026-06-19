@@ -10,7 +10,7 @@ namespace Server.Items
         [Constructable]
         public BankChest() : base(0x436)
 		{
-            Name = "Bank Vault";
+            Name = "Cofre do Banco";
         }
 
         public override void OnDoubleClick(Mobile from)

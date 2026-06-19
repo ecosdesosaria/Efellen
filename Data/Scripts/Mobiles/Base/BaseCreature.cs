@@ -10139,7 +10139,7 @@ namespace Server.Mobiles
 				&& 
 				Combatant == null
                 &&
-                this.Title != "the wandering healer")
+                this.Title != "o curandeiro errante")
 			{
 				this.Location = this.Home;
 			}

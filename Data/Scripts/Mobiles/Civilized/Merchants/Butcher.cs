@@ -12,7 +12,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.CulinariansGuild; } }
 
 		[Constructable]
-		public Butcher() : base( "the butcher" ) 
+		public Butcher() : base( "o açougueiro" ) 
 		{ 
 			SetSkill( SkillName.Anatomy, 45.0, 68.0 );
 		} 

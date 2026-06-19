@@ -233,8 +233,8 @@ namespace Server.ContextMenus
 				}
 				else
 				{
-					m_InnKeeper.SayTo( pm, "Please give me " + InnKeeper.RoomCost( pm ) + " gold for a room." );
-					pm.SendMessage( "Give the innkeeper " + InnKeeper.RoomCost( pm ) + " gold, or put that amount in the bank." );
+					m_InnKeeper.SayTo( pm, "Por favor, me dê " + InnKeeper.RoomCost( pm ) + " moedas de ouro por um quarto." );
+					pm.SendMessage( "Dê ao estalajadeiro " + InnKeeper.RoomCost( pm ) + " moedas de ouro, ou coloque essa quantia no banco." );
 				}
 
 				if ( canOpen )

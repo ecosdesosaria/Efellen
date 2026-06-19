@@ -7,13 +7,13 @@ using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "um cadáver em decomposição" )]
+	[CorpseName( "um corpo em decomposicao" )]
 	public class PackNecroHound : BaseCreature
 	{
 		[Constructable]
 		public PackNecroHound() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "um cão de carga necromântico";
+			Name = "um cao de carga necromantico";
 			Body = 807;
 			BaseSoundID = 0x289;
 

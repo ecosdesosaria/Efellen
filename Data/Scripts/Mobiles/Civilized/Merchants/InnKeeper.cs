@@ -19,7 +19,7 @@ namespace Server.Mobiles
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } } 
 
 		[Constructable]
-		public InnKeeper() : base( "the innkeeper" ) 
+		public InnKeeper() : base( "o estalajadeiro" ) 
 		{
 			Item candle = new HeldLight();
 			candle.Name = "candle";
@@ -103,8 +103,8 @@ namespace Server.Mobiles
 					}
 					else
 					{
-						this.SayTo( pm, "Please give me " + RoomCost( pm ) + " gold for a room." );
-						pm.SendMessage( "Give the innkeeper " + RoomCost( pm ) + " gold, or put that amount in the bank." );
+						this.SayTo( pm, "Por favor, me dê " + RoomCost( pm ) + " moedas de ouro por um quarto." );
+						pm.SendMessage( "Dê ao estalajadeiro " + RoomCost( pm ) + " moedas de ouro, ou coloque essa quantia no banco." );
 					}
 
 					if ( canOpen )

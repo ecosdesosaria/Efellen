@@ -59,7 +59,7 @@ namespace Server.Mobiles
 			if ( Server.Misc.Worlds.TestOcean ( this.Map, this.X, this.Y, 15 ) )
 			{
 				this.Hue = 0xB78;
-				this.Name =	"um gavião";
+				this.Name =	"um gaviao";
 			}
 			else if ( Utility.RandomMinMax( 1, 10 ) == 1 )
 			{

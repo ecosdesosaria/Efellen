@@ -16,12 +16,12 @@ namespace Server.Mobiles
 		public RatmanMage() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = NameList.RandomName( "ratman" );
-			Title = "the ratman shaman";
+			Title = "o homen-rato shaman";
 			Body = Utility.RandomList( 73, 871 );
 			BaseSoundID = 437;
 
 			if ( Body == 871 )
-				Title = "the ratling mage";
+				Title = "o mago ratinho";
 
 			SetStr( 146, 180 );
 			SetDex( 101, 130 );

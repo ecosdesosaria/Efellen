@@ -23,7 +23,7 @@ namespace Server.Items
 		public GuildBoard( ) : base( 0x577B )
 		{
 			Weight = 1.0;
-			Name = "Local Guilds";
+			Name = "Guildas Locais";
 			Hue = 0xB79;
 		}
 
