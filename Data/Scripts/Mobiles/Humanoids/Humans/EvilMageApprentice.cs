@@ -6,7 +6,7 @@ using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
-	[CorpseName( "a mage corpse" )] 
+	[CorpseName( "o cadáver de um mago" )]
 	public class EvilMageApprentice : BaseSpellCaster 
 	{ 
 		public override int BreathPhysicalDamage{ get{ return 0; } }

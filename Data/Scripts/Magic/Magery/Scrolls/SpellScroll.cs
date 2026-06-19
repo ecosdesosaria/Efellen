@@ -50,7 +50,7 @@ namespace Server.Items
 			if ( SpellItems.GetCircle( magicspell ) != null )
 			{
 				Name = SpellItems.GetName( magicspell ) + " scroll";
-				InfoData = "This scroll contains a magery spell, " + SpellItems.GetName( magicspell ) + ". " + SpellItems.GetData( magicspell );
+				InfoData = "Este pergaminho contém um feitiço de magia, " + SpellItems.GetName( magicspell ) + ". " + SpellItems.GetData( magicspell );
 				InfoText2 = SpellItems.GetCircle( magicspell );
 			}
 		}

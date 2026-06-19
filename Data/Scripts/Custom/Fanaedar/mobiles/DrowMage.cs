@@ -7,7 +7,7 @@ using Server.Custom;
 
 namespace Server.Mobiles 
 { 
-	[CorpseName( "a mage corpse" )] 
+	[CorpseName( "o cadáver de um mago" )]
 	public class DrowMage : BaseSpellCaster 
 	{ 
 		[Constructable] 

@@ -6,23 +6,23 @@ using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
-	[CorpseName( "a mage corpse" )] 
+	[CorpseName( "o cadáver de um mago" )]
 	public class EvilMageLord : BaseSpellCaster 
 	{ 
 	
 		[Constructable] 
 		public EvilMageLord() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{
-			string sGrand = "grand";
+			string sGrand = "grande";
 
 			switch ( Utility.RandomMinMax( 0, 5 ) )
 			{
-				case 0: sGrand = "grand"; break;
-				case 1: sGrand = "great"; break;
-				case 2: sGrand = "master"; break;
-				case 3: sGrand = "powerful"; break;
-				case 4: sGrand = "supreme"; break;
-				case 5: sGrand = "almighty"; break;
+				case 0: sGrand = "grande"; break;
+				case 1: sGrand = "magnífico"; break;
+				case 2: sGrand = "mestre"; break;
+				case 3: sGrand = "poderoso"; break;
+				case 4: sGrand = "supremo"; break;
+				case 5: sGrand = "todo-poderoso"; break;
 			}
 
 			if ( this.Female = Utility.RandomBool() ) 
@@ -31,12 +31,12 @@ namespace Server.Mobiles
 				Name = NameList.RandomName( "evil witch" );
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0: Title = "the " + sGrand + " wizard"; break;
-					case 1: Title = "the " + sGrand + " sorcereress"; break;
-					case 2: Title = "the " + sGrand + " mage"; break;
-					case 3: Title = "the " + sGrand + " conjurer"; break;
-					case 4: Title = "the " + sGrand + " magician"; break;
-					case 5: Title = "the " + sGrand + " witch"; break;
+					case 0: Title = "o " + sGrand + " maga"; break;
+					case 1: Title = "a " + sGrand + " feiticeira"; break;
+					case 2: Title = "a " + sGrand + " maga"; break;
+					case 3: Title = "a " + sGrand + " conjuradora"; break;
+					case 4: Title = "a " + sGrand + " ilusionista"; break;
+					case 5: Title = "a " + sGrand + " bruxa"; break;
 				}
 				Utility.AssignRandomHair( this );
 				HairHue = Utility.RandomHairHue();
@@ -47,12 +47,12 @@ namespace Server.Mobiles
 				Name = NameList.RandomName( "evil mage" );
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0: Title = "the " + sGrand + " wizard"; break;
-					case 1: Title = "the " + sGrand + " sorcerer"; break;
-					case 2: Title = "the " + sGrand + " mage"; break;
-					case 3: Title = "the " + sGrand + " conjurer"; break;
-					case 4: Title = "the " + sGrand + " magician"; break;
-					case 5: Title = "the " + sGrand + " warlock"; break;
+					case 0: Title = "o " + sGrand + " mago"; break;
+					case 1: Title = "o " + sGrand + " feiticeiro"; break;
+					case 2: Title = "o " + sGrand + " mago"; break;
+					case 3: Title = "o " + sGrand + " conjurador"; break;
+					case 4: Title = "o " + sGrand + " ilusionista"; break;
+					case 5: Title = "o " + sGrand + " bruxo"; break;
 				}
 				Utility.AssignRandomHair( this );
 				int HairColor = Utility.RandomHairHue();

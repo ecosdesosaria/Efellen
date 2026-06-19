@@ -23,7 +23,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.CulinariansGuild; } }
 
 		[Constructable]
-		public Cook() : base( "the cook" )
+		public Cook() : base( "o cozinheiro" )
 		{
 			SetSkill( SkillName.Cooking, 90.0, 100.0 );
 			SetSkill( SkillName.Tasting, 75.0, 98.0 );

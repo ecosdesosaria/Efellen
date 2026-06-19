@@ -22,7 +22,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.MagesGuild; } }
 
 		[Constructable]
-		public Mage() : base( "the mage" )
+		public Mage() : base( "o mago" )
 		{
 			SetSkill( SkillName.Psychology, 65.0, 88.0 );
 			SetSkill( SkillName.Inscribe, 60.0, 83.0 );

@@ -25,7 +25,7 @@ namespace Server.Mobiles
       	{ 
 			InitStats( 85, 75, 65 ); 
 			Name = this.Female ? NameList.RandomName( "female" ) : NameList.RandomName( "male" );
-			Title = "the animal broker";
+			Title = "negociante de animais";
 
 				Body = 0x191;
 				Hue = Utility.RandomSkinHue(); 
