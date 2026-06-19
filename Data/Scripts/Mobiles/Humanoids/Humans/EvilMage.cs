@@ -6,7 +6,7 @@ using Server.CustomSpells;
 
 namespace Server.Mobiles 
 { 
-	[CorpseName( "a mage corpse" )] 
+	[CorpseName( "o cadáver de um mago" )] 
 	public class EvilMage : BaseSpellCaster 
 	{ 
 		[Constructable] 
@@ -18,12 +18,12 @@ namespace Server.Mobiles
 				Name = NameList.RandomName( "evil witch" );
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0: Title = "the wizard"; break;
-					case 1: Title = "the sorcereress"; break;
-					case 2: Title = "the mage"; break;
-					case 3: Title = "the conjurer"; break;
-					case 4: Title = "the magician"; break;
-					case 5: Title = "the witch"; break;
+					case 0: Title = "a mago"; break;
+					case 1: Title = "a feiticeira"; break;
+					case 2: Title = "o mago"; break;
+					case 3: Title = "o conjurador"; break;
+					case 4: Title = "a ilusionista"; break;
+					case 5: Title = "a bruxa"; break;
 				}
 				Utility.AssignRandomHair( this );
 				HairHue = Utility.RandomHairHue();
@@ -34,12 +34,12 @@ namespace Server.Mobiles
 				Name = NameList.RandomName( "evil mage" );
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0: Title = "the wizard"; break;
-					case 1: Title = "the sorcerer"; break;
-					case 2: Title = "the mage"; break;
-					case 3: Title = "the conjurer"; break;
-					case 4: Title = "the magician"; break;
-					case 5: Title = "the warlock"; break;
+					case 0: Title = "o mago"; break;
+					case 1: Title = "o feiticeiro"; break;
+					case 2: Title = "o mago"; break;
+					case 3: Title = "o conjurador"; break;
+					case 4: Title = "o ilusionista"; break;
+					case 5: Title = "o bruxo"; break;
 				}
 				Utility.AssignRandomHair( this );
 				int HairColor = Utility.RandomHairHue();

@@ -22,7 +22,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.ElementalGuild; } }
 
 		[Constructable]
-		public Elementalist() : base( "the elementalist" )
+		public Elementalist() : base( "o elementalista" )
 		{
 			SetSkill( SkillName.Focus, 65.0, 88.0 );
 			SetSkill( SkillName.Inscribe, 60.0, 83.0 );

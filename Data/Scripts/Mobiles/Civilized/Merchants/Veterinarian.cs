@@ -21,7 +21,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.DruidsGuild; } }
 
 		[Constructable]
-		public Veterinarian() : base( "the vet" )
+		public Veterinarian() : base( "o veterinário" )
 		{
 			SetSkill( SkillName.Druidism, 85.0, 100.0 );
 			SetSkill( SkillName.Veterinary, 90.0, 100.0 );
