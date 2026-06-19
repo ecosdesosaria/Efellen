@@ -83,53 +83,53 @@ namespace Server.Items
 
 			switch ( monster )
 			{
-				case 1: PrisonerTitle = "the bugbear"; PrisonerName = NameList.RandomName( "giant" ); PrisonerBody = 343; PrisonerSound = 427; PrisonerType = 1; break;
-				case 2: PrisonerTitle = "the morlock"; PrisonerName = NameList.RandomName( "savage" ); PrisonerBody = 332; PrisonerSound = 427; PrisonerType = 1; break;
-				case 3: PrisonerTitle = "the mind flayer"; PrisonerName = NameList.RandomName( "vampire" ); PrisonerBody = 768; PrisonerSound = 898; PrisonerType = 3; break;
-				case 4: PrisonerTitle = "the hobgoblin"; PrisonerName = NameList.RandomName( "giant" ); PrisonerBody = 11; PrisonerSound = 1114; PrisonerType = 1; break;
-				case 5: PrisonerTitle = "the goblin"; PrisonerName = NameList.RandomName( "goblin" ); PrisonerBody = 647; PrisonerSound = 0x543; PrisonerType = 2; break;
-				case 6: PrisonerTitle = "the goblin"; PrisonerName = NameList.RandomName( "goblin" ); PrisonerBody = 632; PrisonerSound = 0x543; PrisonerType = 1; break;
-				case 7: PrisonerTitle = "the gnoll"; PrisonerName = NameList.RandomName( "urk" ); PrisonerBody = 510; PrisonerSound = 1114; PrisonerType = 1; break;
-				case 8: PrisonerTitle = "the satyr"; PrisonerName = NameList.RandomName( "elf_male" ); PrisonerBody = 271; PrisonerSound = 1414; PrisonerType = 1; break;
-				case 9: PrisonerTitle = "the centaur"; PrisonerName = NameList.RandomName( "centaur" ); PrisonerBody = 101; PrisonerSound = 679; PrisonerType = 2; break;
-				case 10: PrisonerTitle = "the pixie"; PrisonerName = NameList.RandomName( "pixie" ); PrisonerBody = 128; PrisonerSound = 1127; PrisonerType = 3; break;
-				case 11: PrisonerTitle = "the minotaur"; PrisonerName = NameList.RandomName( "greek" ); PrisonerBody = 78; PrisonerSound = 1358; PrisonerType = 1; break;
-				case 12: PrisonerTitle = "the minotaur"; PrisonerName = NameList.RandomName( "greek" ); PrisonerBody = 650; PrisonerSound = 1358; PrisonerType = 1; break;
-				case 13: PrisonerTitle = "the sleestax"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 541; PrisonerSound = 417; PrisonerType = 1; break;
-				case 14: PrisonerTitle = "the sakkhra"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 326; PrisonerSound = 417; PrisonerType = 3; break;
-				case 15: PrisonerTitle = "the sakkhra"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 333; PrisonerSound = 417; PrisonerType = 1; break;
-				case 16: PrisonerTitle = "the sakkhra"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 324; PrisonerSound = 417; PrisonerType = 1; break;
-				case 17: PrisonerTitle = "the lizardman"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 33; PrisonerSound = 417; PrisonerType = 1; break;
-				case 18: PrisonerTitle = "the lizardman"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 35; PrisonerSound = 417; PrisonerType = 1; break;
-				case 19: PrisonerTitle = "the lizardman"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 36; PrisonerSound = 417; PrisonerType = 1; break;
-				case 20: PrisonerTitle = "the kobold"; PrisonerName = NameList.RandomName( "goblin" ); PrisonerBody = 253; PrisonerSound = 0x543; PrisonerType = 3; break;
-				case 21: PrisonerTitle = "the kobold"; PrisonerName = NameList.RandomName( "goblin" ); PrisonerBody = 245; PrisonerSound = 0x543; PrisonerType = 1; break;
-				case 22: PrisonerTitle = "the grathek"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 534; PrisonerSound = 417; PrisonerType = 1; break;
-				case 23: PrisonerTitle = "the orx"; PrisonerName = NameList.RandomName( "ork" ); PrisonerBody = 107; PrisonerSound = 1114; PrisonerType = 1; break;
-				case 24: PrisonerTitle = "the orx"; PrisonerName = NameList.RandomName( "ork" ); PrisonerBody = 108; PrisonerSound = 1114; PrisonerType = 1; break;
-				case 25: PrisonerTitle = "the orc"; PrisonerName = NameList.RandomName( "orc" ); PrisonerBody = 17; PrisonerSound = 1114; PrisonerType = 3; break;
-				case 26: PrisonerTitle = "the orc"; PrisonerName = NameList.RandomName( "orc" ); PrisonerBody = 7; PrisonerSound = 1114; PrisonerType = 1; break;
-				case 27: PrisonerTitle = "the orc"; PrisonerName = NameList.RandomName( "orc" ); PrisonerBody = 182; PrisonerSound = 1114; PrisonerType = 1; break;
-				case 28: PrisonerTitle = "the urc"; PrisonerName = NameList.RandomName( "urk" ); PrisonerBody = 20; PrisonerSound = 1114; PrisonerType = 1; break;
-				case 29: PrisonerTitle = "the urc"; PrisonerName = NameList.RandomName( "urk" ); PrisonerBody = 252; PrisonerSound = 1114; PrisonerType = 2; break;
-				case 30: PrisonerTitle = "the urc"; PrisonerName = NameList.RandomName( "urk" ); PrisonerBody = 157; PrisonerSound = 1114; PrisonerType = 3; break;
-				case 31: PrisonerTitle = "the tritun"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 690; PrisonerSound = 1363; PrisonerType = 1; break;
-				case 32: PrisonerTitle = "the tritun"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 678; PrisonerSound = 1363; PrisonerType = 3; break;
-				case 33: PrisonerTitle = "the neptar"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 677; PrisonerSound = 1363; PrisonerType = 3; break;
-				case 34: PrisonerTitle = "the neptar"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 676; PrisonerSound = 1363; PrisonerType = 1; break;
-				case 35: PrisonerTitle = "the ratman"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 42; PrisonerSound = 437; PrisonerType = 2; break;
-				case 36: PrisonerTitle = "the ratman"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 44; PrisonerSound = 437; PrisonerType = 1; break;
-				case 37: PrisonerTitle = "the ratman"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 45; PrisonerSound = 437; PrisonerType = 1; break;
-				case 38: PrisonerTitle = "the ratman"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 163; PrisonerSound = 437; PrisonerType = 1; break;
-				case 39: PrisonerTitle = "the ratman"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 164; PrisonerSound = 437; PrisonerType = 1; break;
-				case 40: PrisonerTitle = "the ratman"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 165; PrisonerSound = 437; PrisonerType = 1; break;
-				case 41: PrisonerTitle = "the ratman"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 73; PrisonerSound = 437; PrisonerType = 3; break;
-				case 42: PrisonerTitle = "the serpyn"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 143; PrisonerSound = 634; PrisonerType = 1; break;
-				case 43: PrisonerTitle = "the serpyn"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 145; PrisonerSound = 634; PrisonerType = 1; break;
-				case 44: PrisonerTitle = "the serpyn"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 144; PrisonerSound = 644; PrisonerType = 3; break;
-				case 45: PrisonerTitle = "the ophidian"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 85; PrisonerSound = 639; PrisonerType = 3; break;
-				case 46: PrisonerTitle = "the ophidian"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 86; PrisonerSound = 634; PrisonerType = 1; break;
-				case 47: PrisonerTitle = "the ophidian"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 87; PrisonerSound = 644; PrisonerType = 3; break;
+				case 1: PrisonerTitle = "o bugbear"; PrisonerName = NameList.RandomName( "giant" ); PrisonerBody = 343; PrisonerSound = 427; PrisonerType = 1; break;
+				case 2: PrisonerTitle = "o morlock"; PrisonerName = NameList.RandomName( "savage" ); PrisonerBody = 332; PrisonerSound = 427; PrisonerType = 1; break;
+				case 3: PrisonerTitle = "o devorador de mentes"; PrisonerName = NameList.RandomName( "vampire" ); PrisonerBody = 768; PrisonerSound = 898; PrisonerType = 3; break;
+				case 4: PrisonerTitle = "o hobgoblin"; PrisonerName = NameList.RandomName( "giant" ); PrisonerBody = 11; PrisonerSound = 1114; PrisonerType = 1; break;
+				case 5: PrisonerTitle = "o goblin"; PrisonerName = NameList.RandomName( "goblin" ); PrisonerBody = 647; PrisonerSound = 0x543; PrisonerType = 2; break;
+				case 6: PrisonerTitle = "o goblin"; PrisonerName = NameList.RandomName( "goblin" ); PrisonerBody = 632; PrisonerSound = 0x543; PrisonerType = 1; break;
+				case 7: PrisonerTitle = "o gnoll"; PrisonerName = NameList.RandomName( "urk" ); PrisonerBody = 510; PrisonerSound = 1114; PrisonerType = 1; break;
+				case 8: PrisonerTitle = "o sátiro"; PrisonerName = NameList.RandomName( "elf_male" ); PrisonerBody = 271; PrisonerSound = 1414; PrisonerType = 1; break;
+				case 9: PrisonerTitle = "o centauro"; PrisonerName = NameList.RandomName( "centaur" ); PrisonerBody = 101; PrisonerSound = 679; PrisonerType = 2; break;
+				case 10: PrisonerTitle = "a pixie"; PrisonerName = NameList.RandomName( "pixie" ); PrisonerBody = 128; PrisonerSound = 1127; PrisonerType = 3; break;
+				case 11: PrisonerTitle = "o minotauro"; PrisonerName = NameList.RandomName( "greek" ); PrisonerBody = 78; PrisonerSound = 1358; PrisonerType = 1; break;
+				case 12: PrisonerTitle = "o minotauro"; PrisonerName = NameList.RandomName( "greek" ); PrisonerBody = 650; PrisonerSound = 1358; PrisonerType = 1; break;
+				case 13: PrisonerTitle = "o sleestax"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 541; PrisonerSound = 417; PrisonerType = 1; break;
+				case 14: PrisonerTitle = "o sakkhra"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 326; PrisonerSound = 417; PrisonerType = 3; break;
+				case 15: PrisonerTitle = "o sakkhra"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 333; PrisonerSound = 417; PrisonerType = 1; break;
+				case 16: PrisonerTitle = "o sakkhra"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 324; PrisonerSound = 417; PrisonerType = 1; break;
+				case 17: PrisonerTitle = "o homem-lagarto"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 33; PrisonerSound = 417; PrisonerType = 1; break;
+				case 18: PrisonerTitle = "o homem-lagarto"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 35; PrisonerSound = 417; PrisonerType = 1; break;
+				case 19: PrisonerTitle = "o homem-lagarto"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 36; PrisonerSound = 417; PrisonerType = 1; break;
+				case 20: PrisonerTitle = "o kobold"; PrisonerName = NameList.RandomName( "goblin" ); PrisonerBody = 253; PrisonerSound = 0x543; PrisonerType = 3; break;
+				case 21: PrisonerTitle = "o kobold"; PrisonerName = NameList.RandomName( "goblin" ); PrisonerBody = 245; PrisonerSound = 0x543; PrisonerType = 1; break;
+				case 22: PrisonerTitle = "o grathek"; PrisonerName = NameList.RandomName( "lizardman" ); PrisonerBody = 534; PrisonerSound = 417; PrisonerType = 1; break;
+				case 23: PrisonerTitle = "o orx"; PrisonerName = NameList.RandomName( "ork" ); PrisonerBody = 107; PrisonerSound = 1114; PrisonerType = 1; break;
+				case 24: PrisonerTitle = "o orx"; PrisonerName = NameList.RandomName( "ork" ); PrisonerBody = 108; PrisonerSound = 1114; PrisonerType = 1; break;
+				case 25: PrisonerTitle = "o orc"; PrisonerName = NameList.RandomName( "orc" ); PrisonerBody = 17; PrisonerSound = 1114; PrisonerType = 3; break;
+				case 26: PrisonerTitle = "o orc"; PrisonerName = NameList.RandomName( "orc" ); PrisonerBody = 7; PrisonerSound = 1114; PrisonerType = 1; break;
+				case 27: PrisonerTitle = "o orc"; PrisonerName = NameList.RandomName( "orc" ); PrisonerBody = 182; PrisonerSound = 1114; PrisonerType = 1; break;
+				case 28: PrisonerTitle = "o urc"; PrisonerName = NameList.RandomName( "urk" ); PrisonerBody = 20; PrisonerSound = 1114; PrisonerType = 1; break;
+				case 29: PrisonerTitle = "o urc"; PrisonerName = NameList.RandomName( "urk" ); PrisonerBody = 252; PrisonerSound = 1114; PrisonerType = 2; break;
+				case 30: PrisonerTitle = "o urc"; PrisonerName = NameList.RandomName( "urk" ); PrisonerBody = 157; PrisonerSound = 1114; PrisonerType = 3; break;
+				case 31: PrisonerTitle = "o tritun"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 690; PrisonerSound = 1363; PrisonerType = 1; break;
+				case 32: PrisonerTitle = "o tritun"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 678; PrisonerSound = 1363; PrisonerType = 3; break;
+				case 33: PrisonerTitle = "o neptar"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 677; PrisonerSound = 1363; PrisonerType = 3; break;
+				case 34: PrisonerTitle = "o neptar"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 676; PrisonerSound = 1363; PrisonerType = 1; break;
+				case 35: PrisonerTitle = "o homem-rato"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 42; PrisonerSound = 437; PrisonerType = 2; break;
+				case 36: PrisonerTitle = "o homem-rato"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 44; PrisonerSound = 437; PrisonerType = 1; break;
+				case 37: PrisonerTitle = "o homem-rato"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 45; PrisonerSound = 437; PrisonerType = 1; break;
+				case 38: PrisonerTitle = "o homem-rato"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 163; PrisonerSound = 437; PrisonerType = 1; break;
+				case 39: PrisonerTitle = "o homem-rato"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 164; PrisonerSound = 437; PrisonerType = 1; break;
+				case 40: PrisonerTitle = "o homem-rato"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 165; PrisonerSound = 437; PrisonerType = 1; break;
+				case 41: PrisonerTitle = "o homem-rato"; PrisonerName = NameList.RandomName( "ratman" ); PrisonerBody = 73; PrisonerSound = 437; PrisonerType = 3; break;
+				case 42: PrisonerTitle = "o serpyn"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 143; PrisonerSound = 634; PrisonerType = 1; break;
+				case 43: PrisonerTitle = "o serpyn"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 145; PrisonerSound = 634; PrisonerType = 1; break;
+				case 44: PrisonerTitle = "o serpyn"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 144; PrisonerSound = 644; PrisonerType = 3; break;
+				case 45: PrisonerTitle = "o ofídio"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 85; PrisonerSound = 639; PrisonerType = 3; break;
+				case 46: PrisonerTitle = "o ofídio"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 86; PrisonerSound = 634; PrisonerType = 1; break;
+				case 47: PrisonerTitle = "o ofídio"; PrisonerName = NameList.RandomName( "drakkul" ); PrisonerBody = 87; PrisonerSound = 644; PrisonerType = 3; break;
 				case 48:
 							HenchmanItem fighter = new HenchmanFighterItem();
 							PrisonerName = fighter.HenchName; 
@@ -172,47 +172,47 @@ namespace Server.Items
 
 		public string GetMeleeTitle()
 		{
-			string title = "warrior";
+			string title = "guerreiro";
 			switch ( Utility.RandomMinMax( 0, 12 ) )
 			{
-				case 0: title = "fighter"; break;
-				case 1: title = "knight"; break;
-				case 2: title = "champion"; break;
-				case 3: title = "warrior"; break;
-				case 4: title = "soldier"; break;
-				case 5: title = "vanquisher"; break;
-				case 6: title = "battler"; break;
-				case 7: title = "gladiator"; break;
-				case 8: title = "mercenary"; break;
-				case 9: title = "nomad"; break;
+				case 0: title = "lutador"; break;
+				case 1: title = "cavaleiro"; break;
+				case 2: title = "campeão"; break;
+				case 3: title = "guerreiro"; break;
+				case 4: title = "soldado"; break;
+				case 5: title = "aniquilador"; break;
+				case 6: title = "combatente"; break;
+				case 7: title = "gladiador"; break;
+				case 8: title = "mercenário"; break;
+				case 9: title = "nômade"; break;
 				case 10: title = "berserker"; break;
-				case 11: title = "pit fighter"; break;
-				case 12: title = "brute"; break;
+				case 11: title = "lutador de fossa"; break;
+				case 12: title = "brutamontes"; break;
 			}
 			return title;
 		}
 
 		public string GetArcherTitle()
 		{
-			string title = "archer";
+			string title = "arqueiro";
 			switch ( Utility.RandomMinMax( 0, 1 ) )
 			{
-				case 0: title = "bowman"; break;
-				case 1: title = "archer"; break;
+				case 0: title = "arqueiro"; break;
+				case 1: title = "arqueiro"; break;
 			}
 			return title;
 		}
 
 		public string GetMageTitle()
 		{
-			string title = "wizard";
+			string title = "mago";
 			switch ( Utility.RandomMinMax( 0, 4 ) )
 			{
-				case 0: title = "wizard"; break;
-				case 1: title = "shaman"; break;
-				case 2: title = "mage"; break;
-				case 3: title = "conjurer"; break;
-				case 4: title = "magician"; break;
+				case 0: title = "mago"; break;
+				case 1: title = "xamã"; break;
+				case 2: title = "mago"; break;
+				case 3: title = "conjurador"; break;
+				case 4: title = "ilusionista"; break;
 			}
 			return title;
 		}
@@ -272,9 +272,9 @@ namespace Server.Items
 
 
 				string FullName = m_Jail.PrisonerName + " " + m_Jail.PrisonerTitle;
-					if ( m_Jail.PrisonerType == 97 ){ FullName = FullName + " (Warrior)"; }
-					else if ( m_Jail.PrisonerType == 98 ){ FullName = FullName + " (Archer)"; }
-					else if ( m_Jail.PrisonerType == 99 ){ FullName = FullName + " (Wizard)"; }
+					if ( m_Jail.PrisonerType == 97 ){ FullName = FullName + " (Guerreiro)"; }
+					else if ( m_Jail.PrisonerType == 98 ){ FullName = FullName + " (Arqueiro)"; }
+					else if ( m_Jail.PrisonerType == 99 ){ FullName = FullName + " (Mago)"; }
 
 				string paragraph = "" + m_Jail.PrisonerName + " " + m_Jail.PrisonerTitle + " foi trancado nesta cela e está implorando para ser libertado. Você pode escolher deixá-los com seu destino, ou eles lhe darão " + m_Jail.PrisonerReward + " de ouro se você libertá-los. Outra escolha que você pode fazer é oferecer a eles " + m_Jail.PrisonerJoin + " de ouro para se juntarem a você em sua jornada. Se você decidir fazer isso, eles serão libertados desta cela e se tornarão seu ajudante. Um item de ajudante aparecerá em sua mochila. Continue lendo se precisar de uma explicação sobre como os ajudantes funcionam.";
 

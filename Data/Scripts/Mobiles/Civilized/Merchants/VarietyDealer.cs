@@ -24,7 +24,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.MerchantsGuild; } }
 
 		[Constructable]
-		public VarietyDealer() : base( "the art collector" )
+		public VarietyDealer() : base( "o colecionador de arte" )
 		{
 		}
 
@@ -90,11 +90,11 @@ namespace Server.Mobiles
 					{
 						if ( AlreadyHasBook( from ) )
 						{
-							this.PublicOverheadMessage( MessageType.Regular, 0, false, string.Format ( "Here. I see you already have a book." ) ); 
+							this.PublicOverheadMessage( MessageType.Regular, 0, false, string.Format ( "Aqui. Vejo que você já tem um livro." ) ); 
 						}
 						else if ( PlayerSettings.GetKeys( from, "Antiques" ) )
 						{
-							this.PublicOverheadMessage( MessageType.Regular, 0, false, string.Format ( "Thank you, but you already done that for me." ) ); 
+							this.PublicOverheadMessage( MessageType.Regular, 0, false, string.Format ( "Obrigado, mas você já fez isso por mim." ) ); 
 						}
 						else
 						{
@@ -102,7 +102,7 @@ namespace Server.Mobiles
 							from.PlaySound( 0x2E6 );
 							book.ArtOwner = from;
 							from.AddToBackpack( book );
-							this.PublicOverheadMessage( MessageType.Regular, 0, false, string.Format ( "Good luck with the search." ) ); 
+							this.PublicOverheadMessage( MessageType.Regular, 0, false, string.Format ( "Boa sorte na busca." ) );
 							PlayerSettings.SetKeys( from, "Antiques", true );
 							dropped.Delete();
 						}

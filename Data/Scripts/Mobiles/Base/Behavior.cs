@@ -2511,44 +2511,44 @@ namespace Server.Misc
 			{
 			switch ( myTitle )
 				{
-					case 0: m.Title = "the possessed " + race + "fighter"; break;
-					case 1: m.Title = "the possessed " + race + "knight"; break;
-					case 2: m.Title = "the possessed " + race + "champion"; break;
-					case 3: m.Title = "the possessed " + race + "warrior"; break;
-					case 4: m.Title = "the possessed " + race + "soldier"; break;
-					case 5: m.Title = "the possessed " + race + "vanquisher"; break;
-					case 6: m.Title = "the possessed " + race + "battler"; break;
-					case 7: m.Title = "the possessed " + race + "gladiator"; break;
-					case 8: m.Title = "the possessed " + race + "mercenary"; break;
-					case 9: m.Title = "the possessed " + race + "nomad"; break;
-					case 10: m.Title = "the possessed " + race + "berserker"; break;
-					case 11: m.Title = "the possessed " + race + "barbarian"; if ( m.Female ){ m.Title = "the " + race + "amazon"; } break;
-					case 12: m.Title = "the possessed " + race + "pit fighter"; break;
-					case 13: m.Title = "the possessed " + race + "brute"; break;
-					case 14: m.Title = "the possessed " + race + "samurai"; break;
-					case 15: m.Title = "the possessed " + race + "ronin"; break;
+					case 0: m.Title = "o " + race + "lutador possuído"; break;
+					case 1: m.Title = "o " + race + "cavaleiro possuído"; break;
+					case 2: m.Title = "o " + race + "campeão possuído"; break;
+					case 3: m.Title = "o " + race + "guerreiro possuído"; break;
+					case 4: m.Title = "o " + race + "soldado possuído"; break;
+					case 5: m.Title = "o " + race + "aniquilador possuído"; break;
+					case 6: m.Title = "o " + race + "combatente possuído"; break;
+					case 7: m.Title = "o " + race + "gladiador possuído"; break;
+					case 8: m.Title = "o " + race + "mercenário possuído"; break;
+					case 9: m.Title = "o " + race + "nômade possuído"; break;
+					case 10: m.Title = "o " + race + "berserker possuído"; break;
+					case 11: m.Title = "o " + race + "bárbaro possuído"; if ( m.Female ){ m.Title = "a " + race + "amazona"; } break;
+					case 12: m.Title = "o " + race + "lutador de fossa possuído"; break;
+					case 13: m.Title = "o " + race + "brutamontes possuído"; break;
+					case 14: m.Title = "o " + race + "samurai possuído"; break;
+					case 15: m.Title = "o " + race + "ronin possuído"; break;
 				}
 			}
 			else 
 			{
 			switch ( myTitle )
 				{
-					case 0: m.Title = "the " + race + "fighter"; break;
-					case 1: m.Title = "the " + race + "knight"; break;
-					case 2: m.Title = "the " + race + "champion"; break;
-					case 3: m.Title = "the " + race + "warrior"; break;
-					case 4: m.Title = "the " + race + "soldier"; break;
-					case 5: m.Title = "the " + race + "vanquisher"; break;
-					case 6: m.Title = "the " + race + "battler"; break;
-					case 7: m.Title = "the " + race + "gladiator"; break;
-					case 8: m.Title = "the " + race + "mercenary"; break;
-					case 9: m.Title = "the " + race + "nomad"; break;
-					case 10: m.Title = "the " + race + "berserker"; break;
-					case 11: m.Title = "the " + race + "barbarian"; if ( m.Female ){ m.Title = "the " + race + "amazon"; } break;
-					case 12: m.Title = "the " + race + "pit fighter"; break;
-					case 13: m.Title = "the " + race + "brute"; break;
-					case 14: m.Title = "the " + race + "samurai"; break;
-					case 15: m.Title = "the " + race + "ronin"; break;
+					case 0: m.Title = "o " + race + "lutador"; break;
+					case 1: m.Title = "o " + race + "cavaleiro"; break;
+					case 2: m.Title = "o " + race + "campeão"; break;
+					case 3: m.Title = "o " + race + "guerreiro"; break;
+					case 4: m.Title = "o " + race + "soldado"; break;
+					case 5: m.Title = "o " + race + "aniquilador"; break;
+					case 6: m.Title = "o " + race + "combatente"; break;
+					case 7: m.Title = "o " + race + "gladiador"; break;
+					case 8: m.Title = "o " + race + "mercenário"; break;
+					case 9: m.Title = "o " + race + "nômade"; break;
+					case 10: m.Title = "o " + race + "berserker"; break;
+					case 11: m.Title = "o " + race + "bárbaro"; if ( m.Female ){ m.Title = "a " + race + "amazona"; } break;
+					case 12: m.Title = "o " + race + "lutador de fossa"; break;
+					case 13: m.Title = "o " + race + "brutamontes"; break;
+					case 14: m.Title = "o " + race + "samurai"; break;
+					case 15: m.Title = "o " + race + "ronin"; break;
 				}
 			}
 
@@ -2621,7 +2621,7 @@ namespace Server.Misc
 			else if ( iArmor == 2 )
 			{
 				m.YellHue = 1;
-				string suit = "assassin";
+				string suit = "assassino";
 				bool shinobi = false;
 					if ( Utility.RandomMinMax(1,10) == 1 ){ shinobi = true; }
 
@@ -2635,12 +2635,12 @@ namespace Server.Misc
 
 				switch ( outfit )
 				{
-					case 0: m.Title = "the " + race + "assassin";	suit = "assassin"; m.YellHue = 2; break;
-					case 1: m.Title = "the " + race + "hunter";		suit = "hunter"; break;
-					case 2: m.Title = "the " + race + "ninja";		suit = "ninja"; myHelm = Utility.RandomList( 6, 10, 11, 12, 13 ); break;
+					case 0: m.Title = "o " + race + "assassino"; suit = "assassino"; m.YellHue = 2; break;
+					case 1: m.Title = "o " + race + "caçador"; suit = "caçador"; break;
+					case 2: m.Title = "o " + race + "ninja"; suit = "ninja"; myHelm = Utility.RandomList( 6, 10, 11, 12, 13 ); break;
 				}
 
-				if ( isDojo ){ m.Title = "the " + race + "ninja";	suit = "ninja"; myHelm = Utility.RandomList( 6, 10, 11, 12, 13 ); }
+				if ( isDojo ){ m.Title = "o " + race + "ninja"; suit = "ninja"; myHelm = Utility.RandomList( 6, 10, 11, 12, 13 ); }
 
 				myTitle = 100;
 
@@ -2763,16 +2763,16 @@ namespace Server.Misc
 
 			switch ( myTitle )
 			{
-				case 0: m.Title = "the " + race + "thief"; break;
-				case 1: m.Title = "the " + race + "rogue"; break;
-				case 2: m.Title = "the " + race + "outlaw"; break;
-				case 3: m.Title = "the " + race + "bandit"; break;
-				case 4: m.Title = "the " + race + "pickpocket"; break;
-				case 5: m.Title = "the " + race + "burglar"; break;
-				case 6: m.Title = "the " + race + "robber"; break;
-				case 7: m.Title = "the " + race + "criminal"; break;
-				case 8: m.Title = "the " + race + "prowler"; break;
-				case 9: m.Title = "the " + race + "pilferer"; break;
+				case 0: m.Title = "o " + race + "ladrão"; break;
+				case 1: m.Title = "o " + race + "salteador"; break;
+				case 2: m.Title = "o " + race + "fora-da-lei"; break;
+				case 3: m.Title = "o " + race + "bandido"; break;
+				case 4: m.Title = "o " + race + "batedor de carteiras"; break;
+				case 5: m.Title = "o " + race + "arrombador"; break;
+				case 6: m.Title = "o " + race + "assaltante"; break;
+				case 7: m.Title = "o " + race + "criminoso"; break;
+				case 8: m.Title = "o " + race + "espreitador"; break;
+				case 9: m.Title = "o " + race + "fuleiro"; break;
 			}
 
 			if ( m is Brigand ){ m.Title = "the " + race + "brigand"; }

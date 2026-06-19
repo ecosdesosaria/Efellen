@@ -628,12 +628,12 @@ namespace Server.Mobiles
 
 			if ( ( reg.Name == "the Basement" || reg.Name == "the Dungeon Room" || reg.Name == "the Camping Tent" ) && this is Provisioner )
 			{
-				this.Title = "the merchant";
+				this.Title = "o mercador";
 				runActs = false;
 			}
 			else if ( Server.Misc.Worlds.IsSeaTown( this.Location, this.Map ) )
 			{
-				if ( this is Provisioner && reg.Name != "the Port" ){ this.Title = "the dock worker"; if ( Utility.RandomBool() ){ this.Title = "the merchant"; } }
+				if ( this is Provisioner && reg.Name != "the Port" ){ this.Title = "the dock worker"; if ( Utility.RandomBool() ){ this.Title = "o mercador"; } }
 				else if ( this is Fisherman && reg.Name != "the Port" ){ runActs = false; this.Title = "the sailor"; }
 				else if ( this is Carpenter && reg.Name != "the Port" ){ runActs = false; this.Title = "the cooper"; }
 				else if ( this is Waiter ){ this.Title = "the cabin boy"; if ( this.Female ){ this.Title = "the serving wench"; } }

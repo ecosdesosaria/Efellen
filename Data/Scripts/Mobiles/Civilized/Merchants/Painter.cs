@@ -25,7 +25,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.BardsGuild; } }
 
 		[Constructable]
-		public Painter() : base( "the artist" )
+		public Painter() : base( "o artista" )
 		{
 			SetSkill( SkillName.Anatomy, 65.0, 88.0 );
 			SetSkill( SkillName.Cartography, 65.0, 88.0 );

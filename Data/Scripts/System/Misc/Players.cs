@@ -157,32 +157,32 @@ namespace Server.Misc
 		}
 
 		private static string[,] m_Levels = new string[,]
-			{
-				{ "Neophyte",		"Neophyte",		"Neophyte"		},
-				{ "Novice",			"Novice",		"Novice"		},
-				{ "Apprentice",		"Apprentice",	"Apprentice"	},
-				{ "Journeyman",		"Journeyman",	"Journeyman"	},
-				{ "Expert",			"Expert",		"Expert"		},
-				{ "Adept",			"Adept",		"Adept"			},
-				{ "Master",			"Master",		"Master"		},
-				{ "Grandmaster",	"Grandmaster",	"Grandmaster"	},
-				{ "Elder",			"Tatsujin",		"Shinobi"		},
-				{ "Legendary",		"Kengo",		"Ka-ge"			}
-			};
+		{
+			{ "Neofito",        "Neofito",      "Neofito"       },
+			{ "Novico",         "Novico",       "Novico"        },
+			{ "Aprendiz",       "Aprendiz",     "Aprendiz"      },
+			{ "Oficial",        "Oficial",      "Oficial"       },
+			{ "Especialista",   "Especialista", "Especialista"  },
+			{ "Adepto",         "Adepto",       "Adepto"        },
+			{ "Mestre",         "Mestre",       "Mestre"        },
+			{ "Grao-Mestre",    "Grao-Mestre",  "Grao-Mestre"   },
+			{ "Anciao",         "Tatsujin",     "Shinobi"       },
+			{ "Lendario",       "Kengo",        "Ka-ge"         }
+		};
 
 		private static string[,] m_LevelsFemale = new string[,]
-			{
-				{ "Neophyte",		"Neophyte",			"Neophyte"		},
-				{ "Novice",			"Novice",			"Novice"		},
-				{ "Apprentice",		"Apprentice",		"Apprentice"	},
-				{ "Journeywoman",	"Journeywoman",		"Journeywoman"	},
-				{ "Expert",			"Expert",			"Expert"		},
-				{ "Adept",			"Adept",			"Adept"			},
-				{ "Mistress",		"Mistress",			"Mistress"		},
-				{ "Grandmistress",	"Grandmistress",	"Grandmistress"	},
-				{ "Elder",			"Tatsujin",			"Shinobi"		},
-				{ "Legendary",		"Kengo",			"Ka-ge"			}
-			};
+		{
+			{ "Neofita",        "Neofita",      "Neofita"       },
+			{ "Novica",         "Novica",       "Novica"        },
+			{ "Aprendiz",       "Aprendiz",     "Aprendiz"      },
+			{ "Oficial",        "Oficial",      "Oficial"       },
+			{ "Especialista",   "Especialista", "Especialista"  },
+			{ "Adepta",         "Adepta",       "Adepta"        },
+			{ "Mestra",         "Mestra",       "Mestra"        },
+			{ "Gra-Mestra",     "Gra-Mestra",   "Gra-Mestra"    },
+			{ "Ancia",          "Tatsujin",     "Shinobi"       },
+			{ "Lendaria",       "Kengo",        "Ka-ge"         }
+		};
 
 		private static string GetSkillLevel( Skill skill, bool isFemale )
 		{

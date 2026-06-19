@@ -24,7 +24,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.LibrariansGuild; } }
 
 		[Constructable]
-		public Scribe() : base( "the scribe" )
+		public Scribe() : base( "o escriba" )
 		{
 			SetSkill( SkillName.Psychology, 60.0, 83.0 );
 			SetSkill( SkillName.Inscribe, 90.0, 100.0 );

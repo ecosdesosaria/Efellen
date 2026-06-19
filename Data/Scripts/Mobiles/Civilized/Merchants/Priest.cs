@@ -32,7 +32,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Priest()
 		{
-			Title = "the priest";
+			Title = "o sacerdote";
 			Direction = Direction.East;
 			CantWalk = true;
 			SpeechHue = Utility.RandomTalkHue();

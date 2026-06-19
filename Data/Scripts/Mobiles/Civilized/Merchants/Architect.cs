@@ -22,7 +22,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.MerchantsGuild; } }
 
 		[Constructable]
-		public Architect() : base( "the architect" )
+		public Architect() : base( "o arquiteto" )
 		{
 		}
 
