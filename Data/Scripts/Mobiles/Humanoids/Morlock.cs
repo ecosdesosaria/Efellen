@@ -4,13 +4,13 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a morlock corpse" )]
+	[CorpseName( "um cadáver de morlock" )]
 	public class Morlock : BaseCreature
 	{
 		[Constructable]
 		public Morlock() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a morlock";
+			Name = "um morlock";
 			Body = 332;
 			BaseSoundID = 427;
 

@@ -15,7 +15,7 @@ namespace Server.Mobiles
 		public PirateCyclops()
 		{
 			Name = NameList.RandomName( "greek" );
-			Title = "the cyclopean pirate";
+			Title = "o pirata ciclope";
 			Body = 75;
 			BaseSoundID = 604;
 
@@ -58,7 +58,7 @@ namespace Server.Mobiles
 			Karma = -11000;
 
 			VirtualArmor = 48;
-			healme = "Heal me you brutes!";
+			healme = "Curem-me, seus brutamontes!";
 		}
 
 		public PirateCyclops( Serial serial ) : base( serial )

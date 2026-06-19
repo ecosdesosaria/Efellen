@@ -450,7 +450,7 @@ namespace Server.Mobiles
 
 		public override void InitSBInfo( Mobile m )
 		{
-			if ( Title == "the waiter" || Title == "the barkeeper" || Title == "o padeiro" || Title == "o estalajadeiro" || Title == "the chef" )
+			if ( Title == "o garçom" || Title == "the barkeeper" || Title == "o padeiro" || Title == "o estalajadeiro" || Title == "the chef" )
 			{
 				if ( m_SBInfos.Count == 0 )
 					m_SBInfos.Add( new MyStock() );

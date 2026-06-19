@@ -10,7 +10,7 @@ namespace Server.Mobiles
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }
 
 		[Constructable]
-		public Waiter() : base( "the waiter" )
+		public Waiter() : base( "o garçom" )
 		{
 			SetSkill( SkillName.Discordance, 36.0, 68.0 );
 		}

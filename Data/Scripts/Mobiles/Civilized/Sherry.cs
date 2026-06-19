@@ -42,7 +42,7 @@ namespace Server.Mobiles
 			BaseSoundID = 0xCC;
 
 			Name = "Sherry";
-			Title = "the Mouse";
+			Title = "a Ratinha";
 			Direction = Direction.East;
 			CantWalk = true;
 

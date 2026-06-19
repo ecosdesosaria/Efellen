@@ -21,7 +21,7 @@ namespace Server.Mobiles
 		public override string TalkGumpSubject{ get{ return "Knight"; } }
 
 		[Constructable]
-		public KeeperOfChivalry() : base( "the Knight" )
+		public KeeperOfChivalry() : base( "o Cavaleiro" )
 		{
 			SetSkill( SkillName.Fencing, 75.0, 85.0 );
 			SetSkill( SkillName.Bludgeoning, 75.0, 85.0 );

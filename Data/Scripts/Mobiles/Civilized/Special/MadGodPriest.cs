@@ -28,7 +28,7 @@ namespace Server.Mobiles
 			Body = 0x190; 
 			Name = NameList.RandomName( "male" );
 			NameHue = 0xB0C;
-			Title = "the priest";
+			Title = "o sacerdote";
 			FacialHairItemID = 0;
 			FacialHairHue = 0;
 			Hue = 0x83EA;

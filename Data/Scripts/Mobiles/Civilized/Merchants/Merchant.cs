@@ -22,7 +22,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.MerchantsGuild; } }
 
 		[Constructable]
-		public Merchant() : base( "the merchant" )
+		public Merchant() : base( "o mercador" )
 		{
 			SetSkill( SkillName.Camping, 65.0, 88.0 );
 			SetSkill( SkillName.Mercantile, 65.0, 88.0 );

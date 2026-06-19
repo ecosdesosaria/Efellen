@@ -108,23 +108,23 @@ namespace Server.Mobiles
 
 				switch ( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0: Title = "the warrior"; break;
-					case 1: Title = "the berserker"; break;
-					case 2: Title = "the barbarian"; break;
-					case 3: Title = "the fighter"; break;
-					case 4: Title = "the knight"; break;
-					case 5: Title = "the champion"; break;
+					case 0: Title = "o guerreiro"; break;
+					case 1: Title = "o berserker"; break;
+					case 2: Title = "o bárbaro"; break;
+					case 3: Title = "o lutador"; break;
+					case 4: Title = "o cavaleiro"; break;
+					case 5: Title = "o campeão"; break;
 				}
 			}
 			else
 			{
 				switch ( Utility.RandomMinMax( 0, 4 ) )
 				{
-					case 0: Title = "the thief"; break;
-					case 1: Title = "the rogue"; break;
-					case 2: Title = "the robber"; break;
-					case 3: Title = "the brigand"; break;
-					case 4: Title = "the bandit"; break;
+					case 0: Title = "o ladrão"; break;
+					case 1: Title = "o salteador"; break;
+					case 2: Title = "o assaltante"; break;
+					case 3: Title = "o bandido"; break;
+					case 4: Title = "o bandido"; break;
 				}
 
 				AddItem( new Boots( Utility.RandomNeutralHue() ) );

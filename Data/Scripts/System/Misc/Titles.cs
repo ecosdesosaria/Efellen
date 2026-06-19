@@ -223,18 +223,18 @@ namespace Server.Misc
 		}
 
 		private static string[,] m_Levels = new string[,]
-			{
-				{ "Neophyte",		"Neophyte",		"Neophyte"		},
-				{ "Novice",			"Novice",		"Novice"		},
-				{ "Apprentice",		"Apprentice",	"Apprentice"	},
-				{ "Journeyman",		"Journeyman",	"Journeyman"	},
-				{ "Expert",			"Expert",		"Expert"		},
-				{ "Adept",			"Adept",		"Adept"			},
-				{ "Master",			"Master",		"Master"		},
-				{ "Grandmaster",	"Grandmaster",	"Grandmaster"	},
-				{ "Elder",			"Tatsujin",		"Shinobi"		},
-				{ "Legendary",		"Kengo",		"Ka-ge"			}
-			};
+		{
+			{ "Neofito",        "Neofito",      "Neofito"       },
+			{ "Novico",         "Novico",       "Novico"        },
+			{ "Aprendiz",       "Aprendiz",     "Aprendiz"      },
+			{ "Oficial",        "Oficial",      "Oficial"       },
+			{ "Especialista",   "Especialista", "Especialista"  },
+			{ "Adepto",         "Adepto",       "Adepto"        },
+			{ "Mestre",         "Mestre",       "Mestre"        },
+			{ "Grao-Mestre",    "Grao-Mestre",  "Grao-Mestre"   },
+			{ "Anciao",         "Tatsujin",     "Shinobi"       },
+			{ "Lendario",       "Kengo",        "Ka-ge"         }
+		};
 
 		private static string GetSkillLevel( Skill skill )
 		{
