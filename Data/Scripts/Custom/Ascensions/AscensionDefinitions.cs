@@ -16,7 +16,7 @@ namespace Server.Custom.Ascensions
                     "Berserkers também exigem que seu espírito esteja livre da mancha da civilização - um Berserker não ganhará experiência nesta Ascensão se tiver aprendido Bushido, Cavalaria, Magia ou Necromancia.";
                 case AscensionType.Archmage:
                     return
-                    "O Archmage é um mestre do Arcano. Em combate, eles controlam seus oponentes e executam feitiços poderosos para dobrar o próprio Tecido à sua vontade.<br>" +
+                    "O Archmage é um mestre do Arcano. Em combate, eles controlam seus oponentes e executam feitiços poderosos para dobrar a própria Trama à sua vontade.<br>" +
                     "Para ativar esta Ascensão, você precisa ter 95 de habilidade base em Magia, Inscrição e Psicologia. Cada vez que você sobe de nível na classe, o requisito também aumenta em 1.<br>" +
                     "Então, um Archmage de nível 20 não pode ativar esta ascensão a menos que tenha 115 de habilidade base em Magia, Inscrição e Psicologia.<br>"+
                     "Archmages também exigem um foco singular na magia arcana, e não ganharão experiência nesta classe se tiverem aprendido Cavalaria, Elementalismo, Necromancia ou Bushido.";
@@ -180,7 +180,7 @@ namespace Server.Custom.Ascensions
                 "-Nível 19: quando arcane tempest é desencadeada, há 1% de chance/nível de que a recarga de arcane storm seja zerada.<br><br>"+
 
                 "Weave Unraveling, nível 20<br>"+
-                "ao lançar um feitiço de magia prejudicial em um alvo, há 0.25% de chance por nível de criar distorções no Tecido ao redor dele.<br>"+ 
+                "ao lançar um feitiço de magia prejudicial em um alvo, há 0.25% de chance por nível de criar distorções na Trama ao redor dele.<br>"+ 
                 "A quantidade de distorções varia entre 6-12, e elas duram de 12 a 22 segundos.<br>"+ 
                 "Qualquer um que estiver sobre essas distorções recebe 14-22 + (int/15) de dano de energia por segundo.<br>"+ 
                 "</BASEFONT>";  
@@ -214,7 +214,7 @@ namespace Server.Custom.Ascensions
 
                 "Circle Of Death, nível 11.<br>" +
                 "comando: [PalemasterCircleOfDeath.<br>" +
-                "O palemaster corrompe o tecido para corroer a vida de seus inimigos.<br>" +
+                "O palemaster corrompe a trama para corroer a vida de seus inimigos.<br>" +
                 "Esta habilidade cria um círculo ao redor da criatura alvo, e todas as criaturas vivas a até 2 (+1 a cada 5 níveis) dela recebem 12-18 + (nível /2 ) + (int / 20) de dano de frio por segundo por uma quantidade de segundos igual a 3 + nível / 4.<br>" +
                 "Esta habilidade tem 2 minutos de recarga e custa 60 de mana para ativar.<br>" +
                 "Nível 16: criaturas presas no círculo perdem vigor a cada segundo igual à metade do dano causado.<br><br>" +            
@@ -248,7 +248,7 @@ namespace Server.Custom.Ascensions
                 "Nível 19: quando o efeito creeping cold é ativado, há 0.25% de chance por nível de que enervate seja lançado automaticamente ignorando custos de mana e recarga.<br>" +
                         
                 "herald of hereafter, nível 20.<br>" +
-                "Ao lançar um feitiço prejudicial de necromancia em um alvo, há 0.25% de chance por nível de criar distorções no Tecido ao redor dele. A quantidade de distorções varia entre 6-12, e elas duram de 12 a 22 segundos.<br>" +
+                "Ao lançar um feitiço prejudicial de necromancia em um alvo, há 0.25% de chance por nível de criar distorções na Trama ao redor dele. A quantidade de distorções varia entre 6-12, e elas duram de 12 a 22 segundos.<br>" +
                 "Qualquer um que estiver sobre essas distorções recebe 14-22 + (int/15) de dano de veneno por segundo.<br>"+ 
 
                 "</BASEFONT>"; 

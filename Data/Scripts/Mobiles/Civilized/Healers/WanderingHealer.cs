@@ -34,7 +34,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public WanderingHealer()
 		{
-			Title = "the wandering healer";
+			Title = "o curandeiro errante";
 
 			SetSkill( SkillName.Camping, 80.0, 100.0 );
 			SetSkill( SkillName.Forensics, 80.0, 100.0 );

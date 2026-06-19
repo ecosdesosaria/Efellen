@@ -30,14 +30,14 @@ namespace Server.Mobiles
 					{
 						case 0: Name = "um zumbi"; break;
 						case 1: Name = "um morto-vivo ambulante"; break;
-						case 2: Name = "um cadáver"; break;
-						case 3: Name = "um cadáver podre"; break;
-						case 4: Name = "um cadáver morto-vivo"; break;
-						case 5: Name = "um zumbi em decomposição"; break;
+						case 2: Name = "um cadaver"; break;
+						case 3: Name = "um cadaver podre"; break;
+						case 4: Name = "um cadaver morto-vivo"; break;
+						case 5: Name = "um zumbi em decomposicao"; break;
 						case 6: Name = "um zumbi"; break;
-						case 7: Name = "um zumbi em decomposição"; break;
-						case 8: Name = "um cadáver em decomposição"; break;
-						case 9: Name = "um cadáver ambulante"; break;
+						case 7: Name = "um zumbi em decomposicao"; break;
+						case 8: Name = "um cadaver em decomposicao"; break;
+						case 9: Name = "um cadaver ambulante"; break;
 					}
 
 					Hue = 0xB97;
@@ -58,7 +58,7 @@ namespace Server.Mobiles
 					BaseSoundID = 471;
 					break;
 				case 4:
-					Name = "uma múmia";
+					Name = "uma mumia";
 					Body = 154;
 					BaseSoundID = 471;
 					break;
@@ -79,7 +79,7 @@ namespace Server.Mobiles
 					BaseSoundID = 0x482;
 					break;
 				case 8:
-					Name = "um espírito";
+					Name = "um espirito";
 					Body = 84;
 					BaseSoundID = 0x482;
 					Hue = 0x47E;

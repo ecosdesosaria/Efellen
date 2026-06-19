@@ -9,7 +9,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Cougar() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "uma onça-parda";
+			Name = "uma onca-parda";
 			Body = 214;
 			BaseSoundID = 0x73;
 

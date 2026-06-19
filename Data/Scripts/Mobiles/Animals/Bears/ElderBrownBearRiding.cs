@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		}
 
 		[Constructable]
-		public ElderBrownBearRiding() : this( "um urso marrom ancião" )
+		public ElderBrownBearRiding() : this( "um urso marrom anciao" )
 		{
 		}
 

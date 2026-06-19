@@ -18,7 +18,7 @@ namespace Server.Items
 		[Constructable]
 		public TrashChest() : base( 0x2811 )
 		{
-			Name = "donation box";
+			Name = "caixa de doações";
 			Movable = false;
 		}
 
@@ -29,7 +29,7 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Empties Every 24 Hours");
+			list.Add( 1070722, "Esvazia as 4 da manhã");
         } 
 
 		public override void Serialize( GenericWriter writer )
@@ -108,7 +108,7 @@ namespace Server.Items
 		{
 			private TrashChest m_Chest;
 
-			public EmptyTimer( TrashChest chest ) : base( TimeSpan.FromHours( 24.0 ) )
+			public EmptyTimer( TrashChest chest ) : base( TimeSpan.FromHours( 23.0 ) )
 			{
 				m_Chest = chest;
 				Priority = TimerPriority.FiveSeconds;

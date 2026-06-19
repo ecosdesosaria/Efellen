@@ -22,7 +22,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.CulinariansGuild; } }
 
 		[Constructable]
-		public Farmer() : base( "the farmer" )
+		public Farmer() : base( "o fazendeiro" )
 		{
 			SetSkill( SkillName.Lumberjacking, 36.0, 68.0 );
 			SetSkill( SkillName.Tasting, 36.0, 68.0 );

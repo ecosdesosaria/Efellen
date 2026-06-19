@@ -19,7 +19,7 @@ namespace Server.Items
 		public StandardQuestBoard() : base(0x577B)
 		{
 			Weight = 1.0;
-			Name = "Seeking Brave Adventurers";
+			Name = "Procurando Aventureiros Corajosos";
 			Hue = 0xB26;
 		}
 

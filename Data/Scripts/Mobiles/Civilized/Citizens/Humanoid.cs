@@ -55,14 +55,14 @@ namespace Server.Mobiles
 								{
 									case 0: m.Name = "um zumbi"; break;
 									case 1: m.Name = "um morto-vivo ambulante"; break;
-									case 2: m.Name = "um cadáver"; break;
-									case 3: m.Name = "um cadáver podre"; break;
-									case 4: m.Name = "um cadáver morto-vivo"; break;
-									case 5: m.Name = "um zumbi em decomposição"; break;
+									case 2: m.Name = "um cadaver"; break;
+									case 3: m.Name = "um cadaver podre"; break;
+									case 4: m.Name = "um cadaver morto-vivo"; break;
+									case 5: m.Name = "um zumbi em decomposicao"; break;
 									case 6: m.Name = "um zumbi"; break;
-									case 7: m.Name = "um zumbi em decomposição"; break;
-									case 8: m.Name = "um cadáver em decomposição"; break;
-									case 9: m.Name = "um cadáver ambulante"; break;
+									case 7: m.Name = "um zumbi em decomposicao"; break;
+									case 8: m.Name = "um cadaver em decomposicao"; break;
+									case 9: m.Name = "um cadaver ambulante"; break;
 								}
 								m.Hue = 0xB97;
 								switch( Utility.RandomMinMax( 0, 12 ) )
@@ -80,7 +80,7 @@ namespace Server.Mobiles
 							case 12: m.Body = 307; m.Name = "um wight"; m.BaseSoundID = 471; break;
 							case 13: m.Body = 26; m.Name = "um espectro"; m.BaseSoundID = 0x482; break;
 							case 14: m.Body = Utility.RandomList( 124, 125 ); m.Name = NameList.RandomName( "vampire" ); m.Title = "o vampiro"; m.BaseSoundID = 0x47D; break;
-							case 15: m.Body = 340; m.Name = "um leão infernal"; m.BaseSoundID = 0x3EE; m.Hue = 0x4AA; break;
+							case 15: m.Body = 340; m.Name = "um leao infernal"; m.BaseSoundID = 0x3EE; m.Hue = 0x4AA; break;
 							case 16: m.Body = 243; m.Name = "um corvo"; m.BaseSoundID = 0x2EE; m.Hue = 0x497; break;
 							case 17: m.Body = 672; m.Name = "um placeron"; m.BaseSoundID = 0xA8; m.Hue = 0x99E; break;
 							case 18: m.Body = 354; m.Name = "um dreadhorn"; m.BaseSoundID = 0x4BC; break;
@@ -140,9 +140,9 @@ namespace Server.Mobiles
 								temp.Delete();
 								break;
 							case 9: m.Body = 15; m.Name = "um elemental do fogo"; m.BaseSoundID = 838; break;
-							case 10: m.Body = Utility.RandomList(707, 16); m.Name = "um elemental da água"; m.BaseSoundID = 278; break;
+							case 10: m.Body = Utility.RandomList(707, 16); m.Name = "um elemental da agua"; m.BaseSoundID = 278; break;
 							case 11: m.Body = 16; m.Name = "um elemental de sangue"; m.BaseSoundID = 278; m.Hue = Utility.RandomList( 0xB1E, 0xABD, 0xAB4, 0x9A2, 0x8B3, 0x7CA ); break;
-							case 12: m.Body = 16; m.Name = "um elemental de ácido"; m.BaseSoundID = 278; m.Hue = 60; break;
+							case 12: m.Body = 16; m.Name = "um elemental de acido"; m.BaseSoundID = 278; m.Hue = 60; break;
 							case 13: 
 								m.Body = 322; m.Name = "elemental de caddelita"; m.BaseSoundID = 268; m.Hue = 0x5B6;
 								temp = new PlateHelm();

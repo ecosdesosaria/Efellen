@@ -5462,7 +5462,7 @@ namespace Server.Misc
 							case 4: from.Say("Dominei forças além da sua compreensão!"); break;
 							case 5: from.Say("Décadas de estudo me tornaram imparável!"); break;
 							case 6: from.Say("Suas armas são inúteis contra a verdadeira feitiçaria!"); break;
-							case 7: from.Say("Comando o próprio tecido da magia!"); break;
+							case 7: from.Say("Comando a própria trama da magia!"); break;
 							case 8: from.Say("Você enfrenta um mestre das artes arcanas, " + m.Name + "!"); break;
 							case 9: from.Say("Meus feitiços o reduzirão a cinzas e pó!"); break;
 							case 10: from.Say("Esqueci mais magia do que você jamais conhecerá!"); break;

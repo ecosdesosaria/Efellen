@@ -10,7 +10,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public Ferret() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
-			Name = "um furão";
+			Name = "um furao";
 			Body = 0x117;
 
 			SetStr( 41, 48 );

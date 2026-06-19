@@ -6,7 +6,7 @@ namespace Server.Items
 {
 	public class Monocle : BaseHarvestTool
 	{
-		public override string DefaultDescription{ get{ return "These librarian sets are used by scribes, to closely look over books and book shelves that litter the dungeons. You may find some items of worth, like books or scrolls."; } }
+		public override string DefaultDescription{ get{ return "Estes conjuntos de bibliotecário são usados por escribas para examinar de perto livros e estantes de livros que estão espalhados pelas masmorras. Você pode encontrar alguns itens de valor, como livros ou pergaminhos."; } }
 
 		public override HarvestSystem HarvestSystem { get { return Librarian.System; } }
 

@@ -206,7 +206,7 @@ namespace Server.Engines.Harvest
 			// award marks on successful res collection
 			int markAmount = Utility.RandomMinMax(4,8);
 			from.AddToBackpack( new MarksOfTheWeave( markAmount ) );
-			from.SendMessage( "você encontrou " + markAmount + " marcas do tecido!" );
+			from.SendMessage( "você encontrou " + markAmount + " marcas da trama!" );
 
 			if ( harvested is StaticTarget )
 			{

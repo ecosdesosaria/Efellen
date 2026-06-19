@@ -126,7 +126,7 @@ namespace Server.Misc
 		+"• Tomo do Poder e Tomo da Ascensão foram adicionados aos vendedores de marcas (2.000 marcas cada por armazenamento ilimitado de seu tipo de pergaminho).<BR>"
 		+"• Um Sistema de Encantamento de Armas de fim de jogo foi adicionado a Fanaedar: Requer que você troque 20 Essências do Ódio de Lolth na piscina sacrificial para aprimorar armas de artefato, a um alto custo para si mesmo.<BR>"
 		+"• Orbes dos Poços da Teia Demoníaca podem ser encontrados na masmorra de mesmo nome. Eles podem adicionar 25 pontos de encantamento a armaduras e roupas de artefato regulares e lendárias.<BR>"
-		+"• Marcas do Tecido: Moeda de recompensa da Guilda dos Magos por derrotar conjuradores e pesquisar tomos.<BR>"
+		+"• Marcas da Trama: Moeda de recompensa da Guilda dos Magos por derrotar conjuradores e pesquisar tomos.<BR>"
 		+"• Marcas de Devoção: Moeda de recompensa da Guilda dos Curandeiros por abater mortos-vivos e curar na Casa da Santa Misericórdia.<BR>"
 		+"• Marcas das Selvas: Moeda de recompensa da Guilda dos Druidas por se aventurar com animais de estimação, contratos de doma e meditação no Bosque Uivante.<BR>"
 		+"• Expansão do Arquétipo de Druida:<BR>"

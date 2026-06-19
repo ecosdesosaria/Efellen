@@ -24,7 +24,7 @@ namespace Server.Items
 		public StatusBoard( ) : base( 0x577B )
 		{
 			Weight = 1.0;
-			Name = "Status Board";
+			Name = "Quadro de Status";
 			Hue = 0x6E4;
 		}
 

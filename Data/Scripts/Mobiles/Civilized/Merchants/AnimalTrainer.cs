@@ -26,7 +26,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.DruidsGuild; } }
 
 		[Constructable]
-		public AnimalTrainer() : base( "the animal trainer" )
+		public AnimalTrainer() : base( "o treinador de animais" )
 		{
 			SetSkill( SkillName.Druidism, 64.0, 100.0 );
 			SetSkill( SkillName.Taming, 90.0, 100.0 );

@@ -12,7 +12,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.CarpentersGuild; } }
 
 		[Constructable]
-		public Lumberjack() : base( "the lumberjack" )
+		public Lumberjack() : base( "o lenhador" )
 		{
 		}
 

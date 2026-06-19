@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		public virtual double BoostedSpeed{ get{ return 0.1; } }
 
 		[Constructable]
-		public Beetle() : this( "a giant beetle" )
+		public Beetle() : this( "um besouro gigante" )
 		{
 		}
 

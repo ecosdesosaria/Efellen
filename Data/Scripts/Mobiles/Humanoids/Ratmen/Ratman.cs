@@ -17,11 +17,11 @@ namespace Server.Mobiles
 			Name = NameList.RandomName( "ratman" );
 			BaseSoundID = 437;
 
-			Title = "the ratman";
+			Title = "o homem-rato";
 			Body = Utility.RandomList( 42, 44, 45, 163, 164, 165, 870 );
 
 			if ( Body == 870 )
-				Title = "the ratling";
+				Title = "o ratinho";
 
 			SetStr( 96, 120 );
 			SetDex( 81, 100 );

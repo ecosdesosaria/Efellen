@@ -23,7 +23,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.BardsGuild; } }
 
 		[Constructable]
-		public Bard() : base( "the bard" )
+		public Bard() : base( "o bardo" )
 		{
 			SetSkill( SkillName.Discordance, 64.0, 100.0 );
 			SetSkill( SkillName.Musicianship, 64.0, 100.0 );

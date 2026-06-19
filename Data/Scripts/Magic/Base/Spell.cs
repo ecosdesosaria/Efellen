@@ -998,7 +998,7 @@ namespace Server.Spells
 
 		    if (Utility.RandomDouble() < (chance / 100.0))
 		    {
-		        pm.SendMessage("O tecido começa a se desfazer!");
+		        pm.SendMessage("A trama começa a se desfazer!");
 
 		        WeaveUnravelingAbility.Trigger(pm, target);
 		    }
