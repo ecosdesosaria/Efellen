@@ -310,7 +310,7 @@ namespace Server.Mobiles
 				EtherealMount ethy = (EtherealMount)mount;
 				Server.Mobiles.EtherealMount.Dismount( m );
 				ethy.Owner = m;
-				if ( !Server.Misc.Worlds.InBuilding( m ) ){ m.SendMessage( "Your mount has moved to your pack." ); }
+				if ( !Server.Misc.Worlds.InBuilding( m ) ){ m.SendMessage( "Sua montaria foi movida para sua mochila." ); }
 			}
 			else if ( m.Mount is BaseMount )
 			{
@@ -327,7 +327,7 @@ namespace Server.Mobiles
 
 				m.Stabled.Add( pet );
 
-				if ( !Server.Misc.Worlds.InBuilding( m ) ){ m.SendMessage( "Your mount is safely waiting for you elsewhere." ); }
+				if ( !Server.Misc.Worlds.InBuilding( m ) ){ m.SendMessage( "Sua montaria esta aguardando voce em seguranca em outro lugar." ); }
 			}
 		}
 

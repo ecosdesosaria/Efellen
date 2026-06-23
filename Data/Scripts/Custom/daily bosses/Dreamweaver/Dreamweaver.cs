@@ -20,7 +20,7 @@ using Server.Custom.Ascensions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Dreamweaver's Corpse" )]
+	[CorpseName( "O Cadáver do Tecelão de Sonhos" )]
 	public class Dreamweaver : BaseCreature
 	{		
 		private static readonly Type[] SummonTypes = new Type[] 
@@ -55,6 +55,10 @@ namespace Server.Mobiles
 		private DateTime m_NextSpecialBeholderAttack = DateTime.MinValue;
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		[Constructable]
 		public Dreamweaver () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -70,7 +74,7 @@ namespace Server.Mobiles
 			SetDex( 165, 225 );
 			SetInt( 506, 605 );
 
-			SetHits( 11000 );
+			SetHits( 33000 );
 			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Energy, 100 );
@@ -122,6 +126,62 @@ namespace Server.Mobiles
 			}
 			
 			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Encara com tédio*" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 20 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Faz bico irritado*" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 25 );
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Morde a língua e cospe sangue negro*" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 26, 30 );
+			VirtualArmor += 15;
 		}
 
 		public override void OnThink()
@@ -158,7 +218,6 @@ namespace Server.Mobiles
         private int getParalyzeDuration(Mobile m)
 		{
 			int resist = (int)(m.Skills.MagicResist.Value);
-			// 2s at 125, 8s at 0 magic resist
 			int duration = 8 - (int)(resist * (6.0 / 125.0));
 			return Math.Max(2, Math.Min(8, duration));
 		}
@@ -168,12 +227,11 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			
 			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
-			switch ( attackChoice  )
+			switch ( attackChoice )
 			{
-				case 1: // energy blast
+				case 1:
 				{
 					BossSpecialAttack.PerformSlam(
                        boss: this,
@@ -186,9 +244,9 @@ namespace Server.Mobiles
                    );
                    break;
 				}
-				case 2: // Rage 2: psychic blast (stamina drain + damage)
+				case 2:
 				{
-					PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Estremece com poder*" );
+					PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Estremece de poder*" );
 					PlaySound( 0x228 );
 					FixedParticles( 0x3789, 10, 25, 5032, EffectLayer.Head );
 					
@@ -198,7 +256,7 @@ namespace Server.Mobiles
 					{
 						if ( m == this || !m.Player || m.Deleted || !m.Alive || !CanBeHarmful( m ) )
 							continue;
-						
+					
 						DoHarmful( m );
 						int staminaDrain = Utility.RandomMinMax( 75, 95 );
 						m.Stam -= staminaDrain;
@@ -210,11 +268,11 @@ namespace Server.Mobiles
 						m.Paralyze( TimeSpan.FromSeconds( getParalyzeDuration( m ) + Utility.RandomMinMax(1,3 ) ) );
 					}
 					eable.Free();
-
+					
 					SlamVisuals.SlamVisual(this, 6, 0x36B0, 0x25);
 					break;
 				}
-                case 3: // telekinetic crush - move away + damage + paralyze
+                case 3:
 				{
                     if (this == null || this.Deleted)
         		        return;
@@ -315,52 +373,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Encara com tédio*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 20 );
-				VirtualArmor += 5;
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Faz beicinho irritado*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 25 );
-				VirtualArmor += 10;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Morde a língua e cospe sangue negro*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 30 );
-				VirtualArmor += 15;
-				m_Rage = 3;
-				return false;
-			}
-			else 
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Encara em descrença*" );
-				Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma > 0)
-            	{
-            	    int marks = Utility.RandomMinMax(156, 223);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
-            	}
-			}
-			
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 156, 223, "*Encara incrédulo*");
 			return base.OnBeforeDeath();
 		}
 
@@ -380,7 +393,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this, BossDrops, 45);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 4; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );
@@ -391,7 +404,6 @@ namespace Server.Mobiles
 			{
 				c.DropItem( new EternalPowerScroll() );
 			}
-			// gold explosion
 			RichesSystem.SpawnRiches( m_LastTarget, 4 );
 		}
 
@@ -458,7 +470,7 @@ namespace Server.Mobiles
 			LeechImmune = true;
 		}
 
-         public override int GetDeathSound()
+        public override int GetDeathSound()
         {
             return 0x56F;
         }
@@ -490,12 +502,15 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 2 ); // version
+			writer.Write( (int) 3 );
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
 			writer.Write( m_NextSpecialBeholderAttack );
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -515,9 +530,21 @@ namespace Server.Mobiles
 				m_NextSpecialBeholderAttack = reader.ReadDateTime();
 			}
 
+			if ( version >= 3 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
 			
-			// Initialize summons list if null
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
 		}

@@ -6,7 +6,7 @@ using Server.CustomSpells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a gnome corpse" )]
+	[CorpseName( "um cadáver de gnomo" )]
 	public class GnomeMage : BaseSpellCaster
 	{
 		[Constructable]

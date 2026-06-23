@@ -16,7 +16,7 @@ namespace Server.Scripts.Custom
         Rogue = 3
     }
 
-    [CorpseName("an adventurer corpse")]
+    [CorpseName("um cadáver de aventureiro")]
     public class AdventurerTeam : BaseCreature
     {
         #region Dialogue Data (Static / Flavor Text)
@@ -285,7 +285,7 @@ namespace Server.Scripts.Custom
             "Não é bonito, mas serve.",
             "*amarra*",
             "Isso vai ter que segurar.",
-            "Pressão ajuda.",
+            "Pressao ajuda.",
             "*examina o ferimento*",
             "Fique de olho enquanto termino isso.",
             "*enrola mais apertado*",

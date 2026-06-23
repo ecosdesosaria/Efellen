@@ -15,9 +15,10 @@ using Server.Custom;
 using Server.Custom.DailyBosses.System;
 using Server.Custom.BossSystems;
 using Server.Custom.Ascensions;
+
 namespace Server.Mobiles
 {
-	[CorpseName( "Spore Mother's Corpse" )]
+	[CorpseName( "Cadáver da Mãe dos Esporos" )]
 	public class SporeMother : BaseCreature
 	{
 		private static readonly Type[] SummonTypes = new Type[] 
@@ -52,10 +53,14 @@ namespace Server.Mobiles
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
         private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		[Constructable]
 		public SporeMother () : base( AIType.AI_Mage, FightMode.Closest, 20, 1, 0.4, 0.8 )
 		{
-			Name = "Spore Mother";
+			Name = "Mãe dos Esporos";
 			Title = "A Infestação Viva";
 			Body = 341;
 			NameHue = 0x22;
@@ -65,7 +70,7 @@ namespace Server.Mobiles
 			SetDex( 155, 185 );
 			SetInt( 286, 375 );
 
-			SetHits( 3000 );
+			SetHits( 9000 );
 			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Poison, 100 );
@@ -86,7 +91,6 @@ namespace Server.Mobiles
 			Karma = -15000;
 
 			VirtualArmor = 30;
-
 		}
 
 		public override void GenerateLoot()
@@ -102,30 +106,11 @@ namespace Server.Mobiles
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
 
-		public override int GetAngerSound()
-		{
-			return 0x451;
-		}
-
-		public override int GetIdleSound()
-		{
-			return 0x452;
-		}
-
-		public override int GetAttackSound()
-		{
-			return 0x453;
-		}
-
-		public override int GetHurtSound()
-		{
-			return 0x454;
-		}
-
-		public override int GetDeathSound()
-		{
-			return 0x455;
-		}
+		public override int GetAngerSound(){ return 0x451; }
+		public override int GetIdleSound(){ return 0x452; }
+		public override int GetAttackSound(){ return 0x453; }
+		public override int GetHurtSound(){ return 0x454; }
+		public override int GetDeathSound(){ return 0x455; }
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
@@ -163,17 +148,81 @@ namespace Server.Mobiles
 		    m_LastTarget = combatant;
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+
+			if (Utility.RandomDouble() < 0.30)
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+			
+			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*libera um grito psíquico!*" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 21 );
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*libera um grito psíquico esmagador!*" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 26 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*libera um grito psíquico agonizante!*" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 26, 31 );
+			VirtualArmor += 5;
+		}
+
 		private void PerformRageAttack( Mobile target )
 		{
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			
 			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
-			switch ( attackChoice  )
+			switch ( attackChoice )
 			{
-				case 1: // Poison blast
+				case 1:
 				{
 					BossSpecialAttack.PerformSlam(
                        boss: this,
@@ -181,13 +230,12 @@ namespace Server.Mobiles
                        hue: 267,
                        rage: m_Rage+1,
                        range: 6,
-					   physicalDmg:0,
+					   physicalDmg: 0,
                        poisonDmg: 100
                    );
                    break;
 				}
-
-				case 2: // entangling vines + bleed
+				case 2:
 				{
 					BossSpecialAttack.PerformEntangle(
     				    boss: this,
@@ -195,11 +243,11 @@ namespace Server.Mobiles
     				    hue: 0x4F6,
     				    rage: m_Rage+1,
     				    range: 6,
-    				    bleedLevel: 5  // 10-15 damage per tick
+    				    bleedLevel: 5
     				);
     				break;
 				}
-				case 3: // cross poison
+				case 3:
 				{
 					BossSpecialAttack.PerformCrossExplosion(
 				       boss: this,
@@ -207,15 +255,13 @@ namespace Server.Mobiles
 				       warcry: "*Esporos explodem e detonam!*",
 				       hue: 0x4F6,
 				       rage: m_Rage+1,
-					   physicalDmg:0,
+					   physicalDmg: 0,
 				       poisonDmg: 100
 				   );
 				   break;
 				}
 			}
 		}
-
-		
 
 		private int GetMaxSummons()
 		{
@@ -231,51 +277,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*libera um grito psíquico!*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 21 );
-				
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*libera um grito psíquico esmagador!*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 26 );
-				VirtualArmor += 5;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*libera um grito psíquico agonizante!*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 31 );
-				VirtualArmor += 5;
-				m_Rage = 3;
-				return false;
-			}
-			else
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*definha até o nada...*");
-				Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma > 0)
-            	{
-            	    int marks = Utility.RandomMinMax(70, 90);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
-            	}
-			}
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 70, 90, "*definha até o nada*");
 			return base.OnBeforeDeath();
 		}
 
@@ -290,26 +292,16 @@ namespace Server.Mobiles
 		    base.OnDelete();
 		}
 
-		public override void OnDamage( int amount, Mobile from, bool willKill )
-		{
-			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.30 )
-				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
-			
-			base.OnDamage( amount, from, willKill );
-		}
-
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 2; i++ )
 			{
 				c.DropItem( AscensionScrollFactory.CreateRandom());
 				c.DropItem( Loot.RandomArty() );
 				c.DropItem( new EtherealPowerScroll() );
 			}
-			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 2 );
 		}
 
@@ -326,11 +318,14 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 );
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -345,9 +340,22 @@ namespace Server.Mobiles
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 
+			if ( version >= 2 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
 			if (m_Summons == null)
-					m_Summons = new List<BaseCreature>();
+				m_Summons = new List<BaseCreature>();
 		}
 	}
 }

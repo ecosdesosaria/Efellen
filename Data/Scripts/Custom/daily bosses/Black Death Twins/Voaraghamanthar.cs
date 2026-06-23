@@ -18,7 +18,7 @@ using Server.Custom.Ascensions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Voaraghamanthar's Corpse" )]
+	[CorpseName( "Cadáver de Voaraghamanthar" )]
 	public class Voaraghamanthar : BaseSpellCaster
 	{		
 		private static readonly List<Type> BossDrops = new List<Type>
@@ -31,23 +31,28 @@ namespace Server.Mobiles
 			typeof(NoxiousLegsOfRuin),
 			typeof(NoxiousGlovesOfRuin)
     	};
+
 		private int m_Rage;
 		private Mobile m_LastTarget;
 		private DateTime m_NextSpecialAttack;
-		
+
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		[Constructable]
 		public Voaraghamanthar () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = "Voaraghamanthar";
             NameHue = 0x22;
-			Title = "A Peste Negra";
+			Title = "The Black Death";
 			EmoteHue = 11;
 			Body = 123;
 			BaseSoundID = 362;
 			SetStr( 596, 785 );
 			SetDex( 165, 225 );
 			SetInt( 556, 655 );
-			SetHits( 10000 );
+			SetHits( 30000 );
 			SetDamage( 11, 15 );
 			SetDamageType( ResistanceType.Physical, 50 );
 			SetDamageType( ResistanceType.Poison, 50 );
@@ -73,25 +78,10 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 6 );
 		}
 
-		public override int GetAngerSound()
-        {
-            return 0x63E;
-        }
-
-        public override int GetDeathSound()
-        {
-            return 0x63F;
-        }
-
-        public override int GetHurtSound()
-        {
-            return 0x640;
-        }
-
-        public override int GetIdleSound()
-        {
-            return 0x641;
-        }
+		public override int GetAngerSound(){ return 0x63E; }
+		public override int GetDeathSound(){ return 0x63F; }
+		public override int GetHurtSound(){ return 0x640; }
+		public override int GetIdleSound(){ return 0x641; }
 
 		public override bool AlwaysAttackable{ get{ return true; } }
 		public override int TreasureMapLevel{ get{ return 4; } }
@@ -100,13 +90,71 @@ namespace Server.Mobiles
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
-		
+
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.35 )
+
+			if (Utility.RandomDouble() < 0.35)
 				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
 			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Você não é nada para mim, nada!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 20 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Eu e meu irmão vamos apreciar sua sangria!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 25 );
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Você... Nós vamos acabar com você!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 26, 30 );
+			VirtualArmor += 15;
 		}
 
 		public override void OnThink()
@@ -136,11 +184,11 @@ namespace Server.Mobiles
 					BossSpecialAttack.PerformConeBreath(
 				    boss: this,
 				    target: target,
-				    warcry:  "*exala ácido nocivo!*",
+				    warcry: "*exala ácido nocivo!*",
 				    hue: 1285,
 				    rage: m_Rage*3,
-				    range: 8, 
-					physicalDmg:0,
+				    range: 8,
+					physicalDmg: 0,
 				    poisonDmg: 100
 				);
 					break;
@@ -153,7 +201,8 @@ namespace Server.Mobiles
 						16, 
 						29, 
 						"health", 
-						1285 );
+						1285
+					);
 					break;
 			}
 		}
@@ -165,65 +214,19 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Você não é nada para mim, nada!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 20 );
-				VirtualArmor += 5;
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Eu e meu irmão vamos apreciar sua sangria!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 25 );
-				VirtualArmor += 10;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Você... Nós vamos acabar com você!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 30 );
-				VirtualArmor += 15;
-				m_Rage = 3;
-				return false;
-			}
-			else 
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Irmão...!" );
-				Mobile killer = this.LastKiller;
-				if ( killer != null && killer.Player && killer.Karma > 0 )
-            	{
-            	    int marks = Utility.RandomMinMax( 156, 223 );
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks( killer, 1, marks );
-            	}
-			}
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 156, 223, "Irmão...!");
 			return base.OnBeforeDeath();
 		}
 
 		public override void OnDeath( Container c )
 		{
-
-			BossLootSystem.AwardBossSpecial( this, BossDrops, 45 );
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 4; i++ )
 			{
  	           	c.DropItem( Loot.RandomArty() );				
 				c.DropItem( new EtherealPowerScroll() );
 				c.DropItem( AscensionScrollFactory.CreateRandom());
 			}
-			int amount = Utility.Random(3,6);
 			RichesSystem.SpawnRiches( m_LastTarget, 4 );
 			base.OnDeath( c );
 		}
@@ -241,9 +244,12 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 2 );
+			writer.Write( (int) 3 );
 			writer.Write( m_Rage );
 			writer.Write( m_NextSpecialAttack );
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
         }
 
 		public override void Deserialize( GenericReader reader )
@@ -256,6 +262,20 @@ namespace Server.Mobiles
 				m_Rage = reader.ReadInt();
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
+
+			if ( version >= 3 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
 		}
 	}

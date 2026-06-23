@@ -19,7 +19,7 @@ using Server.Custom.Ascensions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Fateweaver's Corpse" )]
+	[CorpseName( "Cadáver de Fateweaver" )]
 	public class Fateweaver : BaseCreature
 	{		
 		private static readonly Type[] SummonTypes = new Type[] 
@@ -54,6 +54,10 @@ namespace Server.Mobiles
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		[Constructable]
 		public Fateweaver () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -69,7 +73,7 @@ namespace Server.Mobiles
 			SetDex( 275 );
 			SetInt( 505 );
 
-			SetHits( 11000 );
+			SetHits( 33000 );
 			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Poison, 100 );
@@ -89,7 +93,6 @@ namespace Server.Mobiles
 			Karma = 30000;
 
 			VirtualArmor = 50;
-
 		}
 
 		public override void GenerateLoot()
@@ -103,14 +106,13 @@ namespace Server.Mobiles
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
-        // pack instinct makes this boss very deadly if summons arent dealt with, which is by design
-        public override PackInstinct PackInstinct{ get{ return PackInstinct.Arachnid; } }
+		public override PackInstinct PackInstinct{ get{ return PackInstinct.Arachnid; } }
 		public override Poison PoisonImmune{ get{ return Poison.Deadly; } }
 		public override Poison HitPoison{ get{ return Poison.Lethal; } }
 
-		public override int GetAttackSound(){ return 0x601; }	// A
-		public override int GetDeathSound(){ return 0x602; }	// D
-		public override int GetHurtSound(){ return 0x603; }		// H
+		public override int GetAttackSound(){ return 0x601; }
+		public override int GetDeathSound(){ return 0x602; }
+		public override int GetHurtSound(){ return 0x603; }
 
 		public override void OnThink()
 		{
@@ -146,11 +148,66 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			//higher chance than average from her tier because the weaver is jumpy
 			if (Utility.RandomDouble() < 0.85 )
 				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 
 			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Encara desafiadoramente*" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 20 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Pula para frente em antecipação*" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 25 );
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Debate-se maniacamente*" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 26, 30 );
+			VirtualArmor += 15;
 		}
 
       	private void PerformRageAttack( Mobile target )
@@ -158,12 +215,11 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			
 			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
-			switch ( attackChoice  )
+			switch ( attackChoice )
 			{
-				case 1: // cross poison
+				case 1:
 				{
                     BossSpecialAttack.PerformCrossExplosion(
 				       this,
@@ -171,15 +227,15 @@ namespace Server.Mobiles
 				       "*Casulos se rompem e explodem!*",
 				       2498,
 				       m_Rage+1,
-					   0,      // physical
-					   0,      // fire
-					   0,      // cold
-				       100,    // poison
-					   0       // energy
+					   0,
+					   0,
+					   0,
+				       100,
+					   0
 				   );
 					break;
 				}
-				case 2: // paralyzing webs + bleed
+				case 2:
 				{
                     BossSpecialAttack.PerformEntangle(
     				    this,
@@ -187,23 +243,23 @@ namespace Server.Mobiles
     				    2498,
     				    m_Rage+1,
     				    7,
-    				    11  // 22-33 damage per tick
+    				    11
     				);
 					break;
 				}
-                case 3: // delayed poison explosion
+                case 3:
 				{
                     BossSpecialAttack.PerformDelayedExplosion(
 				        this,
 				        "*espalha ovos venenosos*",
-				        2498,   // hue
-				        12,     // radius
+				        2498,
+				        12,
 				        m_Rage+1,
-				        0,      // physical
-				        0,      // fire
-				        0,      // cold
-				        100,    // poison
-				        0       // energy
+				        0,
+				        0,
+				        0,
+				        100,
+				        0
 				    );
                     break;
 				}
@@ -229,52 +285,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Encara desafiadoramente*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 20 );
-				VirtualArmor += 5;
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Pula para frente em antecipação*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 25 );
-				VirtualArmor += 10;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Debate-se maniacamente*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 30 );
-				VirtualArmor += 15;
-				m_Rage = 3;
-				return false;
-			}
-			else 
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*Contorce-se e cai uma última vez*" );
-				Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma > 0)
-            	{
-            	    int marks = Utility.RandomMinMax(156, 223);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
-            	}
-			}
-			
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 156, 223, "*Contorce-se e cai uma última vez*");
 			return base.OnBeforeDeath();
 		}
 
@@ -294,18 +305,16 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this, BossDrops, 45);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 4; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );
 				c.DropItem( new EtherealPowerScroll() );
 				c.DropItem( AscensionScrollFactory.CreateRandom());
 			}
-			int amount = Utility.Random(3,6);
+			int amount = Utility.Random(3, 6);
 			c.DropItem(new EssenceOfLolthsHatred(amount));
-			// gold explosion
 			RichesSystem.SpawnRiches( m_LastTarget, 4 );
-            // wildshape totem
 			Mobile killer = this.LastKiller;
             TotemDropHelper.TryDropTotem(
 		        killer,
@@ -323,11 +332,14 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 2 ); // version
+			writer.Write( (int) 3 );
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -342,9 +354,21 @@ namespace Server.Mobiles
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 
+			if ( version >= 3 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
 			
-			// Initialize summons list if null
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
 		}

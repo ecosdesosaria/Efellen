@@ -19,7 +19,7 @@ using Server.Custom.Ascensions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Daughter of Fire's Corpse" )]
+	[CorpseName( "Cadáver da Filha do Fogo" )]
 	public class DaughterOfFire : BaseCreature
 	{
 		private static readonly Type[] SummonTypes = new Type[] 
@@ -55,10 +55,14 @@ namespace Server.Mobiles
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		[Constructable]
 		public DaughterOfFire () : base( AIType.AI_Mage, FightMode.Closest, 20, 1, 0.4, 0.8 )
 		{
-			Name = "Daughter of Fire";
+			Name = "Filha do Fogo";
             Title = "A Emissária da Dor";
 			Body = 149;
 			BaseSoundID = 0x4B0;
@@ -69,7 +73,7 @@ namespace Server.Mobiles
 			SetDex( 185, 205 );
 			SetInt( 486, 475 );
 
-			SetHits( 7000 );
+			SetHits( 21000 );
 			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Fire, 100 );
@@ -91,7 +95,6 @@ namespace Server.Mobiles
 			Karma = -25000;
 
 			VirtualArmor = 40;
-
 		}
 
 		public override void GenerateLoot()
@@ -145,18 +148,83 @@ namespace Server.Mobiles
 		    m_LastTarget = combatant;
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			if (Utility.RandomDouble() < 0.40 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
+			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Nós estamos apenas começando, querida!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 20 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Já está sentindo o calor?" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 25 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "O fogo do inferno será seu amante eterno!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 26, 30 );
+			VirtualArmor += 10;
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Tolo! Eu sou o fogo eterno" );
+		}
+
 		private void PerformRageAttack( Mobile target )
 		{
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			
 			int attackChoice = Utility.RandomMinMax( 1, 3 );
             Map map = this.Map;
 
-			switch ( attackChoice  )
+			switch ( attackChoice )
 			{
-				case 1: // Flaming blast
+				case 1:
 				{
 					BossSpecialAttack.PerformSlam(
                        boss: this,
@@ -169,7 +237,7 @@ namespace Server.Mobiles
                    );
                    break;
 				}
-				case 2: // rage 2: summon fire vortex
+				case 2:
 				{
 					BossSpecialAttack.SummonHonorGuard(
                         boss: this,
@@ -181,7 +249,7 @@ namespace Server.Mobiles
                     );
                     break;
 				}
-				case 3: // Rage 3: fire whip
+				case 3:
 				{
 					if (map == null)
                         return;
@@ -269,54 +337,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Nós estamos apenas começando, querida!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 20 );
-				VirtualArmor += 5;
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Já está sentindo o calor?" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 25 );
-				VirtualArmor += 5;
-				
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "O fogo do inferno será seu amante eterno!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 30 );
-				VirtualArmor += 10;
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Tolo! Eu sou o fogo eterno" );
-				m_Rage = 3;
-				return false;
-			}
-			else 
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Você venceu... desta vez..." );
-				Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma > 0)
-            	{
-            	    int marks = Utility.RandomMinMax(103, 110);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
-            	}
-			}
-			
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 103, 110, "Você venceu... desta vez...");
 			return base.OnBeforeDeath();
 		}
 
@@ -336,14 +357,13 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 3; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );
 				c.DropItem( new EtherealPowerScroll() );
 				c.DropItem( AscensionScrollFactory.CreateRandom());
 			}
-			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 3 );
 		}
 
@@ -357,23 +377,17 @@ namespace Server.Mobiles
 		{
 		}
 
-		public override void OnDamage( int amount, Mobile from, bool willKill )
-		{
-			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.40 )
-				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
-
-			base.OnDamage( amount, from, willKill );
-		}
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 );
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -388,8 +402,20 @@ namespace Server.Mobiles
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 
+			if ( version >= 2 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
-			// Initialize summons list if null
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
 		}

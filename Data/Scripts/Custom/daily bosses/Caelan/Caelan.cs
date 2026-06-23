@@ -17,148 +17,208 @@ using Server.Custom.Ascensions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Caelan's Corpse" )]
-	public class Caelan : BaseCreature
-	{
-		private static readonly List<Type> BossDrops = new List<Type>
-    	{
-    	    typeof(Artifact_CaelansBloodyBlade),
-    	    typeof(Artifact_CaelansShroud),
-    	    typeof(Artifact_CaelansVisage)
-    	};
-
-		private int m_Rage = 0;
-		private Mobile m_LastTarget;
-		private DateTime m_NextSpecialAttack = DateTime.MinValue;
-
-		[Constructable]
-		public Caelan () : base( AIType.AI_Melee, FightMode.Aggressor, 20, 1, 0.4, 0.8 )
-		{
-			Name = "Caelan";
-            Title = "O Cavaleiro do Pavor";
-			Body = 0x147;
-			NameHue = 0x22;
-			Body = 400; 			
-			FacialHairItemID = Utility.RandomList( 0, 0, 8254, 8255, 8256, 8257, 8267, 8268, 8269 );
-			Utility.AssignRandomHair( this );
-			HairHue = Utility.RandomHairHue();
-			FacialHairHue = HairHue;
-
-			SetStr( 796, 885 );
-			SetDex( 205, 235 );
-			SetInt( 286, 325 );
-
-			SetHits( 7250 );
-			SetDamage( 11, 15 );
-
-			SetDamageType( ResistanceType.Physical, 50 );
-			SetDamageType( ResistanceType.Cold, 50 );
-			SetResistance( ResistanceType.Physical, 65 );
-			SetResistance( ResistanceType.Fire, 55 );
-			SetResistance( ResistanceType.Cold, 65 );
-			SetResistance( ResistanceType.Poison, 65 );
-			SetResistance( ResistanceType.Energy, 65 );
-
-			SetSkill( SkillName.MagicResist, 115.0 );
-			SetSkill( SkillName.Tactics, 115.0 );
-			SetSkill( SkillName.FistFighting, 115.0 );
-			SetSkill( SkillName.Anatomy, 115.0);
-
-			Fame = 25000;
-			Karma = -25000;
-
-			VirtualArmor = 40;
-
-		}
-
-		public override void GenerateLoot()
-		{
-			AddLoot( LootPack.UltraRich, 4 );
-		}
-
-		public override int TreasureMapLevel{ get{ return 4; } }
-		public override bool CanRummageCorpses{ get{ return false; } }
-		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
-		public override bool ClickTitle{ get{ return false; } }
-		public override bool ShowFameTitle{ get{ return false; } }
-		public override bool AlwaysAttackable{ get{ return true; } }
-		public override bool BleedImmune{ get{ return true; } }
-		public override bool BardImmune { get { return true; } }
-		public override bool Unprovokable { get { return true; } }
-		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
-
-		public override void CheckReflect( Mobile caster, ref bool reflect )
-		{
-			reflect = ( Utility.Random( 100 ) < m_Rage * 15 );
-		}
-
-		public override void OnThink()
-		{
-		    base.OnThink();
-
-		    Mobile combatant = this.Combatant;
-
-		    if (combatant == null || combatant.Deleted || !combatant.Alive)
-		        return;
-
-		    if (DateTime.UtcNow >= m_NextSpecialAttack)
-		    {
-		        PerformRageAttack(combatant);
-		        m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(20 - (m_Rage * 2));
-		    }
-
-		    m_LastTarget = combatant;
-		}
-
-		public override void OnDamage( int amount, Mobile from, bool willKill )
-		{
-			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.65 )
-				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
-			
-			base.OnDamage( amount, from, willKill );
-		}
-
-        private void PerformRageAttack( Mobile target )
+    [CorpseName("Cadáver de Caelan")]
+    public class Caelan : BaseCreature
+    {
+        private static readonly List<Type> BossDrops = new List<Type>
         {
-            if ( target == null || target.Deleted || !target.Alive )
+            typeof(Artifact_CaelansBloodyBlade),
+            typeof(Artifact_CaelansShroud),
+            typeof(Artifact_CaelansVisage)
+        };
+
+        private int m_Rage = 0;
+        private Mobile m_LastTarget;
+        private DateTime m_NextSpecialAttack = DateTime.MinValue;
+
+        private bool m_Rage1Applied = false;
+        private bool m_Rage2Applied = false;
+        private bool m_Rage3Applied = false;
+
+        [Constructable]
+        public Caelan() : base(AIType.AI_Melee, FightMode.Aggressor, 20, 1, 0.4, 0.8)
+        {
+            Name = "Caelan";
+            Title = "The Dread Knight";
+            Body = 0x147;
+            NameHue = 0x22;
+            Body = 400;
+            FacialHairItemID = Utility.RandomList(0, 0, 8254, 8255, 8256, 8257, 8267, 8268, 8269);
+            Utility.AssignRandomHair(this);
+            HairHue = Utility.RandomHairHue();
+            FacialHairHue = HairHue;
+
+            SetStr(796, 885);
+            SetDex(205, 235);
+            SetInt(286, 325);
+
+            SetHits(21750);
+
+            SetDamage(11, 15);
+
+            SetDamageType(ResistanceType.Physical, 50);
+            SetDamageType(ResistanceType.Cold, 50);
+            SetResistance(ResistanceType.Physical, 65);
+            SetResistance(ResistanceType.Fire, 55);
+            SetResistance(ResistanceType.Cold, 65);
+            SetResistance(ResistanceType.Poison, 65);
+            SetResistance(ResistanceType.Energy, 65);
+
+            SetSkill(SkillName.MagicResist, 115.0);
+            SetSkill(SkillName.Tactics, 115.0);
+            SetSkill(SkillName.FistFighting, 115.0);
+            SetSkill(SkillName.Anatomy, 115.0);
+
+            Fame = 25000;
+            Karma = -25000;
+
+            VirtualArmor = 40;
+        }
+
+        public override void GenerateLoot()
+        {
+            AddLoot(LootPack.UltraRich, 4);
+        }
+
+        public override int TreasureMapLevel { get { return 4; } }
+        public override bool CanRummageCorpses { get { return false; } }
+        public override bool ReacquireOnMovement { get { return !Controlled; } }
+        public override bool ClickTitle { get { return false; } }
+        public override bool ShowFameTitle { get { return false; } }
+        public override bool AlwaysAttackable { get { return true; } }
+        public override bool BleedImmune { get { return true; } }
+        public override bool BardImmune { get { return true; } }
+        public override bool Unprovokable { get { return true; } }
+        public override Poison PoisonImmune { get { return Poison.Greater; } }
+
+        public override void CheckReflect(Mobile caster, ref bool reflect)
+        {
+            reflect = (Utility.Random(100) < m_Rage * 15);
+        }
+
+        public override void OnThink()
+        {
+            base.OnThink();
+
+            Mobile combatant = this.Combatant;
+
+            if (combatant == null || combatant.Deleted || !combatant.Alive)
                 return;
 
-            
-            int attackChoice = Utility.RandomMinMax( 1, 3 );
+            if (DateTime.UtcNow >= m_NextSpecialAttack)
+            {
+                PerformRageAttack(combatant);
+                m_NextSpecialAttack = DateTime.UtcNow + TimeSpan.FromSeconds(20 - (m_Rage * 2));
+            }
+
+            m_LastTarget = combatant;
+        }
+
+        public override void OnDamage(int amount, Mobile from, bool willKill)
+        {
+            m_LastTarget = from;
+
+            if (Utility.RandomDouble() < 0.65)
+                Server.Misc.IntelligentAction.LeapToAttacker(this, from);
+
+            base.OnDamage(amount, from, willKill);
+
+            CheckRageThresholds();
+        }
+
+        private void CheckRageThresholds()
+        {
+            if (this.HitsMax <= 0)
+                return;
+
+            double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+            if (!m_Rage1Applied && hpPercent <= 0.75)
+            {
+                m_Rage1Applied = true;
+                m_Rage = 1;
+                ApplyRage1();
+            }
+            else if (!m_Rage2Applied && hpPercent <= 0.50)
+            {
+                m_Rage2Applied = true;
+                m_Rage = 2;
+                ApplyRage2();
+            }
+            else if (!m_Rage3Applied && hpPercent <= 0.25)
+            {
+                m_Rage3Applied = true;
+                m_Rage = 3;
+                ApplyRage3();
+            }
+        }
+
+        private void ApplyRage1()
+        {
+            PublicOverheadMessage(MessageType.Regular, 0x21, false, "É loucura me desafiar!");
+            this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
+            this.PlaySound(0x202);
+            SetDamage(16, 21);
+            VirtualArmor += 5;
+        }
+
+        private void ApplyRage2()
+        {
+            PublicOverheadMessage(MessageType.Regular, 0x21, false, "Farei de você um exemplo!");
+            this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
+            this.PlaySound(0x202);
+            SetDamage(25, 30);
+            VirtualArmor += 5;
+        }
+
+        private void ApplyRage3()
+        {
+            PublicOverheadMessage(MessageType.Regular, 0x21, false, "Você se arrependerá de me enfrentar!");
+            this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
+            this.PlaySound(0x202);
+            SetDamage(26, 35);
+            VirtualArmor += 10;
+        }
+
+        private void PerformRageAttack(Mobile target)
+        {
+            if (target == null || target.Deleted || !target.Alive)
+                return;
+
+            int attackChoice = Utility.RandomMinMax(1, 3);
             Map map = this.Map;
 
-            switch ( attackChoice )
+            switch (attackChoice)
             {
-                case 1: // Blood blast
+                case 1:
                 {
                     BossSpecialAttack.PerformSlam(
-                       boss: this,
-                       warcry: "Suas tripas vão decorar esses salões!",
-                       hue: 0x0AA5,
-                       rage: m_Rage+1,
-                       range: 6,
-                       physicalDmg: 100
-                   );
-                   break;
+                        boss: this,
+                        warcry: "Suas entranhas decorarão estes salões!",
+                        hue: 0x0AA5,
+                        rage: m_Rage + 1,
+                        range: 6,
+                        physicalDmg: 100
+                    );
+                    break;
                 }
-                case 2: // Rampage
+                case 2:
                 {
-                   BossSpecialAttack.PerformRampage(
-                       boss: this,
-                       warcry: "*O cavaleiro do pavor avança!*",
-                       hue: 0x0AA5,
-                       rage: m_Rage+1,
-                       stunDuration: 3.0
-                   );
-                   break;
+                    BossSpecialAttack.PerformRampage(
+                        boss: this,
+                        warcry: "*O cavaleiro pavoroso avança!*",
+                        hue: 0x0AA5,
+                        rage: m_Rage + 1,
+                        stunDuration: 3.0
+                    );
+                    break;
                 }
-                case 3: // Honor guard
+                case 3:
                 {
                     BossSpecialAttack.SummonHonorGuard(
                         boss: this,
                         target: target,
-                        warcry: "Vem, meus irmãos!",
+                        warcry: "Vinde, meus irmãos!",
                         amount: 3,
                         creatureType: typeof(BloodstoneKeepKnight),
                         hue: 0x09d3
@@ -168,125 +228,97 @@ namespace Server.Mobiles
             }
         }
 
-		private void AddEquipment()
-		{
-		    AddItem(new RoyalSword { Hue = 0x0AA5 });
-		    AddItem(new RoyalArms { Hue = 0x0AA5 });
-		    AddItem(new RoyalChest { Hue = 0x0AA5 });
-		    AddItem(new RoyalsLegs { Hue = 0x0AA5 });
-		    AddItem(new RoyalGorget { Hue = 0x0AA5 });
-		    AddItem(new RoyalGloves { Hue = 0x0AA5 });
-		    AddItem(new Boots { Hue = 0x0AA5 });
-		    AddItem(new DreadHelm { Hue = 0x0AA5 });
-		    AddItem(new RoyalShield { Hue = 0x0AA5 });		
-		    AddItem(new Cloak { Hue = 0x0AA5 });
-		}		
+        private void AddEquipment()
+        {
+            AddItem(new RoyalSword { Hue = 0x0AA5 });
+            AddItem(new RoyalArms { Hue = 0x0AA5 });
+            AddItem(new RoyalChest { Hue = 0x0AA5 });
+            AddItem(new RoyalsLegs { Hue = 0x0AA5 });
+            AddItem(new RoyalGorget { Hue = 0x0AA5 });
+            AddItem(new RoyalGloves { Hue = 0x0AA5 });
+            AddItem(new Boots { Hue = 0x0AA5 });
+            AddItem(new DreadHelm { Hue = 0x0AA5 });
+            AddItem(new RoyalShield { Hue = 0x0AA5 });
+            AddItem(new Cloak { Hue = 0x0AA5 });
+        }
 
-		private void ColorKnight()
-		{
-		    MorphingTime.ColorMyClothes(this, 0x0AA5, 0);
-		    MorphingTime.ColorMyArms(this, 0, 0);
-		    Server.Misc.MorphingTime.CheckMorph(this);
-		}	
-		public override bool OnBeforeDeath()
-		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "É loucura me desafiar!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 21 );
-				VirtualArmor += 5;
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Farei de você um exemplo!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 25, 30 );
-				VirtualArmor += 5;
-				
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Você vai se arrepender de me desafiar!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 35 );
-				VirtualArmor += 10;				
-				m_Rage = 3;
-				return false;
-			}
-			else 
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Eu fui... finalmente... derrotado" );
-				Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma > 0)
-            	{
-            	    int marks = Utility.RandomMinMax(103, 110);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
-            	}
-			}
-			return base.OnBeforeDeath();
-		}
+        private void ColorKnight()
+        {
+            MorphingTime.ColorMyClothes(this, 0x0AA5, 0);
+            MorphingTime.ColorMyArms(this, 0, 0);
+            Server.Misc.MorphingTime.CheckMorph(this);
+        }
 
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
+        public override bool OnBeforeDeath()
+        {
+            BossLootSystem.AwardBossMarks(this, this.LastKiller, 103, 110, "Eu fui... finalmente... derrotado...");
+            return base.OnBeforeDeath();
+        }
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
-			for ( int i = 0; i < 3; i++ )
-			{
-				c.DropItem( Loot.RandomArty() );
-				c.DropItem( new EtherealPowerScroll() );
-				c.DropItem( AscensionScrollFactory.CreateRandom());
-			}
-			BossLootSystem.BossEnchant(this, c, 400, 100, 2, "deathknight");
-			// gold explosion
-		    RichesSystem.SpawnRiches( m_LastTarget, 3 );
-		}
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
 
-		public override void OnAfterSpawn()
-		{
-			base.OnAfterSpawn();
-			LeechImmune = true;
-			AddEquipment();
-		    ColorKnight();
-		}
+            BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
+            for (int i = 0; i < 3; i++)
+            {
+                c.DropItem(Loot.RandomArty());
+                c.DropItem(new EtherealPowerScroll());
+                c.DropItem(AscensionScrollFactory.CreateRandom());
+            }
+            BossLootSystem.BossEnchant(this, c, 400, 100, 2, "deathknight");
+            RichesSystem.SpawnRiches(m_LastTarget, 3);
+        }
 
-		public Caelan( Serial serial ) : base( serial )
-		{
-		}
+        public override void OnAfterSpawn()
+        {
+            base.OnAfterSpawn();
+            LeechImmune = true;
+            AddEquipment();
+            ColorKnight();
+        }
 
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+        public Caelan(Serial serial) : base(serial)
+        {
+        }
 
-			writer.Write( m_Rage );
-			writer.Write( m_NextSpecialAttack );
-		}
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write((int)2);
 
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-			int version = reader.ReadInt();
+            writer.Write(m_Rage);
+            writer.Write(m_NextSpecialAttack);
+            writer.Write(m_Rage1Applied);
+            writer.Write(m_Rage2Applied);
+            writer.Write(m_Rage3Applied);
+        }
 
-			if ( version >= 1 )
-			{
-				m_Rage = reader.ReadInt();
-				m_NextSpecialAttack = reader.ReadDateTime();
-			}
-			LeechImmune = true;
-		}
-	}
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+
+            if (version >= 1)
+            {
+                m_Rage = reader.ReadInt();
+                m_NextSpecialAttack = reader.ReadDateTime();
+            }
+
+            if (version >= 2)
+            {
+                m_Rage1Applied = reader.ReadBool();
+                m_Rage2Applied = reader.ReadBool();
+                m_Rage3Applied = reader.ReadBool();
+            }
+            else
+            {
+                m_Rage1Applied = m_Rage >= 1;
+                m_Rage2Applied = m_Rage >= 2;
+                m_Rage3Applied = m_Rage >= 3;
+            }
+
+            LeechImmune = true;
+        }
+    }
 }

@@ -16,12 +16,16 @@ using Server.Custom.Ascensions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Butcher's Corpse" )]
+	[CorpseName( "Cadáver do Butcher" )]
 	public class UndeadButcher : BaseCreature
 	{
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
+
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
 
 		private static readonly List<Type> BossDrops = new List<Type>
     	{
@@ -45,7 +49,7 @@ namespace Server.Mobiles
 			SetDex( 125 );
 			SetInt( 106, 135 );
 
-			SetHits( 1755 );
+			SetHits( 4800 );
 			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
@@ -72,11 +76,72 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 2 );
 		}
 
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
 
-		public override void OnGaveMeleeAttack(Mobile defender)
-        {
-            base.OnGaveMeleeAttack(defender);
-        }
+			if (Utility.RandomDouble() < 0.35)
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
+			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fresh meat!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 21 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fresh meat!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 26 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fresh meat!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 23, 26 );
+			VirtualArmor += 10;
+		}
+
 
 
 		public override int TreasureMapLevel{ get{ return 2; } }
@@ -156,42 +221,9 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*RWAAAARRRGHH*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 21 );
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "*RWAAAAAAAAARRRGHH*!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 26 );
-				VirtualArmor += 5;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Eu vou... para casa...." );
-                Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma < 0)
-            	{
-            	    int marks = Utility.RandomMinMax(40, 75);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
-            	}
-			}
-			
+			BossLootSystem.AwardBossMarks(this,this.LastKiller,40,75,"O inferno... te espera...");
 			return base.OnBeforeDeath();
-		}  
+		}   
 
 		public override void OnDeath( Container c )
 		{
@@ -202,15 +234,6 @@ namespace Server.Mobiles
 			c.DropItem( AscensionScrollFactory.CreateRandom());
 			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 1 );
-		}
-
-		public override void OnDamage( int amount, Mobile from, bool willKill )
-		{
-			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.35 )
-				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
-
-			base.OnDamage( amount, from, willKill );
 		}
 
 		public override void OnAfterSpawn()
@@ -225,22 +248,39 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
-
+			writer.Write( (int) 3 );
 			writer.Write( m_Rage );
 			writer.Write( m_NextSpecialAttack );
-		}
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
+        }
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
-
+            
 			if ( version >= 1 )
 			{
 				m_Rage = reader.ReadInt();
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
+
+			if ( version >= 3 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
+			LeechImmune = true;
 		}
 	}
 }

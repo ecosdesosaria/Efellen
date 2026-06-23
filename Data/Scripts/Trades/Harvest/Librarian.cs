@@ -203,10 +203,6 @@ namespace Server.Engines.Harvest
 			Point3D loc = from.Location;
 
 			HarvestResource res = vein.PrimaryResource;
-			// award marks on successful res collection
-			int markAmount = Utility.RandomMinMax(4,8);
-			from.AddToBackpack( new MarksOfTheWeave( markAmount ) );
-			from.SendMessage( "você encontrou " + markAmount + " marcas da trama!" );
 
 			if ( harvested is StaticTarget )
 			{
@@ -238,7 +234,12 @@ namespace Server.Engines.Harvest
 
 									string name = "a book shelf";
 
-									switch ( Utility.Random( 100 ) )
+									// award marks on successful res collection
+									int markAmount = Utility.RandomMinMax(4, 8);
+									from.AddToBackpack(new MarksOfTheWeave(markAmount));
+									from.SendMessage("você encontrou " + markAmount + " marcas da Trama!");
+
+									switch (Utility.Random(100))
 									{
 										case 0: shelf = new NecromancerSpellbook(); name = "necromancer spellbook"; break;
 										case 1: shelf = new Spellbook(); name = "a magery spellbook"; break;

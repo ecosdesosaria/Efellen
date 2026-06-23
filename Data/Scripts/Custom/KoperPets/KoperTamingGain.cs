@@ -147,11 +147,14 @@ namespace Server.Custom.KoperPets
             {
                 owner.CheckSkill(SkillName.Taming, 0.0 , 125.0);
             
-                // Select a random taming message
-                string message = string.Format(TamingMessages[Utility.Random(TamingMessages.Length)], pet.Name);
+                if (MyServerSettings.KoperPetsImmersive())
+                {
+                    // Select a random taming message
+                    string message = string.Format(TamingMessages[Utility.Random(TamingMessages.Length)], pet.Name);
 
-                // Display message in system log
-                owner.SendMessage(0x83A, message);
+                    // Display message in system log
+                    owner.SendMessage(0x83A, message);
+                }
 
                 // Set cooldown time for this player
                 _tamingCooldowns[owner] = DateTime.UtcNow;

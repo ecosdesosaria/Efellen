@@ -1130,8 +1130,8 @@ namespace Server.Items
 						m.LocalOverheadMessage(Network.MessageType.Emote, 0x3B2, false, textSay);
 						m.PlaySound( 0x241 );
 					}
+					nSprung = false;
 				}
-				nSprung = false;
 			}
 
 			// Berserker Uncanny Dodge

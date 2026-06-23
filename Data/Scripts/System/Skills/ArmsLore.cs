@@ -42,17 +42,17 @@ namespace Server.SkillHandlers
 			       int identified = RelicIDHelper.TryRecursiveIdentify(from, examine, IDSkill.ArmsLore, SkillName.ArmsLore);
 
 			       if (examine is Container)
-			       {
-			           if (identified == 0)
-			               from.SendMessage("There is nothing in this container that requires Arms Lore to identify.");
-			           else
-			               from.SendMessage("You inspect the contents of the container using your Arms Lore skill.");
-			       }
-			       else
-			       {
-			           if (identified == 0)
-			               from.SendMessage("That item cannot be identified with Arms Lore.");
-			       }
+					{
+						if (identified == 0)
+							from.SendMessage("Não há nada neste recipiente que exija Conhecimento de Armas para identificar.");
+						else
+							from.SendMessage("Você inspeciona o conteúdo do recipiente usando sua habilidade de Conhecimento de Armas.");
+					}
+					else
+					{
+						if (identified == 0)
+							from.SendMessage("Esse item não pode ser identificado com Conhecimento de Armas.");
+					}
 			   }
 			}
 		}

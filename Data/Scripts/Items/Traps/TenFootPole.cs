@@ -29,7 +29,7 @@ namespace Server.Items
 
 		public override CraftResource DefaultResource{ get{ return CraftResource.RegularWood; } }
 
-		public override string DefaultDescription{ get{ return "This heavy wooden pole allows you to trap the floor ahead of you to maybe detect a trap before you trigger it. It will also tap containers before you try to open them, also in the hopes of avoiding a trap. You need only keep the pole in your bag, as it will passively be used as you explore areas."; } }
+		public override string DefaultDescription{ get{ return "Esta vara de madeira pesada permite que você bata no chão à sua frente para talvez detectar uma armadilha antes de ativá-la. Ela também tocará recipientes antes de você tentar abri-los, também na esperança de evitar uma armadilha. Você só precisa manter a vara em sua mochila, pois ela será usada passivamente enquanto você explora áreas."; } }
 
 		private int m_Tap;
 

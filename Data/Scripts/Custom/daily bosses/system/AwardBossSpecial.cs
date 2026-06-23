@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Server;
 using Server.Items;
 using Server.Mobiles;
+using Server.Network;
 
 namespace Server.Custom
 {
@@ -145,6 +147,32 @@ namespace Server.Custom
             if (item != null)
             {
                 boss.Corpse.DropItem(item);
+            }
+        }
+
+        public static void AwardBossMarks(BaseCreature boss, Mobile killer, int min, int max, string warcry)
+        {
+            Effects.SendLocationParticles( EffectItem.Create( boss.Location, boss.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
+			boss.PlaySound( 0x1FE );
+			boss.PublicOverheadMessage( MessageType.Regular, 0x21, false, warcry );
+
+            BaseCreature bc = killer as BaseCreature;
+            if (bc != null && bc.ControlMaster != null)
+                killer = bc.ControlMaster;
+
+            if (killer != null && killer.Player)
+            {
+                int marks = Utility.RandomMinMax(min, max);
+                if (killer.Karma > 0)
+                {
+                    // marks of honor
+                    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
+                }
+                else
+                {
+                    // marks of the scourge
+                    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 0, marks);
+                }
             }
         }
 
