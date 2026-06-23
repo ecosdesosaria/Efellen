@@ -1926,6 +1926,7 @@ namespace Server.Mobiles
 				Animate( 18, 5, 1, true, false, 0 );
 
 			Loyalty -= 3;
+			InvalidateProperties();
 			return false;
 		}
 
@@ -5607,7 +5608,7 @@ namespace Server.Mobiles
 								}
 							}
 						}
-
+						InvalidateProperties();
 						dropped.Delete();
 						return true;
 					}
@@ -7878,30 +7879,33 @@ namespace Server.Mobiles
 			else if ( Body == 975 || Body == 841 )
 				Body = 15;
 
-			if ( AI == AIType.AI_Citizen )
-			{
-				Mobile murderer = this.LastKiller;
+			Mobile murderer = this.LastKiller;
 
-				if (murderer is BaseCreature)
+			if (murderer is BaseCreature)
+			{
+				BaseCreature bc_killer = (BaseCreature)murderer;
+
+				if (bc_killer.Summoned)
 				{
-					BaseCreature bc_killer = (BaseCreature)murderer;
-					if(bc_killer.Summoned)
-					{
-						if(bc_killer.SummonMaster != null)
-							murderer = bc_killer.SummonMaster;
-					}
-					else if(bc_killer.Controlled)
-					{
-						if(bc_killer.ControlMaster != null)
-							murderer=bc_killer.ControlMaster;
-					}
-					else if(bc_killer.BardProvoked)
-					{
-						if(bc_killer.BardMaster != null)
-							murderer=bc_killer.BardMaster;
-					}
+					if (bc_killer.SummonMaster != null)
+						murderer = bc_killer.SummonMaster;
+				}
+				else if (bc_killer.Controlled)
+				{
+					if(bc_killer.ControlMaster != null)
+						murderer=bc_killer.ControlMaster;
+				}
+				else if (bc_killer.BardProvoked)
+				{
+					if(bc_killer.BardMaster != null)
+						murderer=bc_killer.BardMaster;
 				}
 
+				LastKiller = murderer;
+			}
+
+			if ( AI == AIType.AI_Citizen )
+			{
 				if ( murderer is PlayerMobile )
 				{
 					murderer.Criminal = true;

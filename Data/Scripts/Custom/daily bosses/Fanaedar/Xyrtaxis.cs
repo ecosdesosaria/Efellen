@@ -33,6 +33,10 @@ namespace Server.Mobiles
 		private int m_Rage;
 		private Mobile m_LastTarget;
 		private DateTime m_NextSpecialAttack;
+
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
 		
 		[Constructable]
 		public Xyrtaxis () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -49,7 +53,7 @@ namespace Server.Mobiles
 			SetStr( 596, 785 );
 			SetDex( 165, 225 );
 			SetInt( 556, 655 );
-			SetHits( 10000 );
+			SetHits( 30000 );
 			SetDamage( 11, 15 );
 			SetDamageType( ResistanceType.Physical, 20 );
 			SetDamageType( ResistanceType.Poison, 20 );
@@ -87,6 +91,15 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 6 );
 		}
 
+		public override bool AlwaysAttackable { get { return true; } }
+		public override int TreasureMapLevel { get { return 4; } }
+		public override bool CanRummageCorpses { get { return false; } }
+		public override bool ReacquireOnMovement { get { return !Controlled; } }
+		public override bool BleedImmune { get { return true; } }
+		public override bool BardImmune { get { return true; } }
+		public override bool Unprovokable { get { return true; } }
+		public override Poison PoisonImmune { get { return Poison.Greater; } }
+
 		public override void OnThink()
 		{
 		    base.OnThink();
@@ -104,15 +117,6 @@ namespace Server.Mobiles
 		    m_LastTarget = combatant;
 		}
 
-        public override bool AlwaysAttackable{ get{ return true; } }
-		public override int TreasureMapLevel{ get{ return 4; } }
-		public override bool CanRummageCorpses{ get{ return false; } }
-		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
-		public override bool BleedImmune{ get{ return true; } }
-		public override bool BardImmune { get { return true; } }
-		public override bool Unprovokable { get { return true; } }
-		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
-
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
@@ -120,6 +124,62 @@ namespace Server.Mobiles
 				TryWeaveStep();
 
 			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage(MessageType.Regular, 0x21, false, "Must I be interrupted at every time?!");
+			this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
+			this.PlaySound(0x202);
+			SetDamage(16, 20);
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage(MessageType.Regular, 0x21, false, "Your optimism is so touching!");
+			this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
+			this.PlaySound(0x202);
+			SetDamage(21, 25);
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage(MessageType.Regular, 0x21, false, "This is beyond my attention!");
+			this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
+			this.PlaySound(0x202);
+			SetDamage(26, 30);
+			VirtualArmor += 15;
 		}
 
         private static Point3D[] m_WeaveLocations = new Point3D[]
@@ -214,52 +274,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Devo ser interrompida a cada momento?!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 20 );
-				VirtualArmor += 5;
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Sua otimismo é tão tocante!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 25 );
-				VirtualArmor += 10;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Isso está além da minha atenção!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 30 );
-				VirtualArmor += 15;
-				m_Rage = 3;
-				return false;
-			}
-			else 
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Você...Você me matou...?" );
-				Mobile killer = this.LastKiller;
-				if ( killer != null && killer.Player && killer.Karma > 0 )
-            	{
-            	    int marks = Utility.RandomMinMax( 156, 223 );
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks( killer, 1, marks );
-            	}
-			}
-			
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 156, 223, "Você...Você me...matou?");	
 			return base.OnBeforeDeath();
 		}
 
@@ -267,7 +282,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
             BossLootSystem.BossEnchant(this, c, 550, 100, 3, "DrowMage");
-			BossLootSystem.AwardBossSpecial( this, BossDrops, 45 );
+			BossLootSystem.AwardBossSpecial( this, BossDrops, 30 );
 			for ( int i = 0; i < 4; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );
@@ -293,9 +308,12 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 2 );
+			writer.Write( (int) 3 );
 			writer.Write( m_Rage );
 			writer.Write( m_NextSpecialAttack );
+			writer.Write(m_Rage1Applied);
+			writer.Write(m_Rage2Applied);
+			writer.Write(m_Rage3Applied);
        }
 
 		public override void Deserialize( GenericReader reader )
@@ -308,10 +326,25 @@ namespace Server.Mobiles
 				m_Rage = reader.ReadInt();
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
+			
 			if(version>=2)
 			{
 				this.MobileMagics(8, SpellType.Wizard, 0x0213);
 			}
+
+			if (version >= 3)
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+			
 			LeechImmune = true;
 		}
 	}

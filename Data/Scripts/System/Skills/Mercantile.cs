@@ -41,17 +41,17 @@ namespace Server.Items
 			        int identified = RelicIDHelper.TryRecursiveIdentify(from, examine, IDSkill.Mercantile, SkillName.Mercantile);
 
 			        if (examine is Container)
-			        {
-			            if (identified == 0)
-			                from.SendMessage("There is nothing in this container that requires Mercantile to identify.");
-			            else
-			                from.SendMessage("You examine the goods using your Mercantile knowledge.");
-			        }
-			        else
-			        {
-			            if (identified == 0)
-			                from.SendMessage("That item cannot be identified with Mercantile.");
-			        }
+					{
+						if (identified == 0)
+							from.SendMessage("Não há nada neste recipiente que exija Mercantil para identificar.");
+						else
+							from.SendMessage("Você inspeciona o conteúdo do recipiente usando sua habilidade de Mercantil.");
+					}
+					else
+					{
+						if (identified == 0)
+							from.SendMessage("Esse item não pode ser identificado com Mercantil.");
+					}
 			    }
 			}
 		}

@@ -15,9 +15,10 @@ using Server.Custom;
 using Server.Custom.DailyBosses.System;
 using Server.Custom.BossSystems;
 using Server.Custom.Ascensions;
+
 namespace Server.Mobiles
 {
-	[CorpseName( "Herald of Fire's Corpse" )]
+	[CorpseName( "O Cadáver do Arauto do Fogo" )]
 	public class HeraldOfCinders : BaseCreature
 	{
 		private const int MAGMA_DURATION = 12;
@@ -66,11 +67,15 @@ namespace Server.Mobiles
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
 		private List<MagmaTile> m_MagmaTiles = new List<MagmaTile>();
 
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		[Constructable]
 		public HeraldOfCinders () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = "The Herald of Cinders";
-			Title = "A Chama Eterna";
+			Title = "The Everlasting Flame";
 			Body = 713;
 			BaseSoundID = 362;
 			NameHue = 0x22;
@@ -80,7 +85,7 @@ namespace Server.Mobiles
 			SetDex( 125, 175 );
 			SetInt( 586, 675 );
 
-			SetHits( 19000 );
+			SetHits( 57000 );
 			SetDamage( 11, 16 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
@@ -103,7 +108,6 @@ namespace Server.Mobiles
 
 			if ( Backpack == null )
 				AddItem( new Backpack() );
-
 		}
 
 		public override void GenerateLoot()
@@ -118,18 +122,6 @@ namespace Server.Mobiles
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
-
-		public override void Damage( int amount, Mobile from )
-		{
-			if ( m_Rage < 3 && this.Hits - amount <= 0 )
-			{
-				IncreaseRage(m_Rage);
-			}
-			else
-			{
-				base.Damage( amount, from );
-			}
-		}
 
 		public override void CheckReflect( Mobile caster, ref bool reflect )
 		{
@@ -170,10 +162,11 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.75 )
+
+			if (Utility.RandomDouble() < 0.75)
 				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
-			if (Utility.RandomDouble() < 0.025 )
+			if (Utility.RandomDouble() < 0.025)
 			{
 				BossSpecialAttack.PerformConeBreath(
 				    boss: this,
@@ -182,12 +175,67 @@ namespace Server.Mobiles
 				    hue: 1160,
 				    rage: m_Rage+1,
 				    range: 5,
-					physicalDmg:0,
+					physicalDmg: 0,
 				    fireDmg: 100
 				);	
 			}
 			
 			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Você queimará!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 20 );
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fogo eterno te consumirá!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 25 );
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Ashardalon, atende meu chamado!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 26, 30 );
+			VirtualArmor += 10;
 		}
 
 		private void PerformRageAttack( Mobile target )
@@ -195,46 +243,45 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			
 			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice )
 			{
-				case 1: // fire cone
-					{
-						BossSpecialAttack.PerformConeBreath(
-				    	    boss: this,
-				    	    target: target,
-				    	    warcry: "*exala chamas devastadoras!*",
-				    	    hue: 1160,
-				    	    rage: m_Rage+1,
-				    	    range: 8,
-							physicalDmg:0,
-				    	    fireDmg: 100
-				    	);
+				case 1:
+				{
+					BossSpecialAttack.PerformConeBreath(
+				    	boss: this,
+				    	target: target,
+				    	warcry: "*exala chamas devastadoras!*",
+				    	hue: 1160,
+				    	rage: m_Rage+1,
+				    	range: 8,
+						physicalDmg: 0,
+				    	fireDmg: 100
+				    );
 				    break;
-					}
-				case 2: // flame burst
-					{
-						BossSpecialAttack.PerformTargettedAoE(
-							this,
-							target,
-							m_Rage+1,
-							"Somos fogo eterno!",
-							1160,  // hue
-							0,     // physical
-							100,   // fire
-							0,     // cold
-							0,     // poison
-							0      // energy
-						);
-						break;
-					}
-				case 3: // magma eruption
-					{
-						PerformMagmaEruption();
-						break;
-					}
+				}
+				case 2:
+				{
+					BossSpecialAttack.PerformTargettedAoE(
+						this,
+						target,
+						m_Rage+1,
+						"Somos fogo eterno!",
+						1160,
+						0,
+						100,
+						0,
+						0,
+						0
+					);
+					break;
+				}
+				case 3:
+				{
+					PerformMagmaEruption();
+					break;
+				}
 			}
 		}
 
@@ -335,67 +382,17 @@ namespace Server.Mobiles
 			return this.Location;
 		}
 
-		public void IncreaseRage(int rage)
+		public override bool OnBeforeDeath()
 		{
-			if ( rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Você queimará!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 20 );
-				m_Rage = 1;
-				return;
-			}
-			else if ( rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Fogo eterno te consumirá!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 25 );
-				VirtualArmor += 10;
-				m_Rage = 2;
-				return;
-			}
-			else if ( rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Ashardalon, atende meu chamado!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 30 );
-				VirtualArmor += 10;             
-				m_Rage = 3;
-				return;
-			}
-			else
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Perdoe-me... meu senhor..." );
-				Mobile killer = this.LastKiller;
-				if ( killer != null && killer.Player && killer.Karma > 0 )
-				{
-					try
-					{
-						int marks = Utility.RandomMinMax( 231, 347 );
-						Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks( killer, 1, marks );
-					}
-					catch { }
-				}
-			}
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 231, 347, "Perdoe-me... meu senhor...");
+			return base.OnBeforeDeath();
 		}
-		
+
 		public override void OnDeath( Container c )
 		{
-			//sanity
-			if ( m_Rage < 3 )
-				return;
-				
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 5; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );
@@ -406,7 +403,6 @@ namespace Server.Mobiles
 			{
 				c.DropItem( new EternalPowerScroll() );
 			}
-			// gold explosion
 			RichesSystem.SpawnRiches( m_LastTarget, 5 );
 		}
 
@@ -447,11 +443,14 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 );
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -466,10 +465,24 @@ namespace Server.Mobiles
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 
+			if ( version >= 2 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
-			// Initialize summons list if null
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
+			if (m_MagmaTiles == null)
+				m_MagmaTiles = new List<MagmaTile>();
 		}
 	}
 }

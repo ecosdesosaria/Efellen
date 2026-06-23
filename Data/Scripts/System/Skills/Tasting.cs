@@ -65,12 +65,12 @@ namespace Server.Items
 						else
 						{
 							food.Eat( from, true );
-							from.SendMessage( "You bit off a bit too much!" );
+							from.SendMessage( "Você mordeu um pedaço grande demais!" );
 						}
 					}
 					else
 					{
-						from.SendMessage( "This food looks safe to eat." );
+						from.SendMessage( "Esta comida parece segura para comer." );
 					}
 				}
 				else if ( targeted is BaseBeverage )
@@ -97,12 +97,12 @@ namespace Server.Items
 						}
 						else
 						{
-							from.SendMessage( "This looks tempting, but you are unsure if its safe to drink." );
+							from.SendMessage( "Isso parece tentador, mas você não tem certeza se é seguro beber." );
 						}
 					}
 					else
 					{
-						from.SendMessage( "This liquid looks safe to drink." );
+						from.SendMessage( "Este líquido parece seguro para beber." );
 					}
 				}
 				else if ( targeted is Item )
@@ -111,17 +111,17 @@ namespace Server.Items
 					int identified = RelicIDHelper.TryRecursiveIdentify(from, examine, IDSkill.Tasting, SkillName.Tasting);
 
        				if (examine is Container)
-       				{
-       				    if (identified == 0)
-       				        from.SendMessage("There is nothing in this container that requires Tasting to identify.");
-       				    else
-       				        from.SendMessage("You sample and inspect the items using your Tasting skill.");
-       				}
-       				else
-       				{
-       				    if (identified == 0)
-       				        from.SendMessage("That item cannot be identified with Tasting.");
-       				}
+					{
+						if (identified == 0)
+							from.SendMessage("Não há nada neste recipiente que exija Degustação para identificar.");
+						else
+							from.SendMessage("Você inspeciona o conteúdo do recipiente usando sua habilidade de Degustação.");
+					}
+					else
+					{
+						if (identified == 0)
+							from.SendMessage("Esse item não pode ser identificado com Degustação.");
+					}
 				}
 			}
 		}

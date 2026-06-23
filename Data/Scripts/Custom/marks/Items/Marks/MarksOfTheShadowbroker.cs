@@ -10,7 +10,7 @@ namespace Server.Items
         {
         }
         
-        public override string DefaultDescription{ get{ return "A Mark of the Shadowbroker represents your prowess as a thief. It can be aqquired by burglars as they adventure and filfer the pockets of their victims. The guildmaster of the thieves guild can offer many trinkets for those that would speak of rewards with them."; } }
+        public override string DefaultDescription{ get{ return "Uma Marca do Subornador das Sombras representa sua perícia como ladrão. Pode ser adquirida por ladrões enquanto eles se aventuram e surrupiam os bolsos de suas vítimas. O mestre da guilda dos ladrões pode oferecer muitas bugigangas para aqueles que falarem sobre recompensas com eles."; } }
 
         [Constructable]
         public MarksOfTheShadowbroker(int amount) : base(0x2ff8)
@@ -19,7 +19,7 @@ namespace Server.Items
             Weight = 0.01;
             Hue = 0x455;
             Amount = amount;
-            Name = "Mark of the Shadow Broker";
+            Name = "Marca do Subornador das Sombras";
         }
 
         public MarksOfTheShadowbroker(Serial serial) : base(serial)

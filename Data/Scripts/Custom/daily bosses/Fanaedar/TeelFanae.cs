@@ -20,7 +20,7 @@ using Server.Custom.Ascensions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "TeelFanae's Corpse" )]
+	[CorpseName( "Cadáver de TeelFanae" )]
 	public class TeelFanae : BaseSpellCaster
 	{		
 		private static readonly Type[] SummonTypes = new Type[] 
@@ -51,6 +51,10 @@ namespace Server.Mobiles
 		private DateTime m_NextSpecialAttack;
 		private List<BaseCreature> m_Summons;
 
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		[Constructable]
 		public TeelFanae () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -67,7 +71,7 @@ namespace Server.Mobiles
 			SetDex( 125, 175 );
 			SetInt( 586, 675 );
 
-			SetHits( 19000 );
+			SetHits( 57000 );
 			SetDamage( 11, 16 );
 
 			SetDamageType( ResistanceType.Physical, 50 );
@@ -118,20 +122,11 @@ namespace Server.Mobiles
             m_NextSummonTime = DateTime.MinValue;
 			m_NextSpecialAttack = DateTime.MinValue;
 			m_Summons = new List<BaseCreature>();
-          }
+        }
 
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.UltraRich, 8 );
-		}
-
-		public override void OnDamage( int amount, Mobile from, bool willKill )
-		{
-			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.75 )
-				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
-
-			base.OnDamage( amount, from, willKill );
 		}
 
 		private void MakeSpellChanneling(Item item)
@@ -157,6 +152,71 @@ namespace Server.Mobiles
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
+
+		public override void OnDamage( int amount, Mobile from, bool willKill )
+		{
+			m_LastTarget = from;
+			if (Utility.RandomDouble() < 0.75 )
+				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
+
+			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Convidado agradável, experimente a hospitalidade de Lolth!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 20 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Esta é minha cidade, minha casa! Aqui, minha vontade é suprema!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 25 );
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth, prepare-se para o banquete!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 26, 30 );
+			VirtualArmor += 15;
+		}
 
 		public override void OnThink()
 		{
@@ -244,52 +304,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Convidado agradável, experimente a hospitalidade de Lolth!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 20 );
-				VirtualArmor += 5;
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Esta é minha cidade, minha casa! Aqui, minha vontade é suprema!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 25 );
-				VirtualArmor += 10;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth, prepare-se para o banquete!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 30 );
-				VirtualArmor += 15;
-				m_Rage = 3;
-				return false;
-			}
-			else 
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Lolth te fará responder por esta insolência!" );
-				Mobile killer = this.LastKiller;
-				if ( killer != null && killer.Player && killer.Karma > 0 )
-            	{
-            	    int marks = Utility.RandomMinMax( 231, 347 );
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks( killer, 1, marks );
-            	}
-			}
-			
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 233, 334, "Lolth fará você responder por essa insolência!");
 			return base.OnBeforeDeath();
 		}
 
@@ -307,9 +322,8 @@ namespace Server.Mobiles
 
 		public override void OnDeath( Container c )
 		{
-
 		    BossLootSystem.BossEnchant(this, c, 650, 100, 4, "DrowPriestess");
-			BossLootSystem.AwardBossSpecial( this, BossDrops, 45 );
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 5; i++ )
 			{
  	           	c.DropItem( Loot.RandomArty() );				
@@ -320,7 +334,7 @@ namespace Server.Mobiles
 			{
 				c.DropItem( new EternalPowerScroll() );
 			}
-			int amount = Utility.Random(6,12);
+			int amount = Utility.Random(6, 12);
 			c.DropItem(new EssenceOfLolthsHatred(amount));
 			RichesSystem.SpawnRiches( m_LastTarget, 5 );
 
@@ -341,11 +355,14 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 2 );
+			writer.Write( (int) 3 );
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
-       }
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
+		}
 
 		public override void Deserialize( GenericReader reader )
 		{
@@ -358,10 +375,25 @@ namespace Server.Mobiles
 				m_NextSummonTime = reader.ReadDateTime();
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
-			if(version>=2)
+
+			if ( version >= 2 )
 			{
 				this.MobileMagics(8, SpellType.Cleric, 1316);
 			}
+
+			if ( version >= 3 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
 
 			if ( m_Summons == null )

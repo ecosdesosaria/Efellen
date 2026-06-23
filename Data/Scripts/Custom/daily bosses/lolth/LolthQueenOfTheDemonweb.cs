@@ -15,9 +15,10 @@ using Server.Custom;
 using Server.Custom.DailyBosses.System;
 using Server.Custom.BossSystems;
 using Server.Custom.Ascensions;
+
 namespace Server.Mobiles
 {
-	[CorpseName("Lolth's Corpse")]
+	[CorpseName("Cadáver de Lolth")]
 	public class LolthQueenOfTheDemonweb : BaseCreature
 	{
 		private static Hashtable m_Table = new Hashtable();
@@ -46,12 +47,12 @@ namespace Server.Mobiles
 		};
 
 		private static readonly string[] SummonWarcries = new string[]
-        {
-            "Filhos dos poços, vinde a mim!",
+		{
+			"Filhos dos poços, vinde a mim!",
             "A tecedora anfitriã atenderá meu chamado!",
             "Avante, prole de seda do abismo!",
             "A ruína sem fim recairá sobre vós!"
-        };
+		};
 
 		private static readonly List<Type> BossDrops = new List<Type>
 		{
@@ -60,11 +61,16 @@ namespace Server.Mobiles
 			typeof(Artifact_DemonwebTyrant),
 			typeof(Artifact_DemonwebFang)
 		};
+
 		private int m_Rage = 0;
 		private Mobile m_LastTarget;
 		private DateTime m_NextSummonTime = DateTime.MinValue;
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
+
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
 
 		[Constructable]
 		public LolthQueenOfTheDemonweb() : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
@@ -79,7 +85,7 @@ namespace Server.Mobiles
 			SetDex(225);
 			SetInt(1021);
 
-			SetHits(34000);
+			SetHits(102000);
 			SetDamage(14, 18);
 
 			SetDamageType(ResistanceType.Physical, 20);
@@ -103,7 +109,6 @@ namespace Server.Mobiles
 
 			if (Backpack == null)
 				AddItem(new Backpack());
-
 		}
 
 		public override void GenerateLoot()
@@ -118,18 +123,6 @@ namespace Server.Mobiles
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune { get { return Poison.Greater; } }
-
-		public override void Damage(int amount, Mobile from)
-		{
-			if (m_Rage < 3 && this.Hits - amount <= 0)
-			{
-				IncreaseRage(m_Rage);
-			}
-			else
-			{
-				base.Damage(amount, from);
-			}
-		}
 
 		public override void CheckReflect(Mobile caster, ref bool reflect)
 		{
@@ -170,6 +163,7 @@ namespace Server.Mobiles
 		public override void OnDamage(int amount, Mobile from, bool willKill)
 		{
 			m_LastTarget = from;
+
 			if (Utility.RandomDouble() < 0.75)
 				Server.Misc.IntelligentAction.LeapToAttacker(this, from);
 
@@ -192,8 +186,62 @@ namespace Server.Mobiles
 				}
 			}
 
-
 			base.OnDamage(amount, from, willKill);
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage(MessageType.Regular, 0x21, false, "Meu toque eterno vos devastará!");
+			this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
+			this.PlaySound(0x202);
+			SetDamage(16, 20);
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage(MessageType.Regular, 0x21, false, "O casulo será alimentado com suas entranhas!");
+			this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
+			this.PlaySound(0x202);
+			SetDamage(21, 25);
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage(MessageType.Regular, 0x21, false, "O abismo atende ao meu comando!");
+			this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
+			this.PlaySound(0x202);
+			SetDamage(26, 30);
+			VirtualArmor += 10;
 		}
 
 		private void PerformRageAttack(Mobile target)
@@ -201,25 +249,24 @@ namespace Server.Mobiles
 			if (target == null || target.Deleted || !target.Alive)
 				return;
 
-
 			int attackChoice = Utility.RandomMinMax(1, 3);
 
 			switch (attackChoice)
 			{
-				case 1: // pull all enemies close
-					{
-						BossSpecialAttack.PerformPull(
+				case 1:
+				{
+					BossSpecialAttack.PerformPull(
 						this,
 						"Vinde a mim as criancinhas da vida e da luz!",
 						0x922,
 						m_Rage,
 						true
 					);
-						break;
-					}
-				case 2: // life drain aura
-					{
-						BossSpecialAttack.PerformDegenAura(
+					break;
+				}
+				case 2:
+				{
+					BossSpecialAttack.PerformDegenAura(
 						this,
 						"VOCÊ SERÁ MEU!",
 						8,
@@ -227,25 +274,26 @@ namespace Server.Mobiles
 						22,
 						44,
 						"health",
-						0x922);
-						break;
-					}
-				case 3: // magma eruption
-					{
-						BossSpecialAttack.PerformDelayedExplosion(
+						0x922
+					);
+					break;
+				}
+				case 3:
+				{
+					BossSpecialAttack.PerformDelayedExplosion(
 						this,
 						"Trago-vos o dom da companhia eterna!",
-						0x922,   // hue
-						16,     // radius
+						0x922,
+						16,
 						m_Rage + 1,
-						0,     // physical
-						0,   // fire
-						0,     // cold
-						100,     // poison
-						0      // energy
+						0,
+						0,
+						0,
+						100,
+						0
 					);
-						break;
-					}
+					break;
+				}
 			}
 		}
 
@@ -261,64 +309,14 @@ namespace Server.Mobiles
 			}
 		}
 
-		public void IncreaseRage(int rage)
+		public override bool OnBeforeDeath()
 		{
-			if (rage == 0)
-			{
-				PublicOverheadMessage(MessageType.Regular, 0x21, false, "Meu toque eterno vos devastará!");
-				this.Hits = this.HitsMax;
-				this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
-				this.PlaySound(0x202);
-				SetDamage(16, 20);
-				m_Rage = 1;
-				return;
-			}
-			else if (rage == 1)
-			{
-				PublicOverheadMessage(MessageType.Regular, 0x21, false, "O casulo será alimentado com suas entranhas!");
-				this.Hits = this.HitsMax;
-				this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
-				this.PlaySound(0x202);
-				SetDamage(21, 25);
-				VirtualArmor += 10;
-				m_Rage = 2;
-				return;
-			}
-			else if (rage == 2)
-			{
-				PublicOverheadMessage(MessageType.Regular, 0x21, false, "O abismo atende ao meu comando!");
-				this.Hits = this.HitsMax;
-				this.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
-				this.PlaySound(0x202);
-				SetDamage(26, 30);
-				VirtualArmor += 10;
-				m_Rage = 3;
-				return;
-			}
-			else
-			{
-				Effects.SendLocationParticles(EffectItem.Create(this.Location, this.Map, EffectItem.DefaultDuration), 0x3728, 10, 10, 2023);
-				this.PlaySound(0x1FE);
-				PublicOverheadMessage(MessageType.Regular, 0x21, false, "Como... Como isso aconteceu...");
-				Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma > 0)
-				{
-					try
-					{
-						int marks = Utility.RandomMinMax(431, 647);
-						Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
-					}
-					catch { }
-				}
-			}
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 431, 647, "Não ouse pensar que isso acabou, mortal!");
+			return base.OnBeforeDeath();
 		}
 
 		public override void OnDeath(Container c)
 		{
-			//sanity
-			if (m_Rage < 3)
-				return;
-
 			base.OnDeath(c);
 
 			BossLootSystem.AwardBossSpecial(this, BossDrops, 100);
@@ -336,7 +334,6 @@ namespace Server.Mobiles
 			{
 				c.DropItem(new EternalPowerScroll());
 			}
-			// gold explosion
 			RichesSystem.SpawnRiches(m_LastTarget, 6);
 		}
 
@@ -393,6 +390,7 @@ namespace Server.Mobiles
 					StopEffect(m_Mobile);
 					return;
 				}
+
 				int stamLoss = Math.Max(1, (int)(m_Mobile.StamMax * 0.035));
 				int manLoss = Math.Max(1, (int)(m_Mobile.ManaMax * 0.035));
 
@@ -422,7 +420,6 @@ namespace Server.Mobiles
 			DateTime end = DateTime.UtcNow + TimeSpan.FromSeconds(32.0);
 
 			CaressTimer timer = new CaressTimer(m, end);
-
 			CaressEffect effect = new CaressEffect(energyMod, poisonMod, timer);
 
 			m_Table[m] = effect;
@@ -454,7 +451,6 @@ namespace Server.Mobiles
 			m.SendMessage(68, "A influência de Lolth sobre sua alma desaparece.");
 		}
 
-
 		public LolthQueenOfTheDemonweb(Serial serial) : base(serial)
 		{
 		}
@@ -462,11 +458,14 @@ namespace Server.Mobiles
 		public override void Serialize(GenericWriter writer)
 		{
 			base.Serialize(writer);
-			writer.Write((int)1); // version
+			writer.Write((int)2);
 
 			writer.Write(m_Rage);
 			writer.Write(m_NextSummonTime);
 			writer.Write(m_NextSpecialAttack);
+			writer.Write(m_Rage1Applied);
+			writer.Write(m_Rage2Applied);
+			writer.Write(m_Rage3Applied);
 		}
 
 		public override void Deserialize(GenericReader reader)
@@ -481,8 +480,20 @@ namespace Server.Mobiles
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 
+			if (version >= 2)
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
-			// Initialize summons list if null
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
 		}

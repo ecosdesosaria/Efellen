@@ -252,9 +252,9 @@ namespace Server.Items
 			unk.NotIDAttempts++;
 
 			if ( unk.NotIDAttempts > 5 )
-				txt = "Only a vendor can identify this item now as too many attempts were made.";
+				txt = "Apenas um vendedor pode identificar este item agora, pois muitas tentativas foram feitas.";
 			else
-				txt = "You cannot seem to identify this item.";
+				txt = "Você não parece conseguir identificar este item.";
 
 			return txt;
 		}

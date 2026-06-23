@@ -1787,30 +1787,30 @@ namespace Server.Mobiles
 		if (buyer.AccessLevel >= AccessLevel.GameMaster)
 		{
 			SayTo(buyer, true, fullPurchase
-				? "Eu não me atreveria a cobrar nada de ti. Aqui estão os bens que solicitaste."
-				: "Eu não me atreveria a cobrar nada de ti. Infelizmente, não pude vender todos os bens que solicitaste.");
+				? "Eu nao me atreveria a cobrar nada de ti. Aqui estao os bens que solicitaste."
+				: "Eu nao me atreveria a cobrar nada de ti. Infelizmente, nao pude vender todos os bens que solicitaste.");
 		}
 		else
 		{
 			if (fromPack > 0 && fromBankAmount > 0)
 			{
 				SayTo(buyer, true, fullPurchase
-					? "O total de tua compra é {0} de ouro. {1} retirados da tua mochila e {2} do teu banco. Meus agradecimentos pelo patrocínio."
-					: "O total de tua compra é {0} de ouro. {1} retirados da tua mochila e {2} do teu banco. Meus agradecimentos pelo patrocínio. Infelizmente, não pude vender todos os bens que solicitaste.",
+					? "O total de tua compra foi {0} de ouro. {1} retirados da tua mochila e {2} do teu banco. Meus agradecimentos pelo patrocinio."
+					: "O total de tua compra foi {0} de ouro. {1} retirados da tua mochila e {2} do teu banco. Meus agradecimentos pelo patrocinio. Infelizmente, nao pude vender todos os bens que solicitaste.",
 					totalCost, fromPack, fromBankAmount);
 			}
 			else if (fromBankAmount > 0)
 			{
 				SayTo(buyer, true, fullPurchase
-					? "O total de tua compra é {0} de ouro, retirados do teu banco. Meus agradecimentos pelo patrocínio."
-					: "O total de tua compra é {0} de ouro, retirados do teu banco. Meus agradecimentos pelo patrocínio. Infelizmente, não pude vender todos os bens que solicitaste.",
+					? "O total de tua compra foi {0} de ouro, retirados do teu banco. Meus agradecimentos pelo patrocinio."
+					: "O total de tua compra foi {0} de ouro, retirados do teu banco. Meus agradecimentos pelo patrocinio. Infelizmente, não pude vender todos os bens que solicitaste.",
 					totalCost);
 			}
 			else
 			{
 				SayTo(buyer, true, fullPurchase
-					? "O total de tua compra é {0} de ouro, retirados da tua mochila. Meus agradecimentos pelo patrocínio."
-					: "O total de tua compra é {0} de ouro, retirados da tua mochila. Meus agradecimentos pelo patrocínio. Infelizmente, não pude vender todos os bens que solicitaste.",
+					? "O total de tua compra foi {0} de ouro, retirados da tua mochila. Meus agradecimentos pelo patrocinio."
+					: "O total de tua compra foi {0} de ouro, retirados da tua mochila. Meus agradecimentos pelo patrocinio. Infelizmente, não pude vender todos os bens que solicitaste.",
 					totalCost);
 			}
 		}

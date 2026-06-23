@@ -20,7 +20,7 @@ using Server.Custom.Ascensions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "Prince of Darkness Corpse" )]
+	[CorpseName( "O Cadáver do Príncipe das Trevas" )]
 	public class PrinceOfDarkness : BaseSpellCaster
 	{	
 		private static readonly Type[] SummonTypes = new Type[] 
@@ -56,10 +56,14 @@ namespace Server.Mobiles
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		[Constructable]
 		public PrinceOfDarkness () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "Prince of Darkness";
+			Name = "Príncipe das Trevas";
 			Title = "O Senhor Deste Mundo";
 			Body = 0x58;
 			BaseSoundID = 838;
@@ -70,7 +74,7 @@ namespace Server.Mobiles
 			SetDex( 125, 175 );
 			SetInt( 586, 675 );
 
-			SetHits( 19000 );
+			SetHits( 57000 );
 			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Physical, 100 );
@@ -93,7 +97,6 @@ namespace Server.Mobiles
 			Karma = -35000;
 
 			VirtualArmor = 60;
-
 		}
 
 		public override void GenerateLoot()
@@ -118,10 +121,74 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			if (Utility.RandomDouble() < 0.75 )
+
+			if (Utility.RandomDouble() < 0.75)
 				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
 			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Chega de lágrimas!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 21 );
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Eu não quero parar!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 26 );
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Ninguém no mundo pode me mudar!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 27, 32 );
+			VirtualArmor += 10;
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "SHAAAAROOON!" );
+			BaseCreature sharon = new Sharon();
+			sharon.Team = this.Team;
+			Point3D loc = GetSpawnLocation( this.Map );
+			sharon.IsTempEnemy = true;
+			sharon.MoveToWorld( loc, this.Map );
+			if ( Combatant != null )
+				sharon.Combatant = Combatant;
 		}
 
 		private void PerformRageAttack( Mobile target )
@@ -129,26 +196,24 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			
 			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
-			switch ( attackChoice  )
+			switch ( attackChoice )
 			{
-				case 1: // Freezing blast
+				case 1:
 				{
 					BossSpecialAttack.PerformSlam(
                     boss: this,
-                    warcry: "A Tempestade de Ozz!",
+                    warcry: "A Trágica de Ozz!",
                     hue: 0x25,
                     rage: m_Rage+1,
                     range: 6,
-					physicalDmg:0,
+					physicalDmg: 0,
                     coldDmg: 100
                 );
                 break;
 				}
-
-				case 2: // Rage 2+: Laceration (bleed+paralyze)
+				case 2:
 				{
 					BossSpecialAttack.PerformEntangle(
     			    boss: this,
@@ -156,12 +221,11 @@ namespace Server.Mobiles
     			    hue: 0x25,
     			    rage: m_Rage+1,
     			    range: 6,
-    			    bleedLevel: 12  // 24-36 damage per tick
+    			    bleedLevel: 12
     			);
     			break;
 				}
-
-				case 3: // Rage 3: Void blast
+				case 3:
 				{
 					BossSpecialAttack.PerformCrossExplosion(
 				    boss: this,
@@ -217,14 +281,13 @@ namespace Server.Mobiles
 			{
 				switch( Utility.RandomMinMax( 0, 2 ) )
 				{
-					case 0:	Peace( combatant ); break;
-					case 1:	Undress( combatant ); break;
-					case 2:	Suppress( combatant ); break;
+					case 0: Peace( combatant ); break;
+					case 1: Undress( combatant ); break;
+					case 2: Suppress( combatant ); break;
 				}
 			}
 
 		    m_LastTarget = combatant;
-
 		}
 
 		private int GetMaxSummons()
@@ -258,61 +321,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "No more tears!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 21 );
-				
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Eu não quero parar!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 26 );
-				VirtualArmor += 10;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Ninguém no mundo pode me mudar!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 27, 32 );
-				VirtualArmor += 10;
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "SHAAAAROOON!" );
-				BaseCreature sharon = new Sharon();
-				sharon.Team = this.Team;
-				Point3D loc = GetSpawnLocation( this.Map );
-				sharon.IsTempEnemy = true;
-				sharon.MoveToWorld( loc, this.Map );
-				if ( Combatant != null )
-					sharon.Combatant = Combatant;
-				
-				m_Rage = 3;
-				return false;
-			}
-			else 
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Mama...I'm coming home..." );
-				Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma > 0)
-            	{
-            	    int marks = Utility.RandomMinMax(231, 347);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
-            	}
-			}
-			
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 231, 347, "Mama...Estou indo pra casa...");
 			return base.OnBeforeDeath();
 		}
 
@@ -326,11 +335,12 @@ namespace Server.Mobiles
 		    }
 		    base.OnDelete();
 		}
+
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 5; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );
@@ -341,7 +351,6 @@ namespace Server.Mobiles
 			{
 				c.DropItem( new EternalPowerScroll() );
 			}
-			// gold explosion
 			RichesSystem.SpawnRiches( m_LastTarget, 5 );
 		}
 
@@ -359,11 +368,14 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 2 ); // version
+			writer.Write( (int) 3 );
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -378,15 +390,27 @@ namespace Server.Mobiles
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 
-			LeechImmune = true;
-			// Initialize summons list if null
-			if (m_Summons == null)
-				m_Summons = new List<BaseCreature>();
-
-			if(version >=2)
+			if ( version >= 2 )
 			{
 				this.MobileMagics(9, SpellType.Wizard, 0x497);
 			}
+
+			if ( version >= 3 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
+			LeechImmune = true;
+			if (m_Summons == null)
+				m_Summons = new List<BaseCreature>();
 		}
 	}
 }

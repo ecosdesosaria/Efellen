@@ -16,9 +16,10 @@ using Server.Custom;
 using Server.Custom.DailyBosses.System;
 using Server.Custom.BossSystems;
 using Server.Custom.Ascensions;
+
 namespace Server.Mobiles
 {
-	[CorpseName( "Heavenly Marshall's Corpse" )]
+	[CorpseName( "O Cadáver do Marechal Celestial" )]
 	public class HeavenlyMarshall : BaseCreature
 	{
 		private const int SUMMON_RANGE = 12;
@@ -57,10 +58,14 @@ namespace Server.Mobiles
 		private DateTime m_NextSpecialAttack = DateTime.MinValue;
         private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		[Constructable]
 		public HeavenlyMarshall () : base( AIType.AI_Mage, FightMode.Evil, 10, 1, 0.2, 0.4 )
 		{
-			Name = "Heavenly Marshall";
+			Name = "Marechal Celestial";
 			Title = "O Enviado do Alto";
 			Body = 346;
 			BaseSoundID = 466;
@@ -71,7 +76,7 @@ namespace Server.Mobiles
 			SetDex( 125, 175 );
 			SetInt( 586, 675 );
 
-			SetHits( 19000 );
+			SetHits( 57000 );
 			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Energy, 100 );
@@ -92,7 +97,6 @@ namespace Server.Mobiles
 			Karma = -35000;
 
 			VirtualArmor = 60;
-
 		}
 
 		public override void GenerateLoot()
@@ -114,7 +118,6 @@ namespace Server.Mobiles
 		public override bool AlwaysAttackable{ get{ return true; } }
 		public override bool AlwaysMurderer { get { return false; } }
 
-        
 		private bool IsFriendlyCreature(Mobile m)
 		{
 			return 	m is HeavenlyMarshall || 
@@ -141,13 +144,6 @@ namespace Server.Mobiles
 			
 			if ( m.Region != this.Region )
 				return false;
-			
-			if (m is BaseCreature && ((BaseCreature)m).ControlMaster == null )
-			{
-				this.Location = m.Location;
-				this.Combatant = m;
-				this.Warmode = true;
-			}
 			
 			return true;
 	    }
@@ -210,30 +206,83 @@ namespace Server.Mobiles
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
 			m_LastTarget = from;
-			Server.Misc.IntelligentAction.LeapToAttacker( this, from );
-			
-			if (Utility.RandomDouble() < 0.75 )
+
+			if (Utility.RandomDouble() < 0.75)
 				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 			
-			if (from.Player && from.Kills < 5 && !from.Criminal) 
+			if (from != null && from.Player && from.Kills < 5 && !from.Criminal) 
 				from.Criminal = true;		
 		
 			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
 		}
 
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "A justiça não vacilará hoje!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 20 );
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Pelos céus acima, eu te ordeno que recues!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 25 );
+			VirtualArmor += 10;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "Pela Guarda dos Céus!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 26, 30 );
+			VirtualArmor += 10;
+		}
 
 		private void PerformRageAttack( Mobile target )
 		{
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			
 			int attackChoice = Utility.RandomMinMax( 1, 3 );
             Map map = this.Map;
 
-			switch ( attackChoice  )
+			switch ( attackChoice )
 			{
-				case 1: // holy nova
+				case 1:
 				{
 					BossSpecialAttack.PerformSlam(
                        boss: this,
@@ -246,8 +295,7 @@ namespace Server.Mobiles
                    );
                    break;
 				}
-
-				case 2: //holy cross
+				case 2:
 				{
 					BossSpecialAttack.PerformCrossExplosion(
 				       boss: this,
@@ -260,8 +308,7 @@ namespace Server.Mobiles
 				   );
 				   break;
 				}
-				
-				case 3: // Rage 3: holy blast (Mana drain + damage)
+				case 3:
 				{
 					PublicOverheadMessage( MessageType.Regular, 0x21, false, "A luz eterna te consumirá!" );
 					PlaySound( 0x228 );
@@ -295,34 +342,14 @@ namespace Server.Mobiles
 
             switch (d)
             {
-                case Direction.North:
-                    dy = -1;
-                    break;
-                case Direction.Right:
-                    dx = 1;
-                    dy = -1;
-                    break;
-                case Direction.East:
-                    dx = 1;
-                    break;
-                case Direction.Down:
-                    dx = 1;
-                    dy = 1;
-                    break;
-                case Direction.South:
-                    dy = 1;
-                    break;
-                case Direction.Left:
-                    dx = -1;
-                    dy = 1;
-                    break;
-                case Direction.West:
-                    dx = -1;
-                    break;
-                case Direction.Up:
-                    dx = -1;
-                    dy = -1;
-                    break;
+                case Direction.North:     dy = -1; break;
+                case Direction.Right: dx = 1; dy = -1; break;
+                case Direction.East:      dx = 1; break;
+                case Direction.Down:  dx = 1;  dy = 1; break;
+                case Direction.South:     dy = 1; break;
+                case Direction.Left:  dx = -1; dy = 1; break;
+                case Direction.West:      dx = -1; break;
+                case Direction.Up:    dx = -1; dy = -1; break;
             }
         }
 
@@ -345,53 +372,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-        	if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "A justiça não falhará hoje!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 20 );
-				VirtualArmor += 10;	
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Pelo céu acima eu commando que você se renda!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 25 );
-				VirtualArmor += 10;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Por Skywatch!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 30 );
-				VirtualArmor += 10;	
-				m_Rage = 3;
-				return false;
-			}
-			else 
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "Eu retorno... aos céus..." );
-				Mobile killer = this.LastKiller;
-
-            	if (killer != null && killer.Player && killer.Karma < 0)
-            	{
-            	    int marks = Utility.RandomMinMax(231, 347);
-            	    Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 0, marks);
-            	}
-			}
-			
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 231, 347, "Os céus... posso sentir...");
 			return base.OnBeforeDeath();
 		}
 
@@ -411,7 +392,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this,BossDrops, 45);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 5; i++ )
 			{
 				c.DropItem( Loot.RandomArty() );
@@ -423,8 +404,6 @@ namespace Server.Mobiles
 				c.DropItem( new EternalPowerScroll() );
 			}
 			BossLootSystem.BossEnchant(this, c, 500, 75, 3, "skyknight");
-
-			// gold explosion
 		    RichesSystem.SpawnRiches( m_LastTarget, 5 );
 		}
 
@@ -441,11 +420,14 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 );
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -460,8 +442,20 @@ namespace Server.Mobiles
 				m_NextSpecialAttack = reader.ReadDateTime();
 			}
 
+			if ( version >= 2 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
-			// Initialize summons list if null
 			if (m_Summons == null)
 				m_Summons = new List<BaseCreature>();
 		}

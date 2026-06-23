@@ -147,8 +147,9 @@ namespace Server.Custom.KoperPets
                     if (MyServerSettings.KoperPetsImmersive())
                     {
                         owner.SendMessage(BondingMessages[Utility.Random(BondingMessages.Length)]);
-                        owner.PublicOverheadMessage(Network.MessageType.Regular, 0x3B2, false, "Seu " + pet.Name + " se vinculou a você!");
                     }
+                    
+                    owner.PublicOverheadMessage(Network.MessageType.Regular, 0x3B2, false, "Seu " + pet.Name + " se vinculou a você!");
                 }
             }
         }

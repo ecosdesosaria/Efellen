@@ -98,7 +98,7 @@ namespace Server.Items
             if (Utility.RandomDouble() <= successChance)
             {
                 from.SendMessage("Você começa a cuidar de seus seguidores... ({0:F1}s)", cooldown.TotalSeconds);
-                from.PrivateOverheadMessage(MessageType.Regular, 0x22, false, "Você começa a cuidar de seus seguidores..." + cooldown.TotalSeconds+ "s" , from.NetState);
+                from.PrivateOverheadMessage(MessageType.Regular, 0x22, false, String.Format("Você começa a cuidar de seus seguidores... ({0:F1}s)", cooldown.TotalSeconds), from.NetState);
                 Timer.DelayCall(cooldown, new TimerStateCallback(ApplyVetSupplies), from);
             }
             else
@@ -123,7 +123,7 @@ namespace Server.Items
 
             bool anyAffected = false;
 
-            IPooledEnumerable eable = from.GetMobilesInRange(4);
+            IPooledEnumerable eable = from.GetMobilesInRange(5);
             foreach (Mobile m in eable)
             {
                 BaseCreature pet = m as BaseCreature;
@@ -134,16 +134,23 @@ namespace Server.Items
 
                     if (pet.IsDeadPet && pet.IsBonded && vet > 80.0 && druid > 80.0)
                     {
-                        double resChance = skillAvg / 200.0;
-                        if (Utility.RandomDouble() <= resChance)
+                        if (from.Region != null && from.Region.IsPartOf( "Khaldun" ))
                         {
-                            if (pet.Map != null && pet.Map.CanFit(pet.Location, 16, false, false))
+                            from.SendLocalizedMessage( 1010395 ); // The veil of death in this area is too strong and resists thy efforts to restore life.
+                        }
+                        else
+                        {
+                            double resChance = skillAvg / 200.0;
+                            if (Utility.RandomDouble() <= resChance)
                             {
-                                pet.ResurrectPet();
-                                pet.FixedEffect(0x376A, 10, 16);
-                                from.SendMessage("Você ressuscitou {0}.", pet.Name != null ? pet.Name : "seu animal de estimação");
-                                anyAffected = true;
-                                continue;
+                                if (pet.Map != null && pet.Map.CanFit(pet.Location, 16, false, false))
+                                {
+                                    pet.ResurrectPet();
+                                    pet.FixedEffect(0x376A, 10, 16);
+                                    from.SendMessage("You have resurrected {0}.", pet.Name != null ? pet.Name : "your pet");
+                                    anyAffected = true;
+                                    continue;
+                                }
                             }
                         }
                     }
@@ -154,7 +161,7 @@ namespace Server.Items
 
                         if (pet.Poisoned && vet > 60.0 && druid > 60.0)
                         {
-                            double cureChance = skillAvg / 150.0;
+                            double cureChance = skillAvg / 125.0;
                             if (Utility.RandomDouble() <= cureChance)
                             {
                                 pet.CurePoison(from);
@@ -162,7 +169,7 @@ namespace Server.Items
                             }
                         }
 
-                        if (pet.Hits < pet.HitsMax)
+                        if (!pet.Poisoned && pet.Hits < pet.HitsMax)
                         {
                             double healChance = skillAvg / 100.0;
                             if (Utility.RandomDouble() <= healChance)

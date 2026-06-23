@@ -15,9 +15,10 @@ using Server.Custom;
 using Server.Custom.DailyBosses.System;
 using Server.Custom.BossSystems;
 using Server.Custom.Ascensions;
+
 namespace Server.Mobiles
 {
-	[CorpseName( "Firefang's Corpse" )]
+	[CorpseName( "Cadáver de Firefang" )]
 	public class FirefangTheWarchief : BaseCreature
 	{
     	private static readonly Type[] SummonTypes = new Type[] 
@@ -54,6 +55,10 @@ namespace Server.Mobiles
 		private int m_Thrown;
 		private List<BaseCreature> m_Summons = new List<BaseCreature>();
 
+		private bool m_Rage1Applied = false;
+		private bool m_Rage2Applied = false;
+		private bool m_Rage3Applied = false;
+
 		public override InhumanSpeech SpeechType{ get{ return InhumanSpeech.Orc; } }
 
 		[Constructable]
@@ -70,7 +75,7 @@ namespace Server.Mobiles
 			SetDex( 155, 235 );
 			SetInt( 206, 275 );
 
-			SetHits( 3000 );
+			SetHits( 27000 );
 			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Fire, 50 );
@@ -93,7 +98,6 @@ namespace Server.Mobiles
 			Karma = -15000;
 
 			VirtualArmor = 30;
-
 		}
 
 		public override void GenerateLoot()
@@ -113,15 +117,11 @@ namespace Server.Mobiles
 		public override bool ReacquireOnMovement{ get{ return !Controlled; } }
 		public override bool HasBreath{ get{ return true; } }
 		public override double BreathEffectDelay{ get{ return 0.1; } }
-		public override int GetBreathForm()
-		{
-		    return 2; // potion
-		}
+		public override int GetBreathForm(){ return 2; }
 		public override bool BleedImmune{ get{ return true; } }
 		public override bool BardImmune { get { return true; } }
 		public override bool Unprovokable { get { return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
-
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
@@ -130,6 +130,61 @@ namespace Server.Mobiles
 				Server.Misc.IntelligentAction.LeapToAttacker( this, from );
 
 			base.OnDamage( amount, from, willKill );
+
+			CheckRageThresholds();
+		}
+
+		private void CheckRageThresholds()
+		{
+			if (this.HitsMax <= 0)
+				return;
+
+			double hpPercent = (double)this.Hits / (double)this.HitsMax;
+
+			if (!m_Rage1Applied && hpPercent <= 0.75)
+			{
+				m_Rage1Applied = true;
+				m_Rage = 1;
+				ApplyRage1();
+			}
+			else if (!m_Rage2Applied && hpPercent <= 0.50)
+			{
+				m_Rage2Applied = true;
+				m_Rage = 2;
+				ApplyRage2();
+			}
+			else if (!m_Rage3Applied && hpPercent <= 0.25)
+			{
+				m_Rage3Applied = true;
+				m_Rage = 3;
+				ApplyRage3();
+			}
+		}
+
+		private void ApplyRage1()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "EU NÃO TÔ MACHUCADO!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 16, 20 );
+		}
+
+		private void ApplyRage2()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "EU MORDER SEUS OSSOS!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 21, 25 );
+			VirtualArmor += 5;
+		}
+
+		private void ApplyRage3()
+		{
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "EU EXPLODIR VOCÊ!" );
+			this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
+			this.PlaySound( 0x202 );
+			SetDamage( 26, 30 );
+			VirtualArmor += 5;
 		}
 
 		public override void OnThink()
@@ -168,7 +223,6 @@ namespace Server.Mobiles
 			if ( target == null || target.Deleted || !target.Alive )
 				return;
 
-			
 			int attackChoice = Utility.RandomMinMax( 1, 3 );
 
 			switch ( attackChoice )
@@ -180,12 +234,12 @@ namespace Server.Mobiles
 						target,
 						m_Rage+1,
 						"*HORA DO BOOM!*",
-						348,  // hue
-						0,     // physical
-						100,   // fire
-						0,     // cold
-						0,     // poison
-						0      // energy
+						348,
+						0,
+						100,
+						0,
+						0,
+						0
 					);
 					break;
 				}
@@ -194,30 +248,30 @@ namespace Server.Mobiles
 					BossSpecialAttack.PerformDelayedExplosion(
 					    this,
 					    "*ACENDE OS PAVIOS, RAPAZES!*",
-					    348,   // hue
-					    8,     // radius
+					    348,
+					    8,
 					    m_Rage+1,
-					    0,     // physical
-					    100,   // fire
-					    0,     // cold
-					    0,     // poison
-					    0      // energy
+					    0,
+					    100,
+					    0,
+					    0,
+					    0
 					);
 					break;
 				}
 				case 3:
 				{
-					 BossSpecialAttack.PerformDelayedExplosion(
+					BossSpecialAttack.PerformDelayedExplosion(
 		                this,
 		                "*ACENDE OS PAVIOS, RAPAZES!*",
-		                348,   // hue
-		                16,    // radius
+		                348,
+		                16,
 		                m_Rage+2,
-		                0,     // physical
-		                100,   // fire
-		                0,     // cold
-		                0,     // poison
-		                0      // energy
+		                0,
+		                100,
+		                0,
+		                0,
+		                0
 		            );
 					break;
 				}
@@ -233,7 +287,6 @@ namespace Server.Mobiles
 		{
 			switch( m_Rage )
 			{
-				//firefang has lots of buddies
 				case 0: return 16;
 				case 1: return 14;
 				case 2: return 12;
@@ -241,55 +294,10 @@ namespace Server.Mobiles
 				default: return 10;
 			}
 		}
-		
+
 		public override bool OnBeforeDeath()
 		{
-			if ( m_Rage == 0 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "EU NÃO TÔ MACHUCADO!" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 16, 20 );
-				
-				m_Rage = 1;
-				return false;
-			}
-			else if ( m_Rage == 1 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "EU MORDER SEUS OSSOS" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 21, 25 );
-				VirtualArmor += 5;
-				m_Rage = 2;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "EU EXPLODIR VOCÊ*" );
-				this.Hits = this.HitsMax;
-				this.FixedParticles( 0x376A, 9, 32, 5030, EffectLayer.Waist );
-				this.PlaySound( 0x202 );
-				SetDamage( 26, 30 );
-				VirtualArmor += 5;
-				m_Rage = 3;
-				return false;
-			}
-			else if ( m_Rage == 2 )
-			{
-				Effects.SendLocationParticles( EffectItem.Create( this.Location, this.Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
-				this.PlaySound( 0x1FE );
-				PublicOverheadMessage( MessageType.Regular, 0x21, false, "ACABOU...*" );
-				Mobile killer = this.LastKiller;
-				if (killer != null && killer.Player && killer.Karma > 0)
-				{
-					int marks = Utility.RandomMinMax(70, 90);
-					Server.Custom.DefenderOfTheRealm.MarkLootHelper.AwardMarks(killer, 1, marks);
-				}
-			}
-			
+			BossLootSystem.AwardBossMarks(this, this.LastKiller, 70, 90, "TO...MORTO...");
 			return base.OnBeforeDeath();
 		}
 
@@ -309,7 +317,7 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			BossLootSystem.AwardBossSpecial(this, BossDrops, 45);
+			BossLootSystem.AwardBossSpecial(this, BossDrops, 30);
 			for ( int i = 0; i < 2; i++ )
 			{
 				c.DropItem( AscensionScrollFactory.CreateRandom());
@@ -323,10 +331,6 @@ namespace Server.Mobiles
 		{
 			base.OnAfterSpawn();
 			LeechImmune = true;
-		}
-
-		public FirefangTheWarchief( Serial serial ) : base( serial )
-		{
 		}
 
 		public override void OnActionCombat()
@@ -352,9 +356,7 @@ namespace Server.Mobiles
 		public void ThrowBomb( Mobile m )
 		{
 			DoHarmful( m );
-
 			this.MovingParticles( m, 0x1C19, 1, 0, false, true, 0, 0, 9502, 6014, 0x11D, EffectLayer.Waist, 0 );
-
 			new BombTimer( m, this, m_Rage ).Start();
 		}
 
@@ -386,17 +388,23 @@ namespace Server.Mobiles
 			}
 		}
 
+		public FirefangTheWarchief( Serial serial ) : base( serial )
+		{
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 1 ); // version
+			writer.Write( (int) 2 );
 
 			writer.Write( m_Rage );
 			writer.Write( m_NextSummonTime );
 			writer.Write( m_NextSpecialAttack );
 			writer.Write( m_NextBomb );
 			writer.Write( m_Thrown );
-			
+			writer.Write( m_Rage1Applied );
+			writer.Write( m_Rage2Applied );
+			writer.Write( m_Rage3Applied );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -413,9 +421,22 @@ namespace Server.Mobiles
 				m_Thrown = reader.ReadInt();
 			}
 
+			if ( version >= 2 )
+			{
+				m_Rage1Applied = reader.ReadBool();
+				m_Rage2Applied = reader.ReadBool();
+				m_Rage3Applied = reader.ReadBool();
+			}
+			else
+			{
+				m_Rage1Applied = m_Rage >= 1;
+				m_Rage2Applied = m_Rage >= 2;
+				m_Rage3Applied = m_Rage >= 3;
+			}
+
 			LeechImmune = true;
 			if (m_Summons == null)
-					m_Summons = new List<BaseCreature>();
+				m_Summons = new List<BaseCreature>();
 		}
 	}
 }
