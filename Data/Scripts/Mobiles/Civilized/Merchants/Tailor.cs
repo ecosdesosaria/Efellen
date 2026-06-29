@@ -24,7 +24,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.TailorsGuild; } }
 
 		[Constructable]
-		public Tailor() : base( "the tailor" )
+		public Tailor() : base( "o alfaiate" )
 		{
 			SetSkill( SkillName.Tailoring, 64.0, 100.0 );
 		}

@@ -50,6 +50,7 @@ namespace Server.Items
 			Weight = 1.0;
 			Hue = 0x494;
 			Built = true;
+            Stackable = true;
         }
 
         public AutoResPotion(Serial serial): base(serial)
@@ -152,6 +153,7 @@ namespace Server.Items
             }
 			Hue = 0x494;
 			Built = true;
+            Stackable = true;
         }
     }
 }

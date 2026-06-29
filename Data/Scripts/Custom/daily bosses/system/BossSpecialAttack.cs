@@ -723,7 +723,8 @@ namespace Server.Custom.DailyBosses.System
             if (range > 8)
                 range = 8;
 
-            boss.PublicOverheadMessage(MessageType.Regular, hue, false, "*" + boss.Name + " está preparando um ataque!*");
+             if (!boss.Controlled)
+                boss.PublicOverheadMessage(MessageType.Regular, hue, false, "*" + boss.Name + " está prepaando um ataque!*");
             boss.PlaySound(0x227);
             boss.FixedParticles(0x375A, 10, 15, 5037, hue, 0, EffectLayer.Head);
 
@@ -744,7 +745,7 @@ namespace Server.Custom.DailyBosses.System
                     return;
 
 
-                if (!string.IsNullOrEmpty(warcry))
+                if (!string.IsNullOrEmpty(warcry) && !boss.Controlled)
                 {
                     boss.PublicOverheadMessage(MessageType.Regular, hue, false, warcry);
                 }

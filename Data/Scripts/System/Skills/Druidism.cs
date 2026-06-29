@@ -363,6 +363,7 @@ namespace Server.SkillHandlers
 			if ( source == 0 && c.MinTameSkill > 0 )
 			{
 				colA = colA + "  Taming Needed<BR>";
+				colA = colA + "  Control Slots<BR>";
 				colA = colA + "  Loyalty Rating<BR>";
 					string loyalty = "Wild";
 					int loyal = 1 + (c.Loyalty / 10);
@@ -458,10 +459,14 @@ namespace Server.SkillHandlers
 
 			colB = colB + "" + FormatTalent( bd ) + "<BR>";
 
-			if ( source == 0 && c.MinTameSkill > 0 ){ colB = colB + "" + FormatTaming( c.MinTameSkill ) + "<BR>"; }
+			if ( source == 0 && c.MinTameSkill > 0 )
+			{ 
+				colB = colB + "" + FormatTaming( c.MinTameSkill ) + "<BR>";
+				colB = colB + "" + FormatNumber( c.ControlSlots ) + "<BR>"; 
+			}
 
 			AddHtml( 20, 50, 200, 370, @"<BODY><BASEFONT Color=" + color + ">" + colA + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddHtml( 135, 50, 80, 370, @"<BODY><BASEFONT Color=" + color + "><div align=right>" + colB + "</div></BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 135, 50, 100, 370, @"<BODY><BASEFONT Color=" + color + "><div align=right>" + colB + "</div></BASEFONT></BODY>", (bool)false, (bool)false);
 
 			///////////////////////////////////////////////////////////////////////////////////
 
@@ -491,7 +496,7 @@ namespace Server.SkillHandlers
 			colD = colD + "" + FormatPercent( c.EnergyDamage ) + "<BR>";
 			colD = colD + "" + c.DamageMin + " / " + c.DamageMax + "<BR>";
 
-			AddHtml( 260, 50, 105, 370, @"<BODY><BASEFONT Color=" + color + ">" + colC + "</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 280, 50, 105, 370, @"<BODY><BASEFONT Color=" + color + ">" + colC + "</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddHtml( 375, 50, 80, 370, @"<BODY><BASEFONT Color=" + color + "><div align=right>" + colD + "</div></BASEFONT></BODY>", (bool)false, (bool)false);
 
 			///////////////////////////////////////////////////////////////////////////////////

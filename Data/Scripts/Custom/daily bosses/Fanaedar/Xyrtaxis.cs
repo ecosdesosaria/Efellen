@@ -78,7 +78,7 @@ namespace Server.Mobiles
 			Fame = 30000;
 			Karma = -30000;
 			VirtualArmor = 50;
-
+			IsBoss = true;
 		    AddItem( new ScholarRobe{ Hue = 0x0213 } );
             AddItem( new Sandals{ Hue = 0x0213 } );
             AddItem( new BlackStaff{ Hue = 0x0213 } );

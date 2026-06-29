@@ -73,13 +73,13 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
 
         public static void GenerateRewards(Mobile from, int rewardWorth, Container rewardBag, VowType type)
         {
-            if (rewardWorth < 5)
+            if (rewardWorth < 25)
             {
                 GenerateEnchantedItem(from, 75, rewardBag);
                 rewardBag.DropItem(Loot.RandomScroll(1));
                 rewardBag.DropItem(Loot.RandomPotion(4, false));
             }
-            else if (rewardWorth < 10)
+            else if (rewardWorth < 50)
             {
                 GenerateEnchantedItem(from, 150, rewardBag);
                 rewardBag.DropItem(Loot.RandomGem());
@@ -87,7 +87,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 rewardBag.DropItem(Loot.RandomPotion(4, false));
                 rewardBag.DropItem(Loot.RandomScroll(3));
             }
-            else if (rewardWorth < 15)
+            else if (rewardWorth < 75)
             {
                 GenerateEnchantedItem(from, 200, rewardBag);
                 rewardBag.DropItem(Loot.RandomScroll(4));
@@ -95,7 +95,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 rewardBag.DropItem(Loot.RandomGem());
                 TryAddAscendancy(rewardBag, 0.20);  
             }
-            else if (rewardWorth < 20)
+            else if (rewardWorth < 100)
             {
                 GenerateEnchantedItem(from, 250, rewardBag);
                 rewardBag.DropItem(Loot.RandomScroll(5));
@@ -104,7 +104,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 TryAddAscendancy(rewardBag, 0.35);
                 TryAddAscendancy(rewardBag, 0.15); 
             }
-            else if (rewardWorth < 25)
+            else if (rewardWorth < 125)
             {
                 GenerateEnchantedItem(from, 300, rewardBag);
                 rewardBag.DropItem(Loot.RandomScroll(6));
@@ -113,7 +113,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 TryAddAscendancy(rewardBag, 0.40);            
                 TryAddAscendancy(rewardBag, 0.20);
             }
-            else if (rewardWorth < 30)
+            else if (rewardWorth < 150)
             {
                 GenerateEnchantedItem(from, 350, rewardBag);
                 rewardBag.DropItem(Loot.RandomScroll(8));
@@ -124,7 +124,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 TryAddAscendancy(rewardBag, 0.45); 
                 TryAddAscendancy(rewardBag, 0.15);
             }
-            else if (rewardWorth < 35)
+            else if (rewardWorth < 175)
             {
                 GenerateEnchantedItem(from, 400, rewardBag);
                 TryAddArtifact(from, rewardBag, 0.10);
@@ -133,7 +133,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 TryAddAscendancy(rewardBag, 0.65); 
                 TryAddAscendancy(rewardBag, 0.35);
             }
-            else if (rewardWorth < 40)
+            else if (rewardWorth < 200)
             {
                 TryAddArtifact(from, rewardBag, 0.20);
                 GenerateEnchantedItem(from, 450, rewardBag);
@@ -144,7 +144,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 TryAddAscendancy(rewardBag, 0.65); 
                 TryAddAscendancy(rewardBag, 0.35);
             }
-            else if (rewardWorth < 45)
+            else if (rewardWorth < 220)
             {
                 rewardBag.DropItem(Loot.RandomRelic(from));
                 GenerateEnchantedItem(from, 500, rewardBag);
@@ -156,7 +156,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow
                 TryAddAscendancy(rewardBag, 0.55);
                 TryAddAscendancy(rewardBag, 0.35);
             }
-            else if (rewardWorth < 50)
+            else if (rewardWorth < 250)
             {
                 rewardBag.DropItem(Loot.RandomSArty(Server.LootPackEntry.playOrient(from), from));
                 TryAddRelic(from, rewardBag, 0.40);

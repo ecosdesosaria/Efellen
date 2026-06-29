@@ -67,15 +67,16 @@ namespace Server.Mobiles
                 {
                     TimeSpan remaining = nextAllowed - DateTime.UtcNow;
                     PublicOverheadMessage(Network.MessageType.Regular, 0x3B2, false, 
-                        "Desculpe, mas ainda estou esperando a coleta do último e minhas prateleiras estão cheias! Pode ficar com ele por mais um tempo?");
+                        "Desculpe, mas ainda estou esperando a coleta dos últimos e minhas prateleiras estão cheias! Pode ficar com ele por mais um tempo?");
                     from.SendMessage(string.Format("Você deve aguardar {0} antes que Oliver possa aceitar outra poção.", FormatTimeSpan(remaining)));
                     return false;
                 }
             }
-            
+            int amount = potion.Amount;            
             potion.Delete();
             int playerLevel = Server.Misc.GetPlayerInfo.GetPlayerLevel(from);
-            int transPower = Utility.RandomMinMax(playerLevel * 2, playerLevel * 5);
+            int transVal = Utility.RandomMinMax(playerLevel * 3, playerLevel * 4) + (amount * 3);
+            int transPower = transVal > 500 ? 500 : transVal;
             
             // Store random hue
             int randomHue = GetRandomHue();

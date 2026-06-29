@@ -1220,7 +1220,7 @@ namespace Server.Scripts.Custom
             foreach (NetState state in NetState.Instances)
             {
                 Mobile m = state.Mobile;
-                if (m != null && m.Player && m.Alive && m.Map != null && m.Map != Map.Internal)
+                if (m != null && m.Player && m.Alive && m.Map != null && m.Map != Map.Internal && m.AccessLevel < AccessLevel.GameMaster)
                 {
 					DateTime lastAttempt;
                     if (s_LastSpawnAttempt.TryGetValue(m, out lastAttempt))

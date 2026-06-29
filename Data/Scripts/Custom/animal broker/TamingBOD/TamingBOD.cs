@@ -124,7 +124,7 @@ namespace Server.Items
 			{
 				reward = Utility.RandomMinMax(450, 525);
 			}
-			else if (goldAmount >= 160000)
+			else
 			{
 				reward = Utility.RandomMinMax(475, 600);
 			}

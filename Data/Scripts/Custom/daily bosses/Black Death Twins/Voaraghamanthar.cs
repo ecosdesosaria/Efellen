@@ -71,6 +71,7 @@ namespace Server.Mobiles
 			Karma = -30000;
 			VirtualArmor = 50;
             m_NextSpecialAttack = DateTime.MinValue;
+			IsBoss = true;
 		}
 
 		public override void GenerateLoot()

@@ -82,18 +82,17 @@ namespace Server.Custom.KoperPets
             }
 
             double herdingSkill = owner.Skills[SkillName.Herding].Base;
-            double gainChance;
+            double gainChance = 0.0;
             double herdingMultiplier = MyServerSettings.KoperHerdingChance();
 
 
             // Determine gain chance and amount based on skill level
-            if (herdingMultiplier <= 0) herdingMultiplier = 1.0; // Ensure valid value
-            if (herdingMultiplier >= 10) herdingMultiplier = 10.0; // Ensure valid value
+            if (herdingMultiplier <= 10) herdingMultiplier = 1.0; // Ensure valid value
             if (herdingSkill <= 30.0) { gainChance = 0.20 * herdingMultiplier;}
             else if (herdingSkill <= 50.0) { gainChance = 0.15 * herdingMultiplier;}
             else if (herdingSkill <= 70.0) { gainChance = 0.10 * herdingMultiplier;}
             else if (herdingSkill < 125.0) { gainChance = 0.05 * herdingMultiplier;}
-            else return; // No gain if at max skill
+            else { TryBondUnbondedPets(owner, herdingSkill); }
 
             if (Utility.RandomDouble() <= gainChance)
             {

@@ -73,7 +73,7 @@ namespace Server.Custom.DefenderOfTheRealm.Vow.VowOfTheScourge
 
             int marks = 2 + (luck * (8) / 2000);//2-10 marks added based on player's luck
             m_Current++;
-            m_Reward += Utility.RandomMinMax((int)(marks * 0.6), (int)(marks * 1.2)) < 1 ? 1 : Utility.RandomMinMax((int)(marks * 0.6), (int)(marks * 1.2));
+            m_Reward += (Utility.RandomMinMax((int)(marks * 0.6), (int)(marks * 1.2)) < 1 ? 1 : Utility.RandomMinMax((int)(marks * 0.6), (int)(marks * 1.2)))*5;
             InvalidateProperties();
             from.SendMessage("Você adiciona um troféu ao seu juramento do Flagelo.");
             if (m_Current >= m_Required)

@@ -37,7 +37,7 @@ namespace Server.Items
 		[Constructable]
 		public BasementDoor() : base( 0x02C1 )
 		{
-			Name = "basement trapdoor";
+			Name = "alçapão do porão";
 			Weight = 10;
 			ItemID = Utility.RandomList( 0x02C1, 0x02C2, 0x02C3, 0x02C4 );
 
@@ -110,7 +110,7 @@ namespace Server.Items
 			{
 				BasementDoor door = (BasementDoor)item;
 				if ( door.Name == "iron" || door.Name == "cloth" || door.Name == "wood" || door.Name == "shop" ){ door.DoorShop = door.Name; }
-				door.Name = "basement trapdoor";
+				door.Name = "alçapão do porão";
 			}
 		}
 

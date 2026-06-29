@@ -75,6 +75,7 @@ namespace Server.Mobiles
 			Karma = 15000;
 
 			VirtualArmor = 20;
+			IsBoss = true;
             AddItem( new NunRobe( ) );
 			AddItem( new LightCitizen( true ) );
 			AddItem(new WarMace { Hue = 0x9C2 });

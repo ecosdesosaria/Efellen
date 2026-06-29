@@ -9615,6 +9615,15 @@ namespace Server.Mobiles
 		{
 		}
 
+		private bool ShouldKeepRange()
+		{
+		    BaseWeapon weapon = m_Mobile.Weapon as BaseWeapon;
+
+		    if (weapon == null)
+		        return false;
+
+		    return weapon.MaxRange > 1;
+		}
 		public override bool Think()
 		{
 			if( m_Mobile.Deleted )
@@ -9688,13 +9697,18 @@ namespace Server.Mobiles
 
 		private Spell CheckCastHealingSpell()
 		{
-			// If I'm poisoned, always attempt to cure.
-			if( m_Mobile.Poisoned )
-				return new CureSpell( m_Mobile, null );
-
 			// Summoned creatures never heal themselves.
 			if( m_Mobile.Summoned )
 				return null;
+				// If poisoned, only attempt Cure 25% of the time to prevent cheesyness from poison spammers.
+				// Never attempt healing spells while poisoned.
+			if( m_Mobile.Poisoned )
+			{
+				if( Utility.RandomDouble() < 0.25 )
+					return new CureSpell( m_Mobile, null );
+
+				return null;
+			}
 
 			if( m_Mobile.Controlled && !(m_Mobile is HenchmanMonster) && !(m_Mobile is HenchmanArcher) && !(m_Mobile is HenchmanWizard) && !(m_Mobile is HenchmanFighter) )
 			{
@@ -9723,7 +9737,9 @@ namespace Server.Mobiles
 					spell = new HealSpell( m_Mobile, null );
 			}
 			else if( m_Mobile.Hits < ( m_Mobile.HitsMax - 10 ) )
+			{
 				spell = new HealSpell( m_Mobile, null );
+			}
 
 			double delay;
 
@@ -10233,7 +10249,7 @@ namespace Server.Mobiles
 				}
 			}
 
-			if( !m_Mobile.Controlled && !m_Mobile.Summoned && !m_Mobile.IsParagon && !(m_Mobile is HenchmanArcher) && !(m_Mobile is HenchmanMonster) && !(m_Mobile is HenchmanWizard) && !(m_Mobile is HenchmanFighter) )
+			if( !m_Mobile.Controlled && !m_Mobile.Summoned && !m_Mobile.IsParagon && !m_Mobile.IsBoss && !(m_Mobile is HenchmanArcher) && !(m_Mobile is HenchmanMonster) && !(m_Mobile is HenchmanWizard) && !(m_Mobile is HenchmanFighter) )
 			{
 				if( m_Mobile.Hits < m_Mobile.HitsMax * 20 / 100 )
 				{
@@ -10294,7 +10310,7 @@ namespace Server.Mobiles
 				}
 
 				// Now we have a spell picked
-				// Move first before casting
+				// Move first before casting, checking for range
 
 				if( SmartAI && toDispel != null )
 				{
@@ -10305,7 +10321,18 @@ namespace Server.Mobiles
 				}
 				else
 				{
-					RunTo( c );
+					if( ShouldKeepRange() )
+				    {
+				        if( ( m_Mobile.LastMoveTime + TimeSpan.FromSeconds(1.0) ) < DateTime.Now )
+				        {
+				            if( WalkMobileRange( c, 1, true, m_Mobile.RangeFight, m_Mobile.Weapon.MaxRange ) )
+				                m_Mobile.Direction = m_Mobile.GetDirectionTo( c.Location );
+				        }
+				    }
+				    else
+				    {
+				        RunTo( c );
+				    }
 				}
 
 				if( spell != null )
@@ -10332,7 +10359,18 @@ namespace Server.Mobiles
 			}
 			else if( m_Mobile.Spell == null || !m_Mobile.Spell.IsCasting )
 			{
-				RunTo( c );
+				if (ShouldKeepRange())
+				{
+				    if ((m_Mobile.LastMoveTime + TimeSpan.FromSeconds(1.0)) < DateTime.Now)
+				    {
+				        if (WalkMobileRange(c, 1, true, m_Mobile.RangeFight, m_Mobile.Weapon.MaxRange))
+				            m_Mobile.Direction = m_Mobile.GetDirectionTo(c.Location);
+				    }
+				}
+				else
+				{
+				    RunTo(c);
+				}
 			}
 
 			return true;
@@ -10799,7 +10837,7 @@ namespace Server.Mobiles
 					m_Mobile.DebugSay( "I should be closer to {0}", combatant.Name );
 			}
 
-			if ( !m_Mobile.Controlled && !m_Mobile.Summoned && !m_Mobile.IsParagon && !(m_Mobile is FrankenFighter) && !(m_Mobile is GolemFighter) && !(m_Mobile is HenchmanMonster) && !(m_Mobile is HenchmanArcher) && !(m_Mobile is HenchmanWizard) && !(m_Mobile is HenchmanFighter) )
+			if ( !m_Mobile.Controlled && !m_Mobile.Summoned && !m_Mobile.IsParagon && !m_Mobile.IsBoss && !(m_Mobile is FrankenFighter) && !(m_Mobile is GolemFighter) && !(m_Mobile is HenchmanMonster) && !(m_Mobile is HenchmanArcher) && !(m_Mobile is HenchmanWizard) && !(m_Mobile is HenchmanFighter) )
 			{
 				if ( m_Mobile.Hits < m_Mobile.HitsMax * 20/100 )
 				{
@@ -11052,7 +11090,7 @@ namespace Server.Mobiles
 				m_Mobile.DebugSay( "I should be closer to {0}", combatant.Name );
 			}
 
-			if ( m_Mobile.Hits < m_Mobile.HitsMax * 20/100 && !m_Mobile.IsParagon )
+			if ( m_Mobile.Hits < m_Mobile.HitsMax * 20/100 && !m_Mobile.IsParagon && !m_Mobile.IsBoss)
 			{
 				// We are low on health, should we flee?
 

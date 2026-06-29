@@ -23,7 +23,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.LibrariansGuild; } }
 
 		[Constructable]
-		public Sage() : base( "the sage" )
+		public Sage() : base( "o sábio" )
 		{
 			SetSkill( SkillName.Inscribe, 60.0, 83.0 );
 			SetSkill( SkillName.MagicResist, 65.0, 88.0 );

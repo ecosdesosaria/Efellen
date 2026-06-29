@@ -96,6 +96,7 @@ namespace Server.Mobiles
 			VirtualArmor = 50;
 
 			m_NextSpecialBeholderAttack = DateTime.UtcNow;
+			IsBoss = true;
 		}
 
 		public override void GenerateLoot()

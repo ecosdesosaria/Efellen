@@ -13,7 +13,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.MinersGuild; } }
 
 		[Constructable]
-		public Miner() : base( "the miner" )
+		public Miner() : base( "o minerador" )
 		{
 			SetSkill( SkillName.Mining, 65.0, 88.0 );
 		}

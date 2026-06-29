@@ -22,7 +22,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.CarpentersGuild; } }
 
 		[Constructable]
-		public Carpenter() : base( "the carpenter" )
+		public Carpenter() : base( "o carpinteiro" )
 		{
 			SetSkill( SkillName.Carpentry, 85.0, 100.0 );
 			SetSkill( SkillName.Lumberjacking, 60.0, 83.0 );
