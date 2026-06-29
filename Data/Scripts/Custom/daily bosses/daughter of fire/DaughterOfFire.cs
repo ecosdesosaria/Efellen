@@ -95,6 +95,7 @@ namespace Server.Mobiles
 			Karma = -25000;
 
 			VirtualArmor = 40;
+			IsBoss = true;
 		}
 
 		public override void GenerateLoot()

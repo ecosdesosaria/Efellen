@@ -16,6 +16,7 @@ namespace Server.Items
             Name = "potion of gender change";
 			Hue = 0xB46;
 			Built = true;
+			Stackable = true;
         }
 
         public override void OnDoubleClick( Mobile from )
@@ -80,6 +81,7 @@ namespace Server.Items
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
 			Built = true;
+			Stackable = true;
 	    }
     }
 }

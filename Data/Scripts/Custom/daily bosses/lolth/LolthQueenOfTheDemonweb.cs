@@ -106,7 +106,7 @@ namespace Server.Mobiles
 			Fame = 50000;
 			Karma = -50000;
 			VirtualArmor = 70;
-
+			IsBoss = true;
 			if (Backpack == null)
 				AddItem(new Backpack());
 		}

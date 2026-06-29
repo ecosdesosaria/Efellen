@@ -22,7 +22,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.DruidsGuild; } }
 
 		[Constructable]
-		public Druid() : base( "the druid" )
+		public Druid() : base( "o druida" )
 		{
 			SetSkill( SkillName.Herding, 80.0, 100.0 );
 			SetSkill( SkillName.Camping, 80.0, 100.0 );

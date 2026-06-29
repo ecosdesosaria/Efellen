@@ -9,7 +9,7 @@ namespace Server.Items
 {
 	public class HolyWater : Item
 	{
-		public override string DefaultDescription{ get{ return "This is a bowl of holy water. You can collect some of it if you have a crystalline flask. Throwing it on the ground will be harmful to supernatural creatures."; } }
+		public override string DefaultDescription{ get{ return "Esta é uma bacia de água benta. Você pode coletar um pouco dela se tiver um frasco cristalino. Jogá-la no chão será prejudicial a criaturas sobrenaturais."; } }
 
 		[Constructable]
 		public HolyWater( ) : base( 0x1008 )

@@ -40,11 +40,11 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(Artifact_DefenderOfTheRealmGorget),       1000, 0x1413, "Defender's Gorget",                 true,  0),
             new RewardInfo(typeof(Artifact_DefenderOfTheRealmHelmet),       1000, 0x1412, "Defender's Helmet",                 true,  0),
             new RewardInfo(typeof(Artifact_DefenderOfTheRealmLeggings),     1000, 0x46AA, "Defender's Leggings",               true,  0),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Berserker Ascension Scroll",        false, 0x0F1, AscensionType.Berserker),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Archmage Ascension Scroll",         false, 0x213, AscensionType.Archmage),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Crusader Ascension Scroll",         false, 0x0F8, AscensionType.Crusader),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Kensai Ascension Scroll",           false, 0x448, AscensionType.Kensai),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Skald Ascension Scroll",            false, 0x445, AscensionType.Skald),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Berserker Ascension Scroll",        false, 0x0F1, AscensionType.Berserker),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Archmage Ascension Scroll",         false, 0x213, AscensionType.Archmage),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Crusader Ascension Scroll",         false, 0x0F8, AscensionType.Crusader),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Kensai Ascension Scroll",           false, 0x448, AscensionType.Kensai),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Skald Ascension Scroll",            false, 0x445, AscensionType.Skald),
         };
 
         public static RewardInfo[] ScourgeRewards = new RewardInfo[]
@@ -57,13 +57,13 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(Artifact_ScourgeOfTheRealmGorget),       1000,  0x1413, "Scourge's Gorget",                 true,  0),
             new RewardInfo(typeof(Artifact_ScourgeOfTheRealmHelmet),       1000,  0x1412, "Scourge's Helmet",                 true,  0),
             new RewardInfo(typeof(Artifact_ScourgeOfTheRealmLeggings),     1000,  0x46AA, "Scourge's Leggings",               true,  0),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Berserker Ascension Scroll",       false, 0x0F1, AscensionType.Berserker),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Palemaster Ascension Scroll",      false, 0xB97, AscensionType.Palemaster),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Assassin Ascension Scroll",        false, 0x233, AscensionType.Assassin),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Blackguard Ascension Scroll",      false, 0x47E, AscensionType.Blackguard),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Kensai Ascension Scroll",          false, 0x448, AscensionType.Kensai),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Reaver Ascension Scroll",              false, 0x0F8, AscensionType.Reaver),
-            new RewardInfo(typeof(AscensionScroll),                         300,  0x2D9E, "Skald Ascension Scroll",   false, 0x445, AscensionType.Skald),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Berserker Ascension Scroll",       false, 0x0F1, AscensionType.Berserker),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Palemaster Ascension Scroll",      false, 0xB97, AscensionType.Palemaster),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Assassin Ascension Scroll",        false, 0x233, AscensionType.Assassin),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Blackguard Ascension Scroll",      false, 0x47E, AscensionType.Blackguard),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Kensai Ascension Scroll",          false, 0x448, AscensionType.Kensai),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Reaver Ascension Scroll",              false, 0x0F8, AscensionType.Reaver),
+            new RewardInfo(typeof(AscensionScroll),                         150,  0x2D9E, "Skald Ascension Scroll",   false, 0x445, AscensionType.Skald),
 
         };
 
@@ -77,7 +77,7 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(Artifact_ShadowBrokerGorget),            1000,  0x13C7, "Shadow Broker Gorget",             true,  0),
             new RewardInfo(typeof(Artifact_ShadowBrokerCap),               1000,  0x1DB9, "Shadow Broker Cap",                true,  0),
             new RewardInfo(typeof(Artifact_ShadowBrokerLeggings),          1000,  0x13D2, "Shadow Broker Leggings",           true,  0),
-            new RewardInfo(typeof(AscensionScroll),                         250,  0x2D9E, "Assassin Ascension Scroll",        false, 0x233, AscensionType.Assassin),
+            new RewardInfo(typeof(AscensionScroll),                         100,  0x2D9E, "Assassin Ascension Scroll",        false, 0x233, AscensionType.Assassin),
         };
 
         public static RewardInfo[] NatureMasterRewards = new RewardInfo[]
@@ -90,7 +90,7 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(Artifact_NatureMasterHeaddress),         1000,  0x1DB9, "Nature's Master Headdress",        true,  0),
             new RewardInfo(typeof(Artifact_NatureMasterLeggings),          1000,  0x13D2, "Nature's Master Leggings",         true,  0),
             new RewardInfo(typeof(Artifact_NatureMasterGorget),            1000,  0x13C7, "Nature's Master Gorget",           true,  0),
-            new RewardInfo(typeof(AscensionScroll),                         250,  0x2D9E, "Berserker Ascension Scroll",       false, 0x0F1, AscensionType.Berserker),
+            new RewardInfo(typeof(AscensionScroll),                         100,  0x2D9E, "Berserker Ascension Scroll",       false, 0x0F1, AscensionType.Berserker),
         };
 
         public static RewardInfo[] HealerRewards = new RewardInfo[]
@@ -102,8 +102,8 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(Artifact_GauntletsOfDevotion),           1000,  0x13eb, "Gauntlets of Devotion",            true,  0),
             new RewardInfo(typeof(Artifact_CoifOfDevotion),                1000,  0x13BB, "Coif of Devotion",                 true,  0),
             new RewardInfo(typeof(Artifact_LeggingsOfDevotion),            1000,  0x13f0, "Leggings of Devotion",             true,  0),
-            new RewardInfo(typeof(AscensionScroll),                         250,  0x2D9E, "Crusader Ascension Scroll",        false, 0x0F8, AscensionType.Crusader),
-            new RewardInfo(typeof(AscensionScroll),                         250,  0x2D9E, "Hierophant Ascension Scroll",      false, 0x439, AscensionType.Hierophant),
+            new RewardInfo(typeof(AscensionScroll),                         100,  0x2D9E, "Crusader Ascension Scroll",        false, 0x0F8, AscensionType.Crusader),
+            new RewardInfo(typeof(AscensionScroll),                         100,  0x2D9E, "Hierophant Ascension Scroll",      false, 0x439, AscensionType.Hierophant),
         };
 
         public static RewardInfo[] WeaveRewards = new RewardInfo[]
@@ -116,8 +116,8 @@ namespace Server.Custom.DefenderOfTheRealm
             new RewardInfo(typeof(Artifact_ArcaneGloves),                  1000,  0x13C6, "Arcane Gloves",                    true,  0),
             new RewardInfo(typeof(Artifact_ArcaneGorget),                  1000,  0x13C7, "Arcane Gorget",                    true,  0),
             new RewardInfo(typeof(Artifact_ArcaneLeggings),                1000,  0x13CB, "Arcane Leggings",                  true,  0),
-            new RewardInfo(typeof(AscensionScroll),                         250,  0x2D9E, "Archmage Ascension Scroll",        false, 0x213, AscensionType.Archmage),
-            new RewardInfo(typeof(AscensionScroll),                         250,  0x2D9E, "Arcane Archer Ascension Scroll",   false, 0x48F, AscensionType.ArcaneArcher),
+            new RewardInfo(typeof(AscensionScroll),                         100,  0x2D9E, "Archmage Ascension Scroll",        false, 0x213, AscensionType.Archmage),
+            new RewardInfo(typeof(AscensionScroll),                         100,  0x2D9E, "Arcane Archer Ascension Scroll",   false, 0x48F, AscensionType.ArcaneArcher),
         };
     }
 }

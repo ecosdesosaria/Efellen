@@ -40,14 +40,20 @@ namespace Server.Misc
 		+"• Vários feitiços de classes desbloqueáveis (místico, cavaleiro da morte, sacerdote sagrado, shinobi) foram fortalecidos e rebalanceados.<BR>"
 		+"• Livros de feitiços de extermínio e armas de longo alcance agora adicionam 70% de dano base (antes 100%).<br>"
 		+"• Adicionados ataques especiais faltantes ao Khumash Gor.<br>"
+		+"• Chefes não fugirão mais da batalha quando estiverem com pouca vida.<BR>"
+		+"• Chefes agora têm uma única barra de vida e se enfurecem conforme são danificados, em vez de múltiplas barras de vida.<BR>"
 		+" <BR>"
 		+"  * Itens e criação:<BR>"
 		+"• Adicionados vários novos artefatos como recompensa de chefes, drop global e recompensas de missões de sábio.<BR>"
 		+"• Carpinteiros agora podem criar caixas de treino de arrombamento.<br>"
 		+" <BR>"
-		+"  * Qualidade de Vida:<BR>"
+		+"  * Qualidade de Vida e correções de bugs:<BR>"
 		+"• Livros de feitiços para magos, necromantes e elementalistas, e livros de canções agora têm uma entrada de menu de contexto 'configurar' que coletará automaticamente pergaminhos faltantes do inventário do jogador e os adicionará ao livro.<BR>"
+		+"• Várias melhorias foram feitas nos suprimentos veterinários, cujo comportamento agora está mais alinhado com o das ataduras.<BR>"
+		+"• O jogo agora reconhece adequadamente quando uma criatura domada mata um monstro poderoso, e agora domadores e invocadores podem encontrar tesouros escondidos.<BR>"
 		+" <BR>"
+		+"  * Localizações:<BR>"
+		+"• A masmorra de Doom foi ampliada e tem novos chefes e desafios a serem conquistados.<BR>"
 
 		+ sepLine()
 

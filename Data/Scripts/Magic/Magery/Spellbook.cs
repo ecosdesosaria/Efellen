@@ -44,6 +44,17 @@ namespace Server.Items
 		private SlayerName m_Slayer;
 		private SlayerName m_Slayer2;
 
+		private static readonly string[] InvalidNames = new string[]
+		{ //non-identified scrolls
+            "an odd scroll",
+			"an unusual scroll",
+			"a bizarre scroll",
+			"a curious scroll",
+			"a peculiar scroll",
+			"a strange scroll",
+			"a weird scroll"
+		};
+
 		public override void ResourceChanged(CraftResource resource)
 		{
 			if (!ResourceCanChange())
@@ -331,6 +342,7 @@ namespace Server.Items
 
 				GetItemsRecursive(m_From.Backpack, items);
 
+
 				for (int i = 0; i < items.Count; i++)
 				{
 					Item item = items[i] as Item;
@@ -340,6 +352,14 @@ namespace Server.Items
 
 					SpellScroll scroll = item as SpellScroll;
 
+					// check for unidentified scrolls
+					for (int j = 0; j < InvalidNames.Length; j++)
+					{
+						if (item.Name.Equals(InvalidNames[j], StringComparison.OrdinalIgnoreCase))
+						{
+							continue;
+						}
+					}
 					if (scroll == null)
 						continue;
 
@@ -362,8 +382,6 @@ namespace Server.Items
 						scroll.Amount--;
 					else
 						scroll.Delete();
-
-
 
 					added++;
 				}

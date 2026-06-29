@@ -87,7 +87,7 @@ namespace Server.Mobiles
 			SetDex(155, 185);
 			SetInt(286, 375);
 
-			SetHits(27000);
+			SetHits(9000);
 			SetDamage(11, 15);
 
 			SetDamageType(ResistanceType.Physical, 100);
@@ -109,7 +109,7 @@ namespace Server.Mobiles
 			Karma = 15000;
 
 			VirtualArmor = 30;
-
+			IsBoss = true;
 			AddItem(new Scimitar { Hue = 267 });
 			AddItem(new LeatherArms { Hue = 267 });
 			AddItem(new LeatherChest { Hue = 267 });

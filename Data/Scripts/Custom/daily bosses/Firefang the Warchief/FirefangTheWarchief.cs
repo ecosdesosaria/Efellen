@@ -75,7 +75,7 @@ namespace Server.Mobiles
 			SetDex( 155, 235 );
 			SetInt( 206, 275 );
 
-			SetHits( 27000 );
+			SetHits( 9000 );
 			SetDamage( 11, 15 );
 
 			SetDamageType( ResistanceType.Fire, 50 );
@@ -98,6 +98,7 @@ namespace Server.Mobiles
 			Karma = -15000;
 
 			VirtualArmor = 30;
+			IsBoss = true;
 		}
 
 		public override void GenerateLoot()

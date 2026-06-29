@@ -122,6 +122,7 @@ namespace Server.Mobiles
             m_NextSummonTime = DateTime.MinValue;
 			m_NextSpecialAttack = DateTime.MinValue;
 			m_Summons = new List<BaseCreature>();
+			IsBoss = true;
         }
 
 		public override void GenerateLoot()

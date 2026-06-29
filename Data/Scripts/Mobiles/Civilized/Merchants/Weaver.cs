@@ -23,7 +23,7 @@ namespace Server.Mobiles
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.TailorsGuild; } }
 
 		[Constructable]
-		public Weaver() : base( "the weaver" )
+		public Weaver() : base( "o tecelão" )
 		{
 			SetSkill( SkillName.Tailoring, 65.0, 88.0 );
 		}

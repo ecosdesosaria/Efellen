@@ -416,6 +416,7 @@ namespace Server.Mobiles
 		private bool		m_HasGeneratedLoot; // have we generated our loot yet?
 
 		private bool		m_Paragon;
+		private bool		m_Boss;
 
 		private bool		m_IsTempEnemy;
 
@@ -713,6 +714,9 @@ namespace Server.Mobiles
 				InvalidateProperties();
 			}
 		}
+
+		[CommandProperty( AccessLevel.GameMaster )]
+		public bool IsBoss{ get{ return m_Boss; } set{ m_Boss = value; } }
 
 		public virtual FoodType FavoriteFood{ get{ return FoodType.Meat; } }
 		public virtual PackInstinct PackInstinct{ get{ return PackInstinct.None; } }
@@ -4894,6 +4898,10 @@ namespace Server.Mobiles
 		{
 			base.Serialize( writer );
 
+			writer.Write( (int) 23 ); // version
+
+			writer.Write( (bool) m_Boss );
+
 			writer.Write( (int) 22 ); // version
 
 			writer.Write( (int) m_Slayer );
@@ -5043,6 +5051,9 @@ namespace Server.Mobiles
 
 			int version = reader.ReadInt();
 
+			if ( version >= 23 )
+				m_Boss = reader.ReadBool();
+				
 			if ( version >= 22 )
 			{
 				m_Slayer = (SlayerName)reader.ReadInt();
