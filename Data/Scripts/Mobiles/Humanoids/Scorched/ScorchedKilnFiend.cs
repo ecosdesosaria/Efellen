@@ -6,13 +6,13 @@ using Server.Custom;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Scorched Kiln Fiend corpse" )]
+	[CorpseName( "o cadáver de um Kiln Fiend Chamuscado" )]
 	public class ScorchedKilnFiend : BaseCreature
 	{
 		[Constructable]
 		public ScorchedKilnFiend () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a Scorched Kiln Fiend";
+			Name = "um Kiln Fiend";
 			Body = 0x2fd;
 			Hue = 2931;
 			BaseSoundID = 357;
@@ -21,7 +21,7 @@ namespace Server.Mobiles
 			SetDex( 46, 65 );
 			SetInt( 201, 225 );
 
-			SetHits( 186, 203 );
+			SetHits( 156, 183 );
 
 			SetDamage( 4, 12 );
 

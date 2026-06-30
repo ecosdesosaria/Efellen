@@ -35,7 +35,7 @@ namespace Server.Items
 			if (Utility.RandomDouble() > 0.15)
 				return;
 
-			double skill = attacker.Skills[SkillName.Bludgeoning].Value;
+			double skill = attacker.Skills[SkillName.Swords].Value;
 			int duration = 4 + (int)(skill / 25.0);
 
 			if (duration < 4) duration = 4;

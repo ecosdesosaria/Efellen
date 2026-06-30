@@ -636,7 +636,7 @@ namespace Server.Items
 		{
 			SpectralFormContext context = HeartOfTheWilds.GetContext(m_Mobile);
 
-			if (context == null || m_Mobile.Deleted || !m_Mobile.Alive || m_Mobile.BodyMod != m_Entry.BodyValue)
+			if (context == null || m_Mobile.Deleted || !m_Mobile.Alive || m_Mobile.BodyMod != m_Entry.BodyValue || m_Mobile.NetState == null)
 			{
 				HeartOfTheWilds.RemoveContext(m_Mobile, true);
 				Stop();
