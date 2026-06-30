@@ -6,13 +6,13 @@ using Server.Custom;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Scorched Knight's corpse" )]
+	[CorpseName( "o cadáver de um Cavaleiro Chamuscado" )]
 	public class ScorchedKnight : BaseCreature
 	{
 		[Constructable]
 		public ScorchedKnight() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a Scorched Knight";
+			Name = "um Cavaleiro Chamuscado";
 			Body = 0x6b;
 			Hue = 2931;
 
@@ -20,9 +20,9 @@ namespace Server.Mobiles
 			SetDex( 76, 95 );
 			SetInt( 36, 60 );
 
-			SetHits( 118, 150 );
+			SetHits( 108, 140 );
 
-			SetDamage( 8, 18 );
+			SetDamage( 8, 14 );
 
 			SetDamageType( ResistanceType.Physical, 40 );
 			SetDamageType( ResistanceType.Fire, 60 );

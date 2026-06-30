@@ -544,9 +544,11 @@ namespace Server
 				typeof( Artifact_CrownOfBrillance), typeof( Artifact_BeltofHaste ), typeof( Artifact_WidowsWhistle), typeof(Artifact_BeltofGiantsStrength), typeof( Artifact_MemoryOfFrost ), typeof( Artifact_ChainBreaker ), typeof( Artifact_EarringsOfAllurement ), typeof (Artifact_RingOfAllurement), typeof ( Artifact_NecklaceOfAllurement ),
 				typeof( Artifact_SenseisWalkingStick), typeof( Artifact_StaffOfBlasting), typeof (Artifact_ScepterOfBlasting), typeof( Artifact_SilksOfAllurement ), typeof ( Artifact_TemptationOfSune ),
 				typeof( Artifact_ShacklesOfBhaal ), typeof( Artifact_ProtectoroftheWildsGorget ), typeof( Artifact_NatureMasterGorget ), typeof( Artifact_NatureVengeanceGorget ),  typeof(Artifact_SpiritBreaker),
-				typeof( Artifact_ShieldOfAmaunator ), typeof( Artifact_StormKingsShield ), typeof( Artifact_RememberanceOfHereafter), typeof( Artifact_EndOfHope ), typeof( Artifact_SpellBreaker ), typeof(Artifact_UgmarLastWord), typeof(Artifact_MelodyOfTriumph),
-				typeof( Artifact_BootsOfFanaedar ), typeof( Artifact_AmuletOfFanaedar ), typeof( Artifact_ThievesTorment), typeof( Artifact_EdgeOfDawn ), typeof( Artifact_EdgeOfDusk ), typeof( Artifact_JestersVow)
-				
+				typeof( Artifact_ShieldOfAmaunator ), typeof( Artifact_StormKingsShield ), typeof( Artifact_RememberanceOfHereafter ), typeof( Artifact_EndOfHope ), typeof( Artifact_SpellBreaker ), typeof( Artifact_UgmarLastWord ), typeof( Artifact_MelodyOfTriumph ),
+				typeof( Artifact_BootsOfFanaedar ), typeof( Artifact_AmuletOfFanaedar ), typeof( Artifact_ThievesTorment ), typeof( Artifact_EdgeOfDawn ), typeof( Artifact_EdgeOfDusk ), typeof( Artifact_JestersVow ),
+				typeof( Artifact_BayushisHonestSmile ), typeof( Artifact_AkodoPrideHiroSode ), typeof( Artifact_AkodoPridePlateKabuto ), typeof( Artifact_AkodoPrideSuneate ), typeof( Artifact_AkodoPridePlateDo ), typeof( Artifact_AncestralKakitaDaisho ), typeof( Artifact_AncestorWarpath ), 
+				typeof( Artifact_AncestorEmbrace ),typeof( Artifact_AncestorGrip ), typeof( Artifact_AncestorGarb ), typeof( Artifact_AncestorScorn ), typeof( Artifact_GauntletsOfDevotion ), typeof( Artifact_LeggingsOfDevotion ), 
+				typeof( Artifact_TunicOfDevotion ), typeof( Artifact_ArmsOfDevotion ), typeof( Artifact_CoifOfDevotion ), typeof(Artifact_ButchersSaw), typeof(Artifact_ButchersGrinder), typeof(Artifact_ButchersCleaver), typeof(Artifact_ButchersCaress), typeof(ButchersViolence)
 			};
 		public static Type[] ArtyTypes{ get{ return m_ArtyTypes; } }
 

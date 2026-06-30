@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Scorched Angel corpse" )]
+	[CorpseName( "o cadáver de um Anjo Chamuscado" )]
 	public class ScorchedAngel : BaseCreature
 	{
 		private static Hashtable m_BurningSkinTable = new Hashtable();
@@ -18,7 +18,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public ScorchedAngel () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a Scorched Angel";
+			Name = "um Anjo Chamuscado";
 			Body = 0x9e;
 			Hue = 2931;
 			BaseSoundID = 466;
@@ -27,9 +27,9 @@ namespace Server.Mobiles
 			SetDex( 76, 95 );
 			SetInt( 301, 325 );
 
-			SetHits( 286, 303 );
+			SetHits( 246, 263 );
 
-			SetDamage( 7, 14 );
+			SetDamage( 7, 12 );
 
 			SetDamageType( ResistanceType.Physical, 50 );
 			SetDamageType( ResistanceType.Fire, 50 );

@@ -78,7 +78,7 @@ namespace Server.Items
             new ArtifactEntry( "Artifact_WhistleofthePiper",          "Whistle of the Pied Piper",         ArtifactCategory.OneHandedWeapons ),
             new ArtifactEntry( "Artifact_WintersGrip",                "Arctic Death Dealer",               ArtifactCategory.OneHandedWeapons ),
             new ArtifactEntry( "Artifact_EnchantedTitanLegBone",      "Enchanted Pirate Rapier",           ArtifactCategory.OneHandedWeapons ),
-            new ArtifactEntry( "Artifact_MelodyOfTriumph",      "Enchanted Pirate Rapier",                 ArtifactCategory.OneHandedWeapons ),
+            new ArtifactEntry( "Artifact_MelodyOfTriumph",            "Enchanted Pirate Rapier",                 ArtifactCategory.OneHandedWeapons ),
          
 		    // ----- Two-Handed Weapons -----
 			new ArtifactEntry( "Artifact_Calm",                       "Calm",                              ArtifactCategory.TwoHandedWeapons ),
@@ -116,6 +116,8 @@ namespace Server.Items
             new ArtifactEntry( "Artifact_EdgeOfDawn",                 "Edge of Dawn",                      ArtifactCategory.TwoHandedWeapons ),
             new ArtifactEntry( "Artifact_EdgeOfDusk",                 "Edge of Dusk",                      ArtifactCategory.TwoHandedWeapons ),
             new ArtifactEntry( "Artifact_JestersVow",                 "Jester's Vow",                      ArtifactCategory.TwoHandedWeapons ),
+            new ArtifactEntry( "Artifact_AncestralKakitaDaisho",      "Ancestral Kakita Daisho",           ArtifactCategory.TwoHandedWeapons ),
+
             // ----- Ranged Weapons & quivers -----
 			new ArtifactEntry( "Artifact_WidowsWhistle",              "Widow's Whistle",                   ArtifactCategory.RangedWeapons ),
             new ArtifactEntry( "Artifact_TheNightReaper",             "Night Reaper",                      ArtifactCategory.RangedWeapons ),
@@ -360,6 +362,11 @@ namespace Server.Items
             new ArtifactEntry( "Artifact_BrambleCoat",                "Bramble Coat",                      ArtifactCategory.ArmorShields ),
             new ArtifactEntry( "Artifact_NatureVengeanceCoat",        "Coat of Natural Vengeance",         ArtifactCategory.ArmorShields ),
             new ArtifactEntry( "Artifact_WizardsPants",               "Wizard's Pants",                    ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_BayushisHonestSmile",        "Bayushi's Honest Smile",            ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_AkodoPrideHiroSode",         "Akodo's Pride Hiro Sode",           ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_AkodoPridePlateKabuto",      "Akodo's Pride Plate Kabuto",        ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_AkodoPrideSuneate",          "Akodo's Pride Suneate",             ArtifactCategory.ArmorShields ),
+            new ArtifactEntry( "Artifact_AkodoPridePlateDo",          "Akodo's Pride Plate Do",            ArtifactCategory.ArmorShields ),
             // ----- Clothing -----
 			new ArtifactEntry( "Artifact_EmbroideredOakLeafCloak",    "Embroidered Oak Leaf Cloak",        ArtifactCategory.Clothing ),
             new ArtifactEntry( "Artifact_CircletOfTheSorceress",      "Circlet Of The Sorceress",          ArtifactCategory.Clothing ),

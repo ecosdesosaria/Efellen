@@ -12,7 +12,7 @@ namespace Server.Items
 		[Constructable]
 		public Artifact_SenseisWalkingStick()
 		{
-			Name = "Sensei's Walking Stick";
+			Name = "Bastão de Caminhada do Sensei";
 			Hue = 0x2A;
 			SkillBonuses.SetValues( 0, SkillName.Bushido, 15 );
 			SkillBonuses.SetValues( 1, SkillName.Parry, 15 );
@@ -21,19 +21,25 @@ namespace Server.Items
 			MinDamage = MinDamage + 2;
 			MaxDamage = MaxDamage + 2;
 			ArtifactLevel = 2;
-			Server.Misc.Arty.ArtySetup( this, "Powerful criticals" );
+			Server.Misc.Arty.ArtySetup( this, "A maestria vem da prática incessante" );
 		}
 
 		public override void OnHit(Mobile attacker, Mobile defender, double damageBonus)
 		{
 			base.OnHit(attacker, defender, damageBonus);
-			if (attacker == null || defender == null || attacker.Map == null || defender.Map == null || defender.Deleted || attacker.Deleted)
+
+		    if (attacker == null || defender == null || attacker.Map == null ||
+		        defender.Map == null || defender.Deleted || attacker.Deleted)
 		        return;
+
 		    if (Utility.RandomDouble() < 0.15)
 		    {
 		        damageBonus += 0.35;
+
 		        attacker.SendMessage("Seu golpe perfura seu inimigo!");
 		        attacker.PlaySound(0x20F);
+
+				attacker.CheckSkill(SkillName.Bushido, 0.0, 125.0);
 		    }
 		    
 		}
