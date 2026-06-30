@@ -4898,9 +4898,9 @@ namespace Server.Mobiles
 		{
 			base.Serialize( writer );
 
-			writer.Write( (int) 23 ); // version
+			//writer.Write( (int) 23 ); // version
 
-			writer.Write( (bool) m_Boss );
+			//writer.Write( (bool) m_Boss );
 
 			writer.Write( (int) 22 ); // version
 
@@ -5051,8 +5051,8 @@ namespace Server.Mobiles
 
 			int version = reader.ReadInt();
 
-			if ( version >= 23 )
-				m_Boss = reader.ReadBool();
+			//if ( version >= 23 )
+			//	m_Boss = reader.ReadBool();
 				
 			if ( version >= 22 )
 			{
