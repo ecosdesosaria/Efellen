@@ -70,8 +70,8 @@ namespace Server.Gumps
 			AddButton(72, 45, 4014, 4014, PriorPage, GumpButtonType.Reply, 0);
 			AddButton(590, 48, 4005, 4005, NextPage, GumpButtonType.Reply, 0);
 
-			AddHtml( 107, 46, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>PRAYER BOOK</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
-			AddHtml( 398, 48, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>PRAYER BOOK</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 107, 46, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>LIVRO DE PRECES</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 398, 48, 186, 20, @"<BODY><BASEFONT Color=" + color + "><CENTER>LIVRO DE PRECES</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 
 			if ( page == 1 )
 			{
@@ -121,15 +121,15 @@ namespace Server.Gumps
 			}
 			else if ( page == 9 )
 			{
-				string lowreg = "Magic from lower reagent properties can affect the amount of piety needed to invoke the prayer. ";
-					if ( MyServerSettings.LowerReg() < 1 )
-						lowreg = "";
+				string lowreg = "Propriedades de reagente reduzido podem afetar a quantidade de piedade necessária para invocar a prece. ";
+				if ( MyServerSettings.LowerReg() < 1 )
+					lowreg = "";
 
-				info = "In order to learn the ways of the light, you must pursue proficiency in healing and spiritualism. One must seek out the graves of 14 priests, which are spread throughout the lands. Find their resting places, speak their mantra, and claim their holy symbols which contains the power granted from the gods. Placing the symbols onto this book will add the prayer, but be quick about it. Anyone that calls forth their symbols will cause it to appear no matter where it is in the land, taking it from another that may possess it. You will need to banish evil to use such prayers. Find creatures like demons and the undead...those that carry gold, and slay them while holding the symbol where trinkets go. Although their gold will vanish, your symbol will increase in piety that will deplete as you use these prayers. You do not need to hold the symbol while praying, but only when dispatching such evil. The symbol does not need to be in your possession either, as prayers will use the piety wherever it is. " + lowreg + "Although most prayers rely on your Spiritualism skill alone, there are also some elements that will have greater effect based on your Healing skill. Go forth Priest, and rid the world of evil.";
+				info = "Para aprender os caminhos da luz, você deve buscar proficiência em cura e espiritualismo. É preciso procurar os túmulos de 14 sacerdotes, espalhados por todas as terras. Encontre seus locais de descanso, recite seus mantras e reivindique seus símbolos sagrados, que contêm o poder concedido pelos deuses. Colocar os símbolos neste livro adicionará a prece, mas seja rápido. Qualquer um que invocar seus símbolos fará com que eles apareçam, não importa onde estejam na terra, tirando-os de outro que possa possuí-los. Você precisará banir o mal para usar tais preces. Encontre criaturas como demônios e mortos-vivos... aqueles que carregam ouro, e os abata enquanto segura o símbolo onde as bugigangas vão. Embora o ouro deles desapareça, seu símbolo aumentará em piedade, que se esgotará conforme você usar essas preces. Você não precisa segurar o símbolo enquanto reza, mas apenas ao eliminar tal mal. O símbolo também não precisa estar em sua posse, pois as preces usarão a piedade onde quer que ela esteja. " + lowreg + "Embora a maioria das preces dependa apenas de sua habilidade de Espiritualismo, há também alguns elementos que terão maior efeito baseado em sua habilidade de Cura. Siga em frente, Sacerdote, e livre o mundo do mal.";
 
 				AddHtml( 78, 80, 250, 314, @"<BODY><BASEFONT Color=" + color + ">" + info + "</BASEFONT></BODY>", (bool)false, (bool)true);
 
-				info = "Magic Toolbars: Here are the commands you can use (include the bracket) to manage magic toolbars that might help you play better.<br><br>[holyspell1 - Opens the 1st priest spell bar editor.<BR><BR>[holyspell2 - Opens the 2nd priest spell bar editor.<BR><BR>[holytool1 - Opens the 1st priest spell bar.<BR><BR>[holytool2 - Opens the 2nd priest spell bar.<BR><BR>[holyclose1 - Closes the 1st priest spell bar.<BR><BR>[holyclose2 - Closes the 2nd priest spell bar.<BR><BR>Below are the [ commands you can either type to quickly cast a particular spell, or set a hot key to issue this command and cast the spell.<BR><BR>[HMBanish<BR>    Cast Banish<BR><BR>[HMDampenSpirit<BR>    Cast Dampen Spirit<BR><BR>[HMEnchant<BR>    Cast Enchant<BR><BR>[HMHammerFaith<BR>    Cast Hammer of Faith<BR><BR>[HMHeavenlyLight<BR>    Cast Heavenly Light<BR><BR>[HMNourish<BR>    Cast Nourish<BR><BR>[HMPurge<BR>    Cast Purge<BR><BR>[HMRebirth<BR>    Cast Rebirth<BR><BR>[HMSacredBoon<BR>    Cast Sacred Boon<BR><BR>[HMSanctify<BR>    Cast Sanctify<BR><BR>[HMSeance<BR>    Cast Seance<BR><BR>[HMSmite<BR>    Cast Smite<BR><BR>[HMTouchLife<BR>    Cast Touch of Life<BR><BR>[HMTrialFire<BR>    Cast Trial by Fire<BR><BR>";
+				info = "Barras de Ferramentas Mágicas: Aqui estão os comandos que você pode usar (inclua os colchetes) para gerenciar barras de ferramentas mágicas que podem ajudá-lo a jogar melhor.<br><br>[holyspell1 - Abre o editor da 1ª barra de feitiços de sacerdote.<BR><BR>[holyspell2 - Abre o editor da 2ª barra de feitiços de sacerdote.<BR><BR>[holytool1 - Abre a 1ª barra de feitiços de sacerdote.<BR><BR>[holytool2 - Abre a 2ª barra de feitiços de sacerdote.<BR><BR>[holyclose1 - Fecha a 1ª barra de feitiços de sacerdote.<BR><BR>[holyclose2 - Fecha a 2ª barra de feitiços de sacerdote.<BR><BR>Abaixo estão os [comandos que você pode digitar para lançar rapidamente um feitiço específico, ou configurar uma tecla de atalho para emitir este comando e lançar o feitiço.<BR><BR>[HMBanish<BR>    Lançar Banir<BR><BR>[HMDampenSpirit<BR>    Lançar Amortecer Espírito<BR><BR>[HMEnchant<BR>    Lançar Encantar<BR><BR>[HMHammerFaith<BR>    Lançar Martelo da Fé<BR><BR>[HMHeavenlyLight<BR>    Lançar Luz Celestial<BR><BR>[HMNourish<BR>    Lançar Nutrir<BR><BR>[HMPurge<BR>    Lançar Purificar<BR><BR>[HMRebirth<BR>    Lançar Renascimento<BR><BR>[HMSacredBoon<BR>    Lançar Bênção Sagrada<BR><BR>[HMSanctify<BR>    Lançar Santificar<BR><BR>[HMSeance<BR>    Lançar Sessão Espírita<BR><BR>[HMSmite<BR>    Lançar Golpear<BR><BR>[HMTouchLife<BR>    Lançar Toque de Vida<BR><BR>[HMTrialFire<BR>    Lançar Provação pelo Fogo<BR><BR>";
 
 				AddHtml( 366, 80, 250, 314, @"<BODY><BASEFONT Color=" + color + ">" + info + "</BASEFONT></BODY>", (bool)false, (bool)true);
 			}
@@ -168,8 +168,8 @@ namespace Server.Gumps
 					pity1 = "60";
 					skil1 = "60";
 					mana1 = "30";
-					text1 = ""; if ( !this.HasSpell( from, 770) ){ m_NotHave_1 = true; z1=220; text1 = "Patriarch Morden rests south of the Village of Springvale<br>" + grav1 + "<br><br>Mantra: exilium<BR><BR>"; }
-					text1 = text1 + "Sends demons and the dead back to the realms of hell.";
+					text1 = ""; if ( !this.HasSpell( from, 770) ){ m_NotHave_1 = true; z1=220; text1 = "O Patriarca Morden descansa ao sul da Vila de Springvale<br>" + grav1 + "<br><br>Mantra: exilium<BR><BR>"; }text1 = ""; if ( !this.HasSpell( from, 770) ){ m_NotHave_1 = true; z1=220; text1 = "Patriarch Morden rests south of the Village of Springvale<br>" + grav1 + "<br><br>Mantra: exilium<BR><BR>"; }
+					text1 = text1 + "Envia demônios e mortos de volta aos reinos do inferno.";
 					icon1 = 0x965;
 
 					grav2 = Worlds.GetTown( 0, "the Village of Whisper", Map.Internal, out placer_2, out xc_2, out yc_2 );
@@ -177,8 +177,8 @@ namespace Server.Gumps
 					pity2 = "70";
 					skil2 = "70";
 					mana2 = "35";
-					text2 = ""; if ( !this.HasSpell( from, 771) ){ m_NotHave_2 = true; z2=220; text2 = "Archbishop Halyrn rests by the Village of Whisper<br>" + grav2 + "<br><br>Mantra: accipe spiritum<BR><BR>"; }
-					text2 = text2 + "Absorbs mana from others and bestows it to the priest.";
+					text2 = ""; if ( !this.HasSpell( from, 771) ){ m_NotHave_2 = true; z2=220; text2 = "O Arcebispo Halyrn descansa perto da Vila de Whisper<br>" + grav2 + "<br><br>Mantra: accipe spiritum<BR><BR>"; }
+					text2 = text2 + "Absorve mana de outros e a concede ao sacerdote.";
 					icon2 = 0x966;
 				}
 				else if ( page == 3 )
@@ -188,8 +188,8 @@ namespace Server.Gumps
 					pity1 = "90";
 					skil1 = "90";
 					mana1 = "45";
-					text1 = ""; if ( !this.HasSpell( from, 772) ){ m_NotHave_1 = true; z1=220; text1 = "Bishop Leantre rests in the Kuldar Cemetery<br>" + grav1 + "<br><br>Mantra: fascinare<BR><BR>"; }
-					text1 = text1 + "Temporarily imbues a weapon with holy powers.";
+					text1 = ""; if ( !this.HasSpell( from, 772) ){ m_NotHave_1 = true; z1=220; text1 = "O Bispo Leantre descansa no Cemitério de Kuldar<br>" + grav1 + "<br><br>Mantra: fascinare<BR><BR>"; }
+					text1 = text1 + "Imbuí temporariamente uma arma com poderes sagrados.";
 					icon1 = 0x967;
 
 					grav2 = Worlds.GetTown( 0, "the City of Elidor", Map.Internal, out placer_2, out xc_2, out yc_2 );
@@ -197,8 +197,8 @@ namespace Server.Gumps
 					pity2 = "50";
 					skil2 = "50";
 					mana2 = "25";
-					text2 = ""; if ( !this.HasSpell( from, 773) ){ m_NotHave_2 = true; z2=220; text2 = "Deacon Wilems rests in the City of Elidor<br>" + grav2 + "<br><br>Mantra: malleo fidei<BR><BR>"; }
-					text2 = text2 + "Temporarily summons a hammer from the gods.";
+					text2 = ""; if ( !this.HasSpell( from, 773) ){ m_NotHave_2 = true; z2=220; text2 = "O Diácono Wilems descansa na Cidade de Elidor<br>" + grav2 + "<br><br>Mantra: malleo fidei<BR><BR>"; }
+					text2 = text2 + "Invoca temporariamente um martelo dos deuses.";
 					icon2 = 0x968;
 				}
 				else if ( page == 4 )
@@ -208,8 +208,8 @@ namespace Server.Gumps
 					pity1 = "10";
 					skil1 = "10";
 					mana1 = "5";
-					text1 = ""; if ( !this.HasSpell( from, 774) ){ m_NotHave_1 = true; z1=220; text1 = "Drumat the Apostle rests by the City of Britain<br>" + grav1 + "<br><br>Mantra: caelesti lumine<BR><BR>"; }
-					text1 = text1 + "Destroys the darkness, allowing for one to see better.";
+					text1 = ""; if ( !this.HasSpell( from, 774) ){ m_NotHave_1 = true; z1=220; text1 = "Drumat, o Apóstolo, descansa perto da Cidade de Britain<br>" + grav1 + "<br><br>Mantra: caelesti lumine<BR><BR>"; }
+					text1 = text1 + "Destrói a escuridão, permitindo enxergar melhor.";
 					icon1 = 0x969;
 
 					grav2 = Worlds.GetTown( 0, "the Town of Moon", Map.Internal, out placer_2, out xc_2, out yc_2 );
@@ -217,8 +217,8 @@ namespace Server.Gumps
 					pity2 = "10";
 					skil2 = "10";
 					mana2 = "5";
-					text2 = ""; if ( !this.HasSpell( from, 775) ){ m_NotHave_2 = true; z2=220; text2 = "Vincent the Priest rests by the Town of Moon<br>" + grav2 + "<br><br>Mantra: famem prohibere<BR><BR>"; }
-					text2 = text2 + "The priest is able to help those that are starving or thirsty.";
+					text2 = ""; if ( !this.HasSpell( from, 775) ){ m_NotHave_2 = true; z2=220; text2 = "Vicente, o Sacerdote, descansa perto da Vila de Moon<br>" + grav2 + "<br><br>Mantra: famem prohibere<BR><BR>"; }
+					text2 = text2 + "O sacerdote pode ajudar aqueles que estão famintos ou sedentos.";
 					icon2 = 0x96A;
 				}
 				else if ( page == 5 )
@@ -228,8 +228,8 @@ namespace Server.Gumps
 					pity1 = "40";
 					skil1 = "40";
 					mana1 = "20";
-					text1 = ""; if ( !this.HasSpell( from, 776) ){ m_NotHave_1 = true; z1=220; text1 = "Abigayl the Preacher rests near the Church of the Divine in the Town of Renika<br>" + grav1 + "<br><br>Mantra: deiectionem<BR><BR>"; }
-					text1 = text1 + "Removes curses and other ailing effects.";
+					text1 = ""; if ( !this.HasSpell( from, 776) ){ m_NotHave_1 = true; z1=220; text1 = "Abigayl, a Pregadora, descansa perto da Igreja do Divino na Vila de Renika<br>" + grav1 + "<br><br>Mantra: deiectionem<BR><BR>"; }
+					text1 = text1 + "Remove maldições e outros efeitos debilitantes.";
 					icon1 = 0x96B;
 
 					grav2 = Worlds.GetTown( 0, "Greensky Village", Map.Internal, out placer_2, out xc_2, out yc_2 );
@@ -237,8 +237,8 @@ namespace Server.Gumps
 					pity2 = "200";
 					skil2 = "80";
 					mana2 = "40";
-					text2 = ""; if ( !this.HasSpell( from, 777) ){ m_NotHave_2 = true; z2=220; text2 = "Cardinal Greggs rests near the Greensky Village<br>" + grav2 + "<br><br>Mantra: reditus vitae<BR><BR>"; }
-					text2 = text2 + "Brings one back to life, or summons an orb to resurrect the priest later on.";
+					text2 = ""; if ( !this.HasSpell( from, 777) ){ m_NotHave_2 = true; z2=220; text2 = "O Cardeal Greggs descansa perto da Vila de Greensky<br>" + grav2 + "<br><br>Mantra: reditus vitae<BR><BR>"; }
+					text2 = text2 + "Traz alguém de volta à vida, ou invoca um orbe para ressuscitar o sacerdote posteriormente.";
 					icon2 = 0x96C;
 				}
 				else if ( page == 6 )
@@ -248,8 +248,8 @@ namespace Server.Gumps
 					pity1 = "20";
 					skil1 = "20";
 					mana1 = "10";
-					text1 = ""; if ( !this.HasSpell( from, 778) ){ m_NotHave_1 = true; z1=220; text1 = "Father Michal rests by the Village of Grey<br>" + grav1 + "<br><br>Mantra: sacrum munus<BR><BR>"; }
-					text1 = text1 + "Surrounds one with a holy aura that heals wounds much quicker.";
+					text1 = ""; if ( !this.HasSpell( from, 778) ){ m_NotHave_1 = true; z1=220; text1 = "O Padre Michal descansa perto da Vila de Grey<br>" + grav1 + "<br><br>Mantra: sacrum munus<BR><BR>"; }
+					text1 = text1 + "Envolve alguém com uma aura sagrada que cura ferimentos muito mais rápido.";
 					icon1 = 0x96E;
 
 					grav2 = Worlds.GetTown( 0, "the City of Montor", Map.Internal, out placer_2, out xc_2, out yc_2 );
@@ -257,8 +257,8 @@ namespace Server.Gumps
 					pity2 = "30";
 					skil2 = "30";
 					mana2 = "15";
-					text2 = ""; if ( !this.HasSpell( from, 779) ){ m_NotHave_2 = true; z2=220; text2 = "Sister Tiana rests south of the City of Montor<br>" + grav2 + "<br><br>Mantra: benedicite<BR><BR>"; }
-					text2 = text2 + "The gods grant the priest greater strength, speed, and intelligence.";
+					text2 = ""; if ( !this.HasSpell( from, 779) ){ m_NotHave_2 = true; z2=220; text2 = "A Irmã Tiana descansa ao sul da Cidade de Montor<br>" + grav2 + "<br><br>Mantra: benedicite<BR><BR>"; }
+					text2 = text2 + "Os deuses concedem ao sacerdote maior força, velocidade e inteligência.";
 					icon2 = 0x96D;
 				}
 				else if ( page == 7 )
@@ -268,8 +268,8 @@ namespace Server.Gumps
 					pity1 = "60";
 					skil1 = "60";
 					mana1 = "30";
-					text1 = ""; if ( !this.HasSpell( from, 780) ){ m_NotHave_1 = true; z1=220; text1 = "Brother Kurklan rests near the Village of Islegem<br>" + grav1 + "<br><br>Mantra: spiritus mundi<BR><BR>"; }
-					text1 = text1 + "Allows the priest to enter the realm of the dead, avoiding any harm.";
+					text1 = ""; if ( !this.HasSpell( from, 780) ){ m_NotHave_1 = true; z1=220; text1 = "O Irmão Kurklan descansa perto da Vila de Islegem<br>" + grav1 + "<br><br>Mantra: spiritus mundi<BR><BR>"; }
+					text1 = text1 + "Permite ao sacerdote adentrar o reino dos mortos, evitando qualquer dano.";
 					icon1 = 0x96F;
 
 					grav2 = Worlds.GetTown( 0, "the City of Lodoria", Map.Internal, out placer_2, out xc_2, out yc_2 );
@@ -277,8 +277,8 @@ namespace Server.Gumps
 					pity2 = "40";
 					skil2 = "40";
 					mana2 = "20";
-					text2 = ""; if ( !this.HasSpell( from, 781) ){ m_NotHave_2 = true; z2=220; text2 = "Edwin the Pope rests in the Lodoria Cemetery<br>" + grav2 + "<br><br>Mantra: percutiat<BR><BR>"; }
-					text2 = text2 + "Calls down a bolt from the heavens, doing double damage to demons and undead.";
+					text2 = ""; if ( !this.HasSpell( from, 781) ){ m_NotHave_2 = true; z2=220; text2 = "Edwin, o Papa, descansa no Cemitério de Lodoria<br>" + grav2 + "<br><br>Mantra: percutiat<BR><BR>"; }
+					text2 = text2 + "Invoca um raio dos céus, causando dano duplo a demônios e mortos-vivos.";
 					icon2 = 0x970;
 				}
 				else if ( page == 8 )
@@ -288,8 +288,8 @@ namespace Server.Gumps
 					pity1 = "20";
 					skil1 = "20";
 					mana1 = "10";
-					text1 = ""; if ( !this.HasSpell( from, 782) ){ m_NotHave_1 = true; z1=220; text1 = "Xephyn the Monk rests near the Town of Devil Guard<br>" + grav1 + "<br><br>Mantra: tactus vitae<BR><BR>"; }
-					text1 = text1 + "Restores health and stamina to the weary.";
+					text1 = ""; if ( !this.HasSpell( from, 782) ){ m_NotHave_1 = true; z1=220; text1 = "Xephyn, o Monge, descansa perto da Vila de Devil Guard<br>" + grav1 + "<br><br>Mantra: tactus vitae<BR><BR>"; }
+					text1 = text1 + "Restaura saúde e vigor aos cansados.";
 					icon1 = 0x971;
 
 					grav2 = Worlds.GetTown( 0, "the Village of Fawn", Map.Internal, out placer_2, out xc_2, out yc_2 );
@@ -297,8 +297,8 @@ namespace Server.Gumps
 					pity2 = "250";
 					skil2 = "30";
 					mana2 = "15";
-					text2 = ""; if ( !this.HasSpell( from, 783) ){ m_NotHave_2 = true; z2=220; text2 = "Chancellor Davis rests on an island near the Village of Fawn<br>" + grav2 + "<br><br>Mantra: igne iudicii<BR><BR>"; }
-					text2 = text2 + "Engulfs the priest in holy flames, reflecting magic back at the caster.";
+					text2 = ""; if ( !this.HasSpell( from, 783) ){ m_NotHave_2 = true; z2=220; text2 = "O Chanceler Davis descansa em uma ilha perto da Vila de Fawn<br>" + grav2 + "<br><br>Mantra: igne iudicii<BR><BR>"; }
+					text2 = text2 + "Envolve o sacerdote em chamas sagradas, refletindo magia de volta ao conjurador.";
 					icon2 = 0x972;
 				}
 
@@ -311,7 +311,7 @@ namespace Server.Gumps
 
 				AddImage(75, 80, icon1, 1071);
 				AddHtml( 129, 93, 200, 20, @"<BODY><BASEFONT Color=" + color + ">" + name1 + "</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 134, 130, 57, 20, @"<BODY><BASEFONT Color=" + color + ">Piety:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 134, 130, 57, 20, @"<BODY><BASEFONT Color=" + color + ">Piedade:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 196, 130, 57, 20, @"<BODY><BASEFONT Color=" + color + ">" + pity1 + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 134, 160, 57, 20, @"<BODY><BASEFONT Color=" + color + ">Skill:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 196, 160, 57, 20, @"<BODY><BASEFONT Color=" + color + ">" + skil1 + "</BASEFONT></BODY>", (bool)false, (bool)false);
@@ -321,7 +321,7 @@ namespace Server.Gumps
 
 				AddImage(362, 80, icon2, 1071);
 				AddHtml( 417, 93, 200, 20, @"<BODY><BASEFONT Color=" + color + ">" + name2 + "</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 422, 130, 57, 20, @"<BODY><BASEFONT Color=" + color + ">Piety:</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 422, 130, 57, 20, @"<BODY><BASEFONT Color=" + color + ">Piedade:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 484, 130, 57, 20, @"<BODY><BASEFONT Color=" + color + ">" + pity2 + "</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 422, 160, 57, 20, @"<BODY><BASEFONT Color=" + color + ">Skill:</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 484, 160, 57, 20, @"<BODY><BASEFONT Color=" + color + ">" + skil2 + "</BASEFONT></BODY>", (bool)false, (bool)false);

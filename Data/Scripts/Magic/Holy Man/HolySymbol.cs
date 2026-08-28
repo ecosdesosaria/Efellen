@@ -36,7 +36,7 @@ namespace Server.Items
 		{
 			if ( owner != from )
 			{
-				from.SendMessage ("This is not your holy symbol!");
+				from.SendMessage ("Este não é seu símbolo sagrado!");
 				return false;
 			}
 

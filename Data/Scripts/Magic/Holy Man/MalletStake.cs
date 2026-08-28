@@ -33,8 +33,8 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
 		{
             base.AddNameProperties(list);
-			list.Add( 1070722, "Double Click For Information");
-            list.Add( 1049644, "Single Click To Use");
+			list.Add( 1070722, "Clique Duas Vezes Para Informações");
+			list.Add( 1049644, "Clique Uma Vez Para Usar");
         }
 
 		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list ) 
