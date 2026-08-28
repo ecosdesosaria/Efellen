@@ -31,23 +31,23 @@ namespace Server.Items
 
 			owner = gifted;
 
-			string sGood = "Holy";
+			string sGood = "Santo";
 			switch ( Utility.RandomMinMax( 0, 7 ) ) 
 			{
-				case 0: sGood = "Holy";			break;
-				case 1: sGood = "Divine";		break;
-				case 2: sGood = "Spiritual";	break;
-				case 3: sGood = "Faithful";		break;
-				case 4: sGood = "Angelic";		break;
-				case 5: sGood = "Virtuous";		break;
-				case 6: sGood = "Blessed";		break;
-				case 7: sGood = "Devout";		break;
+				case 0: sGood = "Santo";		break;
+				case 1: sGood = "Divino";		break;
+				case 2: sGood = "Espiritual";	break;
+				case 3: sGood = "Fiel";		break;
+				case 4: sGood = "Angélico";		break;
+				case 5: sGood = "Virtuoso";		break;
+				case 6: sGood = "Abençoado";	break;
+				case 7: sGood = "Devoto";		break;
 			}
 
 			switch ( Utility.RandomMinMax( 1, 2 ) ) 
 			{
-				case 1: this.Name = "Book of " + sGood + " Prayers";	break;
-				case 2: this.Name = "Tome of " + sGood + " Prayers";	break;
+				case 1: this.Name = "Livro de Preces " + sGood;	break;
+				case 2: this.Name = "Tomo de Preces " + sGood;	break;
 			}
 		}
 
