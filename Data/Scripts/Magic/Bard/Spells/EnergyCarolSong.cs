@@ -14,7 +14,7 @@ namespace Server.Spells.Song
 	public class EnergyCarolSong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Energy Carol", "*plays an energy carol*",
+				"Energy Carol", "*toca um canto de energia*",
 				-1
 			);
 		

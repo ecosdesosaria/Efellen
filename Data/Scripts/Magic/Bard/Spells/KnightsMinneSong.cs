@@ -14,7 +14,7 @@ namespace Server.Spells.Song
 	public class KnightsMinneSong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Knight's Minne", "*plays a knight's minne*",
+				"Knight's Minne", "*toca uma balada de cavaleiro*",
 				-1
 			);
 

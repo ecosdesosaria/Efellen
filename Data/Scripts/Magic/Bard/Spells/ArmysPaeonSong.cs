@@ -14,7 +14,7 @@ namespace Server.Spells.Song
 	public class ArmysPaeonSong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-			"Army's Paeon", "*plays an army's paeon*",
+			"Army's Paeon", "*toca um canto do exercito*",
 			-1
 			);
 	

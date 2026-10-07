@@ -14,7 +14,7 @@ namespace Server.Spells.Song
     public class MagesBalladSong : Song
     {
         private static SpellInfo m_Info = new SpellInfo(
-            "Mage's Ballad", "*plays a mage's ballad*",
+            "Mage's Ballad", "*toca uma balada de mago*",
             -1);
 
         public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds(5); } }

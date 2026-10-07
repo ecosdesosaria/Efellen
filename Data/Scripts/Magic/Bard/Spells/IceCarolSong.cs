@@ -14,7 +14,7 @@ namespace Server.Spells.Song
 	public class IceCarolSong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Ice Carol", "*plays an ice carol*",
+				"Ice Carol", "*toca um hino de gelo*",
 				-1
 			);
 

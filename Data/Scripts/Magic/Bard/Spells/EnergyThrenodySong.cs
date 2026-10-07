@@ -10,7 +10,7 @@ namespace Server.Spells.Song
 	public class EnergyThrenodySong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Energy Threnody", "*plays an energy threnody*",
+				"Energy Threnody", "*toca um lamento de energia*",
 				-1
 			);
 
