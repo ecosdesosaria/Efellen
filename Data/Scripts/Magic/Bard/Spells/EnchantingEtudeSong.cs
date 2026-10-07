@@ -14,7 +14,7 @@ namespace Server.Spells.Song
 	public class EnchantingEtudeSong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-			"Enchanting Etude", "*plays an enchanting etude*",
+			"Enchanting Etude", "*toca um estudo encantador*",
 			-1
 			);
 		

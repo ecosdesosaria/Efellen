@@ -10,7 +10,7 @@ namespace Server.Spells.Song
 	public class FoeRequiemSong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Foe Requiem", "*toca um réquiem do inimigo*",
+				"Foe Requiem", "*toca um requiem do inimigo*",
 				-1
 			);
 

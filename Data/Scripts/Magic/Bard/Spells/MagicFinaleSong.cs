@@ -14,7 +14,7 @@ namespace Server.Spells.Song
 	public class MagicFinaleSong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Magic Finale", "*plays a magic finale*",
+				"Magic Finale", "*toca um finale magico*",
 				-1
 			);
 

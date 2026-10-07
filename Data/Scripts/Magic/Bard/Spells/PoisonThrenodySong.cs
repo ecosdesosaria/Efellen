@@ -11,7 +11,7 @@ namespace Server.Spells.Song
 	{
 
 		private static SpellInfo m_Info = new SpellInfo(
-				"Poison Threnody", "*plays a poison threnody*",
+				"Poison Threnody", "*toca um lamento de veneno*",
 				-1
 			);
 		

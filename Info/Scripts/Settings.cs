@@ -40,7 +40,7 @@ namespace Server
 
 	// The game saves itself after this many minutes in decimal format between 10 and 240 minutes.
 
-		public static double S_ServerSaveMinutes = 10.0;
+		public static double S_ServerSaveMinutes = 30.0;
 
 	// If true, saves the game when your character logs out. Helpful for single player games.
 
@@ -71,7 +71,7 @@ namespace Server
 	// public static string S_Address = "192.16.1.4";
 	// public static string S_Address = "211.12.35.213";
 
-		public static string S_Address = null;
+		public static string S_Address = "152.67.58.42";
 
 	// Here you can enter the name of your server/world
 
@@ -112,7 +112,7 @@ namespace Server
 	// to the Assassin Guildmaster so they can bribe the right people and remove a murder count one at a time (never applies to
 	// fugitives, and assassin guild members only pay half this amount).
 
-		public static int S_Bribery = 50000;
+		public static int S_Bribery = 100000;
 
 	// There are almost 300 classic artifacts in the game, as well as artifacts created for this game that are specifically named
 	// and designed. These are items like 'Stormbringer' or 'Conan's Lost Sword'. By default, these items will retain their
@@ -162,11 +162,11 @@ namespace Server
 
 	// You can increase the rate that stats gain from 50.0 (slow) to 10.0 (fast).
 
-		public static double S_StatGain = 15.0;
+		public static double S_StatGain = 10.0;
 
 	// How many minutes between stat gains which helps with the above setting. This can be between 5.0 to 60.0 minutes.
 
-		public static double S_StatGainDelay = 10.0;
+		public static double S_StatGainDelay = 5.0;
 
 	// If true, new characters can choose to take the alien origin route.
 	// This is a play style where one can choose to enter a transporter and be a character that crashed
@@ -367,6 +367,9 @@ namespace Server
 	// if set to false, a character will them need to use a powerscroll in order to get their skill past cap. 
 
 		public static bool S_itemsOvercapSkills = false; 
+
+	// Maximum skill level vendor NPCs can train a character to.
+		public static double S_VendorTrainCap = 30.0;
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////

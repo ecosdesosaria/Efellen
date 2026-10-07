@@ -14,7 +14,7 @@ namespace Server.Spells.Song
 	public class FireCarolSong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Fire Carol", "*plays a fire carol*",
+				"Fire Carol", "*toca um canto de fogo*",
 				-1
 			);
 

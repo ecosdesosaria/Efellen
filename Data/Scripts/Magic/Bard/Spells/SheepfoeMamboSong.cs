@@ -13,7 +13,7 @@ namespace Server.Spells.Song
     public class SheepfoeMamboSong : Song
     {
         private static SpellInfo m_Info = new SpellInfo(
-                "Shepherd's Dance", "*plays a shepherd's dance*",
+                "Shepherd's Dance", "*toca um bailado de pastor*",
                 -1
             );
         public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 0.5 ); } }

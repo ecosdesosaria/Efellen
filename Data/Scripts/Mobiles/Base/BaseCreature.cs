@@ -6613,7 +6613,8 @@ namespace Server.Mobiles
 			if ( ourSkill == null || theirSkill == null )
 				return TeachResult.Failure;
 
-			int baseToSet = 500;
+			//int baseToSet = 300;
+			int baseToSet = (int)(MySettings.S_VendorTrainCap * 10);
 
 			if ( baseToSet > theirSkill.CapFixedPoint )
 				baseToSet = theirSkill.CapFixedPoint;

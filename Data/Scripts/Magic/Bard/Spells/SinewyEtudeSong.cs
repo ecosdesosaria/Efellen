@@ -13,7 +13,7 @@ namespace Server.Spells.Song
 	public class SinewyEtudeSong : Song
 	{
 		private static SpellInfo m_Info = new SpellInfo(
-				"Sinewy Etude", "*plays a sinewy etude*",
+				"Sinewy Etude", "*toca um estudo sinuoso*",
 				-1
 			);
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 0.5 ); } }
