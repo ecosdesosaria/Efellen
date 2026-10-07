@@ -32,6 +32,9 @@ namespace Server.Spells.Song
 
 		public virtual bool CheckSlayer( BaseInstrument instrument, Mobile defender )
 		{
+			if ( instrument == null || defender == null )
+				return false;
+
 			SlayerEntry atkSlayer = SlayerGroup.GetEntryByName( instrument.Slayer );
 			SlayerEntry atkSlayer2 = SlayerGroup.GetEntryByName( instrument.Slayer2 );
 

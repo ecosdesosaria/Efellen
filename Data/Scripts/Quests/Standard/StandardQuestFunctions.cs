@@ -63,7 +63,7 @@ namespace Server.Misc
 				{
 					if ( sPCCategory == "Item" && StandardQuestFunctions.ChanceToFindQuestedItem() >= Utility.RandomMinMax( 1, 100 ) && Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == sPCRegion && nPCDone != 1 )
 					{
-						m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Ahh...they had " + sPCName + "!", m.NetState);
+						m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Ahh... eles tinham " + sPCName + "!", m.NetState);
 						explorer = explorer.Replace("#0#", "#1#");
 						m.SendSound( 0x3D );
 						LoggingFunctions.LogQuestItem( m, sPCName );
@@ -74,7 +74,7 @@ namespace Server.Misc
 				{
 					if ( sPCCategory == "Item" && StandardQuestFunctions.ChanceToFindQuestedItem() >= Utility.RandomMinMax( 1, 100 ) && Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == sPCRegion && nPCDone != 1 )
 					{
-						m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Ahh...I found " + sPCName + "!", m.NetState);
+						m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "Ahh... encontrei " + sPCName + "!", m.NetState);
 						LoggingFunctions.LogFoundItemQuest( m, sPCName );
 						explorer = explorer.Replace("#0#", "#1#");
 						m.SendSound( 0x3D );
@@ -88,7 +88,7 @@ namespace Server.Misc
 
 					if ( sexplorer == sPCTarget && Server.Misc.Worlds.GetRegionName( target.Map, target.Location ) == sPCRegion && nPCDone != 1 )
 					{
-						m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "The quested bounty has been fulfilled!", m.NetState);
+						m.PrivateOverheadMessage(MessageType.Regular, 1153, false, "A recompensa da missão foi cumprida!", m.NetState);
 						explorer = explorer.Replace("#0#", "#1#");
 						m.SendSound( 0x3D );
 						LoggingFunctions.LogQuestKill( m, "bounty", target );
@@ -275,7 +275,7 @@ namespace Server.Misc
 				{
 					m.SendSound( 0x3D );
 					m.AddToBackpack ( new Gold( nPCFee ) );
-					string sMessage = "Here is " + nPCFee.ToString() + " gold for you.";
+					string sMessage = "Aqui está " + nPCFee.ToString() + " moedas de ouro para você.";
 					m.PrivateOverheadMessage(MessageType.Regular, 1150, false, sMessage, m.NetState);
 					StandardQuestFunctions.QuestTimeAllowed( m );
 
@@ -370,50 +370,50 @@ namespace Server.Misc
 
 				string sGiver = QuestCharacters.QuestGiverKarma( ((PlayerMobile)m).KarmaLocked );
 
-				string sWord1 = "you";
+				string sWord1 = "você";
 				switch ( Utility.RandomMinMax( 0, 4 ) )
 				{
-					case 0:	sWord1 = "a brave adventurer";	break;
-					case 1:	sWord1 = "an adventurer";		break;
-					case 2:	sWord1 = "you";					break;
-					case 3:	sWord1 = "someone";				break;
-					case 4:	sWord1 = "one willing";			break;
+					case 0: sWord1 = "um bravo aventureiro"; break;
+					case 1: sWord1 = "um aventureiro"; break;
+					case 2: sWord1 = "você"; break;
+					case 3: sWord1 = "alguém"; break;
+					case 4: sWord1 = "um disposto"; break;
 				}
 
-				string sWord2 = "go to";
+				string sWord2 = "ir até";
 				switch ( Utility.RandomMinMax( 0, 4 ) )
 				{
-					case 0:	sWord2 = "go to";		break;
-					case 1:	sWord2 = "travel to";	break;
-					case 2:	sWord2 = "journey to";	break;
-					case 3:	sWord2 = "seek out";	break;
-					case 4:	sWord2 = "venture to";	break;
+					case 0: sWord2 = "ir até"; break;
+					case 1: sWord2 = "viajar até"; break;
+					case 2: sWord2 = "jornadear até"; break;
+					case 3: sWord2 = "procurar"; break;
+					case 4: sWord2 = "aventurar-se até"; break;
 				}
 
-				string sWord3 = "kill";
+				string sWord3 = "matar";
 
 				if ( sPCCategory == "Item" )
 				{
 					switch ( Utility.RandomMinMax( 0, 3 ) )
 					{
-						case 0:	sWord3 = "find";			break;
-						case 1:	sWord3 = "seek";			break;
-						case 2:	sWord3 = "search for";		break;
-						case 3:	sWord3 = "bring back";		break;
+						case 0: sWord3 = "encontrar"; break;
+						case 1: sWord3 = "procurar"; break;
+						case 2: sWord3 = "buscar"; break;
+						case 3: sWord3 = "trazer de volta"; break;
 					}
 				}
 				else
 				{
 					switch ( Utility.RandomMinMax( 0, 3 ) )
 					{
-						case 0:	sWord3 = "eliminate";		break;
-						case 1:	sWord3 = "slay";			break;
-						case 2:	sWord3 = "kill";			break;
-						case 3:	sWord3 = "destroy";			break;
+						case 0: sWord3 = "eliminar"; break;
+						case 1: sWord3 = "abater"; break;
+						case 2: sWord3 = "matar"; break;
+						case 3: sWord3 = "destruir"; break;
 					}
 				}
 
-				sMainQuest = sGiver + " wants " + sWord1 + " to " + sWord2 + " " + sPCRegion + " in " + sPCWorld + " and " + sWord3 + " " + sTheyCalled + " for " + sWorth + " gold";
+				sMainQuest = sGiver + " quer que " + sWord1 + " " + sWord2 + " " + sPCRegion + " em " + sPCWorld + " e " + sWord3 + " " + sTheyCalled + " por " + sWorth + " moedas de ouro";
 			}
 			return sMainQuest;
 		}
@@ -455,7 +455,7 @@ namespace Server.Misc
 
 				sexplorerQuest = sPCStory;
 				string sWorth = nPCFee.ToString("#,##0");
-				if ( nPCDone == 1 ){ sexplorerQuest = "Return to any quest bulletin board for your " + sWorth + " gold payment"; }
+				if ( nPCDone == 1 ){ sexplorerQuest = "Retorne a qualquer mural de missões para receber seu pagamento de " + sWorth + " moedas de ouro"; }
 			}
 			return sexplorerQuest;
 		}

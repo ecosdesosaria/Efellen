@@ -59,8 +59,8 @@ namespace Server.Custom.Ascensions
                 case AscensionType.Kensai:
                     return
                     "O Kensai é mestre da lâmina. Em combate, eles se especializam em golpes poderosos e pura maestria do Bushido.<br>"+
-                    "Para ativar esta Ascensão, você precisa ter 95 de habilidade base em Bushido, Conhecimento de Armas e Esgrima. Cada vez que você sobe de nível na classe, o requisito também aumenta em 1.<br>"+
-                    "Então, um Kensai de nível 20 não pode ativar esta ascensão a menos que tenha 115 de habilidade base em Bushido, Conhecimento de Armas e Esgrima.<br>"+
+                    "Para ativar esta Ascensão, você precisa ter 95 de habilidade base em Bushido, Conhecimento de Armas (Arms Lore) e Espadas (Swordsmanship). Cada vez que você sobe de nível na classe, o requisito também aumenta em 1.<br>"+
+                    "Então, um Kensai de nível 20 não pode ativar esta ascensão a menos que tenha 115 de habilidade base em Bushido, Conhecimento de Armas e Espadas (Swordsmanship).<br>"+
                     "Kensai não ganharão experiência nesta classe se tiverem aprendido Cavalaria, Magia, Necromancia ou Ninjitsu.";
                 case AscensionType.Hierophant:
                     return 
