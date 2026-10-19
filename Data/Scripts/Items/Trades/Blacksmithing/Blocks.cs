@@ -6,7 +6,7 @@ namespace Server.Items
 {
 	public abstract class BaseBlocks : Item
 	{
-		public override string DefaultDescription{ get{ return "These are a more rare, higher quality, type of ingot. They are rumored to be used by elven blacksmiths, but the art for this has seemed to be lost."; } }
+		public override string DefaultDescription{ get{ return "Estes são um tipo de lingote mais raro e de qualidade superior. Dizem que eram usados por ferreiros élficos, mas a arte para isso parece ter se perdido."; } }
 
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Crafting; } }
 

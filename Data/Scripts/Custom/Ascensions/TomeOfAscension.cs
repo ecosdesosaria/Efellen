@@ -325,7 +325,7 @@ namespace Server.Custom.Ascensions
         private List<KeyValuePair<AscensionType, int>> m_SortedEntries;
 
         public TomeOfAscensionGump(PlayerMobile from, TomeOfAscension tome)
-            : base(50, 50)
+            : base(80, 60)
         {
             m_From = from;
             m_Tome = tome;
@@ -339,30 +339,79 @@ namespace Server.Custom.Ascensions
         private void BuildGump()
         {
             int entryCount = m_SortedEntries.Count;
-            int height = Math.Max(250, 100 + (entryCount * 30));
-            if (height > 520)
-                height = 520;
+            int rowsHeight = Math.Max(1, entryCount) * 48;
+            int totalHeight = Math.Min(560, Math.Max(260, 95 + rowsHeight + 25));
 
             Closable = true;
             Disposable = true;
             Dragable = true;
             Resizable = false;
 
+            const int gumpWidth = 520;
+
             AddPage(0);
-            AddBackground(0, 0, 380, height, 9270);
-            AddLabel(20, 20, 1152, "Tomo da Ascensão");
-            AddLabel(20, 45, 0x480, String.Format("Total Scrolls: {0}", GetTotalScrollCount()));
 
-            int yPos = 80;
-            for (int i = 0; i < entryCount; i++)
+            // Moldura principal
+            AddBackground(0, 0, gumpWidth, totalHeight, 0x1453);
+            AddImageTiled(10, 10, gumpWidth - 20, totalHeight - 20, 0xA40);
+            AddAlphaRegion(10, 10, gumpWidth - 20, totalHeight - 20);
+
+            // Ícone do Tomo no Cabeçalho
+            AddBackground(20, 16, 44, 44, 0x2422);
+            AddImageTiled(22, 18, 40, 40, 0xA40);
+            AddAlphaRegion(22, 18, 40, 40);
+            AddItem(25, 20, 0x2259, 0x439);
+
+            // Título e Contador
+            AddHtml(75, 18, 240, 22, "<BIG><BASEFONT COLOR=#F4D03F><B>Tomo da Ascensão</B></BASEFONT></BIG>", false, false);
+            AddHtml(75, 40, 240, 20, "<BASEFONT COLOR=#BDC3C7><SMALL>Arquivo arcano de pergaminhos ancestrais</SMALL></BASEFONT>", false, false);
+
+            AddHtml(310, 24, 180, 20, $"<RIGHT><BASEFONT COLOR=#82E0AA><B>Total: {GetTotalScrollCount()} pergaminho{(GetTotalScrollCount() != 1 ? "s" : "")}</B></BASEFONT></RIGHT>", false, false);
+
+            // Divisória do Cabeçalho
+            AddImageTiled(20, 68, gumpWidth - 40, 2, 0xBB8);
+
+            // Lista de Pergaminhos
+            int yPos = 78;
+
+            if (entryCount == 0)
             {
-                KeyValuePair<AscensionType, int> entry = m_SortedEntries[i];
+                AddHtml(20, 120, gumpWidth - 40, 24, "<CENTER><BASEFONT COLOR=#8E999E><I>Nenhum pergaminho guardado no tomo.</I></BASEFONT></CENTER>", false, false);
+            }
+            else
+            {
+                for (int i = 0; i < entryCount; i++)
+                {
+                    if (yPos + 44 > totalHeight - 15)
+                        break; // Proteção contra overflow se houver muitos
 
-                AddLabel(20, yPos, 0x480, entry.Key.ToString());
-                AddLabel(180, yPos, 0x480, String.Format("{0}", entry.Value));
-                AddButton(300, yPos - 2, 4005, 4007, i + 1, GumpButtonType.Reply, 0);
+                    KeyValuePair<AscensionType, int> entry = m_SortedEntries[i];
+                    AscensionType type = entry.Key;
 
-                yPos += 30;
+                    // Fundo da linha
+                    AddBackground(20, yPos, gumpWidth - 40, 42, 0x2422);
+                    AddImageTiled(23, yPos + 3, gumpWidth - 46, 36, 0xA40);
+                    AddAlphaRegion(23, yPos + 3, gumpWidth - 46, 36);
+
+                    // Mini ícone da classe
+                    AscensionVisuals.DrawClassIcon(this, 26, yPos + 4, type, 34);
+
+                    // Ícone de Pergaminho
+                    AddItem(66, yPos + 7, 0xEF3, AscensionVisuals.GetItemHue(type));
+
+                    // Nome da Classe e Quantidade
+                    string hexColor = AscensionVisuals.GetColorHex(type);
+                    string displayName = AscensionTypeHelper.GetDisplayName(type);
+
+                    AddHtml(100, yPos + 10, 220, 20, $"<BASEFONT COLOR={hexColor}><B>{displayName}</B></BASEFONT>", false, false);
+                    AddHtml(310, yPos + 10, 90, 20, $"<BASEFONT COLOR=#F4D03F><B>x{entry.Value}</B></BASEFONT>", false, false);
+
+                    // Botão de Saque
+                    AddButton(415, yPos + 8, 0xFA5, 0xFA7, i + 1, GumpButtonType.Reply, 0);
+                    AddHtml(450, yPos + 10, 40, 20, "<BASEFONT COLOR=#90EE90>Sacar</BASEFONT>", false, false);
+
+                    yPos += 46;
+                }
             }
         }
 
@@ -416,20 +465,44 @@ namespace Server.Custom.Ascensions
             Dragable = true;
             Resizable = false;
 
+            const int width = 380;
+            const int height = 230;
+
             AddPage(0);
-            AddBackground(0, 0, 350, 220, 9270);
-            AddLabel(20, 20, 1152, "Sacar Pergaminhos de Ascensão");
 
-            string message = String.Format("Você tem {0} {1} pergaminho{2}.<br>Quantos gostaria de sacar?",
-                available, type.ToString(), available != 1 ? "s" : "");
+            // Moldura
+            AddBackground(0, 0, width, height, 0x1453);
+            AddImageTiled(10, 10, width - 20, height - 20, 0xA40);
+            AddAlphaRegion(10, 10, width - 20, height - 20);
 
-            AddHtml(20, 50, 310, 60, message, true, true);
-            AddLabel(20, 120, 0x480, "Quantidade:");
-            AddBackground(100, 120, 100, 25, 9350);
-            AddTextEntry(105, 120, 90, 20, 0, 0, "");
+            // Ícones
+            AscensionVisuals.DrawClassIcon(this, 25, 18, type, 42);
+            AddItem(72, y: 22, itemID: 0xEF3, hue: AscensionVisuals.GetItemHue(type));
 
-            AddButton(60, 160, 247, 248, 1, GumpButtonType.Reply, 0); // Withdraw
-            AddButton(200, 160, 241, 242, 0, GumpButtonType.Reply, 0); // Cancel
+            string hexColor = AscensionVisuals.GetColorHex(type);
+            string displayName = AscensionTypeHelper.GetDisplayName(type);
+
+            AddHtml(110, 18, 240, 20, $"<BIG><BASEFONT COLOR={hexColor}><B>Sacar Pergaminhos</B></BASEFONT></BIG>", false, false);
+            AddHtml(110, 38, 240, 20, $"<BASEFONT COLOR=#BDC3C7>{displayName}</BASEFONT>", false, false);
+
+            AddImageTiled(20, 68, width - 40, 2, 0xBB8);
+
+            string message = $"Você possui <B><BASEFONT COLOR=#F4D03F>{available}</BASEFONT></B> pergaminho{(available != 1 ? "s" : "")} guardado{(available != 1 ? "s" : "")}.<br>Quantos deseja retirar para a sua mochila?";
+            AddHtml(25, 78, width - 50, 42, $"<BASEFONT COLOR=#E5E7E9>{message}</BASEFONT>", false, false);
+
+            AddHtml(25, 128, 110, 20, "<BASEFONT COLOR=#BDC3C7><B>Quantidade:</B></BASEFONT>", false, false);
+            AddBackground(135, 125, 100, 26, 0x2422);
+            AddTextEntry(140, 127, 90, 22, 0, 0, available.ToString());
+
+            // Divisória inferior
+            AddImageTiled(20, 165, width - 40, 1, 0xBB8);
+
+            // Botões Sacar e Cancelar
+            AddButton(60, 180, 0xFA5, 0xFA7, 1, GumpButtonType.Reply, 0);
+            AddHtml(95, 182, 80, 20, "<BASEFONT COLOR=#2ECC71><B>Sacar</B></BASEFONT>", false, false);
+
+            AddButton(210, 180, 0xFB1, 0xFB2, 0, GumpButtonType.Reply, 0);
+            AddHtml(245, 182, 80, 20, "<BASEFONT COLOR=#E74C3C><B>Cancelar</B></BASEFONT>", false, false);
         }
 
         public override void OnResponse(NetState sender, RelayInfo info)

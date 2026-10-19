@@ -6,7 +6,7 @@ namespace Server.Items
 {
 	public abstract class BaseSkins : Item
 	{
-		public override string DefaultDescription{ get{ return "These are a more rare, higher quality, type of leather. They are rumored to be used by elven tailors, but the art for this has seemed to be lost."; } }
+		public override string DefaultDescription{ get{ return "Estes são um tipo de couro mais raro e de qualidade superior. Dizem que eram usados por alfaiates élficos, mas a arte para isso parece ter se perdido."; } }
 
 		public override Catalogs DefaultCatalog{ get{ return Catalogs.Crafting; } }
 
