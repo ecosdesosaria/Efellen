@@ -363,10 +363,10 @@ namespace Server.Custom.Ascensions
             AddItem(25, 20, 0x2259, 0x439);
 
             // Título e Contador
-            AddHtml(75, 18, 240, 22, "<BIG><BASEFONT COLOR=#F4D03F><B>Tomo da Ascensão</B></BASEFONT></BIG>", false, false);
+            AddHtml(75, 18, 240, 22, "<BIG><BASEFONT COLOR=#F4D03F>Tomo da Ascensão</BASEFONT></BIG>", false, false);
             AddHtml(75, 40, 240, 20, "<BASEFONT COLOR=#BDC3C7><SMALL>Arquivo arcano de pergaminhos ancestrais</SMALL></BASEFONT>", false, false);
 
-            AddHtml(310, 24, 180, 20, $"<RIGHT><BASEFONT COLOR=#82E0AA><B>Total: {GetTotalScrollCount()} pergaminho{(GetTotalScrollCount() != 1 ? "s" : "")}</B></BASEFONT></RIGHT>", false, false);
+            AddHtml(310, 24, 180, 20, $"<RIGHT><BASEFONT COLOR=#82E0AA>Total: {GetTotalScrollCount()} pergaminho{(GetTotalScrollCount() != 1 ? "s" : "")}</BASEFONT></RIGHT>", false, false);
 
             // Divisória do Cabeçalho
             AddImageTiled(20, 68, gumpWidth - 40, 2, 0xBB8);
@@ -403,8 +403,8 @@ namespace Server.Custom.Ascensions
                     string hexColor = AscensionVisuals.GetColorHex(type);
                     string displayName = AscensionTypeHelper.GetDisplayName(type);
 
-                    AddHtml(100, yPos + 10, 220, 20, $"<BASEFONT COLOR={hexColor}><B>{displayName}</B></BASEFONT>", false, false);
-                    AddHtml(310, yPos + 10, 90, 20, $"<BASEFONT COLOR=#F4D03F><B>x{entry.Value}</B></BASEFONT>", false, false);
+                    AddHtml(100, yPos + 10, 220, 20, $"<BASEFONT COLOR={hexColor}>{displayName}</BASEFONT>", false, false);
+                    AddHtml(310, yPos + 10, 90, 20, $"<BASEFONT COLOR=#F4D03F>x{entry.Value}</BASEFONT>", false, false);
 
                     // Botão de Saque
                     AddButton(415, yPos + 8, 0xFA5, 0xFA7, i + 1, GumpButtonType.Reply, 0);
@@ -482,15 +482,15 @@ namespace Server.Custom.Ascensions
             string hexColor = AscensionVisuals.GetColorHex(type);
             string displayName = AscensionTypeHelper.GetDisplayName(type);
 
-            AddHtml(110, 18, 240, 20, $"<BIG><BASEFONT COLOR={hexColor}><B>Sacar Pergaminhos</B></BASEFONT></BIG>", false, false);
+            AddHtml(110, 18, 240, 20, $"<BIG><BASEFONT COLOR={hexColor}>Sacar Pergaminhos</BASEFONT></BIG>", false, false);
             AddHtml(110, 38, 240, 20, $"<BASEFONT COLOR=#BDC3C7>{displayName}</BASEFONT>", false, false);
 
             AddImageTiled(20, 68, width - 40, 2, 0xBB8);
 
-            string message = $"Você possui <B><BASEFONT COLOR=#F4D03F>{available}</BASEFONT></B> pergaminho{(available != 1 ? "s" : "")} guardado{(available != 1 ? "s" : "")}.<br>Quantos deseja retirar para a sua mochila?";
+            string message = $"Você possui <BASEFONT COLOR=#F4D03F>{available}</BASEFONT> pergaminho{(available != 1 ? "s" : "")} guardado{(available != 1 ? "s" : "")}.<br>Quantos deseja retirar para a sua mochila?";
             AddHtml(25, 78, width - 50, 42, $"<BASEFONT COLOR=#E5E7E9>{message}</BASEFONT>", false, false);
 
-            AddHtml(25, 128, 110, 20, "<BASEFONT COLOR=#BDC3C7><B>Quantidade:</B></BASEFONT>", false, false);
+            AddHtml(25, 128, 110, 20, "<BASEFONT COLOR=#BDC3C7>Quantidade:</BASEFONT>", false, false);
             AddBackground(135, 125, 100, 26, 0x2422);
             AddTextEntry(140, 127, 90, 22, 0, 0, available.ToString());
 
@@ -499,10 +499,10 @@ namespace Server.Custom.Ascensions
 
             // Botões Sacar e Cancelar
             AddButton(60, 180, 0xFA5, 0xFA7, 1, GumpButtonType.Reply, 0);
-            AddHtml(95, 182, 80, 20, "<BASEFONT COLOR=#2ECC71><B>Sacar</B></BASEFONT>", false, false);
+            AddHtml(95, 182, 80, 20, "<BASEFONT COLOR=#2ECC71>Sacar</BASEFONT>", false, false);
 
             AddButton(210, 180, 0xFB1, 0xFB2, 0, GumpButtonType.Reply, 0);
-            AddHtml(245, 182, 80, 20, "<BASEFONT COLOR=#E74C3C><B>Cancelar</B></BASEFONT>", false, false);
+            AddHtml(245, 182, 80, 20, "<BASEFONT COLOR=#E74C3C>Cancelar</BASEFONT>", false, false);
         }
 
         public override void OnResponse(NetState sender, RelayInfo info)

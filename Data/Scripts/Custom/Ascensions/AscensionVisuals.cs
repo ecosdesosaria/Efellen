@@ -13,17 +13,46 @@ namespace Server.Custom.Ascensions
                 case AscensionType.Berserker:    return 0xF47;  // Battle Axe
                 case AscensionType.Archmage:     return 0xEFA;  // Spellbook
                 case AscensionType.Battlemage:   return 0x0F5E; // Broadsword
-                case AscensionType.Archdruid:    return 0x13F8; // Gnarled Staff
+                case AscensionType.Archdruid:    return 0x1547; // Horned Deer Mask (Cernunnos / Shamanic Druid Crown)
                 case AscensionType.Palemaster:   return 0x1AE2; // Skull
                 case AscensionType.Crusader:     return 0x1BC3; // Order Shield
                 case AscensionType.Kensai:       return 0x13FF; // Katana
                 case AscensionType.Skald:        return 0x0EB2; // Harp
                 case AscensionType.Assassin:     return 0x0F51; // Dagger
-                case AscensionType.Reaver:       return 0x26BA; // Scythe
-                case AscensionType.ArcaneArcher: return 0x2D1E; // Elven Composite Bow
-                case AscensionType.Hierophant:   return 0x0004; // Ankh
+                case AscensionType.Reaver:       return 0x0F45; // Executioner's Axe
+                case AscensionType.ArcaneArcher: return 0x2FB7; // Elven Quiver (0x2FB7 is compact & fits slot; 0x2B02 was paperdoll art and overflowed)
+                case AscensionType.Hierophant:   return 0x26BC; // Divine Scepter
                 case AscensionType.Blackguard:   return 0x1BC4; // Chaos Shield
                 default:                         return 0x2259; // Tome
+            }
+        }
+
+        public static void GetItemOffset(AscensionType type, int slotSize, out int offsetX, out int offsetY)
+        {
+            // Center typical ~36px UO item art sprite inside given slotSize
+            int basePad = Math.Max(0, (slotSize - 36) / 2);
+            offsetX = basePad;
+            offsetY = basePad;
+
+            // Fine tuning for specific item bounding boxes in UO
+            switch (type)
+            {
+                case AscensionType.Berserker:
+                    offsetX += 1;
+                    offsetY += 1;
+                    break;
+                case AscensionType.Archdruid:
+                    offsetY -= 1;
+                    break;
+                case AscensionType.Hierophant:
+                    offsetY += 1;
+                    break;
+                case AscensionType.ArcaneArcher:
+                    offsetX += 1;
+                    break;
+                case AscensionType.Skald:
+                    offsetX += 1;
+                    break;
             }
         }
 
@@ -92,7 +121,6 @@ namespace Server.Custom.Ascensions
 
         public static void DrawClassIcon(Gump gump, int x, int y, AscensionType type, int slotSize = 46)
         {
-            // Moldura externa escura
             gump.AddBackground(x, y, slotSize, slotSize, 0x2422);
             gump.AddImageTiled(x + 2, y + 2, slotSize - 4, slotSize - 4, 0xA40);
             gump.AddAlphaRegion(x + 2, y + 2, slotSize - 4, slotSize - 4);
@@ -100,13 +128,14 @@ namespace Server.Custom.Ascensions
             int itemID = GetItemArt(type);
             int itemHue = GetItemHue(type);
 
-            // Item centralizado na moldura
-            gump.AddItem(x + 4, y + 5, itemID, itemHue);
+            int offX, offY;
+            GetItemOffset(type, slotSize, out offX, out offY);
+
+            gump.AddItem(x + offX, y + offY, itemID, itemHue);
         }
 
         public static void DrawProgressBar(Gump gump, int x, int y, int width, int height, double percentage, string label = null)
         {
-            // Moldura de fundo da barra
             gump.AddBackground(x, y, width, height, 0x2422);
             gump.AddImageTiled(x + 2, y + 2, width - 4, height - 4, 0xA40);
             gump.AddAlphaRegion(x + 2, y + 2, width - 4, height - 4);
@@ -116,16 +145,16 @@ namespace Server.Custom.Ascensions
 
             if (fillWidth > 0)
             {
-                // Barra de preenchimento (usando 0x805/0x806 ou padrão tiled UO)
                 gump.AddImageTiled(x + 2, y + 2, fillWidth, height - 4, 0x805);
             }
 
             if (!string.IsNullOrEmpty(label))
             {
                 gump.AddHtml(x, y + (height - 18) / 2, width, 18,
-                    $"<CENTER><BASEFONT COLOR=#FFFFFF><SMALL><B>{label}</B></SMALL></BASEFONT></CENTER>",
+                    $"<CENTER><BASEFONT COLOR=#FFFFFF><SMALL>{label}</SMALL></BASEFONT></CENTER>",
                     false, false);
             }
         }
     }
 }
+

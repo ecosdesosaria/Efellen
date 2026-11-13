@@ -44,11 +44,11 @@ namespace Server.Custom.Ascensions
             string displayName = AscensionTypeHelper.GetDisplayName(type);
 
             string titleText = isUnlock ? "Desbloqueio de Ascensão" : "Evolução de Nível";
-            AddHtml(80, 20, 330, 22, $"<BIG><BASEFONT COLOR={hexColor}><B>{titleText}</B></BASEFONT></BIG>", false, false);
+            AddHtml(80, 20, 330, 22, $"<BIG><BASEFONT COLOR={hexColor}>{titleText}</BASEFONT></BIG>", false, false);
 
             string promptText = isUnlock
-                ? $"Deseja desbloquear a classe <B>{displayName}</B>?"
-                : $"Deseja evoluir <B>{displayName}</B> para o <B>Nível {nextLevel}</B>?";
+                ? $"Deseja desbloquear a classe {displayName}?"
+                : $"Deseja evoluir {displayName} para o Nível {nextLevel}?";
             AddHtml(80, 42, 330, 20, $"<BASEFONT COLOR=#BDC3C7>{promptText}</BASEFONT>", false, false);
 
             // Divisória
@@ -77,7 +77,7 @@ namespace Server.Custom.Ascensions
             AddItem(68, resY + 12, 0xEEF);
             bool hasGold = AscensionUnlocking.HasGold(pm, gold);
             string goldColor = hasGold ? "#2ECC71" : "#E74C3C";
-            AddHtml(25, resY + 52, 120, 20, $"<CENTER><BASEFONT COLOR={goldColor}><B>{gold} Ouro</B></BASEFONT></CENTER>", false, false);
+            AddHtml(25, resY + 52, 120, 20, $"<CENTER><BASEFONT COLOR={goldColor}>{gold} Ouro</BASEFONT></CENTER>", false, false);
 
             // Poeira Arcana
             AddBackground(160, resY, 120, 80, 0x2422);
@@ -86,7 +86,7 @@ namespace Server.Custom.Ascensions
             AddItem(203, resY + 12, 0x0F8F);
             bool hasDust = AscensionUnlocking.HasArcaneDust(pm, dust);
             string dustColor = hasDust ? "#2ECC71" : "#E74C3C";
-            AddHtml(160, resY + 52, 120, 20, $"<CENTER><BASEFONT COLOR={dustColor}><B>{dust} Poeira</B></BASEFONT></CENTER>", false, false);
+            AddHtml(160, resY + 52, 120, 20, $"<CENTER><BASEFONT COLOR={dustColor}>{dust} Poeira</BASEFONT></CENTER>", false, false);
 
             // Pergaminhos
             AddBackground(295, resY, 120, 80, 0x2422);
@@ -95,7 +95,7 @@ namespace Server.Custom.Ascensions
             AddItem(338, resY + 12, 0xEF3, AscensionVisuals.GetItemHue(type));
             bool hasScrolls = AscensionUnlocking.HasScrolls(pm, type, scrolls);
             string scrollColor = hasScrolls ? "#2ECC71" : "#E74C3C";
-            AddHtml(295, resY + 52, 120, 20, $"<CENTER><BASEFONT COLOR={scrollColor}><B>{scrolls} Pergaminho{(scrolls != 1 ? "s" : "")}</B></BASEFONT></CENTER>", false, false);
+            AddHtml(295, resY + 52, 120, 20, $"<CENTER><BASEFONT COLOR={scrollColor}>{scrolls} Pergaminho{(scrolls != 1 ? "s" : "")}</BASEFONT></CENTER>", false, false);
 
             // Divisória inferior
             AddImageTiled(20, 185, width - 40, 1, 0xBB8);
@@ -105,11 +105,11 @@ namespace Server.Custom.Ascensions
 
             // Confirmar
             AddButton(70, btnY, 0xFA5, 0xFA7, 1, GumpButtonType.Reply, 0);
-            AddHtml(105, btnY + 2, 90, 20, "<BASEFONT COLOR=#2ECC71><B>Confirmar</B></BASEFONT>", false, false);
+            AddHtml(105, btnY + 2, 90, 20, "<BASEFONT COLOR=#2ECC71>Confirmar</BASEFONT>", false, false);
 
             // Cancelar
             AddButton(250, btnY, 0xFB1, 0xFB2, 0, GumpButtonType.Reply, 0);
-            AddHtml(285, btnY + 2, 90, 20, "<BASEFONT COLOR=#E74C3C><B>Cancelar</B></BASEFONT>", false, false);
+            AddHtml(285, btnY + 2, 90, 20, "<BASEFONT COLOR=#E74C3C>Cancelar</BASEFONT>", false, false);
         }
 
         public override void OnResponse(Server.Network.NetState sender, RelayInfo info)

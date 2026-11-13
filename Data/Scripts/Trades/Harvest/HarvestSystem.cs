@@ -562,6 +562,8 @@ namespace Server.Engines.Harvest
 			if ( item.RootParentEntity == m )
 				return true;
 
+			m.SendMessage( 0x22, "Sua mochila está cheia! O recurso coletado foi perdido." );
+			
 			Map map = m.Map;
 
 			if ( map == null )
