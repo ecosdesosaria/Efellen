@@ -557,12 +557,13 @@ namespace Server.Engines.Harvest
 
 		public virtual bool Give( Mobile m, Item item )
 		{
-			BaseContainer.PutStuffInContainer( m, 3, item );
+			if ( item == null || item.Deleted )
+				return false;
 
-			if ( item.RootParentEntity == m )
+			if ( BaseContainer.PutStuffInContainer( m, 3, item ) || item.Deleted || item.RootParentEntity == m )
 				return true;
 
-			m.SendMessage( 0x22, "Sua mochila está cheia! O recurso coletado foi perdido." );
+			m.SendMessage( 0x22, "Sua mochila está cheia! " );
 			
 			Map map = m.Map;
 
