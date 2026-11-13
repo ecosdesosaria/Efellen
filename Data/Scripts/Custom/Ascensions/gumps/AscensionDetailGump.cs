@@ -56,7 +56,7 @@ namespace Server.Custom.Ascensions
             string subTitle = AscensionVisuals.GetSubTitle(m_Type);
             bool isActive = m_From.AscensionProfile.ActiveAscension == m_Type;
 
-            AddHtml(85, 16, 310, 26, $"<BIG><BASEFONT COLOR={hexColor}><B>{displayName}</B></BASEFONT></BIG>", false, false);
+            AddHtml(85, 16, 310, 26, $"<BIG><BASEFONT COLOR={hexColor}>{displayName}</BASEFONT></BIG>", false, false);
             AddHtml(85, 40, 310, 20, $"<BASEFONT COLOR=#BDC3C7><I>{subTitle}</I></BASEFONT>", false, false);
 
             // Nível e Barra de Experiência no Topo Direito
@@ -64,7 +64,7 @@ namespace Server.Custom.Ascensions
             double pct = required > 0 ? Math.Min(1.0, (double)m_Progress.Experience / required) : 1.0;
             string xpText = required > 0 ? $"{m_Progress.Experience} / {required}" : "MAX";
 
-            AddHtml(410, 16, 240, 20, $"<RIGHT><BASEFONT COLOR=#82E0AA><B>Nível {m_Progress.Level}</B></BASEFONT></RIGHT>", false, false);
+            AddHtml(410, 16, 240, 20, $"<RIGHT><BASEFONT COLOR=#82E0AA>Nível {m_Progress.Level}</BASEFONT></RIGHT>", false, false);
             AscensionVisuals.DrawProgressBar(this, 410, 38, 240, 18, pct, xpText);
 
             // Divisória do Cabeçalho
@@ -72,13 +72,13 @@ namespace Server.Custom.Ascensions
 
             // Barra de Navegação por Abas (Client-Side Instantâneo)
             AddButton(25, 76, 0xFA5, 0xFA7, 0, GumpButtonType.Page, 1);
-            AddHtml(60, 78, 150, 20, "<BASEFONT COLOR=#F4D03F><B>Visão Geral & Custos</B></BASEFONT>", false, false);
+            AddHtml(60, 78, 150, 20, "<BASEFONT COLOR=#F4D03F>Visão Geral & Custos</BASEFONT>", false, false);
 
             AddButton(235, 76, 0xFA5, 0xFA7, 0, GumpButtonType.Page, 2);
-            AddHtml(270, 78, 175, 20, "<BASEFONT COLOR=#5DADE2><B>Habilidades Ativas (4)</B></BASEFONT>", false, false);
+            AddHtml(270, 78, 175, 20, "<BASEFONT COLOR=#5DADE2>Habilidades Ativas (4)</BASEFONT>", false, false);
 
             AddButton(455, 76, 0xFA5, 0xFA7, 0, GumpButtonType.Page, 3);
-            AddHtml(490, 78, 175, 20, "<BASEFONT COLOR=#82E0AA><B>Habilidades Passivas (4)</B></BASEFONT>", false, false);
+            AddHtml(490, 78, 175, 20, "<BASEFONT COLOR=#82E0AA>Habilidades Passivas (4)</BASEFONT>", false, false);
 
             // Divisória abaixo das Abas
             AddImageTiled(20, 104, gumpWidth - 40, 1, 0xBB8);
@@ -89,17 +89,17 @@ namespace Server.Custom.Ascensions
 
             // Botão Voltar
             AddButton(30, footerY + 2, 0x15E3, 0x15E7, Button_Back, GumpButtonType.Reply, 0);
-            AddHtml(55, footerY + 4, 80, 20, "<BASEFONT COLOR=#BDC3C7><B>Voltar</B></BASEFONT>", false, false);
+            AddHtml(55, footerY + 4, 80, 20, "<BASEFONT COLOR=#BDC3C7>Voltar</BASEFONT>", false, false);
 
             // Status Ativo / Botão de Ativação
             if (isActive)
             {
-                AddHtml(480, footerY + 4, 170, 20, "<RIGHT><BASEFONT COLOR=#2ECC71><B>✔ ATUALMENTE ATIVA</B></BASEFONT></RIGHT>", false, false);
+                AddHtml(480, footerY + 4, 170, 20, "<RIGHT><BASEFONT COLOR=#2ECC71>✔ ATUALMENTE ATIVA</BASEFONT></RIGHT>", false, false);
             }
             else if (m_Progress.Level > 0)
             {
                 AddButton(490, footerY + 2, 0xFA5, 0xFA7, Button_Activate, GumpButtonType.Reply, 0);
-                AddHtml(525, footerY + 4, 130, 20, "<BASEFONT COLOR=#F4D03F><B>Ativar Ascensão</B></BASEFONT>", false, false);
+                AddHtml(525, footerY + 4, 130, 20, "<BASEFONT COLOR=#F4D03F>Ativar Ascensão</BASEFONT>", false, false);
             }
 
             // ========================================================
@@ -116,7 +116,7 @@ namespace Server.Custom.Ascensions
             AddHtml(28, 116, gumpWidth - 56, 68, reqHtml, false, false);
 
             // Seção Descrição do Arquétipo (Expandida em +2 linhas e com scrollbar de segurança)
-            AddHtml(20, 190, 250, 20, "<BASEFONT COLOR=#F4D03F><B>Descrição do Arquétipo</B></BASEFONT>", false, false);
+            AddHtml(20, 190, 250, 20, "<BASEFONT COLOR=#F4D03F>Descrição do Arquétipo</BASEFONT>", false, false);
             AddBackground(20, 210, gumpWidth - 40, 210, 0x2422);
             AddImageTiled(24, 214, gumpWidth - 48, 202, 0xA40);
             AddAlphaRegion(24, 214, gumpWidth - 48, 202);
@@ -130,11 +130,11 @@ namespace Server.Custom.Ascensions
             AddAlphaRegion(24, 430, gumpWidth - 48, 42);
 
             AddItem(28, 434, 0x2253, 0x481); // Ícone de livro de feitiços/grimório
-            AddHtml(70, 432, 380, 20, "<BASEFONT COLOR=#F4D03F><B>Poderes Ancestrais da Classe</B></BASEFONT>", false, false);
+            AddHtml(70, 432, 380, 20, "<BASEFONT COLOR=#F4D03F>Poderes Ancestrais da Classe</BASEFONT>", false, false);
             AddHtml(70, 450, 380, 20, "<BASEFONT COLOR=#BDC3C7><SMALL>Esta ascensão concede 4 habilidades ativas e 4 habilidades passivas exclusivas.</SMALL></BASEFONT>", false, false);
 
             AddButton(480, 438, 0xFA5, 0xFA7, 0, GumpButtonType.Page, 2);
-            AddHtml(515, 440, 140, 20, "<BASEFONT COLOR=#5DADE2><B>Ver Habilidades ➔</B></BASEFONT>", false, false);
+            AddHtml(515, 440, 140, 20, "<BASEFONT COLOR=#5DADE2>Ver Habilidades ➔</BASEFONT>", false, false);
 
             // Painel de Custo / Evolução
             int upgradeY = 484;
@@ -149,35 +149,35 @@ namespace Server.Custom.Ascensions
                 AddImageTiled(24, upgradeY + 4, gumpWidth - 48, 87, 0xA40);
                 AddAlphaRegion(24, upgradeY + 4, gumpWidth - 48, 87);
 
-                AddHtml(30, upgradeY + 8, 350, 20, $"<BASEFONT COLOR=#82E0AA><BIG><B>Pronto para Evoluir para o Nível {next}!</B></BIG></BASEFONT>", false, false);
+                AddHtml(30, upgradeY + 8, 350, 20, $"<BASEFONT COLOR=#82E0AA><BIG>Pronto para Evoluir para o Nível {next}!</BIG></BASEFONT>", false, false);
 
                 // Ouro
                 AddItem(30, upgradeY + 36, 0xEEF);
                 bool hasGold = AscensionUnlocking.HasGold(m_From, gold);
                 string goldColor = hasGold ? "#2ECC71" : "#E74C3C";
-                AddHtml(65, upgradeY + 38, 120, 20, $"<BASEFONT COLOR={goldColor}><B>{gold} Ouro</B></BASEFONT>", false, false);
+                AddHtml(65, upgradeY + 38, 120, 20, $"<BASEFONT COLOR={goldColor}>{gold} Ouro</BASEFONT>", false, false);
 
                 // Poeira Arcana
-                AddItem(190, upgradeY + 36, 0x0F8F);
+                AddItem(190, upgradeY + 36, 0x2FE9);
                 bool hasDust = AscensionUnlocking.HasArcaneDust(m_From, dust);
                 string dustColor = hasDust ? "#2ECC71" : "#E74C3C";
-                AddHtml(225, upgradeY + 38, 130, 20, $"<BASEFONT COLOR={dustColor}><B>{dust} Poeira</B></BASEFONT>", false, false);
+                AddHtml(225, upgradeY + 38, 130, 20, $"<BASEFONT COLOR={dustColor}>{dust} Pó Arcano</BASEFONT>", false, false);
 
                 // Pergaminhos
                 AddItem(365, upgradeY + 36, 0xEF3, AscensionVisuals.GetItemHue(m_Type));
                 bool hasScrolls = AscensionUnlocking.HasScrolls(m_From, m_Type, scrolls);
                 string scrollColor = hasScrolls ? "#2ECC71" : "#E74C3C";
-                AddHtml(400, upgradeY + 38, 130, 20, $"<BASEFONT COLOR={scrollColor}><B>{scrolls} Pergaminho{(scrolls != 1 ? "s" : "")}</B></BASEFONT>", false, false);
+                AddHtml(400, upgradeY + 38, 130, 20, $"<BASEFONT COLOR={scrollColor}>{scrolls} Pergaminho{(scrolls != 1 ? "s" : "")}</BASEFONT>", false, false);
 
                 // Botão de Upgrade
                 AddButton(535, upgradeY + 34, 0xFA5, 0xFA7, 3000 + (int)m_Type, GumpButtonType.Reply, 0);
-                AddHtml(570, upgradeY + 36, 80, 20, "<BASEFONT COLOR=#F4D03F><B>Evoluir</B></BASEFONT>", false, false);
+                AddHtml(570, upgradeY + 36, 80, 20, "<BASEFONT COLOR=#F4D03F>Evoluir</BASEFONT>", false, false);
             }
             else if (m_Progress.Level >= AscensionConstants.MaxAscensionLevel)
             {
                 AddBackground(20, upgradeY, gumpWidth - 40, 70, 0x2422);
                 AddAlphaRegion(24, upgradeY + 4, gumpWidth - 48, 62);
-                AddHtml(20, upgradeY + 24, gumpWidth - 40, 22, "<CENTER><BASEFONT COLOR=#F4D03F><BIG><B>★ ASCENSÃO MESTRA (NÍVEL MÁXIMO ATINGIDO) ★</B></BIG></BASEFONT></CENTER>", false, false);
+                AddHtml(20, upgradeY + 24, gumpWidth - 40, 22, "<CENTER><BASEFONT COLOR=#F4D03F><BIG>★ ASCENSÃO MESTRA (NÍVEL MÁXIMO ATINGIDO) ★</BIG></BASEFONT></CENTER>", false, false);
             }
             else
             {
@@ -237,15 +237,15 @@ namespace Server.Custom.Ascensions
 
                 // Linha de Cabeçalho da Habilidade: Nome, Nível, Comando e Status
                 string statusText = isUnlocked
-                    ? "<BASEFONT COLOR=#2ECC71><B>✔ Desbloqueada</B></BASEFONT>"
-                    : $"<BASEFONT COLOR=#E74C3C><B>🔒 Requer Nível {entry.Level}</B></BASEFONT>";
+                    ? "<BASEFONT COLOR=#2ECC71>✔ Desbloqueada</BASEFONT>"
+                    : $"<BASEFONT COLOR=#E74C3C>🔒 Requer Nível {entry.Level}</BASEFONT>";
 
                 string commandBadge = !string.IsNullOrEmpty(entry.Command)
                     ? $" <BASEFONT COLOR=#5DADE2><SMALL>[{entry.Command}]</SMALL></BASEFONT>"
                     : " <BASEFONT COLOR=#A569BD><SMALL>[Passiva]</SMALL></BASEFONT>";
 
                 AddHtml(82, cardY + 8, 380, 20,
-                    $"<BIG><BASEFONT COLOR=#F4D03F><B>{entry.Name}</B></BASEFONT></BIG> <BASEFONT COLOR=#82E0AA>[Nível {entry.Level}]</BASEFONT>{commandBadge}",
+                    $"<BIG><BASEFONT COLOR=#F4D03F>{entry.Name}</BASEFONT></BIG> <BASEFONT COLOR=#82E0AA>[Nível {entry.Level}]</BASEFONT>{commandBadge}",
                     false, false);
 
                 AddHtml(gumpWidth - 220, cardY + 8, 190, 20,
@@ -274,7 +274,7 @@ namespace Server.Custom.Ascensions
             int reqValue = def.GetRequiredSkillValue(targetLevel);
 
             StringBuilder sb = new StringBuilder();
-            sb.Append("<BASEFONT COLOR=#FFFFFF><B>Status de Requisitos (Nível ").Append(targetLevel).Append("):</B><br>");
+            sb.Append("<BASEFONT COLOR=#FFFFFF>Status de Requisitos (Nível ").Append(targetLevel).Append("):<br>");
 
             // Habilidades Requeridas
             if (def.RequiredSkills != null && def.RequiredSkills.Length > 0)
@@ -308,7 +308,7 @@ namespace Server.Custom.Ascensions
                     if (current > 0)
                     {
                         hasAnyViolation = true;
-                        sb.Append("<BASEFONT COLOR=#E74C3C><B>").Append(sk.ToString()).Append(" [").Append((int)current).Append("] ✘</B></BASEFONT> ");
+                        sb.Append("<BASEFONT COLOR=#E74C3C>").Append(sk.ToString()).Append(" [").Append((int)current).Append("] ✘</BASEFONT> ");
                     }
                 }
 

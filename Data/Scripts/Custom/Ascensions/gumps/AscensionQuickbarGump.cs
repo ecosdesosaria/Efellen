@@ -43,7 +43,7 @@ namespace Server.Custom.Ascensions
 
             string hexColor = AscensionVisuals.GetColorHex(activeType);
             string displayName = AscensionTypeHelper.GetDisplayName(activeType);
-            AddHtml(52, 10, 195, 20, $"<BASEFONT COLOR={hexColor}><B>{displayName}</B></BASEFONT> <BASEFONT COLOR=#82E0AA>[Nvl {prog.Level}]</BASEFONT>", false, false);
+            AddHtml(52, 10, 195, 20, $"<BASEFONT COLOR={hexColor}>{displayName}</BASEFONT> <BASEFONT COLOR=#82E0AA>[Nvl {prog.Level}]</BASEFONT>", false, false);
 
             // Mini barra de progresso de experiência
             int required = prog.GetRequiredExperience();
@@ -76,7 +76,7 @@ namespace Server.Custom.Ascensions
                     AddButton(14, y + 4, 0xFA5, 0xFA7, buttonID, GumpButtonType.Reply, 0);
 
                     // Nome da Habilidade
-                    AddHtml(44, y + 4, GumpWidth - 54, 20, $"<BASEFONT COLOR=#E5E7E9><B>{ability.DisplayName}</B></BASEFONT>", false, false);
+                    AddHtml(44, y + 4, GumpWidth - 54, 20, $"<BASEFONT COLOR=#E5E7E9>{ability.DisplayName}</BASEFONT>", false, false);
 
                     y += RowHeight;
                     buttonID++;

@@ -122,7 +122,7 @@ namespace Server.Custom.Ascensions
                         "Recarga: 3 minutos.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 16:</BASEFONT> Ao expirar o buff, cura completamente a vida de todos os afetados."));
 
-                    list.Add(new AscensionAbilityEntry("Heavenly Gate", 18, false, "[CrusaderHeavensGate", 0x0004, 0x481,
+                    list.Add(new AscensionAbilityEntry("Heavenly Gate", 18, false, "[CrusaderHeavensGate", 0x0F6C, 0x481,
                         "Abre os portões celestes e invoca um poderoso Archon celestial para guerrear ao seu lado até ser derrotado.<br>" +
                         "Recarga: 5 minutos.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 20:</BASEFONT> 1%/nível de chance de invocar dois Archons celestiais de uma vez."));
@@ -169,7 +169,7 @@ namespace Server.Custom.Ascensions
                         "Recarga: 90 segundos.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 16:</BASEFONT> As correntes explodem em dano adicional de frio ao final da paralisia."));
 
-                    list.Add(new AscensionAbilityEntry("Frostwyrm's Fury", 18, false, "[BlackguardsFrostwyrmsFury", 0x2235, 0x48D,
+                    list.Add(new AscensionAbilityEntry("Frostwyrm's Fury", 18, false, "[BlackguardsFrostwyrmsFury", 0x20D6, 0x48D,
                         "Invoca um Dracolich das profundezas do submundo sob sua vontade, lutando até tombar em combate.<br>" +
                         "Recarga: 5 minutos.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 20:</BASEFONT> 1%/nível de chance de invocar dois Frostwyrms simultâneos."));
@@ -247,7 +247,7 @@ namespace Server.Custom.Ascensions
                     break;
 
                 case AscensionType.Hierophant:
-                    list.Add(new AscensionAbilityEntry("Divine Wrath", 1, false, "[HierophantDivineWrath", 0x0E81, 0x482,
+                    list.Add(new AscensionAbilityEntry("Divine Wrath", 1, false, "[HierophantDivineWrath", 0x0DF2, 0x482,
                         "Chama divina cai sobre a área alvo, causando 30-48 + (karma/1000) de dano de fogo (+15% contra malignos). Recarga: 1 min.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 10:</BASEFONT> +25% de dano contra criaturas de karma negativo.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 15:</BASEFONT> Paralisa por 4 seg e inflige queimadura sagrada contínua.<br>" +
@@ -258,7 +258,7 @@ namespace Server.Custom.Ascensions
                         "Recarga: 2 minutos.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 12:</BASEFONT> Criaturas malignas afetadas ficam paralisadas por 8 segundos."));
 
-                    list.Add(new AscensionAbilityEntry("Consecrated Ground", 11, false, "[HierophantConsecratedGround", 0x0004, 0x482,
+                    list.Add(new AscensionAbilityEntry("Consecrated Ground", 11, false, "[HierophantConsecratedGround", 0x1008, 0x482,
                         "Purifica até 4 tiles ao redor. Aliados regeneram 12+nível/3 de vida e 5+nível/3 de mana; malignos recebem dano de fogo constante.<br>" +
                         "Recarga: 3 minutos.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 16:</BASEFONT> Seus feitiços de cura recuperam +25% de vida adicional."));
@@ -270,7 +270,7 @@ namespace Server.Custom.Ascensions
                     break;
 
                 case AscensionType.ArcaneArcher:
-                    list.Add(new AscensionAbilityEntry("Imbue Arrow", 1, false, "[ArcaneArcherImbueArrows", 0x2D1E, 0x489,
+                    list.Add(new AscensionAbilityEntry("Imbue Arrow", 1, false, "[ArcaneArcherImbueArrows", 0x26C2, 0x489,
                         "Encanta flechas com poder mágico por 30+1/nível seg. Flechas têm 2%/nível de chance de atingir a pior resistência do alvo.<br>" +
                         "Recarga: 2 minutos.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 10:</BASEFONT> Efeitos desencadeados têm chance de disparar duas vezes.<br>" +
@@ -418,7 +418,7 @@ namespace Server.Custom.Ascensions
                     break;
 
                 case AscensionType.Skald:
-                    list.Add(new AscensionAbilityEntry("Battlefield Rhythm", 2, true, null, 0x0F61, 0x53,
+                    list.Add(new AscensionAbilityEntry("Battlefield Rhythm", 2, true, null, 0x0E9C, 0x53,
                         "Ganha +3% de dano de arma contra criaturas em discórdia, provocadas ou pacificadas.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 5:</BASEFONT> Bônus aumenta para +9%.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 13:</BASEFONT> Bônus aumenta para +18%."));
@@ -431,7 +431,7 @@ namespace Server.Custom.Ascensions
                         "Sua proeza musical é considerada 15% mais potente para todos os feitiços de canção.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 19:</BASEFONT> Aumenta para 25% mais potente."));
 
-                    list.Add(new AscensionAbilityEntry("Saga of Steel", 20, true, null, 0x0F62, 0x53,
+                    list.Add(new AscensionAbilityEntry("Saga of Steel", 20, true, null, 0x0F5E, 0x53,
                         "Ao matar um inimigo com uma arma, tem 0.25%/nível de chance de ativar instantaneamente o feitiço Foe Requiem no inimigo mais próximo."));
                     break;
 
@@ -491,7 +491,7 @@ namespace Server.Custom.Ascensions
                         "<BASEFONT COLOR=#82E0AA>Nvl 5:</BASEFONT> +12% de dano.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 13:</BASEFONT> +18% de dano."));
 
-                    list.Add(new AscensionAbilityEntry("Mystical Ricochet", 8, true, null, 0x2D1E, 0x489,
+                    list.Add(new AscensionAbilityEntry("Mystical Ricochet", 8, true, null, 0x26C2, 0x489,
                         "Flechas saltadoras. 0.25%/nível de chance de o projétil ricochetear e acertar o inimigo mais próximo.<br>" +
                         "<BASEFONT COLOR=#82E0AA>Nvl 17:</BASEFONT> Pode ricochetear em até dois inimigos adicionais."));
 

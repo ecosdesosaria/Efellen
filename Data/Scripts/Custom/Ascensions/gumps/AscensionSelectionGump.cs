@@ -42,7 +42,7 @@ namespace Server.Custom.Ascensions
             AddAlphaRegion(10, 10, 680, 600);
 
             // Cabeçalho estilizado
-            AddHtml(20, 16, 660, 24, "<CENTER><BIG><BASEFONT COLOR=#F4D03F><B>ASCENSÕES</B></BASEFONT></BIG></CENTER>", false, false);
+            AddHtml(20, 16, 660, 24, "<CENTER><BIG><BASEFONT COLOR=#F4D03F>ASCENSÕES</BASEFONT></BIG></CENTER>", false, false);
             AddHtml(20, 38, 660, 18, "<CENTER><BASEFONT COLOR=#BDC3C7><SMALL>Desperte os poderes ancestrais e eleve o potencial do seu espírito</SMALL></BASEFONT></CENTER>", false, false);
 
             // Divisória ornamental
@@ -109,7 +109,7 @@ namespace Server.Custom.Ascensions
             string displayName = AscensionTypeHelper.GetDisplayName(type);
             string subTitle = AscensionVisuals.GetSubTitle(type);
 
-            AddHtml(85, y + 10, 220, 22, $"<BASEFONT COLOR={hexColor}><B>{displayName}</B></BASEFONT>", false, false);
+            AddHtml(85, y + 10, 220, 22, $"<BASEFONT COLOR={hexColor}>{displayName}</BASEFONT>", false, false);
             AddHtml(85, y + 30, 220, 20, $"<BASEFONT COLOR=#8E999E><SMALL><I>{subTitle}</I></SMALL></BASEFONT>", false, false);
 
             if (prog.Unlocked)
@@ -125,7 +125,7 @@ namespace Server.Custom.Ascensions
                 // Status / Botão Ativar
                 if (isActive)
                 {
-                    AddHtml(495, y + 20, 90, 24, "<CENTER><BASEFONT COLOR=#F4D03F><B>★ ATIVA</B></BASEFONT></CENTER>", false, false);
+                    AddHtml(495, y + 20, 90, 24, "<CENTER><BASEFONT COLOR=#F4D03F>★ ATIVA</BASEFONT></CENTER>", false, false);
                 }
                 else
                 {

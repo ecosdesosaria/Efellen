@@ -1280,9 +1280,9 @@ namespace Server.Gumps
 			if ( origin == 0 ){ from.SendSound( 0x4A ); }
 
 		int EP_bonus = 0;
-		if      ( from.Skills.Alchemy.Fixed >= 99 ){ EP_bonus = 30; }
-		else if ( from.Skills.Alchemy.Fixed >= 66 ){ EP_bonus = 20; }
-		else if ( from.Skills.Alchemy.Fixed >= 33 ){ EP_bonus = 10; }
+		if      ( from.Skills.Alchemy.Fixed >= 990 ){ EP_bonus = 30; }
+		else if ( from.Skills.Alchemy.Fixed >= 660 ){ EP_bonus = 20; }
+		else if ( from.Skills.Alchemy.Fixed >= 330 ){ EP_bonus = 10; }
 
 		int EPCap = 50 + EP_bonus; // Hardcoded to 50% + skill bonus
 		int EP    = BasePotion.EnhancePotions( from );
