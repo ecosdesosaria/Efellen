@@ -102,7 +102,7 @@ namespace Server.Items
 			SetSecureLevelEntry.AddTo( from, this, list );
 		}
 
-		public static void PutStuffInContainer( Mobile from, int box, Item item )
+		public static bool PutStuffInContainer( Mobile from, int box, Item item )
 		{
 			Container bag = null;
 
@@ -114,9 +114,11 @@ namespace Server.Items
 				bag = PutStuffBox( from, from.ContainerHarvest );
 
 			if ( bag == null )
-				from.AddToBackpack( item );
+				return from.AddToBackpack( item );
 			else if ( !bag.TryDropItem( from, item, false ) )
-				from.AddToBackpack( item );
+				return from.AddToBackpack( item );
+
+			return true;
 		}
 
 		public static Container PutStuffBox( Mobile from, int serialnum )
