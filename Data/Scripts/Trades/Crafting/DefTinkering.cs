@@ -337,8 +337,8 @@ namespace Server.Engines.Craft
 			
 			#region Wooden Items
 
-			AddCraft( typeof( ClockFrame ), 1044042, 1024173, 0.0, 50.0, typeof( Log ), 1015101, 6, 1044351 );
-			AddCraft( typeof( Axle ), 1044042, 1024187, -25.0, 25.0, typeof( Log ), 1015101, 2, 1044351 );
+			AddCraft( typeof( ClockFrame ), 1044042, 1024173, 0.0, 50.0, typeof( Board ), 1015101, 6, 1044351 );
+			AddCraft( typeof( Axle ), 1044042, 1024187, -25.0, 25.0, typeof( Board ), 1015101, 2, 1044351 );
 
 			index = AddCraft( typeof( SawMillSouthAddonDeed ), 1044042, "saw mill (south)", 60.0, 120.0, typeof( Granite ), 1044514, 80, 1044513 );
 			AddSkill( index, SkillName.Lumberjacking, 75.0, 80.0 );
