@@ -1291,6 +1291,8 @@ namespace Server.Accounting
 			if ( acc == null )
 				return;
 
+			acc.LastLogin = DateTime.Now;
+
 			if ( m.Young && acc.Young )
 			{
 				TimeSpan ts = YoungDuration - acc.TotalGameTime;
