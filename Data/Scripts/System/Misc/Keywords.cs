@@ -15,9 +15,42 @@ namespace Server.Misc
 			EventSink.Speech += new SpeechEventHandler( EventSink_Speech );
 		}
 
+		public static void ConsiderSins( Mobile from )
+		{
+			from.SendMessage( 0x3B2, "Assassinatos de curto prazo: {0} | Assassinatos de longo prazo: {1}", from.ShortTermMurders, from.Kills );
+
+			if ( from is PlayerMobile )
+			{
+				PlayerMobile pm = (PlayerMobile)from;
+				TimeSpan remaining = pm.KillDecayRemaining;
+
+				if ( pm.Kills > 0 && remaining > TimeSpan.Zero )
+				{
+					int hours = (int)remaining.TotalHours;
+					int minutes = remaining.Minutes;
+
+					if ( hours > 0 )
+						from.SendMessage( 0x3B2, "Tempo restante para o próximo perdão: {0} hora(s) e {1} minuto(s) de jogo.", hours, minutes );
+					else
+						from.SendMessage( 0x3B2, "Tempo restante para o próximo perdão: {0} minuto(s) de jogo.", minutes );
+				}
+				else if ( pm.Kills > 0 )
+				{
+					from.SendMessage( 0x3B2, "Seu próximo perdão ocorrerá no próximo salvamento do mundo." );
+				}
+			}
+		}
+
 		public static void EventSink_Speech( SpeechEventArgs args )
 		{
 			Mobile from = args.Mobile;
+
+			if ( args.Speech != null && ( args.Speech.IndexOf( "devo considerar meus pecados", StringComparison.OrdinalIgnoreCase ) >= 0 || args.Speech.IndexOf( "i must consider my sins", StringComparison.OrdinalIgnoreCase ) >= 0 ) )
+			{
+				ConsiderSins( from );
+				return;
+			}
+
 			int[] keywords = args.Keywords;
 
 			for ( int i = 0; i < keywords.Length; ++i )
@@ -33,15 +66,7 @@ namespace Server.Misc
 					}
 					case 0x0032: // *i must consider my sins*
 					{
-						if( !Core.SE )
-						{
-							from.SendMessage( "Short Term Murders : {0}", from.ShortTermMurders );
-							from.SendMessage( "Long Term Murders : {0}",  from.Kills );
-						}
-						else
-						{
-							from.SendMessage( 0x3B2, "Short Term Murders: {0} Long Term Murders: {1}", from.ShortTermMurders, from.Kills );
-						}
+						ConsiderSins( from );
 						break;
 					}
 					case 0x0035: // i renounce my young player status*

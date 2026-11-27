@@ -4271,6 +4271,32 @@ namespace Server.Mobiles
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
+		public TimeSpan LongTermElapse
+		{
+			get{ return m_LongTermElapse; }
+			set{ m_LongTermElapse = value; }
+		}
+
+		[CommandProperty( AccessLevel.GameMaster )]
+		public TimeSpan ShortTermElapse
+		{
+			get{ return m_ShortTermElapse; }
+			set{ m_ShortTermElapse = value; }
+		}
+
+		[CommandProperty( AccessLevel.GameMaster )]
+		public TimeSpan KillDecayRemaining
+		{
+			get
+			{
+				if ( Kills <= 0 || m_LongTermElapse <= this.GameTime )
+					return TimeSpan.Zero;
+
+				return m_LongTermElapse - this.GameTime;
+			}
+		}
+
+		[CommandProperty( AccessLevel.GameMaster )]
 		public TimeSpan GameTime
 		{
 			get
